@@ -23,6 +23,6 @@ IF /I NOT "%branch%"=="" (
 	echo. & echo %yellow%Creating a new branch ... & echo.----------------------------------------------%default%
 	call git checkout UAT
     call git pull
-    call git checkout -b SF-%branch% UAT
+    call git checkout -b SF-%branch% master
 	call git push origin SF-%branch%
 )
