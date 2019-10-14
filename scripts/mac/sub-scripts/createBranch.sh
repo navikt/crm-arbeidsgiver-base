@@ -17,6 +17,6 @@ then
 	echo "${yellow}\nCreating a new branch ... \n----------------------------------------------${default}"
   git checkout UAT
   git pull
-	git checkout -b SF-$branch UAT
+	git checkout -b SF-$branch master
 	git push origin SF-$branch
 fi
