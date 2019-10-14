@@ -1,0 +1,86 @@
+<!--
+ - Created by u157416 on 11/10/2019.
+ -->
+
+<aura:component description="ExternalMessages" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" controller="ExternalMessagesController">
+
+        <aura:attribute name="messages" type="ExternalMessages__c"/>
+        <aura:attribute name="newMessage" type="String"/>
+        <aura:attribute name="disable" type="Boolean" default="true"/>
+
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+        <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+
+        <article class="slds-card slds-card_boundary forceRelatedListCardDesktop">
+            <!-- HEADER -->
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+			<span class="slds-icon_container slds-icon-standard-contact">
+			  <lightning:icon iconName="standard:quick_text" size="medium"/>
+			</span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2>
+                            <span class="slds-text-heading_small slds-card__header-link">Meldinger</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+            <!-- END HEADER -->
+
+
+            <!-- START FEED -->
+            <div class="slds-m-bottom_x-large">
+                <div>
+                    <ui:scrollerWrapper aura:id="scroller" class="scrollHeight">
+                        <aura:iteration items="{!v.messages}" var="mes" indexVar="i">
+                            <div class="slds-feed">
+                                <ul class="slds-feed__list">
+                                    <li class="slds-feed__item">
+                                                <article class="slds-post slds-box backgroundColor">
+                                                    <header class="slds-post__header slds-media">
+                                                        <div class="slds-media__body">
+                                                            <!-- NAME OF PERSON WHO WROTE THE COMMENT -->
+                                                            <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+                                                                <!--<p class="txtColor">{!mes.CreatedBy.Name}</p>-->
+                                                                <p class="txtColor">{!mes.Name}</p>
+                                                            </div>
+                                                            <!-- COMMENT TIME --> <!-- data-id="{!aCase.Id} -->
+                                                            <p class="slds-text-body_small">{!mes.CreatedDateString__c}</p>
+                                                        </div>
+                                                    </header>
+                                                    <!-- MESSAGE -->
+                                                    <div class="slds-post__content slds-text-longform">
+                                                        <ui:outputText value="{!mes.Text__c}"/>
+                                                    </div>
+                                                </article>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aura:iteration>
+                    </ui:scrollerWrapper>
+                </div>
+                <!-- COMMENT -->
+                <div class="slds-media slds-comment slds-hint-parent slds-m-bottom_x-large">
+                    <div class="slds-media__body">
+                        <div class="slds-publisher slds-publisher_comment slds-is-active slds-has-focus slds-size_2-of-3 slds-align_absolute-center">
+                            <label for="comment-text-input-01" class="slds-assistive-text">Write a comment</label>
+                            <ui:inputTextArea aura:id="messageText" class="noBorder" placeholder="Write a comment…" value="{!v.newMessage}" keyup="{!c.enableButton}" updateOn="keyup"/>
+                            <div class="slds-publisher__actions slds-grid slds-grid_align-spread">
+                                <ul class="slds-grid">
+                                    <li>
+                                    </li>
+                                    <li>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <lightning:button aura:id="sendButton" class="slds-button slds-button_brand slds-align_absolute-center" onclick="{!c.createMessages}" disabled="{!v.disable}" label="Send"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </aura:component>
