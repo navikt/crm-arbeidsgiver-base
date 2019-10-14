@@ -4,9 +4,17 @@
 
 package.xml
 
+# Profiles (some are needed for deploying the community to scratch orgs)
+**/profiles*
+**/profilePasswordPolicies*
+**/profileSessionSettings*
+
 # LWC configuration files
 **/jsconfig.json
 **/.eslintrc.json
 
 # LWC Jest
 **/__tests__/**
+
+# bug with pushing app switching, do not upload
+**/AppSwitcher.appMenu*
