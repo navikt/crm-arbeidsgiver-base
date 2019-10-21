@@ -5,7 +5,7 @@
 package.xml
 
 # Profiles (some are needed for deploying the community to scratch orgs)
-**/profiles*
+**/profiles/*
 **/profilePasswordPolicies*
 **/profileSessionSettings*
 
@@ -18,3 +18,5 @@ package.xml
 
 # bug with pushing app switching, do not upload
 **/AppSwitcher.appMenu*
+**/settings/Activities.settings-meta.xml
+**/documents/Salesforce_Branding_Resources/*
