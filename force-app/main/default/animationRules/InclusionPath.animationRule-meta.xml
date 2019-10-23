@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <animationFrequency>r</animationFrequency>
+    <developerName>InclusionPath</developerName>
+    <isActive>true</isActive>
+    <masterLabel>Inkluderingssti</masterLabel>
+    <recordTypeContext>m</recordTypeContext>
+    <recordTypeName>__MASTER__</recordTypeName>
+    <sobjectType>01I3E000000RmZI</sobjectType>
+    <targetField>InclusionStage__c</targetField>
+    <targetFieldChangeToValues>Tilbud akseptert</targetFieldChangeToValues>
+</AnimationRule>
