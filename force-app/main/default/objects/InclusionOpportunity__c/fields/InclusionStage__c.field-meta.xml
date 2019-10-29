@@ -7,33 +7,22 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
                 <fullName>Ny henvendelse</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Ny henvendelse</label>
+            </value>
+            <value>
+                <fullName>Ansvarlig tildelt</fullName>
+                <default>false</default>
+                <label>Ansvarlig tildelt</label>
             </value>
             <value>
                 <fullName>Bedrift kontaktet</fullName>
                 <default>false</default>
                 <label>Bedrift kontaktet</label>
-            </value>
-            <value>
-                <fullName>Tilbud sendt</fullName>
-                <default>false</default>
-                <label>Tilbud sendt</label>
-            </value>
-            <value>
-                <fullName>Tilbud akseptert</fullName>
-                <default>false</default>
-                <label>Tilbud akseptert</label>
-            </value>
-            <value>
-                <fullName>Tilbud avslått</fullName>
-                <default>false</default>
-                <label>Tilbud avslått</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -4,6 +4,20 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Kontaktperson</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Contact.IsPersonAccount</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <filterItems>
+            <field>Contact.AccountId</field>
+            <operation>equals</operation>
+            <valueField>$Source.Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Inkluderingsmuligheter</relationshipLabel>
     <relationshipName>Inkluderingsmuligheter</relationshipName>
