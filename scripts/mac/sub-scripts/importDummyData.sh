@@ -7,6 +7,7 @@ default="\033[39m";
 
 # Installing plugins
 echo "${yellow}\nInstalling plugins needed for running script ... \n----------------------------------------------${default}"
+mkdir ~/.config/
 mkdir ~/.config/sfdx/
 cp ./config/unsignedPluginWhiteList.json ~/.config/sfdx/
 sfdx plugins:install sfdx-wry-plugin@0.0.9
