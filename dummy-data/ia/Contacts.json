@@ -5,18 +5,10 @@
                 "type": "Contact",
                 "referenceId": "ContactRef1"
             },
-            "CRM_RolleHosVirksomhet__c": "Leder",
             "Email": "berit.hansen@testepost.no",
             "FirstName": "Berit",
             "LastName": "Hansen",
             "MobilePhone": "12345667",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008kCdQAI"
-                },
-                "DeveloperName": "Kontaker_hos_virksomhet"
-            },
             "AccountId": "@AccountRef17"
         },
         {
@@ -24,18 +16,10 @@
                 "type": "Contact",
                 "referenceId": "ContactRef2"
             },
-            "CRM_RolleHosVirksomhet__c": "Tillitsvalgt",
             "Email": "olarsen@testepost.no",
             "FirstName": "Ola",
             "LastName": "Larsen",
             "MobilePhone": "43563211",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008kCdQAI"
-                },
-                "DeveloperName": "Kontaker_hos_virksomhet"
-            },
             "AccountId": "@AccountRef17"
         },
         {
@@ -43,18 +27,10 @@
                 "type": "Contact",
                 "referenceId": "ContactRef3"
             },
-            "CRM_RolleHosVirksomhet__c": "Verneombud",
             "Email": "gtonnesen@testepost.no",
             "FirstName": "Geir",
             "LastName": "Tønnesen",
             "MobilePhone": "12345689",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008kCdQAI"
-                },
-                "DeveloperName": "Kontaker_hos_virksomhet"
-            },
             "AccountId": "@AccountRef17"
         },
         {
@@ -62,18 +38,10 @@
                 "type": "Contact",
                 "referenceId": "ContactRef4"
             },
-            "CRM_RolleHosVirksomhet__c": "HR",
             "Email": "knormann@testepost.no",
             "FirstName": "Kari",
             "LastName": "Normann",
             "MobilePhone": "22123132",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008kCdQAI"
-                },
-                "DeveloperName": "Kontaker_hos_virksomhet"
-            },
             "AccountId": "@AccountRef17"
         }
     ]

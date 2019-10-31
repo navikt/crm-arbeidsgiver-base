@@ -22,25 +22,6 @@
         {
             "attributes": {
                 "type": "Account",
-                "referenceId": "AccountRef2"
-            },
-            "Name": "B -  SKI KOMMUNE ADMINISTRASJON OG IKT",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "974593319",
-            "Naeringsgruppe__c": "Generell offentlig administrasjon",
-            "Naeringskode__c": "84.110",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef11"
-        },
-        {
-            "attributes": {
-                "type": "Account",
                 "referenceId": "AccountRef3"
             },
             "Name": "O -  SKI KOMMUNE LEVEKÅR",
@@ -75,39 +56,6 @@
             "Naeringskode__c": "84.120",
             "Organisasjonsnummer__c": "960507878",
             "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef5"
-            },
-            "Name": "XXL ASA",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            }
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef6"
-            },
-            "Name": "B - KRÅKSTADTUNET BO- OG SERVICESENTER",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "974593483",
-            "Naeringsgruppe__c": "Bofellesskap for eldre og funksjonshemmede med fast tilknyttet personell hele døgnet",
-            "Naeringskode__c": "87.302",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef7"
         },
         {
             "attributes": {
@@ -207,79 +155,6 @@
         {
             "attributes": {
                 "type": "Account",
-                "referenceId": "AccountRef12"
-            },
-            "Name": "B - LANGHUS BO- OG SERVICESENTER",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "983426441",
-            "Naeringsgruppe__c": "87.102 Somatiske sykehjem; 88.101  Hjemmehjelp; 86.901 Hjemmesykepleie",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef7"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef13"
-            },
-            "Name": "B - SKI KOMMUNE BESTILLERKONTORET",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "987894431",
-            "Naeringsgruppe__c": "88.101 Hjemmehjelp; 87.101; Somatiske spesialsykehjem; 86.904 Annen forebyggende helsetjeneste",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef7"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef14"
-            },
-            "Name": "B - SKI KOMMUNE SAMFUNN",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "974 637 596",
-            "Naeringsgruppe__c": "Offentlig administrasjon tilknyttet næringsvirksomhet og arbeidsmarked",
-            "Naeringskode__c": "84.130",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef15"
-            },
-            "Name": "J - SKI KOMMUNE",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "960507878",
-            "Naeringsgruppe__c": "Generell offentlig administrasjon",
-            "Naeringskode__c": "84.110",
-            "Organisasjonsnummer__c": "960507878"
-        },
-        {
-            "attributes": {
-                "type": "Account",
                 "referenceId": "AccountRef16"
             },
             "Name": "O - FOLLO BARNEVERNVAKT",
@@ -295,49 +170,6 @@
             "Naeringskode__c": "88.991",
             "Organisasjonsnummer__c": "960507878",
             "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef17"
-            },
-            "Name": "B - FINSTADTUNET",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "893120602",
-            "Naeringsgruppe__c": "Somatiske sykehjem",
-            "Naeringskode__c": "87.102",
-            "Organisasjonsnummer__c": "960507878",
-            "Phone": "22222222",
-            "ShippingCity": "SKI",
-            "ShippingPostalCode": "1424",
-            "ShippingState": "SKI",
-            "ShippingStreet": "Delerudbakken 7",
-            "ParentId": "@AccountRef7"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef18"
-            },
-            "Name": "B - SKI KOMMUNESKOGER",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "974593696",
-            "Naeringsgruppe__c": "Avvirkning",
-            "Naeringskode__c": "02.200",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef9"
         }
     ]
 }
