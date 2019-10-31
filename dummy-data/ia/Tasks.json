@@ -1,0 +1,121 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef1"
+            },
+            "ActivityDate": "2019-11-01",
+            "CompletedDateTime": "2019-10-30T14:28:49.000+0000",
+            "IsClosed": true,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "Completed",
+            "Subject": "Telefonsamtale",
+            "TaskSubtype": "Task",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef2"
+            },
+            "ActivityDate": "2019-10-29",
+            "CompletedDateTime": "2019-10-30T13:51:52.000+0000",
+            "IsClosed": true,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "Completed",
+            "Subject": "Telefonsamtale",
+            "TaskSubtype": "Task",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef3"
+            },
+            "ActivityDate": "2019-10-30",
+            "CompletedDateTime": "2019-10-30T13:03:05.000+0000",
+            "IsClosed": true,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "Completed",
+            "Subject": "Telefonsamtale om partssamarbeid",
+            "TaskSubtype": "Task",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef4"
+            },
+            "ActivityDate": "2019-10-29",
+            "CompletedDateTime": "2019-10-29T13:40:57.000+0000",
+            "IsClosed": true,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "Completed",
+            "Subject": "Call",
+            "TaskSubtype": "Call",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef5"
+            },
+            "ActivityDate": "2019-10-30",
+            "CompletedDateTime": "2019-10-30T08:04:55.000+0000",
+            "IsClosed": true,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "Completed",
+            "Subject": "Prat om IA-veiledning på telefon",
+            "TaskSubtype": "Task",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef6"
+            },
+            "ActivityDate": "2019-11-15",
+            "IsClosed": false,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "Not Started",
+            "Subject": "Bedriftsbesøk",
+            "TaskSubtype": "Task",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef7"
+            },
+            "ActivityDate": "2019-11-11",
+            "IsClosed": false,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "Not Started",
+            "Subject": "Telefonsamtale",
+            "TaskSubtype": "Task",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Task",
+                "referenceId": "TaskRef8"
+            },
+            "ActivityDate": "2020-01-24",
+            "IsClosed": false,
+            "IsHighPriority": false,
+            "Priority": "Normal",
+            "Status": "In Progress",
+            "Subject": "Arbeidstrening",
+            "TaskSubtype": "Task",
+            "WhatId": "@AccountRef17"
+        }
+    ]
+}

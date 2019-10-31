@@ -1,0 +1,64 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef1"
+            },
+            "ActivityDate": "2019-11-01",
+            "DurationInMinutes": 20160,
+            "EndDate": "2019-11-14",
+            "EndDateTime": "2019-11-14T00:00:00.000+0000",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": true,
+            "ShowAs": "Busy",
+            "Subject": "Midlertidig lønnstilskudd",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef2"
+            },
+            "ActivityDate": "2019-11-06",
+            "DurationInMinutes": 30,
+            "EndDate": "2019-11-06",
+            "EndDateTime": "2019-11-06T13:30:00.000+0000",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": false,
+            "ShowAs": "Busy",
+            "Subject": "Presentere IA-arbeid",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef3"
+            },
+            "ActivityDate": "2019-10-31",
+            "DurationInMinutes": 18780,
+            "EndDate": "2019-11-13",
+            "EndDateTime": "2019-11-13T14:00:00.000+0000",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": false,
+            "ShowAs": "Busy",
+            "Subject": "IA-tjeneste: Utvikle partssamarbeid",
+            "WhatId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef4"
+            },
+            "ActivityDate": "2019-10-01",
+            "DurationInMinutes": 18780,
+            "EndDate": "2019-10-14",
+            "EndDateTime": "2019-10-14T14:00:00.000+0000",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": false,
+            "ShowAs": "Busy",
+            "Subject": "Mentorordning",
+            "WhatId": "@AccountRef17"
+        }
+    ]
+}

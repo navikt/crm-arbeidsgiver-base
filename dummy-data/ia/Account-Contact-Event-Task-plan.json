@@ -1,0 +1,34 @@
+[
+    {
+        "sobject": "Contact",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "Contacts.json"
+        ]
+    },
+    {
+        "sobject": "Event",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "Events.json"
+        ]
+    },
+    {
+        "sobject": "Task",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "Tasks.json"
+        ]
+    },
+    {
+        "sobject": "Account",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "Accounts.json"
+        ]
+    }
+]
