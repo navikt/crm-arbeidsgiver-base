@@ -22,6 +22,20 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>TAG_Differansemotnaring__c</field>
+                <behavior>Edit</behavior>
+                <field>Organisasjonsnummer__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Bedriftsnummer__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Naeringsgruppe__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Naeringskode__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
