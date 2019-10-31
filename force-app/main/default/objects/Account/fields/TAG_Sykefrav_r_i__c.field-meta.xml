@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Sykefrav_r_i__c</fullName>
+    <description>Viser sykefravær for virksomheten, hentes fra</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Sykefravær for virksomheten</inlineHelpText>
+    <label>Sykefravær i %</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Percent</type>
+</CustomField>

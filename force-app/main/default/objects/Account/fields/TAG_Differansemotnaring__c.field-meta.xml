@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Differansemotnaring__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( (TAG_Sykefrav_r_i__c &gt; TAG_Bransjens_Sykefrv_r__c), IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;green&quot;,20,20),
+IF( (TAG_Sykefrav_r_i__c &lt; TAG_Bransjens_Sykefrv_r__c  ) , IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;red&quot; ,20, 20),
+IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 20, 20)
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Differanse mot næring</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
