@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Tilrettelagt opplæring</fullName>
+        <default>false</default>
+        <label>Tilrettelagt opplæring</label>
+    </customValue>
+    <customValue>
+        <fullName>Tilrettelagte arbeidsoppgaver</fullName>
+        <default>false</default>
+        <label>Tilrettelagte arbeidsoppgaver</label>
+    </customValue>
+    <customValue>
+        <fullName>Mentor</fullName>
+        <default>false</default>
+        <label>Mentor</label>
+    </customValue>
+    <customValue>
+        <fullName>Andre former for tilrettelegging</fullName>
+        <default>false</default>
+        <label>Andre former for tilrettelegging</label>
+    </customValue>
+    <masterLabel>Arbeidsmiljø</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

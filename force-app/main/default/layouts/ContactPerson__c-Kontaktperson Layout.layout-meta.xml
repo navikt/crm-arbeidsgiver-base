@@ -19,6 +19,10 @@
                 <behavior>Readonly</behavior>
                 <field>TelephoneNumber__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Email__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

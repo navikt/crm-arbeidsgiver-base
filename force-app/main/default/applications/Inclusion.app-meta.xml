@@ -15,15 +15,16 @@
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
+    <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Inkludering</label>
     <navType>Standard</navType>
+    <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
-    <tabs>standard-Contact</tabs>
+    <tabs>Kontakter</tabs>
     <tabs>InclusionOpportunity__c</tabs>
-    <tabs>standard-Feed</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Inkludering_UtilityBar</utilityBar>
 </CustomApplication>

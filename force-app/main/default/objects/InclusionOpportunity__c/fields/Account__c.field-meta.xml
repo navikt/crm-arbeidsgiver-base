@@ -3,7 +3,16 @@
     <fullName>Account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Kunde</label>
+    <label>Bedrift</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Account.IsPersonAccount</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Inkluderingsmuligheter</relationshipLabel>
     <relationshipName>Inkluderingsmuligheter</relationshipName>

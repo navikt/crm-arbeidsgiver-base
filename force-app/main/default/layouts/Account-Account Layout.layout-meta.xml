@@ -147,11 +147,11 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>InclusionOpportunity__c</fields>
-        <relatedList>ContactPerson__c.ContactPerson__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>InquiryCategory__c</fields>
+        <fields>County__c</fields>
+        <fields>Municipality__c</fields>
+        <fields>InclusionStage__c</fields>
         <relatedList>InclusionOpportunity__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
