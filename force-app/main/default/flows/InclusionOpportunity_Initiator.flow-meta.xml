@@ -160,13 +160,47 @@
                     <stringValue>Oslo</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>Organization;User</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Owner:Queue.OwnerId</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>myAssignment_myRule_1_A1</targetReference>
             </connector>
             <label>Fylke er Oslo</label>
         </rules>
     </decisions>
-    <interviewLabel>InclusionOpportunity_Initiator-1_InterviewLabel</interviewLabel>
+    <interviewLabel>InclusionOpportunity_Initiator-2_InterviewLabel</interviewLabel>
     <label>Inkluderingsmulighet_Initiator</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -194,7 +228,7 @@
     </processMetadataValues>
     <processType>Workflow</processType>
     <startElementReference>myDecision</startElementReference>
-    <status>Obsolete</status>
+    <status>Draft</status>
     <variables>
         <name>myCollection_myRule_1_A1recipientIds</name>
         <dataType>String</dataType>
