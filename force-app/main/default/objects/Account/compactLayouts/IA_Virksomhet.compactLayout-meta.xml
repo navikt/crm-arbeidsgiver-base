@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IA_Virksomhet</fullName>
+    <fields>ParentId</fields>
+    <fields>Name</fields>
+    <fields>Phone</fields>
+    <fields>Industry</fields>
+    <fields>TAG_Sykefrav_r_i__c</fields>
+    <fields>TAG_Bransjens_Sykefrv_r__c</fields>
+    <fields>TAG_Differansemotnaring__c</fields>
+    <label>IA_Virksomhet</label>
+</CompactLayout>
