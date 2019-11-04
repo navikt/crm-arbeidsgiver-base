@@ -9,7 +9,7 @@ default="\033[39m";
 tput reset
 
 cd -- "$(dirname "$BASH_SOURCE")"
-cd ../..
+cd ../../..
 
 echo "\nAre you in the correct branch to push code from? [y/n]"
 read -p "> " isInCorrectBranch
