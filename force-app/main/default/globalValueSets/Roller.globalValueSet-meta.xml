@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Daglig leder</fullName>
+        <default>false</default>
+        <label>Daglig leder</label>
+    </customValue>
+    <customValue>
+        <fullName>HR-ansvarlig</fullName>
+        <default>false</default>
+        <label>HR-ansvarlig</label>
+    </customValue>
+    <customValue>
+        <fullName>Logistikkansvarlig</fullName>
+        <default>false</default>
+        <label>Logistikkansvarlig</label>
+    </customValue>
+    <customValue>
+        <fullName>Rekrutteringsanvarlig</fullName>
+        <default>false</default>
+        <label>Rekrutteringsanvarlig</label>
+    </customValue>
+    <customValue>
+        <fullName>Salgsansvarlig</fullName>
+        <default>false</default>
+        <label>Salgsansvarlig</label>
+    </customValue>
+    <description>Roller internt hos bedrifter</description>
+    <masterLabel>Roller</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

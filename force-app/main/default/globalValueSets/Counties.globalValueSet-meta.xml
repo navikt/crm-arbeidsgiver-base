@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Agder</fullName>
+        <default>false</default>
+        <label>Agder</label>
+    </customValue>
+    <customValue>
+        <fullName>Innlandet (Oppland og Hedmark)</fullName>
+        <default>false</default>
+        <label>Innlandet (Oppland og Hedmark)</label>
+    </customValue>
+    <customValue>
+        <fullName>Møre og Romsdal</fullName>
+        <default>false</default>
+        <label>Møre og Romsdal</label>
+    </customValue>
+    <customValue>
+        <fullName>Nordland</fullName>
+        <default>false</default>
+        <label>Nordland</label>
+    </customValue>
+    <customValue>
+        <fullName>Oslo</fullName>
+        <default>false</default>
+        <label>Oslo</label>
+    </customValue>
+    <customValue>
+        <fullName>Rogaland</fullName>
+        <default>false</default>
+        <label>Rogaland</label>
+    </customValue>
+    <customValue>
+        <fullName>Troms og Finmark</fullName>
+        <default>false</default>
+        <label>Troms og Finmark</label>
+    </customValue>
+    <customValue>
+        <fullName>Trøndelag</fullName>
+        <default>false</default>
+        <label>Trøndelag</label>
+    </customValue>
+    <customValue>
+        <fullName>Vestfold og Telemark</fullName>
+        <default>false</default>
+        <label>Vestfold og Telemark</label>
+    </customValue>
+    <customValue>
+        <fullName>Vestland</fullName>
+        <default>false</default>
+        <label>Vestland</label>
+    </customValue>
+    <customValue>
+        <fullName>Vest-Viken (Buskerud, Bærum og Asker)</fullName>
+        <default>false</default>
+        <label>Vest-Viken (Buskerud, Bærum og Asker)</label>
+    </customValue>
+    <customValue>
+        <fullName>Øst-Viken (Østfold, Follo, Romerike)</fullName>
+        <default>false</default>
+        <label>Øst-Viken (Østfold, Follo, Romerike)</label>
+    </customValue>
+    <description>All counties in Norway</description>
+    <masterLabel>Fylker</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

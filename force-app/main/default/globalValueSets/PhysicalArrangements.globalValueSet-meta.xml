@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Varierte arbeidsstillinger</fullName>
+        <default>false</default>
+        <label>Varierte arbeidsstillinger</label>
+    </customValue>
+    <customValue>
+        <fullName>Ergonomiske tilpasninger</fullName>
+        <default>false</default>
+        <label>Ergonomiske tilpasninger</label>
+    </customValue>
+    <customValue>
+        <fullName>Unngå tunge løft</fullName>
+        <default>false</default>
+        <label>Unngå tunge løft</label>
+    </customValue>
+    <customValue>
+        <fullName>Hørsel</fullName>
+        <default>false</default>
+        <label>Hørsel</label>
+    </customValue>
+    <customValue>
+        <fullName>Syn</fullName>
+        <default>false</default>
+        <label>Syn</label>
+    </customValue>
+    <customValue>
+        <fullName>Andre former for fysisk tilrettelegging</fullName>
+        <default>false</default>
+        <label>Andre former for fysisk tilrettelegging</label>
+    </customValue>
+    <masterLabel>Fysisk tilrettelegging</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

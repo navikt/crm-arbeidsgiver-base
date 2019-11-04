@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Heltid</fullName>
+        <default>false</default>
+        <label>Heltid</label>
+    </customValue>
+    <customValue>
+        <fullName>Jobb hver ukedag, men ikke hele dager</fullName>
+        <default>false</default>
+        <label>Jobb hver ukedag, men ikke hele dager</label>
+    </customValue>
+    <customValue>
+        <fullName>Borte fra jobb til faste dager eller tider</fullName>
+        <default>false</default>
+        <label>Borte fra jobb til faste dager eller tider</label>
+    </customValue>
+    <customValue>
+        <fullName>Fleksible arbeidsdager</fullName>
+        <default>false</default>
+        <label>Fleksible arbeidsdager</label>
+    </customValue>
+    <masterLabel>Arbeidstid</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

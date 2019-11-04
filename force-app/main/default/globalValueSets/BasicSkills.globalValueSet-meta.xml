@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Snakke norsk</fullName>
+        <default>false</default>
+        <label>Snakke norsk</label>
+    </customValue>
+    <customValue>
+        <fullName>Skrive norsk</fullName>
+        <default>false</default>
+        <label>Skrive norsk</label>
+    </customValue>
+    <customValue>
+        <fullName>Lese norsk</fullName>
+        <default>false</default>
+        <label>Lese norsk</label>
+    </customValue>
+    <customValue>
+        <fullName>Regning og tallforståelse</fullName>
+        <default>false</default>
+        <label>Regning og tallforståelse</label>
+    </customValue>
+    <customValue>
+        <fullName>Andre utfordringer</fullName>
+        <default>false</default>
+        <label>Andre utfordringer</label>
+    </customValue>
+    <masterLabel>Grunnleggende ferdigheter</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
