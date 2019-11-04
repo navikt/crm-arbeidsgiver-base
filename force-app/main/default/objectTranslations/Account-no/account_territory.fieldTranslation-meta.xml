@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Arbeidsgiverområdet</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>Et arbeidsgiverområde</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>Arbeidsgiverområde</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Arbeidsgiverområdene</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>Arbeidsgiverområder</value>
+    </caseValues>
+    <gender>Neuter</gender>
+    <name>account_territory</name>
+</CustomFieldTranslation>

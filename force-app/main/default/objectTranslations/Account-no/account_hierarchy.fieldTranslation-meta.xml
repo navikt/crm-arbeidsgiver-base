@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Arbeidsgiverhierarkiet</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>Et arbeidsgiverhierarki</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>Arbeidsgiverhierarki</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Arbeidsgiverhierarkiene</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>Arbeidsgiverhierarki</value>
+    </caseValues>
+    <gender>Neuter</gender>
+    <name>account_hierarchy</name>
+</CustomFieldTranslation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Arbeidsgiver</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Arbeidsgiver</value>
+    </caseValues>
+    <layouts>
+        <layout>Virksomhet</layout>
+        <sections>
+            <label><!-- Sykefravær --></label>
+            <section>Sykefravær</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Business Account --></label>
+        <name>Business_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Brukes for accounts med tilknytning til NAV som tiltaksarrangør. --></description>
+        <label><!-- Tiltaksarrangør --></label>
+        <name>TAG_Tiltaksarrangoer</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- En bedrift som har dialog med NAV på ett eller flere områder. --></description>
+        <label><!-- Virksomhet --></label>
+        <name>Virksomhet</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>
