@@ -6,6 +6,7 @@
     <columns>Bedriftsnummer__c</columns>
     <columns>Naeringskode__c</columns>
     <columns>Naeringsgruppe__c</columns>
+    <columns>ACCOUNT.RECORDTYPE</columns>
     <filterScope>Everything</filterScope>
     <label>Org_Account_Hierarchy</label>
 </ListView>

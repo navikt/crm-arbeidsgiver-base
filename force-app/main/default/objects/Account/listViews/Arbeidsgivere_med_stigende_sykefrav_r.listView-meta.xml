@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Arbeidsgivere_med_stigende_sykefrav_r</fullName>
+    <columns>TAG_Differansemotnaring__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Naeringsgruppe__c</columns>
+    <columns>TAG_Bransjens_Sykefrv_r__c</columns>
+    <columns>TAG_Sykefrav_r_i__c</columns>
+    <columns>Sykefrav_r_forrige_kvartal__c</columns>
+    <columns>TAG_Differanse_mot_forrige_kvartal__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.Virksomhet</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.Virksomhet</value>
+    </filters>
+    <filters>
+        <field>TAG_Differanse_mot_forrige_kvartal__c</field>
+        <operation>lessThan</operation>
+        <value>0.0</value>
+    </filters>
+    <label>Arbeidsgivere med stigende sykefravær</label>
+</ListView>
