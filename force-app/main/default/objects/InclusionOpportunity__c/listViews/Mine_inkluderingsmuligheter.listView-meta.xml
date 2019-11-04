@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mine_inkluderingsmuligheter</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Municipality__c</columns>
+    <columns>InclusionStage__c</columns>
+    <columns>InquiryCategory__c</columns>
+    <columns>PhysicalArrangements__c</columns>
+    <columns>BasicSkills__c</columns>
+    <columns>WorkEnvironment__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>Mine inkluderingsmuligheter</label>
+</ListView>
