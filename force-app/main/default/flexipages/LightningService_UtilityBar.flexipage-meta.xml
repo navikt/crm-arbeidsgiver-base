@@ -3,6 +3,9 @@
     <description>The default utility bar for the Service Console application.</description>
     <flexiPageRegions>
         <componentInstances>
+            <componentName>runtime_service_omnichannel:omniWidget</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentName>console:history</componentName>
         </componentInstances>
         <componentInstances>
@@ -10,6 +13,10 @@
         </componentInstances>
         <name>utilityItems</name>
         <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>backgroundComponents</name>
+        <type>Background</type>
     </flexiPageRegions>
     <masterLabel>Service Console App Utility Bar</masterLabel>
     <template>
