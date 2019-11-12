@@ -14,10 +14,5 @@
         <operation>equals</operation>
         <value>Account.Virksomhet</value>
     </filters>
-    <filters>
-        <field>ACCOUNT.RECORDTYPE</field>
-        <operation>equals</operation>
-        <value>Account.Virksomhet</value>
-    </filters>
     <label>Min IA Portefølje</label>
 </ListView>
