@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LiveChatButton xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <deployments/>
-    <enableQueue>true</enableQueue>
+    <enableQueue>false</enableQueue>
     <isActive>true</isActive>
     <label>Chat button</label>
     <optionsCustomRoutingIsEnabled>false</optionsCustomRoutingIsEnabled>
@@ -11,8 +11,6 @@
     <optionsHasRerouteDeclinedRequest>false</optionsHasRerouteDeclinedRequest>
     <optionsIsAutoAccept>false</optionsIsAutoAccept>
     <optionsIsInviteAutoRemove>false</optionsIsInviteAutoRemove>
-    <perAgentQueueLength>3</perAgentQueueLength>
     <routingType xsi:nil="true"/>
     <type>Standard</type>
-    <windowLanguage>no</windowLanguage>
 </LiveChatButton>
