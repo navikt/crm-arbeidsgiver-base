@@ -313,7 +313,9 @@ TEXT({!myVariable_current.InclusionStage__c}) = &#39;Ny henvendelse&#39;</expres
 
 BEGINS(Priorvalue([InclusionOpportunity__c].OwnerId), &quot;00G&quot;) &amp;&amp;
 
-BEGINS([InclusionOpportunity__c].OwnerId, &quot;005&quot;) </stringValue>
+BEGINS([InclusionOpportunity__c].OwnerId, &quot;005&quot;) &amp;&amp;
+
+TEXT([InclusionOpportunity__c].InclusionStage__c) = &#39;Ny henvendelse&#39;</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_3</name>
@@ -322,9 +324,11 @@ BEGINS([InclusionOpportunity__c].OwnerId, &quot;005&quot;) </stringValue>
 
 BEGINS(Priorvalue({!myVariable_current.OwnerId}), &quot;00G&quot;) &amp;&amp;
 
-BEGINS({!myVariable_current.OwnerId}, &quot;005&quot;)</expression>
+BEGINS({!myVariable_current.OwnerId}, &quot;005&quot;) &amp;&amp;
+
+TEXT({!myVariable_current.InclusionStage__c}) = &#39;Ny henvendelse&#39;</expression>
     </formulas>
-    <interviewLabel>InclusionOpportunity_Processor-14_InterviewLabel</interviewLabel>
+    <interviewLabel>InclusionOpportunity_Processor-15_InterviewLabel</interviewLabel>
     <label>Inkluderingsmulighet_Processor</label>
     <processMetadataValues>
         <name>ObjectType</name>

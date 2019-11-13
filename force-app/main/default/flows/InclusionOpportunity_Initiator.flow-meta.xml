@@ -16,43 +16,24 @@
 			<name>myRule_1</name>
 			<conditionLogic>and</conditionLogic>
 			<conditions>
-				<processMetadataValues>
-					<name>inputDataType</name>
-					<value>
-						<stringValue>String</stringValue>
-					</value>
-				</processMetadataValues>
-				<processMetadataValues>
-					<name>leftHandSideType</name>
-					<value>
-						<stringValue>String</stringValue>
-					</value>
-				</processMetadataValues>
-				<processMetadataValues>
-					<name>operatorDataType</name>
-					<value>
-						<stringValue>String</stringValue>
-					</value>
-				</processMetadataValues>
-				<processMetadataValues>
-					<name>rightHandSideType</name>
-					<value>
-						<stringValue>String</stringValue>
-					</value>
-				</processMetadataValues>
-				<leftValueReference>myVariable_current.County__c</leftValueReference>
+				<leftValueReference>formula_myRule_1</leftValueReference>
 				<operator>EqualTo</operator>
 				<rightValue>
-					<stringValue>Oslo</stringValue>
+					<booleanValue>true</booleanValue>
 				</rightValue>
 			</conditions>
 			<connector>
 				<targetReference>myRule_1_A1</targetReference>
 			</connector>
-			<label>Fylke er Oslo</label>
+			<label>Sett eier til oslo queue</label>
 		</rules>
 	</decisions>
-	<interviewLabel>InclusionOpportunity_Initiator-7_InterviewLabel</interviewLabel>
+	<formulas>
+		<name>formula_myRule_1</name>
+		<dataType>Boolean</dataType>
+		<expression>true</expression>
+	</formulas>
+	<interviewLabel>InclusionOpportunity_Initiator-8_InterviewLabel</interviewLabel>
 	<label>Inkluderingsmulighet_Initiator</label>
 	<processMetadataValues>
 		<name>ObjectType</name>
