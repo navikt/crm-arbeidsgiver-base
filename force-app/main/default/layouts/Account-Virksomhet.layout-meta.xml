@@ -30,6 +30,10 @@
                 <behavior>Edit</behavior>
                 <field>Bedriftsnummer__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MunicipalityNumber__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
