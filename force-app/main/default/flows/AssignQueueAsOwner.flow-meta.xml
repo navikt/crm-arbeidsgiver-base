@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+	<formulas>
+		<name>UnitNumberString</name>
+		<dataType>String</dataType>
+		<expression>TEXT({!UnitNumber})</expression>
+	</formulas>
+	<interviewLabel>Sett eier av inkluderingsmulighet til kø {!$Flow.CurrentDateTime}</interviewLabel>
+	<label>Sett eier av inkluderingsmulighet til kø</label>
+	<processMetadataValues>
+		<name>BuilderType</name>
+		<value>
+			<stringValue>LightningFlowBuilder</stringValue>
+		</value>
+	</processMetadataValues>
+	<processMetadataValues>
+		<name>OriginBuilderType</name>
+		<value>
+			<stringValue>LightningFlowBuilder</stringValue>
+		</value>
+	</processMetadataValues>
+	<processType>AutoLaunchedFlow</processType>
+	<recordLookups>
+		<name>GetQueues</name>
+		<label>Hent queues</label>
+		<locationX>333</locationX>
+		<locationY>64</locationY>
+		<assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+		<filters>
+			<field>Name</field>
+			<operator>EqualTo</operator>
+			<value>
+				<elementReference>UnitNumberString</elementReference>
+			</value>
+		</filters>
+		<object>Group</object>
+		<outputReference>matchingQueue</outputReference>
+		<queriedFields>Id</queriedFields>
+		<queriedFields>Name</queriedFields>
+	</recordLookups>
+	<startElementReference>GetQueues</startElementReference>
+	<status>Active</status>
+	<variables>
+		<name>matchingQueue</name>
+		<dataType>SObject</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+		<objectType>Group</objectType>
+	</variables>
+	<variables>
+		<description>Nav unit number</description>
+		<name>UnitNumber</name>
+		<dataType>Number</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+		<scale>0</scale>
+	</variables>
+</Flow>
