@@ -39,18 +39,6 @@
                 <behavior>Edit</behavior>
                 <field>WorkTime__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Queue_assigned__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MunicipalityNumber__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UnitNumber__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -180,11 +168,12 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <fields>ContactPerson__c</fields>
-        <fields>Role__c</fields>
-        <fields>TelephoneNumber__c</fields>
-        <fields>Email__c</fields>
-        <relatedList>ContactPerson__c.InclusionOpportunity__c</relatedList>
+        <fields>NAME</fields>
+        <fields>Contact.CNTC_FIRST_NAME</fields>
+        <fields>Contact.NAME</fields>
+        <fields>Contact.CNTC_EMAIL</fields>
+        <fields>Contact.CNTC_PHONE1</fields>
+        <relatedList>InclusionContactPerson__c.InclusionOpportunity__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
@@ -214,7 +203,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X000000gFaE</masterLabel>
+        <masterLabel>00h1x000000hjMT</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
