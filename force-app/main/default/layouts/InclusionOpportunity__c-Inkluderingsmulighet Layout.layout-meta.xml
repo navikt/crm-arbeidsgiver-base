@@ -39,6 +39,18 @@
                 <behavior>Edit</behavior>
                 <field>WorkTime__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsFromContactForm__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>MunicipalityNumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Municipality__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -51,7 +63,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Municipality__c</field>
+                <field>AccountMunicipality__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
