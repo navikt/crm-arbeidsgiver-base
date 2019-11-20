@@ -162,7 +162,10 @@ def tryCommandWithException(commands, shouldPressToContinueIfError, stopAfterFai
 	return False
 
 
+
+
 # files and folders
+# ---------------------------------------------
 
 def fetchFilesFromFolder(folder, keepPath):
 	directory = os.fsencode(folder)
@@ -209,7 +212,7 @@ def getDefaultDevhub():
 		return ""
 
 def updateMenuInformation(mainMenu): 
-	mainMenu.subtitle = "CURRENT DEFAULT SCRATCH ORG: {}".format(getDefaultScratchOrg())
+	mainMenu.subtitle = "DEFAULT SCRATCH ORG: {}".format(getDefaultScratchOrg())
 
 
 
