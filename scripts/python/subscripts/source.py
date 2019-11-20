@@ -42,4 +42,26 @@ def pushOrPull(mainMenu, value, isForce):
 			pushOrPullException(mainMenu, value, isForce)
 		else:
 			helper.pressToContinue(True, 20)
+
+def manifest(mainMenu):
+	print(helper.col("Which manifest do you want to pull using?", [helper.c.y]))
+
+	manifests = helper.fetchFilesFromFolder("./manifest/", True)
+	header = ["Number", "Manifest"]
+	rows = []
+
+	for i, manifest in enumerate(manifests):
+		rows.append([i + 1, manifest.replace("./manifest/", "").replace(".xml", "")])
 	
+	helper.createTable(header, rows)
+	
+	choice = helper.askForInputUntilEmptyOrValidNumber(len(rows))
+
+	if (choice != -1):
+		print()
+		manifest = "./manifest/" + rows[choice][1] + ".xml"
+		helper.startLoading("Pulling Metadata from Manifest {}".format(manifest))
+		error = helper.tryCommandWithException(["sfdx force:source:retrieve -x {}".format(manifest)], True, True)
+		if (error): return
+
+	helper.pressToContinue(True, 20)
