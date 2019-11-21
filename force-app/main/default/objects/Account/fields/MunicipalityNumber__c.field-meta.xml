@@ -3,10 +3,9 @@
     <fullName>MunicipalityNumber__c</fullName>
     <externalId>false</externalId>
     <label>Kommunenummer</label>
-    <precision>18</precision>
+    <length>10</length>
     <required>false</required>
-    <scale>0</scale>
     <trackFeedHistory>false</trackFeedHistory>
-    <type>Number</type>
+    <type>Text</type>
     <unique>false</unique>
 </CustomField>

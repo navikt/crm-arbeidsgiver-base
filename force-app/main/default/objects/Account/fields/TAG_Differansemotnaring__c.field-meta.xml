@@ -7,7 +7,7 @@ IF( (TAG_Sykefrav_r_i__c &lt; TAG_Bransjens_Sykefrv_r__c  ) , IMAGE(&quot;/img/s
 IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 20, 20)
 ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Differanse mot næring</label>
+    <label>Differanse mot bransje</label>
     <required>false</required>
     <type>Text</type>
     <unique>false</unique>
