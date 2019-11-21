@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Municipality__c</fullName>
+    <fullName>Rolle__c</fullName>
     <externalId>false</externalId>
-    <label>Kommune</label>
+    <label>Rolle</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetName>Municipalities</valueSetName>
+        <valueSetName>Roller</valueSetName>
     </valueSet>
 </CustomField>

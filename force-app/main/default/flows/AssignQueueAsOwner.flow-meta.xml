@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>AddQueueIdToStringCollection</name>
+        <label>Legg til QueueId i string collection</label>
+        <locationX>407</locationX>
+        <locationY>51</locationY>
+        <assignmentItems>
+            <assignToReference>QueueStringCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>matchingQueue.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignQueueBasedOnUnit</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignQueueBasedOnUnit</name>
+        <label>Sett queue basert på enhet</label>
+        <locationX>705</locationX>
+        <locationY>57</locationY>
+        <assignmentItems>
+            <assignToReference>InclusionOppty.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>matchingQueue.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Oppdater_inkluderingsmulighet</targetReference>
+        </connector>
+    </assignments>
+    <formulas>
+        <name>UnitNameFormula</name>
+        <dataType>String</dataType>
+        <expression>case(TEXT({!MunicipalityName}), 
+&#39;Risør&#39;, &#39;NAV Risør&#39;,
+&#39;Grimstad&#39;, &#39;NAV Grimstad&#39;,
+&#39;Arendal&#39;, &#39;NAV Arendal&#39;,
+&#39;Gjerstad&#39;, &#39;NAV Gjerstad&#39;,
+&#39;Vegårshei&#39;, &#39;NAV Vegårshei&#39;,
+&#39;Tvedestrand&#39;, &#39;NAV Tvedestrand&#39;,
+&#39;Froland&#39;, &#39;NAV Froland&#39;,
+&#39;Lillesand&#39;, &#39;NAV Lillesand&#39;,
+&#39;Birkenes&#39;, &#39;NAV Birkenes&#39;,
+&#39;Åmli&#39;, &#39;NAV Åmli&#39;,
+&#39;Iveland&#39;, &#39;NAV Iveland&#39;,
+&#39;Evje og Hornnes&#39;, &#39;NAV Evje og Hornnes&#39;,
+&#39;Bygland&#39;, &#39;NAV Bygland&#39;,
+&#39;Valle&#39;, &#39;NAV Valle&#39;,
+&#39;Bykle&#39;, &#39;NAV Bykle&#39;,
+&#39;Kristiansand&#39;, &#39;NAV Kristiansand&#39;,
+&#39;Mandal&#39;, &#39;NAV Mandal&#39;,
+&#39;Farsund&#39;, &#39;NAV Farsund&#39;,
+&#39;Flekkefjord&#39;, &#39;NAV Flekkefjord&#39;,
+&#39;Vennesla&#39;, &#39;NAV Vennesla&#39;,
+&#39;Songdalen&#39;, &#39;NAV Songdalen&#39;,
+&#39;Søgne&#39;, &#39;NAV Søgne&#39;,
+&#39;Marnardal&#39;, &#39;NAV Marnardal&#39;,
+&#39;Åseral&#39;, &#39;NAV Åseral&#39;,
+&#39;Audnedal&#39;, &#39;NAV Audnedal&#39;,
+&#39;Lindesnes&#39;, &#39;NAV Lindesnes&#39;,
+&#39;Lyngdal&#39;, &#39;NAV Lyngdal&#39;,
+&#39;Hægebostad&#39;, &#39;NAV Hægebostad&#39;,
+&#39;Kvinesdal&#39;, &#39;NAV Kvinesdal&#39;,
+&#39;Sirdal&#39;, &#39;NAV Sirdal&#39;,
+&#39;Stavanger - Hundvåg&#39;, &#39;NAV Hundvåg og Storhaug&#39;,
+&#39;Stavanger - Tasta&#39;, &#39;NAV Eiganes og Tasta&#39;,
+&#39;Stavanger - Eiganes og Våland&#39;, &#39;NAV Eiganes og Tasta&#39;,
+&#39;Stavanger - Madla&#39;, &#39;NAV Madla&#39;,
+&#39;Stavanger - Storhaug&#39;, &#39;NAV Hundvåg og Storhaug&#39;,
+&#39;Stavanger - Hillevåg&#39;, &#39;NAV Hillevåg og Hinna&#39;,
+&#39;Stavanger - Hinna&#39;, &#39;NAV Hillevåg og Hinna&#39;,
+&#39;Eigersund&#39;, &#39;NAV Eigersund&#39;,
+&#39;Sandnes&#39;, &#39;NAV Sandnes&#39;,
+&#39;Haugesund&#39;, &#39;NAV Haugesund-Utsira&#39;,
+&#39;Sokndal&#39;, &#39;NAV Sokndal&#39;,
+&#39;Lund&#39;, &#39;NAV Lund&#39;,
+&#39;Bjerkreim&#39;, &#39;NAV Bjerkreim&#39;,
+&#39;Hå&#39;, &#39;NAV Hå&#39;,
+&#39;Klepp&#39;, &#39;NAV Klepp-Time&#39;,
+&#39;Time&#39;, &#39;NAV Klepp-Time&#39;,
+&#39;Gjesdal&#39;, &#39;NAV Gjesdal&#39;,
+&#39;Sola&#39;, &#39;NAV Sola&#39;,
+&#39;Randaberg&#39;, &#39;NAV Randaberg-Kvitsøy&#39;,
+&#39;Forsand&#39;, &#39;NAV Forsand&#39;,
+&#39;Strand&#39;, &#39;NAV Strand&#39;,
+&#39;Hjelmeland&#39;, &#39;NAV Hjelmeland&#39;,
+&#39;Suldal&#39;, &#39;NAV Suldal&#39;,
+&#39;Sauda&#39;, &#39;NAV Sauda&#39;,
+&#39;Finnøy&#39;, &#39;NAV Finnøy&#39;,
+&#39;Rennesøy&#39;, &#39;NAV Rennesøy&#39;,
+&#39;Kvitsøy&#39;, &#39;NAV Randaberg-Kvitsøy&#39;,
+&#39;Bokn&#39;, &#39;NAV Karmøy-Bokn&#39;,
+&#39;Tysvær&#39;, &#39;NAV Tysvær&#39;,
+&#39;Karmøy&#39;, &#39;NAV Karmøy-Bokn&#39;,
+&#39;Utsira&#39;, &#39;NAV Haugesund-Utsira&#39;,
+&#39;Vindafjord&#39;, &#39;NAV Vindafjord&#39;,
+&#39;Bergen - Arna&#39;, &#39;NAV Arna&#39;,
+&#39;Bergen - Bergenhus&#39;, &#39;NAV Bergenhus&#39;,
+&#39;Bergen - Fana&#39;, &#39;NAV Fana&#39;,
+&#39;Bergen - Fyllingsdalen&#39;, &#39;NAV Fyllingsdalen&#39;,
+&#39;Bergen - Laksevåg&#39;, &#39;NAV Laksevåg&#39;,
+&#39;Bergen - Ytrebygda&#39;, &#39;NAV Ytrebygda&#39;,
+&#39;Bergen - Årstad&#39;, &#39;NAV Årstad&#39;,
+&#39;Bergen - Åsane&#39;, &#39;NAV Åsane&#39;,
+&#39;Etne&#39;, &#39;NAV Etne&#39;,
+&#39;Sveio&#39;, &#39;NAV Sveio&#39;,
+&#39;Bømlo&#39;, &#39;NAV Bømlo&#39;,
+&#39;Stord&#39;, &#39;NAV Stord&#39;,
+&#39;Fitjar&#39;, &#39;NAV Fitjar&#39;,
+&#39;Tysnes&#39;, &#39;NAV Tysnes&#39;,
+&#39;Kvinnherad&#39;, &#39;NAV Kvinnherad&#39;,
+&#39;Jondal&#39;, &#39;NAV Jondal&#39;,
+&#39;Odda&#39;, &#39;NAV Odda&#39;,
+&#39;Ullensvang&#39;, &#39;NAV Ullensvang&#39;,
+&#39;Eidfjord&#39;, &#39;NAV Eidfjord&#39;,
+&#39;Ulvik&#39;, &#39;NAV Ulvik&#39;,
+&#39;Granvin&#39;, &#39;NAV Granvin&#39;,
+&#39;Voss&#39;, &#39;NAV Voss&#39;,
+&#39;Kvam&#39;, &#39;NAV Kvam&#39;,
+&#39;Fusa&#39;, &#39;NAV Fusa&#39;,
+&#39;Samnanger&#39;, &#39;NAV Samnanger&#39;,
+&#39;Os&#39;, &#39;NAV Os&#39;,
+&#39;Austevoll&#39;, &#39;NAV Austevoll&#39;,
+&#39;Sund&#39;, &#39;NAV Sund&#39;,
+&#39;Fjell&#39;, &#39;NAV Fjell&#39;,
+&#39;Askøy&#39;, &#39;NAV Askøy&#39;,
+&#39;Vaksdal&#39;, &#39;NAV Vaksdal&#39;,
+&#39;Modalen&#39;, &#39;NAV Fensfjorden&#39;,
+&#39;Osterøy&#39;, &#39;NAV Osterøy&#39;,
+&#39;Meland&#39;, &#39;NAV Meland&#39;,
+&#39;Øygarden&#39;, &#39;NAV Øygarden&#39;,
+&#39;Radøy&#39;, &#39;NAV Radøy&#39;,
+&#39;Lindås&#39;, &#39;NAV Lindås&#39;,
+&#39;Austrheim&#39;, &#39;NAV Fensfjorden&#39;,
+&#39;Fedje&#39;, &#39;NAV Fensfjorden&#39;,
+&#39;Masfjorden&#39;, &#39;NAV Fensfjorden&#39;,
+&#39;Flora&#39;, &#39;NAV Flora&#39;,
+&#39;Gulen&#39;, &#39;NAV Fensfjorden&#39;,
+&#39;Solund&#39;, &#39;NAV Solund&#39;,
+&#39;Hyllestad&#39;, &#39;NAV Hyllestad&#39;,
+&#39;Høyanger&#39;, &#39;NAV Høyanger&#39;,
+&#39;Vik&#39;, &#39;NAV Vik&#39;,
+&#39;Balestrand&#39;, &#39;NAV Balestrand&#39;,
+&#39;Leikanger&#39;, &#39;NAV Leikanger&#39;,
+&#39;Sogndal&#39;, &#39;NAV Sogndal&#39;,
+&#39;Aurland&#39;, &#39;NAV Aurland&#39;,
+&#39;Lærdal&#39;, &#39;NAV Lærdal&#39;,
+&#39;Årdal&#39;, &#39;NAV Årdal&#39;,
+&#39;Luster&#39;, &#39;NAV Luster&#39;,
+&#39;Askvoll&#39;, &#39;NAV Askvoll&#39;,
+&#39;Fjaler&#39;, &#39;NAV Fjaler&#39;,
+&#39;Gaular&#39;, &#39;NAV Gaular&#39;,
+&#39;Jølster&#39;, &#39;NAV Jølster&#39;,
+&#39;Førde&#39;, &#39;NAV Førde&#39;,
+&#39;Naustdal&#39;, &#39;NAV Naustdal&#39;,
+&#39;Bremanger&#39;, &#39;NAV Bremanger&#39;,
+&#39;Vågsøy&#39;, &#39;NAV Vågsøy&#39;,
+&#39;Selje&#39;, &#39;NAV Selje&#39;,
+&#39;Eid&#39;, &#39;NAV Eid&#39;,
+&#39;Hornindal&#39;, &#39;NAV Hornindal&#39;,
+&#39;Gloppen&#39;, &#39;NAV Gloppen&#39;,
+&#39;Stryn&#39;, &#39;NAV Stryn&#39;,
+&#39;0&#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>UnitNameFormula2</name>
+        <dataType>String</dataType>
+        <expression>case(TEXT({!MunicipalityName}),
+&#39;Molde&#39;, &#39;NAV Molde&#39;,
+&#39;Ålesund&#39;, &#39;NAV Ålesund&#39;,
+&#39;Kristiansund&#39;, &#39;NAV Kristiansund&#39;,
+&#39;Vanylven&#39;, &#39;NAV Herøy og Vanylven&#39;,
+&#39;Sande&#39;, &#39;NAV Hareid - Ulstein - Sande&#39;,
+&#39;Herøy&#39;, &#39;NAV Herøy og Vanylven&#39;,
+&#39;Ulstein&#39;, &#39;NAV Hareid - Ulstein - Sande&#39;,
+&#39;Hareid&#39;, &#39;NAV Hareid - Ulstein - Sande&#39;,
+&#39;Volda&#39;, &#39;NAV Ørsta-Volda&#39;,
+&#39;Ørsta&#39;, &#39;NAV Ørsta-Volda&#39;,
+&#39;Ørskog&#39;, &#39;NAV Storfjorden&#39;,
+&#39;Norddal&#39;, &#39;NAV Storfjorden&#39;,
+&#39;Stranda&#39;, &#39;NAV Stranda&#39;,
+&#39;Stordal&#39;, &#39;NAV Storfjorden&#39;,
+&#39;Sykkylven&#39;, &#39;NAV Sykkylven&#39;,
+&#39;Skodje&#39;, &#39;NAV Storfjorden&#39;,
+&#39;Sula&#39;, &#39;NAV Sula&#39;,
+&#39;Giske&#39;, &#39;NAV Giske&#39;,
+&#39;Haram&#39;, &#39;NAV Haram&#39;,
+&#39;Vestnes&#39;, &#39;NAV Vestnes&#39;,
+&#39;Rauma&#39;, &#39;NAV Rauma&#39;,
+&#39;Nesset&#39;, &#39;NAV Nesset&#39;,
+&#39;Midsund&#39;, &#39;NAV Midsund&#39;,
+&#39;Sandøy&#39;, &#39;NAV Sandøy&#39;,
+&#39;Aukra&#39;, &#39;NAV Aukra&#39;,
+&#39;Fræna&#39;, &#39;NAV Fræna-Eide&#39;,
+&#39;Eide&#39;, &#39;NAV Fræna-Eide&#39;,
+&#39;Averøy&#39;, &#39;NAV Averøy&#39;,
+&#39;Gjemnes&#39;, &#39;NAV Gjemnes&#39;,
+&#39;Tingvoll&#39;, &#39;NAV Tingvoll&#39;,
+&#39;Sunndal&#39;, &#39;NAV Sunndal&#39;,
+&#39;Surnadal&#39;, &#39;NAV Surnadal&#39;,
+&#39;Halsa&#39;, &#39;NAV Halsa&#39;,
+&#39;Smøla&#39;, &#39;NAV Smøla&#39;,
+&#39;Aure&#39;, &#39;NAV Aure&#39;,
+&#39;Bodø&#39;, &#39;NAV Bodø&#39;,
+&#39;Narvik&#39;, &#39;NAV Narvik&#39;,
+&#39;Bindal&#39;, &#39;NAV Bindal&#39;,
+&#39;Sømna&#39;, &#39;NAV Sømna&#39;,
+&#39;Brønnøy&#39;, &#39;NAV Brønnøy&#39;,
+&#39;Vega&#39;, &#39;NAV Vega&#39;,
+&#39;Vevelstad&#39;, &#39;NAV Vevelstad&#39;,
+&#39;Herøy&#39;, &#39;NAV Herøy&#39;,
+&#39;Alstahaug&#39;, &#39;NAV Alstahaug&#39;,
+&#39;Leirfjord&#39;, &#39;NAV Leirfjord&#39;,
+&#39;Vefsn&#39;, &#39;NAV Mosjøen&#39;,
+&#39;Grane&#39;, &#39;NAV Grane&#39;,
+&#39;Hattfjelldal&#39;, &#39;NAV Hattfjelldal&#39;,
+&#39;Dønna&#39;, &#39;NAV Dønna&#39;,
+&#39;Nesna&#39;, &#39;NAV Nesna&#39;,
+&#39;Hemnes&#39;, &#39;NAV Hemnes&#39;,
+&#39;Rana&#39;, &#39;NAV Rana&#39;,
+&#39;Lurøy&#39;, &#39;NAV Lurøy&#39;,
+&#39;Træna&#39;, &#39;NAV Træna&#39;,
+&#39;Rødøy&#39;, &#39;NAV Rødøy&#39;,
+&#39;Meløy&#39;, &#39;NAV Meløy&#39;,
+&#39;Gildeskål&#39;, &#39;NAV Gildeskål&#39;,
+&#39;Beiarn&#39;, &#39;NAV Beiarn&#39;,
+&#39;Saltdal&#39;, &#39;NAV Saltdal&#39;,
+&#39;Fauske – Fuossko&#39;, &#39;NAV Fauske&#39;,
+&#39;Sørfold&#39;, &#39;NAV Sørfold&#39;,
+&#39;Steigen&#39;, &#39;NAV Steigen&#39;,
+&#39;Hamarøy&#39;, &#39;NAV Hamarøy&#39;,
+&#39;Divtasvuodna – Tysfjord&#39;, &#39;NAV Tysfjord&#39;,
+&#39;Lødingen&#39;, &#39;NAV Lødingen&#39;,
+&#39;Evenes&#39;, &#39;NAV Narvik&#39;,
+&#39;Ballangen&#39;, &#39;NAV Ballangen&#39;,
+&#39;Røst&#39;, &#39;NAV Røst&#39;,
+&#39;Værøy&#39;, &#39;NAV Værøy&#39;,
+&#39;Flakstad&#39;, &#39;NAV Flakstad&#39;,
+&#39;Vestvågøy&#39;, &#39;NAV Vestvågøy&#39;,
+&#39;Vågan&#39;, &#39;NAV Svolvær&#39;,
+&#39;Hadsel&#39;, &#39;NAV Hadsel&#39;,
+&#39;Bø&#39;, &#39;NAV Bø&#39;,
+&#39;Øksnes&#39;, &#39;NAV Øksnes&#39;,
+&#39;Sortland&#39;, &#39;NAV Sortland&#39;,
+&#39;Andøy&#39;, &#39;NAV Andøy&#39;,
+&#39;Moskenes&#39;, &#39;NAV Moskenes&#39;,
+&#39;Gratangen&#39;, &#39;NAV Narvik&#39;,
+&#39;Tjeldsund&#39;, &#39;NAV Skånland - Tjeldsund&#39;,
+&#39;Tromsø&#39;, &#39;NAV Tromsø&#39;,
+&#39;Harstad&#39;, &#39;NAV Harstad&#39;,
+&#39;Kvæfjord&#39;, &#39;NAV Kvæfjord&#39;,
+&#39;Skånland&#39;, &#39;NAV Skånland - Tjeldsund&#39;,
+&#39;Ibestad&#39;, &#39;NAV Ibestad&#39;,
+&#39;Loabák – Lavangen&#39;, &#39;NAV Lavangen&#39;,
+&#39;Bardu&#39;, &#39;NAV Bardu&#39;,
+&#39;Salangen&#39;, &#39;NAV Salangen&#39;,
+&#39;Målselv&#39;, &#39;NAV Målselv&#39;,
+&#39;Sørreisa&#39;, &#39;NAV Sørreisa&#39;,
+&#39;Dyrøy&#39;, &#39;NAV Dyrøy&#39;,
+&#39;Tranøy&#39;, &#39;NAV Tranøy&#39;,
+&#39;Torsken&#39;, &#39;NAV Torsken&#39;,
+&#39;Berg&#39;, &#39;NAV Berg&#39;,
+&#39;Lenvik&#39;, &#39;NAV Lenvik&#39;,
+&#39;Balsfjord&#39;, &#39;NAV Balsfjord-Storfjord&#39;,
+&#39;Karlsøy&#39;, &#39;NAV Karlsøy&#39;,
+&#39;Lyngen&#39;, &#39;NAV Lyngen&#39;,
+&#39;Storfjord – Omasvuotna – Omasvuono&#39;, &#39;NAV Balsfjord-Storfjord&#39;,
+&#39;Gáivuotna – Kåfjord – Kaivuono&#39;, &#39;NAV Gáivuotna/Kåfjord&#39;,
+&#39;Skjervøy&#39;, &#39;NAV Skjervøy&#39;,
+&#39;Nordreisa - Ráisa - Raisi&#39;, &#39;NAV Nordreisa&#39;,
+&#39;Kvænangen&#39;, &#39;NAV Kvænangen&#39;,
+&#39;Vardø&#39;, &#39;NAV Vardø&#39;,
+&#39;Vadsø&#39;, &#39;NAV Vadsø&#39;,
+&#39;Hammerfest&#39;, &#39;NAV Hammerfest&#39;,
+&#39;Guovdageaidnu – Kautokeino&#39;, &#39;NAV Guovdageaidnu/Kautokeino&#39;,
+&#39;Alta&#39;, &#39;NAV Alta&#39;,
+&#39;Loppa&#39;, &#39;NAV Loppa&#39;,
+&#39;Hasvik&#39;, &#39;NAV Hasvik&#39;,
+&#39;Kvalsund&#39;, &#39;NAV Kvalsund&#39;,
+&#39;Måsøy&#39;, &#39;NAV Måsøy&#39;,
+&#39;Nordkapp&#39;, &#39;NAV Nordkapp&#39;,
+&#39;Porsanger – Porsáŋgu – Porsanki&#39;, &#39;NAV Porsanger&#39;,
+&#39;Kárášjohka – Karasjok&#39;, &#39;NAV Karasjohka/Karasjok&#39;,
+&#39;Lebesby&#39;, &#39;NAV Lebesby&#39;,
+&#39;Gamvik&#39;, &#39;NAV Gamvik&#39;,
+&#39;Berlevåg&#39;, &#39;NAV Berlevåg&#39;,
+&#39;Deatnu - Tana&#39;, &#39;NAV Deatnu/Tana&#39;,
+&#39;Unjárga – Nesseby&#39;, &#39;NAV Unjárga/Nesseby&#39;,
+&#39;Båtsfjord&#39;, &#39;NAV Båtsfjord&#39;,
+&#39;Sør-Varanger&#39;, &#39;NAV Sør-Varanger&#39;,
+&#39;0&#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>UnitNameFormula3</name>
+        <dataType>String</dataType>
+        <expression>case(TEXT({!MunicipalityName}),
+&#39;Trondheim - Midtbyen&#39;, &#39;NAV Falkenborg&#39;,
+&#39;Trondheim - Østbyen&#39;, &#39;NAV Falkenborg&#39;,
+&#39;Trondheim - Lerkendal&#39;, &#39;NAV Lerkendal&#39;,
+&#39;Trondheim - Heimdal&#39;, &#39;NAV Lerkendal&#39;,
+&#39;Os&#39;, &#39;NAV Røros, Os og Holtålen&#39;,
+&#39;Steinkjer&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Namsos&#39;, &#39;NAV Namsos&#39;,
+&#39;Hemne&#39;, &#39;NAV Hemne og Snillfjord&#39;,
+&#39;Snillfjord&#39;, &#39;NAV Hemne og Snillfjord&#39;,
+&#39;Hitra&#39;, &#39;NAV Hitra Frøya&#39;,
+&#39;Frøya&#39;, &#39;NAV Hitra Frøya&#39;,
+&#39;Ørland&#39;, &#39;NAV Ørland&#39;,
+&#39;Agdenes&#39;, &#39;NAV Orkdal og Agdenes&#39;,
+&#39;Bjugn&#39;, &#39;NAV Bjugn&#39;,
+&#39;Åfjord&#39;, &#39;NAV Nord-Fosen&#39;,
+&#39;Roan&#39;, &#39;NAV Nord-Fosen&#39;,
+&#39;Osen&#39;, &#39;NAV Nord-Fosen&#39;,
+&#39;Oppdal&#39;, &#39;NAV Oppdal og Rennebu&#39;,
+&#39;Rennebu&#39;, &#39;NAV Oppdal og Rennebu&#39;,
+&#39;Meldal&#39;, &#39;NAV Meldal&#39;,
+&#39;Orkdal&#39;, &#39;NAV Orkdal og Agdenes&#39;,
+&#39;Røros&#39;, &#39;NAV Røros, Os og Holtålen&#39;,
+&#39;Holtålen&#39;, &#39;NAV Røros, Os og Holtålen&#39;,
+&#39;Midtre Gauldal&#39;, &#39;NAV Midtre Gauldal&#39;,
+&#39;Melhus&#39;, &#39;NAV Melhus&#39;,
+&#39;Skaun&#39;, &#39;NAV Skaun&#39;,
+&#39;Klæbu&#39;, &#39;NAV Lerkendal&#39;,
+&#39;Malvik&#39;, &#39;NAV Malvik&#39;,
+&#39;Selbu&#39;, &#39;NAV Værnes&#39;,
+&#39;Tydal&#39;, &#39;NAV Værnes&#39;,
+&#39;Meråker&#39;, &#39;NAV Værnes&#39;,
+&#39;Stjørdal&#39;, &#39;NAV Værnes&#39;,
+&#39;Frosta&#39;, &#39;NAV Værnes&#39;,
+&#39;Levanger&#39;, &#39;NAV Levanger&#39;,
+&#39;Verdal&#39;, &#39;NAV Verdal&#39;,
+&#39;Verran&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Namdalseid&#39;, &#39;NAV Namdalseid&#39;,
+&#39;Snåase-Snåsa&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Lierne&#39;, &#39;NAV Lierne&#39;,
+&#39;Raarvikhe – Røyrvik&#39;, &#39;NAV Røyrvik&#39;,
+&#39;Namsskogan&#39;, &#39;NAV Namsskogan&#39;,
+&#39;Grong&#39;, &#39;NAV Grong&#39;,
+&#39;Høylandet&#39;, &#39;NAV Høylandet&#39;,
+&#39;Overhalla&#39;, &#39;NAV Overhalla&#39;,
+&#39;Fosnes&#39;, &#39;NAV Fosnes&#39;,
+&#39;Flatanger&#39;, &#39;NAV Flatanger&#39;,
+&#39;Vikna&#39;, &#39;NAV Vikna&#39;,
+&#39;Nærøy&#39;, &#39;NAV Nærøy&#39;,
+&#39;Leka&#39;, &#39;NAV Leka&#39;,
+&#39;Inderøy&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Indre Fosen&#39;, &#39;NAV Indre Fosen&#39;,
+&#39;Rindal&#39;, &#39;NAV Rindal&#39;,
+&#39;Bærum&#39;, &#39;NAV Bærum&#39;,
+&#39;Asker&#39;, &#39;NAV Asker&#39;,
+&#39;Drammen&#39;, &#39;NAV Drammen&#39;,
+&#39;Kongsberg&#39;, &#39;NAV Kongsberg&#39;,
+&#39;Ringerike&#39;, &#39;NAV Ringerike&#39;,
+&#39;Hole&#39;, &#39;NAV Hole&#39;,
+&#39;Flå&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Nes&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Gol&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Hemsedal&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Ål&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Hol&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Sigdal&#39;, &#39;NAV Sigdal&#39;,
+&#39;Krødsherad&#39;, &#39;NAV Krødsherad&#39;,
+&#39;Modum&#39;, &#39;NAV Modum&#39;,
+&#39;Øvre Eiker&#39;, &#39;NAV Øvre Eiker&#39;,
+&#39;Nedre Eiker&#39;, &#39;NAV Nedre Eiker&#39;,
+&#39;Lier&#39;, &#39;NAV Lier&#39;,
+&#39;Røyken&#39;, &#39;NAV Røyken&#39;,
+&#39;Hurum&#39;, &#39;NAV Hurum&#39;,
+&#39;Flesberg&#39;, &#39;NAV Numedal&#39;,
+&#39;Rollag&#39;, &#39;NAV Numedal&#39;,
+&#39;Nore og Uvdal&#39;, &#39;NAV Numedal&#39;,
+&#39;Kongsvinger&#39;, &#39;NAV Kongsvinger&#39;,
+&#39;Hamar&#39;, &#39;NAV Hamar&#39;,
+&#39;Ringsaker&#39;, &#39;NAV Ringsaker&#39;,
+&#39;Løten&#39;, &#39;NAV Løten&#39;,
+&#39;Stange&#39;, &#39;NAV Stange&#39;,
+&#39;Nord-Odal&#39;, &#39;NAV Nord-Odal&#39;,
+&#39;Sør-Odal&#39;, &#39;NAV Sør-Odal&#39;,
+&#39;Eidskog&#39;, &#39;NAV Eidskog&#39;,
+&#39;Grue&#39;, &#39;NAV Grue&#39;,
+&#39;Åsnes&#39;, &#39;NAV Åsnes&#39;,
+&#39;Våler&#39;, &#39;NAV Våler i Hedmark&#39;,
+&#39;Elverum&#39;, &#39;NAV Elverum&#39;,
+&#39;Trysil&#39;, &#39;NAV Trysil&#39;,
+&#39;Åmot&#39;, &#39;NAV Åmot&#39;,
+&#39;Stor-Elvdal&#39;, &#39;NAV Stor-Elvdal&#39;,
+&#39;Rendalen&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Engerdal&#39;, &#39;NAV Engerdal&#39;,
+&#39;Tolga&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Tynset&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Alvdal&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Folldal&#39;, &#39;NAV Folldal&#39;,
+&#39;Lillehammer&#39;, &#39;NAV Lillehammer-Gausdal&#39;,
+&#39;Gjøvik&#39;, &#39;NAV Gjøvik&#39;,
+&#39;Dovre&#39;, &#39;NAV Lesja - Dovre&#39;,
+&#39;Lesja&#39;, &#39;NAV Lesja - Dovre&#39;,
+&#39;Skjåk&#39;, &#39;NAV Lom-Skjåk&#39;,
+&#39;Lom&#39;, &#39;NAV Lom-Skjåk&#39;,
+&#39;Vågå&#39;, &#39;NAV Vågå&#39;,
+&#39;Nord-Fron&#39;, &#39;NAV Midt-Gudbrandsdal&#39;,
+&#39;Sel&#39;, &#39;NAV Sel&#39;,
+&#39;Sør-Fron&#39;, &#39;NAV Midt-Gudbrandsdal&#39;,
+&#39;Ringebu&#39;, &#39;NAV Midt-Gudbrandsdal&#39;,
+&#39;Øyer&#39;, &#39;NAV Øyer&#39;,
+&#39;Gausdal&#39;, &#39;NAV Lillehammer-Gausdal&#39;,
+&#39;Østre Toten&#39;, &#39;NAV Østre Toten&#39;,
+&#39;Vestre Toten&#39;, &#39;NAV Vestre Toten&#39;,
+&#39;Jevnaker&#39;, &#39;NAV Jevnaker&#39;,
+&#39;Lunner&#39;, &#39;NAV Hadeland&#39;,
+&#39;Gran&#39;, &#39;NAV Hadeland&#39;,
+&#39;Søndre Land&#39;, &#39;NAV Søndre Land&#39;,
+&#39;Nordre Land&#39;, &#39;NAV Nordre Land&#39;,
+&#39;Sør-Aurdal&#39;, &#39;NAV Valdres&#39;,
+&#39;Etnedal&#39;, &#39;NAV Valdres&#39;,
+&#39;Nord-Aurdal&#39;, &#39;NAV Valdres&#39;,
+&#39;Vestre Slidre&#39;, &#39;NAV Valdres&#39;,
+&#39;Øystre Slidre&#39;, &#39;NAV Valdres&#39;,
+&#39;Vang&#39;, &#39;NAV Valdres&#39;,
+&#39;0&#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>UnitNameFormula4</name>
+        <dataType>String</dataType>
+        <expression>case(TEXT({!MunicipalityName}),
+&#39;Trondheim - Midtbyen&#39;, &#39;NAV Falkenborg&#39;,
+&#39;Trondheim - Østbyen&#39;, &#39;NAV Falkenborg&#39;,
+&#39;Trondheim - Lerkendal&#39;, &#39;NAV Lerkendal&#39;,
+&#39;Trondheim - Heimdal&#39;, &#39;NAV Lerkendal&#39;,
+&#39;Os&#39;, &#39;NAV Røros, Os og Holtålen&#39;,
+&#39;Steinkjer&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Namsos&#39;, &#39;NAV Namsos&#39;,
+&#39;Hemne&#39;, &#39;NAV Hemne og Snillfjord&#39;,
+&#39;Snillfjord&#39;, &#39;NAV Hemne og Snillfjord&#39;,
+&#39;Hitra&#39;, &#39;NAV Hitra Frøya&#39;,
+&#39;Frøya&#39;, &#39;NAV Hitra Frøya&#39;,
+&#39;Ørland&#39;, &#39;NAV Ørland&#39;,
+&#39;Agdenes&#39;, &#39;NAV Orkdal og Agdenes&#39;,
+&#39;Bjugn&#39;, &#39;NAV Bjugn&#39;,
+&#39;Åfjord&#39;, &#39;NAV Nord-Fosen&#39;,
+&#39;Roan&#39;, &#39;NAV Nord-Fosen&#39;,
+&#39;Osen&#39;, &#39;NAV Nord-Fosen&#39;,
+&#39;Oppdal&#39;, &#39;NAV Oppdal og Rennebu&#39;,
+&#39;Rennebu&#39;, &#39;NAV Oppdal og Rennebu&#39;,
+&#39;Meldal&#39;, &#39;NAV Meldal&#39;,
+&#39;Orkdal&#39;, &#39;NAV Orkdal og Agdenes&#39;,
+&#39;Røros&#39;, &#39;NAV Røros, Os og Holtålen&#39;,
+&#39;Holtålen&#39;, &#39;NAV Røros, Os og Holtålen&#39;,
+&#39;Midtre Gauldal&#39;, &#39;NAV Midtre Gauldal&#39;,
+&#39;Melhus&#39;, &#39;NAV Melhus&#39;,
+&#39;Skaun&#39;, &#39;NAV Skaun&#39;,
+&#39;Klæbu&#39;, &#39;NAV Lerkendal&#39;,
+&#39;Malvik&#39;, &#39;NAV Malvik&#39;,
+&#39;Selbu&#39;, &#39;NAV Værnes&#39;,
+&#39;Tydal&#39;, &#39;NAV Værnes&#39;,
+&#39;Meråker&#39;, &#39;NAV Værnes&#39;,
+&#39;Stjørdal&#39;, &#39;NAV Værnes&#39;,
+&#39;Frosta&#39;, &#39;NAV Værnes&#39;,
+&#39;Levanger&#39;, &#39;NAV Levanger&#39;,
+&#39;Verdal&#39;, &#39;NAV Verdal&#39;,
+&#39;Verran&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Namdalseid&#39;, &#39;NAV Namdalseid&#39;,
+&#39;Snåase-Snåsa&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Lierne&#39;, &#39;NAV Lierne&#39;,
+&#39;Raarvikhe – Røyrvik&#39;, &#39;NAV Røyrvik&#39;,
+&#39;Namsskogan&#39;, &#39;NAV Namsskogan&#39;,
+&#39;Grong&#39;, &#39;NAV Grong&#39;,
+&#39;Høylandet&#39;, &#39;NAV Høylandet&#39;,
+&#39;Overhalla&#39;, &#39;NAV Overhalla&#39;,
+&#39;Fosnes&#39;, &#39;NAV Fosnes&#39;,
+&#39;Flatanger&#39;, &#39;NAV Flatanger&#39;,
+&#39;Vikna&#39;, &#39;NAV Vikna&#39;,
+&#39;Nærøy&#39;, &#39;NAV Nærøy&#39;,
+&#39;Leka&#39;, &#39;NAV Leka&#39;,
+&#39;Inderøy&#39;, &#39;NAV Inn-Trøndelag&#39;,
+&#39;Indre Fosen&#39;, &#39;NAV Indre Fosen&#39;,
+&#39;Rindal&#39;, &#39;NAV Rindal&#39;,
+&#39;Bærum&#39;, &#39;NAV Bærum&#39;,
+&#39;Asker&#39;, &#39;NAV Asker&#39;,
+&#39;Drammen&#39;, &#39;NAV Drammen&#39;,
+&#39;Kongsberg&#39;, &#39;NAV Kongsberg&#39;,
+&#39;Ringerike&#39;, &#39;NAV Ringerike&#39;,
+&#39;Hole&#39;, &#39;NAV Hole&#39;,
+&#39;Flå&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Nes&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Gol&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Hemsedal&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Ål&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Hol&#39;, &#39;NAV Hallingdal&#39;,
+&#39;Sigdal&#39;, &#39;NAV Sigdal&#39;,
+&#39;Krødsherad&#39;, &#39;NAV Krødsherad&#39;,
+&#39;Modum&#39;, &#39;NAV Modum&#39;,
+&#39;Øvre Eiker&#39;, &#39;NAV Øvre Eiker&#39;,
+&#39;Nedre Eiker&#39;, &#39;NAV Nedre Eiker&#39;,
+&#39;Lier&#39;, &#39;NAV Lier&#39;,
+&#39;Røyken&#39;, &#39;NAV Røyken&#39;,
+&#39;Hurum&#39;, &#39;NAV Hurum&#39;,
+&#39;Flesberg&#39;, &#39;NAV Numedal&#39;,
+&#39;Rollag&#39;, &#39;NAV Numedal&#39;,
+&#39;Nore og Uvdal&#39;, &#39;NAV Numedal&#39;,
+&#39;Kongsvinger&#39;, &#39;NAV Kongsvinger&#39;,
+&#39;Hamar&#39;, &#39;NAV Hamar&#39;,
+&#39;Ringsaker&#39;, &#39;NAV Ringsaker&#39;,
+&#39;Løten&#39;, &#39;NAV Løten&#39;,
+&#39;Stange&#39;, &#39;NAV Stange&#39;,
+&#39;Nord-Odal&#39;, &#39;NAV Nord-Odal&#39;,
+&#39;Sør-Odal&#39;, &#39;NAV Sør-Odal&#39;,
+&#39;Eidskog&#39;, &#39;NAV Eidskog&#39;,
+&#39;Grue&#39;, &#39;NAV Grue&#39;,
+&#39;Åsnes&#39;, &#39;NAV Åsnes&#39;,
+&#39;Våler&#39;, &#39;NAV Våler i Hedmark&#39;,
+&#39;Elverum&#39;, &#39;NAV Elverum&#39;,
+&#39;Trysil&#39;, &#39;NAV Trysil&#39;,
+&#39;Åmot&#39;, &#39;NAV Åmot&#39;,
+&#39;Stor-Elvdal&#39;, &#39;NAV Stor-Elvdal&#39;,
+&#39;Rendalen&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Engerdal&#39;, &#39;NAV Engerdal&#39;,
+&#39;Tolga&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Tynset&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Alvdal&#39;, &#39;NAV Nord-Østerdal&#39;,
+&#39;Folldal&#39;, &#39;NAV Folldal&#39;,
+&#39;Lillehammer&#39;, &#39;NAV Lillehammer-Gausdal&#39;,
+&#39;Gjøvik&#39;, &#39;NAV Gjøvik&#39;,
+&#39;Dovre&#39;, &#39;NAV Lesja - Dovre&#39;,
+&#39;Lesja&#39;, &#39;NAV Lesja - Dovre&#39;,
+&#39;Skjåk&#39;, &#39;NAV Lom-Skjåk&#39;,
+&#39;Lom&#39;, &#39;NAV Lom-Skjåk&#39;,
+&#39;Vågå&#39;, &#39;NAV Vågå&#39;,
+&#39;Nord-Fron&#39;, &#39;NAV Midt-Gudbrandsdal&#39;,
+&#39;Sel&#39;, &#39;NAV Sel&#39;,
+&#39;Sør-Fron&#39;, &#39;NAV Midt-Gudbrandsdal&#39;,
+&#39;Ringebu&#39;, &#39;NAV Midt-Gudbrandsdal&#39;,
+&#39;Øyer&#39;, &#39;NAV Øyer&#39;,
+&#39;Gausdal&#39;, &#39;NAV Lillehammer-Gausdal&#39;,
+&#39;Østre Toten&#39;, &#39;NAV Østre Toten&#39;,
+&#39;Vestre Toten&#39;, &#39;NAV Vestre Toten&#39;,
+&#39;Jevnaker&#39;, &#39;NAV Jevnaker&#39;,
+&#39;Lunner&#39;, &#39;NAV Hadeland&#39;,
+&#39;Gran&#39;, &#39;NAV Hadeland&#39;,
+&#39;Søndre Land&#39;, &#39;NAV Søndre Land&#39;,
+&#39;Nordre Land&#39;, &#39;NAV Nordre Land&#39;,
+&#39;Sør-Aurdal&#39;, &#39;NAV Valdres&#39;,
+&#39;Etnedal&#39;, &#39;NAV Valdres&#39;,
+&#39;Nord-Aurdal&#39;, &#39;NAV Valdres&#39;,
+&#39;Vestre Slidre&#39;, &#39;NAV Valdres&#39;,
+&#39;Øystre Slidre&#39;, &#39;NAV Valdres&#39;,
+&#39;Vang&#39;, &#39;NAV Valdres&#39;,
+&#39;0&#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>UnitNameFormula5</name>
+        <dataType>String</dataType>
+        <expression>case(TEXT({!MunicipalityName}),
+&#39;Halden&#39;, &#39;NAV Halden&#39;,
+&#39;Moss&#39;, &#39;NAV Moss&#39;,
+&#39;Sarpsborg&#39;, &#39;NAV Sarpsborg&#39;,
+&#39;Fredrikstad&#39;, &#39;NAV Fredrikstad&#39;,
+&#39;Hvaler&#39;, &#39;NAV Hvaler&#39;,
+&#39;Aremark&#39;, &#39;NAV Aremark&#39;,
+&#39;Marker&#39;, &#39;NAV Marker&#39;,
+&#39;Rømskog&#39;, &#39;NAV Rømskog&#39;,
+&#39;Trøgstad&#39;, &#39;NAV Trøgstad&#39;,
+&#39;Spydeberg&#39;, &#39;NAV Hobøl - Spydeberg&#39;,
+&#39;Askim&#39;, &#39;NAV Askim&#39;,
+&#39;Eidsberg&#39;, &#39;NAV Eidsberg&#39;,
+&#39;Skiptvet&#39;, &#39;NAV Skiptvet&#39;,
+&#39;Rakkestad&#39;, &#39;NAV Rakkestad&#39;,
+&#39;Råde&#39;, &#39;NAV Råde&#39;,
+&#39;Rygge&#39;, &#39;NAV Rygge&#39;,
+&#39;Våler&#39;, &#39;NAV Våler&#39;,
+&#39;Hobøl&#39;, &#39;NAV Hobøl - Spydeberg&#39;,
+&#39;Vestby&#39;, &#39;NAV Vestby&#39;,
+&#39;Ski&#39;, &#39;NAV Ski&#39;,
+&#39;Ås&#39;, &#39;NAV Ås&#39;,
+&#39;Frogn&#39;, &#39;NAV Frogn&#39;,
+&#39;Nesodden&#39;, &#39;NAV Nesodden&#39;,
+&#39;Oppegård&#39;, &#39;NAV Oppegård&#39;,
+&#39;Aurskog-Høland&#39;, &#39;NAV Aurskog-Høland&#39;,
+&#39;Sørum&#39;, &#39;NAV Sørum&#39;,
+&#39;Fet&#39;, &#39;NAV Fet&#39;,
+&#39;Rælingen&#39;, &#39;NAV Rælingen&#39;,
+&#39;Enebakk&#39;, &#39;NAV Enebakk&#39;,
+&#39;Lørenskog&#39;, &#39;NAV Lørenskog&#39;,
+&#39;Skedsmo&#39;, &#39;NAV Skedsmo&#39;,
+&#39;Nittedal&#39;, &#39;NAV Nittedal&#39;,
+&#39;Gjerdrum&#39;, &#39;NAV Gjerdrum&#39;,
+&#39;Ullensaker&#39;, &#39;NAV Ullensaker&#39;,
+&#39;Nes&#39;, &#39;NAV Nes i Akershus&#39;,
+&#39;Eidsvoll&#39;, &#39;NAV Eidsvoll&#39;,
+&#39;Nannestad&#39;, &#39;NAV Nannestad&#39;,
+&#39;Hurdal&#39;, &#39;NAV Hurdal&#39;,
+&#39;Oslo - Gamle Oslo&#39;, &#39;NAV Gamle Oslo&#39;,
+&#39;Oslo - Grünerløkka&#39;, &#39;NAV Grünerløkka&#39;,
+&#39;Oslo - Sagene&#39;, &#39;NAV Sagene&#39;,
+&#39;Oslo - St.Hanshaugen&#39;, &#39;NAV St. Hanshaugen&#39;,
+&#39;Oslo - Frogner&#39;, &#39;NAV Frogner&#39;,
+&#39;Oslo - Ullern&#39;, &#39;NAV Ullern&#39;,
+&#39;Oslo - Vestre Aker&#39;, &#39;NAV Vestre Aker&#39;,
+&#39;Oslo - Nordre Aker&#39;, &#39;NAV Nordre Aker&#39;,
+&#39;Oslo - Bjerke&#39;, &#39;NAV Bjerke&#39;,
+&#39;Oslo - Grorud&#39;, &#39;NAV Grorud&#39;,
+&#39;Oslo - Stovner&#39;, &#39;NAV Stovner&#39;,
+&#39;Oslo - Alna&#39;, &#39;NAV Alna&#39;,
+&#39;Oslo - Østensjø&#39;, &#39;NAV Østensjø&#39;,
+&#39;Oslo - Nordstrand&#39;, &#39;NAV Nordstrand&#39;,
+&#39;Oslo - Søndre Nordstrand&#39;, &#39;NAV Søndre Nordstrand&#39;,
+&#39;Oslo - Sentrum&#39;, &#39;NAV St. Hanshaugen&#39;,
+&#39;Horten&#39;, &#39;NAV Horten&#39;,
+&#39;Tønsberg&#39;, &#39;NAV Tønsberg&#39;,
+&#39;Sandefjord&#39;, &#39;NAV Sandefjord&#39;,
+&#39;Svelvik&#39;, &#39;NAV Svelvik&#39;,
+&#39;Larvik&#39;, &#39;NAV Larvik&#39;,
+&#39;Sande&#39;, &#39;NAV Holmestrand&#39;,
+&#39;Holmestrand&#39;, &#39;NAV Holmestrand&#39;,
+&#39;Re&#39;, &#39;NAV Re&#39;,
+&#39;Færder&#39;, &#39;NAV Færder&#39;,
+&#39;Porsgrunn&#39;, &#39;NAV Porsgrunn&#39;,
+&#39;Skien&#39;, &#39;NAV Skien&#39;,
+&#39;Notodden&#39;, &#39;NAV Notodden&#39;,
+&#39;Siljan&#39;, &#39;NAV Siljan&#39;,
+&#39;Bamble&#39;, &#39;NAV Bamble&#39;,
+&#39;Kragerø&#39;, &#39;NAV Kragerø&#39;,
+&#39;Drangedal&#39;, &#39;NAV Drangedal&#39;,
+&#39;Nome&#39;, &#39;NAV Midt - Telemark&#39;,
+&#39;Bø&#39;, &#39;NAV Midt - Telemark&#39;,
+&#39;Sauherad&#39;, &#39;NAV Midt - Telemark&#39;,
+&#39;Tinn&#39;, &#39;NAV Tinn&#39;,
+&#39;Hjartdal&#39;, &#39;NAV Hjartdal&#39;,
+&#39;Seljord&#39;, &#39;NAV Seljord&#39;,
+&#39;Kviteseid&#39;, &#39;NAV Kviteseid - Nissedal&#39;,
+&#39;Nissedal&#39;, &#39;NAV Kviteseid - Nissedal&#39;,
+&#39;Fyresdal&#39;, &#39;NAV Fyresdal&#39;,
+&#39;Tokke&#39;, &#39;NAV Tokke&#39;,
+&#39;Vinje&#39;, &#39;NAV Vinje&#39;,
+&#39;0&#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>UnitNumberForMatching</name>
+        <dataType>String</dataType>
+        <expression>if({!UnitNameFormula} != &#39;0&#39;, {!UnitNameFormula}, 
+if({!UnitNameFormula2} != &#39;0&#39;,  {!UnitNameFormula2}, 
+if({!UnitNameFormula3} != &#39;0&#39;, {!UnitNameFormula3},
+if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
+{!UnitNameFormula5}))))</expression>
+    </formulas>
+    <formulas>
+        <name>UnitNumberString</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!UnitNumber})</expression>
+    </formulas>
+    <interviewLabel>Sett eier av inkluderingsmulighet til kø {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Sett eier av inkluderingsmulighet til kø</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>GetQueues</name>
+        <label>Hent queues</label>
+        <locationX>226</locationX>
+        <locationY>49</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>AddQueueIdToStringCollection</targetReference>
+        </connector>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>UnitNumberForMatching</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Queue</stringValue>
+            </value>
+        </filters>
+        <object>Group</object>
+        <outputReference>matchingQueue</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Oppdater_inkluderingsmulighet</name>
+        <label>Oppdater inkluderingsmulighet</label>
+        <locationX>892</locationX>
+        <locationY>57</locationY>
+        <inputReference>InclusionOppty</inputReference>
+    </recordUpdates>
+    <startElementReference>GetQueues</startElementReference>
+    <status>Draft</status>
+    <textTemplates>
+        <name>NotificationBody</name>
+        <text>&lt;p&gt;Sjekk inkluderingsmuligheten her.&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>NotificationTitle</name>
+        <text>&lt;p&gt;En ny henvendelse angående inkludering har blitt sendt inn!&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>InclusionOppty</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>InclusionOpportunity__c</objectType>
+    </variables>
+    <variables>
+        <name>matchingQueue</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Group</objectType>
+    </variables>
+    <variables>
+        <name>MunicipalityName</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>MunicipalityNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>QueueStringCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Nav unit number</description>
+        <name>UnitNumber</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+</Flow>
