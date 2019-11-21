@@ -16,5 +16,18 @@
 	],
 	"country": "NO",
 	"language": "en_US",
-	"settings": {}
+	"settings": {
+		"communitiesSettings": {
+			"enableNetworksEnabled": true
+		},
+		"lightningExperienceSettings": {
+			"enableS1DesktopEnabled": true
+		},
+		"omniChannelSettings": {
+			"enableOmniChannel": true
+		},
+		"liveAgentSettings": {
+			"enableLiveAgent": true
+		}
+	}
 }
