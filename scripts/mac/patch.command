@@ -10,6 +10,7 @@ cp -r .vscode patch/.vscode
 mkdir patch/dummy-data
 cp dummy-data/README.md patch/dummy-data/README.md
 cp -r scripts patch/scripts
+cp -r manifest patch/manifest
 cp *ignore patch/
 cp install.* patch/
 cp run.* patch/

@@ -17,7 +17,6 @@ so = helper.col(helper.getDefaultScratchOrg(), [helper.c.y])
 pr = helper.col(helper.getDefaultDevhub(), [helper.c.y])
 
 title = "SSDX Helper"
-subtitle = "Scratch Org: {}".format(helper.getDefaultScratchOrg(), helper.getDefaultDevhub())
 
 menu_format = MenuFormatBuilder().set_border_style_type(MenuBorderStyleType.HEAVY_BORDER).set_prompt(" > ").set_title_align(
 	'center').set_subtitle_align('center').set_left_margin(2).set_right_margin(10).show_header_bottom_border(True).show_prologue_bottom_border(True)
@@ -26,7 +25,7 @@ sub_menu_format = MenuFormatBuilder().set_border_style_type(MenuBorderStyleType.
 	'center').set_subtitle_align('center').set_left_margin(2).set_right_margin(10).show_header_bottom_border(True)
 
 def createMenu(mainMenu):
-	return ConsoleMenu(title=title, subtitle=subtitle, formatter=menu_format, show_exit_option=False)
+	return ConsoleMenu(title=title, formatter=menu_format, show_exit_option=False)
 
 def createOrgSubMenu(mainMenu):
 	
@@ -68,12 +67,14 @@ def createSourceSubMenu(mainMenu):
 	
 	pull = FunctionItem("PULL changes", source.pull, kwargs={"mainMenu": mainMenu})
 	push = FunctionItem("PUSH changes", source.push, kwargs={"mainMenu": mainMenu})
+	manifest = FunctionItem("PULL from manifest", source.manifest, kwargs={"mainMenu": mainMenu})
 
 	exit = ExitItem("RETURN", mainMenu)
 	sub_menu_format.show_item_top_border(exit.text, True)
 
 	submenu.append_item(pull)
 	submenu.append_item(push)
+	submenu.append_item(manifest)
 	submenu.append_item(exit)
 
 	subMenu = SubmenuItem("ALL SOURCE COMMANDS", submenu=submenu, menu=mainMenu)

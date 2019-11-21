@@ -59,6 +59,7 @@ def createScratchOrg(mainMenu):
 	for apexCode in helper.fetchFilesFromFolder("./scripts/apex/", True):
 		commands.append("sfdx force:apex:execute --apexcodefile " + apexCode)
 	error = helper.tryCommandWithException(commands, True, True)
+	if (error): return
 
 	helper.updateMenuInformation(mainMenu)
 	helper.pressToContinue(False, 20)
@@ -67,6 +68,7 @@ def createScratchOrg(mainMenu):
 def openScratchOrg(mainMenu):
 	helper.startLoading("Opening Scratch Org")
 	error = helper.tryCommandWithException(["sfdx force:org:open"], True, True)
+	if (error): return
 	helper.pressToContinue(False, 10)
 
 
@@ -78,6 +80,7 @@ def deleteScratchOrg(mainMenu):
 		print()
 		helper.startLoading("Deleting Scratch Org")
 		error = helper.tryCommandWithException(["sfdx force:org:delete -p -u " + org], True, True)
+		if (error): return
 		helper.updateMenuInformation(mainMenu)
 	helper.pressToContinue(False, 10)
 
@@ -171,4 +174,5 @@ def deploy(mainMenu):
 def login(mainMenu):
 	helper.startLoading("Waiting for login in browser")
 	error = helper.tryCommandWithException(["sfdx force:auth:web:login -d"], True, True)
+	if (error): return
 	helper.pressToContinue(False, 10)
