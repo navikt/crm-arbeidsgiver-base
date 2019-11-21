@@ -228,13 +228,6 @@
 		<relatedList>RelatedHistoryList</relatedList>
 	</relatedLists>
 	<relatedLists>
-		<fields>FULL_NAME</fields>
-		<fields>CONTACT.TITLE</fields>
-		<fields>CONTACT.EMAIL</fields>
-		<fields>CONTACT.PHONE1</fields>
-		<relatedList>RelatedContactList</relatedList>
-	</relatedLists>
-	<relatedLists>
 		<relatedList>RelatedNoteList</relatedList>
 	</relatedLists>
 	<relatedObjects>ParentId</relatedObjects>
