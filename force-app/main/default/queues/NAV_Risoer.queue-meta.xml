@@ -3,9 +3,9 @@
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>NAV Risør</name>
     <queueMembers>
-        <users>
-            <user>test-wfokhkdceyd5@example.com</user>
-        </users>
+        <publicGroups>
+            <publicGroup>Oslo</publicGroup>
+        </publicGroups>
     </queueMembers>
     <queueSobject>
         <sobjectType>InclusionOpportunity__c</sobjectType>
