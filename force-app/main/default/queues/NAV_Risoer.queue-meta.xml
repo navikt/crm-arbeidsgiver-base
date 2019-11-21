@@ -3,9 +3,9 @@
 	<doesSendEmailToMembers>true</doesSendEmailToMembers>
 	<name>NAV Risør</name>
 	<queueMembers>
-		<users>
-			<user>tag_admin@nav.no</user>
-		</users>
+		<publicGroups>
+			<publicGroup>Oslo</publicGroup>
+		</publicGroups>
 	</queueMembers>
 	<queueSobject>
 		<sobjectType>InclusionOpportunity__c</sobjectType>
