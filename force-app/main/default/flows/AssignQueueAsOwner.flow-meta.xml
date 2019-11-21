@@ -667,23 +667,6 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <name>GetCustomNotification</name>
-        <label>Hent custom notification</label>
-        <locationX>1099</locationX>
-        <locationY>56</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>NotifyResponsibleWorker</stringValue>
-            </value>
-        </filters>
-        <object>CustomNotificationType</object>
-        <outputReference>CustomNotification</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>GetQueues</name>
         <label>Hent queues</label>
         <locationX>226</locationX>
@@ -716,9 +699,6 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
         <label>Oppdater inkluderingsmulighet</label>
         <locationX>892</locationX>
         <locationY>57</locationY>
-        <connector>
-            <targetReference>GetCustomNotification</targetReference>
-        </connector>
         <inputReference>InclusionOppty</inputReference>
     </recordUpdates>
     <startElementReference>GetQueues</startElementReference>
