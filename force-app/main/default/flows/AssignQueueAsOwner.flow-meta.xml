@@ -712,14 +712,6 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
         <text>&lt;p&gt;En ny henvendelse angående inkludering har blitt sendt inn!&lt;/p&gt;</text>
     </textTemplates>
     <variables>
-        <name>CustomNotification</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <objectType>CustomNotificationType</objectType>
-    </variables>
-    <variables>
         <name>InclusionOppty</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
