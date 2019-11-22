@@ -3,27 +3,27 @@
     <caseValues>
         <article>Definite</article>
         <plural>false</plural>
-        <value>Arbeidsgivernavnet</value>
+        <value>Kontonavnet</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value>Et arbeidsgivernavn</value>
+        <value>Et kontonavn</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>false</plural>
-        <value>Arbeidsgivernavn</value>
+        <value>Virksomhetsnavn</value>
     </caseValues>
     <caseValues>
         <article>Definite</article>
         <plural>true</plural>
-        <value>Arbeidsgivernavnene</value>
+        <value>Kontonavnene</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>true</plural>
-        <value>Arbeidsgivernavn</value>
+        <value>Virksomhetsnavn</value>
     </caseValues>
     <gender>Neuter</gender>
     <name>account_name</name>

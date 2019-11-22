@@ -3,34 +3,41 @@
     <caseValues>
         <article>Definite</article>
         <plural>false</plural>
-        <value>Arbeidsgiveren</value>
+        <value>Virksomheten</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value>En Arbeidsgiver</value>
+        <value>Virksomhet</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>false</plural>
-        <value>Arbeidsgiver</value>
+        <value>Virksomhet</value>
     </caseValues>
     <caseValues>
         <article>Definite</article>
         <plural>true</plural>
-        <value>Arbeidsgiverne</value>
+        <value>Virksomhetene</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value>Arbeidsgivere</value>
+        <value>Virksomheter</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>true</plural>
-        <value>Arbeidsgivere</value>
+        <value>Virksomheter</value>
     </caseValues>
     <gender>Masculine</gender>
+    <layouts>
+        <layout>Account Layout</layout>
+        <sections>
+            <label><!-- Sykefravær --></label>
+            <section>Sykefravær</section>
+        </sections>
+    </layouts>
     <layouts>
         <layout>Virksomhet</layout>
         <sections>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>OrganizationNumber__c</fullName>
+    <fullName>CompanyNumber__c</fullName>
+    <caseSensitive>false</caseSensitive>
     <externalId>false</externalId>
-    <label>Organization Number</label>
-    <length>10</length>
+    <label>Company Number</label>
+    <length>11</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Text</type>
-    <unique>false</unique>
+    <unique>true</unique>
 </CustomField>
