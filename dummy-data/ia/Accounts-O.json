@@ -1,175 +1,175 @@
 {
-    "records": [
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef1"
-            },
-            "Name": "O - IKT FOLLO",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "915794998",
-            "Naeringsgruppe__c": "Generell offentlig administrasjon",
-            "Naeringskode__c": "84.110",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef3"
-            },
-            "Name": "O -  SKI KOMMUNE LEVEKÅR",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "976634209",
-            "Naeringsgruppe__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-            "Naeringskode__c": "84.120",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef4"
-            },
-            "Name": "O - SKI KOMMUNE OPPVEKST",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "974635399",
-            "Naeringsgruppe__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-            "Naeringskode__c": "84.120",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef7"
-            },
-            "Name": "O - SKI KOMMUNE PLEIE- OG OMSORGSETATEN",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "985542511",
-            "Naeringsgruppe__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-            "Naeringskode__c": "84.120",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef8"
-            },
-            "Name": "O - SKI KOMMUNE BARNEHAGESEKSJONEN",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "986086560",
-            "Naeringsgruppe__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-            "Naeringskode__c": "84.120",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef9"
-            },
-            "Name": "O - SKI KOMMUNESKOGER",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "969535068",
-            "Naeringsgruppe__c": "Avvirkning",
-            "Naeringskode__c": "02.200",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef10"
-            },
-            "Name": "O - NAV TOLKETJENESTEN I FOLLO",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "974644487",
-            "Naeringsgruppe__c": "Oversettelses- og tolkevirksomhet",
-            "Naeringskode__c": "74.300",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef11"
-            },
-            "Name": "O - SKI KOMMUNE ADMINISTRASJON",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "974642832",
-            "Naeringsgruppe__c": "Generell offentlig administrasjon",
-            "Naeringskode__c": "84.110",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        },
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef16"
-            },
-            "Name": "O - FOLLO BARNEVERNVAKT",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "895290742",
-            "Naeringsgruppe__c": "Barneverntjenester",
-            "Naeringskode__c": "88.991",
-            "Organisasjonsnummer__c": "960507878",
-            "ParentId": "@AccountRef15"
-        }
-    ]
+	"records": [
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef1"
+			},
+			"Name": "O - IKT FOLLO",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "915794998",
+			"INT_Industry__c": "Generell offentlig administrasjon",
+			"INT_IndustryCode__c": "84.110",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef3"
+			},
+			"Name": "O -  SKI KOMMUNE LEVEKÅR",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "976634209",
+			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+			"INT_IndustryCode__c": "84.120",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef4"
+			},
+			"Name": "O - SKI KOMMUNE OPPVEKST",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "974635399",
+			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+			"INT_IndustryCode__c": "84.120",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef7"
+			},
+			"Name": "O - SKI KOMMUNE PLEIE- OG OMSORGSETATEN",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "985542511",
+			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+			"INT_IndustryCode__c": "84.120",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef8"
+			},
+			"Name": "O - SKI KOMMUNE BARNEHAGESEKSJONEN",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "986086560",
+			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+			"INT_IndustryCode__c": "84.120",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef9"
+			},
+			"Name": "O - SKI KOMMUNESKOGER",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "969535068",
+			"INT_Industry__c": "Avvirkning",
+			"INT_IndustryCode__c": "02.200",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef10"
+			},
+			"Name": "O - NAV TOLKETJENESTEN I FOLLO",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "974644487",
+			"INT_Industry__c": "Oversettelses- og tolkevirksomhet",
+			"INT_IndustryCode__c": "74.300",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef11"
+			},
+			"Name": "O - SKI KOMMUNE ADMINISTRASJON",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "974642832",
+			"INT_Industry__c": "Generell offentlig administrasjon",
+			"INT_IndustryCode__c": "84.110",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef16"
+			},
+			"Name": "O - FOLLO BARNEVERNVAKT",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "895290742",
+			"INT_Industry__c": "Barneverntjenester",
+			"INT_IndustryCode__c": "88.991",
+			"INT_OrganizationNumber__c": "960507878",
+			"ParentId": "@AccountRef15"
+		}
+	]
 }

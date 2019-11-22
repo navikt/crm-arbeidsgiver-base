@@ -5,7 +5,7 @@
     <columns>CompanyNumber__c</columns>
     <columns>INT_IndustryCode__c</columns>
     <columns>INT_Industry__c</columns>
-    <columns>OrganizationNumber__c</columns>
+    <columns>INT_OrganizationNumber__c</columns>
     <filterScope>Everything</filterScope>
     <label>Org_Account_Hierarchy</label>
 </ListView>

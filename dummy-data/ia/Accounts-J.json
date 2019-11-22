@@ -1,22 +1,22 @@
 {
-    "records": [
-        {
-            "attributes": {
-                "type": "Account",
-                "referenceId": "AccountRef15"
-            },
-            "Name": "J - SKI KOMMUNE",
-            "RecordType": {
-                "attributes": {
-                    "type": "RecordType",
-                    "url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
-                },
-                "DeveloperName": "Virksomhet"
-            },
-            "Bedriftsnummer__c": "960507878",
-            "Naeringsgruppe__c": "Generell offentlig administrasjon",
-            "Naeringskode__c": "84.110",
-            "Organisasjonsnummer__c": "960507878"
-        }
-    ]
+	"records": [
+		{
+			"attributes": {
+				"type": "Account",
+				"referenceId": "AccountRef15"
+			},
+			"Name": "J - SKI KOMMUNE",
+			"RecordType": {
+				"attributes": {
+					"type": "RecordType",
+					"url": "/services/data/v47.0/sobjects/RecordType/0123N0000008g4gQAA"
+				},
+				"DeveloperName": "Virksomhet"
+			},
+			"CompanyNumber__c": "960507878",
+			"INT_Industry__c": "Generell offentlig administrasjon",
+			"INT_IndustryCode__c": "84.110",
+			"INT_OrganizationNumber__c": "960507878"
+		}
+	]
 }
