@@ -3,12 +3,12 @@
     <fullName>IA_Virksomhet</fullName>
     <fields>Name</fields>
     <fields>ParentId</fields>
-    <fields>Organisasjonsnummer__c</fields>
-    <fields>Bedriftsnummer__c</fields>
+    <fields>CompanyNumber__c</fields>
     <fields>TAG_Sykefrav_r_i__c</fields>
+    <fields>INT_OrganizationNumber__c</fields>
     <fields>TAG_Bransjens_Sykefrv_r__c</fields>
     <fields>TAG_Differansemotnaring__c</fields>
-    <fields>Naeringskode__c</fields>
-    <fields>Naeringsgruppe__c</fields>
+    <fields>INT_IndustryCode__c</fields>
+    <fields>INT_Industry__c</fields>
     <label>IA_Virksomhet</label>
 </CompactLayout>
