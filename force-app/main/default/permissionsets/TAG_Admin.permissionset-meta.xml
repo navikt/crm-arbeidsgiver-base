@@ -94,6 +94,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>InclusionOpportunity__c.AccountMunicipality__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>InclusionOpportunity__c.Account__c</field>
         <readable>true</readable>
@@ -104,13 +109,28 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>InclusionOpportunity__c.County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>InclusionOpportunity__c.InquiryCategory__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>InclusionOpportunity__c.IsFromContactForm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>InclusionOpportunity__c.MunicipalityNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>InclusionOpportunity__c.Municipality__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -141,6 +161,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>InclusionOpportunity__c.WorkTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>InclusionOpportunity__c.companyContactedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>InclusionOpportunity__c.companyContactedNumberOfHours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>InclusionOpportunity__c.senderEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>

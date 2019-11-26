@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Notify_responsible_workers</name>
+        <label>Notify responsible workers</label>
+        <locationX>894</locationX>
+        <locationY>547</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>QueueStringCollection</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>En ny henvendelse har blitt sendt inn!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>customNotification.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>InclusionOppty.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <stringValue>Se nærmere på henvendelsen her.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <name>AddQueueIdToStringCollection</name>
         <label>Legg til QueueId i string collection</label>
@@ -19,8 +57,8 @@
     <assignments>
         <name>AssignQueueBasedOnUnit</name>
         <label>Sett queue basert på enhet</label>
-        <locationX>705</locationX>
-        <locationY>57</locationY>
+        <locationX>657</locationX>
+        <locationY>52</locationY>
         <assignmentItems>
             <assignToReference>InclusionOppty.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -32,6 +70,34 @@
             <targetReference>Oppdater_inkluderingsmulighet</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Check_DML_context</name>
+        <label>Check DML context</label>
+        <locationX>735</locationX>
+        <locationY>228</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_insert</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsInsert</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Is insert</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>UnitNameForMatching</name>
+        <dataType>String</dataType>
+        <expression>if({!UnitNameFormula} != &#39;0&#39;, {!UnitNameFormula}, 
+if({!UnitNameFormula2} != &#39;0&#39;,  {!UnitNameFormula2}, 
+if({!UnitNameFormula3} != &#39;0&#39;, {!UnitNameFormula3},
+if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
+{!UnitNameFormula5}))))</expression>
+    </formulas>
     <formulas>
         <name>UnitNameFormula</name>
         <dataType>String</dataType>
@@ -638,15 +704,6 @@
 &#39;0&#39;)</expression>
     </formulas>
     <formulas>
-        <name>UnitNumberForMatching</name>
-        <dataType>String</dataType>
-        <expression>if({!UnitNameFormula} != &#39;0&#39;, {!UnitNameFormula}, 
-if({!UnitNameFormula2} != &#39;0&#39;,  {!UnitNameFormula2}, 
-if({!UnitNameFormula3} != &#39;0&#39;, {!UnitNameFormula3},
-if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
-{!UnitNameFormula5}))))</expression>
-    </formulas>
-    <formulas>
         <name>UnitNumberString</name>
         <dataType>String</dataType>
         <expression>TEXT({!UnitNumber})</expression>
@@ -667,6 +724,26 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <name>Get_custom_notification</name>
+        <label>Get custom notification</label>
+        <locationX>896</locationX>
+        <locationY>384</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Notify_responsible_workers</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>NotifyResponsibleWorker</stringValue>
+            </value>
+        </filters>
+        <object>CustomNotificationType</object>
+        <outputReference>customNotification</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>GetQueues</name>
         <label>Hent queues</label>
         <locationX>226</locationX>
@@ -679,7 +756,7 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
             <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>UnitNumberForMatching</elementReference>
+                <elementReference>UnitNameForMatching</elementReference>
             </value>
         </filters>
         <filters>
@@ -697,12 +774,21 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
     <recordUpdates>
         <name>Oppdater_inkluderingsmulighet</name>
         <label>Oppdater inkluderingsmulighet</label>
-        <locationX>892</locationX>
-        <locationY>57</locationY>
+        <locationX>901</locationX>
+        <locationY>53</locationY>
+        <connector>
+            <targetReference>Get_custom_notification</targetReference>
+        </connector>
         <inputReference>InclusionOppty</inputReference>
     </recordUpdates>
-    <startElementReference>GetQueues</startElementReference>
-    <status>Draft</status>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>GetQueues</targetReference>
+        </connector>
+    </start>
+    <status>Obsolete</status>
     <textTemplates>
         <name>NotificationBody</name>
         <text>&lt;p&gt;Sjekk inkluderingsmuligheten her.&lt;/p&gt;</text>
@@ -712,12 +798,27 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
         <text>&lt;p&gt;En ny henvendelse angående inkludering har blitt sendt inn!&lt;/p&gt;</text>
     </textTemplates>
     <variables>
+        <name>customNotification</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>CustomNotificationType</objectType>
+    </variables>
+    <variables>
         <name>InclusionOppty</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
         <objectType>InclusionOpportunity__c</objectType>
+    </variables>
+    <variables>
+        <name>IsInsert</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
     </variables>
     <variables>
         <name>matchingQueue</name>
