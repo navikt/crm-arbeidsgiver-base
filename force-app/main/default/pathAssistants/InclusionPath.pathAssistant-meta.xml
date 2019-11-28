@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
-    <active>true</active>
-    <entityName>InclusionOpportunity__c</entityName>
-    <fieldName>InclusionStage__c</fieldName>
-    <masterLabel>Inkluderingssti</masterLabel>
-    <pathAssistantSteps>
-        <fieldNames>WorkTime__c</fieldNames>
-        <fieldNames>PhysicalArrangements__c</fieldNames>
-        <fieldNames>WorkEnvironment__c</fieldNames>
-        <fieldNames>BasicSkills__c</fieldNames>
-        <fieldNames>Notes__c</fieldNames>
-        <info>&lt;p&gt;Hvilke behov kan bedriften tilrettelegge for?&lt;/p&gt;</info>
-        <picklistValueName>Bedrift kontaktet</picklistValueName>
-    </pathAssistantSteps>
-    <recordTypeName>__MASTER__</recordTypeName>
+	<active>true</active>
+	<entityName>InclusionOpportunity__c</entityName>
+	<fieldName>InclusionStage__c</fieldName>
+	<masterLabel>Inkluderingssti</masterLabel>
+	<pathAssistantSteps>
+		<fieldNames>WorkTime__c</fieldNames>
+		<fieldNames>PhysicalArrangements__c</fieldNames>
+		<fieldNames>WorkEnvironment__c</fieldNames>
+		<fieldNames>BasicSkills__c</fieldNames>
+		<fieldNames>Notes__c</fieldNames>
+		<info>&lt;p&gt;Hvilke behov kan bedriften tilrettelegge for?&lt;/p&gt;</info>
+		<picklistValueName>Virksomhet kontaktet</picklistValueName>
+	</pathAssistantSteps>
+	<recordTypeName>__MASTER__</recordTypeName>
 </PathAssistant>
