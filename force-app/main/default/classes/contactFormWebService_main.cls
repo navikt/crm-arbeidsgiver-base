@@ -20,12 +20,13 @@ global with sharing class contactFormWebService_main {
 		RequestWrapper rw = (RequestWrapper) JSON.deserialize( requestString, RequestWrapper.class );
 
 		Id accountId = fetchAccount( rw.organisationNumber );
+		Id contactId = fetchOrCreateContact( accountId, rw.firstName, rw.lastName, rw.email, rw.phoneNo );
 
-		InclusionOpportunity__c io = new InclusionOpportunity__c( Account__c = accountId, IsFromContactForm__c = true, InquiryCategory__c = rw.type );
+		InclusionOpportunity__c io = new InclusionOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = rw.type );
 		insert io;
 
-		InclusionContactPerson__c icp = new InclusionContactPerson__c( InclusionOpportunity__c = io.Id, Contact__c = fetchOrCreateContact( accountId, rw.firstName, rw.lastName, rw.email, rw.phoneNo ) );
-		insert icp;
+		// InclusionContactPerson__c icp = new InclusionContactPerson__c( InclusionOpportunity__c = io.Id, Contact__c = contact );
+		// insert icp;
 	}
 
 
