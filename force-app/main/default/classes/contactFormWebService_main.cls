@@ -21,7 +21,7 @@ global with sharing class contactFormWebService_main {
 
 		Id accountId = fetchAccount( rw.organisationNumber );
 
-		InclusionOpportunity__c io = new InclusionOpportunity__c( Account__c = accountId );
+		InclusionOpportunity__c io = new InclusionOpportunity__c( Account__c = accountId, IsFromContactForm__c = true, InquiryCategory__c = rw.type );
 		insert io;
 
 		InclusionContactPerson__c icp = new InclusionContactPerson__c( InclusionOpportunity__c = io.Id, Contact__c = fetchOrCreateContact( accountId, rw.firstName, rw.lastName, rw.email, rw.phoneNo ) );
