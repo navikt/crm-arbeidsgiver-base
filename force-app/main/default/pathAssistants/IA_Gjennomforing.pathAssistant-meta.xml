@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>InclusionOpportunity__c</entityName>
+    <fieldName>IA_Process_Path__c</fieldName>
+    <masterLabel>IA Gjennomføring</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Det kan være lurt å sjekke dette før du lager plan sammen med virksomheten:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Sykefravær&lt;/li&gt;&lt;li&gt;  &lt;/li&gt;&lt;li&gt;  &lt;/li&gt;&lt;li&gt;  &lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Avklaring</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>IA_Plan__c</fieldNames>
+        <fieldNames>IA_SickLeave__c</fieldNames>
+        <info>&lt;p&gt;Her finner du mer dokumentasjon om:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;http://vg.no&quot; target=&quot;_blank&quot;&gt;Prosess for å lese nyheter&lt;/a&gt;&lt;/p&gt;</info>
+        <picklistValueName>Plan</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>TAG_IA_Process_Gjenomf_ring</recordTypeName>
+</PathAssistant>

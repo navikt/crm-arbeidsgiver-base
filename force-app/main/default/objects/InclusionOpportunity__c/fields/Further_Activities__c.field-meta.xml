@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Further_Activities__c</fullName>
+    <externalId>false</externalId>
+    <label>Further Activities</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Avslutt kontakt</fullName>
+                <default>false</default>
+                <label>Avslutt kontakt</label>
+            </value>
+            <value>
+                <fullName>Benytt selvbetjeningsløsninger</fullName>
+                <default>false</default>
+                <label>Benytt selvbetjeningsløsninger</label>
+            </value>
+            <value>
+                <fullName>Vurdere IA tjenester</fullName>
+                <default>false</default>
+                <label>Vurdere IA tjenester</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
