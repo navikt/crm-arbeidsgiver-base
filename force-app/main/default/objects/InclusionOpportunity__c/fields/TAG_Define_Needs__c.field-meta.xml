@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Define_Needs__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Avklare behov</inlineHelpText>
+    <label>Define Needs</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Avklare Behov</fullName>
+                <default>false</default>
+                <label>Avklare Behov</label>
+            </value>
+            <value>
+                <fullName>Beslutte videre aktiviteter</fullName>
+                <default>false</default>
+                <label>Beslutte videre aktiviteter</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
