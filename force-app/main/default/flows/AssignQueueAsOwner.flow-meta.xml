@@ -1,110 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Notify_responsible_workers</name>
-        <label>Notify responsible workers</label>
-        <locationX>706</locationX>
-        <locationY>54</locationY>
-        <actionName>customNotificationAction</actionName>
-        <actionType>customNotificationAction</actionType>
-        <inputParameters>
-            <name>recipientIds</name>
-            <value>
-                <elementReference>QueueStringCollection</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>title</name>
-            <value>
-                <stringValue>En ny henvendelse har blitt sendt inn!</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>customNotifTypeId</name>
-            <value>
-                <elementReference>customNotification.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetId</name>
-            <value>
-                <elementReference>InclusionOppty.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>body</name>
-            <value>
-                <stringValue>Se nærmere på henvendelsen her.</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <assignments>
-        <name>AddQueueIdToStringCollection</name>
-        <label>Legg til QueueId i string collection</label>
-        <locationX>139</locationX>
-        <locationY>231</locationY>
-        <assignmentItems>
-            <assignToReference>QueueStringCollection</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>matchingQueue.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>AssignQueueBasedOnUnit</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>AssignQueueBasedOnUnit</name>
-        <label>Sett queue basert på enhet</label>
-        <locationX>248</locationX>
-        <locationY>302</locationY>
-        <assignmentItems>
-            <assignToReference>InclusionOppty.OwnerId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>matchingQueue.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Oppdater_inkluderingsmulighet</targetReference>
-        </connector>
-    </assignments>
-    <decisions>
-        <name>Check_DML_context</name>
-        <label>Check DML context</label>
-        <locationX>309</locationX>
-        <locationY>53</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Is_insert</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>IsInsert</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_custom_notification</targetReference>
-            </connector>
-            <label>Is insert</label>
-        </rules>
-    </decisions>
-    <formulas>
-        <name>UnitNameForMatching</name>
-        <dataType>String</dataType>
-        <expression>if({!UnitNameFormula} != &#39;0&#39;, {!UnitNameFormula}, 
+	<actionCalls>
+		<name>Notify_responsible_workers</name>
+		<label>Notify responsible workers</label>
+		<locationX>706</locationX>
+		<locationY>54</locationY>
+		<actionName>customNotificationAction</actionName>
+		<actionType>customNotificationAction</actionType>
+		<inputParameters>
+			<name>recipientIds</name>
+			<value>
+				<elementReference>QueueStringCollection</elementReference>
+			</value>
+		</inputParameters>
+		<inputParameters>
+			<name>title</name>
+			<value>
+				<stringValue>En ny henvendelse har blitt sendt inn!</stringValue>
+			</value>
+		</inputParameters>
+		<inputParameters>
+			<name>customNotifTypeId</name>
+			<value>
+				<elementReference>customNotification.Id</elementReference>
+			</value>
+		</inputParameters>
+		<inputParameters>
+			<name>targetId</name>
+			<value>
+				<elementReference>InclusionOppty.Id</elementReference>
+			</value>
+		</inputParameters>
+		<inputParameters>
+			<name>body</name>
+			<value>
+				<stringValue>Se nærmere på henvendelsen her.</stringValue>
+			</value>
+		</inputParameters>
+	</actionCalls>
+	<assignments>
+		<name>AddQueueIdToStringCollection</name>
+		<label>Legg til QueueId i string collection</label>
+		<locationX>139</locationX>
+		<locationY>231</locationY>
+		<assignmentItems>
+			<assignToReference>QueueStringCollection</assignToReference>
+			<operator>Add</operator>
+			<value>
+				<elementReference>matchingQueue.Id</elementReference>
+			</value>
+		</assignmentItems>
+		<connector>
+			<targetReference>AssignQueueBasedOnUnit</targetReference>
+		</connector>
+	</assignments>
+	<assignments>
+		<name>AssignQueueBasedOnUnit</name>
+		<label>Sett queue basert på enhet</label>
+		<locationX>248</locationX>
+		<locationY>302</locationY>
+		<assignmentItems>
+			<assignToReference>InclusionOppty.OwnerId</assignToReference>
+			<operator>Assign</operator>
+			<value>
+				<elementReference>matchingQueue.Id</elementReference>
+			</value>
+		</assignmentItems>
+		<connector>
+			<targetReference>Oppdater_inkluderingsmulighet</targetReference>
+		</connector>
+	</assignments>
+	<decisions>
+		<name>Check_DML_context</name>
+		<label>Check DML context</label>
+		<locationX>309</locationX>
+		<locationY>53</locationY>
+		<defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+		<rules>
+			<name>Is_insert</name>
+			<conditionLogic>and</conditionLogic>
+			<conditions>
+				<leftValueReference>IsInsert</leftValueReference>
+				<operator>EqualTo</operator>
+				<rightValue>
+					<booleanValue>true</booleanValue>
+				</rightValue>
+			</conditions>
+			<connector>
+				<targetReference>Get_custom_notification</targetReference>
+			</connector>
+			<label>Is insert</label>
+		</rules>
+	</decisions>
+	<formulas>
+		<name>UnitNameForMatching</name>
+		<dataType>String</dataType>
+		<expression>if({!UnitNameFormula} != &#39;0&#39;, {!UnitNameFormula}, 
 if({!UnitNameFormula2} != &#39;0&#39;,  {!UnitNameFormula2}, 
 if({!UnitNameFormula3} != &#39;0&#39;, {!UnitNameFormula3},
 if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
 {!UnitNameFormula5}))))</expression>
-    </formulas>
-    <formulas>
-        <name>UnitNameFormula</name>
-        <dataType>String</dataType>
-        <expression>case(TEXT({!MunicipalityName}), 
+	</formulas>
+	<formulas>
+		<name>UnitNameFormula</name>
+		<dataType>String</dataType>
+		<expression>case(TEXT({!MunicipalityName}), 
 &#39;Risør&#39;, &#39;NAV Risør&#39;,
 &#39;Grimstad&#39;, &#39;NAV Grimstad&#39;,
 &#39;Arendal&#39;, &#39;NAV Arendal&#39;,
@@ -234,11 +234,11 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
 &#39;Gloppen&#39;, &#39;NAV Gloppen&#39;,
 &#39;Stryn&#39;, &#39;NAV Stryn&#39;,
 &#39;0&#39;)</expression>
-    </formulas>
-    <formulas>
-        <name>UnitNameFormula2</name>
-        <dataType>String</dataType>
-        <expression>case(TEXT({!MunicipalityName}),
+	</formulas>
+	<formulas>
+		<name>UnitNameFormula2</name>
+		<dataType>String</dataType>
+		<expression>case(TEXT({!MunicipalityName}),
 &#39;Molde&#39;, &#39;NAV Molde&#39;,
 &#39;Ålesund&#39;, &#39;NAV Ålesund&#39;,
 &#39;Kristiansund&#39;, &#39;NAV Kristiansund&#39;,
@@ -362,11 +362,11 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
 &#39;Båtsfjord&#39;, &#39;NAV Båtsfjord&#39;,
 &#39;Sør-Varanger&#39;, &#39;NAV Sør-Varanger&#39;,
 &#39;0&#39;)</expression>
-    </formulas>
-    <formulas>
-        <name>UnitNameFormula3</name>
-        <dataType>String</dataType>
-        <expression>case(TEXT({!MunicipalityName}),
+	</formulas>
+	<formulas>
+		<name>UnitNameFormula3</name>
+		<dataType>String</dataType>
+		<expression>case(TEXT({!MunicipalityName}),
 &#39;Trondheim - Midtbyen&#39;, &#39;NAV Falkenborg&#39;,
 &#39;Trondheim - Østbyen&#39;, &#39;NAV Falkenborg&#39;,
 &#39;Trondheim - Lerkendal&#39;, &#39;NAV Lerkendal&#39;,
@@ -490,11 +490,11 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
 &#39;Øystre Slidre&#39;, &#39;NAV Valdres&#39;,
 &#39;Vang&#39;, &#39;NAV Valdres&#39;,
 &#39;0&#39;)</expression>
-    </formulas>
-    <formulas>
-        <name>UnitNameFormula4</name>
-        <dataType>String</dataType>
-        <expression>case(TEXT({!MunicipalityName}),
+	</formulas>
+	<formulas>
+		<name>UnitNameFormula4</name>
+		<dataType>String</dataType>
+		<expression>case(TEXT({!MunicipalityName}),
 &#39;Trondheim - Midtbyen&#39;, &#39;NAV Falkenborg&#39;,
 &#39;Trondheim - Østbyen&#39;, &#39;NAV Falkenborg&#39;,
 &#39;Trondheim - Lerkendal&#39;, &#39;NAV Lerkendal&#39;,
@@ -618,11 +618,11 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
 &#39;Øystre Slidre&#39;, &#39;NAV Valdres&#39;,
 &#39;Vang&#39;, &#39;NAV Valdres&#39;,
 &#39;0&#39;)</expression>
-    </formulas>
-    <formulas>
-        <name>UnitNameFormula5</name>
-        <dataType>String</dataType>
-        <expression>case(TEXT({!MunicipalityName}),
+	</formulas>
+	<formulas>
+		<name>UnitNameFormula5</name>
+		<dataType>String</dataType>
+		<expression>case(TEXT({!MunicipalityName}),
 &#39;Halden&#39;, &#39;NAV Halden&#39;,
 &#39;Moss&#39;, &#39;NAV Moss&#39;,
 &#39;Sarpsborg&#39;, &#39;NAV Sarpsborg&#39;,
@@ -705,157 +705,157 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
 &#39;Tokke&#39;, &#39;NAV Tokke&#39;,
 &#39;Vinje&#39;, &#39;NAV Vinje&#39;,
 &#39;0&#39;)</expression>
-    </formulas>
-    <formulas>
-        <name>UnitNumberString</name>
-        <dataType>String</dataType>
-        <expression>TEXT({!UnitNumber})</expression>
-    </formulas>
-    <interviewLabel>Sett eier av inkluderingsmulighet til kø {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Sett eier av inkluderingsmulighet til kø</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>AutoLaunchedFlow</processType>
-    <recordLookups>
-        <name>Get_custom_notification</name>
-        <label>Get custom notification</label>
-        <locationX>529</locationX>
-        <locationY>53</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Notify_responsible_workers</targetReference>
-        </connector>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>NotifyResponsibleWorker</stringValue>
-            </value>
-        </filters>
-        <object>CustomNotificationType</object>
-        <outputReference>customNotification</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>GetQueues</name>
-        <label>Hent queues</label>
-        <locationX>50</locationX>
-        <locationY>219</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>AddQueueIdToStringCollection</targetReference>
-        </connector>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>UnitNameForMatching</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Type</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Queue</stringValue>
-            </value>
-        </filters>
-        <object>Group</object>
-        <outputReference>matchingQueue</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Name</queriedFields>
-    </recordLookups>
-    <recordUpdates>
-        <name>Oppdater_inkluderingsmulighet</name>
-        <label>Oppdater inkluderingsmulighet</label>
-        <locationX>117</locationX>
-        <locationY>441</locationY>
-        <inputReference>InclusionOppty</inputReference>
-    </recordUpdates>
-    <start>
-        <locationX>105</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Check_DML_context</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
-    <textTemplates>
-        <name>NotificationBody</name>
-        <text>&lt;p&gt;Sjekk inkluderingsmuligheten her.&lt;/p&gt;</text>
-    </textTemplates>
-    <textTemplates>
-        <name>NotificationTitle</name>
-        <text>&lt;p&gt;En ny henvendelse angående inkludering har blitt sendt inn!&lt;/p&gt;</text>
-    </textTemplates>
-    <variables>
-        <name>customNotification</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <objectType>CustomNotificationType</objectType>
-    </variables>
-    <variables>
-        <name>InclusionOppty</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <objectType>InclusionOpportunity__c</objectType>
-    </variables>
-    <variables>
-        <name>IsInsert</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>matchingQueue</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <objectType>Group</objectType>
-    </variables>
-    <variables>
-        <name>MunicipalityName</name>
-        <dataType>Picklist</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>MunicipalityNumber</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>QueueStringCollection</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <description>Nav unit number</description>
-        <name>UnitNumber</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-        <scale>0</scale>
-    </variables>
+	</formulas>
+	<formulas>
+		<name>UnitNumberString</name>
+		<dataType>String</dataType>
+		<expression>TEXT({!UnitNumber})</expression>
+	</formulas>
+	<interviewLabel>Sett eier av inkluderingsmulighet til kø {!$Flow.CurrentDateTime}</interviewLabel>
+	<label>Sett eier av inkluderingsmulighet til kø</label>
+	<processMetadataValues>
+		<name>BuilderType</name>
+		<value>
+			<stringValue>LightningFlowBuilder</stringValue>
+		</value>
+	</processMetadataValues>
+	<processMetadataValues>
+		<name>OriginBuilderType</name>
+		<value>
+			<stringValue>LightningFlowBuilder</stringValue>
+		</value>
+	</processMetadataValues>
+	<processType>AutoLaunchedFlow</processType>
+	<recordLookups>
+		<name>Get_custom_notification</name>
+		<label>Get custom notification</label>
+		<locationX>529</locationX>
+		<locationY>53</locationY>
+		<assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+		<connector>
+			<targetReference>Notify_responsible_workers</targetReference>
+		</connector>
+		<filters>
+			<field>DeveloperName</field>
+			<operator>EqualTo</operator>
+			<value>
+				<stringValue>NotifyResponsibleWorker</stringValue>
+			</value>
+		</filters>
+		<object>CustomNotificationType</object>
+		<outputReference>customNotification</outputReference>
+		<queriedFields>Id</queriedFields>
+	</recordLookups>
+	<recordLookups>
+		<name>GetQueues</name>
+		<label>Hent queues</label>
+		<locationX>50</locationX>
+		<locationY>219</locationY>
+		<assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+		<connector>
+			<targetReference>AddQueueIdToStringCollection</targetReference>
+		</connector>
+		<filters>
+			<field>Name</field>
+			<operator>EqualTo</operator>
+			<value>
+				<elementReference>UnitNameForMatching</elementReference>
+			</value>
+		</filters>
+		<filters>
+			<field>Type</field>
+			<operator>EqualTo</operator>
+			<value>
+				<stringValue>Queue</stringValue>
+			</value>
+		</filters>
+		<object>Group</object>
+		<outputReference>matchingQueue</outputReference>
+		<queriedFields>Id</queriedFields>
+		<queriedFields>Name</queriedFields>
+	</recordLookups>
+	<recordUpdates>
+		<name>Oppdater_inkluderingsmulighet</name>
+		<label>Oppdater inkluderingsmulighet</label>
+		<locationX>117</locationX>
+		<locationY>441</locationY>
+		<inputReference>InclusionOppty</inputReference>
+	</recordUpdates>
+	<start>
+		<locationX>105</locationX>
+		<locationY>50</locationY>
+		<connector>
+			<targetReference>Check_DML_context</targetReference>
+		</connector>
+	</start>
+	<status>Active</status>
+	<textTemplates>
+		<name>NotificationBody</name>
+		<text>&lt;p&gt;Sjekk inkluderingsmuligheten her.&lt;/p&gt;</text>
+	</textTemplates>
+	<textTemplates>
+		<name>NotificationTitle</name>
+		<text>&lt;p&gt;En ny henvendelse angående inkludering har blitt sendt inn!&lt;/p&gt;</text>
+	</textTemplates>
+	<variables>
+		<name>customNotification</name>
+		<dataType>SObject</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+		<objectType>CustomNotificationType</objectType>
+	</variables>
+	<variables>
+		<name>InclusionOppty</name>
+		<dataType>SObject</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+		<objectType>CustomOpportunity__c</objectType>
+	</variables>
+	<variables>
+		<name>IsInsert</name>
+		<dataType>Boolean</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+	</variables>
+	<variables>
+		<name>matchingQueue</name>
+		<dataType>SObject</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+		<objectType>Group</objectType>
+	</variables>
+	<variables>
+		<name>MunicipalityName</name>
+		<dataType>Picklist</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+	</variables>
+	<variables>
+		<name>MunicipalityNumber</name>
+		<dataType>String</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+	</variables>
+	<variables>
+		<name>QueueStringCollection</name>
+		<dataType>String</dataType>
+		<isCollection>true</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+	</variables>
+	<variables>
+		<description>Nav unit number</description>
+		<name>UnitNumber</name>
+		<dataType>Number</dataType>
+		<isCollection>false</isCollection>
+		<isInput>true</isInput>
+		<isOutput>true</isOutput>
+		<scale>0</scale>
+	</variables>
 </Flow>

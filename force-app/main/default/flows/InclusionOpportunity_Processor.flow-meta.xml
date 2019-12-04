@@ -695,9 +695,9 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ischanged([InclusionOpportunity__c].OwnerId ) &amp;&amp;
+                <stringValue>ischanged([CustomOpportunity__c].OwnerId ) &amp;&amp;
 
-BEGINS([InclusionOpportunity__c].OwnerId, &quot;00G&quot;)</stringValue>
+BEGINS([CustomOpportunity__c].OwnerId, &quot;00G&quot;)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
@@ -710,9 +710,9 @@ BEGINS({!myVariable_current.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ischanged([InclusionOpportunity__c].OwnerId ) &amp;&amp;
+                <stringValue>ischanged([CustomOpportunity__c].OwnerId ) &amp;&amp;
 
-BEGINS([InclusionOpportunity__c].OwnerId, &quot;00G&quot;)</stringValue>
+BEGINS([CustomOpportunity__c].OwnerId, &quot;00G&quot;)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1_pmetrule</name>
@@ -725,9 +725,9 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ischanged([InclusionOpportunity__c].ResponsibleUser__c )
+                <stringValue>ischanged([CustomOpportunity__c].ResponsibleUser__c )
 &amp;&amp;
-[InclusionOpportunity__c].ResponsibleUser__c != null</stringValue>
+[CustomOpportunity__c].ResponsibleUser__c != null</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_6</name>
@@ -740,9 +740,9 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ischanged([InclusionOpportunity__c].ResponsibleUser__c )
+                <stringValue>ischanged([CustomOpportunity__c].ResponsibleUser__c )
 &amp;&amp;
-[InclusionOpportunity__c].ResponsibleUser__c != null</stringValue>
+[CustomOpportunity__c].ResponsibleUser__c != null</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_6_pmetrule</name>
@@ -756,7 +756,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
-            <stringValue>InclusionOpportunity__c</stringValue>
+            <stringValue>CustomOpportunity__c</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -797,7 +797,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[InclusionOpportunity__c]</stringValue>
+                <stringValue>[CustomOpportunity__c]</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -859,7 +859,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
                 <stringValue>Ny henvendelse</stringValue>
             </value>
         </inputAssignments>
-        <object>InclusionOpportunity__c</object>
+        <object>CustomOpportunity__c</object>
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
@@ -880,7 +880,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[InclusionOpportunity__c]</stringValue>
+                <stringValue>[CustomOpportunity__c]</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -985,7 +985,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             </processMetadataValues>
             <field>ResponsibleUser__c</field>
         </inputAssignments>
-        <object>InclusionOpportunity__c</object>
+        <object>CustomOpportunity__c</object>
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
@@ -1006,7 +1006,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[InclusionOpportunity__c]</stringValue>
+                <stringValue>[CustomOpportunity__c]</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -1068,7 +1068,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
                 <elementReference>formula_4_myRule_3_A1_3887775156</elementReference>
             </value>
         </inputAssignments>
-        <object>InclusionOpportunity__c</object>
+        <object>CustomOpportunity__c</object>
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
@@ -1089,7 +1089,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[InclusionOpportunity__c]</stringValue>
+                <stringValue>[CustomOpportunity__c]</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -1200,7 +1200,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
                 <stringValue>Ansvarlig tildelt</stringValue>
             </value>
         </inputAssignments>
-        <object>InclusionOpportunity__c</object>
+        <object>CustomOpportunity__c</object>
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
@@ -1221,7 +1221,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[InclusionOpportunity__c]</stringValue>
+                <stringValue>[CustomOpportunity__c]</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -1280,7 +1280,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             </processMetadataValues>
             <field>ResponsibleUser__c</field>
         </inputAssignments>
-        <object>InclusionOpportunity__c</object>
+        <object>CustomOpportunity__c</object>
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
@@ -1301,7 +1301,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[InclusionOpportunity__c]</stringValue>
+                <stringValue>[CustomOpportunity__c]</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -1363,7 +1363,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
                 <stringValue>Ny henvendelse</stringValue>
             </value>
         </inputAssignments>
-        <object>InclusionOpportunity__c</object>
+        <object>CustomOpportunity__c</object>
     </recordUpdates>
     <startElementReference>myPreWaitDecision_myWait_myRule_6</startElementReference>
     <status>Draft</status>
@@ -1401,7 +1401,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
-        <objectType>InclusionOpportunity__c</objectType>
+        <objectType>CustomOpportunity__c</objectType>
     </variables>
     <variables>
         <name>myVariable_old</name>
@@ -1409,7 +1409,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>InclusionOpportunity__c</objectType>
+        <objectType>CustomOpportunity__c</objectType>
     </variables>
     <variables>
         <name>myWaitEvent_myWait_myRule_6_event_0_postActionExecutionVariable</name>

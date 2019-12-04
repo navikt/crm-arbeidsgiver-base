@@ -122,7 +122,7 @@
 	</flexiPageRegions>
 	<masterLabel>Inkluderingsmulighet Record Page</masterLabel>
 	<parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
-	<sobjectType>InclusionOpportunity__c</sobjectType>
+	<sobjectType>CustomOpportunity__c</sobjectType>
 	<template>
 		<name>flexipage:recordHomeTemplateDesktop</name>
 	</template>

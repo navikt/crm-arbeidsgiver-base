@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
-    <doesSendEmailToMembers>true</doesSendEmailToMembers>
-    <name>Inkluderingskø</name>
-    <queueMembers>
-        <publicGroups>
-            <publicGroup>NAV_Risor</publicGroup>
-        </publicGroups>
-    </queueMembers>
-    <queueSobject>
-        <sobjectType>InclusionOpportunity__c</sobjectType>
-    </queueSobject>
+	<doesSendEmailToMembers>true</doesSendEmailToMembers>
+	<name>Inkluderingskø</name>
+	<queueMembers>
+		<publicGroups>
+			<publicGroup>NAV_Risor</publicGroup>
+		</publicGroups>
+	</queueMembers>
+	<queueSobject>
+		<sobjectType>CustomOpportunity__c</sobjectType>
+	</queueSobject>
 </Queue>

@@ -15,7 +15,7 @@
 				<autoselectColumnsFromReport>false</autoselectColumnsFromReport>
 				<chartSummary>
 					<aggregate>Average</aggregate>
-					<column>InclusionOpportunity__c.companyContactedNumberOfHours__c</column>
+					<column>CustomOpportunity__c.companyContactedNumberOfHours__c</column>
 				</chartSummary>
 				<componentType>Metric</componentType>
 				<decimalPrecision>-1</decimalPrecision>

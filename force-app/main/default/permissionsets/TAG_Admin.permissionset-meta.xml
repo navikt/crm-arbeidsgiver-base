@@ -95,87 +95,87 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>InclusionOpportunity__c.AccountMunicipality__c</field>
+		<field>CustomOpportunity__c.AccountMunicipality__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.Account__c</field>
+		<field>CustomOpportunity__c.Account__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.BasicSkills__c</field>
+		<field>CustomOpportunity__c.BasicSkills__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>InclusionOpportunity__c.County__c</field>
+		<field>CustomOpportunity__c.County__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.InquiryCategory__c</field>
+		<field>CustomOpportunity__c.InquiryCategory__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.IsFromContactForm__c</field>
+		<field>CustomOpportunity__c.IsFromContactForm__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>InclusionOpportunity__c.MunicipalityNumber__c</field>
+		<field>CustomOpportunity__c.MunicipalityNumber__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.Municipality__c</field>
+		<field>CustomOpportunity__c.Municipality__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.Notes__c</field>
+		<field>CustomOpportunity__c.Notes__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.PhysicalArrangements__c</field>
+		<field>CustomOpportunity__c.PhysicalArrangements__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.ResponsibleUser__c</field>
+		<field>CustomOpportunity__c.ResponsibleUser__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.UnitNumber__c</field>
+		<field>CustomOpportunity__c.UnitNumber__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.WorkEnvironment__c</field>
+		<field>CustomOpportunity__c.WorkEnvironment__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.WorkTime__c</field>
+		<field>CustomOpportunity__c.WorkTime__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.companyContactedDate__c</field>
+		<field>CustomOpportunity__c.companyContactedDate__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>InclusionOpportunity__c.companyContactedNumberOfHours__c</field>
+		<field>CustomOpportunity__c.companyContactedNumberOfHours__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>InclusionOpportunity__c.senderEmail__c</field>
+		<field>CustomOpportunity__c.senderEmail__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<hasActivationRequired>false</hasActivationRequired>
@@ -186,7 +186,7 @@
 		<allowEdit>true</allowEdit>
 		<allowRead>true</allowRead>
 		<modifyAllRecords>true</modifyAllRecords>
-		<object>InclusionOpportunity__c</object>
+		<object>CustomOpportunity__c</object>
 		<viewAllRecords>true</viewAllRecords>
 	</objectPermissions>
 	<recordTypeVisibilities>
@@ -198,7 +198,7 @@
 		<visible>true</visible>
 	</recordTypeVisibilities>
 	<tabSettings>
-		<tab>InclusionOpportunity__c</tab>
+		<tab>CustomOpportunity__c</tab>
 		<visibility>Visible</visibility>
 	</tabSettings>
 </PermissionSet>

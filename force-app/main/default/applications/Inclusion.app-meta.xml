@@ -16,7 +16,7 @@
 		<formFactor>Large</formFactor>
 		<skipRecordTypeSelect>false</skipRecordTypeSelect>
 		<type>Flexipage</type>
-		<pageOrSobjectType>InclusionOpportunity__c</pageOrSobjectType>
+		<pageOrSobjectType>CustomOpportunity__c</pageOrSobjectType>
 	</actionOverrides>
 	<actionOverrides>
 		<actionName>Tab</actionName>
@@ -40,7 +40,7 @@
 	<navType>Standard</navType>
 	<tabs>standard-home</tabs>
 	<tabs>standard-Account</tabs>
-	<tabs>InclusionOpportunity__c</tabs>
+	<tabs>CustomOpportunity__c</tabs>
 	<uiType>Lightning</uiType>
 	<utilityBar>Inkludering_UtilityBar</utilityBar>
 </CustomApplication>
