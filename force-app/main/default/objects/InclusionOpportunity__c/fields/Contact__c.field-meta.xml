@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>InclusionOpportunity__c</fullName>
+    <fullName>Contact__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Inkluderingsmulighet</label>
-    <referenceTo>InclusionOpportunity__c</referenceTo>
-    <relationshipLabel>Kontaktpersoner</relationshipLabel>
-    <relationshipName>Kontaktpersoner</relationshipName>
+    <label>Contact</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Inkluderingsmuligheter</relationshipLabel>
+    <relationshipName>Inkluderingsmuligheter</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

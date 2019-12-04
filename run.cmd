@@ -2,5 +2,5 @@
 @echo off
 call cls
 
-source venv\bin\activate
-python scripts\python\run.py
+call venv\Scripts\activate
+call python scripts\python\run.py
