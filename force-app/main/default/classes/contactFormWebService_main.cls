@@ -54,6 +54,5 @@ global with sharing class contactFormWebService_main {
 			return existingContact[0].Id;
 		}
 
-
 	}
 }
