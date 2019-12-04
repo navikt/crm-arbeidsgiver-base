@@ -19,11 +19,13 @@
 		"**/.vscode": true,
 		"**/.idea": true
 	},
-	"uncrustify.graphicalConfig": true,
 	"uncrustify.langOverrides": {
 		"apex": "JAVA",
 		"apex-anon": "JAVA"
 	},
+	"apexPMD.rulesets": [
+		"ruleset.xml"
+	],
 	"[html]": {
 		"editor.defaultFormatter": "vscode.html-language-features"
 	},
@@ -43,27 +45,6 @@
 	"files.exclude": {
 		"**/*.cls-meta.xml": true,
 		"**/*.trigger-meta.xml": true,
-	},
-	"prettifySymbolsMode.substitutions": [
-		{
-			"language": "apex",
-			"substitutions": [
-				{
-					"ugly": "<=",
-					"pretty": "â‰¤"
-				},
-				{
-					"ugly": ">=",
-					"pretty": "â‰¥"
-				}
-			]
-		}
-	],
-	"macros": {
-		"saveAndPush": [
-			"workbench.action.files.saveAll",
-			"sfdx.force.source.push"
-		]
 	},
 	"python.pythonPath": "venv/bin/python",
 	"eslint.nodePath": "./node_modules",
