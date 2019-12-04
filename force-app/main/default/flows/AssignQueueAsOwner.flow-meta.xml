@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Notify_responsible_workers</name>
         <label>Notify responsible workers</label>
-        <locationX>894</locationX>
-        <locationY>547</locationY>
+        <locationX>706</locationX>
+        <locationY>54</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <inputParameters>
@@ -41,8 +41,8 @@
     <assignments>
         <name>AddQueueIdToStringCollection</name>
         <label>Legg til QueueId i string collection</label>
-        <locationX>407</locationX>
-        <locationY>51</locationY>
+        <locationX>139</locationX>
+        <locationY>231</locationY>
         <assignmentItems>
             <assignToReference>QueueStringCollection</assignToReference>
             <operator>Add</operator>
@@ -57,8 +57,8 @@
     <assignments>
         <name>AssignQueueBasedOnUnit</name>
         <label>Sett queue basert på enhet</label>
-        <locationX>657</locationX>
-        <locationY>52</locationY>
+        <locationX>248</locationX>
+        <locationY>302</locationY>
         <assignmentItems>
             <assignToReference>InclusionOppty.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -73,8 +73,8 @@
     <decisions>
         <name>Check_DML_context</name>
         <label>Check DML context</label>
-        <locationX>735</locationX>
-        <locationY>228</locationY>
+        <locationX>309</locationX>
+        <locationY>53</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_insert</name>
@@ -86,6 +86,9 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>Get_custom_notification</targetReference>
+            </connector>
             <label>Is insert</label>
         </rules>
     </decisions>
@@ -726,8 +729,8 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
     <recordLookups>
         <name>Get_custom_notification</name>
         <label>Get custom notification</label>
-        <locationX>896</locationX>
-        <locationY>384</locationY>
+        <locationX>529</locationX>
+        <locationY>53</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Notify_responsible_workers</targetReference>
@@ -746,8 +749,8 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
     <recordLookups>
         <name>GetQueues</name>
         <label>Hent queues</label>
-        <locationX>226</locationX>
-        <locationY>49</locationY>
+        <locationX>50</locationX>
+        <locationY>219</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>AddQueueIdToStringCollection</targetReference>
@@ -774,21 +777,18 @@ if({!UnitNameFormula4} != &#39;0&#39;, {!UnitNameFormula4},
     <recordUpdates>
         <name>Oppdater_inkluderingsmulighet</name>
         <label>Oppdater inkluderingsmulighet</label>
-        <locationX>901</locationX>
-        <locationY>53</locationY>
-        <connector>
-            <targetReference>Get_custom_notification</targetReference>
-        </connector>
+        <locationX>117</locationX>
+        <locationY>441</locationY>
         <inputReference>InclusionOppty</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>105</locationX>
         <locationY>50</locationY>
         <connector>
-            <targetReference>GetQueues</targetReference>
+            <targetReference>Check_DML_context</targetReference>
         </connector>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <textTemplates>
         <name>NotificationBody</name>
         <text>&lt;p&gt;Sjekk inkluderingsmuligheten her.&lt;/p&gt;</text>

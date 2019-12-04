@@ -134,6 +134,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>InclusionOpportunity__c.MyInclusionOppty__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>InclusionOpportunity__c.Notes__c</field>
         <readable>true</readable>
@@ -146,6 +151,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>InclusionOpportunity__c.Queue_assigned__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>InclusionOpportunity__c.ResponsibleUser__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
