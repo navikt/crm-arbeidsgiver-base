@@ -20,7 +20,7 @@ global with sharing class contactFormWebService_main {
 		RequestWrapper rw = (RequestWrapper) JSON.deserialize( requestString, RequestWrapper.class );
 
 		Id accountId = fetchAccount( rw.organisationNumber );
-		Id contactId = fetchOrCreateContact( accountId, rw.firstName, rw.lastName, rw.email, rw.phoneNo );
+		Id contactId = fetchOrCreateContact( rw, accountId );
 
 		InclusionOpportunity__c io = new InclusionOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = rw.type );
 		insert io;
@@ -36,12 +36,12 @@ global with sharing class contactFormWebService_main {
 		else { return null; }
 	}
 
-	public static Id fetchOrCreateContact( Id accountId, String firstName, String lastName, String email, String phoneNo ) {
+	public static Id fetchOrCreateContact( RequestWrapper rw, Id accountId ) {
 
-		List<Contact> con = [SELECT Id FROM Contact WHERE AccountId = : accountId AND Email = : email LIMIT 1];
+		List<Contact> con = [SELECT Id FROM Contact WHERE AccountId = : accountId AND Email = : rw.email LIMIT 1];
 
 		if ( con.size() == 0 ) {
-			con.add( new Contact( FirstName = firstName, LastName = lastName, Email = email, MobilePhone = phoneNo, AccountId = accountId ) );
+			con.add( new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId ) );
 			insert con[0];
 		}
 
