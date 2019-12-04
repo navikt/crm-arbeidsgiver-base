@@ -2,8 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <description>Arbeidsgiver</description>
     <externalId>false</externalId>
-    <label>Arbeidsgiver</label>
+    <label>Account</label>
     <lookupFilter>
         <active>true</active>
         <filterItems>
@@ -14,6 +15,7 @@
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Account</referenceTo>
+    <relationshipLabel>Opportunities</relationshipLabel>
     <relationshipName>Inkluderingsmuligheter</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>WorkEnvironment__c</fullName>
+    <description>Arbeidsmiljø</description>
     <externalId>false</externalId>
-    <label>Arbeidsmiljø</label>
+    <label>Work Environment</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>MultiselectPicklist</type>

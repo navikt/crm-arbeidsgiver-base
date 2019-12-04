@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>WorkTime__c</fullName>
+    <description>Arbeidstid</description>
     <externalId>false</externalId>
-    <label>Arbeidstid</label>
+    <label>Work Time</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>MultiselectPicklist</type>
