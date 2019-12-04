@@ -156,13 +156,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Inkluderingsmulighet</label>
+    <label>Opportunity</label>
     <nameField>
         <displayFormat>{0000}</displayFormat>
-        <label>Inkluderingsmulighetsnummer</label>
+        <label>Opportunities</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Inkluderingsmuligheter</pluralLabel>
+    <pluralLabel>Opportunities</pluralLabel>
     <searchLayouts>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>InclusionStage__c</searchResultsAdditionalFields>
