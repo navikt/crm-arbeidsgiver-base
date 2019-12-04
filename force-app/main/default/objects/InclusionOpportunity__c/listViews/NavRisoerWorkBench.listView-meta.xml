@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NavRisoerWorkBench</fullName>
+    <columns>NAME</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>ResponsibleUser__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Nav Risør arbeidsbenk</label>
+    <queue>NAV_Risoer</queue>
+    <sharedTo>
+        <group>NAV_Risor</group>
+    </sharedTo>
+</ListView>

@@ -4,6 +4,107 @@
         <processMetadataValues>
             <name>customNotifTypeName</name>
             <value>
+                <stringValue>NotifyResponsibleWorker</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>recipientCategory</name>
+            <value>
+                <stringValue>owner</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>recipientType</name>
+            <value>
+                <stringValue>reference</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A2</name>
+        <label>Notify new Nav unit</label>
+        <locationX>100</locationX>
+        <locationY>300</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>myRule_1_A3</targetReference>
+        </connector>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <stringValue>000000000000000</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>customNotifTypeName</name>
+            <value>
+                <stringValue>NotifyResponsibleWorker</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>En ny henvendelse angående inkludering har blitt sendt inn!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <stringValue>Sjekk inkluderingsmuligheten her!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <stringValue>{!myVariable_current.Id}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>recipientIds</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>500.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>myCollection_myRule_1_A2recipientIds</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>customNotifTypeName</name>
+            <value>
                 <stringValue>NotifyNewOwner</stringValue>
             </value>
         </processMetadataValues>
@@ -202,113 +303,22 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>ActionCallType</name>
+    <assignments>
+        <name>myAssignment_myRule_1_A2</name>
+        <label>myAssignment_myRule_1_A2</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>myCollection_myRule_1_A2recipientIds</assignToReference>
+            <operator>Add</operator>
             <value>
-                <stringValue>flow</stringValue>
+                <elementReference>myVariable_current.OwnerId</elementReference>
             </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>flowSelection</name>
-            <value>
-                <stringValue>Sett eier av inkluderingsmulighet til kø</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_6_event_1_SA1</name>
-        <label>Launch assignment flow</label>
-        <locationX>600</locationX>
-        <locationY>200</locationY>
-        <actionName>AssignQueueAsOwner</actionName>
-        <actionType>flow</actionType>
+        </assignmentItems>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_6_event_1_postWaitExecutionAssignment</targetReference>
+            <targetReference>myRule_1_A2</targetReference>
         </connector>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>InclusionOppty</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue>InclusionOpportunity__c</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>InclusionOppty</name>
-            <value>
-                <elementReference>myVariable_current</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>MunicipalityName</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>MunicipalityName</name>
-            <value>
-                <elementReference>myVariable_current.Municipality__c</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
+    </assignments>
     <assignments>
         <name>myAssignment_myRule_6_A2</name>
         <label>myAssignment_myRule_6_A2</label>
@@ -318,7 +328,7 @@
             <assignToReference>myCollection_myRule_6_A2recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>myVariable_current.Owner:User.Id</elementReference>
+                <elementReference>myVariable_current.ResponsibleUser__r.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -417,7 +427,7 @@
             <connector>
                 <targetReference>myRule_1_pmetdec</targetReference>
             </connector>
-            <label>Owner is changed from user to queue</label>
+            <label>Owner is changed to another Queue</label>
         </rules>
     </decisions>
     <decisions>
@@ -500,7 +510,7 @@
             <connector>
                 <targetReference>myRule_6_pmetdec</targetReference>
             </connector>
-            <label>Owner is changed from queue to user</label>
+            <label>Responsible user is changed</label>
         </rules>
     </decisions>
     <decisions>
@@ -677,7 +687,7 @@
                 <stringValue>now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_3_A1_9323437513</name>
+        <name>formula_4_myRule_3_A1_3887775156</name>
         <dataType>DateTime</dataType>
         <expression>now()</expression>
     </formulas>
@@ -715,41 +725,33 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ischanged([InclusionOpportunity__c].OwnerId ) &amp;&amp;
-
-BEGINS([InclusionOpportunity__c].OwnerId, &quot;005&quot;) &amp;&amp;
-
-TEXT([InclusionOpportunity__c].InclusionStage__c) != &#39;Virksomhet kontaktet&#39;</stringValue>
+                <stringValue>ischanged([InclusionOpportunity__c].ResponsibleUser__c )
+&amp;&amp;
+[InclusionOpportunity__c].ResponsibleUser__c != null</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_6</name>
         <dataType>Boolean</dataType>
-        <expression>ischanged({!myVariable_current.OwnerId} ) &amp;&amp;
-
-BEGINS({!myVariable_current.OwnerId}, &quot;005&quot;) &amp;&amp;
-
-TEXT({!myVariable_current.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</expression>
+        <expression>ischanged({!myVariable_current.ResponsibleUser__c} )
+&amp;&amp;
+{!myVariable_current.ResponsibleUser__c} != null</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ischanged([InclusionOpportunity__c].OwnerId ) &amp;&amp;
-
-BEGINS([InclusionOpportunity__c].OwnerId, &quot;005&quot;) &amp;&amp;
-
-TEXT([InclusionOpportunity__c].InclusionStage__c) != &#39;Virksomhet kontaktet&#39;</stringValue>
+                <stringValue>ischanged([InclusionOpportunity__c].ResponsibleUser__c )
+&amp;&amp;
+[InclusionOpportunity__c].ResponsibleUser__c != null</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_6_pmetrule</name>
         <dataType>Boolean</dataType>
-        <expression>ischanged({!myVariable_old.OwnerId} ) &amp;&amp;
-
-BEGINS({!myVariable_old.OwnerId}, &quot;005&quot;) &amp;&amp;
-
-TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</expression>
+        <expression>ischanged({!myVariable_old.ResponsibleUser__c} )
+&amp;&amp;
+{!myVariable_old.ResponsibleUser__c} != null</expression>
     </formulas>
-    <interviewLabel>InclusionOpportunity_Processor-7_InterviewLabel</interviewLabel>
+    <interviewLabel>InclusionOpportunity_Processor-5_InterviewLabel</interviewLabel>
     <label>Inkluderingsmulighet_Processor</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -806,7 +808,7 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
         <locationX>100</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myDecision2</targetReference>
+            <targetReference>myAssignment_myRule_1_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -856,6 +858,132 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
             <value>
                 <stringValue>Ny henvendelse</stringValue>
             </value>
+        </inputAssignments>
+        <object>InclusionOpportunity__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[InclusionOpportunity__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_1_A3</name>
+        <label>Set responsible user to null</label>
+        <locationX>100</locationX>
+        <locationY>400</locationY>
+        <connector>
+            <targetReference>myDecision2</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Ansvarlig medarbeider</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>User</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>GlobalConstant</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ResponsibleUser__c</field>
+            <operator>NotEqualTo</operator>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Ansvarlig medarbeider</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>User</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>GlobalConstant</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ResponsibleUser__c</field>
         </inputAssignments>
         <object>InclusionOpportunity__c</object>
     </recordUpdates>
@@ -937,7 +1065,139 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
             </processMetadataValues>
             <field>companyContactedDate__c</field>
             <value>
-                <elementReference>formula_4_myRule_3_A1_9323437513</elementReference>
+                <elementReference>formula_4_myRule_3_A1_3887775156</elementReference>
+            </value>
+        </inputAssignments>
+        <object>InclusionOpportunity__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[InclusionOpportunity__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_6_A1</name>
+        <label>Update stage to Ansvarlig tildelt</label>
+        <locationX>600</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myAssignment_myRule_6_A2</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Steg</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>InclusionStage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Virksomhet kontaktet</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Steg</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>InclusionStage__c</field>
+            <value>
+                <stringValue>Ansvarlig tildelt</stringValue>
             </value>
         </inputAssignments>
         <object>InclusionOpportunity__c</object>
@@ -967,12 +1227,92 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_6_A1</name>
-        <label>Update stage to Ansvarlig tildelt</label>
+        <name>myWaitEvent_myWait_myRule_6_event_1_SA1</name>
+        <label>Set responsible user to null</label>
         <locationX>600</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myAssignment_myRule_6_A2</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_6_event_1_SA2</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Ansvarlig medarbeider</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>User</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>GlobalConstant</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ResponsibleUser__c</field>
+        </inputAssignments>
+        <object>InclusionOpportunity__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[InclusionOpportunity__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myWaitEvent_myWait_myRule_6_event_1_SA2</name>
+        <label>Set stage back to Ny henvendelse</label>
+        <locationX>600</locationX>
+        <locationY>300</locationY>
+        <connector>
+            <targetReference>myWaitEvent_myWait_myRule_6_event_1_postWaitExecutionAssignment</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1020,7 +1360,7 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
             </processMetadataValues>
             <field>InclusionStage__c</field>
             <value>
-                <stringValue>Ansvarlig tildelt</stringValue>
+                <stringValue>Ny henvendelse</stringValue>
             </value>
         </inputAssignments>
         <object>InclusionOpportunity__c</object>
@@ -1033,6 +1373,13 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>myCollection_myRule_1_A2recipientIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>myCollection_myRule_6_A2recipientIds</name>
@@ -1125,7 +1472,7 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>4.0</numberValue>
+                    <numberValue>1.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_6_event_0</label>
@@ -1159,7 +1506,7 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
             <inputParameters>
                 <name>TimeOffsetUnit</name>
                 <value>
-                    <stringValue>Days</stringValue>
+                    <stringValue>Hours</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
