@@ -15,11 +15,6 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>Account.Country__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>true</editable>
 		<field>Account.County__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
@@ -66,31 +61,6 @@
 	<fieldPermissions>
 		<editable>true</editable>
 		<field>Account.Municipality__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>true</editable>
-		<field>Account.Sykefrav_r_forrige_kvartal__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>true</editable>
-		<field>Account.TAG_Bransjens_Sykefrv_r__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Account.TAG_Differanse_mot_forrige_kvartal__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Account.TAG_Differansemotnaring__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>true</editable>
-		<field>Account.TAG_Sykefrav_r_i__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
