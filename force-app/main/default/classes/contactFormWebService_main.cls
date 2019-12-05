@@ -14,7 +14,7 @@ global with sharing class contactFormWebService_main {
 	}
 
 	@HttpPost
-	global static void doPost(  ) {
+	global static String doPost(  ) {
 
 		String requestString = RestContext.request.requestBody.toString();
 		RequestWrapper rw = (RequestWrapper) JSON.deserialize( requestString, RequestWrapper.class );
@@ -24,24 +24,36 @@ global with sharing class contactFormWebService_main {
 
 		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = rw.type );
 		insert co;
+
+		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id].Name;
 	}
 
 
 	public static Id fetchAccount( String organisationNumber ) {
-		List<Account> acc = [SELECT Id FROM Account WHERE INT_OrganizationNumber__c = : organisationNumber LIMIT 1];
+		List<Account> acc = [SELECT Id FROM Account WHERE CompanyNumber__c = : organisationNumber LIMIT 1];
 		if ( acc.size() > 0 ) { return acc[0].Id; }
 		else { return null; }
 	}
 
 	public static Id fetchOrCreateContact( RequestWrapper rw, Id accountId ) {
 
-		List<Contact> con = [SELECT Id FROM Contact WHERE AccountId = : accountId AND Email = : rw.email LIMIT 1];
+		List<Contact> existingContact = [SELECT Id FROM Contact WHERE AccountId = : accountId AND Email = : rw.email LIMIT 1];
 
-		if ( con.size() == 0 ) {
-			con.add( new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId ) );
-			insert con[0];
+		if ( existingContact.size() == 0 ) {
+
+			Contact con = new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId );
+
+			Database.DMLOptions dml = new Database.DMLOptions();
+			dml.DuplicateRuleHeader.allowSave = true;
+			dml.DuplicateRuleHeader.runAsCurrentUser = true;
+
+			Database.SaveResult sr = Database.insert( con, dml );
+
+			return con.Id;
+		} else {
+			return existingContact[0].Id;
 		}
 
-		return con[0].Id;
+
 	}
 }
