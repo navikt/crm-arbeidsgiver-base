@@ -32,5 +32,13 @@
 		"files": [
 			"Tasks.json"
 		]
+	},
+	{
+		"sobject": "CustomOpportunity__c",
+		"saveRefs": false,
+		"resolveRefs": true,
+		"files": [
+			"CustomOpportunities.json"
+		]
 	}
 ]
