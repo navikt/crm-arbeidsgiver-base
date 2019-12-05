@@ -1,18 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Min_IA_Portef_lje</fullName>
-    <columns>TAG_Differansemotnaring__c</columns>
-    <columns>ACCOUNT.NAME</columns>
-    <columns>INT_Industry__c</columns>
-    <columns>TAG_Bransjens_Sykefrv_r__c</columns>
-    <columns>TAG_Sykefrav_r_i__c</columns>
-    <columns>Sykefrav_r_forrige_kvartal__c</columns>
-    <columns>TAG_Differanse_mot_forrige_kvartal__c</columns>
-    <filterScope>Everything</filterScope>
-    <filters>
-        <field>ACCOUNT.RECORDTYPE</field>
-        <operation>equals</operation>
-        <value>Account.Virksomhet</value>
-    </filters>
-    <label>Min IA Portefølje</label>
+	<fullName>Min_IA_Portef_lje</fullName>
+	<columns>ACCOUNT.NAME</columns>
+	<columns>INT_Industry__c</columns>
+	<filterScope>Everything</filterScope>
+	<filters>
+		<field>ACCOUNT.RECORDTYPE</field>
+		<operation>equals</operation>
+		<value>Account.Virksomhet</value>
+	</filters>
+	<label>Min IA Portefølje</label>
 </ListView>

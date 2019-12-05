@@ -56,33 +56,6 @@
 		<style>TwoColumnsTopToBottom</style>
 	</layoutSections>
 	<layoutSections>
-		<customLabel>true</customLabel>
-		<detailHeading>true</detailHeading>
-		<editHeading>true</editHeading>
-		<label>Sykefravær</label>
-		<layoutColumns>
-			<layoutItems>
-				<behavior>Edit</behavior>
-				<field>TAG_Sykefrav_r_i__c</field>
-			</layoutItems>
-			<layoutItems>
-				<behavior>Edit</behavior>
-				<field>Sykefrav_r_forrige_kvartal__c</field>
-			</layoutItems>
-		</layoutColumns>
-		<layoutColumns>
-			<layoutItems>
-				<behavior>Edit</behavior>
-				<field>TAG_Bransjens_Sykefrv_r__c</field>
-			</layoutItems>
-			<layoutItems>
-				<behavior>Readonly</behavior>
-				<field>TAG_Differanse_mot_forrige_kvartal__c</field>
-			</layoutItems>
-		</layoutColumns>
-		<style>TwoColumnsLeftToRight</style>
-	</layoutSections>
-	<layoutSections>
 		<customLabel>false</customLabel>
 		<detailHeading>false</detailHeading>
 		<editHeading>false</editHeading>
@@ -197,7 +170,6 @@
 	</relatedContent>
 	<relatedLists>
 		<fields>FULL_NAME</fields>
-		<fields>CRM_RolleHosVirksomhet__c</fields>
 		<fields>CONTACT.EMAIL</fields>
 		<fields>CONTACT.PHONE1</fields>
 		<relatedList>RelatedContactList</relatedList>
