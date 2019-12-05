@@ -28,6 +28,29 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>EmployerNeeds__c</picklist>
+        <values>
+            <fullName>Arbeidstrening</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inkluderingstilskudd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lønnstilskudd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mentor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vil bidra</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>InclusionStage__c</picklist>
         <values>
             <fullName>Ansvarlig tildelt</fullName>
@@ -57,19 +80,15 @@
     <picklistValues>
         <picklist>InquiryCategory__c</picklist>
         <values>
-            <fullName>Arbeidstrening</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Forebygge sykefravær</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Rekruttering</fullName>
+            <fullName>Inkludering</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Rekruttering med tilrettelegging</fullName>
+            <fullName>Rekruttering</fullName>
             <default>false</default>
         </values>
     </picklistValues>

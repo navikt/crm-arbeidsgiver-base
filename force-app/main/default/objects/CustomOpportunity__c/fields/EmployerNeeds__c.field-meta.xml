@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>InquiryCategory__c</fullName>
-    <description>Henvendelseskategori</description>
+    <fullName>EmployerNeeds__c</fullName>
     <externalId>false</externalId>
-    <label>Inquiry Category</label>
+    <label>Employer Needs</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Picklist</type>
+    <type>MultiselectPicklist</type>
     <valueSet>
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Rekruttering</fullName>
+                <fullName>Lønnstilskudd</fullName>
                 <default>false</default>
-                <label>Rekruttering</label>
+                <label>Lønnstilskudd</label>
             </value>
             <value>
-                <fullName>Inkludering</fullName>
+                <fullName>Inkluderingstilskudd</fullName>
                 <default>false</default>
-                <label>Inkludering</label>
+                <label>Inkluderingstilskudd</label>
             </value>
             <value>
-                <fullName>Forebygge sykefravær</fullName>
+                <fullName>Mentor</fullName>
                 <default>false</default>
-                <label>Forebygge sykefravær</label>
+                <label>Mentor</label>
             </value>
             <value>
-                <fullName>Rekruttering med tilrettelegging</fullName>
+                <fullName>Arbeidstrening</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
-                <label>Rekruttering med tilrettelegging</label>
+                <label>Arbeidstrening</label>
+            </value>
+            <value>
+                <fullName>Vil bidra</fullName>
+                <default>false</default>
+                <label>Vil bidra</label>
             </value>
         </valueSetDefinition>
     </valueSet>
+    <visibleLines>4</visibleLines>
 </CustomField>
