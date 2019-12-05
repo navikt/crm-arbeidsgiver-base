@@ -26,6 +26,21 @@
                 <default>false</default>
                 <label>Virksomhet kontaktet</label>
             </value>
+            <value>
+                <fullName>Finn kandidat</fullName>
+                <default>false</default>
+                <label>Finn kandidat</label>
+            </value>
+            <value>
+                <fullName>Kandidat presentert</fullName>
+                <default>false</default>
+                <label>Kandidat presentert</label>
+            </value>
+            <value>
+                <fullName>Kandidat godkjent</fullName>
+                <default>false</default>
+                <label>Kandidat godkjent</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
