@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
 	<classAccesses>
-		<apexClass>contactFormWebService_main</apexClass>
+		<apexClass>ContactFormWebService_main</apexClass>
 		<enabled>true</enabled>
 	</classAccesses>
 	<fieldPermissions>
