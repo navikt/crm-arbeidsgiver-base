@@ -3,7 +3,7 @@
     <fullName>ResponsibleUser__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Ansvarlig medarbeider</label>
+    <label>Responsible User</label>
     <referenceTo>User</referenceTo>
     <relationshipName>Inkluderingsmuligheter</relationshipName>
     <required>false</required>
