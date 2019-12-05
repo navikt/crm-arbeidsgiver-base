@@ -22,7 +22,7 @@ global with sharing class ContactFormWebService_main {
 		Id accountId = fetchAccount( rw.organisationNumber );
 		Id contactId = fetchOrCreateContact( rw, accountId );
 
-		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = rw.type, SenderEmail__c = rw.email );
+		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = getType( rw.type ), SenderEmail__c = rw.email );
 		insert co;
 
 		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id].Name;
@@ -53,6 +53,19 @@ global with sharing class ContactFormWebService_main {
 		} else {
 			return existingContact[0].Id;
 		}
+	}
 
+	public static String getType( String val ) {
+		if ( val == 'REKRUTTERING' ) {
+			return 'Rekruttering';
+		} else if ( val == 'REKRUTTERING_MED_TILRETTELEGGING' ) {
+			return 'Rekruttering med tilrettelegging';
+		} else if ( val == 'ARBEIDSTRENING' ) {
+			return 'Arbeidstrening';
+		} else if ( val == 'FOREBYGGE_SYKEFRAVÆR' ) {
+			return 'Forebygge sykefravær';
+		} else {
+			return null;
+		}
 	}
 }
