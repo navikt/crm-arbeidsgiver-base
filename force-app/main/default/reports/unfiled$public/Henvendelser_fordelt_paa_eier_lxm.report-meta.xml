@@ -54,7 +54,7 @@
 	<showGrandTotal>true</showGrandTotal>
 	<showSubTotals>true</showSubTotals>
 	<timeFrameFilter>
-		<dateColumn>CustomOpportunity__c.companyContactedDate__c</dateColumn>
+		<dateColumn>CustomOpportunity__c.CompanyContactedDate__c</dateColumn>
 		<interval>INTERVAL_CUSTOM</interval>
 	</timeFrameFilter>
 </Report>

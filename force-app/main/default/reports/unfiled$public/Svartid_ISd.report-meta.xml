@@ -7,7 +7,7 @@
 		<chartSummaries>
 			<aggregate>Sum</aggregate>
 			<axisBinding>y</axisBinding>
-			<column>CustomOpportunity__c.companyContactedNumberOfHours__c</column>
+			<column>CustomOpportunity__c.CompanyContactedNumberOfHours__c</column>
 		</chartSummaries>
 		<chartType>HorizontalBar</chartType>
 		<enableHoverLabels>false</enableHoverLabels>
@@ -31,7 +31,7 @@
 	<columns>
 		<aggregateTypes>Sum</aggregateTypes>
 		<aggregateTypes>Average</aggregateTypes>
-		<field>CustomOpportunity__c.companyContactedNumberOfHours__c</field>
+		<field>CustomOpportunity__c.CompanyContactedNumberOfHours__c</field>
 	</columns>
 	<filter>
 		<criteriaItems>
@@ -58,7 +58,7 @@
 	<showGrandTotal>true</showGrandTotal>
 	<showSubTotals>false</showSubTotals>
 	<timeFrameFilter>
-		<dateColumn>CustomOpportunity__c.companyContactedDate__c</dateColumn>
+		<dateColumn>CustomOpportunity__c.CompanyContactedDate__c</dateColumn>
 		<interval>INTERVAL_CUSTOM</interval>
 	</timeFrameFilter>
 </Report>
