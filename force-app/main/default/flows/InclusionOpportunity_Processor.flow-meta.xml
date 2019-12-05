@@ -43,13 +43,13 @@
         <inputParameters>
             <name>title</name>
             <value>
-                <stringValue>En ny henvendelse angående inkludering har blitt sendt inn!</stringValue>
+                <stringValue>En henvendelse har blitt sendt fra et annet NAV-kontor. </stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>body</name>
             <value>
-                <stringValue>Sjekk inkluderingsmuligheten her!</stringValue>
+                <stringValue>Sjekk henvendelsen her!</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -144,13 +144,13 @@
         <inputParameters>
             <name>title</name>
             <value>
-                <stringValue>Du har fått tildelt en inkluderingsmulighet.</stringValue>
+                <stringValue>Du har fått ansvaret for en henvendelse.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>body</name>
             <value>
-                <stringValue>Se inkluderingsmuligheten her.</stringValue>
+                <stringValue>Gå inn på henvendelsen her. </stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -245,13 +245,13 @@
         <inputParameters>
             <name>title</name>
             <value>
-                <stringValue>Husk at du har fått ansvaret for en inkluderingsmulighet.</stringValue>
+                <stringValue>Husk at du har ansvaret for å følge opp en henvendelse.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>body</name>
             <value>
-                <stringValue>Gå inn på inkluderingsmuligheten her.</stringValue>
+                <stringValue>Gå inn på henvendelsen her.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -687,7 +687,7 @@
                 <stringValue>now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_3_A1_3887775156</name>
+        <name>formula_4_myRule_3_A1_1301358384</name>
         <dataType>DateTime</dataType>
         <expression>now()</expression>
     </formulas>
@@ -727,14 +727,18 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             <value>
                 <stringValue>ischanged([CustomOpportunity__c].ResponsibleUser__c )
 &amp;&amp;
-[CustomOpportunity__c].ResponsibleUser__c != null</stringValue>
+[CustomOpportunity__c].ResponsibleUser__c != null
+&amp;&amp;
+TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Virksomhet kontaktet&#39;</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_6</name>
         <dataType>Boolean</dataType>
         <expression>ischanged({!myVariable_current.ResponsibleUser__c} )
 &amp;&amp;
-{!myVariable_current.ResponsibleUser__c} != null</expression>
+{!myVariable_current.ResponsibleUser__c} != null
+&amp;&amp;
+TEXT({!myVariable_current.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -742,14 +746,18 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             <value>
                 <stringValue>ischanged([CustomOpportunity__c].ResponsibleUser__c )
 &amp;&amp;
-[CustomOpportunity__c].ResponsibleUser__c != null</stringValue>
+[CustomOpportunity__c].ResponsibleUser__c != null
+&amp;&amp;
+TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Virksomhet kontaktet&#39;</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_6_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>ischanged({!myVariable_old.ResponsibleUser__c} )
 &amp;&amp;
-{!myVariable_old.ResponsibleUser__c} != null</expression>
+{!myVariable_old.ResponsibleUser__c} != null
+&amp;&amp;
+TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</expression>
     </formulas>
     <interviewLabel>InclusionOpportunity_Processor-5_InterviewLabel</interviewLabel>
     <label>Inkluderingsmulighet_Processor</label>
@@ -1065,7 +1073,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             </processMetadataValues>
             <field>companyContactedDate__c</field>
             <value>
-                <elementReference>formula_4_myRule_3_A1_3887775156</elementReference>
+                <elementReference>formula_4_myRule_3_A1_1301358384</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
@@ -1206,7 +1214,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
         <processMetadataValues>
             <name>evaluationType</name>
             <value>
-                <stringValue>always</stringValue>
+                <stringValue>criteria</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -1245,6 +1253,55 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Steg</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>InclusionStage__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Ansvarlig tildelt</stringValue>
             </value>
         </filters>
         <inputAssignments>
@@ -1472,7 +1529,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>1.0</numberValue>
+                    <numberValue>0.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_6_event_0</label>
@@ -1512,7 +1569,7 @@ BEGINS({!myVariable_old.OwnerId}, &quot;00G&quot;)</expression>
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>1.0</numberValue>
+                    <numberValue>0.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_6_event_1</label>
