@@ -76,17 +76,17 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>CustomOpportunity__c.companyContactedDate__c</field>
+		<field>CustomOpportunity__c.CompanyContactedDate__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>CustomOpportunity__c.companyContactedNumberOfHours__c</field>
+		<field>CustomOpportunity__c.CompanyContactedNumberOfHours__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>CustomOpportunity__c.senderEmail__c</field>
+		<field>CustomOpportunity__c.SenderEmail__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<hasActivationRequired>false</hasActivationRequired>

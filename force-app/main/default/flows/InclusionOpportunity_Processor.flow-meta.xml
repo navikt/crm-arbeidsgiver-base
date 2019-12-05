@@ -1071,7 +1071,7 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>companyContactedDate__c</field>
+            <field>CompanyContactedDate__c</field>
             <value>
                 <elementReference>formula_4_myRule_3_A1_1301358384</elementReference>
             </value>

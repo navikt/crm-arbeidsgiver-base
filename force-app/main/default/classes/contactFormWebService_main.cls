@@ -22,7 +22,7 @@ global with sharing class ContactFormWebService_main {
 		Id accountId = fetchAccount( rw.organisationNumber );
 		Id contactId = fetchOrCreateContact( rw, accountId );
 
-		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = rw.type, senderEmail__c = rw.email );
+		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = rw.type, SenderEmail__c = rw.email );
 		insert co;
 
 		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id].Name;
