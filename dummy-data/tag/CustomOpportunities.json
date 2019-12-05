@@ -1,0 +1,176 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef1"
+			},
+			"InquiryCategory__c": "Rekruttering",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kandidat formidlet",
+			"Account__c": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef2"
+			},
+			"InquiryCategory__c": "Arbeidstrening",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kandidat formidlet",
+			"Account__c": "@AccountRef2"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef3"
+			},
+			"InquiryCategory__c": "Arbeidstrening",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ansvarlig tildelt",
+			"Account__c": "@AccountRef3"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef4"
+			},
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ny henvendelse",
+			"Account__c": "@AccountRef4"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef5"
+			},
+			"InquiryCategory__c": "Arbeidstrening",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ny henvendelse",
+			"Account__c": "@AccountRef6"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef6"
+			},
+			"InquiryCategory__c": "Arbeidstrening",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kandidat formidlet",
+			"Account__c": "@AccountRef6"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef7"
+			},
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ny henvendelse",
+			"Account__c": "@AccountRef7"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef8"
+			},
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ny henvendelse",
+			"Account__c": "@AccountRef8"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef9"
+			},
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kanditat presentert",
+			"Account__c": "@AccountRef9"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef10"
+			},
+			"InquiryCategory__c": "Rekruttering",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ansvarlig tildelt",
+			"Account__c": "@AccountRef10"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef11"
+			},
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kandidat formidlet",
+			"Account__c": "@AccountRef11"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef12"
+			},
+			"InquiryCategory__c": "Rekruttering",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ny henvendelse",
+			"Account__c": "@AccountRef12"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef13"
+			},
+			"Notes__c": "123",
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Bedrift kontaktet",
+			"Account__c": "@AccountRef13"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef14"
+			},
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kandidat formidlet",
+			"Account__c": "@AccountRef14"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef15"
+			},
+			"Notes__c": "123",
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Ansvarlig tildelt",
+			"Account__c": "@AccountRef15"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef16"
+			},
+			"InquiryCategory__c": "Rekruttering med tilrettelegging",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kanditat presentert",
+			"Account__c": "@AccountRef16"
+		},
+		{
+			"attributes": {
+				"type": "CustomOpportunity__c",
+				"referenceId": "CustomOpportunity__cRef17"
+			},
+			"InquiryCategory__c": "Rekruttering",
+			"Municipality__c": "Ski",
+			"InclusionStage__c": "Kanditat presentert",
+			"Account__c": "@AccountRef17"
+		}
+	]
+}
