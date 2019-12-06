@@ -90,7 +90,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CustomOpportunity__c.ConfirmationEmailSent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CustomOpportunity__c.County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.EmployerNeeds__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -101,6 +116,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomOpportunity__c.IsFromContactForm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.IsMyInclusionOppty__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
