@@ -4,5 +4,12 @@
     <entityName>CustomOpportunity__c</entityName>
     <fieldName>InclusionStage__c</fieldName>
     <masterLabel>Inclusion Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>BasicSkills__c</fieldNames>
+        <fieldNames>PhysicalArrangements__c</fieldNames>
+        <fieldNames>WorkEnvironment__c</fieldNames>
+        <fieldNames>WorkTime__c</fieldNames>
+        <picklistValueName>Virksomhet kontaktet</picklistValueName>
+    </pathAssistantSteps>
     <recordTypeName>Inclusion</recordTypeName>
 </PathAssistant>
