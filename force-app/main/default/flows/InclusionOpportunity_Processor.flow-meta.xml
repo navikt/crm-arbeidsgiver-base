@@ -1423,7 +1423,7 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Virksomhet kontaktet&#39;</exp
         <object>CustomOpportunity__c</object>
     </recordUpdates>
     <startElementReference>myPreWaitDecision_myWait_myRule_6</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>cancelWaits</name>
         <dataType>String</dataType>

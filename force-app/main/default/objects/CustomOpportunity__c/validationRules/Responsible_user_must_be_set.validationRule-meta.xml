@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Responsible_user_must_be_set</fullName>
+    <active>true</active>
+    <description>Responsible user must be set before stage is set to Ansvarlig tildelt</description>
+    <errorConditionFormula>text(InclusionStage__c) == &#39;Ansvarlig tildelt&#39;
+
+&amp;&amp;
+
+isBlank(ResponsibleUser__c) == true</errorConditionFormula>
+    <errorDisplayField>ResponsibleUser__c</errorDisplayField>
+    <errorMessage>Du må fylle ut ansvarlig medarbeider før du går til dette steget</errorMessage>
+</ValidationRule>
