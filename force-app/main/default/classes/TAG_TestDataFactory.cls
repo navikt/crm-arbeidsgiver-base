@@ -7,10 +7,10 @@ public without sharing class TAG_TestDataFactory {
 		insert con;
 		User user = new User();
 		String d = String.valueOf( DateTime.now().millisecond() ) + String.valueOf( DateTime.now().second() ) + String.valueOf( DateTime.now().minute() );
-		user.Username = d + 'test@mestergruppen.no';
-		user.Email = d + 'test@mestergruppen.no';
+		user.Username = d + 'test@nav.no';
+		user.Email = d + 'test@nav.no';
 		user.Alias = 'tsamp';
-		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Community Community User Custom' LIMIT 1].Id;
+		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Customer Community User Custom' LIMIT 1].Id;
 		user.isActive = true;
 		user.ContactId = con.Id;
 		user.FirstName = 'First';
