@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>General</fullName>
-    <active>false</active>
+    <active>true</active>
     <description>Når en mulighet først kommer inn i systemet blir den satt til denne record type</description>
     <label>General</label>
     <picklistValues>

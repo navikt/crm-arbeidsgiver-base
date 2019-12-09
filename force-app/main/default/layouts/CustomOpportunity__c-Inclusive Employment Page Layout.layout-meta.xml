@@ -51,10 +51,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ResponsibleUser__c</field>
             </layoutItems>
             <layoutItems>
