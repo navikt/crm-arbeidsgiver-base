@@ -1,5 +1,6 @@
 # Profiles (some are needed for deploying the community to scratch orgs)
 **/profiles/*
+!**/profiles/Customer Community User Custom.profile-meta.xml
 **/profilePasswordPolicies/*
 **/profileSessionSettings/*
 # LWC configuration files
