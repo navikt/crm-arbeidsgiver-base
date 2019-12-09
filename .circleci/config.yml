@@ -225,29 +225,29 @@ workflows:
   ####################################################
   # Run on every commit to master
   ####################################################
-  validate_in_scratch_org:
-    jobs:
-      - authenticate-devhub:
-          context: salesforce-dx-ci
-          filters:
-            branches:
-              only: master
-      - delete-previous-scratch-org:
-          requires:
-            - authenticate-devhub
-      - create-scratch-org:
-          requires:
-            - delete-previous-scratch-org
-      - install-package-dependencies:
-          context: salesforce-dx-ci
-          requires:
-            - create-scratch-org
-      - deploy-source:
-          requires:
-            - install-package-dependencies
-      - run-apex-tests:
-          requires:
-            - deploy-source
+  # validate_in_scratch_org:
+  #   jobs:
+  #     - authenticate-devhub:
+  #         context: salesforce-dx-ci
+  #         filters:
+  #           branches:
+  #             only: master
+  #     - delete-previous-scratch-org:
+  #         requires:
+  #           - authenticate-devhub
+  #     - create-scratch-org:
+  #         requires:
+  #           - delete-previous-scratch-org
+  #     - install-package-dependencies:
+  #         context: salesforce-dx-ci
+  #         requires:
+  #           - create-scratch-org
+  #     - deploy-source:
+  #         requires:
+  #           - install-package-dependencies
+  #     - run-apex-tests:
+  #         requires:
+  #           - deploy-source
 
   ####################################################
   # Run on release tags pushed to master commits
@@ -294,3 +294,23 @@ workflows:
       - deploy-metadata:
           requires:
             - authenticate-tagdev
+
+  ####################################################
+  # ! Run when creating a pull request
+  ####################################################
+  validate_in_scratch_org:
+    jobs:
+      - authenticate-devhub:
+          context: salesforce-dx-ci
+      - delete-previous-scratch-org:
+          requires:
+            - authenticate-devhub
+      - create-scratch-org:
+          requires:
+            - delete-previous-scratch-org
+      - deploy-source:
+          requires:
+            - create-scratch-org
+      - run-apex-tests:
+          requires:
+            - deploy-source
