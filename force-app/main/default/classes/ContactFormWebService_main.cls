@@ -22,7 +22,6 @@ global with sharing class ContactFormWebService_main {
 		Id accountId = fetchAccount( rw.organisationNumber );
 		Id contactId = fetchOrCreateContact( rw, accountId );
 
-
 		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = getType( rw.type ), SenderEmail__c = rw.email );
 		insert co;
 
@@ -33,31 +32,22 @@ global with sharing class ContactFormWebService_main {
 	public static Id fetchAccount( String organisationNumber ) {
 		List<Account> acc = [SELECT Id FROM Account WHERE CompanyNumber__c = : organisationNumber LIMIT 1];
 		if ( acc.size() > 0 ) { return acc[0].Id; }
-		else {
-			List<Account> dummyAccountList = [SELECT id FROM Account WHERE IsDummyAccount__c =: true LIMIT 1];
-			if ( dummyAccountList.size() > 0 ) { return dummyAccountList[0].id; }
-			else{
-
-				account a = new account( name = 'Dummy Account', IsDummyAccount__c = true );
-				insert a;
-
-				return a.id;
-
-			}
-
-		}
+		else { return null; }
 	}
 
 	public static Id fetchOrCreateContact( RequestWrapper rw, Id accountId ) {
 
-
-		List<Contact> existingContact = [SELECT Id FROM Contact WHERE Email = : rw.email LIMIT 1];
+		List<Contact> existingContact = [SELECT Id FROM Contact WHERE AccountId = : accountId AND Email = : rw.email LIMIT 1];
 
 		if ( existingContact.size() == 0 ) {
 
 			Contact con = new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId );
 
-			insert con;
+			Database.DMLOptions dml = new Database.DMLOptions();
+			dml.DuplicateRuleHeader.allowSave = true;
+			dml.DuplicateRuleHeader.runAsCurrentUser = true;
+
+			Database.SaveResult sr = Database.insert( con, dml );
 
 			return con.Id;
 		} else {
