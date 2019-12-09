@@ -1,5 +1,5 @@
 @RestResource(urlMapping = '/ContactForm/*')
-global with sharing class ContactFormWebService_main {
+global with sharing class TAG_ContactFormWebService_main {
 
 	public class RequestWrapper {
 
