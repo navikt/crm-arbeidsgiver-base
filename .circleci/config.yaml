@@ -139,7 +139,7 @@ jobs:
           name: Push Source
           command: |
             sfdx force:source:push -u $(cat ~/project/scratch-org-alias)
-​
+  
   ####################################################
   # Assign permission sets
   ####################################################
@@ -166,7 +166,33 @@ jobs:
             sfdx force:apex:test:run -c -d ~/junit -r junit --wait 5
       - store_test_results:
           path: ~/junit
-​
+
+  ####################################################
+  # ! Authenticate tagdev using AuthUrl
+  ####################################################
+  authenticate-tagdev:
+    <<: *defaults
+´    steps:
+      - checkout
+      - run:
+          name: Authenticate tagdev
+          command: |
+            echo $SFDX_AUTH_URL_TAGDEV_ORG > ~/tagdev_auth.url
+            sfdx force:auth:sfdxurl:store -d -a tagdev -f ~/tagdev_auth.url
+​​
+  ####################################################
+  # ! Deploy SFDX source to a scratch org
+  ####################################################
+  deploy-metadata:
+    <<: *defaults
+    steps:
+      - attach_workspace_cmd
+      - run:
+          name: Push Source
+          command: |
+            sfdx force:source:deploy --sourcepath force-app --targetusername tagdev --testlevel RunLocalTests
+​​
+
   ####################################################
   # COMMANDS
   # Reusable commands called by individual jobs
@@ -261,3 +287,17 @@ workflows:
           filters:
             tags:
               only: /^v[0-9].*/
+
+  ####################################################
+  # ! Run on every commit to master
+  ####################################################
+  deploy_to_tag_master:
+    jobs:
+      - authenticate-tagdev:
+          context: salesforce-dx-ci
+          filters:
+            branches:
+              only: master
+      - deploy-metadata:
+          requires:
+            - authenticate-devhub
