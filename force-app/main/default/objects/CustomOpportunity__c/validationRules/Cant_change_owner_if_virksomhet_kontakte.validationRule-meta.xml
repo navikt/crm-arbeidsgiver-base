@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cant_change_owner_if_virksomhet_kontakte</fullName>
+    <active>true</active>
+    <errorConditionFormula>ischanged( OwnerId ) 
+
+&amp;&amp;
+
+ TEXT(InclusionStage__c) == &#39;Virksomhet kontaktet&#39;</errorConditionFormula>
+    <errorMessage>Kontor kan ikke endres etter å ha kontaktet virksomheten.</errorMessage>
+</ValidationRule>
