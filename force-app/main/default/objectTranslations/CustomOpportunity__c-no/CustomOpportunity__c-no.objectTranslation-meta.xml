@@ -32,6 +32,20 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
+        <layout>General Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Inclusive Employment Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Inkluderingsmulighet Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
@@ -39,4 +53,27 @@
         </sections>
     </layouts>
     <nameFieldLabel>Muligheter</nameFieldLabel>
+    <recordTypes>
+        <description><!-- Når en mulighet først kommer inn i systemet blir den satt til denne record type --></description>
+        <label>Generell</label>
+        <name>General</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- En mulighet for inkludering --></description>
+        <label>Inkludering</label>
+        <name>Inclusion</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- IA - prosess --></description>
+        <label>Inkluderende Arbeidsliv</label>
+        <name>Inclusive_Employment</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Du må fylle inn virksomhet før du går til dette steget. --></errorMessage>
+        <name>Employer_must_be_set</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Du må fylle ut ansvarlig medarbeider før du går til dette steget --></errorMessage>
+        <name>Responsible_user_must_be_set</name>
+    </validationRules>
 </CustomObjectTranslation>
