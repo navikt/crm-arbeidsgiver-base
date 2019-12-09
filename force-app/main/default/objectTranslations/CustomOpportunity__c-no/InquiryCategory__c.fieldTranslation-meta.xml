@@ -1,29 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-	<label>Henvendelseskategori</label>
-	<name>InquiryCategory__c</name>
-	<picklistValues>
-		<masterLabel>Inkludering</masterLabel>
-		<translation>
-			<!-- Arbeidstrening -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Forebygge sykefravær</masterLabel>
-		<translation>
-			<!-- Forebygge sykefravær -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Rekruttering</masterLabel>
-		<translation>
-			<!-- Rekruttering -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Rekruttering med tilrettelegging</masterLabel>
-		<translation>
-			<!-- Rekruttering med tilrettelegging -->
-		</translation>
-	</picklistValues>
+    <label>Henvendelseskategori</label>
+    <name>InquiryCategory__c</name>
+    <picklistValues>
+        <masterLabel>Arbeidstrening</masterLabel>
+        <translation><!-- Arbeidstrening --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Forebygge sykefravær</masterLabel>
+        <translation><!-- Forebygge sykefravær --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inkludering</masterLabel>
+        <translation><!-- Inkludering --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rekruttering</masterLabel>
+        <translation><!-- Rekruttering --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rekruttering med tilrettelegging</masterLabel>
+        <translation><!-- Rekruttering med tilrettelegging --></translation>
+    </picklistValues>
 </CustomFieldTranslation>

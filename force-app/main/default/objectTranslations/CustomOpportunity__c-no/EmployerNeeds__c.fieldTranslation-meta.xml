@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Employer Needs --></label>
+    <name>EmployerNeeds__c</name>
+    <picklistValues>
+        <masterLabel>Arbeidstrening</masterLabel>
+        <translation><!-- Arbeidstrening --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inkluderingstilskudd</masterLabel>
+        <translation><!-- Inkluderingstilskudd --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lønnstilskudd</masterLabel>
+        <translation><!-- Lønnstilskudd --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mentor</masterLabel>
+        <translation><!-- Mentor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vil bidra</masterLabel>
+        <translation><!-- Vil bidra --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
