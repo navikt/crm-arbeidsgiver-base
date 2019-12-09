@@ -8,7 +8,7 @@
 
 		TAG_TestDataFactory.createUserContactAndAccount();
 
-		List<User> existingPortalUsers = [SELECT id, profileId, userRoleId FROM User WHERE UserRoleId <> null AND UserType = 'CustomerSuccess'];
+		List<User> existingPortalUsers = [SELECT id, profileId, userRoleId FROM User WHERE UserType = 'CspLitePortal'];
 
 		if ( existingPortalUsers.isEmpty() ) {
 			User currentUser = [select id, title, firstname, lastname, email, phone, mobilephone, fax, street, city, state, postalcode, country
