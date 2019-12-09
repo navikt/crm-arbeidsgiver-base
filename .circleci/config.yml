@@ -302,6 +302,9 @@ workflows:
     jobs:
       - authenticate-devhub:
           context: salesforce-dx-ci
+          filters:
+            branches:
+              ignore: master
       - delete-previous-scratch-org:
           requires:
             - authenticate-devhub
