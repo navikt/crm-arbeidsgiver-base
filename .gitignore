@@ -43,6 +43,7 @@ $RECYCLE.BIN/
 
 # SFDX
 **/profiles/*
+!**/profiles/Customer Community User Custom.profile-meta.xml
 **/profilePasswordPolicies*
 **/profileSessionSettings*
 
