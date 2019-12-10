@@ -28,6 +28,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>ClosingReason__c</picklist>
+        <values>
+            <fullName>Kandidat godkjent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kandidat ikke godkjent</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>EmployerNeeds__c</picklist>
         <values>
             <fullName>Arbeidstrening</fullName>
@@ -57,11 +68,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Finn kandidat</fullName>
+            <fullName>Avsluttet</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Kandidat godkjent</fullName>
+            <fullName>Finn kandidat</fullName>
             <default>false</default>
         </values>
         <values>
