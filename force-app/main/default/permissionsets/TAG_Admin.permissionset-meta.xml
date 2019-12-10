@@ -55,11 +55,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.IsDummyAccount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.MunicipalityNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -71,6 +66,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.AccountMunicipality__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -170,6 +170,15 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>TAG_Admin</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>CustomOpportunity__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <recordTypeVisibilities>
         <recordType>Account.TAG_Tiltaksarrangoer</recordType>
         <visible>true</visible>
