@@ -122,18 +122,50 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>EmployerNeedsIsArbeidstrening</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>EmployerNeeds</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Arbeidstrening</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>EmployerNeeds</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Vil bidra</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Screen3</targetReference>
             </connector>
             <label>Arbeidsgivers behov er arbeidstrening</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_employer_needs_again</name>
+        <label>Check employer needs again</label>
+        <locationX>131</locationX>
+        <locationY>402</locationY>
+        <defaultConnector>
+            <targetReference>Screen4</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>EmployerNeedsIsContribution</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>EmployerNeeds</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Vil bidra</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Screen4_1</targetReference>
+            </connector>
+            <label>Arbeidsgiver vil bidra</label>
         </rules>
     </decisions>
     <decisions>
@@ -159,6 +191,38 @@
                 <targetReference>GetInclusionOpportunity</targetReference>
             </connector>
             <label>Inclusion Opportunity exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_possibility_for_inclusion</name>
+        <label>Check possibility for inclusion</label>
+        <locationX>364</locationX>
+        <locationY>51</locationY>
+        <defaultConnector>
+            <targetReference>Screen2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Kan_ikke_inklu</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IncludeInThisPosistion</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>No</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>NoPossibilityForInclusion</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>EndFlow</targetReference>
+            </connector>
+            <label>Kan ikke inkludere</label>
         </rules>
     </decisions>
     <dynamicChoiceSets>
@@ -253,8 +317,8 @@
     <recordLookups>
         <name>GetInclusionOpportunity</name>
         <label>Get Inclusion Opportunity</label>
-        <locationX>787</locationX>
-        <locationY>536</locationY>
+        <locationX>872</locationX>
+        <locationY>554</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Inclusion_Opportunity</targetReference>
@@ -274,8 +338,8 @@
     <recordUpdates>
         <name>Update_Inclusion_Opportunity</name>
         <label>Update Inclusion Opportunity</label>
-        <locationX>1070</locationX>
-        <locationY>536</locationY>
+        <locationX>1048</locationX>
+        <locationY>555</locationY>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -328,15 +392,34 @@
         <object>CustomOpportunity__c</object>
     </recordUpdates>
     <screens>
-        <name>Screen1</name>
-        <label>Screen1</label>
-        <locationX>224</locationX>
-        <locationY>50</locationY>
+        <name>EndFlow</name>
+        <label>End flow</label>
+        <locationX>693</locationX>
+        <locationY>45</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Screen2</targetReference>
+            <targetReference>Check_if_create_or_update</targetReference>
+        </connector>
+        <fields>
+            <name>GoToURL</name>
+            <fieldText>&lt;p&gt;Fyll ut i &lt;a href=&quot;http://nav.no&quot; target=&quot;_blank&quot;&gt;rekrutteringsbistandsverktøy&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Screen1</name>
+        <label>Screen1</label>
+        <locationX>206</locationX>
+        <locationY>49</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Check_possibility_for_inclusion</targetReference>
         </connector>
         <fields>
             <name>InquiryCategory</name>
@@ -368,10 +451,45 @@
         </fields>
         <fields>
             <name>WhatDoesItTake</name>
-            <dataType>String</dataType>
-            <fieldText>Hva skal til for at der kan inkludere på stillingen?</fieldText>
-            <fieldType>InputField</fieldType>
+<<<<<<< Updated upstream
+            <fieldText>&lt;p&gt;&lt;b&gt;Kontrollspørsmål: &lt;/b&gt;&lt;/p&gt;&lt;p&gt;Hva skal til for at dere kan inkludere på stillingen?&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Hvis det ikke er noen mulighet for inkludering, gå videre til &lt;a href=&quot;http://nav.no&quot; target=&quot;_blank&quot;&gt;rekrutteringsbistandsverktøyet&lt;/a&gt;&lt;/p&gt;</fieldText>
+=======
+            <fieldText>&lt;p&gt;&lt;b&gt;Kontrollspørsmål: &lt;/b&gt;&lt;/p&gt;&lt;p&gt;Hva skal til for at dere kan inkludere på stillingen?&lt;/p&gt;</fieldText>
+>>>>>>> Stashed changes
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>IncludeInThisPosistion</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference>No</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Comments</name>
+            <fieldText>Kommentar</fieldText>
+            <fieldType>LargeTextArea</fieldType>
             <isRequired>false</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>IncludeInThisPosistion</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference>No</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>NoPossibilityForInclusion</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Ingen mulighet for inkludering</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -389,8 +507,8 @@
     <screens>
         <name>Screen2</name>
         <label>Screen2</label>
-        <locationX>403</locationX>
-        <locationY>50</locationY>
+        <locationX>603</locationX>
+        <locationY>147</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -401,7 +519,7 @@
             <name>EmployerNeeds</name>
             <choiceReferences>EmployerNeedsPicklist</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Arbeidsgivers behov</fieldText>
+            <fieldText>Arbeidsgivers muligheter</fieldText>
             <fieldType>MultiSelectCheckboxes</fieldType>
             <isRequired>false</isRequired>
         </fields>
@@ -411,17 +529,17 @@
     <screens>
         <name>Screen3</name>
         <label>Screen3</label>
-        <locationX>160</locationX>
-        <locationY>239</locationY>
+        <locationX>142</locationX>
+        <locationY>234</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Screen4</targetReference>
+            <targetReference>Check_employer_needs_again</targetReference>
         </connector>
         <fields>
             <name>ControlQuestions</name>
-            <fieldText>&lt;p&gt;&lt;b&gt;Kontrollspørsmål:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Kan dere tilrettelegge for forskjellige behov og utfordringer? NEI, ut&lt;/li&gt;&lt;li&gt;Vil vedkommende dere tar inn ha resultat eller budsjettansvar? Ja, ut&lt;/li&gt;&lt;li&gt;Er dere økonomisk avhengig av kandidaten? JA, ut&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;http://nav.no&quot; target=&quot;_blank&quot;&gt;Gå til rekrutteringsbistandsverktøy&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;Kontrollspørsmål:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 12px; background-color: inherit;&quot;&gt;Kan&amp;nbsp;dere&amp;nbsp;tilrettelegge for&amp;nbsp;forskjellige behov&amp;nbsp;og utfordringer?&amp;nbsp;NEI, ut&lt;/span&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 12px; background-color: inherit;&quot;&gt;Er dere økonomisk avhengig&amp;nbsp;av kandidaten?&amp;nbsp;JA, ut&lt;/span&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;http://nav.no&quot; target=&quot;_blank&quot;&gt;Gå til rekrutteringsbistandsverktøy&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -430,8 +548,13 @@
     <screens>
         <name>Screen4</name>
         <label>Screen4</label>
-        <locationX>271</locationX>
-        <locationY>554</locationY>
+<<<<<<< Updated upstream
+        <locationX>403</locationX>
+        <locationY>484</locationY>
+=======
+        <locationX>385</locationX>
+        <locationY>466</locationY>
+>>>>>>> Stashed changes
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -478,6 +601,33 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
+    <screens>
+        <name>Screen4_1</name>
+        <label>Screen4</label>
+        <locationX>144</locationX>
+        <locationY>766</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Check_if_create_or_update</targetReference>
+        </connector>
+        <fields>
+            <name>InclusionProfile</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;Inkluderingsprofil&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>TargetGroup</name>
+            <choiceReferences>EmployerNeedsPicklist</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Målgrupper</fieldText>
+            <fieldType>MultiSelectCheckboxes</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <start>
         <locationX>50</locationX>
         <locationY>50</locationY>
@@ -485,7 +635,7 @@
             <targetReference>Screen1</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>AccountId</name>
         <dataType>String</dataType>
