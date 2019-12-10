@@ -5,6 +5,10 @@
     <fieldName>InclusionStage__c</fieldName>
     <masterLabel>Inclusion Path</masterLabel>
     <pathAssistantSteps>
+        <fieldNames>ClosingReason__c</fieldNames>
+        <picklistValueName>Avsluttet</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
         <fieldNames>BasicSkills__c</fieldNames>
         <fieldNames>PhysicalArrangements__c</fieldNames>
         <fieldNames>WorkEnvironment__c</fieldNames>
