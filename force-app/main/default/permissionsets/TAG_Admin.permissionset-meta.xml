@@ -188,10 +188,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>CustomOpportunity__c.General</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>CustomOpportunity__c.Inclusion</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -203,4 +199,8 @@
         <tab>CustomOpportunity__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>LightningOnMobile</name>
+    </userPermissions>
 </PermissionSet>
