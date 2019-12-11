@@ -164,6 +164,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Opportunities</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>InclusionStage__c</searchResultsAdditionalFields>
