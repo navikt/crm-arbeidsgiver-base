@@ -4,6 +4,104 @@
         <processMetadataValues>
             <name>customNotifTypeName</name>
             <value>
+                <stringValue>NotifyNewOwner</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>recipientCategory</name>
+            <value>
+                <stringValue>user</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>recipientType</name>
+            <value>
+                <stringValue>reference</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_11_A1</name>
+        <label>Notify responsible user</label>
+        <locationX>1100</locationX>
+        <locationY>200</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <stringValue>000000000000000</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>customNotifTypeName</name>
+            <value>
+                <stringValue>NotifyNewOwner</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Du har fått tildelt ansvaret for å følge opp en mulighet.</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <stringValue>Se muligheten her.</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <stringValue>{!myVariable_current.Id}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>recipientIds</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>500.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>myCollection_myRule_11_A1recipientIds</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>customNotifTypeName</name>
+            <value>
                 <stringValue>NotifyResponsibleWorker</stringValue>
             </value>
         </processMetadataValues>
@@ -120,14 +218,14 @@
                 <stringValue>reference</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_6_A2</name>
+        <name>myRule_9_A2</name>
         <label>Notify new owner</label>
-        <locationX>600</locationX>
+        <locationX>900</locationX>
         <locationY>300</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
-            <targetReference>myWait_myRule_6</targetReference>
+            <targetReference>myWait_myRule_9</targetReference>
         </connector>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -198,105 +296,7 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference>myCollection_myRule_6_A2recipientIds</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>customNotifTypeName</name>
-            <value>
-                <stringValue>NotifyNewOwner</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>recipientCategory</name>
-            <value>
-                <stringValue>user</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>recipientType</name>
-            <value>
-                <stringValue>reference</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_8_A1</name>
-        <label>Notify responsible user</label>
-        <locationX>800</locationX>
-        <locationY>200</locationY>
-        <actionName>customNotificationAction</actionName>
-        <actionType>customNotificationAction</actionType>
-        <inputParameters>
-            <name>customNotifTypeId</name>
-            <value>
-                <stringValue>000000000000000</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>customNotifTypeName</name>
-            <value>
-                <stringValue>NotifyNewOwner</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>title</name>
-            <value>
-                <stringValue>Du har fått tildelt ansvaret for å følge opp en mulighet.</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>body</name>
-            <value>
-                <stringValue>Se muligheten her.</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetId</name>
-            <value>
-                <stringValue>{!myVariable_current.Id}</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>recipientIds</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>500.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>recipientIds</name>
-            <value>
-                <elementReference>myCollection_myRule_8_A1recipientIds</elementReference>
+                <elementReference>myCollection_myRule_9_A2recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -319,14 +319,14 @@
                 <stringValue>reference</stringValue>
             </value>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_6_event_0_SA1</name>
+        <name>myWaitEvent_myWait_myRule_9_event_0_SA1</name>
         <label>Påminn ansvarlig arbeider</label>
-        <locationX>600</locationX>
+        <locationX>900</locationX>
         <locationY>200</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_6_event_0_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_9_event_0_postWaitExecutionAssignment</targetReference>
         </connector>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -397,7 +397,7 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference>myCollection_myWaitEvent_myWait_myRule_6_event_0_SA1recipientIds</elementReference>
+                <elementReference>myCollection_myWaitEvent_myWait_myRule_9_event_0_SA1recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -420,14 +420,14 @@
                 <stringValue>reference</stringValue>
             </value>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_6_event_1_SA3</name>
+        <name>myWaitEvent_myWait_myRule_9_event_1_SA3</name>
         <label>Notify queue that opportunity has been placed back to workbench</label>
-        <locationX>600</locationX>
+        <locationX>900</locationX>
         <locationY>400</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_6_event_1_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_9_event_1_postWaitExecutionAssignment</targetReference>
         </connector>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -498,10 +498,26 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference>myCollection_myWaitEvent_myWait_myRule_6_event_1_SA3recipientIds</elementReference>
+                <elementReference>myCollection_myWaitEvent_myWait_myRule_9_event_1_SA3recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
+    <assignments>
+        <name>myAssignment_myRule_11_A1</name>
+        <label>myAssignment_myRule_11_A1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>myCollection_myRule_11_A1recipientIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>myVariable_current.ResponsibleUser__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_11_A1</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>myAssignment_myRule_1_A2</name>
         <label>myAssignment_myRule_1_A2</label>
@@ -519,79 +535,63 @@
         </connector>
     </assignments>
     <assignments>
-        <name>myAssignment_myRule_6_A2</name>
-        <label>myAssignment_myRule_6_A2</label>
+        <name>myAssignment_myRule_9_A2</name>
+        <label>myAssignment_myRule_9_A2</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myCollection_myRule_6_A2recipientIds</assignToReference>
+            <assignToReference>myCollection_myRule_9_A2recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>myVariable_current.ResponsibleUser__r.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myRule_6_A2</targetReference>
+            <targetReference>myRule_9_A2</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>myAssignment_myRule_8_A1</name>
-        <label>myAssignment_myRule_8_A1</label>
+        <name>myAssignment_myWaitEvent_myWait_myRule_9_event_0_SA1</name>
+        <label>myAssignment_myWaitEvent_myWait_myRule_9_event_0_SA1</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myCollection_myRule_8_A1recipientIds</assignToReference>
+            <assignToReference>myCollection_myWaitEvent_myWait_myRule_9_event_0_SA1recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>myVariable_current.ResponsibleUser__r.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myRule_8_A1</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_9_event_0_SA1</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>myAssignment_myWaitEvent_myWait_myRule_6_event_0_SA1</name>
-        <label>myAssignment_myWaitEvent_myWait_myRule_6_event_0_SA1</label>
+        <name>myAssignment_myWaitEvent_myWait_myRule_9_event_1_SA3</name>
+        <label>myAssignment_myWaitEvent_myWait_myRule_9_event_1_SA3</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myCollection_myWaitEvent_myWait_myRule_6_event_0_SA1recipientIds</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>myVariable_current.ResponsibleUser__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>myWaitEvent_myWait_myRule_6_event_0_SA1</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>myAssignment_myWaitEvent_myWait_myRule_6_event_1_SA3</name>
-        <label>myAssignment_myWaitEvent_myWait_myRule_6_event_1_SA3</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>myCollection_myWaitEvent_myWait_myRule_6_event_1_SA3recipientIds</assignToReference>
+            <assignToReference>myCollection_myWaitEvent_myWait_myRule_9_event_1_SA3recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>myVariable_current.OwnerId</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_6_event_1_SA3</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_9_event_1_SA3</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitAssignment_myWait_myRule_6</name>
-        <label>myWaitAssignment_myWait_myRule_6</label>
+        <name>myWaitAssignment_myWait_myRule_9</name>
+        <label>myWaitAssignment_myWait_myRule_9</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>cancelWaits</assignToReference>
             <operator>Add</operator>
             <value>
-                <stringValue>myWait_myRule_6</stringValue>
+                <stringValue>myWait_myRule_9</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -599,35 +599,35 @@
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitEvent_myWait_myRule_6_event_0_postWaitExecutionAssignment</name>
-        <label>myWaitEvent_myWait_myRule_6_event_0_postWaitExecutionAssignment</label>
+        <name>myWaitEvent_myWait_myRule_9_event_0_postWaitExecutionAssignment</name>
+        <label>myWaitEvent_myWait_myRule_9_event_0_postWaitExecutionAssignment</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myWaitEvent_myWait_myRule_6_event_0_postActionExecutionVariable</assignToReference>
+            <assignToReference>myWaitEvent_myWait_myRule_9_event_0_postActionExecutionVariable</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myWait_myRule_6</targetReference>
+            <targetReference>myWait_myRule_9</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitEvent_myWait_myRule_6_event_1_postWaitExecutionAssignment</name>
-        <label>myWaitEvent_myWait_myRule_6_event_1_postWaitExecutionAssignment</label>
+        <name>myWaitEvent_myWait_myRule_9_event_1_postWaitExecutionAssignment</name>
+        <label>myWaitEvent_myWait_myRule_9_event_1_postWaitExecutionAssignment</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myWaitEvent_myWait_myRule_6_event_1_postActionExecutionVariable</assignToReference>
+            <assignToReference>myWaitEvent_myWait_myRule_9_event_1_postActionExecutionVariable</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myWait_myRule_6</targetReference>
+            <targetReference>myWait_myRule_9</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -659,6 +659,34 @@
                 <targetReference>myRule_1_pmetdec</targetReference>
             </connector>
             <label>Owner is changed to another Queue</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision10</name>
+        <label>myDecision10</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_11</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_11</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myAssignment_myRule_11_A1</targetReference>
+            </connector>
+            <label>Responsible user is changed after virksomhet kontaktet</label>
         </rules>
     </decisions>
     <decisions>
@@ -728,23 +756,47 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision7</targetReference>
+            <targetReference>myDecision8</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_6</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_6</leftValueReference>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.InclusionStage__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>Avsluttet</stringValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_6_pmetdec</targetReference>
+                <targetReference>myRule_6_A1</targetReference>
             </connector>
-            <label>Responsible user is changed before virksomhet kontaktet</label>
+            <label>Stage updated to closed</label>
         </rules>
     </decisions>
     <decisions>
@@ -754,41 +806,44 @@
                 <numberValue>3.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision7</name>
-        <label>myDecision7</label>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision10</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_8</name>
+            <name>myRule_9</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_8</leftValueReference>
+                <leftValueReference>formula_myRule_9</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myAssignment_myRule_8_A1</targetReference>
+                <targetReference>myRule_9_pmetdec</targetReference>
             </connector>
-            <label>Responsible user is changed after virksomhet kontaktet</label>
+            <label>Responsible user is changed before virksomhet kontaktet</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myPreWaitDecision_myWait_myRule_6</name>
-        <label>myPreWaitDecision_myWait_myRule_6</label>
+        <name>myPreWaitDecision_myWait_myRule_9</name>
+        <label>myPreWaitDecision_myWait_myRule_9</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myWaitAssignment_myWait_myRule_6</targetReference>
+            <targetReference>myWaitAssignment_myWait_myRule_9</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myPreWaitRule_myWait_myRule_6</name>
+            <name>myPreWaitRule_myWait_myRule_9</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_6</leftValueReference>
+                <leftValueReference>formula_myRule_9</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -797,7 +852,7 @@
             <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>myPreWaitRule_myWait_myRule_6</label>
+            <label>myPreWaitRule_myWait_myRule_9</label>
         </rules>
     </decisions>
     <decisions>
@@ -905,16 +960,16 @@
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_6_pmetdec</name>
+        <name>myRule_9_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>600</locationX>
+        <locationX>900</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_6_A1</targetReference>
+            <targetReference>myRule_9_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_6_pmetnullrule</name>
+            <name>myRule_9_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -924,15 +979,15 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_6_A1</targetReference>
+                <targetReference>myRule_9_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_6_pmetrule</name>
+            <name>myRule_9_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_6_pmetrule</leftValueReference>
+                <leftValueReference>formula_myRule_9_pmetrule</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -949,7 +1004,18 @@
                 <stringValue>now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_3_A1_9500132714</name>
+        <name>formula_4_myRule_3_A1_0188319245</name>
+        <dataType>DateTime</dataType>
+        <expression>now()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>now()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_7_myRule_6_A1_1130421978</name>
         <dataType>DateTime</dataType>
         <expression>now()</expression>
     </formulas>
@@ -967,6 +1033,33 @@ BEGINS([CustomOpportunity__c].OwnerId, &quot;00G&quot;)</stringValue>
         <expression>ischanged({!myVariable_current.OwnerId} ) &amp;&amp;
 
 BEGINS({!myVariable_current.OwnerId}, &quot;00G&quot;)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>ischanged([CustomOpportunity__c].ResponsibleUser__c )
+&amp;&amp;
+[CustomOpportunity__c].ResponsibleUser__c != null
+&amp;&amp;
+TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Ny henvendelse&#39;
+&amp;&amp;
+TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Ansvarlig tildelt&#39;
+&amp;&amp;
+[CustomOpportunity__c].IsMyInclusionOppty__c  != TRUE</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_11</name>
+        <dataType>Boolean</dataType>
+        <expression>ischanged({!myVariable_current.ResponsibleUser__c} )
+&amp;&amp;
+{!myVariable_current.ResponsibleUser__c} != null
+&amp;&amp;
+TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ny henvendelse&#39;
+&amp;&amp;
+TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
+&amp;&amp;
+{!myVariable_current.IsMyInclusionOppty__c}  != TRUE</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -1001,7 +1094,7 @@ TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Kandidat godkjent&#39;
 </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_6</name>
+        <name>formula_myRule_9</name>
         <dataType>Boolean</dataType>
         <expression>ischanged({!myVariable_current.ResponsibleUser__c} )
 &amp;&amp;
@@ -1033,7 +1126,7 @@ TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Kandidat godkjent&#39;
 </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_6_pmetrule</name>
+        <name>formula_myRule_9_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>ischanged({!myVariable_old.ResponsibleUser__c} )
 &amp;&amp;
@@ -1046,33 +1139,6 @@ TEXT({!myVariable_old.InclusionStage__c}) != &#39;Finn kandidat&#39;
 TEXT({!myVariable_old.InclusionStage__c}) != &#39;Kandidat presentert&#39;
 &amp;&amp;
 TEXT({!myVariable_old.InclusionStage__c}) != &#39;Kandidat godkjent&#39;</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>ischanged([CustomOpportunity__c].ResponsibleUser__c )
-&amp;&amp;
-[CustomOpportunity__c].ResponsibleUser__c != null
-&amp;&amp;
-TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Ny henvendelse&#39;
-&amp;&amp;
-TEXT([CustomOpportunity__c].InclusionStage__c) != &#39;Ansvarlig tildelt&#39;
-&amp;&amp;
-[CustomOpportunity__c].IsMyInclusionOppty__c  != TRUE</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_myRule_8</name>
-        <dataType>Boolean</dataType>
-        <expression>ischanged({!myVariable_current.ResponsibleUser__c} )
-&amp;&amp;
-{!myVariable_current.ResponsibleUser__c} != null
-&amp;&amp;
-TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ny henvendelse&#39;
-&amp;&amp;
-TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
-&amp;&amp;
-{!myVariable_current.IsMyInclusionOppty__c}  != TRUE</expression>
     </formulas>
     <interviewLabel>InclusionOpportunity_Processor-3_InterviewLabel</interviewLabel>
     <label>Inkluderingsmulighet_Processor</label>
@@ -1388,7 +1454,90 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
             </processMetadataValues>
             <field>CompanyContactedDate__c</field>
             <value>
-                <elementReference>formula_4_myRule_3_A1_9500132714</elementReference>
+                <elementReference>formula_4_myRule_3_A1_0188319245</elementReference>
+            </value>
+        </inputAssignments>
+        <object>CustomOpportunity__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[CustomOpportunity__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_6_A1</name>
+        <label>Update field</label>
+        <locationX>600</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision8</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>DateTime</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Closing Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ClosingDate__c</field>
+            <value>
+                <elementReference>formula_7_myRule_6_A1_1130421978</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
@@ -1418,12 +1567,12 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_6_A1</name>
+        <name>myRule_9_A1</name>
         <label>Update stage to Ansvarlig tildelt</label>
-        <locationX>600</locationX>
+        <locationX>900</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myAssignment_myRule_6_A2</targetReference>
+            <targetReference>myAssignment_myRule_9_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1550,12 +1699,12 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_6_event_1_SA1</name>
+        <name>myWaitEvent_myWait_myRule_9_event_1_SA1</name>
         <label>Set responsible user to null</label>
-        <locationX>600</locationX>
+        <locationX>900</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_6_event_1_SA2</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_9_event_1_SA2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1679,12 +1828,12 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_6_event_1_SA2</name>
+        <name>myWaitEvent_myWait_myRule_9_event_1_SA2</name>
         <label>Set stage back to Ny henvendelse</label>
-        <locationX>600</locationX>
+        <locationX>900</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myAssignment_myWaitEvent_myWait_myRule_6_event_1_SA3</targetReference>
+            <targetReference>myAssignment_myWaitEvent_myWait_myRule_9_event_1_SA3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1737,7 +1886,7 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         </inputAssignments>
         <object>CustomOpportunity__c</object>
     </recordUpdates>
-    <startElementReference>myPreWaitDecision_myWait_myRule_6</startElementReference>
+    <startElementReference>myPreWaitDecision_myWait_myRule_9</startElementReference>
     <status>Active</status>
     <variables>
         <name>cancelWaits</name>
@@ -1747,6 +1896,13 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         <isOutput>true</isOutput>
     </variables>
     <variables>
+        <name>myCollection_myRule_11_A1recipientIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>myCollection_myRule_1_A2recipientIds</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
@@ -1754,28 +1910,21 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>myCollection_myRule_6_A2recipientIds</name>
+        <name>myCollection_myRule_9_A2recipientIds</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>myCollection_myRule_8_A1recipientIds</name>
+        <name>myCollection_myWaitEvent_myWait_myRule_9_event_0_SA1recipientIds</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>myCollection_myWaitEvent_myWait_myRule_6_event_0_SA1recipientIds</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>myCollection_myWaitEvent_myWait_myRule_6_event_1_SA3recipientIds</name>
+        <name>myCollection_myWaitEvent_myWait_myRule_9_event_1_SA3recipientIds</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
@@ -1798,7 +1947,7 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         <objectType>CustomOpportunity__c</objectType>
     </variables>
     <variables>
-        <name>myWaitEvent_myWait_myRule_6_event_0_postActionExecutionVariable</name>
+        <name>myWaitEvent_myWait_myRule_9_event_0_postActionExecutionVariable</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -1808,7 +1957,7 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         </value>
     </variables>
     <variables>
-        <name>myWaitEvent_myWait_myRule_6_event_1_postActionExecutionVariable</name>
+        <name>myWaitEvent_myWait_myRule_9_event_1_postActionExecutionVariable</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -1818,8 +1967,8 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
         </value>
     </variables>
     <waits>
-        <name>myWait_myRule_6</name>
-        <label>myWait_myRule_6</label>
+        <name>myWait_myRule_9</name>
+        <label>myWait_myRule_9</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>defaultLabel</defaultConnectorLabel>
@@ -1830,17 +1979,17 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
                     <stringValue>now</stringValue>
                 </value>
             </processMetadataValues>
-            <name>myWaitEvent_myWait_myRule_6_event_0</name>
+            <name>myWaitEvent_myWait_myRule_9_event_0</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>myWaitEvent_myWait_myRule_6_event_0_postActionExecutionVariable</leftValueReference>
+                <leftValueReference>myWaitEvent_myWait_myRule_9_event_0_postActionExecutionVariable</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myAssignment_myWaitEvent_myWait_myRule_6_event_0_SA1</targetReference>
+                <targetReference>myAssignment_myWaitEvent_myWait_myRule_9_event_0_SA1</targetReference>
             </connector>
             <eventType>AlarmEvent</eventType>
             <inputParameters>
@@ -1861,7 +2010,7 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
                     <numberValue>4.0</numberValue>
                 </value>
             </inputParameters>
-            <label>myWaitEvent_myWait_myRule_6_event_0</label>
+            <label>myWaitEvent_myWait_myRule_9_event_0</label>
         </waitEvents>
         <waitEvents>
             <processMetadataValues>
@@ -1870,17 +2019,17 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
                     <stringValue>now</stringValue>
                 </value>
             </processMetadataValues>
-            <name>myWaitEvent_myWait_myRule_6_event_1</name>
+            <name>myWaitEvent_myWait_myRule_9_event_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>myWaitEvent_myWait_myRule_6_event_1_postActionExecutionVariable</leftValueReference>
+                <leftValueReference>myWaitEvent_myWait_myRule_9_event_1_postActionExecutionVariable</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myWaitEvent_myWait_myRule_6_event_1_SA1</targetReference>
+                <targetReference>myWaitEvent_myWait_myRule_9_event_1_SA1</targetReference>
             </connector>
             <eventType>AlarmEvent</eventType>
             <inputParameters>
@@ -1901,7 +2050,7 @@ TEXT({!myVariable_current.InclusionStage__c}) != &#39;Ansvarlig tildelt&#39;
                     <numberValue>36.0</numberValue>
                 </value>
             </inputParameters>
-            <label>myWaitEvent_myWait_myRule_6_event_1</label>
+            <label>myWaitEvent_myWait_myRule_9_event_1</label>
         </waitEvents>
     </waits>
 </Flow>
