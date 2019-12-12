@@ -1,7 +1,9 @@
 public without sharing class TAG_TestDataFactory {
 
+	public static final Id OWNER_ID = getOwnerForAccounts();
+
 	public static User createUserContactAndAccount() {
-		Account acc = new Account( Name = 'account' );
+		Account acc = new Account( Name = 'account',  OwnerId = OWNER_ID );
 		insert acc;
 		Contact con = new contact( AccountId = acc.Id, lastName = 'Contact' );
 		insert con;
@@ -23,6 +25,29 @@ public without sharing class TAG_TestDataFactory {
 		insert user;
 
 		return user;
+	}
 
+	public static Id getOwnerForAccounts() {
+		Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator' OR Name = 'Systemadministrator' LIMIT 1];
+		User u = new user();
+		System.RunAs( testUser )
+		{
+			UserRole ur = [SELECT Id FROM UserRole WHERE Name = 'Admin' LIMIT 1];
+			u.LastName = 'Test Code';
+			u.Email = 'this_is_a_fake_email@test.com';
+			String d = String.valueOf( DateTime.now().millisecond() ) + String.valueOf( DateTime.now().second() ) + String.valueOf( DateTime.now().minute() );
+			u.Alias = 'Tcode';
+			u.Username = d + 'testddsasd@test.com';
+			u.UserRoleId = ur.id;
+			u.CommunityNickname = d + 'st12';
+			u.LocaleSidKey = 'en_US';
+			u.TimeZoneSidKey = 'GMT';
+			u.ProfileID = p.Id;
+			u.LanguageLocaleKey = 'en_US';
+			u.EmailEncodingKey = 'UTF-8';
+			insert u;
+		}
+
+		return u.Id;
 	}
 }
