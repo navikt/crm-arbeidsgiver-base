@@ -29,7 +29,7 @@ public without sharing class TAG_TestDataFactory {
 
 	public static Id getOwnerForAccounts() {
 		Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator' OR Name = 'Systemadministrator' LIMIT 1];
-		User testUser = [SELECT Id FROM User WHERE ProfileId = : p.Id LIMIT 1];
+		User testUser = [SELECT Id FROM User WHERE ProfileId = : p.Id AND IsActive = true LIMIT 1];
 		User u = new user();
 		System.RunAs( testUser )
 		{
