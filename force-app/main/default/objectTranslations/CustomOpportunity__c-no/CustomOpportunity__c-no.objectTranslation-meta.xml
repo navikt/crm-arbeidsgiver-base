@@ -39,20 +39,24 @@
         </sections>
     </layouts>
     <layouts>
-        <layout>Inclusive Employment Page Layout</layout>
+        <layout>Inclusion Page Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
     <layouts>
-        <layout>Inkluderingsmulighet Layout</layout>
+        <layout>Inclusive Employment Page Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
     <nameFieldLabel>Muligheter</nameFieldLabel>
+    <quickActions>
+        <label><!-- Rediger mulighet --></label>
+        <name>EditOpportunity</name>
+    </quickActions>
     <recordTypes>
         <description><!-- Når en mulighet først kommer inn i systemet blir den satt til denne record type --></description>
         <label>Generell</label>
