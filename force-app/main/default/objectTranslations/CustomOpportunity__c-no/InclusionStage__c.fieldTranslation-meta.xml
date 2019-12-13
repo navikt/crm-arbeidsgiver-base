@@ -1,41 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-	<label>Steg</label>
-	<name>InclusionStage__c</name>
-	<picklistValues>
-		<masterLabel>Ansvarlig tildelt</masterLabel>
-		<translation>
-			<!-- Ansvarlig tildelt -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Finn kandidat</masterLabel>
-		<translation>
-			<!-- Finn kandidat -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Avsluttet</masterLabel>
-		<translation>
-			<!-- Avsluttet -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Kandidat presentert</masterLabel>
-		<translation>
-			<!-- Kandidat presentert -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Ny henvendelse</masterLabel>
-		<translation>
-			<!-- Ny henvendelse -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Virksomhet kontaktet</masterLabel>
-		<translation>
-			<!-- Virksomhet kontaktet -->
-		</translation>
-	</picklistValues>
+    <label>Steg</label>
+    <name>InclusionStage__c</name>
+    <picklistValues>
+        <masterLabel>Ansvarlig tildelt</masterLabel>
+        <translation><!-- Ansvarlig tildelt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Avsluttet</masterLabel>
+        <translation><!-- Avsluttet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Finn kandidat</masterLabel>
+        <translation><!-- Finn kandidat --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kandidat presentert</masterLabel>
+        <translation><!-- Kandidat presentert --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ny henvendelse</masterLabel>
+        <translation><!-- Ny henvendelse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Virksomhet kontaktet</masterLabel>
+        <translation><!-- Virksomhet kontaktet --></translation>
+    </picklistValues>
 </CustomFieldTranslation>
