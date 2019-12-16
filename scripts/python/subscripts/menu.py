@@ -9,6 +9,7 @@ from consolemenu.items import *
 import subscripts.org as org
 import subscripts.source as source
 import subscripts.helper as helper
+import subscripts.other as other
 
 
 
@@ -81,6 +82,22 @@ def createSourceSubMenu(mainMenu):
 
 	return [pull, push], subMenu
 
+def createOtherSubMenu(mainMenu):
+	
+	submenu = ConsoleMenu("Other Commands", formatter=sub_menu_format, show_exit_option=False)
+	
+	packageKey = FunctionItem("Add Package Key", other.createPackageKey, kwargs={"mainMenu": mainMenu})
+
+	exit = ExitItem("RETURN", mainMenu)
+	sub_menu_format.show_item_top_border(exit.text, True)
+
+	submenu.append_item(packageKey)
+	submenu.append_item(exit)
+
+	subMenu = SubmenuItem("OTHER COMMANDS", submenu=submenu, menu=mainMenu)
+
+	return [], subMenu
+
 def createMenuItems(mainMenu):
 
 	orgMenu = createOrgSubMenu(mainMenu)
@@ -91,5 +108,8 @@ def createMenuItems(mainMenu):
 	for x in sourceMenu[0]:
 		mainMenu.append_item(x)
 
+	otherMenu = createOtherSubMenu(mainMenu)
+
 	mainMenu.append_item(orgMenu[1])
 	mainMenu.append_item(sourceMenu[1])
+	mainMenu.append_item(otherMenu[1])
