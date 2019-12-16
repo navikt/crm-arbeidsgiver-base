@@ -103,13 +103,12 @@ def installPackages():
 		f = open(".packageKey", "r")
 		if (f.mode == "r"):
 			packageKey = f.read()
+			f.close()
 	except IOError:
 		helper.spinnerError()
 		print(".packageKey file does not exists. Without it, packages cannot be installed. Create the file using the SSDX option.")
 		helper.pressToContinue(True, None)
 		return True
-	finally:
-		f.close()
 	
 	keys = ''
 	for iterator in range(len(data)):
