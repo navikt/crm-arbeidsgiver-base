@@ -37,17 +37,13 @@ global with sharing class TAG_ContactFormWebService_main {
 
 	public static Id fetchOrCreateContact( RequestWrapper rw, Id accountId ) {
 
-		List<Contact> existingContact = [SELECT Id FROM Contact WHERE AccountId = : accountId AND Email = : rw.email LIMIT 1];
+		List<Contact> existingContact = [SELECT Id FROM Contact WHERE Email = : rw.email LIMIT 1];
 
 		if ( existingContact.size() == 0 ) {
 
 			Contact con = new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId );
 
-			Database.DMLOptions dml = new Database.DMLOptions();
-			dml.DuplicateRuleHeader.allowSave = true;
-			dml.DuplicateRuleHeader.runAsCurrentUser = true;
-
-			Database.SaveResult sr = Database.insert( con, dml );
+			insert con;
 
 			return con.Id;
 		} else {
