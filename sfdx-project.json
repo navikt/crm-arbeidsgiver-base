@@ -4,7 +4,17 @@
 			"path": "force-app",
 			"default": true,
 			"package": "tag-salesforce-shared",
-			"versionNumber": "0.1.0.NEXT"
+			"versionNumber": "0.1.0.NEXT",
+			"dependencies": [
+				{
+					"package": "crm-platform-base",
+					"versionNumber": "0.1.0.LATEST"
+				},
+				{
+					"package": "crm-platform-access-control",
+					"versionNumber": "0.1.0.LATEST"
+				}
+			]
 		}
 	],
 	"namespace": "",
