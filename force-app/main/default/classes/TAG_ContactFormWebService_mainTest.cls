@@ -4,7 +4,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 	@isTest
 	private static void testDoPost() {
 
-		insert new Account( name = 'test', CompanyNumber__c = '960507878' );
+		insert new Account( name = 'test', INT_Ident__c = '960507878' );
 
 		List<CustomOpportunity__c> CustomOpportunities = [SELECT Id FROM CustomOpportunity__c];
 		System.assertEquals( 0, CustomOpportunities.size(), 'Size should be zero before' );
@@ -23,7 +23,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 		Test.stopTest();
 
 
-		CustomOpportunities = [SELECT Id, InquiryCategory__c, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.CompanyNumber__c FROM CustomOpportunity__c];
+		CustomOpportunities = [SELECT Id, InquiryCategory__c, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_Ident__c FROM CustomOpportunity__c];
 		System.assertEquals( 1, CustomOpportunities.size(), 'Size should be zero before' );
 
 		System.assertEquals ( 'Rekruttering med tilrettelegging', CustomOpportunities[0].InquiryCategory__c, '"Type" should be "Rekruttering med tilrettelegging"' );
@@ -31,6 +31,6 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 		System.assertEquals ( 'TestEtternavn', CustomOpportunities[0].Contact__r.LastName, '"Contact__r.LastName" should be "TestEtternavn"' );
 		System.assertEquals ( 'test@nav.no', CustomOpportunities[0].Contact__r.Email, '"Contact__r.Email" should be "test@nav.no"' );
 		System.assertEquals ( '90080900', CustomOpportunities[0].Contact__r.MobilePhone, '"Contact__r.MobilePhone" should be "90080900"' );
-		System.assertEquals ( '960507878', CustomOpportunities[0].Account__r.CompanyNumber__c, '"Account__r.CompanyNumber__c" should be "960507878"' );
+		System.assertEquals ( '960507878', CustomOpportunities[0].Account__r.INT_Ident__c, '"Account__r.INT_Ident__c" should be "960507878"' );
 	}
 }
