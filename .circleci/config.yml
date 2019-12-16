@@ -291,9 +291,13 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-metadata:
+      - install-package-dependencies:
+          context: salesforce-dx-ci
           requires:
             - authenticate-tagdev
+      - deploy-metadata:
+          requires:
+            - deploy-metadata
 
   ####################################################
   # ! Run when creating a pull request
@@ -311,9 +315,13 @@ workflows:
       - create-scratch-org:
           requires:
             - delete-previous-scratch-org
-      - deploy-source:
+      - install-package-dependencies:
+          context: salesforce-dx-ci
           requires:
             - create-scratch-org
+      - deploy-source:
+          requires:
+            - install-package-dependencies
       - run-apex-tests:
           requires:
             - deploy-source
