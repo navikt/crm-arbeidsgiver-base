@@ -35,6 +35,10 @@ def createScratchOrg(mainMenu):
 		True, True)
 	if (error): return
 
+	helper.startLoading("Installing packages defined in 'sfdx-project.json'")
+	error = orgHelper.installPackages()
+	if (error): return
+
 	helper.startLoading("Pushing metadata")
 	error = helper.tryCommandWithException( ["sfdx force:source:push"], True, True)
 	if (error): return
