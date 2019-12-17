@@ -22,6 +22,21 @@
                 <default>false</default>
                 <label>Kandidat ikke godkjent</label>
             </value>
+            <value>
+                <fullName>leveranse avsluttet</fullName>
+                <default>false</default>
+                <label>Leveranse avsluttet</label>
+            </value>
+            <value>
+                <fullName>Selvbetjening</fullName>
+                <default>false</default>
+                <label>Selvbetjening</label>
+            </value>
+            <value>
+                <fullName>Ikke Aktuell for IA-Leveranse</fullName>
+                <default>false</default>
+                <label>Ikke Aktuell for IA-Leveranse</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Avsluttet</controllingFieldValue>
@@ -30,6 +45,18 @@
         <valueSettings>
             <controllingFieldValue>Avsluttet</controllingFieldValue>
             <valueName>Kandidat ikke godkjent</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>leveranse avsluttet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Selvbetjening</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Ikke Aktuell for IA-Leveranse</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

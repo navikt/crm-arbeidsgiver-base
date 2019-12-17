@@ -30,12 +30,16 @@
     <picklistValues>
         <picklist>ClosingReason__c</picklist>
         <values>
-            <fullName>Kandidat godkjent</fullName>
+            <fullName>Ikke Aktuell for IA-Leveranse</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Kandidat ikke godkjent</fullName>
+            <fullName>Selvbetjening</fullName>
             <default>false</default>
+        </values>
+        <values>
+            <fullName>leveranse avsluttet</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -68,11 +72,27 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Ny henvendelse</fullName>
+            <fullName>Avklaring</fullName>
             <default>true</default>
         </values>
         <values>
-            <fullName>Virksomhet kontaktet</fullName>
+            <fullName>Avsluttet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Evaluering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gjennomføring</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ny henvendelse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Plan</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1930,6 +1950,47 @@
         </values>
         <values>
             <fullName>Varierte arbeidsstillinger</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_IAClarification__c</picklist>
+        <values>
+            <fullName>Eget forarbeid gjennomført</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tillitsvalgt involvert</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_IAProcess_result__c</picklist>
+        <values>
+            <fullName>Ferdig</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ikke aktuelt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Selvbetjening</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_IAService__c</picklist>
+        <values>
+            <fullName>Forebyggende arbeidsmiljøarbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HelseIArbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Systematisk sykefraværsarbeid</fullName>
             <default>false</default>
         </values>
     </picklistValues>

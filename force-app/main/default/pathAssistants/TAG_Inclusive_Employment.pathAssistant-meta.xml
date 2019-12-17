@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>CustomOpportunity__c</entityName>
+    <fieldName>InclusionStage__c</fieldName>
+    <masterLabel>Inclusive Employment</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>TAG_IAClarification__c</fieldNames>
+        <info>&lt;p&gt;Tilbudet til og forankring med virksomheten&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Alle med status og til fra dato felt + fritekst&lt;/li&gt;&lt;li&gt;Lenker og hjelpetekst&lt;/li&gt;&lt;li&gt;Understeg&lt;/li&gt;&lt;li&gt;Forankre med virksomhet etter foreløpig plan&lt;/li&gt;&lt;li&gt;Samarbeid mellom leder, tillitsvalgt og verneombud&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Avklaring</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <picklistValueName>Avsluttet</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>TAG_IAEvaluation__c</fieldNames>
+        <info>&lt;p&gt;Måloppnåelse&lt;/p&gt;&lt;p&gt;Utvide eller avslutte leveranse&lt;/p&gt;&lt;p&gt;Iverksette nye tiltak?&lt;/p&gt;&lt;p&gt;Oppgave oppgaver for senevaluering&lt;/p&gt;&lt;p&gt;Informasjon for kontinuerlig forbedring for NAV&lt;/p&gt;</info>
+        <picklistValueName>Evaluering</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Levere IA-Tjenester i gjensidig forpliktelse mellom NAV og virksomheten&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Systematisk Sykefraværs arbeid&lt;ul&gt;&lt;li&gt;Systemrettet arbeid&lt;/li&gt;&lt;li&gt;Oppfølging av enkeltansatte&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Forebyggende arbeidsmiljø arbeid&lt;ul&gt;&lt;li&gt;Mangfoldig arbeidsmiljø&lt;/li&gt;&lt;li&gt;Endring og omstiling&lt;/li&gt;&lt;li&gt;++++++&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Helse i Arbeid&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Gjennomføring</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>TAG_IA_Service_Start__c</fieldNames>
+        <fieldNames>TAG_IA_Service_End__c</fieldNames>
+        <fieldNames>TAG_IA_Objective__c</fieldNames>
+        <fieldNames>TAG_IA_Process_Milestones__c</fieldNames>
+        <fieldNames>TAG_IAService__c</fieldNames>
+        <info>&lt;p&gt;Ferdigstille tidsavgrenset plan med mål og evaluering&lt;/p&gt;</info>
+        <picklistValueName>Plan</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Inclusive_Employment</recordTypeName>
+</PathAssistant>

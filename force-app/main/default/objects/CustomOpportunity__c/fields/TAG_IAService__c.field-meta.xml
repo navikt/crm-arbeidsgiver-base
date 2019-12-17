@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_IAService__c</fullName>
+    <description>Describes which IA service is to be delivered</description>
+    <externalId>false</externalId>
+    <label>IA Service</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Systematisk sykefraværsarbeid</fullName>
+                <default>false</default>
+                <label>Systematisk sykefraværsarbeid</label>
+            </value>
+            <value>
+                <fullName>Forebyggende arbeidsmiljøarbeid</fullName>
+                <default>false</default>
+                <label>Forebyggende arbeidsmiljøarbeid</label>
+            </value>
+            <value>
+                <fullName>HelseIArbeid</fullName>
+                <default>false</default>
+                <label>HelseIArbeid</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
