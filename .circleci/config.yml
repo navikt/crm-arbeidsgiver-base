@@ -305,10 +305,13 @@ workflows:
           filters:
             branches:
               only: master
+      - authenticate-devhub:
+          context: salesforce-dx-ci
       - install-package-dependencies-to-tagdev:
           context: salesforce-dx-ci
           requires:
             - authenticate-tagdev
+            - authenticate-devhub
       - deploy-metadata:
           requires:
             - install-package-dependencies-to-tagdev
