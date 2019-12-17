@@ -311,7 +311,7 @@ workflows:
             - authenticate-tagdev
       - deploy-metadata:
           requires:
-            - install-package-dependencies
+            - install-package-dependencies-to-tagdev
 
   ####################################################
   # ! Run when creating a pull request
