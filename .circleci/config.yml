@@ -307,6 +307,9 @@ workflows:
               only: master
       - authenticate-devhub:
           context: salesforce-dx-ci
+          filters:
+            branches:
+              only: master
       - install-package-dependencies-to-tagdev:
           context: salesforce-dx-ci
           requires:
