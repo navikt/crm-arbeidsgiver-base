@@ -37,9 +37,34 @@
                 <label>Kandidat presentert</label>
             </value>
             <value>
+                <fullName>Avklaring</fullName>
+                <default>false</default>
+                <label>Avklaring</label>
+            </value>
+            <value>
+                <fullName>Plan</fullName>
+                <default>false</default>
+                <label>Plan</label>
+            </value>
+            <value>
+                <fullName>Gjennomføring</fullName>
+                <default>false</default>
+                <label>Gjennomføring</label>
+            </value>
+            <value>
+                <fullName>Evaluering</fullName>
+                <default>false</default>
+                <label>Evaluering</label>
+            </value>
+            <value>
                 <fullName>Avsluttet</fullName>
                 <default>false</default>
                 <label>Avsluttet</label>
+            </value>
+            <value>
+                <fullName>TAG_IALukket</fullName>
+                <default>false</default>
+                <label>Lukket</label>
             </value>
         </valueSetDefinition>
     </valueSet>
