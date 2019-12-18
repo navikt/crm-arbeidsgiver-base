@@ -310,6 +310,8 @@ workflows:
           filters:
             branches:
               only: master
+          requires:
+            - authenticate-tagdev
       - deploy-metadata:
           context: salesforce-dx-ci
           requires:
