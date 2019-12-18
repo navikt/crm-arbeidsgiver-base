@@ -312,7 +312,7 @@ workflows:
               only: master
       - deploy-metadata:
           context: salesforce-dx-ci
-            requires:
+          requires:
               - authenticate-tagdev
               - authenticate-devhub
 
