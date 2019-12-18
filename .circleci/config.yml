@@ -315,7 +315,6 @@ workflows:
       - deploy-metadata:
           context: salesforce-dx-ci
           requires:
-              - authenticate-tagdev
               - authenticate-devhub
 
   ####################################################
