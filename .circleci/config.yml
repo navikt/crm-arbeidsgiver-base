@@ -190,6 +190,20 @@ jobs:
             sfdx force:source:deploy --sourcepath force-app --targetusername tagdev --testlevel RunLocalTests
 
   ####################################################
+  # ! install packages to a sandbox
+  ####################################################
+  install-package-dependencies-to-tagdev:
+    <<: *defaults
+    steps:
+      - attach_workspace_cmd
+      - run:
+          name: Install package
+          command: |
+            echo y | sfdx plugins:install rstk-sfdx-package-utils # echo y to confirm installation
+            sfdx rstk:package:dependencies:install -u tagdev -w 10 --noprecheck -k "1:$SFDX_PACKAGE_KEY 2:$SFDX_PACKAGE_KEY 3:$SFDX_PACKAGE_KEY 4:$SFDX_PACKAGE_KEY 5:$SFDX_PACKAGE_KEY"
+
+
+  ####################################################
   # COMMANDS
   # Reusable commands called by individual jobs
   ####################################################
@@ -291,9 +305,19 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-metadata:
+      - authenticate-devhub:
+          context: salesforce-dx-ci
+          filters:
+            branches:
+              only: master
+      - install-package-dependencies-to-tagdev:
+          context: salesforce-dx-ci
           requires:
             - authenticate-tagdev
+            - authenticate-devhub
+      - deploy-metadata:
+          requires:
+            - install-package-dependencies-to-tagdev
 
   ####################################################
   # ! Run when creating a pull request
@@ -311,9 +335,13 @@ workflows:
       - create-scratch-org:
           requires:
             - delete-previous-scratch-org
-      - deploy-source:
+      - install-package-dependencies:
+          context: salesforce-dx-ci
           requires:
             - create-scratch-org
+      - deploy-source:
+          requires:
+            - install-package-dependencies
       - run-apex-tests:
           requires:
             - deploy-source

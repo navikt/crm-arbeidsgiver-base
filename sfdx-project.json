@@ -4,7 +4,17 @@
 			"path": "force-app",
 			"default": true,
 			"package": "tag-salesforce-shared",
-			"versionNumber": "0.1.0.NEXT"
+			"versionNumber": "0.1.0.NEXT",
+			"dependencies": [
+				{
+					"package": "crm-platform-base",
+					"versionNumber": "0.1.0.LATEST"
+				},
+				{
+					"package": "crm-platform-access-control",
+					"versionNumber": "0.1.0.LATEST"
+				}
+			]
 		}
 	],
 	"namespace": "",
@@ -12,6 +22,16 @@
 	"sourceApiVersion": "47.0",
 	"packageAliases": {
 		"tag-salesforce-shared": "0Ho2o0000008OQtCAM",
-		"tag-salesforce-shared@0.1.0-3": "04t2o000001Mx1PAAS"
+		"crm-platform-access-control": "0Ho2o0000008OR3CAM",
+		"crm-platform-base": "0Ho2o0000008ORmCAM",
+		"tag-salesforce-shared@0.1.0-3": "04t2o000001Mx1PAAS",
+		"crm-platform-base@0.1.0-1": "04t2o000001MxJvAAK",
+		"crm-platform-base@0.1.0-2": "04t2o000001MxK0AAK",
+		"crm-platform-access-control@0.1.0-1": "04t2o000001Mx2XAAS",
+		"crm-platform-access-control@0.1.0-2": "04t2o000001Mx8HAAS",
+		"crm-platform-access-control@0.1.0-3": "04t2o000001MxD3AAK",
+		"crm-platform-access-control@0.1.0-4": "04t2o000001MxDIAA0",
+		"crm-platform-access-control@0.1.0-5": "04t2o000001MxK5AAK",
+		"crm-platform-access-control@0.1.1-0": "04t2o000001MxDNAA0"
 	}
 }

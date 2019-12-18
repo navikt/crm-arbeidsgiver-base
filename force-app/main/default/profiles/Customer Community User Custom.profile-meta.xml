@@ -49,15 +49,14 @@
 		<enabled>false</enabled>
 	</classAccesses>
 	<classAccesses>
+		<apexClass>TAG_ContactFormWebService_mainTest</apexClass>
+		<enabled>false</enabled>
+	</classAccesses>
+	<classAccesses>
 		<apexClass>TAG_TestDataFactory</apexClass>
 		<enabled>false</enabled>
 	</classAccesses>
 	<custom>true</custom>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Account.CompanyNumber__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>Account.County__c</field>
@@ -142,6 +141,11 @@
 		<editable>false</editable>
 		<field>CustomOpportunity__c.BasicSkills__c</field>
 		<readable>false</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>CustomOpportunity__c.ClosingDate__c</field>
+		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>

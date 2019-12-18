@@ -4,6 +4,11 @@
 import subprocess
 import subscripts.helper as helper
 
+
+# ---------------------------------------------------------
+# ASK USER FOR ORG
+# ---------------------------------------------------------
+
 def askUserForOrgs(lookingForRegularOrgs, mainMenu, text):
 	root = "scratchOrgs"
 	kind = "Scratch Orgs"
@@ -55,6 +60,80 @@ def askUserForOrgs(lookingForRegularOrgs, mainMenu, text):
 	else:
 		return ""
 
+
+# ---------------------------------------------------------
+# INSTALL PACKAGES
+# ---------------------------------------------------------
+
+from pathlib import Path
+
+def installPackages():
+	data = None
+	try:
+		data = helper.getDataFromJson("sfdx-project.json")
+		if ("packageDirectories" not in data):
+			helper.spinnerSuccess()
+			return False
+		data = data["packageDirectories"][0]
+		if ("dependencies" not in data):
+			helper.spinnerSuccess()
+			return False
+		data = data["dependencies"]
+	except Exception as e:
+		helper.spinnerError()
+		print(e)
+		helper.pressToContinue(True, None)
+		return True
+
+	if (len(data) == 0):
+		helper.spinnerSuccess()
+		return False
+
+	try:
+		copyfile("./scripts/config/unsignedPluginWhiteList.json", str(Path.home()) + "/.config/sfdx/unsignedPluginWhiteList.json")
+		helper.runCommand("sfdx plugins:install rstk-sfdx-package-utils@0.1.12")
+	except Exception as e:
+		helper.spinnerError()
+		print(e)
+		helper.pressToContinue(True, None)
+		return True
+
+	packageKey = None
+	try:
+		f = open(".packageKey", "r")
+		if (f.mode == "r"):
+			packageKey = f.read()
+			f.close()
+	except IOError:
+		helper.spinnerError()
+		print(".packageKey file does not exists. Without it, packages cannot be installed. Create the file using the SSDX option.")
+		helper.pressToContinue(True, None)
+		return True
+	
+	keys = ''
+	for iterator in range(len(data)):
+		keys = "{} {}:{}".format(keys, iterator + 1, packageKey) # should be in the format of '1:key 2:key 3:key etc, one for each dependency
+
+	try:
+		helper.runCommand('sfdx rstk:package:dependencies:install -w 10 --noprecheck --installationkeys "{}"'.format(keys))
+		helper.spinnerSuccess()
+	except subprocess.CalledProcessError as e:
+		helper.spinnerError()
+		print("\n" + e.output.decode('UTF-8'))
+		helper.pressToContinue(True, None)
+		return True
+	except Exception as e:
+		helper.spinnerError()
+		print(e)
+		helper.pressToContinue(True, None)
+		return True
+	return False
+
+
+# ---------------------------------------------------------
+# FETCH PERM SETS
+# ---------------------------------------------------------
+
 import os
 def fetchPermsets():
 	try:
@@ -67,8 +146,11 @@ def fetchPermsets():
 		print(e)
 
 
+# ---------------------------------------------------------
+# IMPORT DUMMY DATA
+# ---------------------------------------------------------
+
 from shutil import copyfile
-from pathlib import Path
 import shutil
 
 def importDummyData():

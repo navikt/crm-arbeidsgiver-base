@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Begrunnelse</label>
+    <name>ClosingReason__c</name>
+    <picklistValues>
+        <masterLabel>Kandidat godkjent</masterLabel>
+        <translation><!-- Kandidat godkjent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kandidat ikke godkjent</masterLabel>
+        <translation><!-- Kandidat ikke godkjent --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
