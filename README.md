@@ -14,7 +14,7 @@ Nav bruker scratchorgs og "DX" på utvikling av funksjonalitet i Salesforce, det
 
 ## Utvikling
 Utvikling foregår i hovedsak med å bruker kommandoene:
-* `sfdx force:source:open` for å åpne instansen(salesforce applikasjonen din).
+* `sfdx force:org:open` for å åpne instansen(salesforce applikasjonen din).
 * `sfdx force:source:pull` for å hente endringer som du gjør i konfigurasjon i applikasjonen online.
 * `sfdx force:source:push` for å publisere endringer du gjør i kode lokalt til applikasjonen online.
 
