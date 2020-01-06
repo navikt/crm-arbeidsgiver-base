@@ -305,17 +305,10 @@ workflows:
           filters:
             branches:
               only: master
-      - authenticate-devhub:
-          context: salesforce-dx-ci
-          filters:
-            branches:
-              only: master
-          requires:
-            - authenticate-tagdev
       - deploy-metadata:
           context: salesforce-dx-ci
           requires:
-              - authenticate-devhub
+              - authenticate-tagdev
 
   ####################################################
   # ! Run when creating a pull request
