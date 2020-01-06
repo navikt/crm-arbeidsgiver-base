@@ -47,6 +47,14 @@
                 <behavior>Edit</behavior>
                 <field>Contact__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IA_Owner_is_Current_User__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Inclusion_Owner_is_Current_User__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

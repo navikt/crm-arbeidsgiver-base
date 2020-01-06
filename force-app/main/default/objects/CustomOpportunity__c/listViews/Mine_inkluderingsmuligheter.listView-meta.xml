@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Mine_inkluderingsmuligheter</fullName>
+    <booleanFilter>1 OR 2</booleanFilter>
     <columns>NAME</columns>
     <columns>Account__c</columns>
     <columns>Municipality__c</columns>
@@ -10,5 +11,15 @@
     <columns>BasicSkills__c</columns>
     <columns>WorkEnvironment__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>IA_Owner_is_Current_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Inclusion_Owner_is_Current_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
     <label>Mine inkluderingsmuligheter</label>
 </ListView>
