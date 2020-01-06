@@ -67,6 +67,14 @@
                 <behavior>Edit</behavior>
                 <field>ClosingDate__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IA_Owner_is_Current_User__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Inclusion_Owner_is_Current_User__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
