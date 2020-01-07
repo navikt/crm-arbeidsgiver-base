@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Bedriftsundersøkelse</fullName>
+        <default>false</default>
+        <label>Bedriftsundersøkelse</label>
+    </customValue>
+    <customValue>
+        <fullName>E-Post eller SMS</fullName>
+        <default>false</default>
+        <label>E-Post eller SMS</label>
+    </customValue>
+    <customValue>
+        <fullName>Kontaktskjema</fullName>
+        <default>false</default>
+        <label>Kontaktskjema</label>
+    </customValue>
+    <customValue>
+        <fullName>Rekrutteringsbistand i EØS-området</fullName>
+        <default>false</default>
+        <label>Rekrutteringsbistand i EØS-området</label>
+    </customValue>
+    <customValue>
+        <fullName>Samarbeidsavtale</fullName>
+        <default>false</default>
+        <label>Samarbeidsavtale</label>
+    </customValue>
+    <customValue>
+        <fullName>Telefonkontakt</fullName>
+        <default>false</default>
+        <label>Telefonkontakt</label>
+    </customValue>
+    <description>Used on activity to set type of followup</description>
+    <masterLabel>Activity Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
