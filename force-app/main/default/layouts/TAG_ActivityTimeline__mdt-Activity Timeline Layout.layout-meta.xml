@@ -38,6 +38,10 @@
                 <behavior>Required</behavior>
                 <field>Color__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>RelationshipName__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
