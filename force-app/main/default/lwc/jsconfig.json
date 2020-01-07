@@ -2,7 +2,14 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "c/ActivityTimeline": [
+                "ActivityTimeline/ActivityTimeline.js"
+            ],
+            "c/activityTimeline": [
+                "activityTimeline/activityTimeline.js"
+            ]
+        }
     },
     "include": [
         "**/*",
