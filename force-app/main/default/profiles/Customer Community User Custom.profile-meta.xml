@@ -244,12 +244,12 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>Event.Employer__c</field>
+		<field>Event.TAG_Employer__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>Task.Employer__c</field>
+		<field>Task.TAG_Employer__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
 	<layoutAssignments>
