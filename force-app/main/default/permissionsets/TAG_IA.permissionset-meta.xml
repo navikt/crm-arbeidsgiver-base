@@ -276,14 +276,6 @@
 		<viewAllRecords>true</viewAllRecords>
 	</objectPermissions>
 	<recordTypeVisibilities>
-		<recordType>Account.TAG_Tiltaksarrangoer</recordType>
-		<visible>true</visible>
-	</recordTypeVisibilities>
-	<recordTypeVisibilities>
-		<recordType>Account.Virksomhet</recordType>
-		<visible>true</visible>
-	</recordTypeVisibilities>
-	<recordTypeVisibilities>
 		<recordType>CustomOpportunity__c.Inclusive_Employment</recordType>
 		<visible>true</visible>
 	</recordTypeVisibilities>
