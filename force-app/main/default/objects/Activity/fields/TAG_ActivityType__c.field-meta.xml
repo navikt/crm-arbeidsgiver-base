@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Activ__c</fullName>
+    <fullName>TAG_ActivityType__c</fullName>
+    <description>Aktivitetstypenavn</description>
     <externalId>false</externalId>
-    <inlineHelpText>Aktivitetstypenavn</inlineHelpText>
     <label>Activity Type</label>
     <required>false</required>
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetName>TAG_Activity_Type</valueSetName>
+        <valueSetName>TAG_ActivityType</valueSetName>
     </valueSet>
 </CustomField>

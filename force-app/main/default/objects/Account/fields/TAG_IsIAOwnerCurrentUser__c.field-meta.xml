@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_IsIAOwnerCurrentUser__c</fullName>
+    <externalId>false</externalId>
+    <formula>TAG_IAOwner__r.Id  == $User.Id</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>IA Owner is Current User</label>
+    <type>Checkbox</type>
+</CustomField>
