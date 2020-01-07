@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Task</label>
+    <protected>false</protected>
+    <values>
+        <field>Color__c</field>
+        <value xsi:type="xsd:string">00FF00</value>
+    </values>
+    <values>
+        <field>DateField__c</field>
+        <value xsi:type="xsd:string">ActivityDate</value>
+    </values>
+    <values>
+        <field>FieldsToDisplay__c</field>
+        <value xsi:type="xsd:string">Title__c,DateField__c</value>
+    </values>
+    <values>
+        <field>Icon__c</field>
+        <value xsi:type="xsd:string">standard:task</value>
+    </values>
+    <values>
+        <field>RelationshipName__c</field>
+        <value xsi:type="xsd:string">WhatId</value>
+    </values>
+    <values>
+        <field>SObject__c</field>
+        <value xsi:type="xsd:string">Task</value>
+    </values>
+    <values>
+        <field>Title__c</field>
+        <value xsi:type="xsd:string">Subject</value>
+    </values>
+</CustomMetadata>
