@@ -4,7 +4,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>collapsed</name>
-                <value>false</value>
+                <value>true</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>hideChatterActions</name>
@@ -19,6 +19,14 @@
         <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>force:detailPanel</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>detailTabContent</name>
+        <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
@@ -42,17 +50,24 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>force:detailPanel</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>detailTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
             <componentInstanceProperties>
                 <name>active</name>
                 <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>detailTabContent</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Standard.Tab.detail</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
+                <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
@@ -61,17 +76,6 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.relatedLists</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>detailTabContent</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.detail</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
