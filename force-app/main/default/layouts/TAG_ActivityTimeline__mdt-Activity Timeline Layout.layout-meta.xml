@@ -10,10 +10,6 @@
                 <behavior>Required</behavior>
                 <field>MasterLabel</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>SObjectParent__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -31,11 +27,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>SObjectChild__c</field>
+                <field>SObjectParent__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>FieldsToDisplay__c</field>
+                <field>SObjectChild__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -61,6 +57,10 @@
                 <field>SObjectTitle__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SObjectDateField__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>SObjectRelationshipField__c</field>
             </layoutItems>
@@ -68,7 +68,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SObjectDateField__c</field>
+                <field>ShowTitle__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ShowDateField__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

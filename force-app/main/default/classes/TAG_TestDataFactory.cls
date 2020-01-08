@@ -51,4 +51,17 @@ public without sharing class TAG_TestDataFactory {
 
 		return u.Id;
 	}
+
+	public static List<Account> createAccounts( Integer amount ) {
+		List<Account> accounts = new List<Account>();
+		for ( Integer i = 0; i < amount; i++ ) {
+			Account acc = new Account();
+			acc.Name = 'test';
+			accounts.add( acc );
+		}
+
+		insert accounts;
+
+		return accounts;
+	}
 }

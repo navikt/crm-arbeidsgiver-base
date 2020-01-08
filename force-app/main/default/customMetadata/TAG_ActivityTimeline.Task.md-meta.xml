@@ -7,27 +7,35 @@
         <value xsi:type="xsd:string">00FF00</value>
     </values>
     <values>
-        <field>DateField__c</field>
-        <value xsi:type="xsd:string">ActivityDate</value>
-    </values>
-    <values>
-        <field>FieldsToDisplay__c</field>
-        <value xsi:type="xsd:string">Title__c,DateField__c</value>
-    </values>
-    <values>
         <field>Icon__c</field>
         <value xsi:type="xsd:string">standard:task</value>
     </values>
     <values>
-        <field>RelationshipName__c</field>
-        <value xsi:type="xsd:string">WhatId</value>
-    </values>
-    <values>
-        <field>SObject__c</field>
+        <field>SObjectChild__c</field>
         <value xsi:type="xsd:string">Task</value>
     </values>
     <values>
-        <field>Title__c</field>
+        <field>SObjectDateField__c</field>
+        <value xsi:type="xsd:string">ActivityDate</value>
+    </values>
+    <values>
+        <field>SObjectParent__c</field>
+        <value xsi:type="xsd:string">Account</value>
+    </values>
+    <values>
+        <field>SObjectRelationshipField__c</field>
+        <value xsi:type="xsd:string">WhatId</value>
+    </values>
+    <values>
+        <field>SObjectTitle__c</field>
         <value xsi:type="xsd:string">Subject</value>
+    </values>
+    <values>
+        <field>ShowDateField__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>ShowTitle__c</field>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
 </CustomMetadata>

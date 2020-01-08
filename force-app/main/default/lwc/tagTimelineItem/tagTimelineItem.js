@@ -1,7 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'
 
-export default class TimelineItem extends NavigationMixin(LightningElement) {
+export default class TagTimelineItem extends NavigationMixin(LightningElement) {
 
 	@api title;
 	@api object;
@@ -10,7 +10,6 @@ export default class TimelineItem extends NavigationMixin(LightningElement) {
 	@api recordId;
 	@track expanded;
 	// @api themeInfo;
-
 
 	get hasIconName() {
 		return null;
