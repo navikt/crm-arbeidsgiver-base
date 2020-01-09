@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Inkluderingsmulighetlayout</fullName>
-    <fields>Name</fields>
-    <fields>InquiryCategory__c</fields>
-    <fields>InclusionStage__c</fields>
-    <fields>Account__c</fields>
-    <fields>County__c</fields>
-    <fields>Municipality__c</fields>
-    <fields>OwnerId</fields>
-    <label>Inkluderingsmulighetlayout</label>
+	<fullName>Inkluderingsmulighetlayout</fullName>
+	<fields>Name</fields>
+	<fields>InquiryCategory__c</fields>
+	<fields>InclusionStage__c</fields>
+	<fields>Account__c</fields>
+	<fields>Municipality__c</fields>
+	<fields>OwnerId</fields>
+	<label>Inkluderingsmulighetlayout</label>
 </CompactLayout>

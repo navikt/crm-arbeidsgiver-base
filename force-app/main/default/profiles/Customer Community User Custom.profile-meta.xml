@@ -64,11 +64,6 @@
 	<custom>true</custom>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>Account.County__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
 		<field>Account.INT_IndustryCode__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
@@ -115,11 +110,6 @@
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>Account.INT_MunicipalityNumber__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Account.Municipality__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
 	<fieldPermissions>
@@ -215,11 +205,6 @@
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>CustomOpportunity__c.Contact__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>CustomOpportunity__c.County__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
 	<fieldPermissions>
