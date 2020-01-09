@@ -6,11 +6,6 @@
 	</applicationVisibilities>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>Account.County__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
 		<field>Account.INT_Citizenship__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
@@ -87,11 +82,6 @@
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>Account.INT_MunicipalityNumber__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Account.Municipality__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
