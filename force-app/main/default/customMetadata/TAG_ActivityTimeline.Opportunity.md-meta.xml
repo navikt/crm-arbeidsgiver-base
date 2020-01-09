@@ -30,12 +30,4 @@
         <field>SObjectTitle__c</field>
         <value xsi:type="xsd:string">Name</value>
     </values>
-    <values>
-        <field>ShowDateField__c</field>
-        <value xsi:type="xsd:boolean">true</value>
-    </values>
-    <values>
-        <field>ShowTitle__c</field>
-        <value xsi:type="xsd:boolean">true</value>
-    </values>
 </CustomMetadata>
