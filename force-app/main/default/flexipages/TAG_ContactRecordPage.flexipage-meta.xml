@@ -29,8 +29,22 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <mode>Replace</mode>
-        <name>relatedTabContent</name>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Contact.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>AccountContactRelations</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>GRID</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
+        <name>Facet-24cfeccf-ef66-49b8-87a0-85d91511f333</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -47,12 +61,8 @@
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
-                <name>active</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
                 <name>body</name>
-                <value>relatedTabContent</value>
+                <value>Facet-24cfeccf-ef66-49b8-87a0-85d91511f333</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
