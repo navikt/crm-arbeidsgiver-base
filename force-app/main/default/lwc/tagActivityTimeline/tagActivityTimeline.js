@@ -12,11 +12,14 @@ export default class TagActivityTimeline extends LightningElement {
 	@api headerIcon;
 	@api showHeader = false;
 	@api additionalMargin;
-	@track childRecords;
-	@track error;
 	@track data;
+	@track error;
 	@track errorMsg;
+	@track loading = true;
 	@track momentJSLoaded = false;
+
+	@track activeSections = [];
+
 
 
 	connectedCallback() {
@@ -29,28 +32,84 @@ export default class TagActivityTimeline extends LightningElement {
 			getTimelineItemData({ recordId: this.recordId })
 				.then(data => {
 
-					this.data = data;
-					this.childRecords = new Array();
+					this.data = new Array();
 					let unsortedRecords = new Array();
 
 					for (let j = 0; j < data.length; j++) {
+
+						let conf = data[j].config;
+						let sObj = data[j].sObj;
 						let childRec = {};
-						childRec.isTask = false;
-						childRec.isCustom = true;
-						childRec.object = "Task";
-						childRec.title = data[j]['Subject'];
-						childRec.dateValueDB = data[j]['ActivityDate'];
+
+						childRec.isTask = false; // todo remove
+						childRec.isCustom = true;  // todo remove
+						childRec.object = conf['SObjectChild__c'];
+						childRec.title = sObj[conf['SObjectTitle__c']];
+						childRec.dateValueDB = sObj[conf['SObjectDateField__c']];
+						childRec.recordId = sObj.Id;
+						childRec.themeInfo = {
+							icon: conf['Icon__c'],
+							color: conf['Color__c']
+						};
+
 						childRec.dateValue = moment(childRec.dateValueDB).fromNow();
-						childRec.recordId = data[j].Id;
 						unsortedRecords.push(childRec);
 					}
 					unsortedRecords.sort(function (a, b) {
 						return new Date(b.dateValueDB) - new Date(a.dateValueDB);
 					});
-					this.childRecords = unsortedRecords;
-					console.log('this.childRecords: ' + this.childRecords);
+
+					let upcoming = new Array();
+					let thisMonth = new Array();
+					let previousMonth = new Array();
+					let older = new Array();
+
+					for (let i = 0; i < unsortedRecords.length; i++) {
+
+						const element = unsortedRecords[i];
+
+						let recordDate = new Date(element.dateValueDB);
+						let now = new Date();
+						let tmp = new Date();
+						let oneMonth = tmp.setMonth(now.getMonth() - 1);
+
+
+						if (recordDate >= now) {
+							upcoming.push(element);
+						} else if (recordDate < now && recordDate.getMonth() == now.getMonth()) {
+							thisMonth.push(element);
+						} else if (recordDate < now && recordDate.getMonth() == now.getMonth() + 1) {
+							previousMonth.push(element);
+						} else {
+							older.push(element);
+						}
+					}
+
+
+
+					// this.data = unsortedRecords;
+					if (upcoming.length > 0) {
+						this.data.push({ name: 'Upcoming & Overdue', id: 'upcoming', data: upcoming });
+						this.activeSections.push('upcoming');
+					}
+					if (thisMonth.length > 0) {
+						this.data.push({ name: 'This Month', id: 'thisMonth', data: thisMonth });
+						// this.activeSections.push('thisMonth');
+					}
+					if (previousMonth.length > 0) {
+						this.data.push({ name: 'Previous Month', id: 'previousMonth', data: previousMonth });
+						// this.activeSections.push('previousMonth');
+					}
+					if (older.length > 0) {
+						this.data.push({ name: 'Older', id: 'older', data: older });
+						// this.activeSections.push('older');
+					}
+
+					this.loading = false;
+
 				}).catch(error => {
 					this.error = true;
+					this.loading = false;
 					if (error.body && error.body.exceptionType && error.body.message) {
 						this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
 					} else {

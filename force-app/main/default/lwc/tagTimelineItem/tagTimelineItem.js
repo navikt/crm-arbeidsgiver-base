@@ -9,11 +9,9 @@ export default class TagTimelineItem extends NavigationMixin(LightningElement) {
 	// @api expandedFieldsToDisplay;
 	@api recordId;
 	@track expanded;
-	// @api themeInfo;
+	@api themeInfo;
 
-	get hasIconName() {
-		return null;
-	} get objectThemeColor() {
+	get objectThemeColor() {
 		return `background-color: #444`;
 	} get itemStyle() {
 		return this.expanded ? "slds-timeline__item_expandable slds-is-open" : "slds-timeline__item_expandable";
@@ -25,7 +23,7 @@ export default class TagTimelineItem extends NavigationMixin(LightningElement) {
 		this.expanded = !this.expanded;
 	}
 
-	navigateToRecordViewPage() {
+	openRecord() {
 		this[NavigationMixin.Navigate]({
 			type: 'standard__recordPage',
 			attributes: {

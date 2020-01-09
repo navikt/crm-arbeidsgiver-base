@@ -1,43 +1,53 @@
 <template>
-	<div class="slds-card">
-		<div if:true={showHeader} class="slds-card__header slds-grid">
-			<header class="slds-media slds-media_center slds-has-flexi-truncate">
-				<lightning-icon icon-name={headerIcon} class="slds-m-around_xx-small"></lightning-icon>
-				<div class="slds-media__body">
-					<h2 class="slds-card__header-title">
-						<a href="#" class="slds-card__header-link slds-truncate" title={headerTitle}>
-							<span>{headerTitle}</span>
-						</a>
-					</h2>
-				</div>
-				<div class="slds-no-flex slds-float_right">
-					<a class="slds-button" role="button" onclick={refreshData}>
-						<lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data"
-							size="x-small">
-						</lightning-button-icon>
-						&nbsp;Refresh
-					</a>
-				</div>
-			</header>
+
+	<lightning-card title={headerTitle} icon-name={headerIcon}>
+		<div slot="actions">
+			<lightning-button-group>
+				<lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
+				</lightning-button-icon>
+				<lightning-button-menu alternative-text="Show menu" variant="border" label="New" menu-alignment="Right">
+					<lightning-menu-item value="MenuItemOne" label="Menu Item One"></lightning-menu-item>
+					<lightning-menu-item value="MenuItemTwo" label="Menu Item Two"></lightning-menu-item>
+					<lightning-menu-item value="MenuItemThree" label="Menu Item Three"></lightning-menu-item>
+					<lightning-menu-item value="MenuItemFour" label="Menu Item Four"></lightning-menu-item>
+				</lightning-button-menu>
+			</lightning-button-group>
+		</div>
+
+		<div if:true={loading} class="slds-scrollable" style="height:5rem;width:24rem">
+			<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+		</div>
+		<div if:true={error} class="slds-scrollable" style="height:5rem;">
+
+			<div class="slds-text-heading_large slds-align_absolute-center">Error!</div>
+			<div class="slds-text-color_destructive slds-align_absolute-center">{errorMsg}</div>
 		</div>
 
 		<ul if:false={error} class="slds-timeline">
-			<template for:each={childRecords} for:item="theRecord">
 
-				<c-tag-timeline-item if:true={theRecord.isCustom} key={theRecord.recordId} object={theRecord.object}
-					title={theRecord.title} date-value={theRecord.dateValue} record-id={theRecord.recordId}>
-				</c-tag-timeline-item>
-				<!-- <c-timeline-item-task if:true={theRecord.isTask} key={theRecord.recordId} title={theRecord.title}
-					date-value={theRecord.dateValue} record-id={theRecord.recordId} description={theRecord.description}
-					who-to-name={theRecord.whoToName} owner-id={theRecord.OwnerId}
-					assigned-to-name={theRecord.assignedToName} who-id={theRecord.WhoId}
-					task-subtype={theRecord.TaskSubtype}>
-				</c-timeline-item-task> -->
-			</template>
+			<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
+				style="border-top: 1px solid #d3d3d3;">
+				<template for:each={data} for:item="group">
+					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
+						<template for:each={group.data} for:item="rec">
+							<c-tag-timeline-item if:true={rec.isCustom} key={rec.recordId} object={rec.object}
+								title={rec.title} date-value={rec.dateValue} record-id={rec.recordId}
+								theme-info={rec.themeInfo}>
+							</c-tag-timeline-item>
+						</template>
+						<!-- <c-timeline-item-task if:true={rec.isTask} key={rec.recordId} title={rec.title}
+					date-value={rec.dateValue} record-id={rec.recordId} description={rec.description}
+					who-to-name={rec.whoToName} owner-id={rec.OwnerId}
+					assigned-to-name={rec.assignedToName} who-id={rec.WhoId}
+					task-subtype={rec.TaskSubtype}>
+				</template> -->
+					</lightning-accordion-section>
+				</template>
+
+			</lightning-accordion>
+
 		</ul>
-		<div if:true={error} class="slds-text-color_destructive">
-			{errorMsg}
-		</div>
-	</div>
 
+		<p slot="footer">Load more</p>
+	</lightning-card>
 </template>
