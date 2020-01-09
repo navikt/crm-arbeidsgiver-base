@@ -3,15 +3,17 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 	private static final List<String> FIELDS_TO_QUERY = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c' };
 
 	@AuraEnabled(cacheable = false)
-	public static List<SObject> getTimelineItemData( String recordId ) {
+	public static List<TAG_ActivityTimelineModel> getTimelineItemData( String recordId ) {
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType );
 		List<String> queries = createSoqlQueries( sObjectsToQuery );
 		List<SObject> sObjects = getSObjectsFromQueries( queries, recordId );
+		List<TAG_ActivityTimelineModel> data = createActivityTimelineData( sObjectsToQuery, sObjects );
+		System.debug( 'data: ' + data );
 
-		return sObjects;
+		return data;
 	}
 
 	public static String getSOjectTypeFromRecordId( String recordId ) {
@@ -77,4 +79,27 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		return sObjects;
 	}
 
+	public static List<TAG_ActivityTimelineModel> createActivityTimelineData( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, List<SObject> sObjects ) {
+
+		List<TAG_ActivityTimelineModel> data = new List<TAG_ActivityTimelineModel>();
+		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
+
+		for ( SObject sObj : sObjects ) {
+			String childSObjectType = getSOjectTypeFromRecordId( (Id) sObj.get( 'Id' ) );
+			TAG_ActivityTimeline__mdt mdt = sObjectsToQueryMap.get( childSObjectType );
+			data.add( new TAG_ActivityTimelineModel( mdt, sObj ) );
+		}
+
+		return data;
+	}
+
+	public static Map<String, TAG_ActivityTimeline__mdt> getMapOfActivityTimelineConfig( List<TAG_ActivityTimeline__mdt> sObjectsToQuery ) {
+		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimeline__mdt>();
+
+		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+			sObjectsToQueryMap.put( mdt.SObjectChild__c, mdt );
+		}
+
+		return sObjectsToQueryMap;
+	}
 }

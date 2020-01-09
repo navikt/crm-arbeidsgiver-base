@@ -11,10 +11,25 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 		insert ta;
 
 		Test.StartTest();
-		List<SObject> sObjects = TAG_ActivityTimelineDataProvider.getTimelineItemData( acc.Id );
+		List<TAG_ActivityTimelineModel> sObjects = TAG_ActivityTimelineDataProvider.getTimelineItemData( acc.Id );
 		Test.StopTest();
 
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineDataProvider.getSObjectsToQuery( 'Account' );
+		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineDataProvider.getMapOfActivityTimelineConfig( sObjectsToQuery );
+
 		System.assertEquals( 2, sObjects.size(), 'This account should have one event and one task on it' );
+		for ( TAG_ActivityTimelineModel obj : sObjects ) {
+			String sObjectType = TAG_ActivityTimelineDataProvider.getSOjectTypeFromRecordId( obj.sObj.Id );
+			if ( sObjectType == 'Event' ) {
+				System.assertEquals( ev.Id, obj.sObj.Id, 'The ID should be the created event' );
+				System.assertEquals( sObjectsToQueryMap.get( 'Event' ).Id, obj.config.Id, 'The ID should be the event config' );
+			} else if ( sObjectType == 'Task' ) {
+				System.assertEquals( ta.Id, obj.sObj.Id, 'The ID should be the created event' );
+				System.assertEquals( sObjectsToQueryMap.get( 'Task' ).Id, obj.config.Id, 'The ID should be the task config' );
+			}
+		}
+
+
 	}
 
 	@isTest
