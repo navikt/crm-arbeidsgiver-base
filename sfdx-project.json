@@ -4,7 +4,7 @@
             "path": "force-app",
             "default": true,
             "package": "crm-arbeidsgiver",
-            "versionNumber": "0.1.0.NEXT",
+            "versionNumber": "0.2.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
@@ -39,6 +39,8 @@
         "crm-platform-access-control@0.1.0-9": "04t2o000001MxMpAAK",
         "crm-arbeidsgiver@0.1.0-5": "04t2o000001MxNEAA0",
         "crm-arbeidsgiver@0.1.0-6": "04t2o000001MxNOAA0",
-        "crm-arbeidsgiver@0.1.0-7": "04t2o000001MxNYAA0"
+        "crm-arbeidsgiver@0.1.0-7": "04t2o000001MxNYAA0",
+        "crm-arbeidsgiver@0.1.0-8": "04t2o000001MxNdAAK",
+        "crm-arbeidsgiver@0.2.0-1": "04t2o000001MxNiAAK"
     }
 }
