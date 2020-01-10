@@ -1,0 +1,23 @@
+{
+	"orgName": "NAV TAG",
+	"edition": "Enterprise",
+	"adminEmail": "fakeemail@nav.no.scratchorg",
+	"features": [
+		"PersonAccounts",
+		"ProcessBuilder",
+		"API",
+		"ServiceCloud",
+		"LightningServiceConsole",
+		"ContactsToMultipleAccounts"
+	],
+	"country": "NO",
+	"language": "en_US",
+	"settings": {
+		"lightningExperienceSettings": {
+			"enableS1DesktopEnabled": true
+		},
+		"languageSettings": {
+			"enableTranslationWorkbench": true
+		}
+	}
+}
