@@ -1,43 +1,44 @@
 {
-	"packageDirectories": [
-		{
-			"path": "force-app",
-			"default": true,
-			"package": "crm-arbeidsgiver",
-			"versionNumber": "0.1.0.NEXT",
-			"dependencies": [
-				{
-					"package": "crm-platform-base",
-					"versionNumber": "0.1.0.LATEST"
-				},
-				{
-					"package": "crm-platform-access-control",
-					"versionNumber": "0.1.0.LATEST"
-				}
-			]
-		}
-	],
-	"namespace": "",
-	"sfdcLoginUrl": "https://login.salesforce.com",
-	"sourceApiVersion": "47.0",
-	"packageAliases": {
-		"crm-arbeidsgiver": "0Ho2o0000008OQtCAM",
-		"crm-platform-access-control": "0Ho2o0000008OR3CAM",
-		"crm-platform-base": "0Ho2o0000008ORmCAM",
-		"crm-arbeidsgiver@0.1.0-3": "04t2o000001Mx1PAAS",
-		"crm-platform-base@0.1.0-1": "04t2o000001MxJvAAK",
-		"crm-platform-base@0.1.0-2": "04t2o000001MxK0AAK",
-		"crm-platform-base@0.1.0-3": "04t2o000001MxM6AAK",
-		"crm-platform-base@0.1.0-10": "04t2o000001MxMkAAK",
-		"crm-platform-access-control@0.1.1-0": "04t2o000001MxDNAA0",
-		"crm-platform-access-control@0.1.0-1": "04t2o000001Mx2XAAS",
-		"crm-platform-access-control@0.1.0-2": "04t2o000001Mx8HAAS",
-		"crm-platform-access-control@0.1.0-3": "04t2o000001MxD3AAK",
-		"crm-platform-access-control@0.1.0-4": "04t2o000001MxDIAA0",
-		"crm-platform-access-control@0.1.0-5": "04t2o000001MxK5AAK",
-		"crm-platform-access-control@0.1.1-6": "04t2o000001MxMBAA0",
-		"crm-platform-access-control@0.1.0-9": "04t2o000001MxMpAAK",
-		"crm-arbeidsgiver@0.1.0-5": "04t2o000001MxNEAA0",
-		"crm-arbeidsgiver@0.1.0-6": "04t2o000001MxNOAA0"
-	}
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true,
+            "package": "crm-arbeidsgiver",
+            "versionNumber": "0.1.0.NEXT",
+            "dependencies": [
+                {
+                    "package": "crm-platform-base",
+                    "versionNumber": "0.1.0.LATEST"
+                },
+                {
+                    "package": "crm-platform-access-control",
+                    "versionNumber": "0.1.0.LATEST"
+                }
+            ]
+        }
+    ],
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "47.0",
+    "packageAliases": {
+        "crm-arbeidsgiver": "0Ho2o0000008OQtCAM",
+        "crm-platform-access-control": "0Ho2o0000008OR3CAM",
+        "crm-platform-base": "0Ho2o0000008ORmCAM",
+        "crm-arbeidsgiver@0.1.0-3": "04t2o000001Mx1PAAS",
+        "crm-platform-base@0.1.0-1": "04t2o000001MxJvAAK",
+        "crm-platform-base@0.1.0-2": "04t2o000001MxK0AAK",
+        "crm-platform-base@0.1.0-3": "04t2o000001MxM6AAK",
+        "crm-platform-base@0.1.0-10": "04t2o000001MxMkAAK",
+        "crm-platform-access-control@0.1.1-0": "04t2o000001MxDNAA0",
+        "crm-platform-access-control@0.1.0-1": "04t2o000001Mx2XAAS",
+        "crm-platform-access-control@0.1.0-2": "04t2o000001Mx8HAAS",
+        "crm-platform-access-control@0.1.0-3": "04t2o000001MxD3AAK",
+        "crm-platform-access-control@0.1.0-4": "04t2o000001MxDIAA0",
+        "crm-platform-access-control@0.1.0-5": "04t2o000001MxK5AAK",
+        "crm-platform-access-control@0.1.1-6": "04t2o000001MxMBAA0",
+        "crm-platform-access-control@0.1.0-9": "04t2o000001MxMpAAK",
+        "crm-arbeidsgiver@0.1.0-5": "04t2o000001MxNEAA0",
+        "crm-arbeidsgiver@0.1.0-6": "04t2o000001MxNOAA0",
+        "crm-arbeidsgiver@0.1.0-7": "04t2o000001MxNYAA0"
+    }
 }
