@@ -163,14 +163,6 @@
 		<relatedList>RelatedFileList</relatedList>
 	</relatedLists>
 	<relatedLists>
-		<fields>Name</fields>
-		<fields>Owner</fields>
-		<fields>StartTime</fields>
-		<fields>EndTime</fields>
-		<fields>Status</fields>
-		<relatedList>RelatedLiveChatTranscriptList</relatedList>
-	</relatedLists>
-	<relatedLists>
 		<fields>CASES.CASE_NUMBER</fields>
 		<fields>NAME</fields>
 		<fields>CASES.SUBJECT</fields>
