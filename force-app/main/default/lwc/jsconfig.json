@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"c/tagActivityTimeline": [
+				"tagActivityTimeline/tagActivityTimeline.js"
+			],
+			"c/tagActivityTimelineItem": [
+				"tagActivityTimelineItem/tagActivityTimelineItem.js"
+			]
+		}
+	}
+}
