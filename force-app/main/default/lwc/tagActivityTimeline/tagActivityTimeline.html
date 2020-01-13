@@ -30,10 +30,10 @@
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
 						<template for:each={group.data} for:item="rec">
-							<c-tag-timeline-item if:true={rec.isCustom} key={rec.recordId} object={rec.object}
+							<c-tag-activity-timeline-item if:true={rec.isCustom} key={rec.recordId} object={rec.object}
 								title={rec.title} date-value={rec.dateValue} record-id={rec.recordId}
 								theme-info={rec.themeInfo}>
-							</c-tag-timeline-item>
+							</c-tag-activity-timeline-item>
 						</template>
 						<!-- <c-timeline-item-task if:true={rec.isTask} key={rec.recordId} title={rec.title}
 					date-value={rec.dateValue} record-id={rec.recordId} description={rec.description}

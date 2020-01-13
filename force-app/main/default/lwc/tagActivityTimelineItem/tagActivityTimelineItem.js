@@ -1,7 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'
 
-export default class TagTimelineItem extends NavigationMixin(LightningElement) {
+export default class TagActivityTimelineItem extends NavigationMixin(LightningElement) {
 
 	@api title;
 	@api object;
