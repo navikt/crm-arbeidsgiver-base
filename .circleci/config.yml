@@ -189,6 +189,8 @@ jobs:
           command: |
             echo $SFDX_AUTH_URL_DEVHUB_ORG > ~/devhub_auth.url
             sfdx force:auth:sfdxurl:store -d -a DevHub -f ~/devhub_auth.url
+            echo $SFDX_AUTH_URL_TAG_ORG > ~/tag_auth.url
+            sfdx force:auth:sfdxurl:store -d -a tag -f ~/tag_auth.url
             echo y | sfdx plugins:install rstk-sfdx-package-utils # echo y to confirm installation
             sfdx rstk:package:dependencies:install -w 10 --noprecheck -k "1:$SFDX_PACKAGE_KEY 2:$SFDX_PACKAGE_KEY 3:$SFDX_PACKAGE_KEY 4:$SFDX_PACKAGE_KEY 5:$SFDX_PACKAGE_KEY"
 
