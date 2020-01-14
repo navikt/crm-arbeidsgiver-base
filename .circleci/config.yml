@@ -132,6 +132,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace_cmd
+      - delete-non-packaged-metadata # ! added this in addition to platform team code
       - run:
           name: Push Source
           command: |
@@ -199,15 +200,10 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace_cmd
+      - delete-non-packaged-metadata
       - run:
           name: Creating new package
           command: |
-            if [ -f force-app/non-packaged-metadata ] ; then
-            rm force-app/non-packaged-metadata
-            fi
-            if [ -f force-app/should-not-be-deployed ] ; then
-            rm force-app/should-not-be-deployed
-            fi
             sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
 
   ####################################################
@@ -231,6 +227,17 @@ jobs:
   # Reusable commands called by individual jobs
   ####################################################
 commands:
+  delete-non-packaged-metadata:
+    description: "Deletes folder not needed for deployment"
+    steps:
+      - run:
+          command: |
+            if [ -f force-app/non-packaged-metadata ] ; then
+              rm force-app/non-packaged-metadata
+            fi
+            if [ -f force-app/should-not-be-deployed ] ; then
+              rm force-app/should-not-be-deployed
+            fi
   delete-scratch-orgs:
     description: "Delete scratch org"
     steps:
