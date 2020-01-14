@@ -196,7 +196,7 @@ jobs:
             echo ---------------------------------
             echo y | sfdx plugins:install rstk-sfdx-package-utils # echo y to confirm installation
             echo ---------------------------------
-            sfdx rstk:package:dependencies:install -u tag -v DevHub -w 10 --noprecheck -k "1:$SFDX_PACKAGE_KEY 2:$SFDX_PACKAGE_KEY 3:$SFDX_PACKAGE_KEY 4:$SFDX_PACKAGE_KEY 5:$SFDX_PACKAGE_KEY"
+            sfdx rstk:package:dependencies:install -u tag -w 10 --noprecheck -k "1:$SFDX_PACKAGE_KEY 2:$SFDX_PACKAGE_KEY 3:$SFDX_PACKAGE_KEY 4:$SFDX_PACKAGE_KEY 5:$SFDX_PACKAGE_KEY"
 
   ####################################################
   # ! Create new package
