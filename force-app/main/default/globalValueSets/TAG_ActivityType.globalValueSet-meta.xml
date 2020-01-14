@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
+        <fullName>Bedriftsbesøk</fullName>
+        <default>false</default>
+        <label>Bedriftsbesøk</label>
+    </customValue>
+    <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
         <default>false</default>
         <label>Bedriftsundersøkelse</label>
@@ -9,6 +14,36 @@
         <fullName>E-post eller SMS</fullName>
         <default>false</default>
         <label>E-post eller SMS</label>
+    </customValue>
+    <customValue>
+        <fullName>IA-arbeid</fullName>
+        <default>false</default>
+        <label>IA-arbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>IA Tjeneste: HelseIArbeid</fullName>
+        <default>false</default>
+        <label>IA Tjeneste: HelseIArbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>IA Tjeneste: Redusere sykefravær</fullName>
+        <default>false</default>
+        <label>IA Tjeneste: Redusere sykefravær</label>
+    </customValue>
+    <customValue>
+        <fullName>IA Tjeneste Forbyggende Arbeidsmiljøarbeid</fullName>
+        <default>false</default>
+        <label>IA Tjeneste Forbyggende Arbeidsmiljøarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Informasjonsmøte - omstilling og nedbemanning</fullName>
+        <default>false</default>
+        <label>Informasjonsmøte - omstilling og nedbemanning</label>
+    </customValue>
+    <customValue>
+        <fullName>Jobbmesse</fullName>
+        <default>false</default>
+        <label>Jobbmesse</label>
     </customValue>
     <customValue>
         <fullName>Kontaktskjema</fullName>
@@ -26,11 +61,26 @@
         <label>Samarbeidsavtale</label>
     </customValue>
     <customValue>
+        <fullName>Samarbeidsmøte</fullName>
+        <default>false</default>
+        <label>Samarbeidsmøte</label>
+    </customValue>
+    <customValue>
+        <fullName>Samarbeidsmøte rektrutteringsbistand</fullName>
+        <default>false</default>
+        <label>Samarbeidsmøte rektrutteringsbistand</label>
+    </customValue>
+    <customValue>
+        <fullName>Samarbeidsmøte tiltak</fullName>
+        <default>false</default>
+        <label>Samarbeidsmøte tiltak</label>
+    </customValue>
+    <customValue>
         <fullName>Telefonkontakt</fullName>
         <default>false</default>
         <label>Telefonkontakt</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>
