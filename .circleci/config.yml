@@ -169,12 +169,12 @@ jobs:
   authenticate-tag:
     <<: *defaults
     steps:
-      - checkout
+      - attach_workspace_cmd
       - run:
-          name: Authenticate tag
+          name: Authenticate tag sandbox
           command: |
             echo $SFDX_AUTH_URL_TAG_ORG > ~/tag_auth.url
-            sfdx force:auth:sfdxurl:store -d -a tag -f ~/tag_auth.url
+            sfdx force:auth:sfdxurl:store -s -a tag -f ~/tag_auth.url
       - persist_to_workspace_cmd
 
   ####################################################
@@ -304,18 +304,19 @@ workflows:
           context: salesforce-dx-ci
           filters:
             branches:
-              ignore: master
-      - install-package-dependencies-to-tag:
-          requires:
-              - authenticate-devhub
+              only: master
       - authenticate-tag:
           context: salesforce-dx-ci
           requires:
-              - install-package-dependencies-to-tag
-      - deploy-metadata:
+              - authenticate-devhub
+      - install-package-dependencies-to-tag:
           context: salesforce-dx-ci
           requires:
               - authenticate-tag
+      - deploy-metadata:
+          context: salesforce-dx-ci
+          requires:
+              - install-package-dependencies-to-tag
 
   ####################################################
   # ! Run when creating a pull request
