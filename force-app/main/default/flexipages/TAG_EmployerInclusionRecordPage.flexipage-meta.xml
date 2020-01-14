@@ -31,26 +31,6 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListContainer</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>relatedTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
                 <name>active</name>
                 <value>true</value>
             </componentInstanceProperties>
@@ -61,21 +41,6 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>active</name>
-                <value>false</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>relatedTabContent</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.relatedLists</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -90,6 +55,29 @@
                 <value>maintabs</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Account.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>Contacts</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>rowsToDisplay</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showActionBar</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>main</name>
