@@ -34,10 +34,18 @@
     <layouts>
         <layout>TAG Virksomhet</layout>
         <sections>
-            <label><!-- Address --></label>
+            <label>Adresse</label>
             <section>Address</section>
         </sections>
     </layouts>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>TAG_CreateTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>TAG_NewEvent</name>
+    </quickActions>
     <recordTypes>
         <label><!-- Business Account --></label>
         <name>Business_Account</name>
