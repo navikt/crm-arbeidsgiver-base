@@ -208,7 +208,9 @@ jobs:
       - run:
           name: Creating new package
           command: |
+            if [ -f force-app/non-packaged-metadata ] ; then
             rm force-app/non-packaged-metadata
+            fi
             sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
 
   ####################################################
