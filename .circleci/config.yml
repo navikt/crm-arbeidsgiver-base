@@ -56,7 +56,7 @@ jobs:
       - run:
           name: Create package version
           command: |
-            sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/project-scratch-def.json -k navcrm
+            sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/project-scratch-def.json -k $SFDX_PACKAGE_KEY
       - persist_to_workspace_cmd
 
   ####################################################
@@ -71,7 +71,7 @@ jobs:
           command: |
             PACKAGE_ALIAS=$(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r)
             PACKAGE_VERSIONID=$(sfdx force:package:version:list -p $PACKAGE_ALIAS --orderby CreatedDate --json | jq '.result[-1].SubscriberPackageVersionId' -r)
-            sfdx force:package:install --wait 10 --publishwait 10 --package $PACKAGE_VERSIONID -u IntegrationSandbox --noprompt -k navcrm
+            sfdx force:package:install --wait 10 --publishwait 10 --package $PACKAGE_VERSIONID -u IntegrationSandbox --noprompt -k $SFDX_PACKAGE_KEY
       - persist_to_workspace_cmd
 
   ####################################################
@@ -209,7 +209,7 @@ jobs:
           name: Creating new package
           command: |
             rm force-app/non-packaged-metadata
-            sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k navcrm
+            sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
 
   ####################################################
   # ! Install new package
@@ -223,7 +223,7 @@ jobs:
           command: |
             PACKAGE_ALIAS=$(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r)
             PACKAGE_VERSIONID=$(sfdx force:package:version:list -p $PACKAGE_ALIAS --orderby CreatedDate --json | jq '.result[-1].SubscriberPackageVersionId' -r)
-            sfdx force:package:install --wait 10 --publishwait 10 --package $PACKAGE_VERSIONID -u tag --noprompt -k navcrm
+            sfdx force:package:install --wait 10 --publishwait 10 --package $PACKAGE_VERSIONID -u tag --noprompt -k $SFDX_PACKAGE_KEY
       - persist_to_workspace_cmd
 
 
@@ -333,14 +333,14 @@ workflows:
           context: salesforce-dx-ci
           requires:
               - authenticate-devhub
-      - install-package-dependencies-to-tag:
-          context: salesforce-dx-ci
-          requires:
-              - authenticate-tag
+      # - install-package-dependencies-to-tag:
+      #     context: salesforce-dx-ci
+      #     requires:
+      #         - authenticate-tag
       - create-package-tag:
           context: salesforce-dx-ci
           requires:
-              - install-package-dependencies-to-tag
+              - authenticate-tag
       - install-package-tag:
           context: salesforce-dx-ci
           requires:
