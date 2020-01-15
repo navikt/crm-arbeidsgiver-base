@@ -132,7 +132,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace_cmd
-      - delete-non-packaged-metadata # ! added this in addition to platform team code
+      - delete-non-packageable-metadata # ! added this in addition to platform team code
       - run:
           name: Push Source
           command: |
@@ -200,7 +200,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace_cmd
-      - delete-non-packaged-metadata
+      - delete-non-packageable-metadata
       - run:
           name: Creating new package
           command: |
@@ -227,16 +227,16 @@ jobs:
   # Reusable commands called by individual jobs
   ####################################################
 commands:
-  delete-non-packaged-metadata:
+  delete-non-packageable-metadata:
     description: "Deletes folder not needed for deployment"
     steps:
       - run:
           command: |
-            if [ -f force-app/non-packaged-metadata ] ; then
-              rm force-app/non-packaged-metadata
+            if [ -d force-app/main/non-packageable-metadata ] ; then
+              rm -r force-app/main/non-packageable-metadata
             fi
-            if [ -f force-app/should-not-be-deployed ] ; then
-              rm force-app/should-not-be-deployed
+            if [ -d force-app/main/should-not-be-deployed ] ; then
+              rm -r force-app/main/should-not-be-deployed
             fi
   delete-scratch-orgs:
     description: "Delete scratch org"
