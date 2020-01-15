@@ -7,13 +7,10 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 	@api object;
 	@api type;
 	@api dateValue;
-	// @api expandedFieldsToDisplay;
 	@api recordId;
-	@track expanded;
 	@api themeInfo;
 
 	@track className = "slds-timeline__item_expandable";
-
 
 	connectedCallback() {
 		if (this.themeInfo.sldsTimelineItem != null) {
@@ -21,17 +18,8 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 		}
 	};
 
-
-	get objectThemeColor() {
-		return `background-color: #444`;
-	} get itemStyle() {
-		return this.expanded ? "slds-timeline__item_expandable slds-is-open" : "slds-timeline__item_expandable";
-	} get totalFieldsToDisplay() {
-		return 2;
-	} get isTask() {
+	get isTask() {
 		return this.object === "Task";
-	} toggleDetailSection() {
-		this.expanded = !this.expanded;
 	}
 
 	openRecord() {

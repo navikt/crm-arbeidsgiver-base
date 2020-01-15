@@ -17,10 +17,7 @@ export default class TagActivityTimeline extends LightningElement {
 	@track errorMsg;
 	@track loading = true;
 	@track momentJSLoaded = false;
-
 	@track activeSections = [];
-
-
 
 	connectedCallback() {
 		Promise.all([
@@ -41,8 +38,6 @@ export default class TagActivityTimeline extends LightningElement {
 						let sObj = data[j].sObj;
 						let childRec = {};
 
-						childRec.isTask = false; // todo remove
-						childRec.isCustom = true;  // todo remove
 						childRec.object = conf['SObjectChild__c'];
 						childRec.title = sObj[conf['SObjectTitle__c']];
 						childRec.dateValueDB = sObj[conf['SObjectDateField__c']];
@@ -94,8 +89,6 @@ export default class TagActivityTimeline extends LightningElement {
 							older.push(element);
 						}
 					}
-
-
 
 					// this.data = unsortedRecords;
 					if (upcoming.length > 0) {
