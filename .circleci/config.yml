@@ -205,7 +205,7 @@ jobs:
           name: Creating new package
           command: |
             for folder in force-app/main/REMOVE_* ; do
-              rm -r "$folder"
+              rm -r -f "$folder"
             done
             sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
 
