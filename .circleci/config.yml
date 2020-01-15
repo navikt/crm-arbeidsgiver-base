@@ -122,7 +122,7 @@ jobs:
       - run:
           name: Install package
           command: |
-            echo y | sfdx plugins:install rstk-sfdx-package-utils # echo y to confirm installation
+            echo y | sfdx plugins:install rstk-sfdx-package-utils@0.1.12 # echo y to confirm installation
             sfdx rstk:package:dependencies:install -u $(cat ~/project/scratch-org-alias) -w 10 --noprecheck -k "1:$SFDX_PACKAGE_KEY 2:$SFDX_PACKAGE_KEY 3:$SFDX_PACKAGE_KEY 4:$SFDX_PACKAGE_KEY 5:$SFDX_PACKAGE_KEY"
 
   ####################################################
@@ -189,7 +189,7 @@ jobs:
       - run:
           name: Install package
           command: |
-            echo y | sfdx plugins:install rstk-sfdx-package-utils # echo y to confirm installation
+            echo y | sfdx plugins:install rstk-sfdx-package-utils@0.1.12 # echo y to confirm installation
             sfdx rstk:package:dependencies:install -w 10 --noprecheck -k "1:$SFDX_PACKAGE_KEY 2:$SFDX_PACKAGE_KEY 3:$SFDX_PACKAGE_KEY 4:$SFDX_PACKAGE_KEY 5:$SFDX_PACKAGE_KEY"
 
   ####################################################
