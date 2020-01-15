@@ -126,6 +126,13 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>showHeader</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentName>tagActivityTimeline</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>tabs</name>
                 <value>sidebartabs</value>
             </componentInstanceProperties>

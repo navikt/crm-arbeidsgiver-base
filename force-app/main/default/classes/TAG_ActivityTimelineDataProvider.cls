@@ -27,7 +27,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType ) {
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
-		                                                   Color__c, Icon__c,
+		                                                   SLDS_Timeline_Item__c, Icon__c,
 		                                                   SObjectChild__c, SObjectParent__c,
 		                                                   SObjectDateField__c,  SObjectTitle__c,
 		                                                   SObjectRelationshipField__c
@@ -62,6 +62,10 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			if ( field != null ) {
 				fieldsToQuery +=  field + ',';
 			}
+		}
+
+		if ( mdt.SObjectChild__c == 'Task' ) {
+			fieldsToQuery += 'Type,';
 		}
 
 		return fieldsToQuery.removeEnd( ',' );
