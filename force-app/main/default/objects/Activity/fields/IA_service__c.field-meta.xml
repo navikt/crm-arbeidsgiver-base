@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>IA_type__c</fullName>
+    <fullName>IA_service__c</fullName>
     <externalId>false</externalId>
-    <label>IA-tjeneste</label>
+    <label>IA service</label>
     <required>false</required>
     <type>Picklist</type>
     <valueSet>
