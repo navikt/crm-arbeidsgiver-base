@@ -235,7 +235,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.IA_type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.TAG_ActivityType__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.IA_type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -248,6 +258,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CustomNote__c-Note Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Event-TAG Event Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-TAG Task Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
