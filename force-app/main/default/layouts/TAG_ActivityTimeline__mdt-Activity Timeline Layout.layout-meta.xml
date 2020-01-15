@@ -40,8 +40,8 @@
                 <field>Icon__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Color__c</field>
+                <behavior>Edit</behavior>
+                <field>SLDS_Timeline_Item__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -57,7 +57,7 @@
                 <field>SObjectTitle__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>SObjectDateField__c</field>
             </layoutItems>
             <layoutItems>
@@ -111,7 +111,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3E000000T8lf</masterLabel>
+        <masterLabel>00h3E000000TIDh</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

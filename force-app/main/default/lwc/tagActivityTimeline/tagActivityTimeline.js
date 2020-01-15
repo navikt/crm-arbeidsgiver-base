@@ -49,8 +49,18 @@ export default class TagActivityTimeline extends LightningElement {
 						childRec.recordId = sObj.Id;
 						childRec.themeInfo = {
 							icon: conf['Icon__c'],
-							color: conf['Color__c']
+							sldsTimelineItem: conf['SLDS_Timeline_Item__c']
 						};
+
+						if (childRec.object === 'Task') {
+
+							childRec.type = sObj['Type'];
+
+							if (childRec.type === 'Call') {
+								childRec.themeInfo.icon = 'standard:log_a_call';
+								childRec.themeInfo.sldsTimelineItem = 'slds-timeline__item_call';
+							}
+						}
 
 						childRec.dateValue = moment(childRec.dateValueDB).fromNow();
 						unsortedRecords.push(childRec);
