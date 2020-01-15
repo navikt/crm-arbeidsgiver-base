@@ -200,12 +200,14 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace_cmd
-      - delete-non-packageable-metadata
       - run:
           name: Creating new package
           command: |
-            ls
+            if [ -d force-app/main/REMOVE_* ]; then
+                rm -r force-app/main/REMOVE_*
+            fi
             sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
+      - persist_to_workspace_cmd
 
   ####################################################
   # ! Install new package
@@ -233,12 +235,9 @@ commands:
     steps:
       - run:
           command: |
-            if [ -d force-app/main/non-packageable-metadata ] ; then
-              rm -r force-app/main/non-packageable-metadata
-            fi
-            if [ -d force-app/main/should-not-be-deployed ] ; then
-              rm -r force-app/main/should-not-be-deployed
-            fi
+            for folder in force-app/main/REMOVE_* ; do
+              rm -r "$folder"
+            done
   delete-scratch-orgs:
     description: "Delete scratch org"
     steps:
@@ -337,11 +336,9 @@ workflows:
             branches:
               only: master
       - create-package-tag:
-          context: salesforce-dx-ci
           requires:
               - authenticate-tag
       - install-package-tag:
-          context: salesforce-dx-ci
           requires:
               - create-package-tag
 
