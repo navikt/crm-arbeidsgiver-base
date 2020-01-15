@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>IA tjeneste</label>
+    <name>IA_service__c</name>
+    <picklistValues>
+        <masterLabel>Forbyggende arbeidsmiljøarbeid</masterLabel>
+        <translation><!-- Forbyggende arbeidsmiljøarbeid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Helse i arbeid</masterLabel>
+        <translation><!-- Helse i arbeid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Redusere sykefravær</masterLabel>
+        <translation><!-- Redusere sykefravær --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
