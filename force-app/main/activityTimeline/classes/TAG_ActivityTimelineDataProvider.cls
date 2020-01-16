@@ -16,6 +16,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		return data;
 	}
 
+
 	public static String getSOjectTypeFromRecordId( String recordId ) {
 
 		Id i = (Id) recordId;
@@ -68,7 +69,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			fieldsToQuery += 'Type,';
 		}
 
-		fieldsToQuery += 'OwnerId,';
+		fieldsToQuery += 'CreatedById,';
 
 
 		return fieldsToQuery.removeEnd( ',' );

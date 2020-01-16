@@ -8,6 +8,16 @@
             "c/tagActivityTimelineItem": [
                 "tagActivityTimelineItem/tagActivityTimelineItem.js"
             ]
-        }
+        },
+        "experimentalDecorators": true
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
     }
 }

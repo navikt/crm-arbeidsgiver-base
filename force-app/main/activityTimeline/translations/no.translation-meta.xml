@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+	<customLabels>
+		<label>nb-no</label>
+		<name>MomentJsLanguage</name>
+	</customLabels>
+	<customLabels>
+		<label>Ny</label>
+		<name>ActTime_New</name>
+	</customLabels>
+	<customLabels>
+		<label>Kommende og forsinket</label>
+		<name>ActTime_Upcoming</name>
+	</customLabels>
+	<customLabels>
+		<label>Eldre</label>
+		<name>ActTime_Older</name>
+	</customLabels>
+	<customLabels>
+		<label>Last flere</label>
+		<name>ActTime_LoadMore</name>
+	</customLabels>
+	<customLabels>
+		<label>Du</label>
+		<name>ActTime_You</name>
+	</customLabels>
+</Translations>

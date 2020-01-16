@@ -5,7 +5,8 @@
 			<lightning-button-group>
 				<lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
 				</lightning-button-icon>
-				<lightning-button-menu alternative-text="Show menu" variant="border" label="New" menu-alignment="Right">
+				<lightning-button-menu alternative-text="Show menu" variant="border" label={labels.newObj}
+					menu-alignment="Right">
 					<lightning-menu-item value="MenuItemOne" label="Menu Item One"></lightning-menu-item>
 					<lightning-menu-item value="MenuItemTwo" label="Menu Item Two"></lightning-menu-item>
 					<lightning-menu-item value="MenuItemThree" label="Menu Item Three"></lightning-menu-item>
@@ -29,10 +30,8 @@
 				style="border-top: 1px solid #d3d3d3;">
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
-						<template for:each={group.data} for:item="rec">
-							<c-tag-activity-timeline-item key={rec.recordId} object={rec.object} title={rec.title}
-								date-value={rec.dateValue} record-id={rec.recordId} theme-info={rec.themeInfo}
-								type={rec.type} subtitle={rec.subtitle}>
+						<template for:each={group.data} for:item="row">
+							<c-tag-activity-timeline-item key={row.record.recordId} row={row}>
 							</c-tag-activity-timeline-item>
 						</template>
 						<!-- <c-timeline-item-task if:true={rec.isTask} key={rec.recordId} title={rec.title}
@@ -48,6 +47,6 @@
 
 		</ul>
 
-		<p slot="footer">Load more</p>
+		<p slot="footer">{labels.loadMore}</p>
 	</lightning-card>
 </template>
