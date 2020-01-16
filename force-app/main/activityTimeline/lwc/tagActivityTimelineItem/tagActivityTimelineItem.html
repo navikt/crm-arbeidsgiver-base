@@ -1,5 +1,5 @@
 <template>
-	<lightning-record-view-form record-id={recordId} object-api-name={object}>
+	<lightning-record-view-form record-id={recordId} object-api-name={row.record.sObjectType}>
 		<li>
 			<div class={className}>
 				<span class="slds-assistive-text">task</span>
@@ -9,16 +9,16 @@
 					<div class="slds-media__figure">
 						<button class="slds-button slds-button_icon" title="Toggle details"
 							aria-controls="task-item-base">
-							<lightning-icon if:false={expanded} size="xx-small" icon-name="utility:chevronright"
+							<lightning-icon if:false={expanded} size="xx-small" icon-name="utility:add"
 								alternative-text="Toggle details" onclick={toggleDetailSection}>
 							</lightning-icon>
-							<lightning-icon if:true={expanded} size="xx-small" icon-name="utility:switch"
+							<lightning-icon if:true={expanded} size="xx-small" icon-name="utility:dash"
 								alternative-text="Toggle details" onclick={toggleDetailSection}>
 							</lightning-icon>
 							<span class="slds-assistive-text">Toggle details</span>
 						</button>
 						<div class="slds-icon_container slds-timeline__icon">
-							<lightning-icon size="small" icon-name={themeInfo.icon}></lightning-icon>
+							<lightning-icon size="small" icon-name={row.theme.icon}></lightning-icon>
 						</div>
 					</div>
 
@@ -29,9 +29,9 @@
 								class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
 
 								<!-- TITLE -->
-								<h3 class="slds-truncate" title={title}>
+								<h3 class="slds-truncate" title={row.record.title}>
 									<a onclick={openRecord}>
-										<strong>{title}</strong>
+										<strong>{row.record.title}</strong>
 									</a>
 								</h3>
 								<!-- RECORRUING TASK -->
@@ -60,7 +60,7 @@
 
 							<!-- DATE -->
 							<div class="slds-timeline__actions slds-timeline__actions_inline">
-								<p class="slds-timeline__date">{dateValue}</p>
+								<p class="slds-timeline__date">{row.record.dateValue}</p>
 								<!-- <button
 									class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small"
 									aria-haspopup="true" title="More Options for this item">
@@ -76,7 +76,7 @@
 
 						<!-- SUBTITLE -->
 						<p class="slds-m-horizontal_xx-small">
-							{subtitle}
+							{row.record.subtitle}
 						</p>
 
 

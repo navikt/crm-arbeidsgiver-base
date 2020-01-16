@@ -4,6 +4,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { loadScript } from 'lightning/platformResourceLoader';
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 import CURRENT_USER_ID from '@salesforce/user/Id';
+import labels from "./labels";
 
 export default class TagActivityTimeline extends LightningElement {
 
@@ -18,13 +19,17 @@ export default class TagActivityTimeline extends LightningElement {
 	@track loading = true;
 	@track momentJSLoaded = false;
 	@track activeSections = [];
+	@track labels = labels;
 
 	connectedCallback() {
 		Promise.all([
 			loadScript(this, MOMENT_JS),
 		]).then(() => {
+
 			this.momentJSLoaded = true;
-			moment.locale('no');
+			moment.locale(labels.MomentJsLanguage);
+
+		}).then(() => {
 
 			getTimelineItemData({ recordId: this.recordId })
 				.then(data => {
@@ -34,35 +39,14 @@ export default class TagActivityTimeline extends LightningElement {
 
 					for (let j = 0; j < data.length; j++) {
 
-						let conf = data[j].config;
-						let sObj = data[j].sObj;
-						let childRec = {};
 
-						childRec.object = conf['SObjectChild__c'];
-						childRec.title = sObj[conf['SObjectTitle__c']];
-						childRec.subtitle = "hei <a href='google.com'>test</a> hei";
-						childRec.dateValueDB = sObj[conf['SObjectDateField__c']];
-						childRec.recordId = sObj.Id;
-						childRec.themeInfo = {
-							icon: conf['Icon__c'],
-							sldsTimelineItem: conf['SLDS_Timeline_Item__c']
-						};
-
-						if (childRec.object === 'Task') {
-
-							childRec.type = sObj['Type'];
-
-							if (childRec.type === 'Call') {
-								childRec.themeInfo.icon = 'standard:log_a_call';
-								childRec.themeInfo.sldsTimelineItem = 'slds-timeline__item_call';
-							}
-						}
-
-						childRec.dateValue = moment(childRec.dateValueDB).fromNow();
-						unsortedRecords.push(childRec);
+						let row = data[j];
+						row.record.dateValue = moment(row.record.dateValueDb).fromNow();
+						unsortedRecords.push(row);
 					}
+
 					unsortedRecords.sort(function (a, b) {
-						return new Date(b.dateValueDB) - new Date(a.dateValueDB);
+						return new Date(b.record.dateValueDb) - new Date(a.record.dateValueDb);
 					});
 
 					let upcoming = new Array();
@@ -70,42 +54,51 @@ export default class TagActivityTimeline extends LightningElement {
 					let previousMonth = new Array();
 					let older = new Array();
 
+					let now = new Date();
+					const monthNumber = now.getMonth();
+					const previousMonthNumber = monthNumber == 0 ? 11 : monthNumber - 1;
+					const nextMonthNumber = monthNumber == 11 ? 0 : monthNumber - 1;
+
 					for (let i = 0; i < unsortedRecords.length; i++) {
 
 						const element = unsortedRecords[i];
-
-						let recordDate = new Date(element.dateValueDB);
-						let now = new Date();
-						let tmp = new Date();
-						let oneMonth = tmp.setMonth(now.getMonth() - 1);
-
+						const recordDate = new Date(element.record.dateValueDb);
 
 						if (recordDate >= now) {
 							upcoming.push(element);
-						} else if (recordDate < now && recordDate.getMonth() == now.getMonth()) {
+						} else if (recordDate < now && recordDate.getMonth() == monthNumber) {
 							thisMonth.push(element);
-						} else if (recordDate < now && recordDate.getMonth() == now.getMonth() + 1) {
+						} else if (recordDate < now && recordDate.getMonth() == nextMonthNumber) {
 							previousMonth.push(element);
 						} else {
 							older.push(element);
 						}
 					}
 
+					const months = moment.months();
+
+					const currentMonthName = months[monthNumber];
+					const previousMonthName = months[previousMonthNumber];
+
+					const currentMonthNameUpper = currentMonthName.charAt(0).toUpperCase() + currentMonthName.substring(1);
+					const previousMonthNameUpper = previousMonthName.charAt(0).toUpperCase() + previousMonthName.substring(1);
+
+
 					// this.data = unsortedRecords;
 					if (upcoming.length > 0) {
-						this.data.push({ name: 'Upcoming & Overdue', id: 'upcoming', data: upcoming });
+						this.data.push({ name: labels.upcoming, id: 'upcoming', data: upcoming.reverse() });
 						this.activeSections.push('upcoming');
 					}
 					if (thisMonth.length > 0) {
-						this.data.push({ name: 'This Month', id: 'thisMonth', data: thisMonth });
+						this.data.push({ name: currentMonthNameUpper, id: 'thisMonth', data: thisMonth });
 						// this.activeSections.push('thisMonth');
 					}
 					if (previousMonth.length > 0) {
-						this.data.push({ name: 'Previous Month', id: 'previousMonth', data: previousMonth });
+						this.data.push({ name: previousMonthNameUpper, id: 'previousMonth', data: previousMonth });
 						// this.activeSections.push('previousMonth');
 					}
 					if (older.length > 0) {
-						this.data.push({ name: 'Older', id: 'older', data: older });
+						this.data.push({ name: labels.older, id: 'older', data: older });
 						// this.activeSections.push('older');
 					}
 

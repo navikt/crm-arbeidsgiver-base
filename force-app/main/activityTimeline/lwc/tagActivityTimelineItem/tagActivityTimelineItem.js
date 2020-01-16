@@ -3,33 +3,28 @@ import { NavigationMixin } from 'lightning/navigation'
 
 export default class TagActivityTimelineItem extends NavigationMixin(LightningElement) {
 
-	@api title;
-	@api subtitle;
-	@api object;
-	@api type;
-	@api dateValue;
+	@api row;
 	@api recordId;
-	@api themeInfo;
 	@track expanded = false;
 
 	@track className = "slds-timeline__item_expandable";
 
 	connectedCallback() {
-		if (this.themeInfo.sldsTimelineItem != null) {
-			this.className = "slds-timeline__item_expandable " + this.themeInfo.sldsTimelineItem;
+		if (this.row.theme.sldsTimelineItem != null) {
+			this.className = "slds-timeline__item_expandable " + this.row.theme.sldsTimelineItem;
 		}
 	};
 
 	get isTask() {
-		return this.object === "Task";
+		return this.row.record.sObjectType === "Task";
 	}
 
 	openRecord() {
 		this[NavigationMixin.Navigate]({
 			type: 'standard__recordPage',
 			attributes: {
-				recordId: this.recordId,
-				objectApiName: this.object,
+				recordId: this.row.record.recordId,
+				objectApiName: this.row.record.sObjectType,
 				actionName: 'view'
 			}
 		});
