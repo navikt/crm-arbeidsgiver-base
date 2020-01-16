@@ -1,79 +1,23 @@
 <template>
-	<!-- <lightning-record-view-form record-id={recordId} object-api-name={object}>
-		<li class="cardSpacing">
-			<div class={itemStyle}>
-				<span class="slds-assistive-text">{object}</span>
-				<div class="slds-media">
-					<div class="slds-media__figure">
-						<lightning-button-icon if:false={expanded} variant="bare" icon-name="utility:chevronright"
-							alternative-text="Toggle details" onclick={toggleDetailSection}>
-						</lightning-button-icon>
-						<lightning-button-icon if:true={expanded} variant="bare" icon-name="utility:switch"
-							alternative-text="Toggle details" onclick={toggleDetailSection}>
-						</lightning-button-icon>
-						<lightning-icon size="small" icon-name={themeInfo.icon}></lightning-icon>
-
-					</div>
-					<div class="slds-media__body">
-						<div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
-							<div
-								class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
-								<h3 class="slds-truncate" title={title}>
-									<a onclick={openRecord}>
-										<strong>{title}</strong>
-									</a>
-								</h3>
-							</div>
-							<div class="slds-timeline__actions slds-timeline__actions_inline">
-								<p class="slds-timeline__date">{dateValue}</p>
-							</div>
-						</div>x
-						<div if:true={expanded}
-							class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
-
-							<lightning-record-form record-id={recordId} object-api-name={object} layout-type="Compact"
-								mode="view">
-							</lightning-record-form>
-
-
-														
-							<template for:each={expandedFieldsToDisplay} for:item="fieldToDisplay">
-                                <lightning-output-field key={fieldToDisplay.id} field-name={fieldToDisplay.apiName}>
-                                </lightning-output-field>
-							</template> 
-							
-
-
-
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</li>
-	</lightning-record-view-form> -->
-
-
-
-
-
 	<lightning-record-view-form record-id={recordId} object-api-name={object}>
 		<li>
 			<div class={className}>
 				<span class="slds-assistive-text">task</span>
 				<div class="slds-media">
 
-					<!-- ICON + LINE -->
+					<!-- ICON & CHEVRON -->
 					<div class="slds-media__figure">
-						<button class="slds-button slds-button_icon" style="visibility: hidden;"
-							title="Toggle details for Review proposals for EBC deck with larger team and have marketing review this"
+						<button class="slds-button slds-button_icon" title="Toggle details"
 							aria-controls="task-item-base">
-							<svg class="slds-button__icon slds-timeline__details-action-icon" aria-hidden="true">
-								<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
-							</svg>
-							<span class="slds-assistive-text">Mark as completed</span>
+							<lightning-icon if:false={expanded} size="xx-small" icon-name="utility:chevronright"
+								alternative-text="Toggle details" onclick={toggleDetailSection}>
+							</lightning-icon>
+							<lightning-icon if:true={expanded} size="xx-small" icon-name="utility:switch"
+								alternative-text="Toggle details" onclick={toggleDetailSection}>
+							</lightning-icon>
+							<span class="slds-assistive-text">Toggle details</span>
 						</button>
-						<div class="slds-icon_container slds-icon-standard-task slds-timeline__icon" title="task">
+						<div class="slds-icon_container slds-timeline__icon">
 							<lightning-icon size="small" icon-name={themeInfo.icon}></lightning-icon>
 						</div>
 					</div>
@@ -132,45 +76,25 @@
 
 						<!-- SUBTITLE -->
 						<p class="slds-m-horizontal_xx-small">
-							<a href="javascript:void(0);">You</a> created a task with
-							<a href="javascript:void(0);">Charlie Gomez</a>
+							{subtitle}
 						</p>
-						<article
-							class="slds-box slds-timeline__item_details slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small"
-							id="task-item-base" aria-hidden="true">
-							<ul class="slds-list_horizontal slds-wrap">
-								<li class="slds-grid slds-grid_vertical slds-size_1-of-2 slds-p-bottom_small">
-									<span class="slds-text-title slds-p-bottom_x-small">Name</span>
-									<span class="slds-text-body_medium slds-truncate" title="Charlie Gomez">
-										<a href="javascript:void(0);">Charlie Gomez</a>
-									</span>
-								</li>
-								<li class="slds-grid slds-grid_vertical slds-size_1-of-2 slds-p-bottom_small">
-									<span class="slds-text-title slds-p-bottom_x-small">Related To</span>
-									<span class="slds-text-body_medium slds-truncate"
-										title="Tesla Cloudhub + Anypoint Connectors">
-										<a href="javascript:void(0);">Tesla Cloudhub + Anypoint Connectors</a>
-									</span>
-								</li>
-							</ul>
-							<div>
-								<span class="slds-text-title">Description</span>
-								<p class="slds-p-top_x-small">Need to finalize proposals and brand details before the
-									meeting</p>
-							</div>
-						</article>
+
+
+
+						<div if:true={expanded}
+							class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
+							<!-- <template for:each={expandedFieldsToDisplay} for:item="fieldToDisplay">
+								<lightning-output-field key={fieldToDisplay.id} field-name={fieldToDisplay.apiName}>
+								</lightning-output-field>
+							</template> -->
+							<p> test </p>
+						</div>
+
+
 					</div>
 				</div>
 			</div>
 		</li>
 	</lightning-record-view-form>
-
-
-
-
-
-
-
-
 
 </template>

@@ -32,7 +32,7 @@
 						<template for:each={group.data} for:item="rec">
 							<c-tag-activity-timeline-item key={rec.recordId} object={rec.object} title={rec.title}
 								date-value={rec.dateValue} record-id={rec.recordId} theme-info={rec.themeInfo}
-								type={rec.type}>
+								type={rec.type} subtitle={rec.subtitle}>
 							</c-tag-activity-timeline-item>
 						</template>
 						<!-- <c-timeline-item-task if:true={rec.isTask} key={rec.recordId} title={rec.title}
