@@ -68,6 +68,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			fieldsToQuery += 'Type,';
 		}
 
+		fieldsToQuery += 'OwnerId,';
+
+
 		return fieldsToQuery.removeEnd( ',' );
 	}
 

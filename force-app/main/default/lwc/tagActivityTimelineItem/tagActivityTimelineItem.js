@@ -4,11 +4,13 @@ import { NavigationMixin } from 'lightning/navigation'
 export default class TagActivityTimelineItem extends NavigationMixin(LightningElement) {
 
 	@api title;
+	@api subtitle;
 	@api object;
 	@api type;
 	@api dateValue;
 	@api recordId;
 	@api themeInfo;
+	@track expanded = false;
 
 	@track className = "slds-timeline__item_expandable";
 
@@ -31,6 +33,10 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 				actionName: 'view'
 			}
 		});
+	}
+
+	toggleDetailSection() {
+		this.expanded = !this.expanded;
 	}
 
 }

@@ -40,6 +40,7 @@ export default class TagActivityTimeline extends LightningElement {
 
 						childRec.object = conf['SObjectChild__c'];
 						childRec.title = sObj[conf['SObjectTitle__c']];
+						childRec.subtitle = "hei <a href='google.com'>test</a> hei";
 						childRec.dateValueDB = sObj[conf['SObjectDateField__c']];
 						childRec.recordId = sObj.Id;
 						childRec.themeInfo = {
