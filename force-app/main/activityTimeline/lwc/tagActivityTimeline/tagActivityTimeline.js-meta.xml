@@ -12,8 +12,12 @@
 		<targetConfig targets="lightning__RecordPage">
 			<property name="showHeader" type="Boolean" label="Display header" />
 			<property name="headerTitle" type="String" label="Header Title" />
-			<property name="headerIcon" type="String" label="Header icon (SLDS Icons)" description="Refer to https://lightningdesignsystem.com/icons"  />
+			<property name="headerIcon" type="String" label="Header icon (SLDS Icons)" description="Refer to https://lightningdesignsystem.com/icons" />
 			<property name="additionalMargin" type="String" label="Additional margin style token" description="Refer to https://lightningdesignsystem.com/utilities/margin" />
+			<supportedFormFactors>
+				<supportedFormFactor type="Small" />
+				<supportedFormFactor type="Large" />
+			</supportedFormFactors>
 		</targetConfig>
 	</targetConfigs>
 </LightningComponentBundle>
