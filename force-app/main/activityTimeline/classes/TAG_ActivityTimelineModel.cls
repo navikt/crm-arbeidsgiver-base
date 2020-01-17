@@ -18,6 +18,7 @@ public with sharing class TAG_ActivityTimelineModel {
 		record.sObjectType = config.SObjectChild__c;
 		record.title = (String) sObj.get( config.SObjectTitle__c );
 		record.person = getOwnerName( (Id) sObj.get( 'CreatedById' ) );
+		record.personId = (Id) sObj.get( 'CreatedById' );
 		record.subtitle = record.person + ' created this';
 		record.dateValueDb = (Datetime) sObj.get( config.SObjectDateField__c );
 		record.sObj = sObj;
@@ -30,6 +31,9 @@ public with sharing class TAG_ActivityTimelineModel {
 			if ( record.type == 'Call' ) {
 				theme.icon = 'standard:log_a_call';
 				theme.sldsTimelineItem = 'slds-timeline__item_call';
+			} else if ( record.type == 'Email' ) {
+				theme.icon = 'standard:email';
+				theme.sldsTimelineItem = 'slds-timeline__item_email';
 			}
 		}
 
@@ -54,6 +58,7 @@ public with sharing class TAG_ActivityTimelineModel {
 
 		@AuraEnabled public String subtitle;
 		@AuraEnabled public String person;
+		@AuraEnabled public String personId;
 	}
 
 	public static String getOwnerName( Id ownerId ) {
