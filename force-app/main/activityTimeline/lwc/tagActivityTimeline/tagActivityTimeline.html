@@ -34,17 +34,9 @@
 							<c-tag-activity-timeline-item key={row.record.recordId} row={row}>
 							</c-tag-activity-timeline-item>
 						</template>
-						<!-- <c-timeline-item-task if:true={rec.isTask} key={rec.recordId} title={rec.title}
-					date-value={rec.dateValue} record-id={rec.recordId} description={rec.description}
-					who-to-name={rec.whoToName} owner-id={rec.OwnerId}
-					assigned-to-name={rec.assignedToName} who-id={rec.WhoId}
-					task-subtype={rec.TaskSubtype}>
-				</template> -->
 					</lightning-accordion-section>
 				</template>
-
 			</lightning-accordion>
-
 		</ul>
 
 		<p slot="footer">{labels.loadMore}</p>

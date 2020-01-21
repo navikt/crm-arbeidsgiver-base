@@ -6,36 +6,36 @@ public with sharing class TAG_ActivityTimelineModel {
 	@AuraEnabled public theme theme { get; set; }
 	@AuraEnabled public record record { get; set; }
 
-	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj ) {
+	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
 
-		this.config = config;
-		this.sObj = sObj;
+		this.config = config; // todo remove
+		this.sObj = sObj; // todo remove
 
 		theme theme = new theme();
 		record record = new record();
 
 		record.recordId = sObj.Id;
-		record.sObjectType = config.SObjectChild__c;
+
+		record.sObjectKind = config.SObjectChild__c;
+		record.type = config.SObjectTypeValue__c;
 		record.title = (String) sObj.get( config.SObjectTitle__c );
-		record.person = getOwnerName( (Id) sObj.get( 'CreatedById' ) );
-		record.personId = (Id) sObj.get( 'CreatedById' );
-		record.subtitle = record.person + ' created this';
 		record.dateValueDb = (Datetime) sObj.get( config.SObjectDateField__c );
-		record.sObj = sObj;
+
+		record.sObj = sObj; // todo remove?
 
 		theme.icon = config.Icon__c;
 		theme.sldsTimelineItem = config.SLDS_Timeline_Item__c;
 
-		if ( record.sObjectType == 'Task' ) {
-			record.type = (String) sObj.get( 'Type' );
-			if ( record.type == 'Call' ) {
-				theme.icon = 'standard:log_a_call';
-				theme.sldsTimelineItem = 'slds-timeline__item_call';
-			} else if ( record.type == 'Email' ) {
-				theme.icon = 'standard:email';
-				theme.sldsTimelineItem = 'slds-timeline__item_email';
-			}
+		if ( config.SObjectAssigneeId__c != null ) {
+			record.assigneeId = (Id) sObj.get( config.SObjectAssigneeId__c );
+			record.assignee = getOwnerName( record.assigneeId );
 		}
+		if ( config.SObjectRelatedUserId__c != null ) {
+			record.relatedUserId = (Id) sObj.get( config.SObjectRelatedUserId__c );
+			record.relatedUser = getContactName( record.relatedUserId );
+		}
+
+		record.subtitle = lang == 'Norwegian' ? config.SubtitleNorwegian__c : config.SubtitleEnglish__c;
 
 		this.theme = theme;
 		this.record = record;
@@ -48,17 +48,18 @@ public with sharing class TAG_ActivityTimelineModel {
 
 	public class record {
 		@AuraEnabled public Id recordId;
-		@AuraEnabled public String sObjectType;
-		@AuraEnabled public String title;
+		@AuraEnabled public String sObjectKind;
 		@AuraEnabled public String type;
+		@AuraEnabled public String title;
 		@AuraEnabled public Datetime dateValueDb;
 		@AuraEnabled public String dateValue;
 		@AuraEnabled public SObject sObj;
 
-
+		@AuraEnabled public String assignee;
+		@AuraEnabled public Id assigneeId;
+		@AuraEnabled public String relatedUser;
+		@AuraEnabled public Id relatedUserId;
 		@AuraEnabled public String subtitle;
-		@AuraEnabled public String person;
-		@AuraEnabled public String personId;
 	}
 
 	public static String getOwnerName( Id ownerId ) {
@@ -71,7 +72,18 @@ public with sharing class TAG_ActivityTimelineModel {
 			}
 		}
 
-		return 'Unknown';
+		return Label.ActTime_Unknown;
+	}
+
+	public static String getContactName( Id contactId ) {
+
+		List<Contact> u = [SELECT Name FROM Contact WHERE Id = : contactId LIMIT 1];
+		if ( !u.isEmpty() ) {
+			return u[0].Name;
+		}
+
+
+		return Label.ActTime_Unknown.toLowerCase();
 	}
 }
 

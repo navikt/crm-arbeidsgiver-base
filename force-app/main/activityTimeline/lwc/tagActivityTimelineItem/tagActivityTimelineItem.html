@@ -1,8 +1,9 @@
 <template>
-	<lightning-record-view-form record-id={recordId} object-api-name={row.record.sObjectType}>
+	<lightning-record-view-form record-id={recordId} object-api-name={row.record.sObjectKind}>
 		<li>
+			<span class="slds-assistive-text">task</span>
+
 			<div class={className}>
-				<span class="slds-assistive-text">task</span>
 				<div class="slds-media">
 
 					<!-- ICON & CHEVRON -->
@@ -39,7 +40,8 @@
 									<span class="slds-icon_container slds-icon-utility-rotate" title="Recurring Task">
 										<div class="slds-icon slds-icon_xx-small slds-icon-text-default slds-m-left_x-small"
 											aria-hidden="true">
-											<lightning-icon size="xx-small" icon-name="utility:rotate"></lightning-icon>
+											<lightning-icon size="xx-small" icon-name="utility:rotate">
+											</lightning-icon>
 										</div>
 										<span class="slds-assistive-text">Recurring Task</span>
 									</span>
@@ -69,17 +71,22 @@
 									</svg>
 									<span class="slds-assistive-text">More Options for this item</span>
 								</button> -->
-
-
 							</div>
 						</div>
 
+
 						<!-- SUBTITLE -->
 						<p class="slds-m-horizontal_xx-small">
-							{row.record.subtitle}
+
+							<a if:true={isAssigneeAUser} data-id={row.record.assigneeId}
+								onclick={openUser}>{row.record.assignee}</a>
+							<span if:false={isAssigneeAUser}>{row.record.assignee}</span>
+							<span> {row.record.subtitle} </span>
+							<a if:true={isRelatedUserAUser} data-id={row.record.relatedUserId}
+								onclick={openUser}>{row.record.relatedUser}</a>
+							<span if:false={isRelatedUserAUser}>{row.record.relatedUser}</span>
+
 						</p>
-
-
 
 						<div if:true={expanded}
 							class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
@@ -89,12 +96,9 @@
 							</template> -->
 							<p> test </p>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
 		</li>
 	</lightning-record-view-form>
-
 </template>

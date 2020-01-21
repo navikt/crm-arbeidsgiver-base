@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
     <inlineHelpText>If the SObject that should be queried contains a relevant date field, put the SObject field name here (e.g., Date, ActivityDate, CustomDate__c)</inlineHelpText>
-    <label>SObject Date Field</label>
+    <label>SObject - Date Field</label>
     <length>255</length>
     <required>true</required>
     <type>Text</type>

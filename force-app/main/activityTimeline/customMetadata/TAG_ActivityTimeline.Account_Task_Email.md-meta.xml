@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Event</label>
+    <label>Account &lt;= Task (Email)</label>
     <protected>false</protected>
     <values>
         <field>Icon__c</field>
@@ -8,11 +8,15 @@
     </values>
     <values>
         <field>SLDS_Timeline_Item__c</field>
-        <value xsi:type="xsd:string">slds-timeline__item_event</value>
+        <value xsi:type="xsd:string">slds-timeline__item_email</value>
+    </values>
+    <values>
+        <field>SObjectAssigneeId__c</field>
+        <value xsi:type="xsd:string">WhoId</value>
     </values>
     <values>
         <field>SObjectChild__c</field>
-        <value xsi:type="xsd:string">Event</value>
+        <value xsi:type="xsd:string">Task</value>
     </values>
     <values>
         <field>SObjectDateField__c</field>
@@ -23,11 +27,31 @@
         <value xsi:type="xsd:string">Account</value>
     </values>
     <values>
+        <field>SObjectRelatedUserId__c</field>
+        <value xsi:type="xsd:string">OwnerId</value>
+    </values>
+    <values>
         <field>SObjectRelationshipField__c</field>
         <value xsi:type="xsd:string">WhatId</value>
     </values>
     <values>
         <field>SObjectTitle__c</field>
         <value xsi:type="xsd:string">Subject</value>
+    </values>
+    <values>
+        <field>SObjectTypeField__c</field>
+        <value xsi:type="xsd:string">Type</value>
+    </values>
+    <values>
+        <field>SObjectTypeValue__c</field>
+        <value xsi:type="xsd:string">Email</value>
+    </values>
+    <values>
+        <field>SubtitleEnglish__c</field>
+        <value xsi:type="xsd:string">emailed</value>
+    </values>
+    <values>
+        <field>SubtitleNorwegian__c</field>
+        <value xsi:type="xsd:string">sendte en e-post til</value>
     </values>
 </CustomMetadata>
