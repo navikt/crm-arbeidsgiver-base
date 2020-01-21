@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SubtitleNorwegian__c</fullName>
+    <defaultValue>&quot;lagde en &quot; + (&quot;SObjectTypeValue__c&quot;)</defaultValue>
+    <description>Written as, e.g., &quot;booked an event with&quot;. The assignee or owner is prepended and any related contacts are appended to the string. Empty to remove.
+
+- If &#39;SObject - Assignee Id&#39; is configured, the name is prepended
+- If &#39;SObject - Related User Id&#39; is configured, the name is appended</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Written as, e.g., &quot;booked an event with&quot;. Empty to remove.
+
+- If &#39;SObject - Assignee Id&#39; is configured, the name is prepended
+- If &#39;SObject - Related User Id&#39; is configured, the name is appended</inlineHelpText>
+    <label>Subtitle - Norwegian</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

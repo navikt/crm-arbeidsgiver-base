@@ -65,8 +65,10 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 		                                                   SObjectRelationshipField__c
 		                                                   FROM TAG_ActivityTimeline__mdt WHERE SObjectParent__c = 'Account' AND SObjectChild__c IN ( 'Event', 'Task' )];
 
+		Id recordId = TAG_TestDataFactory.createAccounts( 1 )[0].Id;
+
 		Test.StartTest();
-		List<String> queries = TAG_ActivityTimelineDataProvider.createSoqlQueries( sObjectsToQuery );
+		List<String> queries = TAG_ActivityTimelineDataProvider.createSoqlQueries( sObjectsToQuery, recordId );
 		Test.StopTest();
 
 		System.assertEquals( sObjectsToQuery.size(), queries.size(), 'Number of queries should reflect the amunt of mdt\'s for account as parent' );
@@ -74,8 +76,8 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 			String fieldsToQuery = TAG_ActivityTimelineDataProvider.getFieldsToQueryFromMdt( mdt, mdtFieldsToQuery );
-			String expectedEvent = 'SELECT Id, ' + fieldsToQuery + ' FROM Event WHERE WhatId =: recordId';
-			String expectedTask = 'SELECT Id, ' + fieldsToQuery + ' FROM Task WHERE WhatId =: recordId';
+			String expectedEvent = 'SELECT Id, ' + fieldsToQuery + ' FROM Event WHERE WhatId = \'' + recordId + '\'';
+			String expectedTask = 'SELECT Id, ' + fieldsToQuery + ' FROM Task WHERE WhatId = \'' + recordId + '\'';
 
 			for ( String query : queries ) {
 				if ( query.contains( 'FROM Event' ) ) {
@@ -119,10 +121,10 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 
 		String parentSObjectType = TAG_ActivityTimelineDataProvider.getSOjectTypeFromRecordId( acc.Id );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineDataProvider.getSObjectsToQuery( parentSObjectType );
-		List<String> queries = TAG_ActivityTimelineDataProvider.createSoqlQueries( sObjectsToQuery );
+		List<String> queries = TAG_ActivityTimelineDataProvider.createSoqlQueries( sObjectsToQuery, acc.Id );
 
 		Test.StartTest();
-		List<SObject> sObjects = TAG_ActivityTimelineDataProvider.getSObjectsFromQueries( queries, acc.Id );
+		List<SObject> sObjects = TAG_ActivityTimelineDataProvider.getSObjectsFromQueries( queries );
 		Test.StopTest();
 
 		System.assertEquals( 2, sObjects.size(), 'This account should have one event and one task on it' );
