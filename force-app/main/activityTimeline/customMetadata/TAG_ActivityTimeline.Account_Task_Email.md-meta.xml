@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>SObjectAssigneeId__c</field>
-        <value xsi:type="xsd:string">WhoId</value>
+        <value xsi:type="xsd:string">OwnerId</value>
     </values>
     <values>
         <field>SObjectChild__c</field>
@@ -28,7 +28,7 @@
     </values>
     <values>
         <field>SObjectRelatedUserId__c</field>
-        <value xsi:type="xsd:string">OwnerId</value>
+        <value xsi:type="xsd:string">WhoId</value>
     </values>
     <values>
         <field>SObjectRelationshipField__c</field>
