@@ -93,7 +93,7 @@
 		<layoutColumns>
 			<layoutItems>
 				<behavior>Edit</behavior>
-				<field>SubtitleNorwegian__c</field>
+				<field>SubtitlePastNorwegian__c</field>
 			</layoutItems>
 			<layoutItems>
 				<behavior>Edit</behavior>
@@ -101,13 +101,13 @@
 			</layoutItems>
 			<layoutItems>
 				<behavior>Edit</behavior>
-				<field>SubtitleRelatedUserConnectorNor__c</field>
+				<field>SubtitleRelatedUserPrepositionNor__c</field>
 			</layoutItems>
 		</layoutColumns>
 		<layoutColumns>
 			<layoutItems>
 				<behavior>Edit</behavior>
-				<field>SubtitleEnglish__c</field>
+				<field>SubtitlePastEnglish__c</field>
 			</layoutItems>
 			<layoutItems>
 				<behavior>Edit</behavior>
@@ -115,7 +115,7 @@
 			</layoutItems>
 			<layoutItems>
 				<behavior>Edit</behavior>
-				<field>SubtitleRelatedUserConnectorEng__c</field>
+				<field>SubtitleRelatedUserPrepositionEng__c</field>
 			</layoutItems>
 		</layoutColumns>
 		<style>TwoColumnsLeftToRight</style>
