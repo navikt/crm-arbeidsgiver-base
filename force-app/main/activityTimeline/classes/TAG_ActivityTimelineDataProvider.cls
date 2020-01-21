@@ -30,7 +30,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType ) {
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
-		                                                   SLDS_Timeline_Item__c, Icon__c,
+		                                                   SLDS_Timeline_Item__c, SLDS_Icon__c,
 		                                                   SObjectChild__c, SObjectParent__c,
 		                                                   SObjectDateField__c,  SObjectTitle__c,
 		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,

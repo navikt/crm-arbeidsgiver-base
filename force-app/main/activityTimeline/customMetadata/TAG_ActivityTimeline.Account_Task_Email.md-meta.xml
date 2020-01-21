@@ -3,7 +3,7 @@
     <label>Account &lt;= Task (Email)</label>
     <protected>false</protected>
     <values>
-        <field>Icon__c</field>
+        <field>SLDS_Icon__c</field>
         <value xsi:type="xsd:string">standard:event</value>
     </values>
     <values>
@@ -48,10 +48,26 @@
     </values>
     <values>
         <field>SubtitleEnglish__c</field>
-        <value xsi:type="xsd:string">emailed</value>
+        <value xsi:type="xsd:string">sent an email</value>
+    </values>
+    <values>
+        <field>SubtitleFutureEnglish__c</field>
+        <value xsi:type="xsd:string">will send an email</value>
+    </values>
+    <values>
+        <field>SubtitleFutureNorwegian__c</field>
+        <value xsi:type="xsd:string">skal sende en e-post</value>
     </values>
     <values>
         <field>SubtitleNorwegian__c</field>
-        <value xsi:type="xsd:string">sendte en e-post til</value>
+        <value xsi:type="xsd:string">sendte en e-post</value>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorEng__c</field>
+        <value xsi:type="xsd:string">to</value>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorNor__c</field>
+        <value xsi:type="xsd:string">til</value>
     </values>
 </CustomMetadata>

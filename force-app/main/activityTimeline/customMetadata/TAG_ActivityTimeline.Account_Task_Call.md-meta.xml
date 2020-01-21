@@ -3,7 +3,7 @@
     <label>Account &lt;= Task (Call)</label>
     <protected>false</protected>
     <values>
-        <field>Icon__c</field>
+        <field>SLDS_Icon__c</field>
         <value xsi:type="xsd:string">standard:log_a_call</value>
     </values>
     <values>
@@ -51,7 +51,23 @@
         <value xsi:type="xsd:string">called</value>
     </values>
     <values>
+        <field>SubtitleFutureEnglish__c</field>
+        <value xsi:type="xsd:string">will call</value>
+    </values>
+    <values>
+        <field>SubtitleFutureNorwegian__c</field>
+        <value xsi:type="xsd:string">skal ringe</value>
+    </values>
+    <values>
         <field>SubtitleNorwegian__c</field>
         <value xsi:type="xsd:string">ringte</value>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorEng__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorNor__c</field>
+        <value xsi:type="xsd:string">til</value>
     </values>
 </CustomMetadata>

@@ -3,7 +3,7 @@
     <label>Account &lt;= Task</label>
     <protected>false</protected>
     <values>
-        <field>Icon__c</field>
+        <field>SLDS_Icon__c</field>
         <value xsi:type="xsd:string">standard:task</value>
     </values>
     <values>
@@ -48,10 +48,26 @@
     </values>
     <values>
         <field>SubtitleEnglish__c</field>
-        <value xsi:type="xsd:string">created a task related to</value>
+        <value xsi:type="xsd:string">had a task</value>
+    </values>
+    <values>
+        <field>SubtitleFutureEnglish__c</field>
+        <value xsi:type="xsd:string">have a future task</value>
+    </values>
+    <values>
+        <field>SubtitleFutureNorwegian__c</field>
+        <value xsi:type="xsd:string">har en fremtidig oppgave</value>
     </values>
     <values>
         <field>SubtitleNorwegian__c</field>
-        <value xsi:type="xsd:string">lagde en oppgave relatert til</value>
+        <value xsi:type="xsd:string">hadde en oppgave</value>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorEng__c</field>
+        <value xsi:type="xsd:string">with</value>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorNor__c</field>
+        <value xsi:type="xsd:string">med</value>
     </values>
 </CustomMetadata>
