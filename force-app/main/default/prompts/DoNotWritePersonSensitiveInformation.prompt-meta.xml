@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Ikke skriv personsensitive opplysinger</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;&lt;b style=&quot;color: rgb(23, 43, 77);&quot;&gt;Ikke skriv personsensitive opplysninger i notat på arbeidsgiver&lt;/b&gt;&lt;/p&gt;</body>
+        <customApplication>02u3E000000CSER</customApplication>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <header>Viktig!</header>
+        <isPublished>true</isPublished>
+        <masterLabel>Ikke skriv personsensitive opplysinger</masterLabel>
+        <publishedByUser>0053E000004Jsrv</publishedByUser>
+        <publishedDate>2020-01-21</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <startDate>2020-01-21</startDate>
+        <targetAppDeveloperName>TAG_NAV_default</targetAppDeveloperName>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <timesToDisplay>5</timesToDisplay>
+        <title>Viktig!</title>
+        <userAccess>Everyone</userAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
