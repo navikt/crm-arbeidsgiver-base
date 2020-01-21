@@ -35,7 +35,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		                                                   SObjectDateField__c,  SObjectTitle__c,
 		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,
 		                                                   SObjectTypeField__c, SObjectTypeValue__c,
-		                                                   SubtitleEnglish__c, SubtitleNorwegian__c,
+		                                                   SubtitlePastEnglish__c, SubtitlePastNorwegian__c,
+		                                                   SubtitleFutureEnglish__c, SubtitleFutureNorwegian__c,
+		                                                   SubtitleRelatedUserPrepositionEng__c, SubtitleRelatedUserPrepositionNor__c,
 		                                                   SObjectRelationshipField__c
 		                                                   FROM TAG_ActivityTimeline__mdt WHERE SObjectParent__c = : parentSObjectType];
 

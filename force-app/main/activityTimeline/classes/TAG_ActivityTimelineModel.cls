@@ -35,7 +35,7 @@ public with sharing class TAG_ActivityTimelineModel {
 			record.relatedUser = getContactName( record.relatedUserId );
 		}
 
-		record.subtitle = lang == 'Norsk' ? config.SubtitleNorwegian__c : config.SubtitleEnglish__c;
+		record.subtitle = lang == 'Norsk' ? config.SubtitlePastNorwegian__c : config.SubtitlePastEnglish__c;
 
 		this.theme = theme;
 		this.record = record;
