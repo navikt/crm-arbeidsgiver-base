@@ -23,7 +23,7 @@ public with sharing class TAG_ActivityTimelineModel {
 
 		record.sObj = sObj; // todo remove?
 
-		theme.icon = config.Icon__c;
+		theme.icon = config.SLDS_Icon__c;
 		theme.sldsTimelineItem = config.SLDS_Timeline_Item__c;
 
 		if ( config.SObjectAssigneeId__c != null ) {

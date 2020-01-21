@@ -3,7 +3,7 @@
     <label>Account &lt;= Opportunity (IA)</label>
     <protected>false</protected>
     <values>
-        <field>Icon__c</field>
+        <field>SLDS_Icon__c</field>
         <value xsi:type="xsd:string">standard:entitlement</value>
     </values>
     <values>
@@ -48,10 +48,26 @@
     </values>
     <values>
         <field>SubtitleEnglish__c</field>
+        <value xsi:type="xsd:string">was the responsible IA-counselor</value>
+    </values>
+    <values>
+        <field>SubtitleFutureEnglish__c</field>
         <value xsi:type="xsd:string">is the responsible IA-counselor</value>
     </values>
     <values>
-        <field>SubtitleNorwegian__c</field>
+        <field>SubtitleFutureNorwegian__c</field>
         <value xsi:type="xsd:string">er ansvarlig IA-rådgiver</value>
+    </values>
+    <values>
+        <field>SubtitleNorwegian__c</field>
+        <value xsi:type="xsd:string">var ansvarlig IA-rådgiver</value>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorEng__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserConnectorNor__c</field>
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>
