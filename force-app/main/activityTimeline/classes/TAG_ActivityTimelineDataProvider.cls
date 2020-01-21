@@ -56,9 +56,17 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			String query = 'SELECT Id, ' + fieldsToQuery + ' FROM ' + mdt.SObjectChild__c + ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'';
 
 			if ( mdt.SObjectTypeField__c != null && mdt.SObjectTypeValue__c != null ) {
-				query += ' AND ' + mdt.SObjectTypeField__c + ' = \'' + mdt.SObjectTypeValue__c + '\'';
+				if ( mdt.SObjectTypeValue__c.contains( ';' ) ) {
+					query += ' AND ' + mdt.SObjectTypeField__c + ' IN (';
+					for ( String type : mdt.SObjectTypeValue__c.split( ';' ) ) {
+						query += '\'' + type + '\',';
+					}
+					query = query.removeEnd( ',' ) + ')';
+				} else {
+					query += ' AND ' + mdt.SObjectTypeField__c + ' = \'' + mdt.SObjectTypeValue__c + '\'';
+				}
 			}
-
+			System.debug( 'query: ' + query );
 			queries.add( query );
 		}
 
@@ -106,10 +114,13 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 							childSObjectType = type;
 							break;
 						}
-					} catch ( Exception e ) {}
+					} catch ( Exception e ) {
+						System.debug( 'e: ' + e );
+					}
 				}
 			}
 
+			System.debug( 'childSObjectKind + childSObjectType: ' + childSObjectKind + childSObjectType );
 			TAG_ActivityTimeline__mdt mdt = sObjectsToQueryMap.get( childSObjectKind + childSObjectType );
 			data.add( new TAG_ActivityTimelineModel( mdt, sObj, lang ) );
 		}
@@ -121,9 +132,17 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimeline__mdt>();
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
-			String type = mdt.SObjectTypeValue__c != null ? mdt.SObjectTypeValue__c : '';
-			sObjectsToQueryMap.put( mdt.SObjectChild__c + type, mdt );
+			String mdtType = mdt.SObjectTypeValue__c != null ? mdt.SObjectTypeValue__c : '';
+			if ( mdtType.contains( ';' ) ) {
+				List<String> typeList = mdtType.split( ';' );
+				for ( String type : typeList ) {
+					sObjectsToQueryMap.put( mdt.SObjectChild__c + type, mdt );
+				}
+			} else {
+				sObjectsToQueryMap.put( mdt.SObjectChild__c + mdtType, mdt );
+			}
 		}
+		System.debug( 'sObjectsToQueryMap: ' + sObjectsToQueryMap );
 
 		return sObjectsToQueryMap;
 	}
