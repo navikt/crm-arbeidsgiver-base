@@ -85,6 +85,10 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			}
 		}
 
+		if ( mdt.SObjectChild__c == 'Task' ) {
+			fieldsToQuery += 'Status,';
+		}
+
 		return fieldsToQuery.removeEnd( ',' );
 	}
 
@@ -111,7 +115,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQueryMap.values() ) {
 				if ( mdt.SObjectChild__c == childSObjectKind ) {
 					try {
-						String type = (String) sObj.get( mdt.SObjectTypeField__c );
+						String type = (String) sObj.get( mdt.SObjectTypeField__c ); // todo et sted her så feiler det og må finne den tomme
 						if ( type != null ) {
 							childSObjectType = type;
 							break;
@@ -144,7 +148,12 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 				sObjectsToQueryMap.put( mdt.SObjectChild__c + mdtType, mdt );
 			}
 		}
-		System.debug( 'sObjectsToQueryMap: ' + sObjectsToQueryMap );
+
+		for ( String var : sObjectsToQueryMap.keySet() ) {
+			System.debug( 'var: ' + var );
+			System.debug( 'sObjectsToQueryMap.get(var): ' + sObjectsToQueryMap.get( var ) );
+
+		}
 
 		return sObjectsToQueryMap;
 	}

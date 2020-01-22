@@ -49,6 +49,7 @@ export default class TagActivityTimeline extends LightningElement {
 						return new Date(b.record.dateValueDb) - new Date(a.record.dateValueDb);
 					});
 
+					let overdue = new Array();
 					let upcoming = new Array();
 					let thisMonth = new Array();
 					let previousMonth = new Array();
@@ -64,7 +65,10 @@ export default class TagActivityTimeline extends LightningElement {
 						const element = unsortedRecords[i];
 						const recordDate = new Date(element.record.dateValueDb);
 
-						if (recordDate >= now) {
+
+						if (element.record.overdue) {
+							overdue.push(element);
+						} else if (recordDate >= now) {
 							upcoming.push(element);
 						} else if (recordDate < now && recordDate.getMonth() == monthNumber) {
 							thisMonth.push(element);
@@ -84,22 +88,18 @@ export default class TagActivityTimeline extends LightningElement {
 					const previousMonthNameUpper = previousMonthName.charAt(0).toUpperCase() + previousMonthName.substring(1);
 
 
-					// this.data = unsortedRecords;
-					if (upcoming.length > 0) {
+					if (overdue.length > 0) {
+						this.data.push({ name: labels.overdue, id: 'overdue', data: overdue.reverse() });
+						this.activeSections.push('overdue');
+					} if (upcoming.length > 0) {
 						this.data.push({ name: labels.upcoming, id: 'upcoming', data: upcoming.reverse() });
 						this.activeSections.push('upcoming');
-					}
-					if (thisMonth.length > 0) {
+					} if (thisMonth.length > 0) {
 						this.data.push({ name: currentMonthNameUpper, id: 'thisMonth', data: thisMonth });
-						// this.activeSections.push('thisMonth');
-					}
-					if (previousMonth.length > 0) {
+					} if (previousMonth.length > 0) {
 						this.data.push({ name: previousMonthNameUpper, id: 'previousMonth', data: previousMonth });
-						// this.activeSections.push('previousMonth');
-					}
-					if (older.length > 0) {
+					} if (older.length > 0) {
 						this.data.push({ name: labels.older, id: 'older', data: older });
-						// this.activeSections.push('older');
 					}
 
 					this.loading = false;
