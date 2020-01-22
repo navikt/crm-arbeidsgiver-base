@@ -51,25 +51,35 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId ) {
 
 		List<String> queries = new List<String>();
+		Boolean taskHasNotBeenQueried = true;
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
-
 			String fieldsToQuery = getFieldsToQueryFromMdt( mdt, CHILD_FIELDS_TO_QUERY );
 			String query = 'SELECT Id, ' + fieldsToQuery + ' FROM ' + mdt.SObjectChild__c + ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'';
 
-			if ( mdt.SObjectTypeField__c != null && mdt.SObjectTypeValue__c != null ) {
-				if ( mdt.SObjectTypeValue__c.contains( ';' ) ) {
-					query += ' AND ' + mdt.SObjectTypeField__c + ' IN (';
-					for ( String type : mdt.SObjectTypeValue__c.split( ';' ) ) {
-						query += '\'' + type + '\',';
+			// append the Type = something parameter to the query
+			if ( mdt.SObjectChild__c != 'Task' ) {
+				if ( mdt.SObjectTypeField__c != null && mdt.SObjectTypeValue__c != null ) {
+					if ( mdt.SObjectTypeValue__c.contains( ';' ) ) {
+						query += ' AND ' + mdt.SObjectTypeField__c + ' IN (';
+						for ( String type : mdt.SObjectTypeValue__c.split( ';' ) ) {
+							query += '\'' + type + '\',';
+						}
+						query = query.removeEnd( ',' ) + ')';
+					} else {
+						query += ' AND ' + mdt.SObjectTypeField__c + ' = \'' + mdt.SObjectTypeValue__c + '\'';
 					}
-					query = query.removeEnd( ',' ) + ')';
-				} else {
-					query += ' AND ' + mdt.SObjectTypeField__c + ' = \'' + mdt.SObjectTypeValue__c + '\'';
 				}
+				query = query.replaceAll( '\'null\'', 'null' );
+				queries.add( query );
 			}
-			System.debug( 'query: ' + query );
-			queries.add( query );
+			query = query.replaceAll( '\'null\'', 'null' );
+
+			// just query all tasks but only once
+			if ( mdt.SObjectChild__c == 'Task' && taskHasNotBeenQueried ) {
+				queries.add( query );
+				taskHasNotBeenQueried = false;
+			}
 		}
 
 		return queries;
@@ -81,7 +91,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		for ( String mdtField : mdtFieldsToQuery ) {
 			String field = (String) mdt.get( mdtField );
 			if ( field != null ) {
-				fieldsToQuery +=  field + ',';
+				if ( !fieldsToQuery.contains( field + ',' ) ) {
+					fieldsToQuery +=  field + ',';
+				}
 			}
 		}
 
@@ -114,21 +126,24 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			String childSObjectType = '';
 			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQueryMap.values() ) {
 				if ( mdt.SObjectChild__c == childSObjectKind ) {
-					try {
-						String type = (String) sObj.get( mdt.SObjectTypeField__c ); // todo et sted her så feiler det og må finne den tomme
+					if ( mdt.SObjectTypeField__c != null ) {
+						String type = (String) sObj.get( mdt.SObjectTypeField__c );
 						if ( type != null ) {
 							childSObjectType = type;
 							break;
 						}
-					} catch ( Exception e ) {
-						System.debug( 'e: ' + e );
 					}
 				}
 			}
 
-			System.debug( 'childSObjectKind + childSObjectType: ' + childSObjectKind + childSObjectType );
 			TAG_ActivityTimeline__mdt mdt = sObjectsToQueryMap.get( childSObjectKind + childSObjectType );
-			data.add( new TAG_ActivityTimelineModel( mdt, sObj, lang ) );
+			if ( mdt == null ) {
+				mdt = sObjectsToQueryMap.get( childSObjectKind );
+			}
+
+			if ( mdt != null ) {
+				data.add( new TAG_ActivityTimelineModel( mdt, sObj, lang ) );
+			}
 		}
 
 		return data;
@@ -138,7 +153,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimeline__mdt>();
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
-			String mdtType = mdt.SObjectTypeValue__c != null ? mdt.SObjectTypeValue__c : '';
+			String mdtType = mdt.SObjectTypeValue__c != null && mdt.SObjectTypeValue__c != 'null' ? mdt.SObjectTypeValue__c : '';
 			if ( mdtType.contains( ';' ) ) {
 				List<String> typeList = mdtType.split( ';' );
 				for ( String type : typeList ) {
@@ -147,12 +162,6 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			} else {
 				sObjectsToQueryMap.put( mdt.SObjectChild__c + mdtType, mdt );
 			}
-		}
-
-		for ( String var : sObjectsToQueryMap.keySet() ) {
-			System.debug( 'var: ' + var );
-			System.debug( 'sObjectsToQueryMap.get(var): ' + sObjectsToQueryMap.get( var ) );
-
 		}
 
 		return sObjectsToQueryMap;

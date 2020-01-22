@@ -26,7 +26,14 @@ public with sharing class TAG_ActivityTimelineModel {
 		theme.icon = config.SLDS_Icon__c;
 		theme.sldsTimelineItem = config.SLDS_Timeline_Item__c;
 
-		if ( record.dateValueDb < DateTime.now() ) {
+		record.overdue = false;
+		if ( record.sObjectKind == 'Task' ) {
+			if ( sObj.get( 'Status' ) != 'Completed' && record.dateValueDb < DateTime.now() ) {
+				record.overdue = true;
+			}
+		}
+
+		if ( record.dateValueDb < DateTime.now() && !record.overdue ) {
 			record.subtitle = lang == 'Norsk' ? config.SubtitlePastNorwegian__c : config.SubtitlePastEnglish__c;
 		} else {
 			record.subtitle = lang == 'Norsk' ? config.SubtitleFutureNorwegian__c : config.SubtitleFutureEnglish__c;
@@ -43,16 +50,10 @@ public with sharing class TAG_ActivityTimelineModel {
 			record.relatedUserId = (Id) sObj.get( config.SObjectRelatedUserId__c );
 			record.relatedUser = getContactName( record.relatedUserId, record.sObjectKind, record.type );
 			if ( record.relatedUser != null ) {
-				record.subtitle += lang == 'Norsk' ? ' ' + config.SubtitleRelatedUserPrepositionNor__c : ' ' + config.SubtitleRelatedUserPrepositionEng__c;
+				record.subtitle += lang == 'Norsk' ? ' ' + returnValueIfNotNull( config.SubtitleRelatedUserPrepositionNor__c ) : ' ' + returnValueIfNotNull( config.SubtitleRelatedUserPrepositionEng__c );
 			}
 		}
 
-		record.overdue = false;
-		if ( record.sObjectKind == 'Task' ) {
-			if ( sObj.get( 'Status' ) != 'Completed' && record.dateValueDb < DateTime.now() ) {
-				record.overdue = true;
-			}
-		}
 
 		this.theme = theme;
 		this.record = record;
@@ -105,6 +106,14 @@ public with sharing class TAG_ActivityTimelineModel {
 		}
 
 		return null;
+	}
+
+	public static String returnValueIfNotNull( String input ) {
+		if ( input != null ) {
+			return input;
+		}
+
+		return '';
 	}
 }
 
