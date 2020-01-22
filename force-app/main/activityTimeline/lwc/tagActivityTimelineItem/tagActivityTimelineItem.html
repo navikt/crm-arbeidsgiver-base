@@ -62,7 +62,9 @@
 
 							<!-- DATE -->
 							<div class="slds-timeline__actions slds-timeline__actions_inline">
-								<p class="slds-timeline__date">{row.record.dateValue}</p>
+								<p if:false={row.record.overdue} class="slds-timeline__date">{row.record.dateValue}</p>
+								<p if:true={row.record.overdue} class="slds-timeline__date slds-text-color_error">
+									{row.record.dateValue}</p>
 								<!-- <button
 									class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small"
 									aria-haspopup="true" title="More Options for this item">

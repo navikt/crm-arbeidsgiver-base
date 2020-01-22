@@ -26,16 +26,33 @@ public with sharing class TAG_ActivityTimelineModel {
 		theme.icon = config.SLDS_Icon__c;
 		theme.sldsTimelineItem = config.SLDS_Timeline_Item__c;
 
+		if ( record.dateValueDb < DateTime.now() ) {
+			record.subtitle = lang == 'Norsk' ? config.SubtitlePastNorwegian__c : config.SubtitlePastEnglish__c;
+		} else {
+			record.subtitle = lang == 'Norsk' ? config.SubtitleFutureNorwegian__c : config.SubtitleFutureEnglish__c;
+		}
+
 		if ( config.SObjectAssigneeId__c != null ) {
 			record.assigneeId = (Id) sObj.get( config.SObjectAssigneeId__c );
 			record.assignee = getOwnerName( record.assigneeId );
-		}
-		if ( config.SObjectRelatedUserId__c != null ) {
+			if ( record.assigneeId == UserInfo.getUserId() ) {
+				record.assigneeId = null;
+			}
+
+		} if ( config.SObjectRelatedUserId__c != null ) {
 			record.relatedUserId = (Id) sObj.get( config.SObjectRelatedUserId__c );
-			record.relatedUser = getContactName( record.relatedUserId );
+			record.relatedUser = getContactName( record.relatedUserId, record.sObjectKind, record.type );
+			if ( record.relatedUser != null ) {
+				record.subtitle += lang == 'Norsk' ? ' ' + config.SubtitleRelatedUserPrepositionNor__c : ' ' + config.SubtitleRelatedUserPrepositionEng__c;
+			}
 		}
 
-		record.subtitle = lang == 'Norsk' ? config.SubtitlePastNorwegian__c : config.SubtitlePastEnglish__c;
+		record.overdue = false;
+		if ( record.sObjectKind == 'Task' ) {
+			if ( sObj.get( 'Status' ) != 'Completed' && record.dateValueDb < DateTime.now() ) {
+				record.overdue = true;
+			}
+		}
 
 		this.theme = theme;
 		this.record = record;
@@ -60,6 +77,9 @@ public with sharing class TAG_ActivityTimelineModel {
 		@AuraEnabled public String relatedUser;
 		@AuraEnabled public Id relatedUserId;
 		@AuraEnabled public String subtitle;
+
+		@AuraEnabled public Boolean overdue;
+
 	}
 
 	public static String getOwnerName( Id ownerId ) {
@@ -75,15 +95,16 @@ public with sharing class TAG_ActivityTimelineModel {
 		return Label.ActTime_Unknown;
 	}
 
-	public static String getContactName( Id contactId ) {
+	public static String getContactName( Id contactId, String sObjectType, String type ) {
 
 		List<Contact> u = [SELECT Name FROM Contact WHERE Id = : contactId LIMIT 1];
 		if ( !u.isEmpty() ) {
 			return u[0].Name;
+		} if ( sObjectType == 'Task' && type == 'Call' ) {
+			return Label.ActTime_Unknown.toLowerCase();
 		}
 
-
-		return Label.ActTime_Unknown.toLowerCase();
+		return null;
 	}
 }
 

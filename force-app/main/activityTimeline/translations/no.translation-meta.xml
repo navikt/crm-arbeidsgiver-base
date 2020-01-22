@@ -9,8 +9,12 @@
 		<name>ActTime_New</name>
 	</customLabels>
 	<customLabels>
-		<label>Kommende og forsinket</label>
+		<label>Kommende</label>
 		<name>ActTime_Upcoming</name>
+	</customLabels>
+	<customLabels>
+		<label>Forfallen</label>
+		<name>ActTime_Overdue</name>
 	</customLabels>
 	<customLabels>
 		<label>Eldre</label>

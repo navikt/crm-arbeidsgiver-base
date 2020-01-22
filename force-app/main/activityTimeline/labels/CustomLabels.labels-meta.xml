@@ -43,11 +43,18 @@
 		<value>This month</value>
 	</labels>
 	<labels>
+		<fullName>ActTime_Overdue</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Overdue</shortDescription>
+		<value>Overdue</value>
+	</labels>
+	<labels>
 		<fullName>ActTime_Upcoming</fullName>
 		<language>en_US</language>
 		<protected>false</protected>
 		<shortDescription>[ActTime] Upcoming</shortDescription>
-		<value>Upcoming and Overdue</value>
+		<value>Upcoming</value>
 	</labels>
 	<labels>
 		<fullName>ActTime_You</fullName>
