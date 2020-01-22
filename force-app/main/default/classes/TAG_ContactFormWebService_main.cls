@@ -17,7 +17,7 @@ global with sharing class TAG_ContactFormWebService_main {
 	}
 
 	@HttpPost
-	global static String doPost(  ) {
+	global static String doPost( ) {
 
 		String requestString = RestContext.request.requestBody.toString();
 		RequestWrapper rw = (RequestWrapper) JSON.deserialize( requestString, RequestWrapper.class );
@@ -30,7 +30,6 @@ global with sharing class TAG_ContactFormWebService_main {
 
 		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id].Name;
 	}
-
 
 	public static Id fetchAccount( String organisationNumber ) {
 		List<Account> acc = [SELECT Id FROM Account WHERE INT_Ident__c = : organisationNumber LIMIT 1];
