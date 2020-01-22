@@ -22,14 +22,14 @@
                 <label>Ansvarlig tildelt</label>
             </value>
             <value>
-                <fullName>Avsluttet</fullName>
-                <default>false</default>
-                <label>Avsluttet</label>
-            </value>
-            <value>
                 <fullName>Virksomhet kontaktet</fullName>
                 <default>false</default>
                 <label>Virksomhet kontaktet</label>
+            </value>
+            <value>
+                <fullName>Avsluttet</fullName>
+                <default>false</default>
+                <label>Avsluttet</label>
             </value>
         </valueSetDefinition>
     </valueSet>
