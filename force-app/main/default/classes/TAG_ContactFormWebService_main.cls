@@ -25,7 +25,7 @@ global with sharing class TAG_ContactFormWebService_main {
 		Id accountId = fetchAccount( rw.organisationNumber );
 		Id contactId = fetchOrCreateContact( rw, accountId );
 
-		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = getType( rw.type ), SenderEmail__c = rw.email, INT_MunicipalityNumber__c = rw.municipalityCode, RecordTypeId = getRecordType( rw.type ) );
+		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = getType( rw.type ), SenderEmail__c = rw.email, INT_MunicipalityNumber__c = rw.municipalityCode, RecordTypeId = getRecordType( rw.type ), InclusionStage__c = 'Ny henvendelse' );
 		insert co;
 
 		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id].Name;

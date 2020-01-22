@@ -39,7 +39,7 @@
         </values>
         <values>
             <fullName>leveranse avsluttet</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -72,27 +72,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Avklaring</fullName>
-            <default>true</default>
-        </values>
-        <values>
             <fullName>Avsluttet</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Evaluering</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Gjennomføring</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Ny henvendelse</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Plan</fullName>
             <default>false</default>
         </values>
     </picklistValues>
