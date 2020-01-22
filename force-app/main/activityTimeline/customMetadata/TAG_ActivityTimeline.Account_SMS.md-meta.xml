@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>SLDS_Icon__c</field>
-        <value xsi:type="xsd:string">standard:SMS</value>
+        <value xsi:type="xsd:string">standard:sms</value>
     </values>
     <values>
         <field>SLDS_Timeline_Item__c</field>
@@ -48,11 +48,11 @@
     </values>
     <values>
         <field>SubtitleFutureEnglish__c</field>
-        <value xsi:type="xsd:string">will send an SMS</value>
+        <value xsi:type="xsd:string">plan to send an SMS</value>
     </values>
     <values>
         <field>SubtitleFutureNorwegian__c</field>
-        <value xsi:type="xsd:string">skal sende en SMS</value>
+        <value xsi:type="xsd:string">har planer å sende en SMS</value>
     </values>
     <values>
         <field>SubtitlePastEnglish__c</field>
