@@ -1,0 +1,59 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef1"
+			},
+			"ActivityDate": "2020-02-09",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"Subject": "Telefonsamtale",
+			"WhoId": "@ContactRef4",
+			"Type": "Call",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef2"
+			},
+			"ActivityDate": "2020-02-05",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef3",
+			"Subject": "Lunch",
+			"Type": "SMS",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef3"
+			},
+			"ActivityDate": "2020-01-22",
+			"Priority": "Normal",
+			"Status": "In Progress",
+			"Subject": "Arbeidstrening",
+			"WhoId": "@ContactRef2",
+			"Type": "Meeting",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef4"
+			},
+			"ActivityDate": "2020-02-05",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef1",
+			"Subject": "Finalize details",
+			"Type": "Email",
+			"TaskSubtype": "Call",
+			"WhatId": "@AccountRef1"
+		}
+	]
+}

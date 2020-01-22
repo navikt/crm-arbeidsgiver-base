@@ -1,0 +1,48 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef1"
+			},
+			"Email": "heidi.larsen@testepost.no",
+			"FirstName": "Heidi",
+			"LastName": "Larsen",
+			"MobilePhone": "12345667",
+			"AccountId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef2"
+			},
+			"Email": "kk@testepost.no",
+			"FirstName": "Knut",
+			"LastName": "Knutsen",
+			"MobilePhone": "43563211",
+			"AccountId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef3"
+			},
+			"Email": "e.finn@testepost.no",
+			"FirstName": "Erik",
+			"LastName": "Finnesland",
+			"MobilePhone": "1234434",
+			"AccountId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef4"
+			},
+			"Email": "o.normann@testepost.no",
+			"FirstName": "Ola",
+			"LastName": "Normann",
+			"MobilePhone": "42142121",
+			"AccountId": "@AccountRef1"
+		}
+	]
+}

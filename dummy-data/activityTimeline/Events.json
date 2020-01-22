@@ -1,0 +1,18 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "Event",
+				"referenceId": "EventRef1"
+			},
+			"ActivityDate": "2020-02-02",
+			"DurationInMinutes": 2880,
+			"EndDateTime": "2020-02-03T00:00:00.000+0000",
+			"EventSubtype": "Event",
+			"IsAllDayEvent": true,
+			"ShowAs": "Busy",
+			"Subject": "Arbeidstrening",
+			"WhatId": "@AccountRef1"
+		}
+	]
+}
