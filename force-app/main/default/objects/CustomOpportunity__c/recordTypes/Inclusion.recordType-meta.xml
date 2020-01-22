@@ -72,20 +72,8 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Finn kandidat</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Kandidat presentert</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Ny henvendelse</fullName>
             <default>true</default>
-        </values>
-        <values>
-            <fullName>Virksomhet kontaktet</fullName>
-            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -104,6 +92,10 @@
         </values>
         <values>
             <fullName>Rekruttering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekruttering med tilrettelegging</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1946,6 +1938,47 @@
         </values>
         <values>
             <fullName>Varierte arbeidsstillinger</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_IAClarification__c</picklist>
+        <values>
+            <fullName>Eget forarbeid gjennomført</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tillitsvalgt involvert</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_IAProcess_result__c</picklist>
+        <values>
+            <fullName>Ferdig</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ikke aktuelt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Selvbetjening</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_IAService__c</picklist>
+        <values>
+            <fullName>Forebyggende arbeidsmiljøarbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HelseIArbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Systematisk sykefraværsarbeid</fullName>
             <default>false</default>
         </values>
     </picklistValues>
