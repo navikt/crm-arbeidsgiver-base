@@ -1,6 +1,9 @@
 @RestResource(urlMapping = '/ContactForm/*')
 global with sharing class TAG_ContactFormWebService_main {
 
+	public Id inclusionRecordType = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName().get( 'Inclusion' ).getRecordTypeId();
+	public Id IARecordType = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName().get( 'Inclusive Employment' ).getRecordTypeId();
+
 	public class RequestWrapper {
 
 		public String type;
@@ -22,7 +25,7 @@ global with sharing class TAG_ContactFormWebService_main {
 		Id accountId = fetchAccount( rw.organisationNumber );
 		Id contactId = fetchOrCreateContact( rw, accountId );
 
-		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = getType( rw.type ), SenderEmail__c = rw.email, INT_MunicipalityNumber__c = rw.municipalityCode );
+		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = getType( rw.type ), SenderEmail__c = rw.email, INT_MunicipalityNumber__c = rw.municipalityCode, RecordTypeId = getRecordType( rw.type ) );
 		insert co;
 
 		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id].Name;
@@ -40,9 +43,7 @@ global with sharing class TAG_ContactFormWebService_main {
 		List<Contact> existingContact = [SELECT Id FROM Contact WHERE Email = : rw.email LIMIT 1];
 
 		if ( existingContact.size() == 0 ) {
-
 			Contact con = new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId );
-
 			insert con;
 
 			return con.Id;
@@ -51,17 +52,27 @@ global with sharing class TAG_ContactFormWebService_main {
 		}
 	}
 
-	public static String getType( String val ) {
-		if ( val == 'REKRUTTERING' ) {
-			return 'Rekruttering';
-		} else if ( val == 'REKRUTTERING_MED_TILRETTELEGGING' ) {
-			return 'Rekruttering med tilrettelegging';
-		} else if ( val == 'ARBEIDSTRENING' ) {
-			return 'Arbeidstrening';
-		} else if ( val == 'FOREBYGGE_SYKEFRAVÆR' ) {
-			return 'Forebygge sykefravær';
+	public static Id getRecordType( String val ) {
+		if ( val == 'FOREBYGGE_SYKEFRAVÆR' ) {
+			return IARecordType;
 		} else {
-			return null;
+			return inclusionRecordType;
+		}
+	}
+
+	public static String getType( String val ) {
+		switch on val {
+			when 'REKRUTTERING' {
+				return 'Rekruttering';
+			} when 'REKRUTTERING_MED_TILRETTELEGGING' {
+				return 'Rekruttering med tilrettelegging';
+			} when 'ARBEIDSTRENING' {
+				return 'Arbeidstrening';
+			} when 'FOREBYGGE_SYKEFRAVÆR' {
+				return 'Forebygge sykefravær';
+			} when else {
+				return null;
+			}
 		}
 	}
 }
