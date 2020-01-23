@@ -5,13 +5,11 @@
 			<lightning-button-group>
 				<lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
 				</lightning-button-icon>
-				<lightning-button-menu alternative-text="Show menu" variant="border" label={labels.newObj}
+				<lightning-button-menu alternative-text={labels.newObj} variant="border" label={labels.newObj}
 					menu-alignment="Right">
-
-					<template for:each={sObjectKinds} for:item="kind">
-						<lightning-menu-item key={kind.Id} value={kind.CreatableObject_TextEnglish__c}
-							label={kind.CreatableObject_TextEnglish__c} onclick={createRecord}>
-						</lightning-menu-item>
+					<template for:each={sObjectKinds} for:item="row">
+						<c-tag-activity-timeline-new-object key={row.id} row={row} record-id={recordId}>
+						</c-tag-activity-timeline-new-object>
 					</template>
 				</lightning-button-menu>
 			</lightning-button-group>

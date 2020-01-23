@@ -2,13 +2,12 @@ import { LightningElement, track, api } from 'lwc';
 import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineItemData';
 import getTimelineObjects from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineObjects';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { NavigationMixin } from "lightning/navigation";
 import { loadScript } from 'lightning/platformResourceLoader';
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 import CURRENT_USER_ID from '@salesforce/user/Id';
 import labels from "./labels";
 
-export default class TagActivityTimeline extends NavigationMixin(LightningElement) {
+export default class TagActivityTimeline extends LightningElement {
 
 	@api recordId;
 	@api headerTitle;
@@ -137,18 +136,5 @@ export default class TagActivityTimeline extends NavigationMixin(LightningElemen
 			});
 	}
 
-	createRecord() {
 
-		this[NavigationMixin.Navigate]({
-			type: 'standard__objectPage',
-			attributes: {
-				objectApiName: 'Task',
-				actionName: 'new'
-			},
-			state: {
-				nooverride: '1',
-				defaultFieldValues: "WhatId=" + this.recordId
-			}
-		});
-	}
 }

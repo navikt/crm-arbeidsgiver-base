@@ -17,21 +17,46 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		return data;
 	}
 
+
+// TODO check if user can create records
 	@AuraEnabled(cacheable = false)
 	public static List<TAG_ActivityTimeline__mdt> getTimelineObjects( String recordId ) {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
 		List<TAG_ActivityTimeline__mdt> data = getSObjectsToQuery( parentSObjectType, true );
 
+		Map<String, Id> recordTypes = getRecordTypes( data );
+
 		if ( u.LanguageLocaleKey == 'Norsk' ) {
 			for ( TAG_ActivityTimeline__mdt mdt : data ) {
 				mdt.CreatableObject_TextEnglish__c = mdt.CreatableObject_TextNorwegian__c;
 			}
 		}
+		for ( TAG_ActivityTimeline__mdt mdt : data ) {
+			mdt.CreataleObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.CreataleObject_RecordType__c );
+		}
 
 		return data;
 	}
 
+	public static Map<String, Id> getRecordTypes( List<TAG_ActivityTimeline__mdt> data ) {
+
+		List<String> recordTypeNames = new List<String>();
+
+		for ( TAG_ActivityTimeline__mdt mdt : data ) {
+			if ( mdt.CreataleObject_RecordType__c != null ) {
+				recordTypeNames.add( mdt.CreataleObject_RecordType__c );
+			}
+		}
+
+		List<RecordType> recordTypes = [SELECT Id, Name, SobjectType FROM RecordType WHERE Name IN : recordTypeNames];
+		Map<String, Id> recordTypeMap = new Map<String, Id>();
+		for ( RecordType rt : recordTypes ) {
+			recordTypeMap.put( rt.SobjectType + rt.Name, rt.Id );
+		}
+
+		return recordTypeMap;
+	}
 
 	public static String getSOjectTypeFromRecordId( String recordId ) {
 
