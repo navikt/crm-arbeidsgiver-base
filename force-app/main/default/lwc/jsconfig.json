@@ -3,13 +3,13 @@
         "baseUrl": ".",
         "paths": {
             "c/tagActivityTimeline": [
-                "tagActivityTimeline/tagActivityTimeline.js"
+                "../../activityTimeline/lwc/tagActivityTimeline/tagActivityTimeline.js"
             ],
             "c/tagActivityTimelineItem": [
-                "tagActivityTimelineItem/tagActivityTimelineItem.js"
+                "../../activityTimeline/lwc/tagActivityTimelineItem/tagActivityTimelineItem.js"
             ],
             "c/tagActivityTimelineNewObject": [
-                "tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
+                "../../activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
             ]
         },
         "experimentalDecorators": true
