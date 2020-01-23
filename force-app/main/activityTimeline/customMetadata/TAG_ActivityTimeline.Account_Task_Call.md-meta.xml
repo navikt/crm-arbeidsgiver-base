@@ -3,6 +3,22 @@
     <label>Account &lt;= Task (Call)</label>
     <protected>false</protected>
     <values>
+        <field>CreatableObject_Checkbox__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>CreatableObject_TextEnglish__c</field>
+        <value xsi:type="xsd:string">Log a Call</value>
+    </values>
+    <values>
+        <field>CreatableObject_TextNorwegian__c</field>
+        <value xsi:type="xsd:string">Loggfør telefonsamtale</value>
+    </values>
+    <values>
+        <field>CreataleObject_RecordType__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>SLDS_Icon__c</field>
         <value xsi:type="xsd:string">standard:log_a_call</value>
     </values>

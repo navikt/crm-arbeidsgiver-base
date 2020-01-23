@@ -1,12 +1,14 @@
 import { LightningElement, track, api } from 'lwc';
 import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineItemData';
+import getTimelineObjects from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineObjects';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { NavigationMixin } from "lightning/navigation";
 import { loadScript } from 'lightning/platformResourceLoader';
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 import CURRENT_USER_ID from '@salesforce/user/Id';
 import labels from "./labels";
 
-export default class TagActivityTimeline extends LightningElement {
+export default class TagActivityTimeline extends NavigationMixin(LightningElement) {
 
 	@api recordId;
 	@api headerTitle;
@@ -14,6 +16,7 @@ export default class TagActivityTimeline extends LightningElement {
 	@api showHeader = false;
 	@api additionalMargin;
 	@track data;
+	@track sObjectKinds;
 	@track error;
 	@track errorMsg;
 	@track loading = true;
@@ -30,6 +33,15 @@ export default class TagActivityTimeline extends LightningElement {
 			moment.locale(labels.MomentJsLanguage);
 
 		}).then(() => {
+
+			getTimelineObjects({ recordId: this.recordId }).then(data => { this.sObjectKinds = data; }).catch(error => {
+				this.error = true;
+				if (error.body && error.body.exceptionType && error.body.message) {
+					this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
+				} else {
+					this.errorMsg = JSON.stringify(error);
+				}
+			});
 
 			getTimelineItemData({ recordId: this.recordId })
 				.then(data => {
@@ -125,5 +137,18 @@ export default class TagActivityTimeline extends LightningElement {
 			});
 	}
 
+	createRecord() {
 
+		this[NavigationMixin.Navigate]({
+			type: 'standard__objectPage',
+			attributes: {
+				objectApiName: 'Task',
+				actionName: 'new'
+			},
+			state: {
+				nooverride: '1',
+				defaultFieldValues: "WhatId=" + this.recordId
+			}
+		});
+	}
 }

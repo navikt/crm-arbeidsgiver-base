@@ -3,6 +3,22 @@
     <label>Account &lt;= Opportunity (IA)</label>
     <protected>false</protected>
     <values>
+        <field>CreatableObject_Checkbox__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>CreatableObject_TextEnglish__c</field>
+        <value xsi:type="xsd:string">IA Inquiry</value>
+    </values>
+    <values>
+        <field>CreatableObject_TextNorwegian__c</field>
+        <value xsi:type="xsd:string">IA-forespørsel</value>
+    </values>
+    <values>
+        <field>CreataleObject_RecordType__c</field>
+        <value xsi:type="xsd:string">Inclusive_Employment</value>
+    </values>
+    <values>
         <field>SLDS_Icon__c</field>
         <value xsi:type="xsd:string">standard:entitlement</value>
     </values>
