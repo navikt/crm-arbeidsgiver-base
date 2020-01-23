@@ -3,6 +3,22 @@
     <label>Account &lt;= Task (Other)</label>
     <protected>false</protected>
     <values>
+        <field>CreatableObject_Checkbox__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>CreatableObject_TextEnglish__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>CreatableObject_TextNorwegian__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>CreataleObject_RecordType__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>SLDS_Icon__c</field>
         <value xsi:type="xsd:string">standard:task</value>
     </values>

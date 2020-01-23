@@ -7,10 +7,12 @@
 				</lightning-button-icon>
 				<lightning-button-menu alternative-text="Show menu" variant="border" label={labels.newObj}
 					menu-alignment="Right">
-					<lightning-menu-item value="MenuItemOne" label="Menu Item One"></lightning-menu-item>
-					<lightning-menu-item value="MenuItemTwo" label="Menu Item Two"></lightning-menu-item>
-					<lightning-menu-item value="MenuItemThree" label="Menu Item Three"></lightning-menu-item>
-					<lightning-menu-item value="MenuItemFour" label="Menu Item Four"></lightning-menu-item>
+
+					<template for:each={sObjectKinds} for:item="kind">
+						<lightning-menu-item key={kind.Id} value={kind.CreatableObject_TextEnglish__c}
+							label={kind.CreatableObject_TextEnglish__c} onclick={createRecord}>
+						</lightning-menu-item>
+					</template>
 				</lightning-button-menu>
 			</lightning-button-group>
 		</div>

@@ -1,19 +1,33 @@
 public with sharing class TAG_ActivityTimelineDataProvider {
 
 	private static final List<String> CHILD_FIELDS_TO_QUERY = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c', 'SObjectAssigneeId__c', 'SObjectRelatedUserId__c', 'SObjectTypeField__c' };
+	private static final User u = [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
 
 	@AuraEnabled(cacheable = false)
 	public static List<TAG_ActivityTimelineModel> getTimelineItemData( String recordId ) {
 
-		User u = [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
-
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType );
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType, false );
 		List<String> queries = createSoqlQueries( sObjectsToQuery, recordId );
 		List<SObject> sObjects = getSObjectsFromQueries( queries );
 		List<TAG_ActivityTimelineModel> data = createActivityTimelineData( sObjectsToQuery, sObjects, u.LanguageLocaleKey );
 		System.debug( 'data: ' + data );
+
+		return data;
+	}
+
+	@AuraEnabled(cacheable = false)
+	public static List<TAG_ActivityTimeline__mdt> getTimelineObjects( String recordId ) {
+		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
+		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
+		List<TAG_ActivityTimeline__mdt> data = getSObjectsToQuery( parentSObjectType, true );
+
+		if ( u.LanguageLocaleKey == 'Norsk' ) {
+			for ( TAG_ActivityTimeline__mdt mdt : data ) {
+				mdt.CreatableObject_TextEnglish__c = mdt.CreatableObject_TextNorwegian__c;
+			}
+		}
 
 		return data;
 	}
@@ -27,10 +41,15 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 	}
 
-	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType ) {
+	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType, Boolean creatable ) {
+		List<Boolean> allBools = new List<Boolean> { true, false };
+		if ( creatable ) {
+			allBools = new List<Boolean> { true };
+		}
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
 		                                                   SLDS_Timeline_Item__c, SLDS_Icon__c,
+		                                                   CreatableObject_TextEnglish__c, CreatableObject_TextNorwegian__c, CreataleObject_RecordType__c,
 		                                                   SObjectChild__c, SObjectParent__c,
 		                                                   SObjectDateField__c,  SObjectTitle__c,
 		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,
@@ -39,7 +58,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		                                                   SubtitleFutureEnglish__c, SubtitleFutureNorwegian__c,
 		                                                   SubtitleRelatedUserPrepositionEng__c, SubtitleRelatedUserPrepositionNor__c,
 		                                                   SObjectRelationshipField__c
-		                                                   FROM TAG_ActivityTimeline__mdt WHERE SObjectParent__c = : parentSObjectType];
+		                                                   FROM TAG_ActivityTimeline__mdt
+		                                                   WHERE SObjectParent__c = : parentSObjectType AND CreatableObject_Checkbox__c IN : allBools
+		                                                                            ORDER BY SObjectChild__c];
 
 		if ( sObjectsToQuery.isEmpty() ) {
 			throw new AuraException( 'Error. Not configured for this SObject type.' );
