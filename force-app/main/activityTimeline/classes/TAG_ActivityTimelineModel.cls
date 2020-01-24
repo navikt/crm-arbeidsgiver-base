@@ -3,16 +3,39 @@ public with sharing class TAG_ActivityTimelineModel {
 	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; } // TODO remove
 	@AuraEnabled public SObject sObj { get; set; } // TODO remove
 
-	@AuraEnabled public theme theme { get; set; }
-	@AuraEnabled public record record { get; set; }
+	@AuraEnabled public Theme theme { get; set; }
+	@AuraEnabled public Record record { get; set; }
+
+	public class Theme {
+		@AuraEnabled public String icon;
+		@AuraEnabled public String sldsTimelineItem;
+	}
+
+	public class Record {
+		@AuraEnabled public Id recordId;
+		@AuraEnabled public String sObjectKind;
+		@AuraEnabled public String type;
+		@AuraEnabled public String title;
+		@AuraEnabled public Datetime dateValueDb;
+		@AuraEnabled public String dateValue;
+		@AuraEnabled public SObject sObj;
+
+		@AuraEnabled public String assignee;
+		@AuraEnabled public Id assigneeId;
+		@AuraEnabled public String relatedUser;
+		@AuraEnabled public Id relatedUserId;
+		@AuraEnabled public String subtitle;
+
+		@AuraEnabled public Boolean overdue;
+	}
 
 	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
 
 		this.config = config; // todo remove
 		this.sObj = sObj; // todo remove
 
-		theme theme = new theme();
-		record record = new record();
+		Theme theme = new Theme();
+		Record record = new Record();
 
 		record.recordId = sObj.Id;
 
@@ -59,29 +82,7 @@ public with sharing class TAG_ActivityTimelineModel {
 		this.record = record;
 	}
 
-	public class theme {
-		@AuraEnabled public String icon;
-		@AuraEnabled public String sldsTimelineItem;
-	}
 
-	public class record {
-		@AuraEnabled public Id recordId;
-		@AuraEnabled public String sObjectKind;
-		@AuraEnabled public String type;
-		@AuraEnabled public String title;
-		@AuraEnabled public Datetime dateValueDb;
-		@AuraEnabled public String dateValue;
-		@AuraEnabled public SObject sObj;
-
-		@AuraEnabled public String assignee;
-		@AuraEnabled public Id assigneeId;
-		@AuraEnabled public String relatedUser;
-		@AuraEnabled public Id relatedUserId;
-		@AuraEnabled public String subtitle;
-
-		@AuraEnabled public Boolean overdue;
-
-	}
 
 	public static String getOwnerName( Id ownerId ) {
 		if ( ownerId == UserInfo.getUserId() ) {

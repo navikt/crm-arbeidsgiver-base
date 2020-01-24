@@ -75,7 +75,17 @@
 			</componentInstanceProperties>
 			<componentInstanceProperties>
 				<name>title</name>
-				<value>Kontakter</value>
+				<null
+					<null
+						<null
+							<null
+								<null
+									<null
+										<HEAD
+											<value>Kontakter</value>
+											=======
+											<value>Standard.Tab.relatedLists</value>
+											>>>>>>> Moved to a wire getter to better load more data when needed (e.g., load more button)
 			</componentInstanceProperties>
 			<componentName>flexipage:tab</componentName>
 		</componentInstances>
