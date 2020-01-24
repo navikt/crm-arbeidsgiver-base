@@ -18,10 +18,11 @@ export default class TagActivityTimeline extends LightningElement {
 
 	@track data;
 	@track sObjectKinds;
+
 	@track error;
 	@track errorMsg;
 	@track loading = true;
-	@track momentJSLoaded = false;
+
 	@track activeSections = [];
 	@track labels = labels;
 
