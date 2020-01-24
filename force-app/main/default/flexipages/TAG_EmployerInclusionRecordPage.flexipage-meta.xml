@@ -129,21 +129,6 @@
 	<flexiPageRegions>
 		<componentInstances>
 			<componentInstanceProperties>
-				<name>headerIcon</name>
-				<value>standard:shift_type</value>
-			</componentInstanceProperties>
-			<componentInstanceProperties>
-				<name>headerTitle</name>
-				<value>Activity</value>
-			</componentInstanceProperties>
-			<componentInstanceProperties>
-				<name>showHeader</name>
-				<value>true</value>
-			</componentInstanceProperties>
-			<componentName>tagActivityTimeline</componentName>
-		</componentInstances>
-		<componentInstances>
-			<componentInstanceProperties>
 				<name>tabs</name>
 				<value>sidebartabs</value>
 			</componentInstanceProperties>

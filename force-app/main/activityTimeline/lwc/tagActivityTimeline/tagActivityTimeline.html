@@ -15,6 +15,7 @@
 			</lightning-button-group>
 		</div>
 
+
 		<div if:true={loading} class="slds-scrollable" style="height:5rem;width:24rem">
 			<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
 		</div>
@@ -25,20 +26,20 @@
 		</div>
 
 		<ul if:false={error} class="slds-timeline">
-
 			<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
 				style="border-top: 1px solid #d3d3d3;">
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
-						<template for:each={group.data} for:item="row">
-							<c-tag-activity-timeline-item key={row.record.recordId} row={row}>
+						<template for:each={group.models} for:item="row">
+							<c-tag-activity-timeline-item key={row.record.recordId} row={row} labels={labels}
+								moment={moment}>
 							</c-tag-activity-timeline-item>
 						</template>
+						<lightning-button variant="Neutral" label="Load More" title="Load More" onclick={loadMore}
+							class="slds-m-left_x-small"></lightning-button>
 					</lightning-accordion-section>
 				</template>
 			</lightning-accordion>
 		</ul>
-
-		<p slot="footer">{labels.loadMore}</p>
 	</lightning-card>
 </template>

@@ -3,23 +3,28 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 	private static final List<String> CHILD_FIELDS_TO_QUERY = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c', 'SObjectAssigneeId__c', 'SObjectRelatedUserId__c', 'SObjectTypeField__c' };
 	private static final User u = [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
 
-	@AuraEnabled(cacheable = false)
-	public static List<TAG_ActivityTimelineModel> getTimelineItemData( String recordId ) {
+	@AuraEnabled(cacheable = true)
+	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId ) {
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType, false );
-		List<String> queries = createSoqlQueries( sObjectsToQuery, recordId );
-		List<SObject> sObjects = getSObjectsFromQueries( queries );
-		List<TAG_ActivityTimelineModel> data = createActivityTimelineData( sObjectsToQuery, sObjects, u.LanguageLocaleKey );
-		System.debug( 'data: ' + data );
+
+		List<Integer> periods = new List<Integer> { -1, 1, 2 };
+		List<TAG_ActivityTimelineModelList> data = new List<TAG_ActivityTimelineModelList>();
+		for ( Integer p : periods ) {
+			List<String> queries = createSoqlQueries( sObjectsToQuery, recordId, 5, p );
+			List<SObject> sObjects = getSObjectsFromQueries( queries );
+			List<TAG_ActivityTimelineModel> row = createActivityTimelineData( sObjectsToQuery, sObjects, u.LanguageLocaleKey );
+			TAG_ActivityTimelineModelList d = new TAG_ActivityTimelineModelList( p + '', p + '', row );
+			data.add( d );
+		}
 
 		return data;
 	}
 
-
 // TODO check if user can create records
-	@AuraEnabled(cacheable = false)
+	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimeline__mdt> getTimelineObjects( String recordId ) {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
@@ -33,7 +38,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			}
 		}
 		for ( TAG_ActivityTimeline__mdt mdt : data ) {
-			mdt.CreataleObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.CreataleObject_RecordType__c );
+			mdt.CreatableObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.CreatableObject_RecordType__c );
 		}
 
 		return data;
@@ -41,11 +46,11 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 	public static Map<String, Id> getRecordTypes( List<TAG_ActivityTimeline__mdt> data ) {
 
-		List<String> recordTypeNames = new List<String>();
+		Set<String> recordTypeNames = new Set<String>();
 
 		for ( TAG_ActivityTimeline__mdt mdt : data ) {
-			if ( mdt.CreataleObject_RecordType__c != null ) {
-				recordTypeNames.add( mdt.CreataleObject_RecordType__c );
+			if ( mdt.CreatableObject_RecordType__c != null ) {
+				recordTypeNames.add( mdt.CreatableObject_RecordType__c );
 			}
 		}
 
@@ -74,9 +79,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
 		                                                   SLDS_Timeline_Item__c, SLDS_Icon__c,
-		                                                   CreatableObject_TextEnglish__c, CreatableObject_TextNorwegian__c, CreataleObject_RecordType__c,
+		                                                   CreatableObject_TextEnglish__c, CreatableObject_TextNorwegian__c, CreatableObject_RecordType__c,
 		                                                   SObjectChild__c, SObjectParent__c,
-		                                                   SObjectDateField__c,  SObjectTitle__c,
+		                                                   SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,
 		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,
 		                                                   SObjectTypeField__c, SObjectTypeValue__c,
 		                                                   SubtitlePastEnglish__c, SubtitlePastNorwegian__c,
@@ -94,60 +99,98 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		}
 	}
 
-	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId ) {
+	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, Integer monthPeriod ) {
 
+		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
 		Boolean taskHasNotBeenQueried = true;
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
-			String fieldsToQuery = getFieldsToQueryFromMdt( mdt, CHILD_FIELDS_TO_QUERY );
-			String query = 'SELECT Id, ' + fieldsToQuery + ' FROM ' + mdt.SObjectChild__c + ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'';
+			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
+			String query = 'SELECT Id, ' + fieldsToQuery +
+			               ' FROM ' + mdt.SObjectChild__c +
+			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
+			               ' AND ' + getSoqlDateFromMonthPeriod( mdt, monthPeriod );
 
-			// append the Type = something parameter to the query
-			if ( mdt.SObjectChild__c != 'Task' ) {
-				if ( mdt.SObjectTypeField__c != null && mdt.SObjectTypeValue__c != null ) {
-					if ( mdt.SObjectTypeValue__c.contains( ';' ) ) {
-						query += ' AND ' + mdt.SObjectTypeField__c + ' IN (';
-						for ( String type : mdt.SObjectTypeValue__c.split( ';' ) ) {
-							query += '\'' + type + '\',';
-						}
-						query = query.removeEnd( ',' ) + ')';
-					} else {
-						query += ' AND ' + mdt.SObjectTypeField__c + ' = \'' + mdt.SObjectTypeValue__c + '\'';
-					}
-				}
-				query = query.replaceAll( '\'null\'', 'null' );
-				queries.add( query );
-			}
-			query = query.replaceAll( '\'null\'', 'null' );
+			// // append the Type = something parameter to the query
+			// if ( mdt.SObjectChild__c != 'Task' ) {
+			// 	if ( mdt.SObjectTypeField__c != null && mdt.SObjectTypeValue__c != null ) {
+			// 		if ( mdt.SObjectTypeValue__c.contains( ';' ) ) {
+			// 			query += ' AND ' + mdt.SObjectTypeField__c + ' IN (';
+			// 			for ( String type : mdt.SObjectTypeValue__c.split( ';' ) ) {
+			// 				query += '\'' + type + '\',';
+			// 			}
+			// 			query = query.removeEnd( ',' ) + ')';
+			// 		} else {
+			// 			query += ' AND ' + mdt.SObjectTypeField__c + ' = \'' + mdt.SObjectTypeValue__c + '\'';
+			// 		}
+			// 	}
+			// 	query = query.replaceAll( '\'null\'', 'null' );
+			// 	queries.add( query );
+			// }
+			// query = query.replaceAll( '\'null\'', 'null' );
 
 			// just query all tasks but only once
-			if ( mdt.SObjectChild__c == 'Task' && taskHasNotBeenQueried ) {
+			// if ( mdt.SObjectChild__c == 'Task' && taskHasNotBeenQueried ) {
+			// 	queries.add( query );
+			// 	taskHasNotBeenQueried = false;
+			// }
+
+			if ( !queriedSobjects.contains( mdt.SObjectChild__c ) ) {
 				queries.add( query );
-				taskHasNotBeenQueried = false;
+				queriedSobjects.add( mdt.SObjectChild__c );
 			}
 		}
 
 		return queries;
 	}
 
-	public static String getFieldsToQueryFromMdt( TAG_ActivityTimeline__mdt mdt, List<String> mdtFieldsToQuery ) {
+	public static String getSoqlDateFromMonthPeriod( TAG_ActivityTimeline__mdt mdt, Integer monthPeriod ) {
+		switch on monthPeriod {
+			when - 1 {
 
-		String fieldsToQuery = '';
-		for ( String mdtField : mdtFieldsToQuery ) {
-			String field = (String) mdt.get( mdtField );
-			if ( field != null ) {
-				if ( !fieldsToQuery.contains( field + ',' ) ) {
-					fieldsToQuery +=  field + ',';
+				String d = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today() : System.now() );
+				if ( !mdt.SObjectDateFieldIsDate__c ) {
+					d = d.replaceAll( ' ', 'T' ) + 'Z';
+				} else {
+					d = d.replaceAll( ' 00:00:00', '' );
+				}
+
+				return mdt.SObjectDateField__c + ' > ' + d;
+			} when 1 {
+				return mdt.SObjectDateField__c + ' = THIS_MONTH';
+			} when 2 {
+				return mdt.SObjectDateField__c + ' = NEXT_N_MONTHS:1';
+			} when else {
+				return '';
+			}
+		}
+	}
+
+	public static String getFieldsToQueryFromMdt( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, TAG_ActivityTimeline__mdt currentObject ) {
+
+
+		Set<String> fieldsToQuery = new Set<String>();
+		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+			if ( mdt.SObjectChild__c == currentObject.SObjectChild__c ) {
+
+				for ( String mdtField : CHILD_FIELDS_TO_QUERY ) {
+					String field = (String) mdt.get( mdtField );
+					if ( field != null ) {
+						fieldsToQuery.add( field );
+					}
 				}
 			}
 		}
 
-		if ( mdt.SObjectChild__c == 'Task' ) {
-			fieldsToQuery += 'Status,';
+		if ( currentObject.SObjectChild__c == 'Task' ) {
+			fieldsToQuery.add( 'Status' );
 		}
 
-		return fieldsToQuery.removeEnd( ',' );
+		List<String> res = new List<String>();
+		res.addAll( fieldsToQuery );
+
+		return string.join( res, ',' );
 	}
 
 	public static List<SObject> getSObjectsFromQueries( List<String> queries ) {
@@ -155,6 +198,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		List<SObject> sObjects = new List<SObject>();
 
 		for ( String query : queries ) {
+			System.debug( 'query: ' + query );
 			List<SObject> sObjs = Database.query( query );
 			sObjects.addAll( sObjs );
 		}
