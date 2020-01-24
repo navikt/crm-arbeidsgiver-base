@@ -10,9 +10,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType, false );
 
-		List<Integer> periods = new List<Integer> { -1, 1, 2 };
+		List<String> periods = new List<String> { Label.ActTime_Overdue, Label.ActTime_Upcoming, Label.ActTime_ThisMonth, Label.ActTime_PreviousMonth, Label.ActTime_Older };
 		List<TAG_ActivityTimelineModelList> data = new List<TAG_ActivityTimelineModelList>();
-		for ( Integer p : periods ) {
+		for ( String p : periods ) {
 			List<String> queries = createSoqlQueries( sObjectsToQuery, recordId, 5, p );
 			List<SObject> sObjects = getSObjectsFromQueries( queries );
 			List<TAG_ActivityTimelineModel> row = createActivityTimelineData( sObjectsToQuery, sObjects, u.LanguageLocaleKey );
@@ -99,7 +99,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		}
 	}
 
-	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, Integer monthPeriod ) {
+	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, String period ) {
 
 		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
@@ -110,31 +110,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			String query = 'SELECT Id, ' + fieldsToQuery +
 			               ' FROM ' + mdt.SObjectChild__c +
 			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
-			               ' AND ' + getSoqlDateFromMonthPeriod( mdt, monthPeriod );
-
-			// // append the Type = something parameter to the query
-			// if ( mdt.SObjectChild__c != 'Task' ) {
-			// 	if ( mdt.SObjectTypeField__c != null && mdt.SObjectTypeValue__c != null ) {
-			// 		if ( mdt.SObjectTypeValue__c.contains( ';' ) ) {
-			// 			query += ' AND ' + mdt.SObjectTypeField__c + ' IN (';
-			// 			for ( String type : mdt.SObjectTypeValue__c.split( ';' ) ) {
-			// 				query += '\'' + type + '\',';
-			// 			}
-			// 			query = query.removeEnd( ',' ) + ')';
-			// 		} else {
-			// 			query += ' AND ' + mdt.SObjectTypeField__c + ' = \'' + mdt.SObjectTypeValue__c + '\'';
-			// 		}
-			// 	}
-			// 	query = query.replaceAll( '\'null\'', 'null' );
-			// 	queries.add( query );
-			// }
-			// query = query.replaceAll( '\'null\'', 'null' );
-
-			// just query all tasks but only once
-			// if ( mdt.SObjectChild__c == 'Task' && taskHasNotBeenQueried ) {
-			// 	queries.add( query );
-			// 	taskHasNotBeenQueried = false;
-			// }
+			               ' ' + getSoqlDateFromMonthPeriod( mdt, period ) +
+			               ' AND ' + mdt.SObjectDateField__c + ' != null ' +
+			               ' ORDER BY ' + mdt.SObjectDateField__c;
 
 			if ( !queriedSobjects.contains( mdt.SObjectChild__c ) ) {
 				queries.add( query );
@@ -145,30 +123,32 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		return queries;
 	}
 
-	public static String getSoqlDateFromMonthPeriod( TAG_ActivityTimeline__mdt mdt, Integer monthPeriod ) {
-		switch on monthPeriod {
-			when - 1 {
+	public static String getSoqlDateFromMonthPeriod( TAG_ActivityTimeline__mdt mdt, String period ) {
 
-				String d = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today() : System.now() );
-				if ( !mdt.SObjectDateFieldIsDate__c ) {
-					d = d.replaceAll( ' ', 'T' ) + 'Z';
-				} else {
-					d = d.replaceAll( ' 00:00:00', '' );
-				}
-
-				return mdt.SObjectDateField__c + ' > ' + d;
-			} when 1 {
-				return mdt.SObjectDateField__c + ' = THIS_MONTH';
-			} when 2 {
-				return mdt.SObjectDateField__c + ' = NEXT_N_MONTHS:1';
-			} when else {
-				return '';
+		if ( period == Label.ActTime_Overdue ) {
+			return '';
+		} else if ( period == Label.ActTime_Upcoming ) {
+			String d = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today() : System.now() );
+			if ( !mdt.SObjectDateFieldIsDate__c ) {
+				d = d.replaceAll( ' ', 'T' ) + 'Z';
+			} else {
+				d = d.replaceAll( ' 00:00:00', '' );
 			}
+
+			return 'AND ' + mdt.SObjectDateField__c + ' > ' + d;
+		} else if ( period == Label.ActTime_ThisMonth ) {
+			return 'AND ' + mdt.SObjectDateField__c + ' = THIS_MONTH';
+		} else if ( period == Label.ActTime_PreviousMonth ) {
+			return 'AND ' + mdt.SObjectDateField__c + ' = NEXT_N_MONTHS:1';
+		} else if ( period == Label.ActTime_Older ) {
+			return '';
+		} else {
+			return '';
 		}
+
 	}
 
 	public static String getFieldsToQueryFromMdt( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, TAG_ActivityTimeline__mdt currentObject ) {
-
 
 		Set<String> fieldsToQuery = new Set<String>();
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
