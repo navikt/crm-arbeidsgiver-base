@@ -251,6 +251,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.TAG_service__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.Type</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -272,6 +277,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.TAG_ActivityType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.TAG_service__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
