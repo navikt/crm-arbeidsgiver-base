@@ -244,11 +244,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Task.Description</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_ActivityType__c</field>
         <readable>false</readable>
@@ -260,6 +255,9 @@
     </fieldPermissions>
     <layoutAssignments>
         <layout>Account-TAG Virksomhet</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-TAG Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CustomNote__c-Note Layout</layout>
@@ -303,12 +301,6 @@
         <default>false</default>
         <recordType>CustomOpportunity__c.Inclusive_Employment</recordType>
         <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <personAccountDefault>true</personAccountDefault>
-        <recordType>PersonAccount.PersonAccount</recordType>
-        <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>CustomOpportunity__c</tab>
