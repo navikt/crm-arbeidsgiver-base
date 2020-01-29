@@ -126,11 +126,11 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 		if ( IS_NORWEGIAN ) {
 			for ( TAG_ActivityTimeline__mdt mdt : data ) {
-				mdt.CreatableObject_TextEnglish__c = mdt.CreatableObject_TextNorwegian__c;
+				mdt.CreateableObject_TextEnglish__c = mdt.CreateableObject_TextNorwegian__c;
 			}
 		}
 		for ( TAG_ActivityTimeline__mdt mdt : data ) {
-			mdt.CreatableObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.CreatableObject_RecordType__c );
+			mdt.CreateableObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.CreateableObject_RecordType__c );
 		}
 
 		return data;
@@ -141,8 +141,8 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		Set<String> recordTypeNames = new Set<String>();
 
 		for ( TAG_ActivityTimeline__mdt mdt : data ) {
-			if ( mdt.CreatableObject_RecordType__c != null ) {
-				recordTypeNames.add( mdt.CreatableObject_RecordType__c );
+			if ( mdt.CreateableObject_RecordType__c != null ) {
+				recordTypeNames.add( mdt.CreateableObject_RecordType__c );
 			}
 		}
 
@@ -171,7 +171,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
 		                                                   SLDS_Timeline_Item__c, SLDS_Icon__c,
-		                                                   CreatableObject_TextEnglish__c, CreatableObject_TextNorwegian__c, CreatableObject_RecordType__c,
+		                                                   CreateableObject_TextEnglish__c, CreateableObject_TextNorwegian__c, CreateableObject_RecordType__c,
 		                                                   SObjectChild__c, SObjectParent__c,
 		                                                   SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,
 		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,
@@ -184,7 +184,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		                                                   FROM TAG_ActivityTimeline__mdt
 
 		                                                   WHERE
-		                                                       ( CreatableObject_Checkbox__c IN : allBools ) AND
+		                                                       ( CreateableObject_Checkbox__c IN : allBools ) AND
 		                                                       ( SObjectParent__c = : parentSObjectType ) AND
 		                                                       ( IsActive__c = true )
 

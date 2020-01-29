@@ -3,19 +3,19 @@
 	<label>Account &lt;= Task (Call)</label>
 	<protected>false</protected>
 	<values>
-		<field>CreatableObject_Checkbox__c</field>
+		<field>CreateableObject_Checkbox__c</field>
 		<value xsi:type="xsd:boolean">true</value>
 	</values>
 	<values>
-		<field>CreatableObject_RecordType__c</field>
+		<field>CreateableObject_RecordType__c</field>
 		<value xsi:nil="true" />
 	</values>
 	<values>
-		<field>CreatableObject_TextEnglish__c</field>
+		<field>CreateableObject_TextEnglish__c</field>
 		<value xsi:type="xsd:string">Log a Call</value>
 	</values>
 	<values>
-		<field>CreatableObject_TextNorwegian__c</field>
+		<field>CreateableObject_TextNorwegian__c</field>
 		<value xsi:type="xsd:string">Loggfør telefonsamtale</value>
 	</values>
 	<values>
