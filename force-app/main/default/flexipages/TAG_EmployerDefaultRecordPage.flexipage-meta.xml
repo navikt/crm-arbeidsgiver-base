@@ -75,17 +75,7 @@
 			</componentInstanceProperties>
 			<componentInstanceProperties>
 				<name>title</name>
-				<null
-					<null
-						<null
-							<null
-								<null
-									<null
-										<HEAD
-											<value>Kontakter</value>
-											=======
-											<value>Standard.Tab.relatedLists</value>
-											>>>>>>> Moved to a wire getter to better load more data when needed (e.g., load more button)
+				<value>Kontakter</value>
 			</componentInstanceProperties>
 			<componentName>flexipage:tab</componentName>
 		</componentInstances>
@@ -134,13 +124,6 @@
 		<type>Facet</type>
 	</flexiPageRegions>
 	<flexiPageRegions>
-		<componentInstances>
-			<componentInstanceProperties>
-				<name>showHeader</name>
-				<value>false</value>
-			</componentInstanceProperties>
-			<componentName>tagActivityTimeline</componentName>
-		</componentInstances>
 		<componentInstances>
 			<componentInstanceProperties>
 				<name>tabs</name>
