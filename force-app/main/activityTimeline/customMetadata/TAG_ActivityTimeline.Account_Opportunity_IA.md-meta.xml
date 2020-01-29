@@ -7,6 +7,10 @@
 		<value xsi:type="xsd:boolean">true</value>
 	</values>
 	<values>
+		<field>CreatableObject_RecordType__c</field>
+		<value xsi:nil="true" />
+	</values>
+	<values>
 		<field>CreatableObject_TextEnglish__c</field>
 		<value xsi:type="xsd:string">IA Inquiry</value>
 	</values>
@@ -15,8 +19,8 @@
 		<value xsi:type="xsd:string">IA-forespørsel</value>
 	</values>
 	<values>
-		<field>CreatableObject_RecordType__c</field>
-		<value xsi:type="xsd:string">Inclusive_Employment</value>
+		<field>IsActive__c</field>
+		<value xsi:type="xsd:boolean">true</value>
 	</values>
 	<values>
 		<field>SLDS_Icon__c</field>

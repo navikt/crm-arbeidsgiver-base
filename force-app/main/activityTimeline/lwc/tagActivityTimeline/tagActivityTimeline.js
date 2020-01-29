@@ -14,7 +14,12 @@ export default class TagActivityTimeline extends LightningElement {
 
 	// controller variables
 	@api recordId;
-	@track amountOverdue = 5;
+	@track overdue = 3;
+	@track upcoming = 3;
+	@track thisMonth = 3;
+	@track previousMonth = 3;
+	@track older = 3;
+	@api amountOfRecords = [];
 
 	@track data;
 	@track sObjectKinds;
@@ -22,11 +27,23 @@ export default class TagActivityTimeline extends LightningElement {
 	@track error;
 	@track errorMsg;
 	@track loading = true;
+	@track loadingStyle = 'height:5rem;width:24rem';
 
-	@track activeSections = [];
+	@track activeSections = [labels.overdue, labels.upcoming];
 	@track labels = labels;
 
+	collapsed = false;
+	@track collapseIcon = 'utility:justify_text';
+	@track collapseText = labels.collapse;
+
 	connectedCallback() {
+
+		this.amountOfRecords = [
+			{ id: this.labels.overdue, amount: this.overdue },
+			{ id: this.labels.upcoming, amount: this.upcoming },
+			{ id: this.labels.thisMonth, amount: this.thisMonth },
+			{ id: this.labels.previousMonth, amount: this.previousMonth },
+			{ id: this.labels.older, amount: this.older }];
 
 		Promise.all([
 			loadScript(this, MOMENT_JS),
@@ -48,15 +65,13 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
-	renderedCallback() {
-		this.loading = false; // todo fix loading icon
-	}
-
-	// todo oppdater til å ta inn amount per periode
-	@wire(getTimelineItemData, { recordId: '$recordId' })
+	// todo oppdater til å ta inn amount pthis.er periode
+	@wire(getTimelineItemData, { recordId: '$recordId', amountOfRecords: '$amountOfRecords' })
 	deWire({ error, data }) {
 		if (data) {
 			this.data = data;
+			this.loading = false;
+			this.loadingStyle = '';
 		} else if (error) {
 			this.error = true;
 			this.loading = false;
@@ -65,6 +80,46 @@ export default class TagActivityTimeline extends LightningElement {
 	}
 
 	loadMore(event) {
-		console.log('load more');
+
+		var groupId = event.target.dataset.id;
+
+		if (groupId === this.labels.overdue) {
+			this.overdue += 5;
+		} else if (groupId === this.labels.upcoming) {
+			this.upcoming += 5;
+		} else if (groupId === this.labels.thisMonth) {
+			this.thisMonth += 5;
+		} else if (groupId === this.labels.previousMonth) {
+			this.previousMonth += 5;
+		} else if (groupId === this.labels.older) {
+			this.older += 5;
+		}
+		this.amountOfRecords = [
+			{ id: this.labels.overdue, amount: this.overdue },
+			{ id: this.labels.upcoming, amount: this.upcoming },
+			{ id: this.labels.thisMonth, amount: this.thisMonth },
+			{ id: this.labels.previousMonth, amount: this.previousMonth },
+			{ id: this.labels.older, amount: this.older }];
+
+		this.loading = true;
+	}
+
+	collapseAccordions() {
+		this.activeSections = this.collapsed ? [this.labels.overdue, this.labels.upcoming, this.labels.thisMonth, this.labels.previousMonth, this.labels.older] : [];
+	}
+
+	handleSectionToggle(event) {
+		this.activeSections = event.detail.openSections;
+		console.log('this.labels.collapse: ' + this.labels.collapse);
+		console.log('this.labels.expand: ' + this.labels.expand);
+		if (this.activeSections.length === 0) {
+			this.collapseIcon = 'utility:snippet';
+			this.collapseText = this.labels.expand;
+			this.collapsed = true;
+		} else {
+			this.collapseIcon = 'utility:justify_text';
+			this.collapseText = this.labels.collapse;
+			this.collapsed = false;
+		}
 	}
 }

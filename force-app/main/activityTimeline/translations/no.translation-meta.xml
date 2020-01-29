@@ -32,4 +32,16 @@
 		<label>Noen</label>
 		<name>ActTime_Unknown</name>
 	</customLabels>
+	<customLabels>
+		<label>En Administrator har enten ikke konfigurert denne komponent eller så har du ikke tilgang til denne type data. Kontakt din Administrator.</label>
+		<name>ActTime_NotConfugred</name>
+	</customLabels>
+	<customLabels>
+		<label>Skjul</label>
+		<name>ActTime_Collapse</name>
+	</customLabels>
+	<customLabels>
+		<label>Utvid</label>
+		<name>ActTime_Expand</name>
+	</customLabels>
 </Translations>
