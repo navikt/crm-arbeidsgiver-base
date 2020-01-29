@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>Forbyggende arbeidsmiljøarbeid</label>
             </value>
+            <value>
+                <fullName>Vurder IA-oppdraget</fullName>
+                <default>false</default>
+                <label>Vurder IA-oppdraget</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>IA-arbeid</controllingFieldValue>
@@ -37,6 +42,10 @@
         <valueSettings>
             <controllingFieldValue>IA-arbeid</controllingFieldValue>
             <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <valueName>Vurder IA-oppdraget</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
