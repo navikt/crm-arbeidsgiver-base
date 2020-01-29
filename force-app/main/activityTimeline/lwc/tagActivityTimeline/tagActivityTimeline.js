@@ -1,5 +1,6 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
+import { refreshApex } from '@salesforce/apex';
 
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineItemData';
@@ -22,6 +23,7 @@ export default class TagActivityTimeline extends LightningElement {
 	@api amountOfRecords = [];
 
 	@track data;
+	deWireResult;
 	@track sObjectKinds;
 
 	@track error;
@@ -67,16 +69,23 @@ export default class TagActivityTimeline extends LightningElement {
 
 	// todo oppdater til å ta inn amount pthis.er periode
 	@wire(getTimelineItemData, { recordId: '$recordId', amountOfRecords: '$amountOfRecords' })
-	deWire({ error, data }) {
-		if (data) {
-			this.data = data;
+	deWire(result) {
+		this.deWireResult = result;
+		if (result.data) {
+			this.data = result.data;
 			this.loading = false;
 			this.loadingStyle = '';
-		} else if (error) {
+		} else if (result.error) {
 			this.error = true;
 			this.loading = false;
-			this.errorMsg = error;
+			this.errorMsg = result.error;
 		}
+	}
+
+	refreshData() {
+		this.error = false;
+		this.loading = true;
+		return refreshApex(this.deWireResult);
 	}
 
 	loadMore(event) {
@@ -103,6 +112,7 @@ export default class TagActivityTimeline extends LightningElement {
 
 		this.loading = true;
 	}
+
 
 	collapseAccordions() {
 		this.activeSections = this.collapsed ? [this.labels.overdue, this.labels.upcoming, this.labels.thisMonth, this.labels.previousMonth, this.labels.older] : [];

@@ -2,10 +2,13 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 	private static final List<String> CHILD_FIELDS_TO_QUERY = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c', 'SObjectAssigneeId__c', 'SObjectRelatedUserId__c', 'SObjectTypeField__c' };
 	private static final User USER = [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
+	private static final Boolean IS_NORWEGIAN = USER.LanguageLocaleKey == 'Norsk';
+
+	private static final List<String> MONTH_NAME = new List<String> {null, 'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'};
 	private static final Datetime CURRENT_DATETIME = Datetime.now();
-	private static final String CURRENT_MONTH = CURRENT_DATETIME.format( 'MMMMM' );
+	private static final String CURRENT_MONTH = IS_NORWEGIAN ? MONTH_NAME[CURRENT_DATETIME.month()] : CURRENT_DATETIME.format( 'MMMMM' );
 	private static final Datetime PREVIOUS_DATETIME = Datetime.now().addMonths( -1 );
-	private static final String PREVIOUS_MONTH = PREVIOUS_DATETIME.format( 'MMMMM' );
+	private static final String PREVIOUS_MONTH = IS_NORWEGIAN ? MONTH_NAME[PREVIOUS_DATETIME.month()] : PREVIOUS_DATETIME.format( 'MMMMM' );
 
 
 	public class AmountOfRecords {
@@ -57,8 +60,8 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		List<TAG_ActivityTimelineModel> olderData = createActivityTimelineData( sObjectsToQuery, olderSObjects );
 
 		TAG_ActivityTimelineModelList upcomingWrapped =         new TAG_ActivityTimelineModelList( Label.ActTime_Upcoming, Label.ActTime_Upcoming, upcomingData, false );
-		TAG_ActivityTimelineModelList thisMonthWrapped =        getCorrectMonthOnly( CURRENT_DATETIME.month(), new TAG_ActivityTimelineModelList( CURRENT_MONTH, Label.ActTime_ThisMonth, thisAndPreviousMonthData, false ) );
-		TAG_ActivityTimelineModelList previousMonthWrapped =    getCorrectMonthOnly( PREVIOUS_DATETIME.month(),  new TAG_ActivityTimelineModelList( PREVIOUS_MONTH, Label.ActTime_PreviousMonth, thisAndPreviousMonthData, false ) );
+		TAG_ActivityTimelineModelList thisMonthWrapped =        getCorrectMonthOnly( CURRENT_DATETIME.month(), new TAG_ActivityTimelineModelList( Label.ActTime_ThisMonth, CURRENT_MONTH, thisAndPreviousMonthData, false ) );
+		TAG_ActivityTimelineModelList previousMonthWrapped =    getCorrectMonthOnly( PREVIOUS_DATETIME.month(),  new TAG_ActivityTimelineModelList( Label.ActTime_PreviousMonth, PREVIOUS_MONTH, thisAndPreviousMonthData, false ) );
 		TAG_ActivityTimelineModelList overdueWrapped =          getOverdueOnly ( new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, thisAndPreviousMonthData, false ) );
 		TAG_ActivityTimelineModelList olderWrapped =            new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, olderData, false );
 
@@ -121,7 +124,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 		Map<String, Id> recordTypes = getRecordTypes( data );
 
-		if ( USER.LanguageLocaleKey == 'Norsk' ) {
+		if ( IS_NORWEGIAN ) {
 			for ( TAG_ActivityTimeline__mdt mdt : data ) {
 				mdt.CreatableObject_TextEnglish__c = mdt.CreatableObject_TextNorwegian__c;
 			}
