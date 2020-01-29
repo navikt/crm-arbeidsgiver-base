@@ -2,7 +2,7 @@
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
 	<customLabels>
 		<label>nb-no</label>
-		<name>MomentJsLanguage</name>
+		<name>ActTime_MomentJsLanguage</name>
 	</customLabels>
 	<customLabels>
 		<label>Ny</label>
@@ -43,5 +43,9 @@
 	<customLabels>
 		<label>Utvid</label>
 		<name>ActTime_Expand</name>
+	</customLabels>
+	<customLabels>
+		<label>Aktiviteter</label>
+		<name>ActTime_Activities</name>
 	</customLabels>
 </Translations>

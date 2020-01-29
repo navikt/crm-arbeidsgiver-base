@@ -1,4 +1,4 @@
-import MomentJsLanguage from "@salesforce/label/c.MomentJsLanguage";
+import MomentJsLanguage from "@salesforce/label/c.ActTime_MomentJsLanguage";
 import newObj from "@salesforce/label/c.ActTime_New";
 import upcoming from "@salesforce/label/c.ActTime_Upcoming";
 import thisMonth from "@salesforce/label/c.ActTime_ThisMonth";
@@ -8,6 +8,7 @@ import older from "@salesforce/label/c.ActTime_Older";
 import loadMore from "@salesforce/label/c.ActTime_LoadMore";
 import expand from "@salesforce/label/c.ActTime_Expand";
 import collapse from "@salesforce/label/c.ActTime_Collapse";
+import activities from "@salesforce/label/c.ActTime_Activities";
 
 export default {
 	MomentJsLanguage,
@@ -19,5 +20,6 @@ export default {
 	previousMonth,
 	thisMonth,
 	collapse,
-	expand
+	expand,
+	activities
 };

@@ -1,6 +1,7 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { refreshApex } from '@salesforce/apex';
+import LANG from '@salesforce/i18n/lang';
 
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineItemData';
@@ -11,7 +12,10 @@ export default class TagActivityTimeline extends LightningElement {
 
 	// config settings
 	@api headerIcon = 'custom:custom18';
-	@api headerTitle = 'Aktiviteter';
+	@api headerTitleNorwegian;
+	@api headerTitleEnglish;
+
+	@track header;
 
 	// controller variables
 	@api recordId;
@@ -53,7 +57,7 @@ export default class TagActivityTimeline extends LightningElement {
 			moment.locale(this.labels.MomentJsLanguage);
 		});
 
-		getTimelineObjects({ recordId: this.recordId }).then(data => { this.sObjectKinds = data; }).catch(error => { // todo move somewhere without mulitple calls
+		getTimelineObjects({ recordId: this.recordId }).then(data => { this.sObjectKinds = data; }).catch(error => {
 			this.error = true;
 			if (error.body && error.body.exceptionType && error.body.message) {
 				this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
@@ -62,12 +66,15 @@ export default class TagActivityTimeline extends LightningElement {
 			}
 		});
 
-		if (this.headerIcon !== undefined) {
-			this.showHeader = true;
+		if (LANG === 'no' && this.headerTitleNorwegian !== undefined) {
+			this.header = this.headerTitleNorwegian;
+		} else if (LANG === 'en-US' && this.headerTitleEnglish !== undefined) {
+			this.header = this.headerTitleEnglish;
+		} else {
+			this.header = this.labels.activities;
 		}
 	}
 
-	// todo oppdater til å ta inn amount pthis.er periode
 	@wire(getTimelineItemData, { recordId: '$recordId', amountOfRecords: '$amountOfRecords' })
 	deWire(result) {
 		this.deWireResult = result;
@@ -113,17 +120,16 @@ export default class TagActivityTimeline extends LightningElement {
 		this.loading = true;
 	}
 
-
 	collapseAccordions() {
 		this.activeSections = this.collapsed ? [this.labels.overdue, this.labels.upcoming, this.labels.thisMonth, this.labels.previousMonth, this.labels.older] : [];
 	}
 
 	handleSectionToggle(event) {
+
 		this.activeSections = event.detail.openSections;
-		console.log('this.labels.collapse: ' + this.labels.collapse);
-		console.log('this.labels.expand: ' + this.labels.expand);
+
 		if (this.activeSections.length === 0) {
-			this.collapseIcon = 'utility:snippet';
+			this.collapseIcon = 'utility:filter';
 			this.collapseText = this.labels.expand;
 			this.collapsed = true;
 		} else {

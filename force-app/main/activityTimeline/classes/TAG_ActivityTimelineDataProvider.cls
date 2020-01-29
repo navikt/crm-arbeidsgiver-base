@@ -18,10 +18,10 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId, List<AmountOfRecords> amountOfRecords ) {
-
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
-		Map<String, Integer> mapOfAmountParamenter = createMapOfAmountParamenter( amountOfRecords );
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
+
+		Map<String, Integer> mapOfAmountParamenter = createMapOfAmountParamenter( amountOfRecords );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType, false );
 		List<TAG_ActivityTimelineModelList> data = query( sObjectsToQuery, recordId, mapOfAmountParamenter );
 
@@ -163,9 +163,9 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 	}
 
-	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType, Boolean creatable ) {
+	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
 		List<Boolean> allBools = new List<Boolean> { true, false };
-		if ( creatable ) {
+		if ( createable ) {
 			allBools = new List<Boolean> { true };
 		}
 
@@ -194,8 +194,18 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			throw new AuraException( Label.ActTime_NotConfugred );
 		} else {
 
-			// TODO check if user can read objects 👀
-			return sObjectsToQuery;
+			List<TAG_ActivityTimeline__mdt> sObjectsToUse = new List<TAG_ActivityTimeline__mdt>();
+
+
+			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+				if ( createable && isCreateable( mdt.SObjectChild__c ) ) {
+					sObjectsToUse.add( mdt );
+				} else if ( !createable && isAccessible( mdt.SObjectChild__c ) ) {
+					sObjectsToUse.add( mdt );
+				}
+			}
+
+			return sObjectsToUse;
 		}
 	}
 
@@ -343,5 +353,13 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		}
 
 		return sObjectsToQueryMap;
+	}
+
+	public static Boolean isCreateable( String sObjectType ) {
+		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isCreateable();
+	}
+
+	public static Boolean isAccessible( String sObjectType ) {
+		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isAccessible();
 	}
 }
