@@ -1,15 +1,14 @@
 <template>
-
-	<lightning-card title={headerTitle} icon-name={headerIcon}>
+	<lightning-card title={header} icon-name={headerIcon}>
 		<div slot="actions">
 			<lightning-button-group>
 				<lightning-button-icon icon-name={collapseIcon} alternative-text={collapseText}
 					onclick={collapseAccordions}>
 				</lightning-button-icon>
-				<lightning-button-icon icon-name="utility:filter" alternative-text="Filter" onclick={filter}>
-				</lightning-button-icon>
-				<lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
-				</lightning-button-icon>
+				<!-- <lightning-button-icon icon-name="utility:filterList" alternative-text="Filter" onclick={filter}>
+				</lightning-button-icon> -->
+				<!-- <lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
+				</lightning-button-icon> -->
 				<lightning-button-menu alternative-text={labels.newObj} variant="border" icon-name="utility:new"
 					menu-alignment="Right">
 					<template for:each={sObjectKinds} for:item="row">

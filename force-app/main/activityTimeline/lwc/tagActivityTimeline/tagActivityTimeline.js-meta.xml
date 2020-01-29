@@ -10,8 +10,9 @@
 	</targets>
 	<targetConfigs>
 		<targetConfig targets="lightning__RecordPage">
-			<property name="headerTitle" type="String" label="Header Title" />
-			<property name="headerIcon" type="String" label="Header icon (SLDS Icons)" description="Refer to https://lightningdesignsystem.com/icons" />
+			<property name="headerTitleNorwegian" type="String" label="Header Norwegian (default: Aktiviteter)" />
+			<property name="headerTitleEnglish" type="String" label="Header English (default: Activities)" />
+			<property name="headerIcon" type="String" label="Header Icon (SLDS Icons)" description="Refer to https://lightningdesignsystem.com/icons" />
 			<supportedFormFactors>
 				<supportedFormFactor type="Small" />
 				<supportedFormFactor type="Large" />
