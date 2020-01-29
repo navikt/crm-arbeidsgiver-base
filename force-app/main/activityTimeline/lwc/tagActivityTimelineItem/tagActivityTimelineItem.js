@@ -19,7 +19,14 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 	};
 
 	get getDateFormat() {
-		return moment(this.row.record.dateValueDb).fromNow();
+		try {
+			while (moment !== undefined) {
+				return moment(this.row.record.dateValueDb).fromNow();
+			} // TODO add error after x seconds
+			// TODO remove try
+		} catch (error) {
+
+		}
 	}
 
 	get isTask() {
@@ -59,5 +66,4 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 	get isRelatedUserAUser() {
 		return "relatedUserId" in this.row.record;
 	}
-
 }

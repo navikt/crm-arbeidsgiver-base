@@ -15,6 +15,13 @@
 		<value>en</value>
 	</labels>
 	<labels>
+		<fullName>ActTime_NotConfugred</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Not Configured</shortDescription>
+		<value>An Administrator have either not configured this component or you don't have access to this data. Contact your Administrator.</value>
+	</labels>
+	<labels>
 		<fullName>ActTime_New</fullName>
 		<language>en_US</language>
 		<protected>false</protected>
@@ -76,6 +83,20 @@
 		<protected>false</protected>
 		<shortDescription>Errors_CannotFindTriggerHandlerClass</shortDescription>
 		<value>Cannot find trigger handler class with name</value>
+	</labels>
+	<labels>
+		<fullName>ActTime_Collapse</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Collapse</shortDescription>
+		<value>Collapse</value>
+	</labels>
+	<labels>
+		<fullName>ActTime_Expand</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Expand</shortDescription>
+		<value>Expand</value>
 	</labels>
 	<labels>
 		<fullName>Errors_DuplicateTriggerHandlerClass</fullName>
