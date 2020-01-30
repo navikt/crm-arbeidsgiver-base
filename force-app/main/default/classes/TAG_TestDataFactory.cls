@@ -33,7 +33,7 @@ public without sharing class TAG_TestDataFactory {
 		User u = new user();
 		System.RunAs( testUser )
 		{
-			UserRole ur = [SELECT Id FROM UserRole WHERE Name = 'Admin' LIMIT 1];
+			UserRole ur = [SELECT Id FROM UserRole WHERE Name = 'Default' LIMIT 1];
 			u.LastName = 'Test Code';
 			u.Email = 'this_is_a_fake_email@test.com';
 			String d = String.valueOf( DateTime.now().millisecond() ) + String.valueOf( DateTime.now().second() ) + String.valueOf( DateTime.now().minute() );

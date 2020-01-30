@@ -51,7 +51,8 @@ public with sharing class TAG_ActivityTimelineModel {
 
 		record.overdue = false;
 		if ( record.sObjectKind == 'Task' ) {
-			if ( sObj.get( 'Status' ) != 'Completed' && record.dateValueDb < DateTime.now() ) {
+
+			if ( sObj.get( 'Status' ) != 'Completed' && record.dateValueDb < Date.today() ) {
 				record.overdue = true;
 			}
 		}
