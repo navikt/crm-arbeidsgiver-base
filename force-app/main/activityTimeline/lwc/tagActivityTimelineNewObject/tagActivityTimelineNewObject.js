@@ -14,14 +14,14 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 		this[NavigationMixin.Navigate]({
 			type: 'standard__objectPage',
 			attributes: { objectApiName: this.row.SObjectChild__c, actionName: 'new' },
-			state: {
-				nooverride: '1',
-				recordTypeId: this.row.CreateableObject_RecordType__c,
-				// setRedirect: 'true', // not working
-				// navigationLocation: 'LIST_VIEW',  // works in a hacky fashion, won't open tasks afterwards
-				useRecordTypeCheck: 1,
-				defaultFieldValues: this.fieldValues
-			}
+			// state: { // TODO enable for pre-filled data (supported in spring 20)
+			// 	nooverride: '1',
+			// 	recordTypeId: this.row.CreateableObject_RecordType__c,
+			// 	// setRedirect: 'true', // not working
+			// 	// navigationLocation: 'LIST_VIEW',  // works in a hacky fashion, won't open tasks afterwards
+			// 	useRecordTypeCheck: 1,
+			// 	defaultFieldValues: this.fieldValues
+			// }
 		});
 
 	}
