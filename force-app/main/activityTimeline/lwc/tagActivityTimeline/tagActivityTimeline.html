@@ -30,6 +30,7 @@
 		<ul if:false={error} class="slds-timeline">
 			<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
 				onsectiontoggle={handleSectionToggle} style="border-top: 1px solid #d3d3d3;">
+				<!-- FOR LOOP -->
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
 						<template for:each={group.models} for:item="row">
@@ -37,8 +38,14 @@
 								moment={moment}>
 							</c-tag-activity-timeline-item>
 						</template>
-						<lightning-button variant="Neutral" data-id={group.id} label={group.id} title="Load More"
-							onclick={loadMore} class="slds-m-left_x-small"></lightning-button>
+
+						<!-- LOAD MORE -->
+
+						<a class="slds-button loadMoreBtn">
+							<lightning-icon class="hoverBtn" size="xx-small" data-id={group.id}
+								alternative-text={labels.loadMore} icon-name="action:new" onclick={loadMore}>
+							</lightning-icon>
+						</a>
 					</lightning-accordion-section>
 				</template>
 			</lightning-accordion>

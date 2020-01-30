@@ -1,0 +1,8 @@
+.hoverBtn:hover {
+	box-shadow: 0 0 0 0.1em #DDDBDA;
+	/* TODO add color used on line between rows */
+}
+
+.loadMoreBtn {
+	padding-left: 1.7em;
+}

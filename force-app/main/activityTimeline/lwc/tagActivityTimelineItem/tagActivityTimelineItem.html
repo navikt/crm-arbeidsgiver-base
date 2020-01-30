@@ -8,7 +8,7 @@
 
 					<!-- ICON & CHEVRON -->
 					<div class="slds-media__figure">
-						<button class="slds-button slds-button_icon" title="Toggle details"
+						<button class="slds-button slds-button_icon" title="Toggle details" style="visibility: hidden;"
 							aria-controls="task-item-base">
 							<lightning-icon if:false={expanded} size="xx-small" icon-name="utility:add"
 								alternative-text="Toggle details" onclick={toggleDetailSection}>
@@ -36,7 +36,7 @@
 									</a>
 								</h3>
 								<!-- RECORRUING TASK -->
-								<div if:true={isTask} class="slds-no-flex">
+								<!-- <div if:true={isTask} class="slds-no-flex">
 									<span class="slds-icon_container slds-icon-utility-rotate" title="Recurring Task">
 										<div class="slds-icon slds-icon_xx-small slds-icon-text-default slds-m-left_x-small"
 											aria-hidden="true">
@@ -45,9 +45,9 @@
 										</div>
 										<span class="slds-assistive-text">Recurring Task</span>
 									</span>
-								</div>
+								</div> -->
 								<!-- CHECKBOX -->
-								<div if:true={isTask} class="slds-checkbox slds-m-left_x-small">
+								<!-- <div if:true={isTask} class="slds-checkbox slds-m-left_x-small">
 									<input type="checkbox" name="options" id="checkbox-unique-id-18"
 										value="checkbox-unique-id-18" />
 									<label class="slds-checkbox__label" for="checkbox-unique-id-18">
@@ -55,7 +55,7 @@
 										<span class="slds-form-element__label slds-assistive-text">Mark as
 											completed</span>
 									</label>
-								</div>
+								</div> -->
 
 							</div>
 
