@@ -74,7 +74,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		} if ( thisMonthWrapped.models.size() > 0 ) {
 			thisMonthWrapped = limitAmountOfRecords( thisMonthWrapped );
 			data.add( thisMonthWrapped );
-		} if ( thisMonthWrapped.models.size() > 0 ) {
+		} if ( previousMonthWrapped.models.size() > 0 ) {
 			previousMonthWrapped = limitAmountOfRecords( previousMonthWrapped );
 			data.add( previousMonthWrapped );
 		} if ( olderWrapped.models.size() > 0 ) {
@@ -115,7 +115,6 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		return wrapper;
 	}
 
-// TODO check if user can create records
 	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimeline__mdt> getTimelineObjects( String recordId ) {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
@@ -252,7 +251,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 
 		if ( dateParameter == Label.ActTime_Upcoming ) {
-			return 'AND ' + mdt.SObjectDateField__c + ' > ' + currentDate;
+			return 'AND ' + mdt.SObjectDateField__c + ' >= ' + currentDate;
 		} else if ( dateParameter == Label.ActTime_ThisMonth ) {
 			return 'AND ' + mdt.SObjectDateField__c + ' < ' + currentDate +
 			       'AND ( ' +
