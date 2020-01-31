@@ -25,12 +25,12 @@
 }
 
 .cell-icon {
-	margin-top: 0.3em;
+	border: 0.15em solid white;
 }
 
 .container {
 	/* background-color: pink !important; */
 	height: 100%;
 	-moz-box-sizing: border-box;
-	margin: 0 1em;
+	margin: 0 0.7em 0 0;
 }

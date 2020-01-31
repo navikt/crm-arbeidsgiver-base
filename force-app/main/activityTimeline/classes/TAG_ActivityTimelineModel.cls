@@ -8,7 +8,7 @@ public with sharing class TAG_ActivityTimelineModel {
 
 	public class Theme {
 		@AuraEnabled public String icon;
-		@AuraEnabled public String sldsTimelineItem;
+		@AuraEnabled public String sldsTimelineItemColor;
 	}
 
 	public class Record {
@@ -47,7 +47,7 @@ public with sharing class TAG_ActivityTimelineModel {
 		record.sObj = sObj; // todo remove?
 
 		theme.icon = config.SLDS_Icon__c;
-		theme.sldsTimelineItem = config.SLDS_Timeline_Item__c;
+		theme.sldsTimelineItemColor = config.SLDS_Timeline_Color__c;
 
 		record.overdue = false;
 		if ( record.sObjectKind == 'Task' ) {

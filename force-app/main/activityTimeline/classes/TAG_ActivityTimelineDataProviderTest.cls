@@ -75,7 +75,7 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 	// 	List<String> mdtFieldsToQuery = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c' };
 
 	// 	List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
-	// 	                                                   SLDS_Timeline_Item__c, SLDS_Icon__c,
+	// 	                                                   SLDS_Timeline_Color__c, SLDS_Icon__c,
 	// 	                                                   SObjectChild__c, SObjectParent__c,
 	// 	                                                   SObjectDateField__c,  SObjectTitle__c,
 	// 	                                                   SObjectRelationshipField__c
@@ -111,7 +111,7 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 	// 	List<String> mdtFieldsToQuery = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c' };
 
 	// 	List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
-	// 	                                                   SLDS_Timeline_Item__c, SLDS_Icon__c,
+	// 	                                                   SLDS_Timeline_Color__c, SLDS_Icon__c,
 	// 	                                                   SObjectChild__c, SObjectParent__c,
 	// 	                                                   SObjectDateField__c,  SObjectTitle__c,
 	// 	                                                   SObjectRelationshipField__c
