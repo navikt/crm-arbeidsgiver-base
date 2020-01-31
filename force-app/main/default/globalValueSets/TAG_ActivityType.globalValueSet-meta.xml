@@ -16,34 +16,9 @@
         <label>Markedsarbeid</label>
     </customValue>
     <customValue>
-        <fullName>IA Tjeneste Forbyggende Arbeidsmiljøarbeid</fullName>
+        <fullName>Inkludering</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>IA Tjeneste: Forbyggende Arbeidsmiljøarbeid</label>
-    </customValue>
-    <customValue>
-        <fullName>Informasjonsmøte - omstilling og nedbemanning</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Informasjonsmøte - omstilling og nedbemanning</label>
-    </customValue>
-    <customValue>
-        <fullName>Jobbmesse</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Jobbmesse</label>
-    </customValue>
-    <customValue>
-        <fullName>Kontaktskjema</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Kontaktskjema</label>
-    </customValue>
-    <customValue>
-        <fullName>Rekrutteringsbistand i EØS-området</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Rekrutteringsbistand i EØS-området</label>
+        <label>Inkludering</label>
     </customValue>
     <customValue>
         <fullName>Samarbeidsavtale</fullName>
@@ -98,6 +73,36 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>E-post eller SMS</label>
+    </customValue>
+    <customValue>
+        <fullName>Rekrutteringsbistand i EØS-området</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Rekrutteringsbistand i EØS-området</label>
+    </customValue>
+    <customValue>
+        <fullName>Kontaktskjema</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Kontaktskjema</label>
+    </customValue>
+    <customValue>
+        <fullName>Jobbmesse</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Jobbmesse</label>
+    </customValue>
+    <customValue>
+        <fullName>IA Tjeneste Forbyggende Arbeidsmiljøarbeid</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>IA Tjeneste: Forbyggende Arbeidsmiljøarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Informasjonsmøte - omstilling og nedbemanning</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Informasjonsmøte - omstilling og nedbemanning</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
