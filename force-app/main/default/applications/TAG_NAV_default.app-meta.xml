@@ -1,41 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-	<actionOverrides>
-		<actionName>View</actionName>
-		<comment>Action override created by Lightning App Builder during activation.</comment>
-		<content>TAG_ContactRecordPage</content>
-		<formFactor>Large</formFactor>
-		<skipRecordTypeSelect>false</skipRecordTypeSelect>
-		<type>Flexipage</type>
-		<pageOrSobjectType>Contact</pageOrSobjectType>
-	</actionOverrides>
-	<actionOverrides>
-		<actionName>Tab</actionName>
-		<content>TAG_DefaultHomePage</content>
-		<formFactor>Large</formFactor>
-		<skipRecordTypeSelect>false</skipRecordTypeSelect>
-		<type>Flexipage</type>
-		<pageOrSobjectType>standard-home</pageOrSobjectType>
-	</actionOverrides>
-	<actionOverrides>
-		<actionName>View</actionName>
-		<comment>Action override created by Lightning App Builder during activation.</comment>
-		<content>TAG_EmployerDefaultRecordPage</content>
-		<formFactor>Large</formFactor>
-		<skipRecordTypeSelect>false</skipRecordTypeSelect>
-		<type>Flexipage</type>
-		<pageOrSobjectType>Account</pageOrSobjectType>
-	</actionOverrides>
-	<formFactors>Large</formFactors>
-	<isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
-	<isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-	<label>NAV</label>
-	<navType>Standard</navType>
-	<tabs>standard-home</tabs>
-	<tabs>standard-Account</tabs>
-	<tabs>standard-Contact</tabs>
-	<tabs>standard-Task</tabs>
-	<tabs>standard-Event</tabs>
-	<tabs>CustomOpportunity__c</tabs>
-	<uiType>Lightning</uiType>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>TAG_ContactRecordPage</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>TAG_DefaultHomePage</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>TAG_EmployerDefaultRecordPage</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+    </actionOverrides>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>true</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>NAV</label>
+    <navType>Standard</navType>
+    <setupExperience>all</setupExperience>
+    <tabs>standard-home</tabs>
+    <tabs>Employer</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Task</tabs>
+    <tabs>standard-Event</tabs>
+    <tabs>CustomOpportunity__c</tabs>
+    <uiType>Lightning</uiType>
 </CustomApplication>
