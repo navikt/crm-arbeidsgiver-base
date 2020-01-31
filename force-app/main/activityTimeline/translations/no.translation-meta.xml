@@ -48,4 +48,16 @@
 		<label>Aktiviteter</label>
 		<name>ActTime_Activities</name>
 	</customLabels>
+	<customLabels>
+		<label>Tomt!</label>
+		<name>ActTime_EmptyTitle</name>
+	</customLabels>
+	<customLabels>
+		<label>Det ser ikke ut til å være noen relaterte objekter her.</label>
+		<name>ActTime_EmptySubtitle</name>
+	</customLabels>
+	<customLabels>
+		<label>Feil!</label>
+		<name>ActTime_ErrorTitle</name>
+	</customLabels>
 </Translations>

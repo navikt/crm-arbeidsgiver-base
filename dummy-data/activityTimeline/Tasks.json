@@ -8,9 +8,49 @@
 			"ActivityDate": "2020-02-09",
 			"Priority": "Normal",
 			"Status": "Completed",
-			"Subject": "Telefonsamtale5",
-			"WhoId": "@ContactRef4",
+			"Subject": "Telefonsamtale",
+			"WhoId": "@ContactRef2",
 			"Type": "Call",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef2"
+			},
+			"ActivityDate": "2020-02-09",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"Subject": "Telefonsamtale",
+			"WhoId": "@ContactRef2",
+			"Type": "Call",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef3"
+			},
+			"ActivityDate": "2020-02-09",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"Subject": "Site Visit",
+			"WhoId": "@ContactRef4",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef4"
+			},
+			"ActivityDate": "2020-02-09",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"Subject": "Email Contract",
+			"WhoId": "@ContactRef4",
 			"TaskSubtype": "Task",
 			"WhatId": "@AccountRef1"
 		},
@@ -18,48 +58,6 @@
 			"attributes": {
 				"type": "Task",
 				"referenceId": "TaskRef5"
-			},
-			"ActivityDate": "2020-02-09",
-			"Priority": "Normal",
-			"Status": "Completed",
-			"Subject": "Telefonsamtale4",
-			"WhoId": "@ContactRef4",
-			"Type": "Call",
-			"TaskSubtype": "Task",
-			"WhatId": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "Task",
-				"referenceId": "TaskRef6"
-			},
-			"ActivityDate": "2020-02-09",
-			"Priority": "Normal",
-			"Status": "Completed",
-			"Subject": "Telefonsamtale3",
-			"WhoId": "@ContactRef4",
-			"Type": "Call",
-			"TaskSubtype": "Task",
-			"WhatId": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "Task",
-				"referenceId": "TaskRef7"
-			},
-			"ActivityDate": "2020-02-09",
-			"Priority": "Normal",
-			"Status": "Completed",
-			"Subject": "Telefonsamtale2",
-			"WhoId": "@ContactRef4",
-			"Type": "Call",
-			"TaskSubtype": "Task",
-			"WhatId": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "Task",
-				"referenceId": "TaskRef8"
 			},
 			"ActivityDate": "2020-02-09",
 			"Priority": "Normal",
@@ -73,7 +71,7 @@
 		{
 			"attributes": {
 				"type": "Task",
-				"referenceId": "TaskRef2"
+				"referenceId": "TaskRef6"
 			},
 			"ActivityDate": "2020-02-05",
 			"Priority": "Normal",
@@ -86,7 +84,7 @@
 		{
 			"attributes": {
 				"type": "Task",
-				"referenceId": "TaskRef3"
+				"referenceId": "TaskRef7"
 			},
 			"ActivityDate": "2020-01-22",
 			"Priority": "Normal",
@@ -100,13 +98,206 @@
 		{
 			"attributes": {
 				"type": "Task",
-				"referenceId": "TaskRef4"
+				"referenceId": "TaskRef21"
+			},
+			"ActivityDate": "2020-01-22",
+			"Priority": "Normal",
+			"Subject": "Arbeidstrening",
+			"Status": "Completed",
+			"WhoId": "@ContactRef1",
+			"Type": "Meeting",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef22"
+			},
+			"ActivityDate": "2020-01-22",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"Subject": "Arbeidstrening",
+			"WhoId": "@ContactRef3",
+			"Type": "Call",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef8"
 			},
 			"ActivityDate": "2020-02-05",
 			"Priority": "Normal",
 			"Status": "Completed",
 			"WhoId": "@ContactRef1",
 			"Subject": "Finalize details",
+			"Type": "Email",
+			"TaskSubtype": "Call",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef9"
+			},
+			"ActivityDate": "2019-12-05",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef4",
+			"Subject": "Send a GIF",
+			"Type": "SMS",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef10"
+			},
+			"ActivityDate": "2019-12-22",
+			"Priority": "Normal",
+			"Status": "In Progress",
+			"Subject": "Workshop",
+			"WhoId": "@ContactRef3",
+			"Type": "Task",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef11"
+			},
+			"ActivityDate": "2019-12-05",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef2",
+			"Subject": "Send draft",
+			"Type": "Email",
+			"TaskSubtype": "Call",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef12"
+			},
+			"ActivityDate": "2019-12-01",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef2",
+			"Subject": "Send form",
+			"Type": "Email",
+			"TaskSubtype": "Call",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef13"
+			},
+			"ActivityDate": "2019-11-01",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef4",
+			"Subject": "Send a selfie",
+			"Type": "SMS",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef14"
+			},
+			"ActivityDate": "2019-11-21",
+			"Priority": "Normal",
+			"Status": "In Progress",
+			"Subject": "Workshop with HR",
+			"WhoId": "@ContactRef4",
+			"Type": "Task",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef15"
+			},
+			"ActivityDate": "2019-11-01",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef3",
+			"Subject": "Send contract",
+			"Type": "Email",
+			"TaskSubtype": "Call",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef16"
+			},
+			"ActivityDate": "2019-11-01",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef3",
+			"Subject": "Send another contract",
+			"Type": "Email",
+			"TaskSubtype": "Call",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef17"
+			},
+			"ActivityDate": "2019-07-01",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef1",
+			"Subject": "Send a selfie",
+			"Type": "SMS",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef18"
+			},
+			"ActivityDate": "2019-08-21",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"Subject": "Fun activity day",
+			"WhoId": "@ContactRef2",
+			"Type": "Task",
+			"TaskSubtype": "Task",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef19"
+			},
+			"ActivityDate": "2019-09-01",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef4",
+			"Subject": "Send form",
+			"Type": "Email",
+			"TaskSubtype": "Call",
+			"WhatId": "@AccountRef1"
+		},
+		{
+			"attributes": {
+				"type": "Task",
+				"referenceId": "TaskRef20"
+			},
+			"ActivityDate": "2019-09-01",
+			"Priority": "Normal",
+			"Status": "Completed",
+			"WhoId": "@ContactRef4",
+			"Subject": "Send another form",
 			"Type": "Email",
 			"TaskSubtype": "Call",
 			"WhatId": "@AccountRef1"

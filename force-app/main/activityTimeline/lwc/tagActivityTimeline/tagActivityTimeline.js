@@ -19,19 +19,21 @@ export default class TagActivityTimeline extends LightningElement {
 
 	// controller variables
 	@api recordId;
-	@track overdue = 3;
-	@track upcoming = 3;
-	@track thisMonth = 3;
-	@track previousMonth = 3;
-	@track older = 3;
+	@track overdue = 1;
+	@track upcoming = 1;
+	@track thisMonth = 1;
+	@track previousMonth = 1;
+	@track older = 1;
 	@api amountOfRecords = [];
 
 	@track data;
 	deWireResult;
 	@track sObjectKinds;
 
-	@track error;
+	@track error = false;
 	@track errorMsg;
+	@track empty = false;
+
 	@track loading = true;
 	@track loadingStyle = 'height:5rem;width:24rem';
 
@@ -59,11 +61,7 @@ export default class TagActivityTimeline extends LightningElement {
 
 		getTimelineObjects({ recordId: this.recordId }).then(data => { this.sObjectKinds = data; }).catch(error => {
 			this.error = true;
-			if (error.body && error.body.exceptionType && error.body.message) {
-				this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
-			} else {
-				this.errorMsg = JSON.stringify(error);
-			}
+			this.setError();
 		});
 
 		if (LANG === 'no' && this.headerTitleNorwegian !== undefined) {
@@ -82,10 +80,27 @@ export default class TagActivityTimeline extends LightningElement {
 			this.data = result.data;
 			this.loading = false;
 			this.loadingStyle = '';
+			if (result.data.length === 0) {
+				this.empty = true;
+			} else {
+				this.empty = false;
+			}
 		} else if (result.error) {
 			this.error = true;
 			this.loading = false;
-			this.errorMsg = result.error;
+			this.setError(result.error);
+		}
+	}
+
+	setError(error) {
+		if (error.body && error.body.exceptionType && error.body.message) {
+			this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
+		} else if (error.body && error.body.message) {
+			this.errorMsg = `${error.body.message}`;
+		} else if (typeof error === String) {
+			this.errorMsg = error;
+		} else {
+			this.errorMsg = JSON.stringify(error);
 		}
 	}
 
