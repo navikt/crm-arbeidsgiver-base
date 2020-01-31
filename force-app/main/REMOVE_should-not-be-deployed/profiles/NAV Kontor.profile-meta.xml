@@ -6,6 +6,22 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>TAG_ActivityTimelineDataProvider</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TAG_ActivityTimelineDataProviderTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TAG_ActivityTimelineModel</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TAG_ActivityTimelineModelList</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TAG_ContactFormWebService_main</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -250,6 +266,91 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.CreateableObject_Checkbox__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.CreateableObject_RecordType__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.CreateableObject_TextEnglish__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.CreateableObject_TextNorwegian__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.IsActive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SLDS_Timeline_Item__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SObjectAssigneeId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SObjectDateFieldIsDate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SObjectRelatedUserId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SObjectTypeField__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SObjectTypeValue__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SubtitleFutureEnglish__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SubtitleFutureNorwegian__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SubtitlePastEnglish__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SubtitlePastNorwegian__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SubtitleRelatedUserPrepositionEng__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_ActivityTimeline__mdt.SubtitleRelatedUserPrepositionNor__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Task.TAG_ActivityType__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -286,6 +387,9 @@
         <layout>Event-TAG Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>TAG_ActivityTimeline__mdt-Activity Timeline Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Task-TAG Task Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
@@ -301,6 +405,10 @@
     <tabVisibilities>
         <tab>CustomOpportunity__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Employer</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce Platform</userLicense>
     <userPermissions>
