@@ -37,12 +37,23 @@
 						</template>
 
 						<!-- LOAD MORE -->
+						<br>
 
-						<a class="slds-button loadMoreBtn">
-							<lightning-icon class="hoverBtn" size="xx-small" data-id={group.id}
-								alternative-text={labels.loadMore} icon-name="action:new" onclick={loadMore}>
-							</lightning-icon>
-						</a>
+						<div class="table" style="width:100%">
+
+							<div class="cell cell-left">
+								<!-- ICON & CHEVRON -->
+								<div class="container">
+									<lightning-icon class="hoverBtn" size="small" data-id={group.id}
+										alternative-text={labels.loadMore} icon-name="standard:product_consumed"
+										onclick={loadMore}>
+									</lightning-icon>
+								</div>
+							</div>
+							<div class="cell cell-right">
+							</div>
+						</div>
+
 					</lightning-accordion-section>
 				</template>
 			</lightning-accordion>

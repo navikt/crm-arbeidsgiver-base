@@ -1,42 +1,39 @@
 <template>
 	<lightning-record-view-form record-id={recordId} object-api-name={row.record.sObjectKind}>
-		<li>
+		<li class="row">
 			<span class="slds-assistive-text">task</span>
 
-			<div class={className}>
+
+			<!-- <div class={className}> -->
+			<div>
 				<div class="slds-media">
 
-					<!-- ICON & CHEVRON -->
-					<div class="slds-media__figure">
-						<button class="slds-button slds-button_icon" title="Toggle details" style="visibility: hidden;"
-							aria-controls="task-item-base">
-							<lightning-icon if:false={expanded} size="xx-small" icon-name="utility:add"
-								alternative-text="Toggle details" onclick={toggleDetailSection}>
-							</lightning-icon>
-							<lightning-icon if:true={expanded} size="xx-small" icon-name="utility:dash"
-								alternative-text="Toggle details" onclick={toggleDetailSection}>
-							</lightning-icon>
-							<span class="slds-assistive-text">Toggle details</span>
-						</button>
-						<div class="slds-icon_container slds-timeline__icon">
-							<lightning-icon size="small" icon-name={row.theme.icon}></lightning-icon>
+
+
+					<div class="table" style="width:100%">
+						<div class="cell cell-left">
+							<!-- ICON & CHEVRON -->
+							<div class="container">
+								<lightning-icon class="cell-icon" size="small" icon-name={row.theme.icon}>
+								</lightning-icon>
+								<div class="stripe"></div>
+							</div>
 						</div>
-					</div>
+						<div class="cell cell-right">
 
+							<div class="slds-media__body">
+								<div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+									<div
+										class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
 
-					<div class="slds-media__body">
-						<div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
-							<div
-								class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
-
-								<!-- TITLE -->
-								<h3 class="slds-truncate" title={row.record.title}>
-									<a onclick={openRecord}>
-										<strong>{row.record.title}</strong>
-									</a>
-								</h3>
-								<!-- RECORRUING TASK -->
-								<!-- <div if:true={isTask} class="slds-no-flex">
+										<!-- TITLE -->
+										<h3 class="slds-truncate" title={row.record.title}>
+											<a onclick={openRecord}>
+												<strong>{row.record.title}</strong>
+											</a>
+										</h3>
+										<!-- RECORRUING TASK -->
+										<!-- <div if:true={isTask} class="slds-no-flex">
 									<span class="slds-icon_container slds-icon-utility-rotate" title="Recurring Task">
 										<div class="slds-icon slds-icon_xx-small slds-icon-text-default slds-m-left_x-small"
 											aria-hidden="true">
@@ -46,8 +43,8 @@
 										<span class="slds-assistive-text">Recurring Task</span>
 									</span>
 								</div> -->
-								<!-- CHECKBOX -->
-								<!-- <div if:true={isTask} class="slds-checkbox slds-m-left_x-small">
+										<!-- CHECKBOX -->
+										<!-- <div if:true={isTask} class="slds-checkbox slds-m-left_x-small">
 									<input type="checkbox" name="options" id="checkbox-unique-id-18"
 										value="checkbox-unique-id-18" />
 									<label class="slds-checkbox__label" for="checkbox-unique-id-18">
@@ -57,15 +54,17 @@
 									</label>
 								</div> -->
 
-							</div>
+									</div>
 
 
-							<!-- DATE -->
-							<div class="slds-timeline__actions slds-timeline__actions_inline">
-								<p if:false={row.record.overdue} class="slds-timeline__date">{getDateFormat}</p>
-								<p if:true={row.record.overdue} class="slds-timeline__date slds-text-color_error">
-									{getDateFormat}</p>
-								<!-- <button
+									<!-- DATE -->
+									<div class="slds-timeline__actions slds-timeline__actions_inline">
+										<p if:false={row.record.overdue} class="slds-timeline__date">{getDateFormat}
+										</p>
+										<p if:true={row.record.overdue}
+											class="slds-timeline__date slds-text-color_error">
+											{getDateFormat}</p>
+										<!-- <button
 									class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small"
 									aria-haspopup="true" title="More Options for this item">
 									<svg class="slds-button__icon" aria-hidden="true">
@@ -73,30 +72,30 @@
 									</svg>
 									<span class="slds-assistive-text">More Options for this item</span>
 								</button> -->
-							</div>
-						</div>
+									</div>
+								</div>
 
 
-						<!-- SUBTITLE -->
-						<p class="slds-m-horizontal_xx-small">
+								<!-- SUBTITLE -->
+								<p class="slds-m-horizontal_xx-small">
 
-							<a if:true={isAssigneeAUser} data-id={row.record.assigneeId}
-								onclick={openUser}>{row.record.assignee}</a>
-							<span if:false={isAssigneeAUser}>{row.record.assignee}</span>
-							<span> {row.record.subtitle} </span>
-							<a if:true={isRelatedUserAUser} data-id={row.record.relatedUserId}
-								onclick={openUser}>{row.record.relatedUser}</a>
-							<span if:false={isRelatedUserAUser}>{row.record.relatedUser}</span>
-
-						</p>
-
-						<div if:true={expanded}
-							class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
-							<!-- <template for:each={expandedFieldsToDisplay} for:item="fieldToDisplay">
+									<a if:true={isAssigneeAUser} data-id={row.record.assigneeId}
+										onclick={openUser}>{row.record.assignee}</a>
+									<span if:false={isAssigneeAUser}>{row.record.assignee}</span>
+									<span> {row.record.subtitle} </span>
+									<a if:true={isRelatedUserAUser} data-id={row.record.relatedUserId}
+										onclick={openUser}>{row.record.relatedUser}</a>
+									<span if:false={isRelatedUserAUser}>{row.record.relatedUser}</span>
+								</p>
+								<div if:true={expanded}
+									class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
+									<!-- <template for:each={expandedFieldsToDisplay} for:item="fieldToDisplay">
 								<lightning-output-field key={fieldToDisplay.id} field-name={fieldToDisplay.apiName}>
 								</lightning-output-field>
 							</template> -->
-							<p> test </p>
+									<p> test </p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
