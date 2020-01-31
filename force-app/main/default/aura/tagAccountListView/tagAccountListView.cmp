@@ -1,4 +1,4 @@
 <aura:component implements="force:appHostable">
-	<lightning:listView aura:id="listViewAccounts" objectApiName="Account" listName="Mine_virksomheter" rows="5"
+	<lightning:listView aura:id="listViewAccounts" objectApiName="Account" listName="Mine_virksomheter" rows="20"
 		showSearchBar="true" showActionBar="false" enableInlineEdit="false" showRowLevelActions="false" />
 </aura:component>
