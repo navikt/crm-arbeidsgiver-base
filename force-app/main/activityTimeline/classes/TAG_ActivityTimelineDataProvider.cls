@@ -42,6 +42,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 
 		List<TAG_ActivityTimelineModelList> data = new List<TAG_ActivityTimelineModelList>();
 
+		Integer amountOverdue = mapOfAmountParamenter.get( Label.ActTime_Overdue );
 		Integer amountUpcoming = mapOfAmountParamenter.get( Label.ActTime_Upcoming );
 		Integer amountThisMonth = mapOfAmountParamenter.get( Label.ActTime_ThisMonth );
 		Integer amountPreviousMonth = mapOfAmountParamenter.get( Label.ActTime_PreviousMonth );
@@ -66,27 +67,31 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		TAG_ActivityTimelineModelList olderWrapped =            new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, olderData, false );
 
 		if ( overdueWrapped.models.size() > 0 ) {
-			overdueWrapped = limitAmountOfRecords( overdueWrapped );
+			overdueWrapped = limitAmountOfRecords( overdueWrapped, amountOverdue );
 			data.add( overdueWrapped );
 		} if ( upcomingWrapped.models.size() > 0 ) {
-			upcomingWrapped = limitAmountOfRecords( upcomingWrapped );
+			upcomingWrapped = limitAmountOfRecords( upcomingWrapped, amountUpcoming );
 			data.add( upcomingWrapped );
 		} if ( thisMonthWrapped.models.size() > 0 ) {
-			thisMonthWrapped = limitAmountOfRecords( thisMonthWrapped );
+			thisMonthWrapped = limitAmountOfRecords( thisMonthWrapped, amountThisMonth );
 			data.add( thisMonthWrapped );
 		} if ( previousMonthWrapped.models.size() > 0 ) {
-			previousMonthWrapped = limitAmountOfRecords( previousMonthWrapped );
+			previousMonthWrapped = limitAmountOfRecords( previousMonthWrapped, amountPreviousMonth );
 			data.add( previousMonthWrapped );
 		} if ( olderWrapped.models.size() > 0 ) {
-			olderWrapped = limitAmountOfRecords( olderWrapped );
+			olderWrapped = limitAmountOfRecords( olderWrapped, amountOlder );
 			data.add( olderWrapped );
 		}
 
 		return data;
 	}
 
-	public static TAG_ActivityTimelineModelList limitAmountOfRecords( TAG_ActivityTimelineModelList wrapped ) {
-		return wrapped; // TODO fix
+	public static TAG_ActivityTimelineModelList limitAmountOfRecords( TAG_ActivityTimelineModelList wrapped, Integer amount ) {
+		// List<Object> castedObjects = (List<Object>) wrapped.models;
+		// List<TAG_ActivityTimelineModel> models = (List<TAG_ActivityTimelineModel>) TAG_ActivityTimelineDataProviderHelper.slice( castedObjects, 0, amount );
+		// wrapped.models = models;
+
+		return wrapped;
 	}
 
 	public static TAG_ActivityTimelineModelList getCorrectMonthOnly( Integer month, TAG_ActivityTimelineModelList wrapper ) {

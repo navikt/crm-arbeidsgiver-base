@@ -27,6 +27,7 @@
 		<ul if:false={error} class="slds-timeline">
 			<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
 				onsectiontoggle={handleSectionToggle} style="border-top: 1px solid #d3d3d3;">
+
 				<!-- FOR LOOP -->
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
@@ -37,21 +38,11 @@
 						</template>
 
 						<!-- LOAD MORE -->
-						<br>
-
-						<div class="table" style="width:100%">
-
-							<div class="cell cell-left">
-								<!-- ICON & CHEVRON -->
-								<div class="container">
-									<lightning-icon class="hoverBtn cell-icon" size="small" data-id={group.id}
-										alternative-text={labels.loadMore} icon-name="standard:product_consumed"
-										onclick={loadMore}>
-									</lightning-icon>
-								</div>
-							</div>
-							<div class="cell cell-right">
-							</div>
+						<div class="slds-align_absolute-center">
+							<lightning-button class="slds-m-left_xx-small" variant="brand-outline" data-id={group.id}
+								alternative-text={labels.loadMore} label={labels.loadMore} title={labels.loadMore}
+								onclick={loadMore}>
+							</lightning-button>
 						</div>
 
 					</lightning-accordion-section>

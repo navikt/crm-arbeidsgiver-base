@@ -19,11 +19,11 @@ export default class TagActivityTimeline extends LightningElement {
 
 	// controller variables
 	@api recordId;
-	@track overdue = 1;
-	@track upcoming = 1;
-	@track thisMonth = 1;
-	@track previousMonth = 1;
-	@track older = 1;
+	@track overdue = 3;
+	@track upcoming = 3;
+	@track thisMonth = 3;
+	@track previousMonth = 3;
+	@track older = 3;
 	@api amountOfRecords = [];
 
 	@track data;

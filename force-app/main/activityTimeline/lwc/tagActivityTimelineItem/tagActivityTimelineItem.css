@@ -1,6 +1,5 @@
 .row {
-	margin-top: 1.4em;
-	z-index: 100;
+	margin-bottom: 1.4em;
 }
 
 .stripe {
@@ -9,11 +8,7 @@
 	width: 0.15em;
 	background-color: gray;
 	margin: 0 auto;
-	height: 100%;
 	min-height: 100%;
-	top: 0;
-	bottom: 0;
-	z-index: 0;
 }
 
 .table {
@@ -22,7 +17,6 @@
 }
 
 .cell {
-	/* background-color: aqua; */
 	vertical-align: top;
 	display: table-cell;
 	height: 100%;
@@ -38,8 +32,7 @@
 }
 
 .container {
-	/* background-color: pink !important; */
 	height: 100%;
 	-moz-box-sizing: border-box;
-	margin: 0 0.7em 0 0;
+	margin: 0 0.7em 0 1.7em;
 }

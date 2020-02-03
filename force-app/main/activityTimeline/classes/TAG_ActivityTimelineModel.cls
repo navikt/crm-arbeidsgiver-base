@@ -27,6 +27,7 @@ public with sharing class TAG_ActivityTimelineModel {
 		@AuraEnabled public String subtitle;
 
 		@AuraEnabled public Boolean overdue;
+		@AuraEnabled public Boolean lastElement;
 	}
 
 	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
