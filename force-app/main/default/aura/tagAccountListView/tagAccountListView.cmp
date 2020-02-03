@@ -1,4 +1,4 @@
-<aura:component implements="force:appHostable">
+<aura:component implements="force:appHostable, flexipage:availableForAllPageTypes">
 	<lightning:listView aura:id="listViewAccounts" objectApiName="Account" listName="Mine_virksomheter" rows="20"
 		showSearchBar="true" showActionBar="false" enableInlineEdit="false" showRowLevelActions="false" />
 </aura:component>
