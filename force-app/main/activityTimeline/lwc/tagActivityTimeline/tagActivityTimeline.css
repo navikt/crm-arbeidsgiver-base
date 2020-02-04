@@ -3,6 +3,11 @@
 	/* TODO add color used on line between rows */
 }
 
+.stretchButton {
+	display: block;
+	width: 100%;
+}
+
 .table {
 	display: table;
 	height: 100%;

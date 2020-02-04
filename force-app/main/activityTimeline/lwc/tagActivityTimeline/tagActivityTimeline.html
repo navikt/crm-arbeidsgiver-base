@@ -38,11 +38,9 @@
 						</template>
 
 						<!-- LOAD MORE -->
-						<div class="slds-align_absolute-center">
-							<lightning-button class="slds-m-left_xx-small" variant="brand-outline" data-id={group.id}
-								alternative-text={labels.loadMore} label={labels.loadMore} title={labels.loadMore}
-								onclick={loadMore}>
-							</lightning-button>
+						<div if:false={group.allObjectsLoaded} class="slds-align_absolute-center">
+							<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch"
+								onclick={loadMore}>{labels.loadMore}</button>
 						</div>
 
 					</lightning-accordion-section>
