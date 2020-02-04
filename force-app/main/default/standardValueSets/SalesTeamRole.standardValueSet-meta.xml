@@ -4,16 +4,21 @@
     <standardValue>
         <fullName>Account Manager</fullName>
         <default>false</default>
-        <label>KAM</label>
+        <label>Key Account Manager</label>
     </standardValue>
     <standardValue>
-        <fullName>MarketContact</fullName>
+        <fullName>Market Contact</fullName>
         <default>false</default>
         <label>Markedskontakt</label>
     </standardValue>
     <standardValue>
-        <fullName>IAconsultant</fullName>
+        <fullName>IA Consultant</fullName>
         <default>false</default>
-        <label>IA rådgiver</label>
+        <label>IA-rådgiver</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Jobbspesialist</fullName>
+        <default>false</default>
+        <label>Jobbspesialist</label>
     </standardValue>
 </StandardValueSet>
