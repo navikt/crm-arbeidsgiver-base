@@ -13,10 +13,10 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 		Task ta2 = new Task( WhatId = acc.Id, ActivityDate = t, Subject = 'test' );
 		insert ta2;
 
-		TAG_ActivityTimelineDataProvider.AmountOfRecords amountOfRecords = new TAG_ActivityTimelineDataProvider.AmountOfRecords();
-		amountOfRecords.id = Label.ActTime_ThisMonth;
-		amountOfRecords.amount = 3;
-		List<TAG_ActivityTimelineDataProvider.AmountOfRecords> amountOfRecordsList = new List<TAG_ActivityTimelineDataProvider.AmountOfRecords> { amountOfRecords };
+		List<String> periods = new List<String> { Label.ActTime_Overdue, Label.ActTime_Upcoming, Label.ActTime_ThisMonth, Label.ActTime_PreviousMonth, Label.ActTime_Older };
+		List<TAG_ActivityTimelineDataProvider.AmountOfRecords> amountOfRecordsList = getAmountOfRecordsMock( periods );
+
+		System.debug( 'amountOfRecordsList: ' + amountOfRecordsList );
 
 		Test.StartTest();
 		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineDataProvider.getTimelineItemData( acc.Id, amountOfRecordsList );
@@ -44,6 +44,19 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 				}
 			}
 		}
+	}
+
+		List<TAG_ActivityTimelineDataProvider.AmountOfRecords> amountOfRecordsList = new List<TAG_ActivityTimelineDataProvider.AmountOfRecords> ();
+
+		for ( String str : periods ) {
+			TAG_ActivityTimelineDataProvider.AmountOfRecords amountOfRecords = new TAG_ActivityTimelineDataProvider.AmountOfRecords();
+			amountOfRecords.id = str;
+			amountOfRecords.amount = 3;
+			amountOfRecords.loadedAll = false;
+			amountOfRecordsList.add( amountOfRecords );
+		}
+
+		return amountOfRecordsList;
 	}
 
 	@isTest
