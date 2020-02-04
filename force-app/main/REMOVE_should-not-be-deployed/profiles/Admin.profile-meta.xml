@@ -291,11 +291,6 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SLDS_Timeline_Item__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
 		<field>TAG_ActivityTimeline__mdt.SObjectAssigneeId__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
