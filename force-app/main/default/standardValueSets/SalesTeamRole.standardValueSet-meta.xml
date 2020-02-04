@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Account Manager</fullName>
+        <default>false</default>
+        <label>KAM</label>
+    </standardValue>
+    <standardValue>
+        <fullName>MarketContact</fullName>
+        <default>false</default>
+        <label>Markedskontakt</label>
+    </standardValue>
+    <standardValue>
+        <fullName>IAconsultant</fullName>
+        <default>false</default>
+        <label>IA rådgiver</label>
+    </standardValue>
+</StandardValueSet>
