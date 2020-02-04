@@ -48,6 +48,13 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		Integer amountPreviousMonth =   mapOfAmountParamenter.get( Label.ActTime_PreviousMonth );
 		Integer amountOlder =           mapOfAmountParamenter.get( Label.ActTime_Older );
 
+		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
+		List<TAG_ActivityTimeline__mdt> taskMdt = new List<TAG_ActivityTimeline__mdt> { sObjectsToQueryMap.get( 'Task' ) };
+
+		List<String>                    overdueQuery =         createSoqlQueries( taskMdt, recordId, amountOverdue, Label.ActTime_Overdue, 'desc' );
+		List<SObject>                   overdueSObjects =      getSObjectsFromQueries( overdueQuery );
+		List<TAG_ActivityTimelineModel> overdueData =          createActivityTimelineData( sObjectsToQuery, overdueSObjects );
+
 		List<String>                    upcomingQuery =         createSoqlQueries( sObjectsToQuery, recordId, amountUpcoming, Label.ActTime_Upcoming, 'asc' );
 		List<SObject>                   upcomingSObjects =      getSObjectsFromQueries( upcomingQuery );
 		List<TAG_ActivityTimelineModel> upcomingData =          createActivityTimelineData( sObjectsToQuery, upcomingSObjects );
@@ -60,11 +67,12 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		List<SObject>                   olderSObjects =         getSObjectsFromQueries( olderQuery );
 		List<TAG_ActivityTimelineModel> olderData =             createActivityTimelineData( sObjectsToQuery, olderSObjects );
 
-		TAG_ActivityTimelineModelList overdueWrapped =          getOverdueOnly ( new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, thisAndPreviousMonthData, false, false ) );
+		// TAG_ActivityTimelineModelList overdueWrapped =          getOverdueOnly ( new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, thisAndPreviousMonthData, false, false ) );
+		TAG_ActivityTimelineModelList overdueWrapped =          new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, overdueData, false, true );
 		TAG_ActivityTimelineModelList upcomingWrapped =         new TAG_ActivityTimelineModelList( Label.ActTime_Upcoming, Label.ActTime_Upcoming, upcomingData, false, false );
 		TAG_ActivityTimelineModelList thisMonthWrapped =        getCorrectMonthOnly( CURRENT_DATETIME.month(), new TAG_ActivityTimelineModelList( Label.ActTime_ThisMonth, CURRENT_MONTH, thisAndPreviousMonthData, false, true ) );
 		TAG_ActivityTimelineModelList previousMonthWrapped =    getCorrectMonthOnly( PREVIOUS_DATETIME.month(),  new TAG_ActivityTimelineModelList( Label.ActTime_PreviousMonth, PREVIOUS_MONTH, thisAndPreviousMonthData, false, true ) );
-		TAG_ActivityTimelineModelList olderWrapped =            new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, olderData, false, true );
+		TAG_ActivityTimelineModelList olderWrapped =            removeOverdue ( new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, olderData, false, true ) );
 
 		if ( overdueWrapped.models.size() > 0 ) {
 			overdueWrapped =        limitAmountOfRecords( overdueWrapped, amountOverdue );
@@ -99,6 +107,19 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
 		for ( TAG_ActivityTimelineModel wr : wrapper.models ) {
 			if ( wr.record.dateValueDb.month() == month && !wr.record.overdue ) {
+				tmpModels.add( wr );
+			}
+		}
+		wrapper.models = tmpModels;
+
+		return wrapper;
+	}
+
+	public static TAG_ActivityTimelineModelList removeOverdue( TAG_ActivityTimelineModelList wrapper ) {
+
+		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
+		for ( TAG_ActivityTimelineModel wr : wrapper.models ) {
+			if ( !wr.record.overdue ) {
 				tmpModels.add( wr );
 			}
 		}
@@ -256,7 +277,11 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		}
 
 
-		if ( dateParameter == Label.ActTime_Upcoming ) {
+
+		if ( dateParameter == Label.ActTime_Overdue ) {
+			return 'AND ' + mdt.SObjectDateField__c + ' < ' + currentDate +
+			       ' AND Status != \'Completed\'';
+		} else if ( dateParameter == Label.ActTime_Upcoming ) {
 			return 'AND ' + mdt.SObjectDateField__c + ' >= ' + currentDate;
 		} else if ( dateParameter == Label.ActTime_ThisMonth ) {
 			return 'AND ' + mdt.SObjectDateField__c + ' < ' + currentDate +
