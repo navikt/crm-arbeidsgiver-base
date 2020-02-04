@@ -1,10 +1,12 @@
-public with sharing class TAG_ActivityTimelineModel {
+global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
 	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; } // TODO remove
 	@AuraEnabled public SObject sObj { get; set; } // TODO remove
 
 	@AuraEnabled public Theme theme { get; set; }
 	@AuraEnabled public Record record { get; set; }
+
+	public Boolean descending = true;
 
 	public class Theme {
 		@AuraEnabled public String icon;
@@ -29,6 +31,17 @@ public with sharing class TAG_ActivityTimelineModel {
 		@AuraEnabled public Boolean overdue;
 		@AuraEnabled public Boolean lastElement;
 	}
+
+	// sorting algorithm
+	global Integer compareTo( Object compareTo ) {
+		TAG_ActivityTimelineModel compare = (TAG_ActivityTimelineModel) compareTo;
+		if ( record.dateValueDb == compare.record.dateValueDb ) { return 0; }
+		if ( descending && record.dateValueDb < compare.record.dateValueDb ) { return 1; } // sort descending, newest first
+		if ( !descending && record.dateValueDb > compare.record.dateValueDb ) { return 1; } // sort ascending, oldest first (technically, record in 2 days is "older" than one in 4 days)
+
+		return -1;
+	}
+
 
 	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
 

@@ -7,4 +7,21 @@ public with sharing class TAG_ActivityTimelineDataProviderHelper {
 
 		return output;
 	}
+
+	// public static List<TAG_ActivityTimelineModel> sortByDate( TAG_ActivityTimelineModel wrapped ) {
+
+	// 	Map<Integer, TAG_ActivityTimelineModel> modelMap = new Map<Integer, TAG_ActivityTimelineModelList>();
+	// 	Map<Integer, DateTime> dateMap = new Map<Integer, DateTime>();
+	// 	Map<Integer, TAG_ActivityTimelineModel> sortedModelMap = new Map<Integer, TAG_ActivityTimelineModelList>();
+
+
+	// 	Integer i = 0;
+	// 	for ( TAG_ActivityTimelineModel model : wrapped.models ) {
+	// 		modelMap.put( i, model );
+	// 		dateMap.put( i, model.record.dateValueDb );
+	// 		i++;
+	// 	}
+
+
+	// }
 }

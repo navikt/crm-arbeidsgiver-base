@@ -115,15 +115,15 @@ export default class TagActivityTimeline extends LightningElement {
 		var groupId = event.target.dataset.id;
 
 		if (groupId === this.labels.overdue) {
-			this.overdue += 5;
+			this.overdue += 3;
 		} else if (groupId === this.labels.upcoming) {
-			this.upcoming += 5;
+			this.upcoming += 3;
 		} else if (groupId === this.labels.thisMonth) {
-			this.thisMonth += 5;
+			this.thisMonth += 3;
 		} else if (groupId === this.labels.previousMonth) {
-			this.previousMonth += 5;
+			this.previousMonth += 3;
 		} else if (groupId === this.labels.older) {
-			this.older += 5;
+			this.older += 3;
 		}
 		this.amountOfRecords = [
 			{ id: this.labels.overdue, amount: this.overdue },
