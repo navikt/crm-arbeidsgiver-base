@@ -1,5 +1,8 @@
 <template>
 	<lightning-card title={header} icon-name={headerIcon}>
+
+		<!-- HEADER -->
+		<!-- ________________________________________________________________________ -->
 		<div slot="actions">
 			<lightning-button-group>
 				<lightning-button-icon icon-name={collapseIcon} alternative-text={collapseText}
@@ -19,17 +22,12 @@
 			</lightning-button-group>
 		</div>
 
-		<div if:true={loading} class="slds-scrollable" style={loadingStyle}>
-			<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
-		</div>
-		<div if:true={error} class="slds-scrollable" style="height:5rem;">
-			<div class="slds-text-heading_large slds-align_absolute-center">Error!</div>
-			<div class="slds-text-color_destructive slds-align_absolute-center">{errorMsg}</div>
-		</div>
-
+		<!-- DATA -->
+		<!-- ________________________________________________________________________ -->
 		<ul if:false={error} class="slds-timeline">
 			<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
 				onsectiontoggle={handleSectionToggle} style="border-top: 1px solid #d3d3d3;">
+
 				<!-- FOR LOOP -->
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
@@ -40,15 +38,32 @@
 						</template>
 
 						<!-- LOAD MORE -->
+						<div if:false={group.allObjectsLoaded} class="slds-align_absolute-center">
+							<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch"
+								onclick={loadMore}>{labels.loadMore}</button>
+						</div>
 
-						<a class="slds-button loadMoreBtn">
-							<lightning-icon class="hoverBtn" size="xx-small" data-id={group.id}
-								alternative-text={labels.loadMore} icon-name="action:new" onclick={loadMore}>
-							</lightning-icon>
-						</a>
 					</lightning-accordion-section>
 				</template>
 			</lightning-accordion>
 		</ul>
+
+		<!-- LOADING AND INFO/ERROR TEXT -->
+		<!-- ________________________________________________________________________ -->
+		<div if:true={loading} class="slds-scrollable" style={loadingStyle}>
+			<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+		</div>
+		<div if:true={error} class="slds-m-top_large">
+			<div class="slds-text-heading_large slds-align_absolute-center">{labels.errorTitle}
+			</div>
+			<div class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large">{errorMsg}</div>
+		</div>
+		<div if:true={empty} class="slds-m-top_large">
+			<div class="slds-text-heading_large slds-align_absolute-center">{labels.emptyTitle}
+			</div>
+			<div class="slds-text-heading_small slds-align_absolute-center slds-m-around_x-large">
+				{labels.emptySubtitle}</div>
+		</div>
+
 	</lightning-card>
 </template>

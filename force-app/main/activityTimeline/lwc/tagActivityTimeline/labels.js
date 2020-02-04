@@ -9,6 +9,11 @@ import loadMore from "@salesforce/label/c.ActTime_LoadMore";
 import expand from "@salesforce/label/c.ActTime_Expand";
 import collapse from "@salesforce/label/c.ActTime_Collapse";
 import activities from "@salesforce/label/c.ActTime_Activities";
+import emptyTitle from "@salesforce/label/c.ActTime_EmptyTitle";
+import emptySubtitle from "@salesforce/label/c.ActTime_EmptySubtitle";
+import errorTitle from "@salesforce/label/c.ActTime_ErrorTitle";
+
+
 
 export default {
 	MomentJsLanguage,
@@ -21,5 +26,8 @@ export default {
 	thisMonth,
 	collapse,
 	expand,
-	activities
+	activities,
+	emptyTitle,
+	emptySubtitle,
+	errorTitle
 };

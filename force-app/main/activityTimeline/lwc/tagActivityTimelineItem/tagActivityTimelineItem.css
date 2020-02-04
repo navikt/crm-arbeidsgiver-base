@@ -1,11 +1,14 @@
-.hoverBtn:hover {
-	box-shadow: 0 0 0 0.1em #DDDBDA;
-	/* TODO add color used on line between rows */
+.row {
+	margin-bottom: 1.4em;
 }
 
-.stretchButton {
-	display: block;
-	width: 100%;
+.stripe {
+	/* position: absolute; */
+	/* border-left: 0.2em solid red; */
+	width: 0.15em;
+	background-color: gray;
+	margin: 0 auto;
+	min-height: 100%;
 }
 
 .table {
@@ -24,6 +27,7 @@
 }
 
 .cell-icon {
+	margin-top: 0.3em;
 	border: 0.15em solid white;
 }
 

@@ -98,4 +98,25 @@
 		<shortDescription>[ActTime] Activities</shortDescription>
 		<value>Activities</value>
 	</labels>
+	<labels>
+		<fullName>ActTime_EmptyTitle</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Empty Title</shortDescription>
+		<value>Empty!</value>
+	</labels>
+	<labels>
+		<fullName>ActTime_ErrorTitle</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Error Title</shortDescription>
+		<value>Error!</value>
+	</labels>
+	<labels>
+		<fullName>ActTime_EmptySubtitle</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Empty Subtitle</shortDescription>
+		<value>This record doesn't seem to have any related records.</value>
+	</labels>
 </CustomLabels>

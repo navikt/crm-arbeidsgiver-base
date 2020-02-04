@@ -10,11 +10,11 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 	@api momemt;
 
 	@track expanded = false;
-	@track className = "slds-timeline__item_expandable";
+	@track timelineColor = "slds-timeline__item_expandable";
 
 	connectedCallback() {
-		if (this.row.theme.sldsTimelineItem != null) {
-			this.className = "slds-timeline__item_expandable " + this.row.theme.sldsTimelineItem;
+		if (this.row.theme.sldsTimelineItemColor != null) {
+			this.timelineColor = "	background-color: #" + this.row.theme.sldsTimelineItemColor + ";";
 		}
 	};
 

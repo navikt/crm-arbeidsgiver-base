@@ -20,18 +20,32 @@ export default class TagActivityTimeline extends LightningElement {
 	// controller variables
 	@api recordId;
 	@track overdue = 3;
-	@track upcoming = 3;
+	@track upcoming = 3; // TODO remove track
 	@track thisMonth = 3;
 	@track previousMonth = 3;
 	@track older = 3;
 	@api amountOfRecords = [];
 
+	@track previousOverdue;
+	@track previousUpcoming;
+	@track previousThisMonth;
+	@track previousPreviousMonth;
+	@track previousOlder;
+
+	@track loadedAllOverdue = false;
+	@track loadedAllUpcoming = false;
+	@track loadedAllThisMonth = false;
+	@track loadedAllPreviousMonth = false;
+	@track loadedAllOlder = false;
+
 	@track data;
 	deWireResult;
 	@track sObjectKinds;
 
-	@track error;
+	@track error = false;
 	@track errorMsg;
+	@track empty = false;
+
 	@track loading = true;
 	@track loadingStyle = 'height:5rem;width:24rem';
 
@@ -45,11 +59,11 @@ export default class TagActivityTimeline extends LightningElement {
 	connectedCallback() {
 
 		this.amountOfRecords = [
-			{ id: this.labels.overdue, amount: this.overdue },
-			{ id: this.labels.upcoming, amount: this.upcoming },
-			{ id: this.labels.thisMonth, amount: this.thisMonth },
-			{ id: this.labels.previousMonth, amount: this.previousMonth },
-			{ id: this.labels.older, amount: this.older }];
+			{ id: this.labels.overdue, amount: this.overdue, loadedAll: this.loadedAllOverdue },
+			{ id: this.labels.upcoming, amount: this.upcoming, loadedAll: this.loadedAllUpcoming },
+			{ id: this.labels.thisMonth, amount: this.thisMonth, loadedAll: this.loadedAllThisMonth },
+			{ id: this.labels.previousMonth, amount: this.previousMonth, loadedAll: this.loadedAllPreviousMonth },
+			{ id: this.labels.older, amount: this.older, loadedAll: this.loadedAllOlder }];
 
 		Promise.all([
 			loadScript(this, MOMENT_JS),
@@ -59,11 +73,7 @@ export default class TagActivityTimeline extends LightningElement {
 
 		getTimelineObjects({ recordId: this.recordId }).then(data => { this.sObjectKinds = data; }).catch(error => {
 			this.error = true;
-			if (error.body && error.body.exceptionType && error.body.message) {
-				this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
-			} else {
-				this.errorMsg = JSON.stringify(error);
-			}
+			this.setError();
 		});
 
 		if (LANG === 'no' && this.headerTitleNorwegian !== undefined) {
@@ -75,6 +85,11 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
+	renderedCallback() {
+
+
+	}
+
 	@wire(getTimelineItemData, { recordId: '$recordId', amountOfRecords: '$amountOfRecords' })
 	deWire(result) {
 		this.deWireResult = result;
@@ -82,10 +97,51 @@ export default class TagActivityTimeline extends LightningElement {
 			this.data = result.data;
 			this.loading = false;
 			this.loadingStyle = '';
+			if (result.data.length === 0) {
+				this.empty = true;
+			} else {
+				this.empty = false;
+
+				for (let i = 0; i < this.data.length; i++) {
+					const elem = result.data[i];
+					var groupId = elem.id;
+					var amount = elem.models.length;
+					var loadedAll = elem.allObjectsLoaded;
+
+					if (groupId === this.labels.overdue) {
+						this.previousOverdue = amount;
+						this.loadedAllOverdue = loadedAll;
+					} else if (groupId === this.labels.upcoming) {
+						this.previousUpcoming = amount;
+						this.loadedAllUpcoming = loadedAll;
+					} else if (groupId === this.labels.thisMonth) {
+						this.previousThisMonth = amount;
+						this.loadedAllThisMonth = loadedAll;
+					} else if (groupId === this.labels.previousMonth) {
+						this.previousPreviousMonth = amount;
+						this.loadedAllPreviousMonth = loadedAll;
+					} else if (groupId === this.labels.older) {
+						this.previousOlder = amount;
+						this.loadedAllOlder = loadedAll;
+					}
+				}
+			}
 		} else if (result.error) {
 			this.error = true;
 			this.loading = false;
-			this.errorMsg = result.error;
+			this.setError(result.error);
+		}
+	}
+
+	setError(error) {
+		if (error.body && error.body.exceptionType && error.body.message) {
+			this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
+		} else if (error.body && error.body.message) {
+			this.errorMsg = `${error.body.message}`;
+		} else if (typeof error === String) {
+			this.errorMsg = error;
+		} else {
+			this.errorMsg = JSON.stringify(error);
 		}
 	}
 
@@ -99,23 +155,19 @@ export default class TagActivityTimeline extends LightningElement {
 
 		var groupId = event.target.dataset.id;
 
-		if (groupId === this.labels.overdue) {
-			this.overdue += 5;
-		} else if (groupId === this.labels.upcoming) {
-			this.upcoming += 5;
-		} else if (groupId === this.labels.thisMonth) {
-			this.thisMonth += 5;
-		} else if (groupId === this.labels.previousMonth) {
-			this.previousMonth += 5;
-		} else if (groupId === this.labels.older) {
-			this.older += 5;
-		}
+		if (groupId === this.labels.overdue) { this.overdue += 3; }
+		else if (groupId === this.labels.upcoming) { this.upcoming += 3; }
+		else if (groupId === this.labels.thisMonth) { this.thisMonth += 3; }
+		else if (groupId === this.labels.previousMonth) { this.previousMonth += 3; }
+		else if (groupId === this.labels.older) { this.older += 3; }
+
+
 		this.amountOfRecords = [
-			{ id: this.labels.overdue, amount: this.overdue },
-			{ id: this.labels.upcoming, amount: this.upcoming },
-			{ id: this.labels.thisMonth, amount: this.thisMonth },
-			{ id: this.labels.previousMonth, amount: this.previousMonth },
-			{ id: this.labels.older, amount: this.older }];
+			{ id: this.labels.overdue, amount: this.overdue, previousAmount: this.previousOverdue, loadedAll: this.loadedAllOverdue, idUpdated: groupId },
+			{ id: this.labels.upcoming, amount: this.upcoming, previousAmount: this.previousUpcoming, loadedAll: this.loadedAllUpcoming, idUpdated: groupId },
+			{ id: this.labels.thisMonth, amount: this.thisMonth, previousAmount: this.previousThisMonth, loadedAll: this.loadedAllThisMonth, idUpdated: groupId },
+			{ id: this.labels.previousMonth, amount: this.previousMonth, previousAmount: this.previousPreviousMonth, loadedAll: this.loadedAllPreviousMonth, idUpdated: groupId },
+			{ id: this.labels.older, amount: this.older, previousAmount: this.previousOlder, loadedAll: this.loadedAllOlder, idUpdated: groupId }];
 
 		this.loading = true;
 	}

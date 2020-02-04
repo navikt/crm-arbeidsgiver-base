@@ -1,105 +1,152 @@
 public with sharing class TAG_ActivityTimelineDataProvider {
 
-	private static final List<String> CHILD_FIELDS_TO_QUERY = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c', 'SObjectAssigneeId__c', 'SObjectRelatedUserId__c', 'SObjectTypeField__c' };
-	private static final User USER = [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
-	private static final Boolean IS_NORWEGIAN = USER.LanguageLocaleKey == 'Norsk';
+	private static final List<String> CHILD_FIELDS_TO_QUERY =   new List<String> { 'SObjectDateField__c', 'SObjectTitle__c', 'SObjectAssigneeId__c', 'SObjectRelatedUserId__c', 'SObjectTypeField__c' };
+	private static final User USER =                            [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
+	private static final Boolean IS_NORWEGIAN =                 USER.LanguageLocaleKey == 'Norsk';
 
-	private static final List<String> MONTH_NAME = new List<String> {null, 'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'};
-	private static final Datetime CURRENT_DATETIME = Datetime.now();
-	private static final String CURRENT_MONTH = IS_NORWEGIAN ? MONTH_NAME[CURRENT_DATETIME.month()] : CURRENT_DATETIME.format( 'MMMMM' );
-	private static final Datetime PREVIOUS_DATETIME = Datetime.now().addMonths( -1 );
-	private static final String PREVIOUS_MONTH = IS_NORWEGIAN ? MONTH_NAME[PREVIOUS_DATETIME.month()] : PREVIOUS_DATETIME.format( 'MMMMM' );
-
+	private static final List<String> MONTH_NAME =              new List<String> {null, 'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'};
+	private static final Datetime CURRENT_DATETIME =            Datetime.now();
+	private static final String CURRENT_MONTH =                 IS_NORWEGIAN ? MONTH_NAME[CURRENT_DATETIME.month()] : CURRENT_DATETIME.format( 'MMMMM' );
+	private static final Datetime PREVIOUS_DATETIME =           Datetime.now().addMonths( -1 );
+	private static final String PREVIOUS_MONTH =                IS_NORWEGIAN ? MONTH_NAME[PREVIOUS_DATETIME.month()] : PREVIOUS_DATETIME.format( 'MMMMM' );
 
 	public class AmountOfRecords {
 		@AuraEnabled public String id { get; set; }
+		@AuraEnabled public String idUpdated { get; set; }
 		@AuraEnabled public Integer amount { get; set; }
+		@AuraEnabled public Integer previousAmount { get; set; }
+		@AuraEnabled public Boolean loadedAll { get; set; }
 	}
 
 	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId, List<AmountOfRecords> amountOfRecords ) {
+
+		System.debug( 'amountOfRecords: ' + amountOfRecords );
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = getSOjectTypeFromRecordId( recordId );
-
-		Map<String, Integer> mapOfAmountParamenter = createMapOfAmountParamenter( amountOfRecords );
+		Map<String, AmountOfRecords> mapOfAmountParamenter = createMapOfAmountParamenter( amountOfRecords );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType, false );
 		List<TAG_ActivityTimelineModelList> data = query( sObjectsToQuery, recordId, mapOfAmountParamenter );
 
 		return data;
 	}
 
-	public static Map<String, Integer> createMapOfAmountParamenter( List<AmountOfRecords> amountOfRecords ) {
-		Map<String, Integer> mapOfAmountParamenter = new Map<String, Integer>();
+	public static Map<String, AmountOfRecords> createMapOfAmountParamenter( List<AmountOfRecords> amountOfRecords ) {
+		Map<String, AmountOfRecords> mapOfAmountParamenter = new Map<String, AmountOfRecords>();
 
 		for ( AmountOfRecords row : amountOfRecords ) {
-			mapOfAmountParamenter.put( row.id, row.amount );
+			mapOfAmountParamenter.put( row.id, row );
 		}
 
 		return mapOfAmountParamenter;
 	}
 
-	public static List<TAG_ActivityTimelineModelList> query( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Map<String, Integer> mapOfAmountParamenter ) {
+	public static List<TAG_ActivityTimelineModelList> query( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Map<String, AmountOfRecords> mapOfAmountParamenter ) {
 
 		List<TAG_ActivityTimelineModelList> data = new List<TAG_ActivityTimelineModelList>();
 
-		Integer amountUpcoming = mapOfAmountParamenter.get( Label.ActTime_Upcoming );
-		Integer amountThisMonth = mapOfAmountParamenter.get( Label.ActTime_ThisMonth );
-		Integer amountPreviousMonth = mapOfAmountParamenter.get( Label.ActTime_PreviousMonth );
-		Integer amountOlder = mapOfAmountParamenter.get( Label.ActTime_Older );
+		Integer amountOverdue =         mapOfAmountParamenter.get( Label.ActTime_Overdue ).amount;
+		Integer amountUpcoming =        mapOfAmountParamenter.get( Label.ActTime_Upcoming ).amount;
+		Integer amountThisMonth =       mapOfAmountParamenter.get( Label.ActTime_ThisMonth ).amount;
+		Integer amountPreviousMonth =   mapOfAmountParamenter.get( Label.ActTime_PreviousMonth ).amount;
+		Integer amountOlder =           mapOfAmountParamenter.get( Label.ActTime_Older ).amount;
 
-		List<String> upcomingQuery = createSoqlQueries( sObjectsToQuery, recordId, amountUpcoming, Label.ActTime_Upcoming );
-		List<SObject> upcomingSObjects = getSObjectsFromQueries( upcomingQuery );
-		List<TAG_ActivityTimelineModel> upcomingData = createActivityTimelineData( sObjectsToQuery, upcomingSObjects );
+		Integer previousAmountOverdue =         mapOfAmountParamenter.get( Label.ActTime_Overdue ).previousAmount;
+		Integer previousAmountUpcoming =        mapOfAmountParamenter.get( Label.ActTime_Upcoming ).previousAmount;
+		Integer previousAmountThisMonth =       mapOfAmountParamenter.get( Label.ActTime_ThisMonth ).previousAmount;
+		Integer previousAmountPreviousMonth =   mapOfAmountParamenter.get( Label.ActTime_PreviousMonth ).previousAmount;
+		Integer previousAmountOlder =           mapOfAmountParamenter.get( Label.ActTime_Older ).previousAmount;
 
-		List<String> thisAndPreviousMonthQuery = createSoqlQueries( sObjectsToQuery, recordId, null, Label.ActTime_ThisMonth );
-		List<SObject> thisAndPreviousMonthSObjects = getSObjectsFromQueries( thisAndPreviousMonthQuery );
-		List<TAG_ActivityTimelineModel> thisAndPreviousMonthData = createActivityTimelineData( sObjectsToQuery, thisAndPreviousMonthSObjects );
+		Boolean previousLoadedOverdue =         mapOfAmountParamenter.get( Label.ActTime_Overdue ).loadedAll;
+		Boolean previousLoadedUpcoming =        mapOfAmountParamenter.get( Label.ActTime_Upcoming ).loadedAll;
+		Boolean previousLoadedThisMonth =       mapOfAmountParamenter.get( Label.ActTime_ThisMonth ).loadedAll;
+		Boolean previousLoadedPreviousMonth =   mapOfAmountParamenter.get( Label.ActTime_PreviousMonth ).loadedAll;
+		Boolean previousLoadedOlder =           mapOfAmountParamenter.get( Label.ActTime_Older ).loadedAll;
 
-		List<String> olderQuery = createSoqlQueries( sObjectsToQuery, recordId, amountOlder, Label.ActTime_Older );
-		List<SObject> olderSObjects = getSObjectsFromQueries( olderQuery );
-		List<TAG_ActivityTimelineModel> olderData = createActivityTimelineData( sObjectsToQuery, olderSObjects );
+		String idUpdated =           mapOfAmountParamenter.get( Label.ActTime_Older ).idUpdated;
 
-		TAG_ActivityTimelineModelList upcomingWrapped =         new TAG_ActivityTimelineModelList( Label.ActTime_Upcoming, Label.ActTime_Upcoming, upcomingData, false );
-		TAG_ActivityTimelineModelList thisMonthWrapped =        getCorrectMonthOnly( CURRENT_DATETIME.month(), new TAG_ActivityTimelineModelList( Label.ActTime_ThisMonth, CURRENT_MONTH, thisAndPreviousMonthData, false ) );
-		TAG_ActivityTimelineModelList previousMonthWrapped =    getCorrectMonthOnly( PREVIOUS_DATETIME.month(),  new TAG_ActivityTimelineModelList( Label.ActTime_PreviousMonth, PREVIOUS_MONTH, thisAndPreviousMonthData, false ) );
-		TAG_ActivityTimelineModelList overdueWrapped =          getOverdueOnly ( new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, thisAndPreviousMonthData, false ) );
-		TAG_ActivityTimelineModelList olderWrapped =            new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, olderData, false );
+		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
+		List<TAG_ActivityTimeline__mdt> taskMdt = new List<TAG_ActivityTimeline__mdt> { sObjectsToQueryMap.get( 'Task' ) };
+
+		List<String>                    overdueQuery =          createSoqlQueries( taskMdt, recordId, amountOverdue, Label.ActTime_Overdue, 'desc' );
+		List<SObject>                   overdueSObjects =       getSObjectsFromQueries( overdueQuery );
+		List<TAG_ActivityTimelineModel> overdueData =           createActivityTimelineData( sObjectsToQuery, overdueSObjects );
+		Boolean loadedAllOverdue =                              (overdueData.size() == previousAmountOverdue && idUpdated == Label.ActTime_Overdue) || previousLoadedOverdue;
+
+		List<String>                    upcomingQuery =         createSoqlQueries( sObjectsToQuery, recordId, amountUpcoming, Label.ActTime_Upcoming, 'asc' );
+		List<SObject>                   upcomingSObjects =      getSObjectsFromQueries( upcomingQuery );
+		List<TAG_ActivityTimelineModel> upcomingData =          createActivityTimelineData( sObjectsToQuery, upcomingSObjects );
+		Boolean loadedAllUpcoming =                             (upcomingData.size() == previousAmountUpcoming && idUpdated == Label.ActTime_Upcoming) || previousLoadedUpcoming;
+
+		List<String>                    thisAndPrevMonthQuery = createSoqlQueries( sObjectsToQuery, recordId, null, Label.ActTime_ThisMonth, 'desc' );
+		List<SObject>                   thisAndPrevMonthSObj =  getSObjectsFromQueries( thisAndPrevMonthQuery );
+		List<TAG_ActivityTimelineModel> thisAndPrevMonthData =  createActivityTimelineData( sObjectsToQuery, thisAndPrevMonthSObj );
+		List<TAG_ActivityTimelineModel> thisMonthData =         getCorrectMonthOnly( PREVIOUS_DATETIME.month(), thisAndPrevMonthData );
+		List<TAG_ActivityTimelineModel> previousMonthData =     getCorrectMonthOnly( CURRENT_DATETIME.month(),  thisAndPrevMonthData );
+		Boolean loadedAllThisMonth =                            (thisMonthData.size() == previousAmountThisMonth && idUpdated == Label.ActTime_ThisMonth) || previousLoadedThisMonth;
+		Boolean loadedAllPreviousMonth =                        (previousMonthData.size() == previousAmountPreviousMonth && idUpdated == Label.ActTime_PreviousMonth) || previousLoadedPreviousMonth;
+
+		List<String>                    olderQuery =            createSoqlQueries( sObjectsToQuery, recordId, amountOlder, Label.ActTime_Older, 'desc' );
+		List<SObject>                   olderSObjects =         getSObjectsFromQueries( olderQuery );
+		List<TAG_ActivityTimelineModel> olderData =             removeOverdue( createActivityTimelineData( sObjectsToQuery, olderSObjects ) );
+		Boolean loadedAllOlder =                                (olderData.size() == previousAmountOlder && idUpdated == Label.ActTime_Older) || previousLoadedOlder;
+
+		TAG_ActivityTimelineModelList overdueWrapped =          new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, overdueData, loadedAllOverdue, true );
+		TAG_ActivityTimelineModelList upcomingWrapped =         new TAG_ActivityTimelineModelList( Label.ActTime_Upcoming, Label.ActTime_Upcoming, upcomingData, loadedAllUpcoming, false );
+		TAG_ActivityTimelineModelList thisMonthWrapped =        new TAG_ActivityTimelineModelList( Label.ActTime_ThisMonth, CURRENT_MONTH, thisMonthData, loadedAllThisMonth, true );
+		TAG_ActivityTimelineModelList previousMonthWrapped =    new TAG_ActivityTimelineModelList( Label.ActTime_PreviousMonth, PREVIOUS_MONTH, previousMonthData, loadedAllPreviousMonth, true );
+		TAG_ActivityTimelineModelList olderWrapped =            new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, olderData, loadedAllOlder, true );
 
 		if ( overdueWrapped.models.size() > 0 ) {
-			overdueWrapped = limitAmountOfRecords( overdueWrapped );
+			overdueWrapped =        limitAmountOfRecords( overdueWrapped, amountOverdue );
 			data.add( overdueWrapped );
 		} if ( upcomingWrapped.models.size() > 0 ) {
-			upcomingWrapped = limitAmountOfRecords( upcomingWrapped );
+			upcomingWrapped =       limitAmountOfRecords( upcomingWrapped, amountUpcoming );
 			data.add( upcomingWrapped );
 		} if ( thisMonthWrapped.models.size() > 0 ) {
-			thisMonthWrapped = limitAmountOfRecords( thisMonthWrapped );
+			thisMonthWrapped =      limitAmountOfRecords( thisMonthWrapped, amountThisMonth );
 			data.add( thisMonthWrapped );
 		} if ( previousMonthWrapped.models.size() > 0 ) {
-			previousMonthWrapped = limitAmountOfRecords( previousMonthWrapped );
+			previousMonthWrapped =  limitAmountOfRecords( previousMonthWrapped, amountPreviousMonth );
 			data.add( previousMonthWrapped );
 		} if ( olderWrapped.models.size() > 0 ) {
-			olderWrapped = limitAmountOfRecords( olderWrapped );
+			olderWrapped =          limitAmountOfRecords( olderWrapped, amountOlder );
 			data.add( olderWrapped );
 		}
 
 		return data;
 	}
 
-	public static TAG_ActivityTimelineModelList limitAmountOfRecords( TAG_ActivityTimelineModelList wrapped ) {
-		return wrapped; // TODO fix
+	public static TAG_ActivityTimelineModelList limitAmountOfRecords( TAG_ActivityTimelineModelList wrapped, Integer amount ) {
+		List<Object> castedObjects = (List<Object>) wrapped.models;
+		List<TAG_ActivityTimelineModel> models = (List<TAG_ActivityTimelineModel>) TAG_ActivityTimelineDataProviderHelper.slice( castedObjects, 0, amount );
+		wrapped.models = models;
+
+		return wrapped;
 	}
 
-	public static TAG_ActivityTimelineModelList getCorrectMonthOnly( Integer month, TAG_ActivityTimelineModelList wrapper ) {
+	public static List<TAG_ActivityTimelineModel> getCorrectMonthOnly( Integer month, List<TAG_ActivityTimelineModel> models ) {
 
 		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
-		for ( TAG_ActivityTimelineModel wr : wrapper.models ) {
+		for ( TAG_ActivityTimelineModel wr : models ) {
 			if ( wr.record.dateValueDb.month() == month && !wr.record.overdue ) {
 				tmpModels.add( wr );
 			}
 		}
-		wrapper.models = tmpModels;
 
-		return wrapper;
+		return tmpModels;
+	}
+
+	public static List<TAG_ActivityTimelineModel> removeOverdue( List<TAG_ActivityTimelineModel> models ) {
+
+		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
+		for ( TAG_ActivityTimelineModel wr : models ) {
+			if ( !wr.record.overdue ) {
+				tmpModels.add( wr );
+			}
+		}
+
+		return tmpModels;
 	}
 
 	public static TAG_ActivityTimelineModelList getOverdueOnly( TAG_ActivityTimelineModelList wrapper ) {
@@ -169,7 +216,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		}
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
-		                                                   SLDS_Timeline_Item__c, SLDS_Icon__c,
+		                                                   SLDS_Timeline_Color__c, SLDS_Icon__c,
 		                                                   CreateableObject_TextEnglish__c, CreateableObject_TextNorwegian__c, CreateableObject_RecordType__c,
 		                                                   SObjectChild__c, SObjectParent__c,
 		                                                   SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,
@@ -208,7 +255,7 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		}
 	}
 
-	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, String dateParameter ) {
+	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, String dateParameter, String ascOrDesc ) {
 
 		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
@@ -224,7 +271,8 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 			               ' ' + getSoqlDateFromMonthPeriod( mdt, dateParameter ) +
 			               ' AND ' + mdt.SObjectDateField__c + ' != null ' +
 
-			               ' ORDER BY ' + mdt.SObjectDateField__c;
+			               ' ORDER BY ' + mdt.SObjectDateField__c +
+			               ' ' + ascOrDesc;
 
 			if ( amount != null ) {
 				query +=  ' LIMIT ' + amount;
@@ -250,7 +298,11 @@ public with sharing class TAG_ActivityTimelineDataProvider {
 		}
 
 
-		if ( dateParameter == Label.ActTime_Upcoming ) {
+
+		if ( dateParameter == Label.ActTime_Overdue ) {
+			return 'AND ' + mdt.SObjectDateField__c + ' < ' + currentDate +
+			       ' AND Status != \'Completed\'';
+		} else if ( dateParameter == Label.ActTime_Upcoming ) {
 			return 'AND ' + mdt.SObjectDateField__c + ' >= ' + currentDate;
 		} else if ( dateParameter == Label.ActTime_ThisMonth ) {
 			return 'AND ' + mdt.SObjectDateField__c + ' < ' + currentDate +
