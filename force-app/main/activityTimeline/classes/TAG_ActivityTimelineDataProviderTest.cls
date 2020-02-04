@@ -45,6 +45,7 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 			}
 		}
 	}
+	public static List<TAG_ActivityTimelineDataProvider.AmountOfRecords> getAmountOfRecordsMock( List<String> periods ) {
 
 		List<TAG_ActivityTimelineDataProvider.AmountOfRecords> amountOfRecordsList = new List<TAG_ActivityTimelineDataProvider.AmountOfRecords> ();
 
