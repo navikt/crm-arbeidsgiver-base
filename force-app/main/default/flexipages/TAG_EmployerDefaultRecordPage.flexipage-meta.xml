@@ -24,8 +24,26 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <mode>Replace</mode>
-        <name>detailTabContent</name>
+        <name>Facet-ad3e4692-d3e8-429a-904d-54edeb56d2f8</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Account.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>AccountTeamMembers</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>GRID</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
+        <name>Facet-bcfa2847-4695-4b36-bb3a-ebe7ad49ee7f</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -44,67 +62,69 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>AccountTeamMembers</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>GRID</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>relatedTabContent</name>
+        <name>Facet-ab644c37-346b-45e8-8020-ff412bb08545</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>active</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
                 <name>body</name>
-                <value>detailTabContent</value>
+                <value>Facet-ad3e4692-d3e8-429a-904d-54edeb56d2f8</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>title</name>
+                <name>label</name>
                 <value>Standard.Tab.detail</value>
             </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
+            <componentInstanceProperties>
+                <name>name</name>
+                <value>accordionSection2</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:accordionSection</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
-                <name>active</name>
-                <value>false</value>
+                <name>body</name>
+                <value>Facet-bcfa2847-4695-4b36-bb3a-ebe7ad49ee7f</value>
             </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>NAV Kontaktpersoner</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>name</name>
+                <value>accordionSection1</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:accordionSection</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>relatedTabContent</value>
+                <value>Facet-ab644c37-346b-45e8-8020-ff412bb08545</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.relatedLists</value>
+                <name>label</name>
+                <value>Kontaktpersoner i virksomheten</value>
             </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
+            <componentInstanceProperties>
+                <name>name</name>
+                <value>accordionSection--wbfdd1fn7vm</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:accordionSection</componentName>
         </componentInstances>
-        <mode>Replace</mode>
-        <name>maintabs</name>
+        <name>Facet-85f952b8-04e9-4649-96ec-4be19171c6f2</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>tabs</name>
-                <value>maintabs</value>
+                <name>accordionSections</name>
+                <value>Facet-85f952b8-04e9-4649-96ec-4be19171c6f2</value>
             </componentInstanceProperties>
-            <componentName>flexipage:tabset</componentName>
+            <componentInstanceProperties>
+                <name>defaultSectionName</name>
+                <value>accordionSection2</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:accordion</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>main</name>
