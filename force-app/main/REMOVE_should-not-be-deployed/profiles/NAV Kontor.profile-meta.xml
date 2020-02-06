@@ -367,6 +367,10 @@
 		<layout>CustomOpportunity__c-General Page Layout</layout>
 	</layoutAssignments>
 	<layoutAssignments>
+		<layout>Account-TAG Virksomhet</layout>
+		<recordType>Account.Employer</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
 		<layout>CustomOpportunity__c-General Page Layout</layout>
 		<recordType>CustomOpportunity__c.General</recordType>
 	</layoutAssignments>
