@@ -1,3 +1,31 @@
+
+# Project specific
+# ----------------------------------------------------------------------------------------
+
+# profiles
+**/profiles/*
+!**/non_deployable/profiles/*
+!**/unpackaged/profiles/*
+
+# standard fields not needed in source control
+**/objects/Account/fields/ChannelProgramLevelName.field-meta.xml
+**/objects/Account/fields/ChannelProgramName.field-meta.xml
+**/objects/Account/fields/CleanStatus.field-meta.xml
+**/objects/Account/fields/DandbCompanyId.field-meta.xml
+**/objects/Account/fields/DunsNumber.field-meta.xml
+**/objects/Account/fields/NaicsCode.field-meta.xml
+**/objects/Account/fields/NaicsDesc.field-meta.xml
+**/objects/Account/fields/OperatingHoursId.field-meta.xml
+**/objects/Account/fields/Tradestyle.field-meta.xml
+**/objects/Account/fields/YearStarted.field-meta.xml
+**/objects/Contact/fields/CleanStatus.field-meta.xml
+**/objects/Account/fields/AccountSource.field-meta.xml
+
+# translations
+**/translations/en_US.translation-meta.xml
+
+
+
 # VS Code
 # ----------------------------------------------------------------------------------------
 
@@ -9,18 +37,17 @@
 !.vscode/extensions.json
 
 
-.localdevserver
-
-
 
 # SSDX Helper
 # ----------------------------------------------------------------------------------------
 
 .packageKey
+**/deployment_tmp*
+**/dummy-data/*.out/*
 
 
 
-# sfdx
+# SFDX
 # ----------------------------------------------------------------------------------------
 
 # Salesforce cache
@@ -48,41 +75,7 @@ ehthumbs.db
 [Dd]esktop.ini
 $RECYCLE.BIN/
 
-# SFDX
-**/profiles/*
-!**/REMOVE_*/profiles/*
-**/profilePasswordPolicies*
-**/profileSessionSettings*
-
-# ignore deployment temp files
-**/deployment_tmp*
-**/dummy-data/*.out/*
-
-# bugs
-**/objects/Account/fields/ChannelProgramLevelName.field-meta.xml
-**/objects/Account/fields/ChannelProgramName.field-meta.xml
-**/objects/Account/fields/CleanStatus.field-meta.xml
-**/objects/Account/fields/DandbCompanyId.field-meta.xml
-**/objects/Account/fields/DunsNumber.field-meta.xml
-**/objects/Account/fields/NaicsCode.field-meta.xml
-**/objects/Account/fields/NaicsDesc.field-meta.xml
-**/objects/Account/fields/OperatingHoursId.field-meta.xml
-**/objects/Account/fields/Tradestyle.field-meta.xml
-**/objects/Account/fields/YearStarted.field-meta.xml
-**/objects/Contact/fields/CleanStatus.field-meta.xml
-**/profilePasswordPolicies/Customer_Community_Login_User_profilePasswordPolicy*.profilePasswordPolicy-meta.xml
-**/profileSessionSettings/Customer_Community_Login_User_profileSessionSetting*.profileSessionSetting-meta.xml
-**/objects/Account/fields/AccountSource.field-meta.xml
-
-# translations
-**/translations/en_US.translation-meta.xml
-
-
-
-
-
-
-
+.localdevserver
 
 
 
@@ -164,11 +157,6 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
-
-
-
-
-
 
 
 
