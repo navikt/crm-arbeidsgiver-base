@@ -206,6 +206,7 @@ jobs:
             if [ -d force-app/main/non_deployable ]; then
                 rm -r force-app/main/non_deployable
             fi
+      - persist_to_workspace_cmd
 
   ####################################################
   # ! Create new package
