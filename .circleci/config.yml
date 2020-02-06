@@ -198,7 +198,7 @@ jobs:
     steps:
       - attach_workspace_cmd
       - run:
-          name: Creating new package
+          name: Delete non packageable metadata
           command: |
             if [ -d force-app/main/unpackaged ]; then
                 rm -r force-app/main/unpackaged
