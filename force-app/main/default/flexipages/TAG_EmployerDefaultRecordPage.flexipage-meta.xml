@@ -16,7 +16,6 @@
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
-        <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -24,27 +23,38 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <name>Facet-ad3e4692-d3e8-429a-904d-54edeb56d2f8</name>
+        <name>Facet-4e241761-17f0-4791-9352-376ddc9c2717</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
+                <name>active</name>
+                <value>true</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>AccountTeamMembers</value>
+                <name>body</name>
+                <value>Facet-4e241761-17f0-4791-9352-376ddc9c2717</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>GRID</value>
+                <name>title</name>
+                <value>Standard.Tab.detail</value>
             </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
+            <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>Facet-bcfa2847-4695-4b36-bb3a-ebe7ad49ee7f</name>
+        <name>Facet-2dfb93a9-39a6-4c73-8d44-21bb40acb514</name>
         <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>Facet-2dfb93a9-39a6-4c73-8d44-21bb40acb514</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <name>leftsidebar</name>
+        <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
@@ -62,71 +72,51 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <name>Facet-ab644c37-346b-45e8-8020-ff412bb08545</name>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Account.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>AccountTeamMembers</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>GRID</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
+        <name>Facet-e2c03319-2a1e-46b0-8e6d-78bd54d779c4</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-ad3e4692-d3e8-429a-904d-54edeb56d2f8</value>
+                <name>active</name>
+                <value>true</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>label</name>
-                <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>name</name>
-                <value>accordionSection2</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:accordionSection</componentName>
-        </componentInstances>
-        <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-bcfa2847-4695-4b36-bb3a-ebe7ad49ee7f</value>
+                <value>Facet-e2c03319-2a1e-46b0-8e6d-78bd54d779c4</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>label</name>
-                <value>NAV Kontaktpersoner</value>
+                <name>title</name>
+                <value>Contacts</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>name</name>
-                <value>accordionSection1</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:accordionSection</componentName>
+            <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-ab644c37-346b-45e8-8020-ff412bb08545</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>label</name>
-                <value>Kontaktpersoner i virksomheten</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>name</name>
-                <value>accordionSection--wbfdd1fn7vm</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:accordionSection</componentName>
-        </componentInstances>
-        <name>Facet-85f952b8-04e9-4649-96ec-4be19171c6f2</name>
+        <name>Facet-129f338b-1046-45e5-b4d0-e0e44c4cf3a8</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>accordionSections</name>
-                <value>Facet-85f952b8-04e9-4649-96ec-4be19171c6f2</value>
+                <name>tabs</name>
+                <value>Facet-129f338b-1046-45e5-b4d0-e0e44c4cf3a8</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>defaultSectionName</name>
-                <value>accordionSection2</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:accordion</componentName>
+            <componentName>flexipage:tabset</componentName>
         </componentInstances>
-        <mode>Replace</mode>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -144,15 +134,43 @@
             </componentInstanceProperties>
             <componentName>tagActivityTimeline</componentName>
         </componentInstances>
-        <mode>Replace</mode>
-        <name>sidebar</name>
+        <name>Facet-3fd981b8-7cf8-403c-b742-9bf261d1fc92</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-3fd981b8-7cf8-403c-b742-9bf261d1fc92</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Standard.Tab.activity</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <name>Facet-d2f2699c-5fb4-4ac1-afb8-20f3775bb506</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>Facet-d2f2699c-5fb4-4ac1-afb8-20f3775bb506</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <name>rightsidebar</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Employer Default Record Page</masterLabel>
-    <parentFlexiPage>sfa__Account_rec_L</parentFlexiPage>
     <sobjectType>Account</sobjectType>
     <template>
-        <name>flexipage:recordHomeTemplateDesktop</name>
+        <name>flexipage:recordHomeThreeColHeaderTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>
