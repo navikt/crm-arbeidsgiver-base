@@ -6,11 +6,11 @@
 		<visible>false</visible>
 	</applicationVisibilities>
 	<classAccesses>
-		<apexClass>TAG_ActivityTimelineDataProvider</apexClass>
+		<apexClass>TAG_ActivityTimelineController</apexClass>
 		<enabled>true</enabled>
 	</classAccesses>
 	<classAccesses>
-		<apexClass>TAG_ActivityTimelineDataProviderTest</apexClass>
+		<apexClass>TAG_ActivityTimelineControllerTest</apexClass>
 		<enabled>true</enabled>
 	</classAccesses>
 	<classAccesses>

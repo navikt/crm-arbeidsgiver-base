@@ -4,8 +4,8 @@ import { refreshApex } from '@salesforce/apex';
 import LANG from '@salesforce/i18n/lang';
 
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
-import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineItemData';
-import getTimelineObjects from '@salesforce/apex/TAG_ActivityTimelineDataProvider.getTimelineObjects';
+import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineController.getTimelineItemData';
+import getTimelineObjects from '@salesforce/apex/TAG_ActivityTimelineController.getTimelineObjects';
 import labels from "./labels";
 
 export default class TagActivityTimeline extends LightningElement {

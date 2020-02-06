@@ -18,7 +18,7 @@ private class TAG_ActivityTimelineModelTest {
 		Task ta2 = new Task( WhatId = acc.Id, ActivityDate = t, Subject = 'test' );
 		insert ta2;
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineDataProvider.getSObjectsToQuery( 'Account', true );
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineController.getSObjectsToQuery( 'Account', true );
 		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Older, 'desc' );
 		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
 		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
@@ -53,7 +53,7 @@ private class TAG_ActivityTimelineModelTest {
 		Task ta2 = new Task( WhatId = acc.Id, ActivityDate = t, Subject = 'test' );
 		insert ta2;
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineDataProvider.getSObjectsToQuery( 'Account', true );
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineController.getSObjectsToQuery( 'Account', true );
 		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Upcoming, 'asc' );
 		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
 		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );

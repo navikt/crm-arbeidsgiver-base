@@ -1,4 +1,4 @@
-public with sharing class TAG_ActivityTimelineDataProvider {
+public with sharing class TAG_ActivityTimelineController {
 
 	private static final User USER =                            [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
 	private static final Boolean IS_NORWEGIAN =                 USER.LanguageLocaleKey == 'Norsk';
