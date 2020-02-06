@@ -191,6 +191,23 @@ jobs:
             sfdx rstk:package:dependencies:install -w 10 --noprecheck -k "1:$SFDX_PACKAGE_KEY 2:$SFDX_PACKAGE_KEY 3:$SFDX_PACKAGE_KEY 4:$SFDX_PACKAGE_KEY 5:$SFDX_PACKAGE_KEY"
 
   ####################################################
+  # ! Delete non packageable metadata
+  ####################################################
+  delete-non-packageable-metadata:
+    <<: *defaults
+    steps:
+      - attach_workspace_cmd
+      - run:
+          name: Delete non packageable metadata
+          command: |
+            if [ -d force-app/main/unpackaged ]; then
+                rm -r force-app/main/unpackaged
+            fi
+            if [ -d force-app/main/non_deployable ]; then
+                rm -r force-app/main/non_deployable
+            fi
+
+  ####################################################
   # ! Create new package
   ####################################################
   create-package-tag:
@@ -200,12 +217,7 @@ jobs:
       - run:
           name: Creating new package
           command: |
-            if [ -d force-app/main/unpackaged ]; then
-                rm -r force-app/main/unpackaged
-            fi
-            if [ -d force-app/main/non_deployable ]; then
-                rm -r force-app/main/non_deployable
-            fi
+            ls force-app/main
             sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
 
   ####################################################
@@ -330,10 +342,14 @@ workflows:
           context: salesforce-dx-ci
           requires:
               - authenticate-devhub
-      - create-package-tag:
+      - delete-non-packageable-metadata:
           context: salesforce-dx-ci
           requires:
               - authenticate-tag
+      - create-package-tag:
+          context: salesforce-dx-ci
+          requires:
+              - delete-non-packageable-metadata
       - install-package-tag:
           context: salesforce-dx-ci
           requires:
@@ -359,9 +375,13 @@ workflows:
           context: salesforce-dx-ci
           requires:
             - create-scratch-org
+      - delete-non-packageable-metadata:
+          context: salesforce-dx-ci
+          requires:
+              - install-package-dependencies
       - deploy-source:
           requires:
-            - install-package-dependencies
+            - delete-non-packageable-metadata
       - run-apex-tests:
           requires:
             - deploy-source
