@@ -2,6 +2,10 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 	private static final List<String> CHILD_FIELDS_TO_QUERY =   new List<String> { 'SObjectDateField__c', 'SObjectTitle__c', 'SObjectAssigneeId__c', 'SObjectRelatedUserId__c', 'SObjectTypeField__c' };
 	private static final User USER =                            [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
+	private static final Boolean IS_NORWEGIAN =                 USER.LanguageLocaleKey == 'Norsk';
+
+	private static final List<String> MONTH_NAME =              new List<String> {null, 'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'};
+	private static final List<String> MONTH_NAME_EN =           new List<String> {null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'};
 
 	public static String getSOjectTypeFromRecordId( String recordId ) {
 		Id i = (Id) recordId;
@@ -11,11 +15,17 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 
 	public static TAG_ActivityTimelineModelList limitAmountOfRecords( TAG_ActivityTimelineModelList wrapped, Integer amount ) {
-		List<Object> castedObjects = (List<Object>) wrapped.models;
-		List<TAG_ActivityTimelineModel> models = (List<TAG_ActivityTimelineModel>) TAG_ActivityTimelineHelper.slice( castedObjects, 0, amount );
-		wrapped.models = models;
+		if ( wrapped.models.size() > 0 ) {
+			List<Object> castedObjects = (List<Object>) wrapped.models;
+			List<TAG_ActivityTimelineModel> models = (List<TAG_ActivityTimelineModel>) TAG_ActivityTimelineHelper.slice( castedObjects, 0, amount );
+			wrapped.models = models;
+		}
 
 		return wrapped;
+	}
+
+	public static String getMonth( Integer monthNo ) {
+		return IS_NORWEGIAN ? MONTH_NAME[monthNo] : MONTH_NAME_EN[monthNo];
 	}
 
 	public static List<TAG_ActivityTimelineModel> getCorrectMonthOnly( Integer month, List<TAG_ActivityTimelineModel> models ) {
@@ -42,17 +52,59 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return tmpModels;
 	}
 
-	public static TAG_ActivityTimelineModelList getOverdueOnly( TAG_ActivityTimelineModelList wrapper ) {
+	public static List<TAG_ActivityTimelineModel> getOverdueOnly( List<TAG_ActivityTimelineModel> models ) {
 
 		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
-		for ( TAG_ActivityTimelineModel wr : wrapper.models ) {
-			if ( wr.record.overdue ) {
-				tmpModels.add( wr );
+		for ( TAG_ActivityTimelineModel model : models ) {
+			if ( model.record.overdue ) {
+				tmpModels.add( model );
 			}
 		}
-		wrapper.models = tmpModels;
 
-		return wrapper;
+		return tmpModels;
+	}
+
+	public static List<TAG_ActivityTimelineModel> getUpcomingOnly( List<TAG_ActivityTimelineModel> models ) {
+
+		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
+		for ( TAG_ActivityTimelineModel model : models ) {
+
+			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
+
+			if ( model.record.dateValueDb >= d ) {
+				tmpModels.add( model );
+			}
+		}
+
+		return tmpModels;
+	}
+
+	public static List<TAG_ActivityTimelineModelList> getRecordsDividedIntoMonths( List<TAG_ActivityTimelineModel> data ) {
+
+		Map<String, List<TAG_ActivityTimelineModel> > modelsSeparatedByMonth = new Map<String, List<TAG_ActivityTimelineModel> > ();
+
+		for ( TAG_ActivityTimelineModel model : data ) {
+
+			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
+
+			if ( model.record.dateValueDb < d ) {
+				String key = model.record.dateValueDb.month() + '' + model.record.dateValueDb.year();
+				if ( modelsSeparatedByMonth.containsKey( key ) ) {
+					modelsSeparatedByMonth.get( key ).add( model );
+				} else {
+					modelsSeparatedByMonth.put( key, new List<TAG_ActivityTimelineModel> { model } );
+				}
+			}
+		}
+		List<TAG_ActivityTimelineModelList> results = new List<TAG_ActivityTimelineModelList>();
+
+		for ( String key : modelsSeparatedByMonth.keySet() ) {
+			Datetime d = modelsSeparatedByMonth.get( key )[0].record.dateValueDb;
+			String name = getMonth( d.month() ) + ' ' + d.year();
+			results.add( new TAG_ActivityTimelineModelList( key, name, modelsSeparatedByMonth.get( key ), false, true ) );
+		}
+
+		return results;
 	}
 
 	public static List<Object> slice( List<Object> input, Integer start, Integer endAmount ) {
@@ -86,29 +138,31 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 
 
-	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, String dateParameter, String ascOrDesc ) {
-
+	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, String dateParameter, Boolean isDescending ) {
+// todo remove remove isDescending
 		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
 		Boolean taskHasNotBeenQueried = true;
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+
+			String lastYear = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today().addYears( -1 ) : System.now().addYears( -1 ) );
+			if ( mdt.SObjectDateFieldIsDate__c ) {
+				lastYear = lastYear.replaceAll( ' 00:00:00', '' );
+			} else {
+				lastYear = lastYear.replaceAll( ' ', 'T' ) + 'Z';
+			}
+
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
 			String query = ' SELECT Id, ' + fieldsToQuery +
 
 			               ' FROM ' + mdt.SObjectChild__c +
 
 			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
-			               ' ' + getSoqlDateFromMonthPeriod( mdt, dateParameter ) +
+			               ' AND ' + mdt.SObjectDateField__c + ' > ' + lastYear +
 			               ' AND ' + mdt.SObjectDateField__c + ' != null ' +
 
-			               ' ORDER BY ' + mdt.SObjectDateField__c +
-			               ' ' + ascOrDesc;
-
-			if ( amount != null ) {
-				query +=  ' LIMIT ' + amount;
-			}
-
+			               ' ORDER BY ' + mdt.SObjectDateField__c;
 
 			if ( !queriedSobjects.contains( mdt.SObjectChild__c ) ) {
 				queries.add( query );

@@ -6,7 +6,7 @@ private class TAG_ActivityTimelineModelTest {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 
-		Date t = Date.today().addYears( -1 );
+		Date t = Date.today().addMonths( -5 );
 		Task ta = new Task( WhatId = acc.Id, ActivityDate = t, Subject = 'test' );
 		insert ta;
 
@@ -19,15 +19,16 @@ private class TAG_ActivityTimelineModelTest {
 		insert ta2;
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineController.getSObjectsToQuery( 'Account', true );
-		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Older, 'desc' );
+		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, null, null, null );
 		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
+		System.debug( 'sObjects: ' + sObjects );
 		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 
 		System.assertEquals( 3, data.size(), 'Three records added to account' );
 
 		System.assertEquals( ev.Id, data[0].record.recordId, 'The ID for the event should be in 1st in the list, because the list isn\'t sorted' );
-		System.assertEquals( ta.Id, data[1].record.recordId, 'The ID for the task should be in 2nd in the list, because the list isn\'t sorted' );
-		System.assertEquals( ta2.Id, data[2].record.recordId, 'The ID for the task should be in 3rd in the list, because the list isn\'t sorted' );
+		System.assertEquals( ta2.Id, data[1].record.recordId, 'The ID for the task should be in 2nd in the list, because the list isn\'t sorted' );
+		System.assertEquals( ta.Id, data[2].record.recordId, 'The ID for the task should be in 3rd in the list, because the list isn\'t sorted' );
 
 		data = new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, data, false, true ).models;
 
@@ -54,7 +55,7 @@ private class TAG_ActivityTimelineModelTest {
 		insert ta2;
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineController.getSObjectsToQuery( 'Account', true );
-		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Upcoming, 'asc' );
+		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Upcoming, false );
 		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
 		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 

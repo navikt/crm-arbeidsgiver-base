@@ -2,6 +2,7 @@
 private without sharing class TAG_ActivityTimelineControllerTest {
 
 	@isTest
+
 	private static void testGetTimelineItemData() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
@@ -28,18 +29,23 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		System.assertEquals( 3, wrapper.size(), 'One for upcoming, one for this month and one for overdue' );
 		for ( TAG_ActivityTimelineModelList wr : wrapper ) {
 
-			System.assertEquals( 1, wr.models.size(), 'This account should have one record for each wrapper' );
+			if ( wr.id == Label.ActTime_Upcoming || wr.id == Label.ActTime_Overdue ) {
+				System.assertEquals( 1, wr.models.size(), 'This account should have one record for each wrapper' );
+			} else {
+				System.assertEquals( 2, wr.models.size(), 'This account should have two records for the month wrapper, because overdue records are still counted' );
+			}
+
 			for ( TAG_ActivityTimelineModel obj : wr.models ) {
 
-				String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( obj.sObj.Id );
+				String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( obj.record.recordId );
 				if ( sObjectType == 'Event' ) {
-					System.assertEquals( ev.Id, obj.sObj.Id, 'The ID should be the created event' );
+					System.assertEquals( ev.Id, obj.record.recordId, 'The ID should be the created event' );
 					System.assertEquals( sObjectsToQueryMap.get( 'Event' ).Id, obj.config.Id, 'The ID should be the event config' );
 				} else if ( sObjectType == 'Task' && !obj.record.overdue ) {
-					System.assertEquals( ta.Id, obj.sObj.Id, 'The ID should be the non-overdue event' );
+					System.assertEquals( ta.Id, obj.record.recordId, 'The ID should be the non-overdue event' );
 					System.assertEquals( sObjectsToQueryMap.get( 'Task' ).Id, obj.config.Id, 'The ID should be the task config' );
 				} else if ( sObjectType == 'Task' && obj.record.overdue ) {
-					System.assertEquals( ta2.Id, obj.sObj.Id, 'The ID should be the overdue event' );
+					System.assertEquals( ta2.Id, obj.record.recordId, 'The ID should be the overdue event' );
 					System.assertEquals( sObjectsToQueryMap.get( 'Task' ).Id, obj.config.Id, 'The ID should be the task config' );
 				}
 			}
