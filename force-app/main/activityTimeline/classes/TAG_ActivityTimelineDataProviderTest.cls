@@ -23,7 +23,7 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 		Test.StopTest();
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineDataProvider.getSObjectsToQuery( 'Account', false );
-		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineDataProvider.getMapOfActivityTimelineConfig( sObjectsToQuery );
+		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
 
 		System.assertEquals( 3, wrapper.size(), 'One for upcoming, one for this month and one for overdue' );
 		for ( TAG_ActivityTimelineModelList wr : wrapper ) {
@@ -31,7 +31,7 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 			System.assertEquals( 1, wr.models.size(), 'This account should have one record for each wrapper' );
 			for ( TAG_ActivityTimelineModel obj : wr.models ) {
 
-				String sObjectType = TAG_ActivityTimelineDataProvider.getSOjectTypeFromRecordId( obj.sObj.Id );
+				String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( obj.sObj.Id );
 				if ( sObjectType == 'Event' ) {
 					System.assertEquals( ev.Id, obj.sObj.Id, 'The ID should be the created event' );
 					System.assertEquals( sObjectsToQueryMap.get( 'Event' ).Id, obj.config.Id, 'The ID should be the event config' );
@@ -45,33 +45,8 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 			}
 		}
 	}
-	public static List<TAG_ActivityTimelineDataProvider.AmountOfRecords> getAmountOfRecordsMock( List<String> periods ) {
 
-		List<TAG_ActivityTimelineDataProvider.AmountOfRecords> amountOfRecordsList = new List<TAG_ActivityTimelineDataProvider.AmountOfRecords> ();
 
-		for ( String str : periods ) {
-			TAG_ActivityTimelineDataProvider.AmountOfRecords amountOfRecords = new TAG_ActivityTimelineDataProvider.AmountOfRecords();
-			amountOfRecords.id = str;
-			amountOfRecords.amount = 3;
-			amountOfRecords.loadedAll = false;
-			amountOfRecordsList.add( amountOfRecords );
-		}
-
-		return amountOfRecordsList;
-	}
-
-	@isTest
-	private static void testGetSOjectTypeFromRecordId() {
-
-		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-
-		Test.StartTest();
-		String sObjtype = TAG_ActivityTimelineDataProvider.getSOjectTypeFromRecordId( acc.Id );
-		Test.StopTest();
-
-		System.assertEquals( 'Account', sObjtype, 'The returned value should be account based on the account ID' );
-
-	}
 
 	@isTest
 	private static void testGetSObjectsToQuery() {
@@ -159,4 +134,25 @@ private without sharing class TAG_ActivityTimelineDataProviderTest {
 
 	// 	System.assertEquals( 2, sObjects.size(), 'This account should have one event and one task on it' );
 	// }
+
+
+
+	// HELPER FUNCTIONS
+	// ---------------------------------------------
+
+	public static List<TAG_ActivityTimelineDataProvider.AmountOfRecords> getAmountOfRecordsMock( List<String> periods ) {
+
+		List<TAG_ActivityTimelineDataProvider.AmountOfRecords> amountOfRecordsList = new List<TAG_ActivityTimelineDataProvider.AmountOfRecords> ();
+
+		for ( String str : periods ) {
+			TAG_ActivityTimelineDataProvider.AmountOfRecords amountOfRecords = new TAG_ActivityTimelineDataProvider.AmountOfRecords();
+			amountOfRecords.id = str;
+			amountOfRecords.amount = 3;
+			amountOfRecords.loadedAll = false;
+			amountOfRecordsList.add( amountOfRecords );
+		}
+
+		return amountOfRecordsList;
+	}
+
 }

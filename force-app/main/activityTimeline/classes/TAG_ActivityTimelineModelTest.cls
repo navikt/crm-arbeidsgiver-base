@@ -19,9 +19,9 @@ private class TAG_ActivityTimelineModelTest {
 		insert ta2;
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineDataProvider.getSObjectsToQuery( 'Account', true );
-		List<String> query = TAG_ActivityTimelineDataProvider.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Older, 'desc' );
-		List<SObject> sObjects = TAG_ActivityTimelineDataProvider.getSObjectsFromQueries( query );
-		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineDataProvider.createActivityTimelineData( sObjectsToQuery, sObjects );
+		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Older, 'desc' );
+		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
+		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 
 		System.assertEquals( 3, data.size(), 'Three records added to account' );
 
@@ -54,9 +54,9 @@ private class TAG_ActivityTimelineModelTest {
 		insert ta2;
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineDataProvider.getSObjectsToQuery( 'Account', true );
-		List<String> query = TAG_ActivityTimelineDataProvider.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Upcoming, 'asc' );
-		List<SObject> sObjects = TAG_ActivityTimelineDataProvider.getSObjectsFromQueries( query );
-		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineDataProvider.createActivityTimelineData( sObjectsToQuery, sObjects );
+		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 5, Label.ActTime_Upcoming, 'asc' );
+		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
+		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 
 
 		System.assertEquals( 3, data.size(), 'Three records added to account' );
