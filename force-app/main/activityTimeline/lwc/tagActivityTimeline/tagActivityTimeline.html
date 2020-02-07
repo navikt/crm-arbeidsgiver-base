@@ -1,5 +1,5 @@
 <template>
-	<lightning-card title={header} icon-name={headerIcon}>
+	<lightning-card title={header} variant="Narrow" icon-name={headerIcon}>
 
 		<!-- HEADER -->
 		<!-- ________________________________________________________________________ -->
@@ -8,6 +8,8 @@
 				<lightning-button-icon icon-name={collapseIcon} alternative-text={collapseText}
 					onclick={collapseAccordions}>
 				</lightning-button-icon>
+				<!-- <lightning-button-icon icon-name="action:refresh" alternative-text="VIEW ALL" onclick={refreshData}>
+				</lightning-button-icon> -->
 				<!-- <lightning-button-icon icon-name="utility:filterList" alternative-text="Filter" onclick={filter}>
 				</lightning-button-icon> -->
 				<!-- <lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
@@ -28,21 +30,22 @@
 			<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
 				onsectiontoggle={handleSectionToggle} style="border-top: 1px solid #d3d3d3;">
 
-				<!-- FOR LOOP -->
+				<!-- OVERDUE TASKS -->
+				<template if:true={finishedLoading} for:each={overdueData} for:item="overdueTask">
+					<lightning-accordion-section class="slds-is-open" name={overdueTask.id} key={overdueTask.id}
+						label={overdueTask.name}>
+						<c-tag-activity-timeline-group key={overdueTask.id} group={overdueTask} labels={labels}
+							amount-of-records={amountOfRecords} amount-of-records-to-load={amountOfRecordsToLoad}>
+						</c-tag-activity-timeline-group>
+					</lightning-accordion-section>
+				</template>
+
+				<!-- UPCOMING + INDIVIDUAL MONTHS -->
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
-						<template for:each={group.models} for:item="row">
-							<c-tag-activity-timeline-item key={row.record.recordId} row={row} labels={labels}
-								moment={moment}>
-							</c-tag-activity-timeline-item>
-						</template>
-
-						<!-- LOAD MORE -->
-						<div if:false={group.allObjectsLoaded} class="slds-align_absolute-center">
-							<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch"
-								onclick={loadMore}>{labels.loadMore}</button>
-						</div>
-
+						<c-tag-activity-timeline-group key={group.id} group={group} labels={labels}
+							amount-of-records={amountOfRecords} amount-of-records-to-load={amountOfRecordsToLoad}>
+						</c-tag-activity-timeline-group>
 					</lightning-accordion-section>
 				</template>
 			</lightning-accordion>
@@ -65,5 +68,9 @@
 				{labels.emptySubtitle}</div>
 		</div>
 
+		<!-- LOAD MORE MONTHS -->
+		<!-- ________________________________________________________________________ -->
+		<div if:false={error} class="slds-align_absolute-center loadMoreFooter" onclick={loadMore}><button
+				class="slds-button loadMoreBtn">{labels.loadMore}</button></div>
 	</lightning-card>
 </template>

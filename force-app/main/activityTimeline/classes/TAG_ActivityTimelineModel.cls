@@ -1,7 +1,6 @@
 global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
-	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; } // TODO remove
-	@AuraEnabled public SObject sObj { get; set; } // TODO remove
+	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; }
 
 	@AuraEnabled public Theme theme { get; set; }
 	@AuraEnabled public Record record { get; set; }
@@ -20,7 +19,6 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		@AuraEnabled public String title;
 		@AuraEnabled public Datetime dateValueDb;
 		@AuraEnabled public String dateValue;
-		@AuraEnabled public SObject sObj;
 
 		@AuraEnabled public String assignee;
 		@AuraEnabled public Id assigneeId;
@@ -45,8 +43,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
 	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
 
-		this.config = config; // todo remove
-		this.sObj = sObj; // todo remove
+		this.config = config;
 
 		Theme theme = new Theme();
 		Record record = new Record();
@@ -57,8 +54,6 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		record.type = config.SObjectTypeValue__c;
 		record.title = (String) sObj.get( config.SObjectTitle__c );
 		record.dateValueDb = (Datetime) sObj.get( config.SObjectDateField__c );
-
-		record.sObj = sObj; // todo remove?
 
 		theme.icon = config.SLDS_Icon__c;
 		theme.sldsTimelineItemColor = config.SLDS_Timeline_Color__c;
@@ -104,9 +99,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 			return Label.ActTime_You;
 		} else {
 			List<User> u = [SELECT Name FROM User WHERE Id = : ownerId LIMIT 1];
-			if ( !u.isEmpty() ) {
-				return u[0].Name;
-			}
+			if ( !u.isEmpty() ) { return u[0].Name; }
 		}
 
 		return Label.ActTime_Unknown;
@@ -115,21 +108,14 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 	public static String getContactName( Id contactId, String sObjectType, String type ) {
 
 		List<Contact> u = [SELECT Name FROM Contact WHERE Id = : contactId LIMIT 1];
-		if ( !u.isEmpty() ) {
-			return u[0].Name;
-		} if ( sObjectType == 'Task' && type == 'Call' ) {
-			return Label.ActTime_Unknown.toLowerCase();
-		}
+		if ( !u.isEmpty() ) { return u[0].Name; }
+		if ( sObjectType == 'Task' && type == 'Call' ) { return Label.ActTime_Unknown.toLowerCase(); }
 
 		return null;
 	}
 
 	public static String returnValueIfNotNull( String input ) {
-		if ( input != null ) {
-			return input;
-		}
-
-		return '';
+		return input != null ? input : '';
 	}
 }
 

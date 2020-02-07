@@ -7,9 +7,7 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 	@api row;
 	@track fieldValues;
 
-
 	createRecord() {
-
 
 		this[NavigationMixin.Navigate]({
 			type: 'standard__objectPage',

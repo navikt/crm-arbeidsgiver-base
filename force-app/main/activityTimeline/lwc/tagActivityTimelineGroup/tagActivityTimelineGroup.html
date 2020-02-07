@@ -1,0 +1,28 @@
+<template>
+
+	<!-- DATA -->
+	<!-- ________________________________________________________________________ -->
+	<template if:false={empty} for:each={group.models} for:item="row" for:index="i">
+		<c-tag-activity-timeline-item key={row.record.recordId} row={row} labels={labels} index={i} amount={amount}>
+		</c-tag-activity-timeline-item>
+	</template>
+
+	<!-- LOADING AND INFO/ERROR TEXT -->
+	<!-- ________________________________________________________________________ -->
+	<div if:true={empty}>
+		<div class="slds-text-body_small slds-align_absolute-center slds-m-bottom_medium">
+			{labels.emptyGroup}
+		</div>
+	</div>
+
+	<!-- LOAD MORE -->
+	<!-- ________________________________________________________________________ -->
+	<div if:true={showViewMore} class="slds-align_absolute-center">
+		<lightning-button-group class="viewBtnGroup">
+			<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch viewBtn"
+				onclick={viewMore}>{labels.viewMore}</button>
+			<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch viewBtn"
+				onclick={viewAll}>{labels.viewAll}</button>
+		</lightning-button-group>
+	</div>
+</template>

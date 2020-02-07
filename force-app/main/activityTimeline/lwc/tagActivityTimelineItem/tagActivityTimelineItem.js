@@ -7,7 +7,8 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 	@api row;
 	@api recordId;
 	@api labels;
-	@api momemt;
+	@api amount;
+	@api index;
 
 	@track expanded = false;
 	@track timelineColor = "slds-timeline__item_expandable";
@@ -27,6 +28,10 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 		} catch (error) {
 
 		}
+	}
+
+	get showRow() {
+		return this.index < this.amount;
 	}
 
 	get isTask() {

@@ -146,18 +146,36 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>amountOfMonths</name>
+                <value>4</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>amountOfMonthsToLoad</name>
+                <value>4</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>amountOfRecords</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>amountOfRecordsToLoad</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>headerIcon</name>
                 <value>custom:custom18</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>headerTitleEnglish</name>
+                <value>Activities</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>headerTitleNorwegian</name>
+                <value>Aktiviteter</value>
             </componentInstanceProperties>
             <componentName>tagActivityTimeline</componentName>
         </componentInstances>
-        <name>Facet-3fd981b8-7cf8-403c-b742-9bf261d1fc92</name>
+        <name>Facet-7e6e2dae-ce7a-43af-a371-64c7052bc254</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -168,7 +186,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-3fd981b8-7cf8-403c-b742-9bf261d1fc92</value>
+                <value>Facet-7e6e2dae-ce7a-43af-a371-64c7052bc254</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -176,14 +194,14 @@
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>Facet-d2f2699c-5fb4-4ac1-afb8-20f3775bb506</name>
+        <name>Facet-bb668f48-24f5-4c49-847b-c2e9afe655ab</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
-                <value>Facet-d2f2699c-5fb4-4ac1-afb8-20f3775bb506</value>
+                <value>Facet-bb668f48-24f5-4c49-847b-c2e9afe655ab</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
         </componentInstances>
