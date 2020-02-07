@@ -1,52 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>TAG_ContactRecordPage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <content>TAG_DefaultHomePage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>TAG_EmployerDefaultRecordPage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Avtale_Postside</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Contract__c</pageOrSobjectType>
-    </actionOverrides>
-    <formFactors>Large</formFactors>
-    <isNavAutoTempTabsDisabled>true</isNavAutoTempTabsDisabled>
-    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>NAV</label>
-    <navType>Standard</navType>
-    <setupExperience>all</setupExperience>
-    <tabs>standard-home</tabs>
-    <tabs>Employer</tabs>
-    <tabs>standard-Contact</tabs>
-    <tabs>standard-Task</tabs>
-    <tabs>standard-Event</tabs>
-    <tabs>CustomOpportunity__c</tabs>
-    <tabs>Contract__c</tabs>
-    <uiType>Lightning</uiType>
+	<actionOverrides>
+		<actionName>View</actionName>
+		<comment>Action override created by Lightning App Builder during activation.</comment>
+		<content>TAG_ContactRecordPage</content>
+		<formFactor>Large</formFactor>
+		<skipRecordTypeSelect>false</skipRecordTypeSelect>
+		<type>Flexipage</type>
+		<pageOrSobjectType>Contact</pageOrSobjectType>
+	</actionOverrides>
+	<actionOverrides>
+		<actionName>Tab</actionName>
+		<content>TAG_DefaultHomePage</content>
+		<formFactor>Large</formFactor>
+		<skipRecordTypeSelect>false</skipRecordTypeSelect>
+		<type>Flexipage</type>
+		<pageOrSobjectType>standard-home</pageOrSobjectType>
+	</actionOverrides>
+	<actionOverrides>
+		<actionName>View</actionName>
+		<comment>Action override created by Lightning App Builder during activation.</comment>
+		<content>TAG_EmployerDefaultRecordPage</content>
+		<formFactor>Large</formFactor>
+		<skipRecordTypeSelect>false</skipRecordTypeSelect>
+		<type>Flexipage</type>
+		<pageOrSobjectType>Account</pageOrSobjectType>
+	</actionOverrides>
+	<actionOverrides>
+		<actionName>View</actionName>
+		<comment>Action override created by Lightning App Builder during activation.</comment>
+		<content>TAG_ContractDefaultRecordPage</content>
+		<formFactor>Large</formFactor>
+		<skipRecordTypeSelect>false</skipRecordTypeSelect>
+		<type>Flexipage</type>
+		<pageOrSobjectType>Contract__c</pageOrSobjectType>
+	</actionOverrides>
+	<formFactors>Large</formFactors>
+	<isNavAutoTempTabsDisabled>true</isNavAutoTempTabsDisabled>
+	<isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+	<label>NAV</label>
+	<navType>Standard</navType>
+	<setupExperience>all</setupExperience>
+	<tabs>standard-home</tabs>
+	<tabs>Employer</tabs>
+	<tabs>standard-Contact</tabs>
+	<tabs>standard-Task</tabs>
+	<tabs>standard-Event</tabs>
+	<tabs>CustomOpportunity__c</tabs>
+	<tabs>Contract__c</tabs>
+	<uiType>Lightning</uiType>
 </CustomApplication>
