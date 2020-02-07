@@ -6,6 +6,7 @@ import previousMonth from "@salesforce/label/c.ActTime_PreviousMonth";
 import overdue from "@salesforce/label/c.ActTime_Overdue";
 import older from "@salesforce/label/c.ActTime_Older";
 import loadMore from "@salesforce/label/c.ActTime_LoadMore";
+import seeMore from "@salesforce/label/c.ActTime_SeeMore";
 import expand from "@salesforce/label/c.ActTime_Expand";
 import collapse from "@salesforce/label/c.ActTime_Collapse";
 import activities from "@salesforce/label/c.ActTime_Activities";
@@ -21,6 +22,7 @@ export default {
 	upcoming,
 	older,
 	loadMore,
+	seeMore,
 	overdue,
 	previousMonth,
 	thisMonth,

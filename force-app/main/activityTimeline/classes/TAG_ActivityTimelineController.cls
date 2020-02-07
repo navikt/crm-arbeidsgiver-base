@@ -3,34 +3,15 @@ public with sharing class TAG_ActivityTimelineController {
 	private static final User USER =                            [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
 	private static final Boolean IS_NORWEGIAN =                 USER.LanguageLocaleKey == 'Norsk';
 
-	public class AmountOfRecords {
-		@AuraEnabled public String id { get; set; }
-		@AuraEnabled public String idUpdated { get; set; }
-		@AuraEnabled public Integer amount { get; set; }
-		@AuraEnabled public Integer previousAmount { get; set; }
-		@AuraEnabled public Boolean loadedAll { get; set; }
-	}
-
 	@AuraEnabled(cacheable = true)
-	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId, List<AmountOfRecords> amountOfRecords ) {
+	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId, Integer monthsOfRecords ) {
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		Map<String, AmountOfRecords> mapOfAmountParamenter = createMapOfAmountParamenter( amountOfRecords );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType, false );
-		List<TAG_ActivityTimelineModelList> data = query( sObjectsToQuery, recordId, mapOfAmountParamenter );
+		List<TAG_ActivityTimelineModelList> data = query( sObjectsToQuery, recordId, monthsOfRecords );
 
 		return data;
-	}
-
-	public static Map<String, AmountOfRecords> createMapOfAmountParamenter( List<AmountOfRecords> amountOfRecords ) {
-		Map<String, AmountOfRecords> mapOfAmountParamenter = new Map<String, AmountOfRecords>();
-
-		for ( AmountOfRecords row : amountOfRecords ) {
-			mapOfAmountParamenter.put( row.id, row );
-		}
-
-		return mapOfAmountParamenter;
 	}
 
 	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
@@ -79,11 +60,11 @@ public with sharing class TAG_ActivityTimelineController {
 	}
 
 
-	public static List<TAG_ActivityTimelineModelList> query( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Map<String, AmountOfRecords> mapOfAmountParamenter ) {
+	public static List<TAG_ActivityTimelineModelList> query( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer monthsOfRecords ) {
 
 		List<TAG_ActivityTimelineModelList> results = new List<TAG_ActivityTimelineModelList>();
 
-		List<String>                    query =          TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, null, null, null );
+		List<String>                    query =          TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, monthsOfRecords );
 		List<SObject>                   sObjects =       TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
 		List<TAG_ActivityTimelineModel> data =           TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 		data.sort();

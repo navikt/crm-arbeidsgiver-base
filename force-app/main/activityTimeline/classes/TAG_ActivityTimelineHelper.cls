@@ -138,15 +138,15 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 
 
-	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amount, String dateParameter, Boolean isDescending ) {
-// todo remove remove isDescending
+	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer monthsOfRecords ) {
+
 		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
 		Boolean taskHasNotBeenQueried = true;
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 
-			String lastYear = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today().addYears( -1 ) : System.now().addYears( -1 ) );
+			String lastYear = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today().addMonths( -monthsOfRecords ) : System.now().addMonths( -monthsOfRecords ) );
 			if ( mdt.SObjectDateFieldIsDate__c ) {
 				lastYear = lastYear.replaceAll( ' 00:00:00', '' );
 			} else {

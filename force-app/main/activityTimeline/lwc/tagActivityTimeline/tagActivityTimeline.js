@@ -19,24 +19,7 @@ export default class TagActivityTimeline extends LightningElement {
 
 	// controller variables
 	@api recordId;
-	@track overdue = 3;
-	@track upcoming = 3; // TODO remove track
-	@track thisMonth = 3;
-	@track previousMonth = 3;
-	@track older = 3;
-	@api amountOfRecords = [];
-
-	@track previousOverdue;
-	@track previousUpcoming;
-	@track previousThisMonth;
-	@track previousPreviousMonth;
-	@track previousOlder;
-
-	@track loadedAllOverdue = false;
-	@track loadedAllUpcoming = false;
-	@track loadedAllThisMonth = false;
-	@track loadedAllPreviousMonth = false;
-	@track loadedAllOlder = false;
+	@api monthsOfRecords = 4;
 
 	@track data;
 	deWireResult;
@@ -50,6 +33,7 @@ export default class TagActivityTimeline extends LightningElement {
 	@track loadingStyle = 'height:5rem;width:24rem';
 
 	@track activeSections = [labels.overdue, labels.upcoming];
+	allSections = [];
 	@track labels = labels;
 
 	collapsed = false;
@@ -57,13 +41,6 @@ export default class TagActivityTimeline extends LightningElement {
 	@track collapseText = labels.collapse;
 
 	connectedCallback() {
-
-		this.amountOfRecords = [
-			{ id: this.labels.overdue, amount: this.overdue, loadedAll: this.loadedAllOverdue },
-			{ id: this.labels.upcoming, amount: this.upcoming, loadedAll: this.loadedAllUpcoming },
-			{ id: this.labels.thisMonth, amount: this.thisMonth, loadedAll: this.loadedAllThisMonth },
-			{ id: this.labels.previousMonth, amount: this.previousMonth, loadedAll: this.loadedAllPreviousMonth },
-			{ id: this.labels.older, amount: this.older, loadedAll: this.loadedAllOlder }];
 
 		Promise.all([
 			loadScript(this, MOMENT_JS),
@@ -85,48 +62,24 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
-	renderedCallback() {
-
-
-	}
-
-	@wire(getTimelineItemData, { recordId: '$recordId', amountOfRecords: '$amountOfRecords' })
+	@wire(getTimelineItemData, { recordId: '$recordId', monthsOfRecords: '$monthsOfRecords' })
 	deWire(result) {
 		this.deWireResult = result;
+
 		if (result.data) {
+
 			this.data = result.data;
 			this.loading = false;
 			this.loadingStyle = '';
-			if (result.data.length === 0) {
-				this.empty = true;
-			} else {
-				this.empty = false;
+			this.empty = result.data.length === 0;
 
-				for (let i = 0; i < this.data.length; i++) {
-					const elem = result.data[i];
-					var groupId = elem.id;
-					var amount = elem.models.length;
-					var loadedAll = elem.allObjectsLoaded;
-
-					if (groupId === this.labels.overdue) {
-						this.previousOverdue = amount;
-						this.loadedAllOverdue = loadedAll;
-					} else if (groupId === this.labels.upcoming) {
-						this.previousUpcoming = amount;
-						this.loadedAllUpcoming = loadedAll;
-					} else if (groupId === this.labels.thisMonth) {
-						this.previousThisMonth = amount;
-						this.loadedAllThisMonth = loadedAll;
-					} else if (groupId === this.labels.previousMonth) {
-						this.previousPreviousMonth = amount;
-						this.loadedAllPreviousMonth = loadedAll;
-					} else if (groupId === this.labels.older) {
-						this.previousOlder = amount;
-						this.loadedAllOlder = loadedAll;
-					}
-				}
+			for (let i = 0; i < this.data.length; i++) {
+				const elem = result.data[i];
+				this.allSections.push(elem.id);
 			}
+
 		} else if (result.error) {
+
 			this.error = true;
 			this.loading = false;
 			this.setError(result.error);
@@ -151,29 +104,13 @@ export default class TagActivityTimeline extends LightningElement {
 		return refreshApex(this.deWireResult);
 	}
 
-	loadMore(event) {
-
-		var groupId = event.target.dataset.id;
-
-		if (groupId === this.labels.overdue) { this.overdue += 3; }
-		else if (groupId === this.labels.upcoming) { this.upcoming += 3; }
-		else if (groupId === this.labels.thisMonth) { this.thisMonth += 3; }
-		else if (groupId === this.labels.previousMonth) { this.previousMonth += 3; }
-		else if (groupId === this.labels.older) { this.older += 3; }
-
-
-		this.amountOfRecords = [
-			{ id: this.labels.overdue, amount: this.overdue, previousAmount: this.previousOverdue, loadedAll: this.loadedAllOverdue, idUpdated: groupId },
-			{ id: this.labels.upcoming, amount: this.upcoming, previousAmount: this.previousUpcoming, loadedAll: this.loadedAllUpcoming, idUpdated: groupId },
-			{ id: this.labels.thisMonth, amount: this.thisMonth, previousAmount: this.previousThisMonth, loadedAll: this.loadedAllThisMonth, idUpdated: groupId },
-			{ id: this.labels.previousMonth, amount: this.previousMonth, previousAmount: this.previousPreviousMonth, loadedAll: this.loadedAllPreviousMonth, idUpdated: groupId },
-			{ id: this.labels.older, amount: this.older, previousAmount: this.previousOlder, loadedAll: this.loadedAllOlder, idUpdated: groupId }];
-
+	seeMore(event) {
 		this.loading = true;
+		this.monthsOfRecords += 6;
 	}
 
 	collapseAccordions() {
-		this.activeSections = this.collapsed ? [this.labels.overdue, this.labels.upcoming, this.labels.thisMonth, this.labels.previousMonth, this.labels.older] : [];
+		this.activeSections = this.collapsed ? this.allSections : [];
 	}
 
 	handleSectionToggle(event) {
@@ -190,4 +127,5 @@ export default class TagActivityTimeline extends LightningElement {
 			this.collapsed = false;
 		}
 	}
+
 }

@@ -1,11 +1,17 @@
-.hoverBtn:hover {
-	box-shadow: 0 0 0 0.1em #DDDBDA;
-	/* TODO add color used on line between rows */
+.seeMoreFooter {
+	border-top: 0.15em solid #dddbda;
+	width: 100%;
 }
 
-.stretchButton {
-	display: block;
-	width: 100%;
+.seeMoreBtn {
+	margin-top: 0.6em;
+	margin-bottom: -0.4em;
+}
+
+.seeMoreFooter:hover {
+	text-decoration: underline;
+	text-decoration-style: inherit;
+	cursor: pointer;
 }
 
 .table {

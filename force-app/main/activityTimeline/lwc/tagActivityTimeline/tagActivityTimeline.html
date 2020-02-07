@@ -1,5 +1,5 @@
 <template>
-	<lightning-card title={header} icon-name={headerIcon}>
+	<lightning-card title={header} variant="Narrow" icon-name={headerIcon}>
 
 		<!-- HEADER -->
 		<!-- ________________________________________________________________________ -->
@@ -31,18 +31,8 @@
 				<!-- FOR LOOP -->
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
-						<template for:each={group.models} for:item="row">
-							<c-tag-activity-timeline-item key={row.record.recordId} row={row} labels={labels}
-								moment={moment}>
-							</c-tag-activity-timeline-item>
-						</template>
-
-						<!-- LOAD MORE -->
-						<div if:false={group.allObjectsLoaded} class="slds-align_absolute-center">
-							<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch"
-								onclick={loadMore}>{labels.loadMore}</button>
-						</div>
-
+						<c-tag-activity-timeline-group key={group.id} group={group} labels={labels}>
+						</c-tag-activity-timeline-group>
 					</lightning-accordion-section>
 				</template>
 			</lightning-accordion>
@@ -65,5 +55,9 @@
 				{labels.emptySubtitle}</div>
 		</div>
 
+		<!-- SEE MORE MONTHS -->
+		<!-- ________________________________________________________________________ -->
+		<div class="slds-align_absolute-center seeMoreFooter" onclick={seeMore}><button
+				class="slds-button seeMoreBtn">{labels.seeMore}</button></div>
 	</lightning-card>
 </template>
