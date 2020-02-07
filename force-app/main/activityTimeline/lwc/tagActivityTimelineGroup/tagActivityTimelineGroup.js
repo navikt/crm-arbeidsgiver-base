@@ -8,9 +8,14 @@ export default class TagActivityTimelineGroup extends LightningElement {
 	@api amountOfRecordsToLoad;
 
 	@track amount;
+	@track empty = false;
 
 	connectedCallback() {
 		this.amount = this.amountOfRecords;
+	}
+
+	renderedCallback() {
+		this.empty = this.group.models.length === 0;
 	}
 
 	get showViewMore() {

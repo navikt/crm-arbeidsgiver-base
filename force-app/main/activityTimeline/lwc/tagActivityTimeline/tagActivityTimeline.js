@@ -5,6 +5,7 @@ import LANG from '@salesforce/i18n/lang';
 
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineController.getTimelineItemData';
+import getOverdueTasks from '@salesforce/apex/TAG_ActivityTimelineController.getOverdueTasks';
 import getTimelineObjects from '@salesforce/apex/TAG_ActivityTimelineController.getTimelineObjects';
 import labels from "./labels";
 
@@ -22,6 +23,7 @@ export default class TagActivityTimeline extends LightningElement {
 	@api amountOfRecordsToLoad = 3;
 
 	@track data;
+	@track overdueData;
 	deWireResult;
 	@track sObjectKinds;
 
@@ -31,6 +33,7 @@ export default class TagActivityTimeline extends LightningElement {
 	@track empty = false;
 
 	@track loading = true;
+	@track finishedLoading = false;
 	@track loadingStyle = 'height:5rem;width:24rem';
 
 	@track activeSections = [labels.overdue, labels.upcoming];
@@ -49,9 +52,20 @@ export default class TagActivityTimeline extends LightningElement {
 			moment.locale(this.labels.MomentJsLanguage);
 		});
 
+		getOverdueTasks({ recordId: this.recordId }).then(data => {
+			this.overdueData = data;
+			for (let i = 0; i < data.length; i++) {
+				const elem = data[i];
+				this.allSections.push(elem.id);
+			}
+		}).catch(error => {
+			this.error = true;
+			this.setError(error);
+		});
+
 		getTimelineObjects({ recordId: this.recordId }).then(data => { this.sObjectKinds = data; }).catch(error => {
 			this.error = true;
-			this.setError();
+			this.setError(error);
 		});
 
 		if (LANG === 'no' && this.headerTitleNorwegian !== undefined) {
@@ -71,10 +85,11 @@ export default class TagActivityTimeline extends LightningElement {
 
 			this.data = result.data;
 			this.loading = false;
+			this.finishedLoading = true;
 			this.loadingStyle = '';
 			this.empty = result.data.length === 0;
 
-			for (let i = 0; i < this.data.length; i++) {
+			for (let i = 0; i < result.data.length; i++) {
 				const elem = result.data[i];
 				this.allSections.push(elem.id);
 			}

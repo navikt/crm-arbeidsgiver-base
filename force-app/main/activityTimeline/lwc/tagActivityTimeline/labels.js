@@ -5,6 +5,7 @@ import thisMonth from "@salesforce/label/c.ActTime_ThisMonth";
 import previousMonth from "@salesforce/label/c.ActTime_PreviousMonth";
 import overdue from "@salesforce/label/c.ActTime_Overdue";
 import older from "@salesforce/label/c.ActTime_Older";
+import emptyGroup from "@salesforce/label/c.ActTime_EmptyGroup";
 import loadMore from "@salesforce/label/c.ActTime_LoadMore";
 import viewMore from "@salesforce/label/c.ActTime_ViewMore";
 import viewAll from "@salesforce/label/c.ActTime_ViewAll";
@@ -31,5 +32,6 @@ export default {
 	activities,
 	emptyTitle,
 	emptySubtitle,
-	errorTitle
+	errorTitle,
+	emptyGroup
 };

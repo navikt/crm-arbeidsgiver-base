@@ -14,54 +14,22 @@ public with sharing class TAG_ActivityTimelineHelper {
 	}
 
 
-	public static TAG_ActivityTimelineModelList limitAmountOfRecords( TAG_ActivityTimelineModelList wrapped, Integer amount ) {
-		if ( wrapped.models.size() > 0 ) {
-			List<Object> castedObjects = (List<Object>) wrapped.models;
-			List<TAG_ActivityTimelineModel> models = (List<TAG_ActivityTimelineModel>) TAG_ActivityTimelineHelper.slice( castedObjects, 0, amount );
-			wrapped.models = models;
-		}
-
-		return wrapped;
-	}
-
 	public static String getMonth( Integer monthNo ) {
 		return IS_NORWEGIAN ? MONTH_NAME[monthNo] : MONTH_NAME_EN[monthNo];
 	}
 
-	public static List<TAG_ActivityTimelineModel> getCorrectMonthOnly( Integer month, List<TAG_ActivityTimelineModel> models ) {
+	public static List<TAG_ActivityTimelineModel> getOverdueOnly( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId ) {
 
-		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
-		for ( TAG_ActivityTimelineModel wr : models ) {
-			if ( wr.record.dateValueDb.month() == month && !wr.record.overdue ) {
-				tmpModels.add( wr );
-			}
-		}
+		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
+		sObjectsToQuery = new List<TAG_ActivityTimeline__mdt> { sObjectsToQueryMap.get( 'Task' ) };
 
-		return tmpModels;
-	}
+		List<String>                    query =          TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, null );
+		List<SObject>                   sObjects =       TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
+		List<TAG_ActivityTimelineModel> data =           TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 
-	public static List<TAG_ActivityTimelineModel> removeOverdue( List<TAG_ActivityTimelineModel> models ) {
+		data.sort();
 
-		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
-		for ( TAG_ActivityTimelineModel wr : models ) {
-			if ( !wr.record.overdue ) {
-				tmpModels.add( wr );
-			}
-		}
-
-		return tmpModels;
-	}
-
-	public static List<TAG_ActivityTimelineModel> getOverdueOnly( List<TAG_ActivityTimelineModel> models ) {
-
-		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
-		for ( TAG_ActivityTimelineModel model : models ) {
-			if ( model.record.overdue ) {
-				tmpModels.add( model );
-			}
-		}
-
-		return tmpModels;
+		return data;
 	}
 
 	public static List<TAG_ActivityTimelineModel> getUpcomingOnly( List<TAG_ActivityTimelineModel> models ) {
@@ -108,16 +76,6 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return results;
 	}
 
-	public static List<Object> slice( List<Object> input, Integer start, Integer endAmount ) {
-		List<Object> output = input.clone();
-		for ( Integer i = 0; i < start; i++ ) output.remove( 0 );
-		Integer elements = endAmount - start;
-		while ( output.size() > elements ) output.remove( elements );
-
-		return output;
-	}
-
-
 	public static Map<String, Id> getRecordTypes( List<TAG_ActivityTimeline__mdt> data ) {
 
 		Set<String> recordTypeNames = new Set<String>();
@@ -143,7 +101,6 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
-		Boolean taskHasNotBeenQueried = true;
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 
@@ -154,20 +111,27 @@ public with sharing class TAG_ActivityTimelineHelper {
 				now = now.replaceAll( ' ', 'T' ) + 'Z';
 			}
 
+			String extra;
+
+			if ( amountOfMonths != null ) {
+				extra = ' AND (' +
+				        mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
+				        mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
+				        mdt.SObjectDateField__c + ' > ' + now +
+				        ')';
+			} else {
+				extra = ' AND ' + mdt.SObjectDateField__c + ' < ' + now +
+				        'AND Status != \'Completed\'';
+			}
+
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
 			String query = ' SELECT Id, ' + fieldsToQuery +
 
 			               ' FROM ' + mdt.SObjectChild__c +
 
 			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
-
-			               ' AND (' +
-			               mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
-			               mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
-			               mdt.SObjectDateField__c + ' > ' + now +
-			               ')' +
-
-			               'AND ' + mdt.SObjectDateField__c + ' != null ' +
+			               extra +
+			               ' AND ' + mdt.SObjectDateField__c + ' != null ' +
 
 			               ' ORDER BY ' + mdt.SObjectDateField__c;
 
@@ -178,35 +142,6 @@ public with sharing class TAG_ActivityTimelineHelper {
 		}
 
 		return queries;
-	}
-
-	public static String getSoqlDateFromMonthPeriod( TAG_ActivityTimeline__mdt mdt, String dateParameter ) {
-
-		String currentDate = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today() : System.now() );
-		if ( mdt.SObjectDateFieldIsDate__c ) {
-			currentDate = currentDate.replaceAll( ' 00:00:00', '' );
-		} else {
-			currentDate = currentDate.replaceAll( ' ', 'T' ) + 'Z';
-		}
-
-
-
-		if ( dateParameter == Label.ActTime_Overdue ) {
-			return 'AND ' + mdt.SObjectDateField__c + ' < ' + currentDate +
-			       ' AND Status != \'Completed\'';
-		} else if ( dateParameter == Label.ActTime_Upcoming ) {
-			return 'AND ' + mdt.SObjectDateField__c + ' >= ' + currentDate;
-		} else if ( dateParameter == Label.ActTime_ThisMonth ) {
-			return 'AND ' + mdt.SObjectDateField__c + ' < ' + currentDate +
-			       'AND ( ' +
-			       mdt.SObjectDateField__c + '= THIS_MONTH OR ' +
-			       mdt.SObjectDateField__c + ' = LAST_N_MONTHS:1 ) ';
-		} else if ( dateParameter == Label.ActTime_Older ) {
-			return 'AND ' + mdt.SObjectDateField__c + ' < LAST_N_MONTHS:1';
-		} else {
-			return '';
-		}
-
 	}
 
 	public static String getFieldsToQueryFromMdt( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, TAG_ActivityTimeline__mdt currentObject ) {
