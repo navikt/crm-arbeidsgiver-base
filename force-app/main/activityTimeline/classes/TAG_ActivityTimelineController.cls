@@ -91,9 +91,8 @@ public with sharing class TAG_ActivityTimelineController {
 
 		                                                   ORDER BY SObjectChild__c, CreateableObject_TextNorwegian__c];
 
-		if ( sObjectsToQuery.isEmpty() ) {
-			throw new AuraException( Label.ActTime_NotConfugred );
-		} else {
+		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
+		else {
 
 			List<TAG_ActivityTimeline__mdt> sObjectsToUse = new List<TAG_ActivityTimeline__mdt>();
 

@@ -125,13 +125,13 @@ public with sharing class TAG_ActivityTimelineHelper {
 			}
 
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
-			String query = ' SELECT Id, ' + fieldsToQuery +
+			String query = 'SELECT Id, ' + fieldsToQuery +
 
 			               ' FROM ' + mdt.SObjectChild__c +
 
 			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
 			               extra +
-			               ' AND ' + mdt.SObjectDateField__c + ' != null ' +
+			               ' AND ' + mdt.SObjectDateField__c + ' != null' +
 
 			               ' ORDER BY ' + mdt.SObjectDateField__c;
 
