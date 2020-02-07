@@ -61,7 +61,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		insert ta;
 
 		String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( acc.Id );
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineController.getSObjectsToQuery( parentSObjectType, false );
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
 		List<String> queries = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 3 );
 
 		Test.StartTest();
@@ -69,6 +69,16 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		Test.StopTest();
 
 		System.assertEquals( 2, sObjects.size(), 'This account should have one event and one task on it' );
+	}
+
+	@isTest
+	private static void testGetSObjectsToQuery() {
+
+		Test.StartTest();
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
+		Test.StopTest();
+
+		System.assert (sObjectsToQuery.size() >= 0, 'Should already be some mdt\'s for account as parent');
 	}
 
 	@isTest
@@ -84,8 +94,8 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	}
 
 
-// HELPER FUNCTIONS
-// ------------------------------------------------------------------
+	// HELPER FUNCTIONS
+	// ------------------------------------------------------------------
 
 	public static List<TAG_ActivityTimeline__mdt> queryMdt() {
 		return [SELECT Id,

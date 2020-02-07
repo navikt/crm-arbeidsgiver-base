@@ -13,6 +13,49 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return String.valueOf( i.getSobjectType() );
 	}
 
+	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
+		List<Boolean> allBools = new List<Boolean> { true, false };
+		if ( createable ) {
+			allBools = new List<Boolean> { true };
+		}
+
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
+		                                                   SLDS_Timeline_Color__c, SLDS_Icon__c,
+		                                                   CreateableObject_TextEnglish__c, CreateableObject_TextNorwegian__c, CreateableObject_RecordType__c,
+		                                                   SObjectChild__c, SObjectParent__c,
+		                                                   SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,
+		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,
+		                                                   SObjectTypeField__c, SObjectTypeValue__c,
+		                                                   SubtitlePastEnglish__c, SubtitlePastNorwegian__c,
+		                                                   SubtitleFutureEnglish__c, SubtitleFutureNorwegian__c,
+		                                                   SubtitleRelatedUserPrepositionEng__c, SubtitleRelatedUserPrepositionNor__c,
+		                                                   SObjectRelationshipField__c
+
+		                                                   FROM TAG_ActivityTimeline__mdt
+
+		                                                   WHERE
+		                                                       ( CreateableObject_Checkbox__c IN : allBools ) AND
+		                                                       ( SObjectParent__c = : parentSObjectType ) AND
+		                                                       ( IsActive__c = true )
+
+		                                                   ORDER BY SObjectChild__c, CreateableObject_TextNorwegian__c];
+
+		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
+		else {
+
+			List<TAG_ActivityTimeline__mdt> sObjectsToUse = new List<TAG_ActivityTimeline__mdt>();
+
+			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+				if ( createable && TAG_ActivityTimelineHelper.isCreateable( mdt.SObjectChild__c ) ) {
+					sObjectsToUse.add( mdt );
+				} else if ( !createable && TAG_ActivityTimelineHelper.isAccessible( mdt.SObjectChild__c ) ) {
+					sObjectsToUse.add( mdt );
+				}
+			}
+
+			return sObjectsToUse;
+		}
+	}
 
 	public static String getMonth( Integer monthNo ) {
 		return IS_NORWEGIAN ? MONTH_NAME[monthNo] : MONTH_NAME_EN[monthNo];

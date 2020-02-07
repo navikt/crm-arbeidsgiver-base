@@ -20,7 +20,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getTimelineItemData( acc.Id, 5 );
 		Test.StopTest();
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineController.getSObjectsToQuery( 'Account', false );
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
 		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
 
 		System.assertEquals( 2, wrapper.size(), 'One for upcoming and one for this month ' );
@@ -48,18 +48,4 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 			}
 		}
 	}
-
-
-
-	@isTest
-	private static void testGetSObjectsToQuery() {
-
-		Test.StartTest();
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineController.getSObjectsToQuery( 'Account', false );
-		Test.StopTest();
-
-		System.assert (sObjectsToQuery.size() >= 0, 'Should already be some mdt\'s for account as parent');
-	}
-
-
 }
