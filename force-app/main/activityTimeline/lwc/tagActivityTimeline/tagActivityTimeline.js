@@ -4,7 +4,7 @@ import { refreshApex } from '@salesforce/apex';
 import LANG from '@salesforce/i18n/lang';
 
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
-import getTimelineItemData from '@salesforce/apex/TAG_ActivityTimelineController.getTimelineItemData';
+import getActivityTimelineData from '@salesforce/apex/TAG_ActivityTimelineController.getActivityTimelineData';
 import getOverdueTasks from '@salesforce/apex/TAG_ActivityTimelineController.getOverdueTasks';
 import getTimelineObjects from '@salesforce/apex/TAG_ActivityTimelineController.getTimelineObjects';
 import labels from "./labels";
@@ -77,7 +77,7 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
-	@wire(getTimelineItemData, { recordId: '$recordId', amountOfMonths: '$amountOfMonths' })
+	@wire(getActivityTimelineData, { recordId: '$recordId', amountOfMonths: '$amountOfMonths' })
 	deWire(result) {
 		this.deWireResult = result;
 

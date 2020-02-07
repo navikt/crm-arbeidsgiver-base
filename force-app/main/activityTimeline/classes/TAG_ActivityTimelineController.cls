@@ -4,9 +4,9 @@ public with sharing class TAG_ActivityTimelineController {
 	private static final Boolean IS_NORWEGIAN =     USER.LanguageLocaleKey == 'Norsk';
 
 	@AuraEnabled(cacheable = true)
-	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId, Integer amountOfMonths ) {
+	public static List<TAG_ActivityTimelineModelList> getActivityTimelineData( String recordId, Integer amountOfMonths ) {
 
-		System.debug( '------------------------------\n getTimelineItemData\n------------------------------' );
+		System.debug( '------------------------------\n getActivityTimelineData\n------------------------------' );
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 

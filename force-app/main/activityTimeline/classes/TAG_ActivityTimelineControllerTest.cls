@@ -3,7 +3,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 	@isTest
 
-	private static void testGetTimelineItemData() {
+	private static void testGetActivityTimelineData() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'test' );
@@ -17,7 +17,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		List<String> periods = new List<String> { Label.ActTime_Overdue, Label.ActTime_Upcoming, Label.ActTime_ThisMonth, Label.ActTime_PreviousMonth, Label.ActTime_Older };
 
 		Test.StartTest();
-		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getTimelineItemData( acc.Id, 5 );
+		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5 );
 		Test.StopTest();
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
