@@ -6,7 +6,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 		List<String> mdtFieldsToQuery = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c' };
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt();
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event', 'Task' } );
 
 		Id recordId = TAG_TestDataFactory.createAccounts( 1 )[0].Id;
 
@@ -38,11 +38,25 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	}
 
 	@isTest
-	private static void testGetFieldsToQueryFromMdt() {
+	private static void testGetFieldsToQueryFromMdt_Event() {
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt();
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event' } );
 
 		String expected = 'ActivityDateTime,Subject,OwnerId,WhoId';
+
+		Test.StartTest();
+		String actual = TAG_ActivityTimelineHelper.getFieldsToQueryFromMdt( sObjectsToQuery, sObjectsToQuery[0] );
+		Test.StopTest();
+
+		System.assertEquals( expected, actual, 'The fields should be the same' );
+	}
+
+	@isTest
+	private static void testGetFieldsToQueryFromMdt_Task() {
+
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Task' } );
+
+		String expected = 'ActivityDate,Subject,OwnerId,WhoId,Type,Status';
 
 		Test.StartTest();
 		String actual = TAG_ActivityTimelineHelper.getFieldsToQueryFromMdt( sObjectsToQuery, sObjectsToQuery[0] );
@@ -109,7 +123,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	// HELPER FUNCTIONS
 	// ------------------------------------------------------------------
 
-	public static List<TAG_ActivityTimeline__mdt> queryMdt() {
+	public static List<TAG_ActivityTimeline__mdt> queryMdt( List<String> types ) {
 		return [SELECT Id,
 		        SLDS_Timeline_Color__c, SLDS_Icon__c,
 		        CreateableObject_TextEnglish__c, CreateableObject_TextNorwegian__c, CreateableObject_RecordType__c,
@@ -126,6 +140,6 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 		        WHERE
 		            ( SObjectParent__c = 'Account' ) AND
-		            ( SObjectChild__c IN ( 'Event', 'Task' ) )];
+		            ( SObjectChild__c IN: types )];
 	}
 }
