@@ -96,6 +96,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 				}
 			}
 		}
+		// TODO add missing months
 		List<TAG_ActivityTimelineModelList> results = new List<TAG_ActivityTimelineModelList>();
 
 		for ( String key : modelsSeparatedByMonth.keySet() ) {
@@ -138,7 +139,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 
 
-	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer monthsOfRecords ) {
+	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amountOfMonths ) {
 
 		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
@@ -146,11 +147,11 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 
-			String lastYear = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today().addMonths( -monthsOfRecords ) : System.now().addMonths( -monthsOfRecords ) );
+			String now = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today() : System.now() );
 			if ( mdt.SObjectDateFieldIsDate__c ) {
-				lastYear = lastYear.replaceAll( ' 00:00:00', '' );
+				now = now.replaceAll( ' 00:00:00', '' );
 			} else {
-				lastYear = lastYear.replaceAll( ' ', 'T' ) + 'Z';
+				now = now.replaceAll( ' ', 'T' ) + 'Z';
 			}
 
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
@@ -159,8 +160,14 @@ public with sharing class TAG_ActivityTimelineHelper {
 			               ' FROM ' + mdt.SObjectChild__c +
 
 			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
-			               ' AND ' + mdt.SObjectDateField__c + ' > ' + lastYear +
-			               ' AND ' + mdt.SObjectDateField__c + ' != null ' +
+
+			               ' AND (' +
+			               mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
+			               mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
+			               mdt.SObjectDateField__c + ' > ' + now +
+			               ')' +
+
+			               'AND ' + mdt.SObjectDateField__c + ' != null ' +
 
 			               ' ORDER BY ' + mdt.SObjectDateField__c;
 

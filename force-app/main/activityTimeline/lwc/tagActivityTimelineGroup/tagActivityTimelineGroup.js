@@ -4,19 +4,24 @@ export default class TagActivityTimelineGroup extends LightningElement {
 
 	@api group;
 	@api labels;
-	@track amount = 3;
+	@api amountOfRecords;
+	@api amountOfRecordsToLoad;
 
-	renderedCallback() {
-		if (this.group.models.length < 3) {
-			this.amount = this.group.models.length;
-		}
+	@track amount;
+
+	connectedCallback() {
+		this.amount = this.amountOfRecords;
 	}
 
-	get showLoadMore() {
+	get showViewMore() {
 		return this.amount < this.group.models.length;
 	}
 
-	loadMore() {
-		this.amount += 3;
+	viewMore() {
+		this.amount += this.amountOfRecordsToLoad;
+	}
+
+	viewAll() {
+		this.amount = this.group.models.length;
 	}
 }

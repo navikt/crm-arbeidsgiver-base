@@ -1,14 +1,14 @@
-.seeMoreFooter {
+.loadMoreFooter {
 	border-top: 0.15em solid #dddbda;
 	width: 100%;
 }
 
-.seeMoreBtn {
+.loadMoreBtn {
 	margin-top: 0.6em;
 	margin-bottom: -0.4em;
 }
 
-.seeMoreFooter:hover {
+.loadMoreFooter:hover {
 	text-decoration: underline;
 	text-decoration-style: inherit;
 	cursor: pointer;

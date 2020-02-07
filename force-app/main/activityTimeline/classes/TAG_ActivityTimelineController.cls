@@ -1,15 +1,15 @@
 public with sharing class TAG_ActivityTimelineController {
 
-	private static final User USER =                            [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
-	private static final Boolean IS_NORWEGIAN =                 USER.LanguageLocaleKey == 'Norsk';
+	private static final User USER =                [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
+	private static final Boolean IS_NORWEGIAN =     USER.LanguageLocaleKey == 'Norsk';
 
 	@AuraEnabled(cacheable = true)
-	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId, Integer monthsOfRecords ) {
+	public static List<TAG_ActivityTimelineModelList> getTimelineItemData( String recordId, Integer amountOfMonths ) {
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 		String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = getSObjectsToQuery( parentSObjectType, false );
-		List<TAG_ActivityTimelineModelList> data = query( sObjectsToQuery, recordId, monthsOfRecords );
+		List<TAG_ActivityTimelineModelList> data = query( sObjectsToQuery, recordId, amountOfMonths );
 
 		return data;
 	}
@@ -60,17 +60,16 @@ public with sharing class TAG_ActivityTimelineController {
 	}
 
 
-	public static List<TAG_ActivityTimelineModelList> query( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer monthsOfRecords ) {
+	public static List<TAG_ActivityTimelineModelList> query( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amountOfMonths ) {
 
 		List<TAG_ActivityTimelineModelList> results = new List<TAG_ActivityTimelineModelList>();
 
-		List<String>                    query =          TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, monthsOfRecords );
+		List<String>                    query =          TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, amountOfMonths );
 		List<SObject>                   sObjects =       TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
 		List<TAG_ActivityTimelineModel> data =           TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 		data.sort();
 		List<TAG_ActivityTimelineModel> overdue =   TAG_ActivityTimelineHelper.getOverdueOnly( data );
 		List<TAG_ActivityTimelineModel> upcoming =  TAG_ActivityTimelineHelper.getUpcomingOnly( data );
-
 
 		TAG_ActivityTimelineModelList wrappedOverdue =          new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, overdue, false, true );
 		TAG_ActivityTimelineModelList wrappedUpcoming =          new TAG_ActivityTimelineModelList( Label.ActTime_Upcoming, Label.ActTime_Upcoming, upcoming, false, false );

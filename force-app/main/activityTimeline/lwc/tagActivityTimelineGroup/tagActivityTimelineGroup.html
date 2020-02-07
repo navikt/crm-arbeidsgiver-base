@@ -5,8 +5,12 @@
 	</template>
 
 	<!-- LOAD MORE -->
-	<div if:true={showLoadMore} class="slds-align_absolute-center">
-		<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch"
-			onclick={loadMore}>{labels.loadMore}</button>
+	<div if:true={showViewMore} class="slds-align_absolute-center">
+		<lightning-button-group class="viewBtnGroup">
+			<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch viewBtn"
+				onclick={viewMore}>{labels.viewMore}</button>
+			<button data-id={group.id} class="slds-button slds-button_neutral slds-button_stretch viewBtn"
+				onclick={viewAll}>{labels.viewAll}</button>
+		</lightning-button-group>
 	</div>
 </template>

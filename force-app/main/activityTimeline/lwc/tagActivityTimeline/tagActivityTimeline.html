@@ -31,7 +31,8 @@
 				<!-- FOR LOOP -->
 				<template for:each={data} for:item="group">
 					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
-						<c-tag-activity-timeline-group key={group.id} group={group} labels={labels}>
+						<c-tag-activity-timeline-group key={group.id} group={group} labels={labels}
+							amount-of-records={amountOfRecords} amount-of-records-to-load={amountOfRecordsToLoad}>
 						</c-tag-activity-timeline-group>
 					</lightning-accordion-section>
 				</template>
@@ -55,9 +56,9 @@
 				{labels.emptySubtitle}</div>
 		</div>
 
-		<!-- SEE MORE MONTHS -->
+		<!-- LOAD MORE MONTHS -->
 		<!-- ________________________________________________________________________ -->
-		<div class="slds-align_absolute-center seeMoreFooter" onclick={seeMore}><button
-				class="slds-button seeMoreBtn">{labels.seeMore}</button></div>
+		<div class="slds-align_absolute-center loadMoreFooter" onclick={loadMore}><button
+				class="slds-button loadMoreBtn">{labels.loadMore}</button></div>
 	</lightning-card>
 </template>

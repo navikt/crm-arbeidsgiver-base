@@ -14,17 +14,18 @@ export default class TagActivityTimeline extends LightningElement {
 	@api headerIcon = 'custom:custom18';
 	@api headerTitleNorwegian;
 	@api headerTitleEnglish;
-
-	@track header;
-
-	// controller variables
 	@api recordId;
-	@api monthsOfRecords = 4;
+
+	@api amountOfMonths = 4;
+	@api amountOfMonthsToLoad = 4;
+	@api amountOfRecords = 3;
+	@api amountOfRecordsToLoad = 3;
 
 	@track data;
 	deWireResult;
 	@track sObjectKinds;
 
+	@track header;
 	@track error = false;
 	@track errorMsg;
 	@track empty = false;
@@ -62,7 +63,7 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
-	@wire(getTimelineItemData, { recordId: '$recordId', monthsOfRecords: '$monthsOfRecords' })
+	@wire(getTimelineItemData, { recordId: '$recordId', amountOfMonths: '$amountOfMonths' })
 	deWire(result) {
 		this.deWireResult = result;
 
@@ -104,9 +105,9 @@ export default class TagActivityTimeline extends LightningElement {
 		return refreshApex(this.deWireResult);
 	}
 
-	seeMore(event) {
+	loadMore(event) {
 		this.loading = true;
-		this.monthsOfRecords += 6;
+		this.amountOfMonths += this.amountOfMonthsToLoad;
 	}
 
 	collapseAccordions() {
@@ -127,5 +128,4 @@ export default class TagActivityTimeline extends LightningElement {
 			this.collapsed = false;
 		}
 	}
-
 }
