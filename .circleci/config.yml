@@ -135,6 +135,14 @@ jobs:
       - run:
           name: Push Source
           command: |
+            if [ -d force-app/main/unpackaged ]; then
+                rm -r force-app/main/unpackaged
+            fi
+            if [ -d force-app/main/non_deployable ]; then
+                rm -r force-app/main/non_deployable
+            fi
+            ls force-app/main
+
             sfdx force:source:push -u $(cat ~/project/scratch-org-alias)
             FILE=scripts/circleci_postdeploy.sh
             if [ -f "$FILE" ]; then
@@ -200,9 +208,13 @@ jobs:
       - run:
           name: Creating new package
           command: |
-            if [ -d force-app/main/REMOVE_* ]; then
-                rm -r force-app/main/REMOVE_*
+            if [ -d force-app/main/unpackaged ]; then
+                rm -r force-app/main/unpackaged
             fi
+            if [ -d force-app/main/non_deployable ]; then
+                rm -r force-app/main/non_deployable
+            fi
+            ls force-app/main
             sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
 
   ####################################################
