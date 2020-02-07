@@ -116,7 +116,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 	}
 
 	@isTest
-	private static void testDoPost_ARBEIDSTRENING() {
+	private static void testDoPost_Arbeidstrening() {
 
 		Id inclusionRecordType = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName().get( 'Inclusion' ).getRecordTypeId();
 		Id IARecordType = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName().get( 'Inclusive_Employment' ).getRecordTypeId();
