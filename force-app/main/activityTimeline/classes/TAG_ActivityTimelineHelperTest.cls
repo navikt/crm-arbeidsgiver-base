@@ -93,6 +93,18 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		System.assertEquals( 'Account', sObjtype, 'The returned value should be account based on the account ID' );
 	}
 
+	@isTest
+	private static void testGetRecordTypes() {
+
+		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
+
+		Test.StartTest();
+		Map<String, Id> recordTypes = TAG_ActivityTimelineHelper.getRecordTypes( sObjectsToQuery );
+		Test.StopTest();
+
+		System.assertEquals( 2, recordTypes.size(), 'Currently two mdt objects with record types' );
+	}
+
 
 	// HELPER FUNCTIONS
 	// ------------------------------------------------------------------

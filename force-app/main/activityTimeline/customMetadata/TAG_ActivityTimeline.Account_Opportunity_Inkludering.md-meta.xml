@@ -1,97 +1,97 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<label>Account &lt;= Opportunity (Inkludering)</label>
-	<protected>false</protected>
-	<values>
-		<field>CreateableObject_Checkbox__c</field>
-		<value xsi:type="xsd:boolean">true</value>
-	</values>
-	<values>
-		<field>CreateableObject_RecordType__c</field>
-		<value xsi:nil="true" />
-	</values>
-	<values>
-		<field>CreateableObject_TextEnglish__c</field>
-		<value xsi:type="xsd:string">Inclusion Opportunity</value>
-	</values>
-	<values>
-		<field>CreateableObject_TextNorwegian__c</field>
-		<value xsi:type="xsd:string">Inkluderingsmulighet</value>
-	</values>
-	<values>
-		<field>IsActive__c</field>
-		<value xsi:type="xsd:boolean">true</value>
-	</values>
-	<values>
-		<field>SLDS_Icon__c</field>
-		<value xsi:type="xsd:string">standard:entitlement</value>
-	</values>
-	<values>
-		<field>SLDS_Timeline_Color__c</field>
-		<value xsi:type="xsd:string">808dde</value>
-	</values>
-	<values>
-		<field>SObjectAssigneeId__c</field>
-		<value xsi:type="xsd:string">Inclusion_Owner__c</value>
-	</values>
-	<values>
-		<field>SObjectChild__c</field>
-		<value xsi:type="xsd:string">CustomOpportunity__c</value>
-	</values>
-	<values>
-		<field>SObjectDateFieldIsDate__c</field>
-		<value xsi:type="xsd:boolean">false</value>
-	</values>
-	<values>
-		<field>SObjectDateField__c</field>
-		<value xsi:type="xsd:string">CreatedDate</value>
-	</values>
-	<values>
-		<field>SObjectParent__c</field>
-		<value xsi:type="xsd:string">Account</value>
-	</values>
-	<values>
-		<field>SObjectRelatedUserId__c</field>
-		<value xsi:nil="true" />
-	</values>
-	<values>
-		<field>SObjectRelationshipField__c</field>
-		<value xsi:type="xsd:string">Account__c</value>
-	</values>
-	<values>
-		<field>SObjectTitle__c</field>
-		<value xsi:type="xsd:string">InquiryCategory__c</value>
-	</values>
-	<values>
-		<field>SObjectTypeField__c</field>
-		<value xsi:type="xsd:string">InquiryCategory__c</value>
-	</values>
-	<values>
-		<field>SObjectTypeValue__c</field>
-		<value xsi:type="xsd:string">Inkludering;Rekruttering;Rekruttering med tilrettelegging</value>
-	</values>
-	<values>
-		<field>SubtitleFutureEnglish__c</field>
-		<value xsi:type="xsd:string">is the responsible markedskontakt</value>
-	</values>
-	<values>
-		<field>SubtitleFutureNorwegian__c</field>
-		<value xsi:type="xsd:string">er ansvarlig markedskontakt</value>
-	</values>
-	<values>
-		<field>SubtitlePastEnglish__c</field>
-		<value xsi:type="xsd:string">was the responsible markedskontakt</value>
-	</values>
-	<values>
-		<field>SubtitlePastNorwegian__c</field>
-		<value xsi:type="xsd:string">var ansvarlig markedskontakt</value>
-	</values>
-	<values>
-		<field>SubtitleRelatedUserPrepositionEng__c</field>
-		<value xsi:nil="true" />
-	</values>
-	<values>
-		<field>SubtitleRelatedUserPrepositionNor__c</field>
-		<value xsi:nil="true" />
-	</values>
+    <label>Account &lt;= Opportunity (Inkludering)</label>
+    <protected>false</protected>
+    <values>
+        <field>CreateableObject_Checkbox__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>CreateableObject_RecordType__c</field>
+        <value xsi:type="xsd:string">Inclusion</value>
+    </values>
+    <values>
+        <field>CreateableObject_TextEnglish__c</field>
+        <value xsi:type="xsd:string">Inclusion Opportunity</value>
+    </values>
+    <values>
+        <field>CreateableObject_TextNorwegian__c</field>
+        <value xsi:type="xsd:string">Inkluderingsmulighet</value>
+    </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>SLDS_Icon__c</field>
+        <value xsi:type="xsd:string">standard:entitlement</value>
+    </values>
+    <values>
+        <field>SLDS_Timeline_Color__c</field>
+        <value xsi:type="xsd:string">808dde</value>
+    </values>
+    <values>
+        <field>SObjectAssigneeId__c</field>
+        <value xsi:type="xsd:string">Inclusion_Owner__c</value>
+    </values>
+    <values>
+        <field>SObjectChild__c</field>
+        <value xsi:type="xsd:string">CustomOpportunity__c</value>
+    </values>
+    <values>
+        <field>SObjectDateFieldIsDate__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>SObjectDateField__c</field>
+        <value xsi:type="xsd:string">CreatedDate</value>
+    </values>
+    <values>
+        <field>SObjectParent__c</field>
+        <value xsi:type="xsd:string">Account</value>
+    </values>
+    <values>
+        <field>SObjectRelatedUserId__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SObjectRelationshipField__c</field>
+        <value xsi:type="xsd:string">Account__c</value>
+    </values>
+    <values>
+        <field>SObjectTitle__c</field>
+        <value xsi:type="xsd:string">InquiryCategory__c</value>
+    </values>
+    <values>
+        <field>SObjectTypeField__c</field>
+        <value xsi:type="xsd:string">InquiryCategory__c</value>
+    </values>
+    <values>
+        <field>SObjectTypeValue__c</field>
+        <value xsi:type="xsd:string">Inkludering;Rekruttering;Rekruttering med tilrettelegging</value>
+    </values>
+    <values>
+        <field>SubtitleFutureEnglish__c</field>
+        <value xsi:type="xsd:string">is the responsible markedskontakt</value>
+    </values>
+    <values>
+        <field>SubtitleFutureNorwegian__c</field>
+        <value xsi:type="xsd:string">er ansvarlig markedskontakt</value>
+    </values>
+    <values>
+        <field>SubtitlePastEnglish__c</field>
+        <value xsi:type="xsd:string">was the responsible markedskontakt</value>
+    </values>
+    <values>
+        <field>SubtitlePastNorwegian__c</field>
+        <value xsi:type="xsd:string">var ansvarlig markedskontakt</value>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserPrepositionEng__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SubtitleRelatedUserPrepositionNor__c</field>
+        <value xsi:nil="true"/>
+    </values>
 </CustomMetadata>

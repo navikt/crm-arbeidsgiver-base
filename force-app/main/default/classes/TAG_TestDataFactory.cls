@@ -65,4 +65,34 @@ public without sharing class TAG_TestDataFactory {
 
 		return accounts;
 	}
+
+	public static User createStandardUser() {
+
+		User user = new User();
+		String d = String.valueOf( DateTime.now().millisecond() ) + String.valueOf( DateTime.now().second() ) + String.valueOf( DateTime.now().minute() );
+		user.Username = d + 'test@nav.no';
+		user.Email = d + 'test@nav.no';
+		user.Alias = 'tsamp';
+		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' LIMIT 1].Id;
+		user.isActive = true;
+		user.FirstName = 'First';
+		user.LastName = 'Last';
+		user.TimeZoneSidKey = 'Europe/Paris';
+		user.LocaleSidKey = 'no_NO';
+		user.EmailEncodingKey = 'UTF-8';
+		user.LanguageLocaleKey = 'no';
+		user.CommunityNickname = 'testUser' + d;
+		insert user;
+
+		return user;
+	}
+
+	public static void giveUserPermSet( List<User> users, Id permSet ) {
+		List<PermissionSetAssignment> permissionSetList = new List<PermissionSetAssignment>();
+		for ( User u : users ) {
+			PermissionSetAssignment psa = new PermissionSetAssignment ( PermissionSetId = permSet, AssigneeId = u.Id );
+			permissionSetList.add( psa );
+		}
+		insert permissionSetList;
+	}
 }

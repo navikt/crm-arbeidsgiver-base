@@ -99,9 +99,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 			return Label.ActTime_You;
 		} else {
 			List<User> u = [SELECT Name FROM User WHERE Id = : ownerId LIMIT 1];
-			if ( !u.isEmpty() ) {
-				return u[0].Name;
-			}
+			if ( !u.isEmpty() ) { return u[0].Name; }
 		}
 
 		return Label.ActTime_Unknown;
@@ -110,21 +108,14 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 	public static String getContactName( Id contactId, String sObjectType, String type ) {
 
 		List<Contact> u = [SELECT Name FROM Contact WHERE Id = : contactId LIMIT 1];
-		if ( !u.isEmpty() ) {
-			return u[0].Name;
-		} if ( sObjectType == 'Task' && type == 'Call' ) {
-			return Label.ActTime_Unknown.toLowerCase();
-		}
+		if ( !u.isEmpty() ) { return u[0].Name; }
+		if ( sObjectType == 'Task' && type == 'Call' ) { return Label.ActTime_Unknown.toLowerCase(); }
 
 		return null;
 	}
 
 	public static String returnValueIfNotNull( String input ) {
-		if ( input != null ) {
-			return input;
-		}
-
-		return '';
+		return input != null ? input : '';
 	}
 }
 

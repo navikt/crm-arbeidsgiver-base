@@ -6,7 +6,7 @@ public with sharing class TAG_ActivityTimelineController {
 	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimelineModelList> getActivityTimelineData( String recordId, Integer amountOfMonths ) {
 
-		System.debug( '------------------------------\n getActivityTimelineData\n------------------------------' );
+		System.debug( '\n------------------------------------------\n------------getActivityTimelineData------------\n------------------------------------------' );
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
@@ -33,7 +33,7 @@ public with sharing class TAG_ActivityTimelineController {
 	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimelineModelList> getOverdueTasks( String recordId ) {
 
-		System.debug( '------------------------------\n getOverdueTasks\n------------------------------' );
+		System.debug( '\n------------------------------------------\n------------getOverdueTasks------------\n------------------------------------------' );
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
@@ -51,7 +51,7 @@ public with sharing class TAG_ActivityTimelineController {
 	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimeline__mdt> getTimelineObjects( String recordId ) {
 
-		System.debug( '------------------------------\n getTimelineObjects\n------------------------------' );
+		System.debug( '\n------------------------------------------\n------------getTimelineObjects------------\n------------------------------------------' );
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 

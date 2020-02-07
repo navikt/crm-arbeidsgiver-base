@@ -129,7 +129,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 			}
 		}
 
-		List<RecordType> recordTypes = [SELECT Id, Name, SobjectType FROM RecordType WHERE Name IN : recordTypeNames];
+		List<RecordType> recordTypes = [SELECT Id, Name, SobjectType FROM RecordType WHERE DeveloperName IN : recordTypeNames];
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
 		for ( RecordType rt : recordTypes ) {
 			recordTypeMap.put( rt.SobjectType + rt.Name, rt.Id );
@@ -246,10 +246,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 			}
 
 			TAG_ActivityTimeline__mdt mdt = sObjectsToQueryMap.get( childSObjectKind + childSObjectType );
-			if ( mdt == null ) {
-				mdt = sObjectsToQueryMap.get( childSObjectKind );
-			}
-
+			if ( mdt == null ) { mdt = sObjectsToQueryMap.get( childSObjectKind ); }
 			if ( mdt != null ) {
 				data.add( new TAG_ActivityTimelineModel( mdt, sObj, USER.LanguageLocaleKey ) );
 			}
