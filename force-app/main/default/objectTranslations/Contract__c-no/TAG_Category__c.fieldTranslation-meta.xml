@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Kategori</label>
+    <name>TAG_Category__c</name>
+    <picklistValues>
+        <masterLabel>IA-avtale</masterLabel>
+        <translation><!-- IA-avtale --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rekrutteringsavtale</masterLabel>
+        <translation><!-- Rekrutteringsavtale --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
