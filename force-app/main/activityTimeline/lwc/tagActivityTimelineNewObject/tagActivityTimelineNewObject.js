@@ -12,16 +12,14 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 		this[NavigationMixin.Navigate]({
 			type: 'standard__objectPage',
 			attributes: { objectApiName: this.row.SObjectChild__c, actionName: 'new' },
-			// state: { // TODO enable for pre-filled data (supported in spring 20)
-			// 	nooverride: '1',
-			// 	recordTypeId: this.row.CreateableObject_RecordType__c,
-			// 	// setRedirect: 'true', // not working
-			// 	// navigationLocation: 'LIST_VIEW',  // works in a hacky fashion, won't open tasks afterwards
-			// 	useRecordTypeCheck: 1,
-			// 	defaultFieldValues: this.fieldValues
-			// }
+			state: {
+				nooverride: '1',
+				recordTypeId: this.row.CreateableObject_RecordType__c,
+				navigationLocation: 'LOOKUP',
+				useRecordTypeCheck: 1,
+				// defaultFieldValues: this.fieldValues // TODO enable for pre-filled data (supported in spring 20)
+			}
 		});
-
 	}
 
 	connectedCallback() {
@@ -41,7 +39,6 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 			tmpFieldValues += tmp[i] + ',';
 		}
 		this.fieldValues = tmpFieldValues.substring(0, tmpFieldValues.length - 1);
-
 	}
 
 	getKeyAndValueIfValid(key, value) {
