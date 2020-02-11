@@ -4,9 +4,6 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -154,8 +151,8 @@
     </relatedContent>
     <relatedLists>
         <fields>FULL_NAME</fields>
+        <fields>CONTACT.TITLE</fields>
         <fields>CONTACT.PHONE3</fields>
-        <fields>CONTACT.PHONE1</fields>
         <fields>CONTACT.EMAIL</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
@@ -177,7 +174,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3O000000WUhG</masterLabel>
+        <masterLabel>00h3N000000X0ff</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
