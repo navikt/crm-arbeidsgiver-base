@@ -23,6 +23,10 @@
 		<value xsi:type="xsd:boolean">true</value>
 	</values>
 	<values>
+		<field>SLDS_Dropdown_Icon__c</field>
+		<value xsi:type="xsd:string">utility:sms</value>
+	</values>
+	<values>
 		<field>SLDS_Icon__c</field>
 		<value xsi:type="xsd:string">standard:sms</value>
 	</values>
