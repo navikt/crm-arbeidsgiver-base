@@ -22,6 +22,8 @@ export default class TagActivityTimeline extends LightningElement {
 	@api amountOfRecords = 3;
 	@api amountOfRecordsToLoad = 3;
 
+	@api timestamp = '';
+
 	@track data;
 	@track overdueData;
 	deWireResult;
@@ -45,6 +47,7 @@ export default class TagActivityTimeline extends LightningElement {
 	@track collapseText = labels.collapse;
 
 	connectedCallback() {
+		// this.timestamp = new Date(); // ! Use to force a refresh (if necessary)
 
 		Promise.all([
 			loadScript(this, MOMENT_JS),
@@ -77,7 +80,7 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
-	@wire(getActivityTimelineData, { recordId: '$recordId', amountOfMonths: '$amountOfMonths' })
+	@wire(getActivityTimelineData, { recordId: '$recordId', amountOfMonths: '$amountOfMonths', timestamp: '$timestamp' })
 	deWire(result) {
 		this.deWireResult = result;
 
@@ -102,6 +105,14 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
+	refreshData() {
+		this.error = false;
+		this.loading = true;
+		return refreshApex(this.deWireResult).then(() => {
+			this.loading = false;
+		});
+	}
+
 	setError(error) {
 		if (error.body && error.body.exceptionType && error.body.message) {
 			this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
@@ -114,11 +125,6 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
-	refreshData() {
-		this.error = false;
-		this.loading = true;
-		return refreshApex(this.deWireResult);
-	}
 
 	loadMore(event) {
 		this.loading = true;

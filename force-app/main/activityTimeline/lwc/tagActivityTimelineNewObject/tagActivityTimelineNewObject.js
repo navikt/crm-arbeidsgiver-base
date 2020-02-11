@@ -31,8 +31,6 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 		let type = this.getKeyAndValueIfValid(this.row.SObjectTypeField__c, this.row.SObjectTypeValue__c);
 		if (type !== null) { tmp.push(type); }
 
-
-
 		// combine them all
 		let tmpFieldValues = '';
 		for (let i = 0; i < tmp.length; i++) {
