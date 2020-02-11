@@ -135,11 +135,11 @@ jobs:
       - run:
           name: Push Source
           command: |
-            if [ -d force-app/main/unpackaged ]; then
-                rm -r force-app/main/unpackaged
+            if [ -d force-app/main/unpackagable ]; then
+                rm -r force-app/main/unpackagable
             fi
-            if [ -d force-app/main/non_deployable ]; then
-                rm -r force-app/main/non_deployable
+            if [ -d non_deployable_metadata ]; then
+                rm -r non_deployable_metadata
             fi
             ls force-app/main
 
@@ -208,11 +208,11 @@ jobs:
       - run:
           name: Creating new package
           command: |
-            if [ -d force-app/main/unpackaged ]; then
-                rm -r force-app/main/unpackaged
+            if [ -d force-app/main/unpackagable ]; then
+                rm -r force-app/main/unpackagable
             fi
-            if [ -d force-app/main/non_deployable ]; then
-                rm -r force-app/main/non_deployable
+            if [ -d non_deployable_metadata ]; then
+                rm -r non_deployable_metadata
             fi
             ls force-app/main
             sfdx force:package:version:create -p $(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r) -d force-app --wait 10 -v DevHub -f config/package-scratch-def.json -k $SFDX_PACKAGE_KEY
