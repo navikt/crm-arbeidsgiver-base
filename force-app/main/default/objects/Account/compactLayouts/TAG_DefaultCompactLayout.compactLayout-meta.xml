@@ -2,10 +2,11 @@
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_DefaultCompactLayout</fullName>
     <fields>Name</fields>
+    <fields>CRM_Type__c</fields>
     <fields>INT_OrganizationNumber__c</fields>
     <fields>ParentId</fields>
     <fields>INT_Industry__c</fields>
     <fields>Phone</fields>
-    <fields>ShippingAddress</fields>
+    <fields>Website</fields>
     <label>TAG Default Compact Layout</label>
 </CompactLayout>
