@@ -4,8 +4,8 @@
 
 # profiles
 **/profiles/*
-!**/non_deployable/profiles/*
-!**/unpackaged/profiles/*
+!non_deployable_metadata/profiles/*
+!**/unpackagable/profiles/*
 
 # standard fields not needed in source control
 **/objects/Account/fields/ChannelProgramLevelName.field-meta.xml
