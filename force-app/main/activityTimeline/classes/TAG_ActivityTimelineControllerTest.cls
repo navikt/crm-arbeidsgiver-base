@@ -17,7 +17,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		insert ta2;
 
 		Test.StartTest();
-		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5 );
+		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
 		Test.StopTest();
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
@@ -60,7 +60,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		insert co;
 
 		Test.StartTest();
-		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5 );
+		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
 		Test.StopTest();
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
