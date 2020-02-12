@@ -20,7 +20,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		}
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
-		                                                   SLDS_Timeline_Color__c, SLDS_Icon__c,
+		                                                   SLDS_Timeline_Color__c, SLDS_Icon__c, SLDS_Dropdown_Icon__c,
 		                                                   CreateableObject_TextEnglish__c, CreateableObject_TextNorwegian__c, CreateableObject_RecordType__c,
 		                                                   SObjectChild__c, SObjectParent__c,
 		                                                   SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,

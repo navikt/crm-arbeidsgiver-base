@@ -35,6 +35,10 @@
 		<value xsi:type="xsd:string">OwnerId</value>
 	</values>
 	<values>
+		<field>SLDS_Dropdown_Icon__c</field>
+		<value xsi:type="xsd:string">utility:task</value>
+	</values>
+	<values>
 		<field>SObjectChild__c</field>
 		<value xsi:type="xsd:string">Task</value>
 	</values>

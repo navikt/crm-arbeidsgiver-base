@@ -4,7 +4,7 @@ public with sharing class TAG_ActivityTimelineController {
 	private static final Boolean IS_NORWEGIAN =     USER.LanguageLocaleKey == 'Norsk';
 
 	@AuraEnabled(cacheable = true)
-	public static List<TAG_ActivityTimelineModelList> getActivityTimelineData( String recordId, Integer amountOfMonths ) {
+	public static List<TAG_ActivityTimelineModelList> getActivityTimelineData( String recordId, Integer amountOfMonths, String timestamp ) {
 
 		System.debug( '\n------------------------------------------\n------------getActivityTimelineData------------\n------------------------------------------' );
 
