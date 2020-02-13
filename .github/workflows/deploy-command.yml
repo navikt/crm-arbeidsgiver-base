@@ -37,7 +37,7 @@ jobs:
 
       # Install package in target org
       - name: 'Install package in target org'
-        run: 'sfdx force:package:install --package ${{ github.event.client_payload.slash_command.arg2 }} -w 10 -b 10 -u targetOrg -r'
+        run: 'sfdx force:package:install --package ${{ github.event.client_payload.slash_command.arg2 }} -k ${{ secret.PACKAGE_KEY }} -w 10 -b 10 -u targetOrg -r'
 
       # Add a hooray reaction to comment on success
       - name: 'Add success reaction'
