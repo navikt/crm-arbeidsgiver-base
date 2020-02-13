@@ -72,4 +72,20 @@
 		<label>Her er det ingenting!</label>
 		<name>ActTime_EmptyGroup</name>
 	</customLabels>
+	<customLabels>
+		<label>i dag</label>
+		<name>ActTime_Today</name>
+	</customLabels>
+	<customLabels>
+		<label>i morgen</label>
+		<name>ActTime_Tomorrow</name>
+	</customLabels>
+	<customLabels>
+		<label>i går</label>
+		<name>ActTime_Yesterday</name>
+	</customLabels>
+	<customLabels>
+		<label>forrige</label>
+		<name>ActTime_Last</name>
+	</customLabels>
 </Translations>

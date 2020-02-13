@@ -3,7 +3,8 @@
 	<!-- DATA -->
 	<!-- ________________________________________________________________________ -->
 	<template if:false={empty} for:each={group.models} for:item="row" for:index="i">
-		<c-tag-activity-timeline-item key={row.record.recordId} row={row} labels={labels} index={i} amount={amount}>
+		<c-tag-activity-timeline-item key={row.record.recordId} row={row} labels={labels} index={i} amount={amount}
+			period={group.id}>
 		</c-tag-activity-timeline-item>
 	</template>
 

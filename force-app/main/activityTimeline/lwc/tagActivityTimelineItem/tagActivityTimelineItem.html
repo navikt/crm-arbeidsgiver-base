@@ -53,8 +53,7 @@
 
 									<!-- DATE -->
 									<div class="slds-timeline__actions slds-timeline__actions_inline">
-										<p if:false={row.record.overdue} class="slds-timeline__date">{getDateFormat}
-										</p>
+										<p if:false={row.record.overdue} class="slds-timeline__date">{getDateFormat}</p>
 										<p if:true={row.record.overdue}
 											class="slds-timeline__date slds-text-color_error">
 											{getDateFormat}</p>
@@ -72,7 +71,6 @@
 
 								<!-- SUBTITLE -->
 								<p class="slds-m-horizontal_xx-small">
-
 									<a if:true={isAssigneeAUser} data-id={row.record.assigneeId}
 										onclick={openUser}>{row.record.assignee}</a>
 									<span if:false={isAssigneeAUser}>{row.record.assignee}</span>
@@ -81,6 +79,7 @@
 										onclick={openUser}>{row.record.relatedUser}</a>
 									<span if:false={isRelatedUserAUser}>{row.record.relatedUser}</span>
 								</p>
+
 								<div if:true={expanded}
 									class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
 									<!-- <template for:each={expandedFieldsToDisplay} for:item="fieldToDisplay">

@@ -81,7 +81,6 @@ public with sharing class TAG_ActivityTimelineHelper {
 		for ( TAG_ActivityTimelineModel model : models ) {
 
 			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
-
 			if ( model.record.dateValueDb >= d ) {
 				tmpModels.add( model );
 			}
@@ -154,26 +153,28 @@ public with sharing class TAG_ActivityTimelineHelper {
 				now = now.replaceAll( ' ', 'T' ) + 'Z';
 			}
 
-			String extra;
+			String extraParameter = '';
+			String extraField = mdt.SObjectChild__c == 'Event' ? ',ActivityDateTime,IsAllDayEvent,DurationInMinutes' : '';
 
 			if ( amountOfMonths != null ) {
-				extra = ' AND (' +
-				        mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
-				        mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
-				        mdt.SObjectDateField__c + ' > ' + now +
-				        ')';
+				extraParameter = '(' +
+				                 mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
+				                 mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
+				                 mdt.SObjectDateField__c + ' > ' + now +
+				                 ')';
 			} else {
-				extra = ' AND ' + mdt.SObjectDateField__c + ' < ' + now +
-				        'AND Status != \'Completed\'';
+				extraParameter = '' + mdt.SObjectDateField__c + ' < ' + now +
+				                 'AND Status != \'Completed\'';
 			}
 
+
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
-			String query = 'SELECT Id, ' + fieldsToQuery +
+			String query = 'SELECT Id,' + fieldsToQuery + extraField +
 
 			               ' FROM ' + mdt.SObjectChild__c +
 
 			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
-			               extra +
+			               ' AND ' + extraParameter +
 			               ' AND ' + mdt.SObjectDateField__c + ' != null' +
 
 			               ' ORDER BY ' + mdt.SObjectDateField__c;

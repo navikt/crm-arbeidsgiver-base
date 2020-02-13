@@ -8,8 +8,10 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		Contact con = new Contact( LastName = 'Test' );
 		insert con;
 
-		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'test', WhoId = con.Id );
+		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today().addDays( -1 ), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'i går', WhoId = con.Id );
 		insert ev;
+		Event ev2 = new Event( WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
+		insert ev2;
 		Task ta = new Task( WhatId = acc.Id, ActivityDate = Date.today(), Subject = 'test', WhoId = con.Id );
 		insert ta;
 		Date t = Date.today().addDays( -2 );
@@ -27,7 +29,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		for ( TAG_ActivityTimelineModelList wr : wrapper ) {
 
 			if ( wr.id == Label.ActTime_Upcoming ) {
-				System.assertEquals( 1, wr.models.size(), 'This account should have one record for each wrapper' );
+				System.assertEquals( 2, wr.models.size(), 'This account should have two records in upcoming, the event and the task with due date today' );
 			} else {
 				System.assertEquals( 2, wr.models.size(), 'This account should have two records for the month wrapper, because overdue records are still counted' );
 			}
@@ -35,7 +37,10 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 			for ( TAG_ActivityTimelineModel obj : wr.models ) {
 
 				String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( obj.record.recordId );
-				if ( sObjectType == 'Event' ) {
+				if ( sObjectType == 'Event' && wr.id == Label.ActTime_Upcoming ) {
+					System.assertEquals( ev2.Id, obj.record.recordId, 'The ID should be the created event' );
+					System.assertEquals( sObjectsToQueryMap.get( 'Event' ).Id, obj.config.Id, 'The ID should be the event config' );
+				} else if ( sObjectType == 'Event' && wr.id != Label.ActTime_Upcoming ) {
 					System.assertEquals( ev.Id, obj.record.recordId, 'The ID should be the created event' );
 					System.assertEquals( sObjectsToQueryMap.get( 'Event' ).Id, obj.config.Id, 'The ID should be the event config' );
 				} else if ( sObjectType == 'Task' && !obj.record.overdue ) {
@@ -65,7 +70,6 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
 		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
-		System.debug( 'sObjectsToQueryMap: ' + sObjectsToQueryMap );
 		System.assertEquals( 2, wrapper.size(), 'One for upcoming (empty) and this month ' );
 
 		TAG_ActivityTimelineModelList wr = wrapper[1];
@@ -95,7 +99,6 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 		System.assertEquals( 1, data.size(), 'Only one wrapper, as it only contains overdue tasks' );
 		System.assertEquals( 1, data[0].models.size(), 'Only one records, as only one task created is overdue and events cannot be overdue (no completion or status)' );
-
 	}
 
 	@isTest

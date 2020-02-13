@@ -15,6 +15,10 @@ import activities from "@salesforce/label/c.ActTime_Activities";
 import emptyTitle from "@salesforce/label/c.ActTime_EmptyTitle";
 import emptySubtitle from "@salesforce/label/c.ActTime_EmptySubtitle";
 import errorTitle from "@salesforce/label/c.ActTime_ErrorTitle";
+import today from "@salesforce/label/c.ActTime_Today";
+import tomorrow from "@salesforce/label/c.ActTime_Tomorrow";
+import yesterday from "@salesforce/label/c.ActTime_Yesterday";
+import last from "@salesforce/label/c.ActTime_Last";
 
 export default {
 	MomentJsLanguage,
@@ -33,5 +37,9 @@ export default {
 	emptyTitle,
 	emptySubtitle,
 	errorTitle,
-	emptyGroup
+	emptyGroup,
+	today,
+	tomorrow,
+	yesterday,
+	last
 };

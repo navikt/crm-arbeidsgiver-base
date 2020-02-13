@@ -19,10 +19,10 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 			String fieldsToQuery = TAG_ActivityTimelineHelper.getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
-			String expectedEventBeginning = ('SELECT Id, ActivityDateTime,Subject,OwnerId,WhoId FROM Event WHERE WhatId = \'' + recordId + '\' AND (ActivityDateTime = LAST_N_MONTHS:2 OR ActivityDateTime = THIS_MONTH OR ActivityDateTime > ' + System.today() + 'T').replace( ' 00:00:00', '' );
-			String expectedEventEnd = 'Z) AND ActivityDateTime != null ORDER BY ActivityDateTime';
+			String expectedEventBeginning = ( 'SELECT Id,ActivityDate,Subject,OwnerId,WhoId,ActivityDateTime,IsAllDayEvent,DurationInMinutes FROM Event WHERE WhatId = \'' + recordId + '\' AND (ActivityDate = LAST_N_MONTHS:2 OR ActivityDate = THIS_MONTH OR ActivityDate > ' + System.today() ).replace( ' 00:00:00', '' );
+			String expectedEventEnd = ') AND ActivityDate != null ORDER BY ActivityDate';
 
-			String expectedTaskBeginning = ( 'SELECT Id, ActivityDate,Subject,OwnerId,WhoId,Type,Status FROM Task WHERE WhatId = \'' + recordId + '\' AND (ActivityDate = LAST_N_MONTHS:2 OR ActivityDate = THIS_MONTH OR ActivityDate > ' + System.today() ).replace( ' 00:00:00', '' );
+			String expectedTaskBeginning = ( 'SELECT Id,ActivityDate,Subject,OwnerId,WhoId,Type,Status FROM Task WHERE WhatId = \'' + recordId + '\' AND (ActivityDate = LAST_N_MONTHS:2 OR ActivityDate = THIS_MONTH OR ActivityDate > ' + System.today() ).replace( ' 00:00:00', '' );
 			String expectedTaskEnd = ') AND ActivityDate != null ORDER BY ActivityDate';
 
 			for ( String query : queries ) {
@@ -42,7 +42,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event' } );
 
-		String expected = 'ActivityDateTime,Subject,OwnerId,WhoId';
+		String expected = 'ActivityDate,Subject,OwnerId,WhoId';
 
 		Test.StartTest();
 		String actual = TAG_ActivityTimelineHelper.getFieldsToQueryFromMdt( sObjectsToQuery, sObjectsToQuery[0] );

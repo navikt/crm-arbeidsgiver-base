@@ -1,6 +1,6 @@
 global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
-	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; }
+	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; } // TODO delete
 
 	@AuraEnabled public Theme theme { get; set; }
 	@AuraEnabled public Record record { get; set; }
@@ -17,8 +17,11 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		@AuraEnabled public String sObjectKind;
 		@AuraEnabled public String type;
 		@AuraEnabled public String title;
+
 		@AuraEnabled public Datetime dateValueDb;
 		@AuraEnabled public String dateValue;
+		@AuraEnabled public Boolean isDate;
+		@AuraEnabled public Integer durationInMinute;
 
 		@AuraEnabled public String assignee;
 		@AuraEnabled public Id assigneeId;
@@ -54,6 +57,17 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		record.type = config.SObjectTypeValue__c;
 		record.title = (String) sObj.get( config.SObjectTitle__c );
 		record.dateValueDb = (Datetime) sObj.get( config.SObjectDateField__c );
+		record.isDate = config.SObjectDateFieldIsDate__c;
+
+		if ( config.SObjectChild__c == 'Event' ) {
+			record.isDate = (Boolean) sObj.get( 'IsAllDayEvent' );
+			record.durationInMinute = (Integer) sObj.get( 'DurationInMinutes' );
+
+			if ( !record.isDate ) {
+				record.dateValueDb = (Datetime) sObj.get( 'ActivityDateTime' );
+			}
+		}
+
 
 		theme.icon = config.SLDS_Icon__c;
 		theme.sldsTimelineItemColor = config.SLDS_Timeline_Color__c;
