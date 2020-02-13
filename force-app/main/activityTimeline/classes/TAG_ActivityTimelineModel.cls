@@ -68,7 +68,6 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 			}
 		}
 
-
 		theme.icon = config.SLDS_Icon__c;
 		theme.sldsTimelineItemColor = config.SLDS_Timeline_Color__c;
 
@@ -80,59 +79,13 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 			}
 		}
 
-		if ( record.dateValueDb < DateTime.now() && !record.overdue ) {
-			record.subtitle = lang == 'Norsk' ? config.SubtitlePastNorwegian__c : config.SubtitlePastEnglish__c;
-		} else {
-			record.subtitle = lang == 'Norsk' ? config.SubtitleFutureNorwegian__c : config.SubtitleFutureEnglish__c;
-		}
-
 		if ( config.SObjectAssigneeId__c != null ) {
 			record.assigneeId = (Id) sObj.get( config.SObjectAssigneeId__c );
-			record.assignee = getOwnerName( record.assigneeId );
-			if ( record.assigneeId == UserInfo.getUserId() ) {
-				record.assigneeId = null;
-			}
-
 		} if ( config.SObjectRelatedUserId__c != null ) {
 			record.relatedUserId = (Id) sObj.get( config.SObjectRelatedUserId__c );
-			record.relatedUser = getContactName( record.relatedUserId, record.sObjectKind, record.type );
-			if ( record.relatedUser != null ) {
-				record.subtitle += lang == 'Norsk' ? ' ' + returnValueIfNotNull( config.SubtitleRelatedUserPrepositionNor__c ) : ' ' + returnValueIfNotNull( config.SubtitleRelatedUserPrepositionEng__c );
-			}
 		}
-
 
 		this.theme = theme;
 		this.record = record;
 	}
-
-
-
-	public static String getOwnerName( Id ownerId ) {
-		if ( ownerId == UserInfo.getUserId() ) {
-			return Label.ActTime_You;
-		} else {
-			List<User> u = [SELECT Name FROM User WHERE Id = : ownerId LIMIT 1];
-			if ( !u.isEmpty() ) { return u[0].Name; }
-		}
-
-		return Label.ActTime_Unknown;
-	}
-
-	public static String getContactName( Id contactId, String sObjectType, String type ) {
-
-		List<Contact> u = [SELECT Name FROM Contact WHERE Id = : contactId LIMIT 1];
-		if ( !u.isEmpty() ) { return u[0].Name; }
-		if ( sObjectType == 'Task' && type == 'Call' ) { return Label.ActTime_Unknown.toLowerCase(); }
-
-		return null;
-	}
-
-	public static String returnValueIfNotNull( String input ) {
-		return input != null ? input : '';
-	}
 }
-
-
-
-

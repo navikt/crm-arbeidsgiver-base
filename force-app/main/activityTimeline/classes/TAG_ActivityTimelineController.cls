@@ -18,6 +18,7 @@ public with sharing class TAG_ActivityTimelineController {
 		List<String>                    query =             TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, amountOfMonths );
 		List<SObject>                   sObjects =          TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
 		List<TAG_ActivityTimelineModel> data =              TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
+		data =                                              TAG_ActivityTimelineHelper.getOwnerAndContactNames( data );
 		data.sort();
 
 		List<TAG_ActivityTimelineModel> upcoming =          TAG_ActivityTimelineHelper.getUpcomingOnly( data );
@@ -42,6 +43,7 @@ public with sharing class TAG_ActivityTimelineController {
 
 		List<TAG_ActivityTimelineModelList> data =          new List<TAG_ActivityTimelineModelList>();
 		List<TAG_ActivityTimelineModel> overdue =           TAG_ActivityTimelineHelper.getOverdueOnly( sObjectsToQuery, recordId );
+		overdue =                                           TAG_ActivityTimelineHelper.getOwnerAndContactNames( overdue );
 		TAG_ActivityTimelineModelList overdueWrapper =      new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, overdue, false, true );
 		data.add( overdueWrapper );
 
