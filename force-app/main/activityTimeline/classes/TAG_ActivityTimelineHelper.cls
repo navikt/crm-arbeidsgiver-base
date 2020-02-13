@@ -80,13 +80,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
 		for ( TAG_ActivityTimelineModel model : models ) {
 
-			System.debug( 'model.record.sObjectKind: ' + model.record.sObjectKind );
-			System.debug( 'model.record.title: ' + model.record.title );
-			System.debug( 'model.record.dateValueDb: ' + model.record.dateValueDb );
-			System.debug( 'model.config.SObjectDateFieldIsDate__c: ' + model.config.SObjectDateFieldIsDate__c );
-
 			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
-			System.debug( 'd: ' + d );
 			if ( model.record.dateValueDb >= d ) {
 				tmpModels.add( model );
 			}

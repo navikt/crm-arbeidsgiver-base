@@ -21,7 +21,6 @@ private class TAG_ActivityTimelineModelTest {
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
 		List<String> query = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 8 );
 		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
-		System.debug( 'sObjects: ' + sObjects );
 		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 
 		System.assertEquals( 3, data.size(), 'Three records added to account' );

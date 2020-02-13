@@ -20,10 +20,6 @@ public with sharing class TAG_ActivityTimelineController {
 		List<TAG_ActivityTimelineModel> data =              TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 		data.sort();
 
-		for ( TAG_ActivityTimelineModel var : data ) {
-			System.debug( 'var: ' + var );
-		}
-
 		List<TAG_ActivityTimelineModel> upcoming =          TAG_ActivityTimelineHelper.getUpcomingOnly( data );
 		TAG_ActivityTimelineModelList wrappedUpcoming =     new TAG_ActivityTimelineModelList( Label.ActTime_Upcoming, Label.ActTime_Upcoming, upcoming, false, false );
 		List<TAG_ActivityTimelineModelList> wrappedMonths = TAG_ActivityTimelineHelper.getRecordsDividedIntoMonths( data );

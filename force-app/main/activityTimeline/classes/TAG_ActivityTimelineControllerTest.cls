@@ -70,7 +70,6 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
 		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
-		System.debug( 'sObjectsToQueryMap: ' + sObjectsToQueryMap );
 		System.assertEquals( 2, wrapper.size(), 'One for upcoming (empty) and this month ' );
 
 		TAG_ActivityTimelineModelList wr = wrapper[1];
