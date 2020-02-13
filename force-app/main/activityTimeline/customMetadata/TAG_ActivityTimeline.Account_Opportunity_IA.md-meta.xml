@@ -32,7 +32,7 @@
 	</values>
 	<values>
 		<field>SObjectAssigneeId__c</field>
-		<value xsi:type="xsd:string">IA_Owner__c</value>
+		<value xsi:type="xsd:string">OwnerId</value>
 	</values>
 	<values>
 		<field>SObjectChild__c</field>
@@ -84,7 +84,7 @@
 	</values>
 	<values>
 		<field>SubtitlePastEnglish__c</field>
-		<value xsi:type="xsd:string">was the responsible IA-counselor</value>
+		<value xsi:type="xsd:string">were the responsible IA-counselor</value>
 	</values>
 	<values>
 		<field>SubtitlePastNorwegian__c</field>
