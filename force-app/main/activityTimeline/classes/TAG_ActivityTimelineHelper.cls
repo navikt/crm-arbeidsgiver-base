@@ -80,8 +80,13 @@ public with sharing class TAG_ActivityTimelineHelper {
 		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
 		for ( TAG_ActivityTimelineModel model : models ) {
 
-			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
+			System.debug( 'model.record.sObjectKind: ' + model.record.sObjectKind );
+			System.debug( 'model.record.title: ' + model.record.title );
+			System.debug( 'model.record.dateValueDb: ' + model.record.dateValueDb );
+			System.debug( 'model.config.SObjectDateFieldIsDate__c: ' + model.config.SObjectDateFieldIsDate__c );
 
+			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
+			System.debug( 'd: ' + d );
 			if ( model.record.dateValueDb >= d ) {
 				tmpModels.add( model );
 			}
@@ -154,26 +159,28 @@ public with sharing class TAG_ActivityTimelineHelper {
 				now = now.replaceAll( ' ', 'T' ) + 'Z';
 			}
 
-			String extra;
+			String extraParameter = '';
+			String extraField = mdt.SObjectChild__c == 'Event' ? ',ActivityDateTime,IsAllDayEvent,DurationInMinutes' : '';
 
 			if ( amountOfMonths != null ) {
-				extra = ' AND (' +
-				        mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
-				        mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
-				        mdt.SObjectDateField__c + ' > ' + now +
-				        ')';
+				extraParameter = '(' +
+				                 mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
+				                 mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
+				                 mdt.SObjectDateField__c + ' > ' + now +
+				                 ')';
 			} else {
-				extra = ' AND ' + mdt.SObjectDateField__c + ' < ' + now +
-				        'AND Status != \'Completed\'';
+				extraParameter = '' + mdt.SObjectDateField__c + ' < ' + now +
+				                 'AND Status != \'Completed\'';
 			}
 
+
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
-			String query = 'SELECT Id, ' + fieldsToQuery +
+			String query = 'SELECT Id,' + fieldsToQuery + extraField +
 
 			               ' FROM ' + mdt.SObjectChild__c +
 
 			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
-			               extra +
+			               ' AND ' + extraParameter +
 			               ' AND ' + mdt.SObjectDateField__c + ' != null' +
 
 			               ' ORDER BY ' + mdt.SObjectDateField__c;
