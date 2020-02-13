@@ -95,7 +95,6 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 		System.assertEquals( 1, data.size(), 'Only one wrapper, as it only contains overdue tasks' );
 		System.assertEquals( 1, data[0].models.size(), 'Only one records, as only one task created is overdue and events cannot be overdue (no completion or status)' );
-
 	}
 
 	@isTest

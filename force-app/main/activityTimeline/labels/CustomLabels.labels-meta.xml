@@ -140,4 +140,32 @@
 		<shortDescription>[ActTime] Empty Group</shortDescription>
 		<value>Nothing here.</value>
 	</labels>
+	<labels>
+		<fullName>ActTime_Today</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Today</shortDescription>
+		<value>Today</value>
+	</labels>
+	<labels>
+		<fullName>ActTime_Tomorrow</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Tomorrow</shortDescription>
+		<value>Tomorrow</value>
+	</labels>
+	<labels>
+		<fullName>ActTime_Yesterday</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Yesterday</shortDescription>
+		<value>Yesterday</value>
+	</labels>
+	<labels>
+		<fullName>ActTime_Last</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>[ActTime] Last</shortDescription>
+		<value>Last</value>
+	</labels>
 </CustomLabels>

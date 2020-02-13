@@ -1,7 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'
 
-
 export default class TagActivityTimelineItem extends NavigationMixin(LightningElement) {
 
 	@api row;
@@ -9,6 +8,7 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 	@api labels;
 	@api amount;
 	@api index;
+	@api period;
 
 	@track expanded = false;
 	@track timelineColor = "slds-timeline__item_expandable";
@@ -20,13 +20,25 @@ export default class TagActivityTimelineItem extends NavigationMixin(LightningEl
 	};
 
 	get getDateFormat() {
-		try {
-			while (moment !== undefined) {
-				return moment(this.row.record.dateValueDb).fromNow();
-			} // TODO add error after x seconds
-			// TODO remove try
-		} catch (error) {
 
+		// TODO mouseover to get relative fromNow()
+
+		try {
+			if (this.period === this.labels.upcoming || this.period === this.labels.overdue) {
+				var settings = this.row.record.isDate ? {
+					sameDay: '[' + this.labels.today + ']',
+					nextDay: '[' + this.labels.tomorrow + ']',
+					nextWeek: 'dddd',
+					lastDay: '[' + this.labels.yesterday + ']',
+					lastWeek: '[' + this.labels.last + '] dddd',
+					sameElse: 'DD/MM/YYYY'
+				} : null;
+				return moment(this.row.record.dateValueDb).calendar(null, settings);
+			} else {
+				return moment(this.row.record.dateValueDb).format('L');
+			}
+		} catch (error) {
+			return this.row.record.dateValueDb;
 		}
 	}
 
