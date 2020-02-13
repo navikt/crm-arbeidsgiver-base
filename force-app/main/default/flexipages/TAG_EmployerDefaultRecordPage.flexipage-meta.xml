@@ -156,6 +156,9 @@
             </componentInstanceProperties>
             <componentName>tagActivityTimeline</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>runtime_sales_activities:activityPanel</componentName>
+        </componentInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
