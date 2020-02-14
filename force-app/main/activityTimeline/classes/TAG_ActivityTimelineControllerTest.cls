@@ -2,56 +2,96 @@
 private without sharing class TAG_ActivityTimelineControllerTest {
 
 	@isTest
-	private static void testGetActivityTimelineData() {
+	private static void testGetActivityTimelineData_UpcomingTask() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 		Contact con = new Contact( LastName = 'Test' );
 		insert con;
 
-		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today().addDays( -1 ), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'i går', WhoId = con.Id );
-		insert ev;
-		Event ev2 = new Event( WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
-		insert ev2;
-		Task ta = new Task( WhatId = acc.Id, ActivityDate = Date.today(), Subject = 'test', WhoId = con.Id );
+		Date d = Date.today();
+		Task ta = new Task( WhatId = acc.Id, ActivityDate = d, Subject = 'test', WhoId = con.Id );
 		insert ta;
-		Date t = Date.today().addDays( -2 );
-		Task ta2 = new Task( WhatId = acc.Id, ActivityDate = t, Subject = 'test', WhoId = con.Id );
-		insert ta2;
 
 		Test.StartTest();
 		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
 		Test.StopTest();
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
-		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
+		System.assertEquals( 1, wrapper.size(), 'one for upcoming' );
+		System.assertEquals( 1, wrapper[0].models.size(), 'contains one in upcoming' );
+		System.assertEquals( Label.ActTime_Upcoming, wrapper[0].id, 'upcoming label as id' );
+		System.assertEquals( ta.Id, wrapper[0].models[0].record.recordId, 'The ID should be the created task' );
+	}
 
-		System.assertEquals( 2, wrapper.size(), 'One for upcoming and one for this month ' );
-		for ( TAG_ActivityTimelineModelList wr : wrapper ) {
+	@isTest
+	private static void testGetActivityTimelineData_UpcomingAllDayEvent() {
 
-			if ( wr.id == Label.ActTime_Upcoming ) {
-				System.assertEquals( 2, wr.models.size(), 'This account should have two records in upcoming, the event and the task with due date today' );
-			} else {
-				System.assertEquals( 2, wr.models.size(), 'This account should have two records for the month wrapper, because overdue records are still counted' );
-			}
+		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+		Contact con = new Contact( LastName = 'Test' );
+		insert con;
 
-			for ( TAG_ActivityTimelineModel obj : wr.models ) {
+		Date d = Date.today();
+		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
+		insert ev;
 
-				String sObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( obj.record.recordId );
-				if ( sObjectType == 'Event' && wr.id == Label.ActTime_Upcoming ) {
-					System.assertEquals( ev2.Id, obj.record.recordId, 'The ID should be the created event' );
-					System.assertEquals( sObjectsToQueryMap.get( 'Event' ).Id, obj.config.Id, 'The ID should be the event config' );
-				} else if ( sObjectType == 'Event' && wr.id != Label.ActTime_Upcoming ) {
-					System.assertEquals( ev.Id, obj.record.recordId, 'The ID should be the created event' );
-					System.assertEquals( sObjectsToQueryMap.get( 'Event' ).Id, obj.config.Id, 'The ID should be the event config' );
-				} else if ( sObjectType == 'Task' && !obj.record.overdue ) {
-					System.assertEquals( ta.Id, obj.record.recordId, 'The ID should be the non-overdue event' );
-					System.assertEquals( sObjectsToQueryMap.get( 'Task' ).Id, obj.config.Id, 'The ID should be the task config' );
-				} else if ( sObjectType == 'Task' && obj.record.overdue ) {
-					System.assertEquals( ta2.Id, obj.record.recordId, 'The ID should be the overdue event' );
-					System.assertEquals( sObjectsToQueryMap.get( 'Task' ).Id, obj.config.Id, 'The ID should be the task config' );
-				}
-			}
-		}
+		Test.StartTest();
+		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
+		Test.StopTest();
+
+		System.assertEquals( 1, wrapper.size(), 'One for upcoming' );
+		System.assertEquals( 1, wrapper[0].models.size(), 'contains one in upcoming' );
+		System.assertEquals( Label.ActTime_Upcoming, wrapper[0].id, 'upcoming label as id' );
+		System.assertEquals( ev.Id, wrapper[0].models[0].record.recordId, 'The ID should be the created event' );
+	}
+
+	@isTest
+	private static void testGetActivityTimelineData_HistoricTask() {
+
+		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+		Contact con = new Contact( LastName = 'Test' );
+		insert con;
+
+		Date d = Date.today().addDays( -2 );
+		Task ta = new Task( WhatId = acc.Id, ActivityDate = d, Subject = 'test', WhoId = con.Id );
+		insert ta;
+
+		Test.StartTest();
+		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
+		Test.StopTest();
+		System.assertEquals( 2, wrapper.size(), 'One for this month and one for upcoming, which is empty' );
+
+		System.assertEquals( 0, wrapper[0].models.size(), 'Empty upcoming' );
+		System.assertEquals( 1, wrapper[1].models.size(), 'One record in month view' );
+
+		System.assertEquals( Label.ActTime_Upcoming, wrapper[0].id, 'upcoming label as id' );
+		System.assertEquals( d.month() + '' + d.year(), wrapper[1].id, 'month-year format as id' );
+
+		System.assertEquals( ta.Id, wrapper[1].models[0].record.recordId, 'The ID should be the created event' );
+	}
+
+	@isTest
+	private static void testGetActivityTimelineData_HistoricEvent() {
+
+		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+		Contact con = new Contact( LastName = 'Test' );
+		insert con;
+
+		Date d = Date.today().addDays( -1 );
+		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = d, TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'i går', WhoId = con.Id );
+		insert ev;
+
+		Test.StartTest();
+		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
+		Test.StopTest();
+
+		System.assertEquals( 2, wrapper.size(), 'One for this month and one for upcoming, which is empty' );
+
+		System.assertEquals( 0, wrapper[0].models.size(), 'Empty upcoming' );
+		System.assertEquals( 1, wrapper[1].models.size(), 'One record in month view' );
+
+		System.assertEquals( Label.ActTime_Upcoming, wrapper[0].id, 'upcoming label as id' );
+		System.assertEquals( d.month() + '' + d.year(), wrapper[1].id, 'month-year format as id' );
+
+		System.assertEquals( ev.Id, wrapper[1].models[0].record.recordId, 'The ID should be the created event' );
 	}
 
 

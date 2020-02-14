@@ -146,46 +146,58 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 
-			String now = '' + ( mdt.SObjectDateFieldIsDate__c ? System.today() : System.now() );
-			if ( mdt.SObjectDateFieldIsDate__c ) {
-				now = now.replaceAll( ' 00:00:00', '' );
-			} else {
-				now = now.replaceAll( ' ', 'T' ) + 'Z';
-			}
-
-			String extraParameter = '';
-			String extraField = mdt.SObjectChild__c == 'Event' ? ',ActivityDateTime,IsAllDayEvent,DurationInMinutes' : '';
-
-			if ( amountOfMonths != null ) {
-				extraParameter = '(' +
-				                 mdt.SObjectDateField__c + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
-				                 mdt.SObjectDateField__c + ' = THIS_MONTH OR ' +
-				                 mdt.SObjectDateField__c + ' > ' + now +
-				                 ')';
-			} else {
-				extraParameter = '' + mdt.SObjectDateField__c + ' < ' + now +
-				                 'AND Status != \'Completed\'';
-			}
-
+			String extraParameter = getExtraParameter( mdt, amountOfMonths, false );
+			String extraField = mdt.SObjectChild__c == 'Event' ? ',ActivityDateTime,IsAllDayEvent,DurationInMinutes' :
+			                    mdt.SObjectChild__c == 'Task' ? ',CreatedDate' : '';
 
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
-			String query = 'SELECT Id,' + fieldsToQuery + extraField +
-
-			               ' FROM ' + mdt.SObjectChild__c +
-
-			               ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
-			               ' AND ' + extraParameter +
-			               ' AND ' + mdt.SObjectDateField__c + ' != null' +
-
-			               ' ORDER BY ' + mdt.SObjectDateField__c;
 
 			if ( !queriedSobjects.contains( mdt.SObjectChild__c ) ) {
-				queries.add( query );
+				queries.add( getQuery( mdt, recordId, extraParameter, extraField, fieldsToQuery ) );
 				queriedSobjects.add( mdt.SObjectChild__c );
+
+				if ( mdt.SObjectChild__c == 'Task' ) {
+					String dateLessParameter = getExtraParameter( mdt, amountOfMonths, true );
+					queries.add( getQuery( mdt, recordId, dateLessParameter, extraField, fieldsToQuery ) );
+				}
 			}
 		}
 
 		return queries;
+	}
+
+	public static String getExtraParameter( TAG_ActivityTimeline__mdt mdt, Integer amountOfMonths, Boolean findDateless ) {
+
+		Boolean isDate = findDateless ? false : mdt.SObjectDateFieldIsDate__c;
+
+		String now = '' + ( isDate ? System.today() : System.now() );
+		if ( isDate ) { now = now.replaceAll( ' 00:00:00', '' ); }
+		else { now = now.replaceAll( ' ', 'T' ) + 'Z'; }
+
+		String dateField = findDateless ? 'CreatedDate' : mdt.SObjectDateField__c;
+
+		if ( amountOfMonths != null ) {
+			return '(' +
+			       dateField + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
+			       dateField + ' = THIS_MONTH OR ' +
+			       dateField + ' > ' + now +
+			       ')' + (findDateless ? ' AND ' + mdt.SObjectDateField__c + ' = null' : '');
+		} else { // get overdue only, as no month is specified
+			return '' + dateField + ' < ' + now +
+			       'AND Status != \'Completed\'' +
+			       (findDateless ? ' AND ' + mdt.SObjectDateField__c + ' = null' : '');
+		}
+	}
+
+	public static String getQuery( TAG_ActivityTimeline__mdt mdt, String recordId, String extraParameter, String extraField, String fieldsToQuery ) {
+		return 'SELECT Id,' + fieldsToQuery + extraField +
+
+		       ' FROM ' + mdt.SObjectChild__c +
+
+		       ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
+		       ' AND ' + extraParameter +
+
+		       ' ORDER BY ' + mdt.SObjectDateField__c;
 	}
 
 	public static String getFieldsToQueryFromMdt( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, TAG_ActivityTimeline__mdt currentObject ) {
