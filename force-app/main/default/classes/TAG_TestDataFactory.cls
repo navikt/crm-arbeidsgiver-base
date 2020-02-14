@@ -46,7 +46,7 @@ public without sharing class TAG_TestDataFactory {
 		user.Username = d + 'test@nav.no';
 		user.Email = d + 'test@nav.no';
 		user.Alias = 'tsamp';
-		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' LIMIT 1].Id;
+		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
 		user.isActive = true;
 		user.FirstName = 'First';
 		user.LastName = 'Last';
