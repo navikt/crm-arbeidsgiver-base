@@ -22,11 +22,19 @@
                 <behavior>Edit</behavior>
                 <field>TAG_Description__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TAG_Contact__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TAG_InternalContact__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Account__c</field>
+                <field>TAG_Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
