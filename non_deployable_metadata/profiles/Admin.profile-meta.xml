@@ -97,12 +97,7 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>Contract__c.Account__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>Contract__c.Category__c</field>
+		<field>Contract__c.TAG_Account__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
 	<fieldPermissions>
