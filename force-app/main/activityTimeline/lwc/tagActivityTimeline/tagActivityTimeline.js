@@ -49,6 +49,10 @@ export default class TagActivityTimeline extends LightningElement {
 	connectedCallback() {
 		// this.timestamp = new Date(); // ! Use to force a refresh (if necessary)
 
+		if (!this.recordId) {
+			this.recordId = '0013N00000A2TC6QAN'; // ! dev env
+		}
+
 		Promise.all([
 			loadScript(this, MOMENT_JS),
 		]).then(() => {

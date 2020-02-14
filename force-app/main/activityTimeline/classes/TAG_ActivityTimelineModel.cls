@@ -46,46 +46,66 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
 	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
 
-		this.config = config;
+		this.config =                       config;
 
-		Theme theme = new Theme();
-		Record record = new Record();
+		Theme theme =                       new Theme();
+		Record record =                     new Record();
 
-		record.recordId = sObj.Id;
+		record.recordId =                   sObj.Id;
 
-		record.sObjectKind = config.SObjectChild__c;
-		record.type = config.SObjectTypeValue__c;
-		record.title = (String) sObj.get( config.SObjectTitle__c );
-		record.dateValueDb = (Datetime) sObj.get( config.SObjectDateField__c );
-		record.isDate = config.SObjectDateFieldIsDate__c;
+		record.sObjectKind =                config.SObjectChild__c;
+		record.type =                       config.SObjectTypeValue__c;
+		record.isDate =                     getIsDate( config, sObj, record );
+		record.dateValueDb =                getDateValue( config, sObj, record );
+		record.overdue =                    getIsOverdue( config, sObj, record );
+		record.title =             (String) get( sObj, config.SObjectTitle__c );
+		record.durationInMinute = (Integer) get( sObj, 'DurationInMinutes' );
 
-		if ( config.SObjectChild__c == 'Event' ) {
-			record.isDate = (Boolean) sObj.get( 'IsAllDayEvent' );
-			record.durationInMinute = (Integer) sObj.get( 'DurationInMinutes' );
+		theme.icon =                        config.SLDS_Icon__c;
+		theme.sldsTimelineItemColor =       config.SLDS_Timeline_Color__c;
 
-			if ( !record.isDate ) {
-				record.dateValueDb = (Datetime) sObj.get( 'ActivityDateTime' );
-			}
-		}
+		record.assigneeId =                 config.SObjectAssigneeId__c != null ? (Id) get( sObj, config.SObjectAssigneeId__c ) : null;
+		record.relatedUserId =              config.SObjectRelatedUserId__c != null ? (Id) get( sObj, config.SObjectRelatedUserId__c ) : null;
 
-		theme.icon = config.SLDS_Icon__c;
-		theme.sldsTimelineItemColor = config.SLDS_Timeline_Color__c;
+		this.theme =                        theme;
+		this.record =                       record;
+	}
 
-		record.overdue = false;
+	public static Datetime getDateValue( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+
+		Datetime dateValueDb = (Datetime) get( sObj, config.SObjectDateField__c );
+
+		if ( dateValueDb == null && record.sObjectKind == 'Task' ) {        dateValueDb = (Datetime) get( sObj, 'CreatedDate' ); }
+		else if ( config.SObjectChild__c == 'Event' &&  !record.isDate ) {  dateValueDb = (Datetime) get( sObj, 'ActivityDateTime' ); }
+
+		return dateValueDb;
+	}
+
+	public static Boolean getIsDate( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+
+		Boolean isDate = config.SObjectDateFieldIsDate__c;
+		if ( config.SObjectChild__c == 'Event' ) { isDate = (Boolean) get( sObj, 'IsAllDayEvent' ); }
+		else if ( config.SObjectChild__c == 'Task' && (Datetime) get( sObj, config.SObjectDateField__c ) == null ) { isDate = false; }
+
+		return isDate;
+	}
+
+	public static Boolean getIsOverdue( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+
+		Boolean isOVerdue = false;
+
 		if ( record.sObjectKind == 'Task' ) {
-
-			if ( sObj.get( 'Status' ) != 'Completed' && record.dateValueDb < Date.today() ) {
-				record.overdue = true;
-			}
+			if ( get( sObj, 'Status' ) != 'Completed' && record.dateValueDb < System.now() ) { isOverdue = true; }
 		}
 
-		if ( config.SObjectAssigneeId__c != null ) {
-			record.assigneeId = (Id) sObj.get( config.SObjectAssigneeId__c );
-		} if ( config.SObjectRelatedUserId__c != null ) {
-			record.relatedUserId = (Id) sObj.get( config.SObjectRelatedUserId__c );
-		}
+		return isOverdue;
+	}
 
-		this.theme = theme;
-		this.record = record;
+	public static Object get( SObject sObj, String field ) {
+		try {
+			return sObj.get( field );
+		} catch ( Exception e ) {
+			return null;
+		}
 	}
 }

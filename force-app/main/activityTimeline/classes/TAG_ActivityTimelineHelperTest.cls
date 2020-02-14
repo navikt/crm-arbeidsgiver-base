@@ -14,24 +14,30 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		List<String> queries = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, 3 );
 		Test.StopTest();
 
-		System.assertEquals( 2, queries.size(), 'Number of queries should only be 2, as there\'s one query for each unique type' );
+		System.assertEquals( 3, queries.size(), 'Number of queries should only be 3, as there\'s one query for each unique type + one extra for tasks without dates' );
 		System.assert ( queries.size() >= 0, 'Should be some data' );
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 			String fieldsToQuery = TAG_ActivityTimelineHelper.getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
 			String expectedEventBeginning = ( 'SELECT Id,ActivityDate,Subject,OwnerId,WhoId,ActivityDateTime,IsAllDayEvent,DurationInMinutes FROM Event WHERE WhatId = \'' + recordId + '\' AND (ActivityDate = LAST_N_MONTHS:2 OR ActivityDate = THIS_MONTH OR ActivityDate > ' + System.today() ).replace( ' 00:00:00', '' );
-			String expectedEventEnd = ') AND ActivityDate != null ORDER BY ActivityDate';
+			String expectedEventEnd = ') ORDER BY ActivityDate';
 
-			String expectedTaskBeginning = ( 'SELECT Id,ActivityDate,Subject,OwnerId,WhoId,Type,Status FROM Task WHERE WhatId = \'' + recordId + '\' AND (ActivityDate = LAST_N_MONTHS:2 OR ActivityDate = THIS_MONTH OR ActivityDate > ' + System.today() ).replace( ' 00:00:00', '' );
-			String expectedTaskEnd = ') AND ActivityDate != null ORDER BY ActivityDate';
+			String expectedTaskBeginning = ( 'SELECT Id,ActivityDate,Subject,OwnerId,WhoId,Type,Status,CreatedDate FROM Task WHERE WhatId = \'' + recordId + '\' AND (ActivityDate = LAST_N_MONTHS:2 OR ActivityDate = THIS_MONTH OR ActivityDate > ' + System.today() ).replace( ' 00:00:00', '' );
+			String expectedTaskEnd = ' ORDER BY ActivityDate';
 
 			for ( String query : queries ) {
 				if ( query.contains( 'FROM Event' ) ) {
 					System.assert ( query.startsWith( expectedEventBeginning ), 'Expected: ' + expectedEventBeginning + '. Actual: ' + query );
 					System.assert ( query.endsWith( expectedEventEnd ), 'Expected: ' + expectedEventEnd + '. Actual: ' + query );
 				} else if ( query.contains( 'FROM Task' ) ) {
-					System.assert ( query.startsWith( expectedTaskBeginning ), 'Expected: ' + expectedTaskBeginning + '. Actual: ' + query );
-					System.assert ( query.endsWith( expectedTaskEnd ), 'Expected: ' + expectedTaskEnd + '. Actual: ' + query );
+					if ( query.contains( 'AND ActivityDate = null' ) ) {
+						String tmp = expectedTaskBeginning.replaceAll( 'ActivityDate =', 'CreatedDate =' ).replaceAll( 'ActivityDate >', 'CreatedDate >' );
+						System.assert ( query.startsWith( tmp ), 'Expected: ' + tmp + '. Actual: ' + query );
+						System.assert ( query.endsWith( expectedTaskEnd ), 'Expected: ' + expectedTaskEnd + '. Actual: ' + query );
+					} else {
+						System.assert ( query.startsWith( expectedTaskBeginning ), 'Expected: ' + expectedTaskBeginning + '. Actual: ' + query );
+						System.assert ( query.endsWith( expectedTaskEnd ), 'Expected: ' + expectedTaskEnd + '. Actual: ' + query );
+					}
 				}
 			}
 		}
