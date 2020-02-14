@@ -256,6 +256,85 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return data;
 	}
 
+	public static List<TAG_ActivityTimelineModel> getOwnerAndContactNames( List<TAG_ActivityTimelineModel> models ) {
+
+		Set<Id> ownerIds = new Set<Id>();
+		Set<Id> contactIds = new Set<Id>();
+
+		for ( TAG_ActivityTimelineModel model : models ) {
+			if ( model.record.assigneeId != null ) { ownerIds.add( model.record.assigneeId ); }
+			if ( model.record.relatedUserId != null ) { contactIds.add( model.record.relatedUserId ); }
+		}
+
+		Map<Id, String> ownerNames = getOwnerName( ownerIds );
+		Map<Id, String> contactNames = getContactName( contactIds );
+
+		for ( TAG_ActivityTimelineModel model : models ) {
+
+			if ( model.record.dateValueDb < DateTime.now() && !model.record.overdue ) {
+				model.record.subtitle = USER.LanguageLocaleKey == 'Norsk' ? model.config.SubtitlePastNorwegian__c : model.config.SubtitlePastEnglish__c;
+			} else {
+				model.record.subtitle = USER.LanguageLocaleKey == 'Norsk' ? model.config.SubtitleFutureNorwegian__c : model.config.SubtitleFutureEnglish__c;
+			}
+
+			if ( model.record.assigneeId != null ) {
+				if ( ownerNames.containsKey( model.record.assigneeId ) ) {
+					model.record.assignee = ownerNames.get( model.record.assigneeId );
+					if ( model.record.assigneeId == UserInfo.getUserId() ) {
+						model.record.assigneeId = null;
+					}
+				}
+			}
+
+			if ( model.record.relatedUserId != null ) {
+				if ( contactNames.containsKey( model.record.relatedUserId ) ) {
+					model.record.relatedUser = contactNames.get( model.record.relatedUserId );
+					if ( model.record.relatedUser != null ) {
+						model.record.subtitle += USER.LanguageLocaleKey == 'Norsk' ? ' ' + returnValueIfNotNull( model.config.SubtitleRelatedUserPrepositionNor__c ) : ' ' + returnValueIfNotNull( model.config.SubtitleRelatedUserPrepositionEng__c );
+					}
+				}
+			} else if ( model.record.sObjectKind == 'Task' && model.record.type == 'Call' ) {
+				model.record.relatedUser = Label.ActTime_Unknown.toLowerCase();
+			}
+		}
+
+		return models;
+	}
+
+	public static String returnValueIfNotNull( String input ) {
+		return input != null ? input : '';
+	}
+
+	public static Map<Id, String> getOwnerName( Set<Id> ownerIds ) {
+
+		Map<Id, String> results = new Map<Id, String>();
+		Map<Id, User> users = new Map<Id, User> ( [SELECT Name FROM User WHERE Id IN: ownerIds ] );
+
+		for ( Id ownerId : ownerIds ) {
+			if ( ownerId == UserInfo.getUserId() ) {
+				results.put( ownerId, Label.ActTime_You );
+			} else if ( users.containsKey( ownerId ) ) {
+				results.put( ownerId, users.get( ownerId ).Name );
+			}
+		}
+
+		return results;
+	}
+
+	public static Map<Id, String> getContactName( Set<Id> contactIds ) {
+
+		Map<Id, String> results = new Map<Id, String>();
+		Map<Id, Contact> contacts = new Map<Id, Contact> ( [SELECT Name FROM Contact WHERE Id IN: contactIds ] );
+
+		for ( Id contactId : contactIds ) {
+			if ( contacts.containsKey( contactId ) ) {
+				results.put( contactId, contacts.get( contactId ).Name );
+			}
+		}
+
+		return results;
+	}
+
 	public static Map<String, TAG_ActivityTimeline__mdt> getMapOfActivityTimelineConfig( List<TAG_ActivityTimeline__mdt> sObjectsToQuery ) {
 		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimeline__mdt>();
 
