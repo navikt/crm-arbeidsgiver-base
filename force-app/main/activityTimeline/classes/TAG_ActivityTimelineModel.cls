@@ -94,7 +94,10 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
 		Boolean isOVerdue = false;
 
-		if ( record.sObjectKind == 'Task' ) {
+		if ( record.sObjectKind == 'Task' && record.isDate ) {
+			if ( get( sObj, 'Status' ) != 'Completed' && record.dateValueDb < Date.today() ) { isOverdue = true; }
+		}
+		else if ( record.sObjectKind == 'Task' && !record.isDate ) {
 			if ( get( sObj, 'Status' ) != 'Completed' && record.dateValueDb < System.now() ) { isOverdue = true; }
 		}
 
