@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-	<fullName>TAG_Account__c</fullName>
-	<deleteConstraint>SetNull</deleteConstraint>
-	<externalId>false</externalId>
-	<label>Account</label>
-	<referenceTo>Account</referenceTo>
-	<relationshipLabel>Contracts1</relationshipLabel>
-	<relationshipName>Contracts1</relationshipName>
-	<required>false</required>
-	<trackTrending>false</trackTrending>
-	<type>Lookup</type>
+    <fullName>TAG_Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Contract</relationshipLabel>
+    <relationshipName>Contracts1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
 </CustomField>
