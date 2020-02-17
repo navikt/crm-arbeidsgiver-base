@@ -17,26 +17,38 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 				recordTypeId: this.row.CreateableObject_RecordType__c,
 				navigationLocation: 'LOOKUP',
 				useRecordTypeCheck: 1,
-				// defaultFieldValues: this.fieldValues // TODO enable for pre-filled data (supported in spring 20)
+				defaultFieldValues: this.fieldValues
 			}
 		});
 	}
 
 	connectedCallback() {
-		let tmp = new Array();
+		let fields = new Array();
 
 		let relationship = this.getKeyAndValueIfValid(this.row.SObjectRelationshipField__c, this.recordId);
-		if (relationship !== null) { tmp.push(relationship); }
+		if (relationship !== null) { fields.push(relationship); }
 
 		let type = this.getKeyAndValueIfValid(this.row.SObjectTypeField__c, this.row.SObjectTypeValue__c);
-		if (type !== null) { tmp.push(type); }
+		if (type !== null) { fields.push(type); }
+
+		let val1 = this.getKeyAndValueIfValid(this.row.CreateableObject_Field1__c, this.row.CreateableObject_Value1__c);
+		if (val1 !== null) { fields.push(val1); }
+
+		let val2 = this.getKeyAndValueIfValid(this.row.CreateableObject_Field2__c, this.row.CreateableObject_Value2__c);
+		if (val2 !== null) { fields.push(val2); }
+
+		let val3 = this.getKeyAndValueIfValid(this.row.CreateableObject_Field3__c, this.row.CreateableObject_Value3__c);
+		if (val3 !== null) { fields.push(val3); }
 
 		// combine them all
-		let tmpFieldValues = '';
-		for (let i = 0; i < tmp.length; i++) {
-			tmpFieldValues += tmp[i] + ',';
+		let fieldsCombined = '';
+		for (let i = 0; i < fields.length; i++) {
+			fieldsCombined += fields[i] + ',';
 		}
-		this.fieldValues = tmpFieldValues.substring(0, tmpFieldValues.length - 1);
+
+		var d = new Date();
+		fieldsCombined = fieldsCombined.replace('{today}', d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate());
+		this.fieldValues = fieldsCombined.substring(0, fieldsCombined.length - 1);
 	}
 
 	getKeyAndValueIfValid(key, value) {

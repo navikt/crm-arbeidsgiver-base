@@ -14,8 +14,8 @@
 				</lightning-button-icon> -->
 				<lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
 				</lightning-button-icon>
-				<lightning-button-menu alternative-text={labels.newObj} variant="border" icon-name="utility:new"
-					menu-alignment="Right">
+				<lightning-button-menu if:true={showCreateRecords} alternative-text={labels.newObj}
+					label={labels.newObj} variant="border" menu-alignment="Right">
 					<template for:each={sObjectKinds} for:item="row">
 						<c-tag-activity-timeline-new-object key={row.Id} row={row} record-id={recordId}>
 						</c-tag-activity-timeline-new-object>

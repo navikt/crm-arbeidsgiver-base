@@ -2,6 +2,7 @@ import { LightningElement, track, api, wire } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { refreshApex } from '@salesforce/apex';
 import LANG from '@salesforce/i18n/lang';
+import formFactorPropertyName from '@salesforce/client/formFactor'
 
 import MOMENT_JS from '@salesforce/resourceUrl/moment_js';
 import getActivityTimelineData from '@salesforce/apex/TAG_ActivityTimelineController.getActivityTimelineData';
@@ -129,6 +130,9 @@ export default class TagActivityTimeline extends LightningElement {
 		}
 	}
 
+	get showCreateRecords() {
+		return formFactorPropertyName !== 'Small';
+	}
 
 	loadMore(event) {
 		this.loading = true;

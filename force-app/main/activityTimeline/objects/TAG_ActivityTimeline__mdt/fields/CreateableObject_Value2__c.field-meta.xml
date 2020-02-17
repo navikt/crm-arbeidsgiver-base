@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+	<fullName>CreateableObject_Value2__c</fullName>
+	<description>SObject field value, e.g., Type: &quot;Call&quot;, Custom__c: &quot;XYZ&quot;, that will be auto-filled when creating new record of this object and type.</description>
+	<externalId>false</externalId>
+	<fieldManageability>DeveloperControlled</fieldManageability>
+	<inlineHelpText>SObject field value, e.g., Type: &quot;Call&quot;, Custom__c: &quot;XYZ&quot;, that will be auto-filled when creating new record of this object and type.</inlineHelpText>
+	<label>Creatable Object - Value 2</label>
+	<length>255</length>
+	<required>false</required>
+	<type>Text</type>
+	<unique>false</unique>
+</CustomField>
