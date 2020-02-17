@@ -405,10 +405,7 @@
 		<tab>CustomOpportunity__c</tab>
 		<visibility>Hidden</visibility>
 	</tabVisibilities>
-	<tabVisibilities>
-		<tab>Employer</tab>
-		<visibility>DefaultOn</visibility>
-	</tabVisibilities>
+
 	<userLicense>Salesforce Platform</userLicense>
 	<userPermissions>
 		<enabled>true</enabled>
