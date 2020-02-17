@@ -5,11 +5,12 @@
 				"type": "Account",
 				"referenceId": "AccountRef2"
 			},
-			"Name": "B - SKI KOMMUNE ADMINISTRASJON OG IKT",
+			"Name": "SKI KOMMUNE ADMINISTRASJON OG IKT",
 			"INT_Ident__c": "974593319",
 			"INT_Industry__c": "Generell offentlig administrasjon",
 			"INT_IndustryCode__c": "84.110",
 			"INT_OrganizationNumber__c": "960507878",
+			"INT_OrganizationalStructure__c": "BEDR",
 			"RecordTypeId": "$R{RecordType.Account.Employer}",
 			"ParentId": "@AccountRef11"
 		},
@@ -18,11 +19,12 @@
 				"type": "Account",
 				"referenceId": "AccountRef6"
 			},
-			"Name": "B - KRÅKSTADTUNET BO- OG SERVICESENTER",
+			"Name": "KRÅKSTADTUNET BO- OG SERVICESENTER",
 			"INT_Ident__c": "974593483",
 			"INT_Industry__c": "Bofellesskap for eldre og funksjonshemmede med fast tilknyttet personell hele døgnet",
 			"INT_IndustryCode__c": "87.302",
 			"INT_OrganizationNumber__c": "960507878",
+			"INT_OrganizationalStructure__c": "BEDR",
 			"RecordTypeId": "$R{RecordType.Account.Employer}",
 			"ParentId": "@AccountRef7"
 		},
@@ -31,10 +33,11 @@
 				"type": "Account",
 				"referenceId": "AccountRef12"
 			},
-			"Name": "B - LANGHUS BO- OG SERVICESENTER",
+			"Name": "LANGHUS BO- OG SERVICESENTER",
 			"INT_Ident__c": "983426441",
 			"INT_Industry__c": "87.102 Somatiske sykehjem; 88.101  Hjemmehjelp; 86.901 Hjemmesykepleie",
 			"INT_OrganizationNumber__c": "960507878",
+			"INT_OrganizationalStructure__c": "BEDR",
 			"RecordTypeId": "$R{RecordType.Account.Employer}",
 			"ParentId": "@AccountRef7"
 		},
@@ -43,10 +46,11 @@
 				"type": "Account",
 				"referenceId": "AccountRef13"
 			},
-			"Name": "B - SKI KOMMUNE BESTILLERKONTORET",
+			"Name": "SKI KOMMUNE BESTILLERKONTORET",
 			"INT_Ident__c": "987894431",
 			"INT_Industry__c": "88.101 Hjemmehjelp; 87.101; Somatiske spesialsykehjem; 86.904 Annen forebyggende helsetjeneste",
 			"INT_OrganizationNumber__c": "960507878",
+			"INT_OrganizationalStructure__c": "BEDR",
 			"RecordTypeId": "$R{RecordType.Account.Employer}",
 			"ParentId": "@AccountRef7"
 		},
@@ -55,11 +59,12 @@
 				"type": "Account",
 				"referenceId": "AccountRef14"
 			},
-			"Name": "B - SKI KOMMUNE SAMFUNN",
+			"Name": "SKI KOMMUNE SAMFUNN",
 			"INT_Ident__c": "974 637 596",
 			"INT_Industry__c": "Offentlig administrasjon tilknyttet næringsvirksomhet og arbeidsmarked",
 			"INT_IndustryCode__c": "84.130",
 			"INT_OrganizationNumber__c": "960507878",
+			"INT_OrganizationalStructure__c": "BEDR",
 			"RecordTypeId": "$R{RecordType.Account.Employer}",
 			"ParentId": "@AccountRef15"
 		},
@@ -68,11 +73,12 @@
 				"type": "Account",
 				"referenceId": "AccountRef17"
 			},
-			"Name": "B - FINSTADTUNET",
+			"Name": "FINSTADTUNET",
 			"INT_Ident__c": "893120602",
 			"INT_Industry__c": "Somatiske sykehjem",
 			"INT_IndustryCode__c": "87.102",
 			"INT_OrganizationNumber__c": "960507878",
+			"INT_OrganizationalStructure__c": "BEDR",
 			"RecordTypeId": "$R{RecordType.Account.Employer}",
 			"Phone": "22222222",
 			"ShippingCity": "SKI",
@@ -86,11 +92,12 @@
 				"type": "Account",
 				"referenceId": "AccountRef18"
 			},
-			"Name": "B - SKI KOMMUNESKOGER",
+			"Name": "SKI KOMMUNESKOGER",
 			"INT_Ident__c": "974593696",
 			"INT_Industry__c": "Avvirkning",
 			"INT_IndustryCode__c": "02.200",
 			"INT_OrganizationNumber__c": "960507878",
+			"INT_OrganizationalStructure__c": "BEDR",
 			"RecordTypeId": "$R{RecordType.Account.Employer}",
 			"ParentId": "@AccountRef9"
 		}
