@@ -7,6 +7,18 @@
         <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
+        <field>CreateableObject_Field1__c</field>
+        <value xsi:type="xsd:string">ActivityDate</value>
+    </values>
+    <values>
+        <field>CreateableObject_Field2__c</field>
+        <value xsi:type="xsd:string">Status</value>
+    </values>
+    <values>
+        <field>CreateableObject_Field3__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>CreateableObject_RecordType__c</field>
         <value xsi:nil="true"/>
     </values>
@@ -17,6 +29,18 @@
     <values>
         <field>CreateableObject_TextNorwegian__c</field>
         <value xsi:type="xsd:string">Loggfør telefonsamtale</value>
+    </values>
+    <values>
+        <field>CreateableObject_Value1__c</field>
+        <value xsi:type="xsd:string">{today}</value>
+    </values>
+    <values>
+        <field>CreateableObject_Value2__c</field>
+        <value xsi:type="xsd:string">Completed</value>
+    </values>
+    <values>
+        <field>CreateableObject_Value3__c</field>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>IsActive__c</field>

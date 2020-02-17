@@ -25,6 +25,9 @@ public with sharing class TAG_ActivityTimelineHelper {
 		                                                   SObjectChild__c, SObjectParent__c,
 		                                                   SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,
 		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,
+		                                                   CreateableObject_Field1__c, CreateableObject_Value1__c,
+		                                                   CreateableObject_Field2__c, CreateableObject_Value2__c,
+		                                                   CreateableObject_Field3__c, CreateableObject_Value3__c,
 		                                                   SObjectTypeField__c, SObjectTypeValue__c,
 		                                                   SubtitlePastEnglish__c, SubtitlePastNorwegian__c,
 		                                                   SubtitleFutureEnglish__c, SubtitleFutureNorwegian__c,
@@ -184,7 +187,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 			       ')' + (findDateless ? ' AND ' + mdt.SObjectDateField__c + ' = null' : '');
 		} else { // get overdue only, as no month is specified
 			return '' + dateField + ' < ' + now +
-			       'AND Status != \'Completed\'' +
+			       '  AND Status != \'Completed\'' +
 			       (findDateless ? ' AND ' + mdt.SObjectDateField__c + ' = null' : '');
 		}
 	}
