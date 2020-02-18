@@ -32,15 +32,6 @@
 	</caseValues>
 	<gender>Neuter</gender>
 	<layouts>
-		<layout>General Page Layout</layout>
-		<sections>
-			<label>
-				<!-- Custom Links -->
-			</label>
-			<section>Custom Links</section>
-		</sections>
-	</layouts>
-	<layouts>
 		<layout>Inclusive Employment Page Layout</layout>
 		<sections>
 			<label>
@@ -59,13 +50,6 @@
 		</sections>
 	</layouts>
 	<nameFieldLabel>Muligheter</nameFieldLabel>
-	<recordTypes>
-		<description>
-			<!-- Når en mulighet først kommer inn i systemet blir den satt til denne record type -->
-		</description>
-		<label>Generell</label>
-		<name>General</name>
-	</recordTypes>
 	<recordTypes>
 		<description>
 			<!-- En mulighet for inkludering -->
