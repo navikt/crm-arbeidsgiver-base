@@ -20,8 +20,6 @@
 **/objects/Contact/fields/CleanStatus.field-meta.xml
 **/objects/Account/fields/AccountSource.field-meta.xml
 
-**/AsyncRequest__c*
-
 # flexipages
 **/flexipages/LightningService_UtilityBar.flexipage-meta.xml
 
@@ -38,6 +36,12 @@
 
 # LWC Jest
 **/__tests__/**
+
+
+# Other packages
+# # ----------------------------------------------------------------------------------------
+**/AsyncRequest__c*
+**/INT_*
 
 
 # # community classes
