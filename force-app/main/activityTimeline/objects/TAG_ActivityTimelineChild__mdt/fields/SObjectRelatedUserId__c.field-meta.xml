@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+	<fullName>SObjectRelatedUserId__c</fullName>
+	<description>Put in the SObject Field Name for the related user of the object..
+If not empty, the name is prepended to the subtitle.</description>
+	<externalId>false</externalId>
+	<fieldManageability>DeveloperControlled</fieldManageability>
+	<inlineHelpText>Put in the SObject Field Name for the related user of the object..
+If not empty, the name is prepended to the subtitle.</inlineHelpText>
+	<label>Related User API Name</label>
+	<length>255</length>
+	<required>false</required>
+	<type>Text</type>
+	<unique>false</unique>
+</CustomField>

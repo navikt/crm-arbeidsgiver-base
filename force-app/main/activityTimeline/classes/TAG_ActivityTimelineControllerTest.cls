@@ -108,8 +108,8 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
 		Test.StopTest();
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
-		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
+		Map<String, TAG_ActivityTimelineParent__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
 		System.assertEquals( 2, wrapper.size(), 'One for upcoming (empty) and this month ' );
 
 		TAG_ActivityTimelineModelList wr = wrapper[1];
@@ -117,7 +117,8 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 		for ( TAG_ActivityTimelineModel obj : wr.models ) {
 			System.assertEquals( co.Id, obj.record.recordId, 'The ID should be the created opty' );
-			System.assertEquals( sObjectsToQueryMap.get( 'CustomOpportunity__cRekruttering' ).Id, obj.config.Id, 'The ID should be the Custom opty with Inclusive_Employment record type config' );
+			System.assertEquals( sObjectsToQueryMap.get( 'CustomOpportunity__cRekruttering' ).Activity_Timeline_Child__r.SObjectName__c, obj.record.sObjectKind, 'The sobject child from config should be on the record kind' );
+			System.assertEquals( sObjectsToQueryMap.get( 'CustomOpportunity__cRekruttering' ).Activity_Timeline_Child__r.SObjectTypeValue__c, obj.record.type, 'The type value from config should be on record type' );
 		}
 	}
 
@@ -147,10 +148,10 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 
 		Test.StartTest();
-		List<TAG_ActivityTimeline__mdt> sObjectType = TAG_ActivityTimelineController.getTimelineObjects( acc.Id );
+		List<TAG_ActivityTimelineParent__mdt> sObjectType = TAG_ActivityTimelineController.getTimelineObjects( acc.Id );
 		Test.StopTest();
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
 
 		System.assertEquals( sObjectsToQuery.size(), sObjectType.size(), 'Should be the same size of MDT objects' );
 	}
@@ -165,13 +166,13 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		System.runAs( u )
 		{
 			Test.StartTest();
-			List<TAG_ActivityTimeline__mdt> sObjectType = TAG_ActivityTimelineController.getTimelineObjects( acc.Id );
+			List<TAG_ActivityTimelineParent__mdt> sObjectType = TAG_ActivityTimelineController.getTimelineObjects( acc.Id );
 			Test.StopTest();
 
 			System.assertEquals( 4, sObjectType.size(), 'Standard user doesn\'t have access to custom object custom opportunity' );
 
-			for ( TAG_ActivityTimeline__mdt mdt : sObjectType ) {
-				System.assertEquals( mdt.CreateableObject_TextNorwegian__c, mdt.CreateableObject_TextEnglish__c, 'The norwegian text should be moved to the english field, as this user is norwegian' );
+			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectType ) {
+				System.assertEquals( mdt.Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, mdt.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, 'The norwegian text should be moved to the english field, as this user is norwegian' );
 			}
 		}
 	}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+	<fullName>SLDS_Icon__c</fullName>
+	<description>See lightningdesignsystem.com/icons. Format is &quot;category:icon&quot;.</description>
+	<externalId>false</externalId>
+	<fieldManageability>DeveloperControlled</fieldManageability>
+	<inlineHelpText>See lightningdesignsystem.com/icons. Format is &quot;category:icon&quot;.</inlineHelpText>
+	<label>Icon (SLDS)</label>
+	<length>255</length>
+	<required>true</required>
+	<type>Text</type>
+	<unique>false</unique>
+</CustomField>

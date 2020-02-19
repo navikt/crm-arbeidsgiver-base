@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+	<fullName>SObjectTypeValue__c</fullName>
+	<description>The value describing the type of an object (e.g., Email for Tasks, inkludering or rekruttering for opportunities)</description>
+	<externalId>false</externalId>
+	<fieldManageability>DeveloperControlled</fieldManageability>
+	<inlineHelpText>The value describing the type of an object (e.g., Email for Tasks, inkludering or rekruttering for opportunities)</inlineHelpText>
+	<label>Type Value</label>
+	<length>255</length>
+	<required>false</required>
+	<type>Text</type>
+	<unique>false</unique>
+</CustomField>

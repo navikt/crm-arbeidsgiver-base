@@ -11,10 +11,10 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 
 		this[NavigationMixin.Navigate]({
 			type: 'standard__objectPage',
-			attributes: { objectApiName: this.row.SObjectChild__c, actionName: 'new' },
+			attributes: { objectApiName: this.row.Activity_Timeline_Child__r.SObjectName__c, actionName: 'new' },
 			state: {
 				nooverride: '1',
-				recordTypeId: this.row.CreateableObject_RecordType__c,
+				recordTypeId: this.row.Activity_Timeline_Child__r.CreateableObject_RecordType__c,
 				navigationLocation: 'LOOKUP',
 				useRecordTypeCheck: 1,
 				defaultFieldValues: this.fieldValues
@@ -28,16 +28,16 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 		let relationship = this.getKeyAndValueIfValid(this.row.SObjectRelationshipField__c, this.recordId);
 		if (relationship !== null) { fields.push(relationship); }
 
-		let type = this.getKeyAndValueIfValid(this.row.SObjectTypeField__c, this.row.SObjectTypeValue__c);
+		let type = this.getKeyAndValueIfValid(this.row.Activity_Timeline_Child__r.SObjectTypeField__c, this.row.Activity_Timeline_Child__r.SObjectTypeValue__c);
 		if (type !== null) { fields.push(type); }
 
-		let val1 = this.getKeyAndValueIfValid(this.row.CreateableObject_Field1__c, this.row.CreateableObject_Value1__c);
+		let val1 = this.getKeyAndValueIfValid(this.row.Activity_Timeline_Child__r.CreateableObject_Field1__c, this.row.Activity_Timeline_Child__r.CreateableObject_Value1__c);
 		if (val1 !== null) { fields.push(val1); }
 
-		let val2 = this.getKeyAndValueIfValid(this.row.CreateableObject_Field2__c, this.row.CreateableObject_Value2__c);
+		let val2 = this.getKeyAndValueIfValid(this.row.Activity_Timeline_Child__r.CreateableObject_Field2__c, this.row.Activity_Timeline_Child__r.CreateableObject_Value2__c);
 		if (val2 !== null) { fields.push(val2); }
 
-		let val3 = this.getKeyAndValueIfValid(this.row.CreateableObject_Field3__c, this.row.CreateableObject_Value3__c);
+		let val3 = this.getKeyAndValueIfValid(this.row.Activity_Timeline_Child__r.CreateableObject_Field3__c, this.row.Activity_Timeline_Child__r.CreateableObject_Value3__c);
 		if (val3 !== null) { fields.push(val3); }
 
 		// combine them all

@@ -1,6 +1,6 @@
 global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
-	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; } // TODO delete
+	@AuraEnabled public TAG_ActivityTimelineParent__mdt config { get; set; } // TODO delete
 
 	@AuraEnabled public Theme theme { get; set; }
 	@AuraEnabled public Record record { get; set; }
@@ -44,7 +44,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 	}
 
 
-	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
+	public TAG_ActivityTimelineModel( TAG_ActivityTimelineParent__mdt config, SObject sObj, String lang ) {
 
 		this.config =                       config;
 
@@ -53,44 +53,44 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
 		record.recordId =                   sObj.Id;
 
-		record.sObjectKind =                config.SObjectChild__c;
-		record.type =                       config.SObjectTypeValue__c;
+		record.sObjectKind =                config.Activity_Timeline_Child__r.SObjectName__c;
+		record.type =                       config.Activity_Timeline_Child__r.SObjectTypeValue__c;
 		record.isDate =                     getIsDate( config, sObj, record );
 		record.dateValueDb =                getDateValue( config, sObj, record );
 		record.overdue =                    getIsOverdue( config, sObj, record );
-		record.title =             (String) get( sObj, config.SObjectTitle__c );
+		record.title =             (String) get( sObj, config.Activity_Timeline_Child__r.SObjectTitle__c );
 		record.durationInMinute = (Integer) get( sObj, 'DurationInMinutes' );
 
-		theme.icon =                        config.SLDS_Icon__c;
-		theme.sldsTimelineItemColor =       config.SLDS_Timeline_Color__c;
+		theme.icon =                        config.Activity_Timeline_Child__r.SLDS_Icon__c;
+		theme.sldsTimelineItemColor =       config.Activity_Timeline_Child__r.SLDS_Timeline_Color__c;
 
 		record.assigneeId =                 config.SObjectAssigneeId__c != null ? (Id) get( sObj, config.SObjectAssigneeId__c ) : null;
-		record.relatedUserId =              config.SObjectRelatedUserId__c != null ? (Id) get( sObj, config.SObjectRelatedUserId__c ) : null;
+		record.relatedUserId =              config.Activity_Timeline_Child__r.SObjectRelatedUserId__c != null ? (Id) get( sObj, config.Activity_Timeline_Child__r.SObjectRelatedUserId__c ) : null;
 
 		this.theme =                        theme;
 		this.record =                       record;
 	}
 
-	public static Datetime getDateValue( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+	public static Datetime getDateValue( TAG_ActivityTimelineParent__mdt config, SObject sObj, Record record ) {
 
-		Datetime dateValueDb = (Datetime) get( sObj, config.SObjectDateField__c );
+		Datetime dateValueDb = (Datetime) get( sObj, config.Activity_Timeline_Child__r.SObjectDateField__c );
 
 		if ( dateValueDb == null && record.sObjectKind == 'Task' ) {        dateValueDb = (Datetime) get( sObj, 'CreatedDate' ); }
-		else if ( config.SObjectChild__c == 'Event' &&  !record.isDate ) {  dateValueDb = (Datetime) get( sObj, 'ActivityDateTime' ); }
+		else if ( config.Activity_Timeline_Child__r.SObjectName__c == 'Event' &&  !record.isDate ) {  dateValueDb = (Datetime) get( sObj, 'ActivityDateTime' ); }
 
 		return dateValueDb;
 	}
 
-	public static Boolean getIsDate( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+	public static Boolean getIsDate( TAG_ActivityTimelineParent__mdt config, SObject sObj, Record record ) {
 
-		Boolean isDate = config.SObjectDateFieldIsDate__c;
-		if ( config.SObjectChild__c == 'Event' ) { isDate = (Boolean) get( sObj, 'IsAllDayEvent' ); }
-		else if ( config.SObjectChild__c == 'Task' && (Datetime) get( sObj, config.SObjectDateField__c ) == null ) { isDate = false; }
+		Boolean isDate = config.Activity_Timeline_Child__r.SObjectDateFieldIsDate__c;
+		if ( config.Activity_Timeline_Child__r.SObjectName__c == 'Event' ) { isDate = (Boolean) get( sObj, 'IsAllDayEvent' ); }
+		else if ( config.Activity_Timeline_Child__r.SObjectName__c == 'Task' && (Datetime) get( sObj, config.Activity_Timeline_Child__r.SObjectDateField__c ) == null ) { isDate = false; }
 
 		return isDate;
 	}
 
-	public static Boolean getIsOverdue( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+	public static Boolean getIsOverdue( TAG_ActivityTimelineParent__mdt config, SObject sObj, Record record ) {
 
 		Boolean isOVerdue = false;
 

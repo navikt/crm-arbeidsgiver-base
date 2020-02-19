@@ -230,6 +230,7 @@ jobs:
             PACKAGE_ALIAS=$(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r)
             PACKAGE_VERSIONID=$(sfdx force:package:version:list -p $PACKAGE_ALIAS --orderby CreatedDate --json | jq '.result[-1].SubscriberPackageVersionId' -r)
             sfdx force:package:install --wait 10 --publishwait 10 --package $PACKAGE_VERSIONID -u tag --noprompt -k $SFDX_PACKAGE_KEY
+          no_output_timeout: 20m
       - persist_to_workspace_cmd
 
 

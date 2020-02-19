@@ -31,26 +31,6 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListContainer</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>relatedTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
                 <name>active</name>
                 <value>true</value>
             </componentInstanceProperties>
@@ -61,17 +41,6 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>relatedTabContent</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.relatedLists</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -93,39 +62,35 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>runtime_sales_activities:activityPanel</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>activityTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
             <componentInstanceProperties>
-                <name>active</name>
-                <value>true</value>
+                <name>amountOfMonths</name>
+                <value>4</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>body</name>
-                <value>activityTabContent</value>
+                <name>amountOfMonthsToLoad</name>
+                <value>4</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.activity</value>
+                <name>amountOfRecords</name>
+                <value>3</value>
             </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>sidebartabs</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
             <componentInstanceProperties>
-                <name>tabs</name>
-                <value>sidebartabs</value>
+                <name>amountOfRecordsToLoad</name>
+                <value>3</value>
             </componentInstanceProperties>
-            <componentName>flexipage:tabset</componentName>
+            <componentInstanceProperties>
+                <name>headerIcon</name>
+                <value>custom:custom18</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>headerTitleEnglish</name>
+                <value>Activities</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>headerTitleNorwegian</name>
+                <value>Aktiviteter</value>
+            </componentInstanceProperties>
+            <componentName>tagActivityTimeline</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>sidebar</name>

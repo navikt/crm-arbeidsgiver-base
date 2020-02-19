@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<label>Task (Call)</label>
+	<protected>false</protected>
+	<values>
+		<field>CreateableObject_Field1__c</field>
+		<value xsi:type="xsd:string">ActivityDate</value>
+	</values>
+	<values>
+		<field>CreateableObject_Field2__c</field>
+		<value xsi:type="xsd:string">Status</value>
+	</values>
+	<values>
+		<field>CreateableObject_Field3__c</field>
+		<value xsi:nil="true" />
+	</values>
+	<values>
+		<field>CreateableObject_RecordType__c</field>
+		<value xsi:nil="true" />
+	</values>
+	<values>
+		<field>CreateableObject_TextEnglish__c</field>
+		<value xsi:type="xsd:string">Log a Call</value>
+	</values>
+	<values>
+		<field>CreateableObject_TextNorwegian__c</field>
+		<value xsi:type="xsd:string">Loggfør telefonsamtale</value>
+	</values>
+	<values>
+		<field>SObjectName__c</field>
+		<value xsi:type="xsd:string">Task</value>
+	</values>
+	<values>
+		<field>CreateableObject_Value1__c</field>
+		<value xsi:type="xsd:string">{today}</value>
+	</values>
+	<values>
+		<field>CreateableObject_Value2__c</field>
+		<value xsi:type="xsd:string">Completed</value>
+	</values>
+	<values>
+		<field>CreateableObject_Value3__c</field>
+		<value xsi:nil="true" />
+	</values>
+	<values>
+		<field>SLDS_Dropdown_Icon__c</field>
+		<value xsi:type="xsd:string">utility:call</value>
+	</values>
+	<values>
+		<field>SLDS_Icon__c</field>
+		<value xsi:type="xsd:string">standard:log_a_call</value>
+	</values>
+	<values>
+		<field>SLDS_Timeline_Color__c</field>
+		<value xsi:type="xsd:string">6bc1ca</value>
+	</values>
+	<values>
+		<field>SObjectDateFieldIsDate__c</field>
+		<value xsi:type="xsd:boolean">true</value>
+	</values>
+	<values>
+		<field>SObjectDateField__c</field>
+		<value xsi:type="xsd:string">ActivityDate</value>
+	</values>
+	<values>
+		<field>SObjectRelatedUserId__c</field>
+		<value xsi:type="xsd:string">WhoId</value>
+	</values>
+	<values>
+		<field>SObjectTitle__c</field>
+		<value xsi:type="xsd:string">Subject</value>
+	</values>
+	<values>
+		<field>SObjectTypeField__c</field>
+		<value xsi:type="xsd:string">Type</value>
+	</values>
+	<values>
+		<field>SObjectTypeValue__c</field>
+		<value xsi:type="xsd:string">Call</value>
+	</values>
+	<values>
+		<field>SubtitleFutureEnglish__c</field>
+		<value xsi:type="xsd:string">plan to call</value>
+	</values>
+	<values>
+		<field>SubtitleFutureNorwegian__c</field>
+		<value xsi:type="xsd:string">planlegger å ringe</value>
+	</values>
+	<values>
+		<field>SubtitlePastEnglish__c</field>
+		<value xsi:type="xsd:string">called</value>
+	</values>
+	<values>
+		<field>SubtitlePastNorwegian__c</field>
+		<value xsi:type="xsd:string">ringte</value>
+	</values>
+	<values>
+		<field>SubtitleRelatedUserPrepositionEng__c</field>
+		<value xsi:nil="true" />
+	</values>
+	<values>
+		<field>SubtitleRelatedUserPrepositionNor__c</field>
+		<value xsi:type="xsd:string">til</value>
+	</values>
+</CustomMetadata>
