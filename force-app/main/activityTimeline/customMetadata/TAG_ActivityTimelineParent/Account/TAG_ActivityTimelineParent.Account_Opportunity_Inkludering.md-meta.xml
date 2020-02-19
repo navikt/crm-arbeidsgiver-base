@@ -19,10 +19,6 @@
 		<value xsi:type="xsd:string">OwnerId</value>
 	</values>
 	<values>
-		<field>SObjectChild__c</field>
-		<value xsi:type="xsd:string">CustomOpportunity__c</value>
-	</values>
-	<values>
 		<field>SObjectParent__c</field>
 		<value xsi:type="xsd:string">Account</value>
 	</values>
