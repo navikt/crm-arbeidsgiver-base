@@ -15,6 +15,10 @@
 		<value xsi:type="xsd:string">Oppgave</value>
 	</values>
 	<values>
+		<field>SObjectName__c</field>
+		<value xsi:type="xsd:string">Task</value>
+	</values>
+	<values>
 		<field>SLDS_Icon__c</field>
 		<value xsi:type="xsd:string">standard:task</value>
 	</values>

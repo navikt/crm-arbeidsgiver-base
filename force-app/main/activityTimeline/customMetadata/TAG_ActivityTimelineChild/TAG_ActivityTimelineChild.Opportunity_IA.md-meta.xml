@@ -31,6 +31,10 @@
 		<value xsi:type="xsd:string">CreatedDate</value>
 	</values>
 	<values>
+		<field>SObjectName__c</field>
+		<value xsi:type="xsd:string">CustomOpportunity__c</value>
+	</values>
+	<values>
 		<field>SObjectRelatedUserId__c</field>
 		<value xsi:nil="true" />
 	</values>

@@ -19,6 +19,10 @@
 		<value xsi:type="xsd:string">utility:sms</value>
 	</values>
 	<values>
+		<field>SObjectName__c</field>
+		<value xsi:type="xsd:string">Task</value>
+	</values>
+	<values>
 		<field>SLDS_Icon__c</field>
 		<value xsi:type="xsd:string">standard:sms</value>
 	</values>

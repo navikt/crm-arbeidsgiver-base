@@ -27,6 +27,10 @@
 		<value xsi:type="xsd:string">Loggfør telefonsamtale</value>
 	</values>
 	<values>
+		<field>SObjectName__c</field>
+		<value xsi:type="xsd:string">Task</value>
+	</values>
+	<values>
 		<field>CreateableObject_Value1__c</field>
 		<value xsi:type="xsd:string">{today}</value>
 	</values>

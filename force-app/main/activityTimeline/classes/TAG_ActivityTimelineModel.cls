@@ -53,7 +53,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
 		record.recordId =                   sObj.Id;
 
-		record.sObjectKind =                config.SObjectChild__c;
+		record.sObjectKind =                config.Activity_Timeline_Child__r.SObjectName__c;
 		record.type =                       config.Activity_Timeline_Child__r.SObjectTypeValue__c;
 		record.isDate =                     getIsDate( config, sObj, record );
 		record.dateValueDb =                getDateValue( config, sObj, record );
@@ -76,7 +76,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		Datetime dateValueDb = (Datetime) get( sObj, config.Activity_Timeline_Child__r.SObjectDateField__c );
 
 		if ( dateValueDb == null && record.sObjectKind == 'Task' ) {        dateValueDb = (Datetime) get( sObj, 'CreatedDate' ); }
-		else if ( config.SObjectChild__c == 'Event' &&  !record.isDate ) {  dateValueDb = (Datetime) get( sObj, 'ActivityDateTime' ); }
+		else if ( config.Activity_Timeline_Child__r.SObjectName__c == 'Event' &&  !record.isDate ) {  dateValueDb = (Datetime) get( sObj, 'ActivityDateTime' ); }
 
 		return dateValueDb;
 	}
@@ -84,8 +84,8 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 	public static Boolean getIsDate( TAG_ActivityTimelineParent__mdt config, SObject sObj, Record record ) {
 
 		Boolean isDate = config.Activity_Timeline_Child__r.SObjectDateFieldIsDate__c;
-		if ( config.SObjectChild__c == 'Event' ) { isDate = (Boolean) get( sObj, 'IsAllDayEvent' ); }
-		else if ( config.SObjectChild__c == 'Task' && (Datetime) get( sObj, config.Activity_Timeline_Child__r.SObjectDateField__c ) == null ) { isDate = false; }
+		if ( config.Activity_Timeline_Child__r.SObjectName__c == 'Event' ) { isDate = (Boolean) get( sObj, 'IsAllDayEvent' ); }
+		else if ( config.Activity_Timeline_Child__r.SObjectName__c == 'Task' && (Datetime) get( sObj, config.Activity_Timeline_Child__r.SObjectDateField__c ) == null ) { isDate = false; }
 
 		return isDate;
 	}

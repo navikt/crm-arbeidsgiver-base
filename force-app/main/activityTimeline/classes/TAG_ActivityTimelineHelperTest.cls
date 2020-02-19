@@ -131,7 +131,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 	public static List<TAG_ActivityTimelineParent__mdt> queryMdt( List<String> types ) {
 		return [SELECT Id,
-		        SObjectAssigneeId__c, SObjectChild__c, SObjectParent__c, SObjectRelationshipField__c,
+		        SObjectAssigneeId__c, Activity_Timeline_Child__r.SObjectName__c, SObjectParent__c, SObjectRelationshipField__c,
 
 		        Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
 		        Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
@@ -149,7 +149,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 		        WHERE
 		            ( SObjectParent__c = 'Account' ) AND
-		            ( SObjectChild__c IN: types )];
+		            ( Activity_Timeline_Child__r.SObjectName__c IN: types )];
 	}
 
 }

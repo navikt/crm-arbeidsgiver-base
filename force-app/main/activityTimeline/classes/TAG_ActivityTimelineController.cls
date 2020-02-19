@@ -73,7 +73,7 @@ public with sharing class TAG_ActivityTimelineController {
 		}
 
 		for ( TAG_ActivityTimelineParent__mdt mdt : data ) {
-			mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c );
+			mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c = recordTypes.get( mdt.Activity_Timeline_Child__r.SObjectName__c + mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c );
 		}
 
 		return data;

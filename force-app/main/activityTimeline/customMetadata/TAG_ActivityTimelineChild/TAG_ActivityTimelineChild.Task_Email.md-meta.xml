@@ -35,6 +35,10 @@
 		<value xsi:type="xsd:string">Completed</value>
 	</values>
 	<values>
+		<field>SObjectName__c</field>
+		<value xsi:type="xsd:string">Task</value>
+	</values>
+	<values>
 		<field>CreateableObject_Value3__c</field>
 		<value xsi:nil="true" />
 	</values>

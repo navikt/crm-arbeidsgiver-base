@@ -21,7 +21,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = [SELECT Id,
 
-		                                                         SObjectAssigneeId__c, SObjectChild__c, SObjectParent__c, SObjectRelationshipField__c,
+		                                                         SObjectAssigneeId__c, Activity_Timeline_Child__r.SObjectName__c, SObjectParent__c, SObjectRelationshipField__c,
 
 		                                                         Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
 		                                                         Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
@@ -40,18 +40,18 @@ public with sharing class TAG_ActivityTimelineHelper {
 		                                                         WHERE
 		                                                             ( CreateableObject_Checkbox__c IN : allBools ) AND
 		                                                             ( SObjectParent__c = : parentSObjectType ) AND
-		                                                             ( IsActive__c = true )
+		                                                             ( IsActive__c = true )];
 
-		                                                         ORDER BY SObjectChild__c]; // TODO fix ordering på name
+		// TODO fix ordering på name Activity_Timeline_Child__r.SObjectName__c and CreatableText
 
 		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
 		else {
 
 			List<TAG_ActivityTimelineParent__mdt> sObjectsToUse = new List<TAG_ActivityTimelineParent__mdt>();
 			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
-				if ( createable && TAG_ActivityTimelineHelper.isCreateable( mdt.SObjectChild__c ) ) {
+				if ( createable && TAG_ActivityTimelineHelper.isCreateable( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
 					sObjectsToUse.add( mdt );
-				} else if ( !createable && TAG_ActivityTimelineHelper.isAccessible( mdt.SObjectChild__c ) ) {
+				} else if ( !createable && TAG_ActivityTimelineHelper.isAccessible( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
 					sObjectsToUse.add( mdt );
 				}
 			}
@@ -150,16 +150,16 @@ public with sharing class TAG_ActivityTimelineHelper {
 		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
 
 			String extraParameter = getExtraParameter( mdt, amountOfMonths, false );
-			String extraField = mdt.SObjectChild__c == 'Event' ? ',ActivityDateTime,IsAllDayEvent,DurationInMinutes' :
-			                    mdt.SObjectChild__c == 'Task' ? ',CreatedDate' : '';
+			String extraField = mdt.Activity_Timeline_Child__r.SObjectName__c == 'Event' ? ',ActivityDateTime,IsAllDayEvent,DurationInMinutes' :
+			                    mdt.Activity_Timeline_Child__r.SObjectName__c == 'Task' ? ',CreatedDate' : '';
 
 			String fieldsToQuery = getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
 
-			if ( !queriedSobjects.contains( mdt.SObjectChild__c ) ) {
+			if ( !queriedSobjects.contains( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
 				queries.add( getQuery( mdt, recordId, extraParameter, extraField, fieldsToQuery ) );
-				queriedSobjects.add( mdt.SObjectChild__c );
+				queriedSobjects.add( mdt.Activity_Timeline_Child__r.SObjectName__c );
 
-				if ( mdt.SObjectChild__c == 'Task' ) {
+				if ( mdt.Activity_Timeline_Child__r.SObjectName__c == 'Task' ) {
 					String dateLessParameter = getExtraParameter( mdt, amountOfMonths, true );
 					queries.add( getQuery( mdt, recordId, dateLessParameter, extraField, fieldsToQuery ) );
 				}
@@ -195,7 +195,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 	public static String getQuery( TAG_ActivityTimelineParent__mdt mdt, String recordId, String extraParameter, String extraField, String fieldsToQuery ) {
 		return 'SELECT Id,' + fieldsToQuery + extraField +
 
-		       ' FROM ' + mdt.SObjectChild__c +
+		       ' FROM ' + mdt.Activity_Timeline_Child__r.SObjectName__c +
 
 		       ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
 		       ' AND ' + extraParameter +
@@ -207,7 +207,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		Set<String> fieldsToQuery = new Set<String>();
 		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
-			if ( mdt.SObjectChild__c == currentObject.SObjectChild__c ) {
+			if ( mdt.Activity_Timeline_Child__r.SObjectName__c == currentObject.Activity_Timeline_Child__r.SObjectName__c ) {
 
 				for ( String mdtField : CHILD_FIELDS_TO_QUERY ) {
 
@@ -224,7 +224,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 			}
 		}
 
-		if ( currentObject.SObjectChild__c == 'Task' ) {
+		if ( currentObject.Activity_Timeline_Child__r.SObjectName__c == 'Task' ) {
 			fieldsToQuery.add( 'Status' );
 		}
 
@@ -256,7 +256,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 			String childSObjectKind = getSOjectTypeFromRecordId( (Id) sObj.get( 'Id' ) );
 			String childSObjectType = '';
 			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQueryMap.values() ) {
-				if ( mdt.SObjectChild__c == childSObjectKind ) {
+				if ( mdt.Activity_Timeline_Child__r.SObjectName__c == childSObjectKind ) {
 					if ( mdt.Activity_Timeline_Child__r.SObjectTypeField__c != null ) {
 						String type = (String) sObj.get( mdt.Activity_Timeline_Child__r.SObjectTypeField__c );
 						if ( type != null ) {
@@ -374,10 +374,10 @@ public with sharing class TAG_ActivityTimelineHelper {
 			if ( mdtType.contains( ';' ) ) {
 				List<String> typeList = mdtType.split( ';' );
 				for ( String type : typeList ) {
-					sObjectsToQueryMap.put( mdt.SObjectChild__c + type, mdt );
+					sObjectsToQueryMap.put( mdt.Activity_Timeline_Child__r.SObjectName__c + type, mdt );
 				}
 			} else {
-				sObjectsToQueryMap.put( mdt.SObjectChild__c + mdtType, mdt );
+				sObjectsToQueryMap.put( mdt.Activity_Timeline_Child__r.SObjectName__c + mdtType, mdt );
 			}
 		}
 

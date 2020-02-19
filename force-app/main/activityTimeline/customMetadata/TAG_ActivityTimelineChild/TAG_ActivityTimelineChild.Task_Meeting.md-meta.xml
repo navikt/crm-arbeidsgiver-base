@@ -35,6 +35,10 @@
 		<value xsi:type="xsd:string">ActivityDate</value>
 	</values>
 	<values>
+		<field>SObjectName__c</field>
+		<value xsi:type="xsd:string">Task</value>
+	</values>
+	<values>
 		<field>SObjectRelatedUserId__c</field>
 		<value xsi:type="xsd:string">WhoId</value>
 	</values>
