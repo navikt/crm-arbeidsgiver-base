@@ -312,86 +312,6 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.CreateableObject_Checkbox__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.CreateableObject_RecordType__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.CreateableObject_TextEnglish__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.CreateableObject_TextNorwegian__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.IsActive__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SObjectAssigneeId__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SObjectDateFieldIsDate__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SObjectRelatedUserId__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SObjectTypeField__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SObjectTypeValue__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SubtitleFutureEnglish__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SubtitleFutureNorwegian__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SubtitlePastEnglish__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SubtitlePastNorwegian__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SubtitleRelatedUserPrepositionEng__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>TAG_ActivityTimeline__mdt.SubtitleRelatedUserPrepositionNor__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
 		<field>Task.TAG_ActivityType__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
@@ -429,15 +349,6 @@
 	<layoutAssignments>
 		<layout>CustomOpportunity__c-Inclusive Employment Page Layout</layout>
 		<recordType>CustomOpportunity__c.Inclusive_Employment</recordType>
-	</layoutAssignments>
-	<layoutAssignments>
-		<layout>Event-TAG Event Layout</layout>
-	</layoutAssignments>
-	<layoutAssignments>
-		<layout>TAG_ActivityTimeline__mdt-Activity Timeline Layout</layout>
-	</layoutAssignments>
-	<layoutAssignments>
-		<layout>Task-TAG Task Layout</layout>
 	</layoutAssignments>
 	<loginIpRanges>
 		<endAddress>255.255.255.255</endAddress>

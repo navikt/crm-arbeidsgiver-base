@@ -4,7 +4,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	@isTest
 	private static void testCreateSoqlQueries() {
 
-		List<String> mdtFieldsToQuery = new List<String> { 'SObjectDateField__c', 'SObjectTitle__c' };
+		List<String> mdtFieldsToQuery = new List<String> { 'Activity_Timeline_Child__r.SObjectDateField__c', 'Activity_Timeline_Child__r.SObjectTitle__c' };
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event', 'Task' } );
 
@@ -131,16 +131,19 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 	public static List<TAG_ActivityTimeline__mdt> queryMdt( List<String> types ) {
 		return [SELECT Id,
-		        SLDS_Timeline_Color__c, SLDS_Icon__c,
-		        CreateableObject_TextEnglish__c, CreateableObject_TextNorwegian__c, CreateableObject_RecordType__c,
-		        SObjectChild__c, SObjectParent__c,
-		        SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,
-		        SObjectAssigneeId__c, SObjectRelatedUserId__c,
-		        SObjectTypeField__c, SObjectTypeValue__c,
-		        SubtitlePastEnglish__c, SubtitlePastNorwegian__c,
-		        SubtitleFutureEnglish__c, SubtitleFutureNorwegian__c,
-		        SubtitleRelatedUserPrepositionEng__c, SubtitleRelatedUserPrepositionNor__c,
-		        SObjectRelationshipField__c
+		        SObjectAssigneeId__c, SObjectChild__c, SObjectParent__c, SObjectRelationshipField__c,
+
+		        Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
+		        Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
+		        Activity_Timeline_Child__r.SObjectDateField__c,  Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,
+		        Activity_Timeline_Child__r.SObjectRelatedUserId__c,
+		        Activity_Timeline_Child__r.CreateableObject_Field1__c, Activity_Timeline_Child__r.CreateableObject_Value1__c,
+		        Activity_Timeline_Child__r.CreateableObject_Field2__c, Activity_Timeline_Child__r.CreateableObject_Value2__c,
+		        Activity_Timeline_Child__r.CreateableObject_Field3__c, Activity_Timeline_Child__r.CreateableObject_Value3__c,
+		        Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,
+		        Activity_Timeline_Child__r.SubtitlePastEnglish__c, Activity_Timeline_Child__r.SubtitlePastNorwegian__c,
+		        Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,
+		        Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c
 
 		        FROM TAG_ActivityTimeline__mdt
 
@@ -148,4 +151,5 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		            ( SObjectParent__c = 'Account' ) AND
 		            ( SObjectChild__c IN: types )];
 	}
+
 }

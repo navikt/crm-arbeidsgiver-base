@@ -171,7 +171,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 			System.assertEquals( 4, sObjectType.size(), 'Standard user doesn\'t have access to custom object custom opportunity' );
 
 			for ( TAG_ActivityTimeline__mdt mdt : sObjectType ) {
-				System.assertEquals( mdt.CreateableObject_TextNorwegian__c, mdt.CreateableObject_TextEnglish__c, 'The norwegian text should be moved to the english field, as this user is norwegian' );
+				System.assertEquals( mdt.Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, mdt.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, 'The norwegian text should be moved to the english field, as this user is norwegian' );
 			}
 		}
 	}

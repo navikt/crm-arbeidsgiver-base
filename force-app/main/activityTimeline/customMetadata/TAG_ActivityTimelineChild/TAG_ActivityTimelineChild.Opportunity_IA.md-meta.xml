@@ -1,46 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<label>Account &lt;= Opportunity (Inkludering)</label>
+	<label>Opportunity (IA)</label>
 	<protected>false</protected>
 	<values>
-		<field>CreateableObject_Checkbox__c</field>
-		<value xsi:type="xsd:boolean">true</value>
-	</values>
-	<values>
 		<field>CreateableObject_RecordType__c</field>
-		<value xsi:type="xsd:string">Inclusion</value>
+		<value xsi:type="xsd:string">Inclusive_Employment</value>
 	</values>
 	<values>
 		<field>CreateableObject_TextEnglish__c</field>
-		<value xsi:type="xsd:string">Inclusion Opportunity</value>
+		<value xsi:type="xsd:string">IA Inquiry</value>
 	</values>
 	<values>
 		<field>CreateableObject_TextNorwegian__c</field>
-		<value xsi:type="xsd:string">Inkluderingsmulighet</value>
-	</values>
-	<values>
-		<field>SLDS_Dropdown_Icon__c</field>
-		<value xsi:type="xsd:string">utility:resource_capacity</value>
-	</values>
-	<values>
-		<field>IsActive__c</field>
-		<value xsi:type="xsd:boolean">true</value>
+		<value xsi:type="xsd:string">IA-forespørsel</value>
 	</values>
 	<values>
 		<field>SLDS_Icon__c</field>
-		<value xsi:type="xsd:string">standard:contract</value>
+		<value xsi:type="xsd:string">standard:entitlement</value>
 	</values>
 	<values>
 		<field>SLDS_Timeline_Color__c</field>
-		<value xsi:type="xsd:string">6ec06f</value>
-	</values>
-	<values>
-		<field>SObjectAssigneeId__c</field>
-		<value xsi:type="xsd:string">OwnerId</value>
-	</values>
-	<values>
-		<field>SObjectChild__c</field>
-		<value xsi:type="xsd:string">CustomOpportunity__c</value>
+		<value xsi:type="xsd:string">808dde</value>
 	</values>
 	<values>
 		<field>SObjectDateFieldIsDate__c</field>
@@ -49,10 +29,6 @@
 	<values>
 		<field>SObjectDateField__c</field>
 		<value xsi:type="xsd:string">CreatedDate</value>
-	</values>
-	<values>
-		<field>SObjectParent__c</field>
-		<value xsi:type="xsd:string">Account</value>
 	</values>
 	<values>
 		<field>SObjectRelatedUserId__c</field>
@@ -72,23 +48,27 @@
 	</values>
 	<values>
 		<field>SObjectTypeValue__c</field>
-		<value xsi:type="xsd:string">Inkludering;Rekruttering;Rekruttering med tilrettelegging</value>
+		<value xsi:type="xsd:string">Forebygge sykefravær</value>
+	</values>
+	<values>
+		<field>SLDS_Dropdown_Icon__c</field>
+		<value xsi:type="xsd:string">utility:resource_absence</value>
 	</values>
 	<values>
 		<field>SubtitleFutureEnglish__c</field>
-		<value xsi:type="xsd:string">is the responsible markedskontakt</value>
+		<value xsi:type="xsd:string">is the responsible IA-counselor</value>
 	</values>
 	<values>
 		<field>SubtitleFutureNorwegian__c</field>
-		<value xsi:type="xsd:string">er ansvarlig markedskontakt</value>
+		<value xsi:type="xsd:string">er ansvarlig IA-rådgiver</value>
 	</values>
 	<values>
 		<field>SubtitlePastEnglish__c</field>
-		<value xsi:type="xsd:string">were the responsible markedskontakt</value>
+		<value xsi:type="xsd:string">were the responsible IA-counselor</value>
 	</values>
 	<values>
 		<field>SubtitlePastNorwegian__c</field>
-		<value xsi:type="xsd:string">var ansvarlig markedskontakt</value>
+		<value xsi:type="xsd:string">var ansvarlig IA-rådgiver</value>
 	</values>
 	<values>
 		<field>SubtitleRelatedUserPrepositionEng__c</field>

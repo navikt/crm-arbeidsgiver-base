@@ -1,6 +1,6 @@
 public with sharing class TAG_ActivityTimelineHelper {
 
-	private static final List<String> CHILD_FIELDS_TO_QUERY =   new List<String> { 'SObjectDateField__c', 'SObjectTitle__c', 'SObjectAssigneeId__c', 'SObjectRelatedUserId__c', 'SObjectTypeField__c' };
+	private static final List<String> CHILD_FIELDS_TO_QUERY =   new List<String> { 'Activity_Timeline_Child__r.SObjectDateField__c', 'Activity_Timeline_Child__r.SObjectTitle__c', 'SObjectAssigneeId__c', 'Activity_Timeline_Child__r.SObjectRelatedUserId__c', 'Activity_Timeline_Child__r.SObjectTypeField__c' };
 	private static final User USER =                            [SELECT toLabel( LanguageLocaleKey ) FROM User WHERE Id = :UserInfo.getUserId()];
 	private static final Boolean IS_NORWEGIAN =                 USER.LanguageLocaleKey == 'Norsk';
 
@@ -14,25 +14,26 @@ public with sharing class TAG_ActivityTimelineHelper {
 	}
 
 	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
-		List<Boolean> allBools = new List<Boolean> { true, false };
+		List<Boolean> allBools = new List<Boolean> { true, false, null };
 		if ( createable ) {
 			allBools = new List<Boolean> { true };
 		}
 
 		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
-		                                                   SLDS_Timeline_Color__c, SLDS_Icon__c, SLDS_Dropdown_Icon__c,
-		                                                   CreateableObject_TextEnglish__c, CreateableObject_TextNorwegian__c, CreateableObject_RecordType__c,
-		                                                   SObjectChild__c, SObjectParent__c,
-		                                                   SObjectDateField__c,  SObjectTitle__c, SObjectDateFieldIsDate__c,
-		                                                   SObjectAssigneeId__c, SObjectRelatedUserId__c,
-		                                                   CreateableObject_Field1__c, CreateableObject_Value1__c,
-		                                                   CreateableObject_Field2__c, CreateableObject_Value2__c,
-		                                                   CreateableObject_Field3__c, CreateableObject_Value3__c,
-		                                                   SObjectTypeField__c, SObjectTypeValue__c,
-		                                                   SubtitlePastEnglish__c, SubtitlePastNorwegian__c,
-		                                                   SubtitleFutureEnglish__c, SubtitleFutureNorwegian__c,
-		                                                   SubtitleRelatedUserPrepositionEng__c, SubtitleRelatedUserPrepositionNor__c,
-		                                                   SObjectRelationshipField__c
+
+		                                                   SObjectAssigneeId__c, SObjectChild__c, SObjectParent__c, SObjectRelationshipField__c,
+
+		                                                   Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
+		                                                   Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
+		                                                   Activity_Timeline_Child__r.SObjectDateField__c,  Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,
+		                                                   Activity_Timeline_Child__r.SObjectRelatedUserId__c,
+		                                                   Activity_Timeline_Child__r.CreateableObject_Field1__c, Activity_Timeline_Child__r.CreateableObject_Value1__c,
+		                                                   Activity_Timeline_Child__r.CreateableObject_Field2__c, Activity_Timeline_Child__r.CreateableObject_Value2__c,
+		                                                   Activity_Timeline_Child__r.CreateableObject_Field3__c, Activity_Timeline_Child__r.CreateableObject_Value3__c,
+		                                                   Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,
+		                                                   Activity_Timeline_Child__r.SubtitlePastEnglish__c, Activity_Timeline_Child__r.SubtitlePastNorwegian__c,
+		                                                   Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,
+		                                                   Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c
 
 		                                                   FROM TAG_ActivityTimeline__mdt
 
@@ -41,13 +42,12 @@ public with sharing class TAG_ActivityTimelineHelper {
 		                                                       ( SObjectParent__c = : parentSObjectType ) AND
 		                                                       ( IsActive__c = true )
 
-		                                                   ORDER BY SObjectChild__c, CreateableObject_TextNorwegian__c];
+		                                                   ORDER BY SObjectChild__c]; // TODO fix ordering på name
 
 		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
 		else {
 
 			List<TAG_ActivityTimeline__mdt> sObjectsToUse = new List<TAG_ActivityTimeline__mdt>();
-
 			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
 				if ( createable && TAG_ActivityTimelineHelper.isCreateable( mdt.SObjectChild__c ) ) {
 					sObjectsToUse.add( mdt );
@@ -83,7 +83,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		List<TAG_ActivityTimelineModel> tmpModels = new List<TAG_ActivityTimelineModel>();
 		for ( TAG_ActivityTimelineModel model : models ) {
 
-			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
+			Datetime d = model.config.Activity_Timeline_Child__r.SObjectDateFieldIsDate__c ? System.today() : System.now();
 			if ( model.record.dateValueDb >= d ) {
 				tmpModels.add( model );
 			}
@@ -98,7 +98,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		for ( TAG_ActivityTimelineModel model : data ) {
 
-			Datetime d = model.config.SObjectDateFieldIsDate__c ? System.today() : System.now();
+			Datetime d = model.config.Activity_Timeline_Child__r.SObjectDateFieldIsDate__c ? System.today() : System.now();
 
 			if ( model.record.dateValueDb < d ) {
 				String key = model.record.dateValueDb.month() + '' + model.record.dateValueDb.year();
@@ -126,8 +126,8 @@ public with sharing class TAG_ActivityTimelineHelper {
 		Set<String> recordTypeNames = new Set<String>();
 
 		for ( TAG_ActivityTimeline__mdt mdt : data ) {
-			if ( mdt.CreateableObject_RecordType__c != null ) {
-				recordTypeNames.add( mdt.CreateableObject_RecordType__c );
+			if ( mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c != null ) {
+				recordTypeNames.add( mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c );
 			}
 		}
 
@@ -171,24 +171,24 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 	public static String getExtraParameter( TAG_ActivityTimeline__mdt mdt, Integer amountOfMonths, Boolean findDateless ) {
 
-		Boolean isDate = findDateless ? false : mdt.SObjectDateFieldIsDate__c;
+		Boolean isDate = findDateless ? false : mdt.Activity_Timeline_Child__r.SObjectDateFieldIsDate__c;
 
 		String now = '' + ( isDate ? System.today() : System.now() );
 		if ( isDate ) { now = now.replaceAll( ' 00:00:00', '' ); }
 		else { now = now.replaceAll( ' ', 'T' ) + 'Z'; }
 
-		String dateField = findDateless ? 'CreatedDate' : mdt.SObjectDateField__c;
+		String dateField = findDateless ? 'CreatedDate' : mdt.Activity_Timeline_Child__r.SObjectDateField__c;
 
 		if ( amountOfMonths != null ) {
 			return '(' +
 			       dateField + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
 			       dateField + ' = THIS_MONTH OR ' +
 			       dateField + ' > ' + now +
-			       ')' + (findDateless ? ' AND ' + mdt.SObjectDateField__c + ' = null' : '');
+			       ')' + (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
 		} else { // get overdue only, as no month is specified
 			return '' + dateField + ' < ' + now +
 			       '  AND Status != \'Completed\'' +
-			       (findDateless ? ' AND ' + mdt.SObjectDateField__c + ' = null' : '');
+			       (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
 		}
 	}
 
@@ -200,7 +200,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		       ' WHERE ' + mdt.SObjectRelationshipField__c + ' = \'' + recordId + '\'' +
 		       ' AND ' + extraParameter +
 
-		       ' ORDER BY ' + mdt.SObjectDateField__c;
+		       ' ORDER BY ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c;
 	}
 
 	public static String getFieldsToQueryFromMdt( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, TAG_ActivityTimeline__mdt currentObject ) {
@@ -210,7 +210,13 @@ public with sharing class TAG_ActivityTimelineHelper {
 			if ( mdt.SObjectChild__c == currentObject.SObjectChild__c ) {
 
 				for ( String mdtField : CHILD_FIELDS_TO_QUERY ) {
-					String field = (String) mdt.get( mdtField );
+
+					String field = '';
+					if ( mdtField.contains( '__r' ) ) {
+						field =  (String) mdt.getSObject( mdtField.split( '\\.' )[0] ).get( mdtField.split( '\\.' )[1] );
+					} else {
+						field =  (String) mdt.get( mdtField );
+					}
 					if ( field != null ) {
 						fieldsToQuery.add( field );
 					}
@@ -251,8 +257,8 @@ public with sharing class TAG_ActivityTimelineHelper {
 			String childSObjectType = '';
 			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQueryMap.values() ) {
 				if ( mdt.SObjectChild__c == childSObjectKind ) {
-					if ( mdt.SObjectTypeField__c != null ) {
-						String type = (String) sObj.get( mdt.SObjectTypeField__c );
+					if ( mdt.Activity_Timeline_Child__r.SObjectTypeField__c != null ) {
+						String type = (String) sObj.get( mdt.Activity_Timeline_Child__r.SObjectTypeField__c );
 						if ( type != null ) {
 							childSObjectType = type;
 							break;
@@ -287,9 +293,9 @@ public with sharing class TAG_ActivityTimelineHelper {
 		for ( TAG_ActivityTimelineModel model : models ) {
 
 			if ( model.record.dateValueDb < DateTime.now() && !model.record.overdue ) {
-				model.record.subtitle = USER.LanguageLocaleKey == 'Norsk' ? model.config.SubtitlePastNorwegian__c : model.config.SubtitlePastEnglish__c;
+				model.record.subtitle = USER.LanguageLocaleKey == 'Norsk' ? model.config.Activity_Timeline_Child__r.SubtitlePastNorwegian__c : model.config.Activity_Timeline_Child__r.SubtitlePastEnglish__c;
 			} else {
-				model.record.subtitle = USER.LanguageLocaleKey == 'Norsk' ? model.config.SubtitleFutureNorwegian__c : model.config.SubtitleFutureEnglish__c;
+				model.record.subtitle = USER.LanguageLocaleKey == 'Norsk' ? model.config.Activity_Timeline_Child__r.SubtitleFutureNorwegian__c : model.config.Activity_Timeline_Child__r.SubtitleFutureEnglish__c;
 			}
 
 			if ( model.record.assigneeId != null ) {
@@ -305,7 +311,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 				if ( contactNames.containsKey( model.record.relatedUserId ) ) {
 					model.record.relatedUser = contactNames.get( model.record.relatedUserId );
 					if ( model.record.relatedUser != null ) {
-						model.record.subtitle += USER.LanguageLocaleKey == 'Norsk' ? ' ' + returnValueIfNotNull( model.config.SubtitleRelatedUserPrepositionNor__c ) : ' ' + returnValueIfNotNull( model.config.SubtitleRelatedUserPrepositionEng__c );
+						model.record.subtitle += USER.LanguageLocaleKey == 'Norsk' ? ' ' + returnValueIfNotNull( model.config.Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c ) : ' ' + returnValueIfNotNull( model.config.Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c );
 					}
 				}
 			} else if ( model.record.sObjectKind == 'Task' && model.record.type == 'Call' ) {
@@ -354,7 +360,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimeline__mdt>();
 
 		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
-			String mdtType = mdt.SObjectTypeValue__c != null && mdt.SObjectTypeValue__c != 'null' ? mdt.SObjectTypeValue__c : '';
+			String mdtType = mdt.Activity_Timeline_Child__r.SObjectTypeValue__c != null && mdt.Activity_Timeline_Child__r.SObjectTypeValue__c != 'null' ? mdt.Activity_Timeline_Child__r.SObjectTypeValue__c : '';
 			if ( mdtType.contains( ';' ) ) {
 				List<String> typeList = mdtType.split( ';' );
 				for ( String type : typeList ) {
@@ -369,10 +375,14 @@ public with sharing class TAG_ActivityTimelineHelper {
 	}
 
 	public static Boolean isCreateable( String sObjectType ) {
+		System.debug( 'creatable' );
+
 		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isCreateable();
 	}
 
 	public static Boolean isAccessible( String sObjectType ) {
+		System.debug( 'isAccessible' );
+
 		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isAccessible();
 	}
 

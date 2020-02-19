@@ -1,101 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<label>Account &lt;= Task (SMS)</label>
+	<label>Opportunity (Inkludering)</label>
 	<protected>false</protected>
 	<values>
-		<field>CreateableObject_Checkbox__c</field>
-		<value xsi:type="xsd:boolean">false</value>
-	</values>
-	<values>
 		<field>CreateableObject_RecordType__c</field>
-		<value xsi:nil="true" />
+		<value xsi:type="xsd:string">Inclusion</value>
 	</values>
 	<values>
 		<field>CreateableObject_TextEnglish__c</field>
-		<value xsi:nil="true" />
+		<value xsi:type="xsd:string">Inclusion Opportunity</value>
 	</values>
 	<values>
 		<field>CreateableObject_TextNorwegian__c</field>
-		<value xsi:nil="true" />
-	</values>
-	<values>
-		<field>IsActive__c</field>
-		<value xsi:type="xsd:boolean">true</value>
+		<value xsi:type="xsd:string">Inkluderingsmulighet</value>
 	</values>
 	<values>
 		<field>SLDS_Dropdown_Icon__c</field>
-		<value xsi:type="xsd:string">utility:sms</value>
+		<value xsi:type="xsd:string">utility:resource_capacity</value>
 	</values>
 	<values>
 		<field>SLDS_Icon__c</field>
-		<value xsi:type="xsd:string">standard:sms</value>
+		<value xsi:type="xsd:string">standard:contract</value>
 	</values>
 	<values>
 		<field>SLDS_Timeline_Color__c</field>
-		<value xsi:type="xsd:string">96c361</value>
-	</values>
-	<values>
-		<field>SObjectAssigneeId__c</field>
-		<value xsi:type="xsd:string">OwnerId</value>
-	</values>
-	<values>
-		<field>SObjectChild__c</field>
-		<value xsi:type="xsd:string">Task</value>
+		<value xsi:type="xsd:string">6ec06f</value>
 	</values>
 	<values>
 		<field>SObjectDateFieldIsDate__c</field>
-		<value xsi:type="xsd:boolean">true</value>
+		<value xsi:type="xsd:boolean">false</value>
 	</values>
 	<values>
 		<field>SObjectDateField__c</field>
-		<value xsi:type="xsd:string">ActivityDate</value>
-	</values>
-	<values>
-		<field>SObjectParent__c</field>
-		<value xsi:type="xsd:string">Account</value>
+		<value xsi:type="xsd:string">CreatedDate</value>
 	</values>
 	<values>
 		<field>SObjectRelatedUserId__c</field>
-		<value xsi:type="xsd:string">WhoId</value>
+		<value xsi:nil="true" />
 	</values>
 	<values>
 		<field>SObjectRelationshipField__c</field>
-		<value xsi:type="xsd:string">WhatId</value>
+		<value xsi:type="xsd:string">Account__c</value>
 	</values>
 	<values>
 		<field>SObjectTitle__c</field>
-		<value xsi:type="xsd:string">Subject</value>
+		<value xsi:type="xsd:string">InquiryCategory__c</value>
 	</values>
 	<values>
 		<field>SObjectTypeField__c</field>
-		<value xsi:type="xsd:string">Type</value>
+		<value xsi:type="xsd:string">InquiryCategory__c</value>
 	</values>
 	<values>
 		<field>SObjectTypeValue__c</field>
-		<value xsi:type="xsd:string">SMS</value>
+		<value xsi:type="xsd:string">Inkludering;Rekruttering;Rekruttering med tilrettelegging</value>
 	</values>
 	<values>
 		<field>SubtitleFutureEnglish__c</field>
-		<value xsi:type="xsd:string">plan to send an SMS</value>
+		<value xsi:type="xsd:string">is the responsible markedskontakt</value>
 	</values>
 	<values>
 		<field>SubtitleFutureNorwegian__c</field>
-		<value xsi:type="xsd:string">har planer om å sende en SMS</value>
+		<value xsi:type="xsd:string">er ansvarlig markedskontakt</value>
 	</values>
 	<values>
 		<field>SubtitlePastEnglish__c</field>
-		<value xsi:type="xsd:string">sent an SMS</value>
+		<value xsi:type="xsd:string">were the responsible markedskontakt</value>
 	</values>
 	<values>
 		<field>SubtitlePastNorwegian__c</field>
-		<value xsi:type="xsd:string">sendte en SMS</value>
+		<value xsi:type="xsd:string">var ansvarlig markedskontakt</value>
 	</values>
 	<values>
 		<field>SubtitleRelatedUserPrepositionEng__c</field>
-		<value xsi:type="xsd:string">to</value>
+		<value xsi:nil="true" />
 	</values>
 	<values>
 		<field>SubtitleRelatedUserPrepositionNor__c</field>
-		<value xsi:type="xsd:string">til</value>
+		<value xsi:nil="true" />
 	</values>
 </CustomMetadata>

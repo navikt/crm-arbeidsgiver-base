@@ -58,7 +58,6 @@ private class TAG_ActivityTimelineModelTest {
 		List<SObject> sObjects = TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
 		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 
-
 		System.assertEquals( 3, data.size(), 'Three records added to account' );
 
 		System.assertEquals( ev.Id, data[0].record.recordId, 'The ID for the event should be in 1st in the list, because the list isn\'t sorted' );

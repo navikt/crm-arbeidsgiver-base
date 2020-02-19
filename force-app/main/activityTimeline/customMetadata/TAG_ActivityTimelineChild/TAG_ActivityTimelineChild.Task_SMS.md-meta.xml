@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<label>Account &lt;= Task (Other)</label>
+	<label>Task (SMS)</label>
 	<protected>false</protected>
-	<values>
-		<field>CreateableObject_Checkbox__c</field>
-		<value xsi:type="xsd:boolean">false</value>
-	</values>
 	<values>
 		<field>CreateableObject_RecordType__c</field>
 		<value xsi:nil="true" />
@@ -19,28 +15,16 @@
 		<value xsi:nil="true" />
 	</values>
 	<values>
-		<field>IsActive__c</field>
-		<value xsi:type="xsd:boolean">true</value>
+		<field>SLDS_Dropdown_Icon__c</field>
+		<value xsi:type="xsd:string">utility:sms</value>
 	</values>
 	<values>
 		<field>SLDS_Icon__c</field>
-		<value xsi:type="xsd:string">standard:task</value>
+		<value xsi:type="xsd:string">standard:sms</value>
 	</values>
 	<values>
 		<field>SLDS_Timeline_Color__c</field>
-		<value xsi:type="xsd:string">6cbd7d</value>
-	</values>
-	<values>
-		<field>SObjectAssigneeId__c</field>
-		<value xsi:type="xsd:string">OwnerId</value>
-	</values>
-	<values>
-		<field>SLDS_Dropdown_Icon__c</field>
-		<value xsi:type="xsd:string">utility:task</value>
-	</values>
-	<values>
-		<field>SObjectChild__c</field>
-		<value xsi:type="xsd:string">Task</value>
+		<value xsi:type="xsd:string">96c361</value>
 	</values>
 	<values>
 		<field>SObjectDateFieldIsDate__c</field>
@@ -49,10 +33,6 @@
 	<values>
 		<field>SObjectDateField__c</field>
 		<value xsi:type="xsd:string">ActivityDate</value>
-	</values>
-	<values>
-		<field>SObjectParent__c</field>
-		<value xsi:type="xsd:string">Account</value>
 	</values>
 	<values>
 		<field>SObjectRelatedUserId__c</field>
@@ -72,30 +52,30 @@
 	</values>
 	<values>
 		<field>SObjectTypeValue__c</field>
-		<value xsi:type="xsd:string">Other</value>
+		<value xsi:type="xsd:string">SMS</value>
 	</values>
 	<values>
 		<field>SubtitleFutureEnglish__c</field>
-		<value xsi:type="xsd:string">have this task</value>
+		<value xsi:type="xsd:string">plan to send an SMS</value>
 	</values>
 	<values>
 		<field>SubtitleFutureNorwegian__c</field>
-		<value xsi:type="xsd:string">har denne oppgaven</value>
+		<value xsi:type="xsd:string">har planer om å sende en SMS</value>
 	</values>
 	<values>
 		<field>SubtitlePastEnglish__c</field>
-		<value xsi:type="xsd:string">had a task</value>
+		<value xsi:type="xsd:string">sent an SMS</value>
 	</values>
 	<values>
 		<field>SubtitlePastNorwegian__c</field>
-		<value xsi:type="xsd:string">hadde en oppgave</value>
+		<value xsi:type="xsd:string">sendte en SMS</value>
 	</values>
 	<values>
 		<field>SubtitleRelatedUserPrepositionEng__c</field>
-		<value xsi:type="xsd:string">with</value>
+		<value xsi:type="xsd:string">to</value>
 	</values>
 	<values>
 		<field>SubtitleRelatedUserPrepositionNor__c</field>
-		<value xsi:type="xsd:string">med</value>
+		<value xsi:type="xsd:string">til</value>
 	</values>
 </CustomMetadata>

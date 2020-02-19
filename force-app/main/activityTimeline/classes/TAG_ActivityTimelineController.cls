@@ -64,12 +64,12 @@ public with sharing class TAG_ActivityTimelineController {
 
 		if ( IS_NORWEGIAN ) {
 			for ( TAG_ActivityTimeline__mdt mdt : data ) {
-				mdt.CreateableObject_TextEnglish__c = mdt.CreateableObject_TextNorwegian__c;
+				mdt.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c = mdt.Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c; // TODO FIX
 			}
 		}
 
 		for ( TAG_ActivityTimeline__mdt mdt : data ) {
-			mdt.CreateableObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.CreateableObject_RecordType__c );
+			mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c ); // TODO FIX
 		}
 
 		return data;
