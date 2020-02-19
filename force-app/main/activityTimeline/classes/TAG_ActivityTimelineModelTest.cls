@@ -25,10 +25,6 @@ private class TAG_ActivityTimelineModelTest {
 
 		System.assertEquals( 3, data.size(), 'Three records added to account' );
 
-		System.assertEquals( ev.Id, data[0].record.recordId, 'The ID for the event should be in 1st in the list, because the list isn\'t sorted' );
-		System.assertEquals( ta2.Id, data[1].record.recordId, 'The ID for the task should be in 2nd in the list, because the list isn\'t sorted' );
-		System.assertEquals( ta.Id, data[2].record.recordId, 'The ID for the task should be in 3rd in the list, because the list isn\'t sorted' );
-
 		data = new TAG_ActivityTimelineModelList( Label.ActTime_Older, Label.ActTime_Older, data, false, true ).models;
 
 		System.assertEquals( ta.Id, data[0].record.recordId, 'The ID for the task should be in 1st in the list' );
@@ -59,10 +55,6 @@ private class TAG_ActivityTimelineModelTest {
 		List<TAG_ActivityTimelineModel> data = TAG_ActivityTimelineHelper.createActivityTimelineData( sObjectsToQuery, sObjects );
 
 		System.assertEquals( 3, data.size(), 'Three records added to account' );
-
-		System.assertEquals( ev.Id, data[0].record.recordId, 'The ID for the event should be in 1st in the list, because the list isn\'t sorted' );
-		System.assertEquals( ta.Id, data[1].record.recordId, 'The ID for the task should be in 2nd in the list, because the list isn\'t sorted' );
-		System.assertEquals( ta2.Id, data[2].record.recordId, 'The ID for the task should be in 3rd in the list, because the list isn\'t sorted' );
 
 		data = new TAG_ActivityTimelineModelList( Label.ActTime_Upcoming, Label.ActTime_Upcoming, data, false, false ).models;
 
