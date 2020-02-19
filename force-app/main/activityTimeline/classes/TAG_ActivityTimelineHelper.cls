@@ -13,42 +13,42 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return String.valueOf( i.getSobjectType() );
 	}
 
-	public static List<TAG_ActivityTimeline__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
+	public static List<TAG_ActivityTimelineParent__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
 		List<Boolean> allBools = new List<Boolean> { true, false, null };
 		if ( createable ) {
 			allBools = new List<Boolean> { true };
 		}
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = [SELECT Id,
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = [SELECT Id,
 
-		                                                   SObjectAssigneeId__c, SObjectChild__c, SObjectParent__c, SObjectRelationshipField__c,
+		                                                         SObjectAssigneeId__c, SObjectChild__c, SObjectParent__c, SObjectRelationshipField__c,
 
-		                                                   Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
-		                                                   Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
-		                                                   Activity_Timeline_Child__r.SObjectDateField__c,  Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,
-		                                                   Activity_Timeline_Child__r.SObjectRelatedUserId__c,
-		                                                   Activity_Timeline_Child__r.CreateableObject_Field1__c, Activity_Timeline_Child__r.CreateableObject_Value1__c,
-		                                                   Activity_Timeline_Child__r.CreateableObject_Field2__c, Activity_Timeline_Child__r.CreateableObject_Value2__c,
-		                                                   Activity_Timeline_Child__r.CreateableObject_Field3__c, Activity_Timeline_Child__r.CreateableObject_Value3__c,
-		                                                   Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,
-		                                                   Activity_Timeline_Child__r.SubtitlePastEnglish__c, Activity_Timeline_Child__r.SubtitlePastNorwegian__c,
-		                                                   Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,
-		                                                   Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c
+		                                                         Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
+		                                                         Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
+		                                                         Activity_Timeline_Child__r.SObjectDateField__c,  Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,
+		                                                         Activity_Timeline_Child__r.SObjectRelatedUserId__c,
+		                                                         Activity_Timeline_Child__r.CreateableObject_Field1__c, Activity_Timeline_Child__r.CreateableObject_Value1__c,
+		                                                         Activity_Timeline_Child__r.CreateableObject_Field2__c, Activity_Timeline_Child__r.CreateableObject_Value2__c,
+		                                                         Activity_Timeline_Child__r.CreateableObject_Field3__c, Activity_Timeline_Child__r.CreateableObject_Value3__c,
+		                                                         Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,
+		                                                         Activity_Timeline_Child__r.SubtitlePastEnglish__c, Activity_Timeline_Child__r.SubtitlePastNorwegian__c,
+		                                                         Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,
+		                                                         Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c
 
-		                                                   FROM TAG_ActivityTimeline__mdt
+		                                                         FROM TAG_ActivityTimelineParent__mdt
 
-		                                                   WHERE
-		                                                       ( CreateableObject_Checkbox__c IN : allBools ) AND
-		                                                       ( SObjectParent__c = : parentSObjectType ) AND
-		                                                       ( IsActive__c = true )
+		                                                         WHERE
+		                                                             ( CreateableObject_Checkbox__c IN : allBools ) AND
+		                                                             ( SObjectParent__c = : parentSObjectType ) AND
+		                                                             ( IsActive__c = true )
 
-		                                                   ORDER BY SObjectChild__c]; // TODO fix ordering på name
+		                                                         ORDER BY SObjectChild__c]; // TODO fix ordering på name
 
 		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
 		else {
 
-			List<TAG_ActivityTimeline__mdt> sObjectsToUse = new List<TAG_ActivityTimeline__mdt>();
-			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+			List<TAG_ActivityTimelineParent__mdt> sObjectsToUse = new List<TAG_ActivityTimelineParent__mdt>();
+			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
 				if ( createable && TAG_ActivityTimelineHelper.isCreateable( mdt.SObjectChild__c ) ) {
 					sObjectsToUse.add( mdt );
 				} else if ( !createable && TAG_ActivityTimelineHelper.isAccessible( mdt.SObjectChild__c ) ) {
@@ -64,10 +64,10 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return IS_NORWEGIAN ? MONTH_NAME[monthNo] : MONTH_NAME_EN[monthNo];
 	}
 
-	public static List<TAG_ActivityTimelineModel> getOverdueOnly( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId ) {
+	public static List<TAG_ActivityTimelineModel> getOverdueOnly( List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery, String recordId ) {
 
-		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
-		sObjectsToQuery = new List<TAG_ActivityTimeline__mdt> { sObjectsToQueryMap.get( 'Task' ) };
+		Map<String, TAG_ActivityTimelineParent__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
+		sObjectsToQuery = new List<TAG_ActivityTimelineParent__mdt> { sObjectsToQueryMap.get( 'Task' ) };
 
 		List<String>                    query =          TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, null );
 		List<SObject>                   sObjects =       TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
@@ -121,11 +121,11 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return results;
 	}
 
-	public static Map<String, Id> getRecordTypes( List<TAG_ActivityTimeline__mdt> data ) {
+	public static Map<String, Id> getRecordTypes( List<TAG_ActivityTimelineParent__mdt> data ) {
 
 		Set<String> recordTypeNames = new Set<String>();
 
-		for ( TAG_ActivityTimeline__mdt mdt : data ) {
+		for ( TAG_ActivityTimelineParent__mdt mdt : data ) {
 			if ( mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c != null ) {
 				recordTypeNames.add( mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c );
 			}
@@ -142,12 +142,12 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 
 
-	public static List<String> createSoqlQueries( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, String recordId, Integer amountOfMonths ) {
+	public static List<String> createSoqlQueries( List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery, String recordId, Integer amountOfMonths ) {
 
 		Set<String> queriedSobjects = new Set<String>();
 		List<String> queries = new List<String>();
 
-		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
 
 			String extraParameter = getExtraParameter( mdt, amountOfMonths, false );
 			String extraField = mdt.SObjectChild__c == 'Event' ? ',ActivityDateTime,IsAllDayEvent,DurationInMinutes' :
@@ -169,7 +169,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return queries;
 	}
 
-	public static String getExtraParameter( TAG_ActivityTimeline__mdt mdt, Integer amountOfMonths, Boolean findDateless ) {
+	public static String getExtraParameter( TAG_ActivityTimelineParent__mdt mdt, Integer amountOfMonths, Boolean findDateless ) {
 
 		Boolean isDate = findDateless ? false : mdt.Activity_Timeline_Child__r.SObjectDateFieldIsDate__c;
 
@@ -192,7 +192,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		}
 	}
 
-	public static String getQuery( TAG_ActivityTimeline__mdt mdt, String recordId, String extraParameter, String extraField, String fieldsToQuery ) {
+	public static String getQuery( TAG_ActivityTimelineParent__mdt mdt, String recordId, String extraParameter, String extraField, String fieldsToQuery ) {
 		return 'SELECT Id,' + fieldsToQuery + extraField +
 
 		       ' FROM ' + mdt.SObjectChild__c +
@@ -203,10 +203,10 @@ public with sharing class TAG_ActivityTimelineHelper {
 		       ' ORDER BY ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c;
 	}
 
-	public static String getFieldsToQueryFromMdt( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, TAG_ActivityTimeline__mdt currentObject ) {
+	public static String getFieldsToQueryFromMdt( List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery, TAG_ActivityTimelineParent__mdt currentObject ) {
 
 		Set<String> fieldsToQuery = new Set<String>();
-		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
 			if ( mdt.SObjectChild__c == currentObject.SObjectChild__c ) {
 
 				for ( String mdtField : CHILD_FIELDS_TO_QUERY ) {
@@ -247,15 +247,15 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return sObjects;
 	}
 
-	public static List<TAG_ActivityTimelineModel> createActivityTimelineData( List<TAG_ActivityTimeline__mdt> sObjectsToQuery, List<SObject> sObjects ) {
+	public static List<TAG_ActivityTimelineModel> createActivityTimelineData( List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery, List<SObject> sObjects ) {
 
 		List<TAG_ActivityTimelineModel> data = new List<TAG_ActivityTimelineModel>();
-		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
+		Map<String, TAG_ActivityTimelineParent__mdt> sObjectsToQueryMap = getMapOfActivityTimelineConfig( sObjectsToQuery );
 
 		for ( SObject sObj : sObjects ) {
 			String childSObjectKind = getSOjectTypeFromRecordId( (Id) sObj.get( 'Id' ) );
 			String childSObjectType = '';
-			for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQueryMap.values() ) {
+			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQueryMap.values() ) {
 				if ( mdt.SObjectChild__c == childSObjectKind ) {
 					if ( mdt.Activity_Timeline_Child__r.SObjectTypeField__c != null ) {
 						String type = (String) sObj.get( mdt.Activity_Timeline_Child__r.SObjectTypeField__c );
@@ -267,7 +267,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 				}
 			}
 
-			TAG_ActivityTimeline__mdt mdt = sObjectsToQueryMap.get( childSObjectKind + childSObjectType );
+			TAG_ActivityTimelineParent__mdt mdt = sObjectsToQueryMap.get( childSObjectKind + childSObjectType );
 			if ( mdt == null ) { mdt = sObjectsToQueryMap.get( childSObjectKind ); }
 			if ( mdt != null ) {
 				data.add( new TAG_ActivityTimelineModel( mdt, sObj, USER.LanguageLocaleKey ) );
@@ -356,10 +356,10 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return results;
 	}
 
-	public static Map<String, TAG_ActivityTimeline__mdt> getMapOfActivityTimelineConfig( List<TAG_ActivityTimeline__mdt> sObjectsToQuery ) {
-		Map<String, TAG_ActivityTimeline__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimeline__mdt>();
+	public static Map<String, TAG_ActivityTimelineParent__mdt> getMapOfActivityTimelineConfig( List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery ) {
+		Map<String, TAG_ActivityTimelineParent__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimelineParent__mdt>();
 
-		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
 			String mdtType = mdt.Activity_Timeline_Child__r.SObjectTypeValue__c != null && mdt.Activity_Timeline_Child__r.SObjectTypeValue__c != 'null' ? mdt.Activity_Timeline_Child__r.SObjectTypeValue__c : '';
 			if ( mdtType.contains( ';' ) ) {
 				List<String> typeList = mdtType.split( ';' );

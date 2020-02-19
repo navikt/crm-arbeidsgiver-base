@@ -11,7 +11,7 @@ public with sharing class TAG_ActivityTimelineController {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
 		String parentSObjectType =                          TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery =   TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery =   TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
 
 		List<TAG_ActivityTimelineModelList> results =       new List<TAG_ActivityTimelineModelList>();
 
@@ -39,7 +39,7 @@ public with sharing class TAG_ActivityTimelineController {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
 		String parentSObjectType =                          TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery =   TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery =   TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
 
 		List<TAG_ActivityTimelineModelList> data =          new List<TAG_ActivityTimelineModelList>();
 		List<TAG_ActivityTimelineModel> overdue =           TAG_ActivityTimelineHelper.getOverdueOnly( sObjectsToQuery, recordId );
@@ -51,24 +51,24 @@ public with sharing class TAG_ActivityTimelineController {
 	}
 
 	@AuraEnabled(cacheable = true)
-	public static List<TAG_ActivityTimeline__mdt> getTimelineObjects( String recordId ) {
+	public static List<TAG_ActivityTimelineParent__mdt> getTimelineObjects( String recordId ) {
 
 		System.debug( '\n------------------------------------------\n------------getTimelineObjects------------\n------------------------------------------' );
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
 		String parentSObjectType =                          TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		List<TAG_ActivityTimeline__mdt> data =              TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, true );
+		List<TAG_ActivityTimelineParent__mdt> data =              TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, true );
 
 		Map<String, Id> recordTypes =                       TAG_ActivityTimelineHelper.getRecordTypes( data );
 
 		if ( IS_NORWEGIAN ) {
-			for ( TAG_ActivityTimeline__mdt mdt : data ) {
+			for ( TAG_ActivityTimelineParent__mdt mdt : data ) {
 				mdt.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c = mdt.Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c; // TODO FIX
 			}
 		}
 
-		for ( TAG_ActivityTimeline__mdt mdt : data ) {
+		for ( TAG_ActivityTimelineParent__mdt mdt : data ) {
 			mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c = recordTypes.get( mdt.SObjectChild__c + mdt.Activity_Timeline_Child__r.CreateableObject_RecordType__c ); // TODO FIX
 		}
 

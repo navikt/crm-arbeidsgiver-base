@@ -6,7 +6,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 		List<String> mdtFieldsToQuery = new List<String> { 'Activity_Timeline_Child__r.SObjectDateField__c', 'Activity_Timeline_Child__r.SObjectTitle__c' };
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event', 'Task' } );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event', 'Task' } );
 
 		Id recordId = TAG_TestDataFactory.createAccounts( 1 )[0].Id;
 
@@ -17,7 +17,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		System.assertEquals( 3, queries.size(), 'Number of queries should only be 3, as there\'s one query for each unique type + one extra for tasks without dates' );
 		System.assert ( queries.size() >= 0, 'Should be some data' );
 
-		for ( TAG_ActivityTimeline__mdt mdt : sObjectsToQuery ) {
+		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
 			String fieldsToQuery = TAG_ActivityTimelineHelper.getFieldsToQueryFromMdt( sObjectsToQuery, mdt );
 			String expectedEventBeginning = ( 'SELECT Id,ActivityDate,Subject,OwnerId,WhoId,ActivityDateTime,IsAllDayEvent,DurationInMinutes FROM Event WHERE WhatId = \'' + recordId + '\' AND (ActivityDate = LAST_N_MONTHS:2 OR ActivityDate = THIS_MONTH OR ActivityDate > ' + System.today() ).replace( ' 00:00:00', '' );
 			String expectedEventEnd = ') ORDER BY ActivityDate';
@@ -46,7 +46,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	@isTest
 	private static void testGetFieldsToQueryFromMdt_Event() {
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event' } );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Event' } );
 
 		String expected = 'ActivityDate,Subject,OwnerId,WhoId';
 
@@ -60,7 +60,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	@isTest
 	private static void testGetFieldsToQueryFromMdt_Task() {
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Task' } );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = queryMdt( new List<String> { 'Task' } );
 
 		String expected = 'ActivityDate,Subject,OwnerId,WhoId,Type,Status';
 
@@ -81,7 +81,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		insert ta;
 
 		String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( acc.Id );
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
 		List<String> queries = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 3 );
 
 		Test.StartTest();
@@ -95,7 +95,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	private static void testGetSObjectsToQuery() {
 
 		Test.StartTest();
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
 		Test.StopTest();
 
 		System.assert (sObjectsToQuery.size() >= 0, 'Should already be some mdt\'s for account as parent');
@@ -116,7 +116,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	@isTest
 	private static void testGetRecordTypes() {
 
-		List<TAG_ActivityTimeline__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
 
 		Test.StartTest();
 		Map<String, Id> recordTypes = TAG_ActivityTimelineHelper.getRecordTypes( sObjectsToQuery );
@@ -129,7 +129,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	// HELPER FUNCTIONS
 	// ------------------------------------------------------------------
 
-	public static List<TAG_ActivityTimeline__mdt> queryMdt( List<String> types ) {
+	public static List<TAG_ActivityTimelineParent__mdt> queryMdt( List<String> types ) {
 		return [SELECT Id,
 		        SObjectAssigneeId__c, SObjectChild__c, SObjectParent__c, SObjectRelationshipField__c,
 
@@ -145,7 +145,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		        Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,
 		        Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c
 
-		        FROM TAG_ActivityTimeline__mdt
+		        FROM TAG_ActivityTimelineParent__mdt
 
 		        WHERE
 		            ( SObjectParent__c = 'Account' ) AND

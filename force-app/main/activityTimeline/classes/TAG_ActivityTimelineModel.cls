@@ -1,6 +1,6 @@
 global with sharing class TAG_ActivityTimelineModel implements Comparable {
 
-	@AuraEnabled public TAG_ActivityTimeline__mdt config { get; set; } // TODO delete
+	@AuraEnabled public TAG_ActivityTimelineParent__mdt config { get; set; } // TODO delete
 
 	@AuraEnabled public Theme theme { get; set; }
 	@AuraEnabled public Record record { get; set; }
@@ -44,7 +44,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 	}
 
 
-	public TAG_ActivityTimelineModel( TAG_ActivityTimeline__mdt config, SObject sObj, String lang ) {
+	public TAG_ActivityTimelineModel( TAG_ActivityTimelineParent__mdt config, SObject sObj, String lang ) {
 
 		this.config =                       config;
 
@@ -71,7 +71,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		this.record =                       record;
 	}
 
-	public static Datetime getDateValue( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+	public static Datetime getDateValue( TAG_ActivityTimelineParent__mdt config, SObject sObj, Record record ) {
 
 		Datetime dateValueDb = (Datetime) get( sObj, config.Activity_Timeline_Child__r.SObjectDateField__c );
 
@@ -81,7 +81,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		return dateValueDb;
 	}
 
-	public static Boolean getIsDate( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+	public static Boolean getIsDate( TAG_ActivityTimelineParent__mdt config, SObject sObj, Record record ) {
 
 		Boolean isDate = config.Activity_Timeline_Child__r.SObjectDateFieldIsDate__c;
 		if ( config.SObjectChild__c == 'Event' ) { isDate = (Boolean) get( sObj, 'IsAllDayEvent' ); }
@@ -90,7 +90,7 @@ global with sharing class TAG_ActivityTimelineModel implements Comparable {
 		return isDate;
 	}
 
-	public static Boolean getIsOverdue( TAG_ActivityTimeline__mdt config, SObject sObj, Record record ) {
+	public static Boolean getIsOverdue( TAG_ActivityTimelineParent__mdt config, SObject sObj, Record record ) {
 
 		Boolean isOVerdue = false;
 
