@@ -117,7 +117,8 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 		for ( TAG_ActivityTimelineModel obj : wr.models ) {
 			System.assertEquals( co.Id, obj.record.recordId, 'The ID should be the created opty' );
-			System.assertEquals( sObjectsToQueryMap.get( 'CustomOpportunity__cRekruttering' ).Id, obj.config.Id, 'The ID should be the Custom opty with Inclusive_Employment record type config' );
+			System.assertEquals( sObjectsToQueryMap.get( 'CustomOpportunity__cRekruttering' ).SObjectChild__c, obj.record.sObjectKind, 'The sobject child from config should be on the record kind' );
+			System.assertEquals( sObjectsToQueryMap.get( 'CustomOpportunity__cRekruttering' ).Activity_Timeline_Child__r.SObjectTypeValue__c, obj.record.type, 'The type value from config should be on record type' );
 		}
 	}
 

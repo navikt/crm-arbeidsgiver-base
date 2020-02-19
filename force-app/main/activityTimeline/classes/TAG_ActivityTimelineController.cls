@@ -28,6 +28,8 @@ public with sharing class TAG_ActivityTimelineController {
 		results.add( wrappedUpcoming );
 		results.addAll( wrappedMonths );
 
+		results = TAG_ActivityTimelineHelper.removeConfig( results );
+
 		return results;
 	}
 
@@ -46,6 +48,8 @@ public with sharing class TAG_ActivityTimelineController {
 		overdue =                                           TAG_ActivityTimelineHelper.getOwnerAndContactNames( overdue );
 		TAG_ActivityTimelineModelList overdueWrapper =      new TAG_ActivityTimelineModelList( Label.ActTime_Overdue, Label.ActTime_Overdue, overdue, false, true );
 		data.add( overdueWrapper );
+
+		data = TAG_ActivityTimelineHelper.removeConfig( data );
 
 		return data;
 	}

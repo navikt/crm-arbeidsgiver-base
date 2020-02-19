@@ -356,6 +356,16 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return results;
 	}
 
+	public static List<TAG_ActivityTimelineModelList> removeConfig( List<TAG_ActivityTimelineModelList> data ) {
+		for ( TAG_ActivityTimelineModelList d : data ) {
+			for ( TAG_ActivityTimelineModel model : d.models ) {
+				model.config = null;
+			}
+		}
+
+		return data;
+	}
+
 	public static Map<String, TAG_ActivityTimelineParent__mdt> getMapOfActivityTimelineConfig( List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery ) {
 		Map<String, TAG_ActivityTimelineParent__mdt> sObjectsToQueryMap = new Map<String, TAG_ActivityTimelineParent__mdt>();
 
@@ -375,14 +385,10 @@ public with sharing class TAG_ActivityTimelineHelper {
 	}
 
 	public static Boolean isCreateable( String sObjectType ) {
-		System.debug( 'creatable' );
-
 		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isCreateable();
 	}
 
 	public static Boolean isAccessible( String sObjectType ) {
-		System.debug( 'isAccessible' );
-
 		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isAccessible();
 	}
 
