@@ -7,7 +7,7 @@ If not empty, the name is appended to the subtitle.</description>
 	<fieldManageability>DeveloperControlled</fieldManageability>
 	<inlineHelpText>Put in the SObject Field Name for the owner or assignee of the object.
 If not empty, the name is appended to the subtitle.</inlineHelpText>
-	<label>SObject - Assignee Id</label>
+	<label>Assignee/Owner SObject Field</label>
 	<length>255</length>
 	<required>false</required>
 	<type>Text</type>

@@ -5,7 +5,7 @@
 	<externalId>false</externalId>
 	<fieldManageability>DeveloperControlled</fieldManageability>
 	<inlineHelpText>The SObject Parent that should be queried (e.g., Account, Contact, Case, CustomObject__c).</inlineHelpText>
-	<label>SObject - Parent</label>
+	<label>Parent SObject API Name</label>
 	<length>255</length>
 	<required>true</required>
 	<type>Text</type>

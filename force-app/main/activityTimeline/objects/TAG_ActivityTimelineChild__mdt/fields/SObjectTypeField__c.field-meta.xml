@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SObjectTypeField__c</fullName>
-    <description>The SObject field describing the type of object (e.g., Type for Tasks, Inquiry Category for opportunities)</description>
-    <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText>The SObject field describing the type of object (e.g., Type for Tasks, Inquiry Category for opportunities)</inlineHelpText>
-    <label>SObject - Type Field</label>
-    <length>255</length>
-    <required>false</required>
-    <type>Text</type>
-    <unique>false</unique>
+	<fullName>SObjectTypeField__c</fullName>
+	<description>The SObject field describing the type of object (e.g., Type for Tasks, Inquiry Category for opportunities)</description>
+	<externalId>false</externalId>
+	<fieldManageability>DeveloperControlled</fieldManageability>
+	<inlineHelpText>The SObject field describing the type of object (e.g., Type for Tasks, Inquiry Category for opportunities)</inlineHelpText>
+	<label>Type API Name</label>
+	<length>255</length>
+	<required>false</required>
+	<type>Text</type>
+	<unique>false</unique>
 </CustomField>
