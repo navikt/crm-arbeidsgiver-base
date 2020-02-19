@@ -131,7 +131,8 @@ export default class TagActivityTimeline extends LightningElement {
 	}
 
 	get showCreateRecords() {
-		return formFactorPropertyName !== 'Small';
+		// return formFactorPropertyName !== 'Small';
+		return true; // temp fix
 	}
 
 	loadMore(event) {

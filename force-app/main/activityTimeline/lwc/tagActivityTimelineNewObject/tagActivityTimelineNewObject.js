@@ -1,5 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import { NavigationMixin } from "lightning/navigation";
+import formFactorPropertyName from '@salesforce/client/formFactor'
 
 export default class TagActivityTimelineNewObject extends NavigationMixin(LightningElement) {
 
@@ -9,17 +10,35 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 
 	createRecord() {
 
-		this[NavigationMixin.Navigate]({
-			type: 'standard__objectPage',
-			attributes: { objectApiName: this.row.Activity_Timeline_Child__r.SObjectName__c, actionName: 'new' },
-			state: {
-				nooverride: '1',
-				recordTypeId: this.row.Activity_Timeline_Child__r.CreateableObject_RecordType__c,
-				navigationLocation: 'LOOKUP',
-				useRecordTypeCheck: 1,
-				defaultFieldValues: this.fieldValues
-			}
-		});
+		if (formFactorPropertyName !== 'Small') { // PC AND TABLET
+
+			this[NavigationMixin.Navigate]({
+				type: 'standard__objectPage',
+				attributes: { objectApiName: this.row.Activity_Timeline_Child__r.SObjectName__c, actionName: 'new' },
+				state: {
+					nooverride: '1',
+					recordTypeId: this.row.Activity_Timeline_Child__r.CreateableObject_RecordType__c,
+					navigationLocation: 'LOOKUP',
+					useRecordTypeCheck: 1,
+					defaultFieldValues: this.fieldValues
+				}
+			});
+
+		} else { // MOBILE
+
+			this[NavigationMixin.Navigate]({
+				type: 'standard__objectPage',
+				attributes: { objectApiName: this.row.Activity_Timeline_Child__r.SObjectName__c, actionName: 'new' },
+				state: {
+					nooverride: '1',
+					recordTypeId: this.row.Activity_Timeline_Child__r.CreateableObject_RecordType__c,
+					navigationLocation: 'LOOKUP',
+					useRecordTypeCheck: 1,
+				}
+			});
+
+		}
+
 	}
 
 	connectedCallback() {
