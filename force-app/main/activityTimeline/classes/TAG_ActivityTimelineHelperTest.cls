@@ -131,16 +131,18 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 
 	public static List<TAG_ActivityTimelineParent__mdt> queryMdt( List<String> types ) {
 		return [SELECT Id,
-		        SObjectAssigneeId__c, Activity_Timeline_Child__r.SObjectName__c, SObjectParent__c, SObjectRelationshipField__c,
+
+		        SObjectAssigneeId__c, SObjectParent__c, SObjectRelationshipField__c,
 
 		        Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
 		        Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
-		        Activity_Timeline_Child__r.SObjectDateField__c,  Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,
+		        Activity_Timeline_Child__r.SObjectDateField__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,
+		        Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,
+		        Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectName__c,
 		        Activity_Timeline_Child__r.SObjectRelatedUserId__c,
 		        Activity_Timeline_Child__r.CreateableObject_Field1__c, Activity_Timeline_Child__r.CreateableObject_Value1__c,
 		        Activity_Timeline_Child__r.CreateableObject_Field2__c, Activity_Timeline_Child__r.CreateableObject_Value2__c,
 		        Activity_Timeline_Child__r.CreateableObject_Field3__c, Activity_Timeline_Child__r.CreateableObject_Value3__c,
-		        Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,
 		        Activity_Timeline_Child__r.SubtitlePastEnglish__c, Activity_Timeline_Child__r.SubtitlePastNorwegian__c,
 		        Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,
 		        Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c
@@ -151,5 +153,4 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		            ( SObjectParent__c = 'Account' ) AND
 		            ( Activity_Timeline_Child__r.SObjectName__c IN: types )];
 	}
-
 }

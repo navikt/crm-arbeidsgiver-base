@@ -43,8 +43,6 @@ public with sharing class TAG_ActivityTimelineHelper {
 		                                                             ( SObjectParent__c = : parentSObjectType ) AND
 		                                                             ( IsActive__c = true )];
 
-
-
 		// TODO fix ordering på name Activity_Timeline_Child__r.SObjectName__c and CreatableText
 
 		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
