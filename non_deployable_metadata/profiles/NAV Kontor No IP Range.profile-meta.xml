@@ -350,6 +350,18 @@
 		<layout>CustomOpportunity__c-Inclusive Employment Page Layout</layout>
 		<recordType>CustomOpportunity__c.Inclusive_Employment</recordType>
 	</layoutAssignments>
+	<layoutAssignments>
+		<layout>Event-TAG Event Layout</layout>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>TAG_ActivityTimelineParent__mdt-Activity Timeline Layout</layout>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>TAG_ActivityTimelineChild__mdt-Activity Timeline Layout</layout>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>Task-TAG Task Layout</layout>
+	</layoutAssignments>
 	<loginIpRanges>
 		<endAddress>255.255.255.255</endAddress>
 		<startAddress>0.0.0.0</startAddress>
