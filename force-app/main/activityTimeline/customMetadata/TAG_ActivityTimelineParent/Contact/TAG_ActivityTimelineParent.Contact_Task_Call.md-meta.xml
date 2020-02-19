@@ -19,6 +19,10 @@
 		<value xsi:type="xsd:string">OwnerId</value>
 	</values>
 	<values>
+		<field>SObjectParent__c</field>
+		<value xsi:type="xsd:string">Contact</value>
+	</values>
+	<values>
 		<field>SObjectRelationshipField__c</field>
 		<value xsi:type="xsd:string">WhoId</value>
 	</values>
