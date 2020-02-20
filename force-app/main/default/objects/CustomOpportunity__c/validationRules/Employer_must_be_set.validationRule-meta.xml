@@ -3,11 +3,12 @@
     <fullName>Employer_must_be_set</fullName>
     <active>true</active>
     <description>Employer must be set before Stage is set to Employer contacted</description>
-    <errorConditionFormula>text( InclusionStage__c ) == &#39;Virksomhet kontaktet&#39; 
-
+    <errorConditionFormula>OR( TEXT( InclusionStage__c ) == &#39;Avklaring&#39;,
+    TEXT( InclusionStage__c ) == &#39;Avsluttet&#39; )
+ 
 &amp;&amp; 
 
-isblank(Account__c)</errorConditionFormula>
+ISBLANK(Account__c)</errorConditionFormula>
     <errorDisplayField>Account__c</errorDisplayField>
     <errorMessage>Du må fylle inn virksomhet før du går til dette steget.</errorMessage>
 </ValidationRule>
