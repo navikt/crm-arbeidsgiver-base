@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Inclusive_Employment</fullName>
     <active>true</active>
+    <compactLayoutAssignment>InclusionOpportunity</compactLayoutAssignment>
     <description>IA - prosess</description>
     <label>Inclusive Employment</label>
     <picklistValues>
@@ -68,7 +69,7 @@
     <picklistValues>
         <picklist>InclusionStage__c</picklist>
         <values>
-            <fullName>Ansvarlig tildelt</fullName>
+            <fullName>Avklaring</fullName>
             <default>false</default>
         </values>
         <values>
@@ -77,6 +78,10 @@
         </values>
         <values>
             <fullName>Ny henvendelse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Plan</fullName>
             <default>false</default>
         </values>
     </picklistValues>
