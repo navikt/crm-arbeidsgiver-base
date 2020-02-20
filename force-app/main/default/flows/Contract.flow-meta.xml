@@ -172,9 +172,8 @@
             <label>Internal User is set and changed</label>
         </rules>
     </decisions>
-    <description>When a new contract is created or edited and assigned to someone, send a notification</description>
-    <interviewLabel>NotifyUserOfNewContract-5_InterviewLabel</interviewLabel>
-    <label>Notify user of new contract</label>
+    <interviewLabel>Contract-1_InterviewLabel</interviewLabel>
+    <label>Contract</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
