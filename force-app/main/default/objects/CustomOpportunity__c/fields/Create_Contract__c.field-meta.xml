@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Contract__c</fullName>
+    <description>Ønsker du at det skal opprettes en kontrakt fra denne muligheten?</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Ønsker du at det skal opprettes en kontrakt fra denne muligheten?</inlineHelpText>
+    <label>Create Contract</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>InclusionStage__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Nei</fullName>
+                <default>false</default>
+                <label>Nei</label>
+            </value>
+            <value>
+                <fullName>Ja</fullName>
+                <default>false</default>
+                <label>Ja</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Nei</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Ja</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>
