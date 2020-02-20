@@ -81,16 +81,6 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>CustomNote__c.Account__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>CustomNote__c.Description__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
 		<field>CustomOpportunity__c.AccountMunicipality__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
@@ -279,9 +269,6 @@
 	</layoutAssignments>
 	<layoutAssignments>
 		<layout>Contact-TAG Contact Layout</layout>
-	</layoutAssignments>
-	<layoutAssignments>
-		<layout>CustomNote__c-Note Layout</layout>
 	</layoutAssignments>
 	<layoutAssignments>
 		<layout>CustomOpportunity__c-General Page Layout</layout>
