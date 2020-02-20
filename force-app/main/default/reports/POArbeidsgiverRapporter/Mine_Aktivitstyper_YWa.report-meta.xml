@@ -23,6 +23,7 @@
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
+        <title>Aktiviteter pr uke</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
@@ -33,15 +34,24 @@
         <field>ACCOUNT.NAME</field>
     </columns>
     <description>Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
-    <format>Matrix</format>
-    <groupingsAcross>
-        <dateGranularity>Day</dateGranularity>
-        <field>Activity.TAG_ActivityType__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsAcross>
+    <filter>
+        <criteriaItems>
+            <column>DUE_DATE</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>LAST_N_DAYS:60</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Week</dateGranularity>
         <field>DUE_DATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Activity.TAG_ActivityType__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Mine Aktivitstyper</name>
@@ -58,7 +68,7 @@
         <value>1</value>
     </params>
     <reportType>AccountActivity</reportType>
-    <scope>organization</scope>
+    <scope>user</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
