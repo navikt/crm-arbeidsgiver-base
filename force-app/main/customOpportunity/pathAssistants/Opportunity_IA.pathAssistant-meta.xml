@@ -4,22 +4,21 @@
 	<entityName>CustomOpportunity__c</entityName>
 	<fieldName>InclusionStage__c</fieldName>
 	<masterLabel>Inclusive Employment</masterLabel>
+	<recordTypeName>Inclusive_Employment</recordTypeName>
 	<pathAssistantSteps>
-		<fieldNames>TAG_IAClarification__c</fieldNames>
-		<info>&lt;p&gt;Tilbudet til og forankring med virksomheten&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Alle med status og til fra dato felt + fritekst&lt;/li&gt;&lt;li&gt;Lenker og hjelpetekst&lt;/li&gt;&lt;li&gt;Understeg&lt;/li&gt;&lt;li&gt;Forankre med virksomhet etter foreløpig plan&lt;/li&gt;&lt;li&gt;Samarbeid mellom leder, tillitsvalgt og verneombud&lt;/li&gt;&lt;/ul&gt;</info>
+		<picklistValueName>Ny henvendelse</picklistValueName>
+		<info>Ved å fullføre dette steget, setter du deg selv som eier av denne muligheten (med mindre en eier er allerede satt)</info>
+	</pathAssistantSteps>
+	<pathAssistantSteps>
 		<picklistValueName>Avklaring</picklistValueName>
-	</pathAssistantSteps>
-	<pathAssistantSteps>
-		<picklistValueName>Avsluttet</picklistValueName>
-	</pathAssistantSteps>
-	<pathAssistantSteps>
-		<fieldNames>TAG_IA_Service_Start__c</fieldNames>
-		<fieldNames>TAG_IA_Service_End__c</fieldNames>
+		<fieldNames>TAG_IAClarification__c</fieldNames>
 		<fieldNames>TAG_IA_Objective__c</fieldNames>
 		<fieldNames>TAG_IA_Process_Milestones__c</fieldNames>
 		<fieldNames>TAG_IAService__c</fieldNames>
-		<info>&lt;p&gt;Ferdigstille tidsavgrenset plan med mål og evaluering&lt;/p&gt;</info>
-		<picklistValueName>Plan</picklistValueName>
+		<info>&lt;p&gt;Tilbudet til og forankring med virksomheten&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Alle med status og til fra dato felt + fritekst&lt;/li&gt;&lt;li&gt;Lenker og hjelpetekst&lt;/li&gt;&lt;li&gt;Understeg&lt;/li&gt;&lt;li&gt;Forankre med virksomhet etter foreløpig plan&lt;/li&gt;&lt;li&gt;Samarbeid mellom leder, tillitsvalgt og verneombud&lt;/li&gt;&lt;/ul&gt;</info>
 	</pathAssistantSteps>
-	<recordTypeName>Inclusive_Employment</recordTypeName>
+	<pathAssistantSteps>
+		<picklistValueName>Avsluttet</picklistValueName>
+		<info>Basert på avklaringen med virksomheten i det forrige steget, så kan du avslutte denne muligheten og velge å opprette en avtale med virksomheten.</info>
+	</pathAssistantSteps>
 </PathAssistant>

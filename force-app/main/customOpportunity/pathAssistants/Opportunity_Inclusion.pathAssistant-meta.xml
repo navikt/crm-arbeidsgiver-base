@@ -4,12 +4,20 @@
 	<entityName>CustomOpportunity__c</entityName>
 	<fieldName>InclusionStage__c</fieldName>
 	<masterLabel>Opportunity (Inclusion)</masterLabel>
+	<recordTypeName>Inclusion</recordTypeName>
 	<pathAssistantSteps>
+		<picklistValueName>Ny henvendelse</picklistValueName>
+		<info>Ved å fullføre dette steget, setter du deg selv som eier av denne muligheten (med mindre en eier er allerede satt)</info>
+	</pathAssistantSteps>
+	<pathAssistantSteps>
+		<picklistValueName>Avklaring</picklistValueName>
 		<fieldNames>BasicSkills__c</fieldNames>
 		<fieldNames>PhysicalArrangements__c</fieldNames>
 		<fieldNames>WorkEnvironment__c</fieldNames>
 		<fieldNames>WorkTime__c</fieldNames>
-		<picklistValueName>Virksomhet kontaktet</picklistValueName>
 	</pathAssistantSteps>
-	<recordTypeName>Inclusion</recordTypeName>
+	<pathAssistantSteps>
+		<picklistValueName>Avsluttet</picklistValueName>
+		<info>Basert på avklaringen med virksomheten i det forrige steget, så kan du avslutte denne muligheten og velge å opprette en avtale med virksomheten.</info>
+	</pathAssistantSteps>
 </PathAssistant>
