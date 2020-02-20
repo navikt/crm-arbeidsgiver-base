@@ -23,6 +23,10 @@
                 <behavior>Readonly</behavior>
                 <field>AccountMunicipality__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Source__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
