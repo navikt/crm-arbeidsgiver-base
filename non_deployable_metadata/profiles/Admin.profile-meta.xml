@@ -127,16 +127,6 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>CustomNote__c.Account__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>CustomNote__c.Description__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
 		<field>CustomOpportunity__c.AccountMunicipality__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
@@ -337,9 +327,6 @@
 		<layout>Contract__c-Contract Layout</layout>
 	</layoutAssignments>
 	<layoutAssignments>
-		<layout>CustomNote__c-Note Layout</layout>
-	</layoutAssignments>
-	<layoutAssignments>
 		<layout>CustomOpportunity__c-General Page Layout</layout>
 	</layoutAssignments>
 	<layoutAssignments>
@@ -361,15 +348,6 @@
 		<allowRead>true</allowRead>
 		<modifyAllRecords>true</modifyAllRecords>
 		<object>Contract__c</object>
-		<viewAllRecords>true</viewAllRecords>
-	</objectPermissions>
-	<objectPermissions>
-		<allowCreate>true</allowCreate>
-		<allowDelete>true</allowDelete>
-		<allowEdit>true</allowEdit>
-		<allowRead>true</allowRead>
-		<modifyAllRecords>true</modifyAllRecords>
-		<object>CustomNote__c</object>
 		<viewAllRecords>true</viewAllRecords>
 	</objectPermissions>
 	<recordTypeVisibilities>
