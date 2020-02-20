@@ -32,8 +32,12 @@
 **/objectTranslations/*-en_US
 !**/objectTranslations/Opportunity-en_US
 
-# from other packages
+# Other packages
+# # ----------------------------------------------------------------------------------------
 **/CustomOpportunity__c.object-meta.xml
+**/AsyncRequest__c*
+**/listViews/queue_*
+**/INT_*
 
 
 # VS Code
