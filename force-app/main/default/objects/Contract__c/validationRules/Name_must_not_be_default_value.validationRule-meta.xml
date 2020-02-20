@@ -3,7 +3,7 @@
     <fullName>Name_must_not_be_default_value</fullName>
     <active>true</active>
     <description>Name cannot be &quot;Avtale&quot;</description>
-    <errorConditionFormula>Name != &#39;Avtale&#39;</errorConditionFormula>
+    <errorConditionFormula>Name == &#39;Avtale&#39;</errorConditionFormula>
     <errorDisplayField>Name</errorDisplayField>
     <errorMessage>Navn kan ikke være kun &quot;Avtale&quot;</errorMessage>
 </ValidationRule>
