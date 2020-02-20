@@ -8,6 +8,7 @@
 			"InquiryCategory__c": "Rekruttering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef1"
 		},
 		{
@@ -18,6 +19,7 @@
 			"InquiryCategory__c": "Inkludering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef2"
 		},
 		{
@@ -28,6 +30,7 @@
 			"InquiryCategory__c": "Inkludering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef3"
 		},
 		{
@@ -38,6 +41,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef4"
 		},
 		{
@@ -48,6 +52,7 @@
 			"InquiryCategory__c": "Inkludering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef6"
 		},
 		{
@@ -58,6 +63,7 @@
 			"InquiryCategory__c": "Inkludering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef6"
 		},
 		{
@@ -68,6 +74,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef7"
 		},
 		{
@@ -78,6 +85,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef8"
 		},
 		{
@@ -88,6 +96,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef9"
 		},
 		{
@@ -98,6 +107,7 @@
 			"InquiryCategory__c": "Rekruttering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef10"
 		},
 		{
@@ -108,6 +118,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef11"
 		},
 		{
@@ -118,6 +129,7 @@
 			"InquiryCategory__c": "Rekruttering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef12"
 		},
 		{
@@ -129,6 +141,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef13"
 		},
 		{
@@ -139,6 +152,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef14"
 		},
 		{
@@ -150,6 +164,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef15"
 		},
 		{
@@ -160,6 +175,7 @@
 			"InquiryCategory__c": "Rekruttering med tilrettelegging",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
 			"Account__c": "@AccountRef16"
 		},
 		{
@@ -170,6 +186,7 @@
 			"InquiryCategory__c": "Rekruttering",
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
+			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
 			"Account__c": "@AccountRef17"
 		}
 	]
