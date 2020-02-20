@@ -147,7 +147,7 @@
         </rules>
     </decisions>
     <description>If checkbox is checked and opportunity is completed, a contract is created</description>
-    <interviewLabel>CreateContractOnFinishedOpportunity-3_InterviewLabel</interviewLabel>
+    <interviewLabel>CreateContractOnFinishedOpportunity-4_InterviewLabel</interviewLabel>
     <label>Create contract on finished opportunity</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -179,6 +179,42 @@
         <label>Create Contract</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Contract Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Name</field>
+            <value>
+                <stringValue>Avtale</stringValue>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -326,7 +362,7 @@
         <object>Contract__c</object>
     </recordCreates>
     <startElementReference>isChangedDecision2_myRule_1_InclusionStage_c</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
