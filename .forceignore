@@ -1,12 +1,17 @@
 
 # profiles
+# ----------------------------------------------------------------------------------------
 **/profiles/*
 !**/unpackagable/profiles/*
+
+
 # NOTE!! Do NOT use **/ before
 !non_deployable_metadata/profiles/*
 # NOTE!! Do NOT use **/ before
 
+
 # standard fields not needed in source control
+# ----------------------------------------------------------------------------------------
 **/objects/Account/fields/ChannelProgramLevelName.field-meta.xml
 **/objects/Account/fields/ChannelProgramName.field-meta.xml
 **/objects/Account/fields/CleanStatus.field-meta.xml
@@ -20,36 +25,41 @@
 **/objects/Contact/fields/CleanStatus.field-meta.xml
 **/objects/Account/fields/AccountSource.field-meta.xml
 
+
 # flexipages
+# ----------------------------------------------------------------------------------------
 **/flexipages/LightningService_UtilityBar.flexipage-meta.xml
 
+
 # translations
+# ----------------------------------------------------------------------------------------
 **/translations/en_US.translation-meta.xml
 **/objectTranslations/*-en_US
 !**/objectTranslations/Opportunity-en_US
 
+
 # bugs (cannot be pushed)
+# ----------------------------------------------------------------------------------------
 **/AppSwitcher.appMenu*
 **/navigationMenus/*
 
-# LWC configuration files
+
+# LWC
+# ----------------------------------------------------------------------------------------
 **/jsconfig.json
 **/.eslintrc.json
-
-# LWC Jest
 **/__tests__/**
 
 
 # Other packages
-# # ----------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 **/AsyncRequest__c*
 **/listViews/queue_*
 **/INT_*
 
 
-
 # # community classes
-# # ----------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # #          **/classes/ChangePasswordController.cls
 # #          **/classes/ChangePasswordControllerTest.cls
 # #          **/classes/CommunitiesLandingController.cls
