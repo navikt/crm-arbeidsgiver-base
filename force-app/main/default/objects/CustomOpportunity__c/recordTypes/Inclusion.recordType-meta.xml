@@ -80,14 +80,6 @@
     <picklistValues>
         <picklist>InquiryCategory__c</picklist>
         <values>
-            <fullName>Arbeidstrening</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Forebygge sykefravær</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Inkludering</fullName>
             <default>false</default>
         </values>
@@ -1965,10 +1957,6 @@
         <picklist>TAG_CreateContract__c</picklist>
         <values>
             <fullName>Ja</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Nei</fullName>
             <default>false</default>
         </values>
     </picklistValues>

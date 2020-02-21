@@ -87,14 +87,6 @@
             <fullName>Forebygge sykefravær</fullName>
             <default>true</default>
         </values>
-        <values>
-            <fullName>Inkludering</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Rekruttering</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Municipality__c</picklist>
@@ -1961,10 +1953,6 @@
         <picklist>TAG_CreateContract__c</picklist>
         <values>
             <fullName>Ja</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Nei</fullName>
             <default>false</default>
         </values>
     </picklistValues>
