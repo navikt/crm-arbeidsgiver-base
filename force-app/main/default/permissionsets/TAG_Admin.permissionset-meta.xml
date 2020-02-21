@@ -121,11 +121,6 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
-		<field>CustomOpportunity__c.CreateContract__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>true</editable>
 		<field>CustomOpportunity__c.TAG_CreateContract__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
