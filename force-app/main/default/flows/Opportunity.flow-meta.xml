@@ -38,7 +38,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision6_myRule_5_InclusionStage_c</targetReference>
+            <targetReference>isChangedDecision7_myRule_6_InclusionStage_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -59,14 +59,14 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision6_myRule_5_InclusionStage_c</targetReference>
+                <targetReference>isChangedDecision7_myRule_6_InclusionStage_c</targetReference>
             </connector>
             <label>isChangedRule_3_myRule_1_InclusionStage_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision6_myRule_5_InclusionStage_c</name>
-        <label>isChangedDecision6_myRule_5_InclusionStage_c</label>
+        <name>isChangedDecision7_myRule_6_InclusionStage_c</name>
+        <label>isChangedDecision7_myRule_6_InclusionStage_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -74,7 +74,7 @@
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_6_myRule_5_InclusionStage_c</name>
+            <name>isChangedRule_7_myRule_6_InclusionStage_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -93,7 +93,7 @@
             <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_6_myRule_5_InclusionStage_c</label>
+            <label>isChangedRule_7_myRule_6_InclusionStage_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -108,7 +108,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision4</targetReference>
+            <targetReference>myDecision5</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -251,13 +251,13 @@
                 <numberValue>1.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision4</name>
-        <label>myDecision4</label>
+        <name>myDecision5</name>
+        <label>myDecision5</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_5</name>
+            <name>myRule_6</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -284,7 +284,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_6_myRule_5_InclusionStage_c</leftValueReference>
+                <leftValueReference>isChangedRule_7_myRule_6_InclusionStage_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -359,7 +359,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_5_A1</targetReference>
+                <targetReference>myRule_6_A1</targetReference>
             </connector>
             <label>Change owner</label>
         </rules>
@@ -368,14 +368,25 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>&quot;Samarbeidsavtale mellom &quot; + [CustomOpportunity__c].Account__c.Name + &quot; og &quot; + [CustomOpportunity__c].Owner:User.CompanyName </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_4_myRule_1_A1_5258682404</name>
+        <dataType>String</dataType>
+        <expression>&quot;Samarbeidsavtale mellom &quot; + {!myVariable_current.Account__r.Name} + &quot; og &quot; + {!myVariable_current.Owner:User.CompanyName}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_A1_8160674778</name>
+        <name>formula_8_myRule_6_A1_2346595825</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
-    <interviewLabel>Opportunity-7_InterviewLabel</interviewLabel>
+    <interviewLabel>Opportunity-2_InterviewLabel</interviewLabel>
     <label>Opportunity Insert/Update</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -435,12 +446,12 @@
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>String</stringValue>
+                    <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
             <field>Name</field>
             <value>
-                <stringValue>Avtale</stringValue>
+                <elementReference>formula_4_myRule_1_A1_5258682404</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -614,9 +625,9 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_5_A1</name>
+        <name>myRule_6_A1</name>
         <label>Change owner</label>
-        <locationX>500</locationX>
+        <locationX>600</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>
@@ -664,7 +675,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_7_myRule_5_A1_8160674778</elementReference>
+                <elementReference>formula_8_myRule_6_A1_2346595825</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
