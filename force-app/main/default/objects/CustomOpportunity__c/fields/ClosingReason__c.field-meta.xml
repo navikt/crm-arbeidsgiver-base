@@ -8,7 +8,6 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <controllingField>InclusionStage__c</controllingField>
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
@@ -38,25 +37,5 @@
                 <label>Ikke Aktuell for IA-Leveranse</label>
             </value>
         </valueSetDefinition>
-        <valueSettings>
-            <controllingFieldValue>Avsluttet</controllingFieldValue>
-            <valueName>Kandidat godkjent</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Avsluttet</controllingFieldValue>
-            <valueName>Kandidat ikke godkjent</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Avsluttet</controllingFieldValue>
-            <valueName>leveranse avsluttet</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Avsluttet</controllingFieldValue>
-            <valueName>Selvbetjening</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Avsluttet</controllingFieldValue>
-            <valueName>Ikke Aktuell for IA-Leveranse</valueName>
-        </valueSettings>
     </valueSet>
 </CustomField>

@@ -15,20 +15,17 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Nei</fullName>
-                <default>false</default>
-                <label>Nei</label>
-            </value>
-            <value>
                 <fullName>Ja</fullName>
                 <default>false</default>
                 <label>Ja</label>
             </value>
+            <value>
+                <fullName>Nei</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Nei</label>
+            </value>
         </valueSetDefinition>
-        <valueSettings>
-            <controllingFieldValue>Avsluttet</controllingFieldValue>
-            <valueName>Nei</valueName>
-        </valueSettings>
         <valueSettings>
             <controllingFieldValue>Avsluttet</controllingFieldValue>
             <valueName>Ja</valueName>
