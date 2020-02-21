@@ -80,6 +80,10 @@
     <picklistValues>
         <picklist>InquiryCategory__c</picklist>
         <values>
+            <fullName>Arbeidstrening</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Inkludering</fullName>
             <default>false</default>
         </values>
