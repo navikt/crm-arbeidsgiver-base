@@ -53,7 +53,7 @@ global with sharing class TAG_ContactFormWebService_main {
 		List<Contact> existingContact = [SELECT Id FROM Contact WHERE Email = : rw.email LIMIT 1];
 
 		if ( existingContact.size() == 0 ) {
-			Contact con = new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId );
+			Contact con = new Contact( FirstName = rw.firstName, LastName = rw.lastName, Email = rw.email, MobilePhone = rw.phoneNo, AccountId = accountId, TAG_Informed__c = true );
 			insert con;
 
 			return con.Id;
