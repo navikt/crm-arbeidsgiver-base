@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>CustomOpportunity__c</entityName>
+    <fieldName>InclusionStage__c</fieldName>
+    <masterLabel>Inclusive Employment</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>TAG_IAClarification__c</fieldNames>
+        <fieldNames>TAG_IA_Objective__c</fieldNames>
+        <fieldNames>TAG_IA_Process_Milestones__c</fieldNames>
+        <fieldNames>TAG_IAService__c</fieldNames>
+        <info>&lt;p&gt;Kontakt virksomheten og gjør eventuelle avklaringer før en avgjørelse kan tas på om muligheten skal tas videre.&lt;/p&gt;</info>
+        <picklistValueName>Avklaring</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Basert på avklaringen med virksomheten i det forrige steget, så kan du avslutte denne muligheten og velge å opprette en avtale med virksomheten om det er ønskelig.&lt;/p&gt;</info>
+        <picklistValueName>Avsluttet</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;&lt;u&gt;Ved å fullføre dette steget, setter du deg selv som eier av denne muligheten (med mindre en eier er allerede satt).&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;</info>
+        <picklistValueName>Ny henvendelse</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Inclusive_Employment</recordTypeName>
+</PathAssistant>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClosingReason__c</fullName>
+    <externalId>false</externalId>
+    <label>ClosingReason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Kandidat godkjent</fullName>
+                <default>false</default>
+                <label>Kandidat godkjent</label>
+            </value>
+            <value>
+                <fullName>Kandidat ikke godkjent</fullName>
+                <default>false</default>
+                <label>Kandidat ikke godkjent</label>
+            </value>
+            <value>
+                <fullName>leveranse avsluttet</fullName>
+                <default>false</default>
+                <label>Leveranse avsluttet</label>
+            </value>
+            <value>
+                <fullName>Selvbetjening</fullName>
+                <default>false</default>
+                <label>Selvbetjening</label>
+            </value>
+            <value>
+                <fullName>Ikke Aktuell for IA-Leveranse</fullName>
+                <default>false</default>
+                <label>Ikke Aktuell for IA-Leveranse</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

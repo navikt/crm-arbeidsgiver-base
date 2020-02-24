@@ -202,11 +202,6 @@
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>false</editable>
-		<field>CustomOpportunity__c.IsFromContactForm__c</field>
-		<readable>false</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
 		<field>CustomOpportunity__c.IsMyInclusionOppty__c</field>
 		<readable>false</readable>
 	</fieldPermissions>
@@ -323,11 +318,7 @@
 		<layout>Contract__c-Contract Layout</layout>
 	</layoutAssignments>
 	<layoutAssignments>
-		<layout>CustomOpportunity__c-General Page Layout</layout>
-	</layoutAssignments>
-	<layoutAssignments>
-		<layout>CustomOpportunity__c-General Page Layout</layout>
-		<recordType>CustomOpportunity__c.General</recordType>
+		<layout>CustomOpportunity__c-Custom Opportunity Layout</layout>
 	</layoutAssignments>
 	<layoutAssignments>
 		<layout>CustomOpportunity__c-Inclusion Page Layout</layout>

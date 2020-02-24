@@ -9,6 +9,7 @@
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
 			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
+			"Source__c": "Kontaktskjema",
 			"Account__c": "@AccountRef1"
 		},
 		{
@@ -20,6 +21,7 @@
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
 			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
+			"Source__c": "Kontaktskjema",
 			"Account__c": "@AccountRef1"
 		},
 		{
@@ -31,6 +33,7 @@
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
 			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
+			"Source__c": "Kontaktskjema",
 			"Account__c": "@AccountRef1"
 		},
 		{
@@ -42,6 +45,7 @@
 			"Municipality__c": "Ski",
 			"InclusionStage__c": "Ny henvendelse",
 			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
+			"Source__c": "Kontaktskjema",
 			"Account__c": "@AccountRef1"
 		}
 	]

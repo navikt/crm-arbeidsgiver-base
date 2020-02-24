@@ -1,6 +1,8 @@
 @RestResource(urlMapping = '/ContactForm/*')
 global with sharing class TAG_ContactFormWebService_main {
 
+	private static List<String> PILOT_MUNICIPALITIES = new List<String> { '3033', '3034', '3003', '3035', '3020' };
+
 	public static Id inclusionRecordType = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName().get( 'Inclusion' ).getRecordTypeId();
 	public static Id IARecordType = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName().get( 'Inclusive_Employment' ).getRecordTypeId();
 
@@ -19,13 +21,22 @@ global with sharing class TAG_ContactFormWebService_main {
 	@HttpPost
 	global static String doPost( ) {
 
+
 		String requestString = RestContext.request.requestBody.toString();
 		RequestWrapper rw = (RequestWrapper) JSON.deserialize( requestString, RequestWrapper.class );
+
+		if ( !PILOT_MUNICIPALITIES.contains( rw.municipalityCode ) ) {
+			return null;
+		}
 
 		Id accountId = fetchAccount( rw.organisationNumber );
 		Id contactId = fetchOrCreateContact( rw, accountId );
 
-		CustomOpportunity__c co = new CustomOpportunity__c( Account__c = accountId, Contact__c = contactId, IsFromContactForm__c = true, InquiryCategory__c = getType( rw.type ), SenderEmail__c = rw.email, INT_MunicipalityNumber__c = rw.municipalityCode, RecordTypeId = getRecordType( rw.type ), InclusionStage__c = 'Ny henvendelse' );
+		CustomOpportunity__c co = new CustomOpportunity__c(
+			Account__c = accountId, Contact__c = contactId,
+			Source__c = 'Kontaktskjema', InquiryCategory__c = getType( rw.type ),
+			SenderEmail__c = rw.email, INT_MunicipalityNumber__c = rw.municipalityCode,
+			RecordTypeId = getRecordType( rw.type ), InclusionStage__c = 'Ny henvendelse' );
 		insert co;
 
 		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id].Name;

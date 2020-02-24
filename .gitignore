@@ -1,8 +1,6 @@
 
-# Project specific
-# ----------------------------------------------------------------------------------------
-
 # profiles
+# ----------------------------------------------------------------------------------------
 **/profiles/*
 !**/unpackagable/profiles/*
 
@@ -10,7 +8,9 @@
 !**/non_deployable_metadata/profiles/* 
 # NOTE!! USE **/ before
 
+
 # standard fields not needed in source control
+# ----------------------------------------------------------------------------------------
 **/objects/Account/fields/ChannelProgramLevelName.field-meta.xml
 **/objects/Account/fields/ChannelProgramName.field-meta.xml
 **/objects/Account/fields/CleanStatus.field-meta.xml
@@ -24,12 +24,26 @@
 **/objects/Contact/fields/CleanStatus.field-meta.xml
 **/objects/Account/fields/AccountSource.field-meta.xml
 
+
 # flexipages
+# ----------------------------------------------------------------------------------------
 **/flexipages/LightningService_UtilityBar.flexipage-meta.xml
 
-# translations
-**/translations/en_US.translation-meta.xml
 
+# translations
+# ----------------------------------------------------------------------------------------
+**/translations/en_US.translation-meta.xml
+**/objectTranslations/*-en_US
+!**/objectTranslations/Opportunity-en_US
+!**/objectTranslations/CustomOpportunity__c-en_US
+
+
+# Other packages
+# # ----------------------------------------------------------------------------------------
+**/CustomOpportunity__c.object-meta.xml
+**/AsyncRequest__c*
+**/listViews/queue_*
+**/INT_*
 
 
 # VS Code
@@ -43,10 +57,8 @@
 !.vscode/extensions.json
 
 
-
 # SSDX Helper
 # ----------------------------------------------------------------------------------------
-
 **/.ssdx/
 run.command
 run.cmd
@@ -54,7 +66,6 @@ install.cmd
 .packageKey
 **/deployment_tmp*
 **/dummy-data/*.out/*
-
 
 
 # SFDX
@@ -86,7 +97,6 @@ ehthumbs.db
 $RECYCLE.BIN/
 
 .localdevserver
-
 
 
 # jetbrains

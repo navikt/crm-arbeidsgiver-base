@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AnimationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+	<animationFrequency>rarely</animationFrequency>
+	<developerName>Opportunity_IA</developerName>
+	<isActive>true</isActive>
+	<masterLabel>Inclusive Employment</masterLabel>
+	<recordTypeContext>Custom</recordTypeContext>
+	<recordTypeName>Inclusive_Employment</recordTypeName>
+	<sobjectType>CustomOpportunity__c</sobjectType>
+	<targetField>InclusionStage__c</targetField>
+	<targetFieldChangeToValues>Avsluttet</targetFieldChangeToValues>
+</AnimationRule>
