@@ -98,10 +98,10 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 	@isTest
 	private static void testGetActivityTimelineData_customOpportunity() {
 
-		Id recordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'Inclusive_Employment'].Id;
+		Id recordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'Inclusion'].Id;
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		CustomOpportunity__c co = new CustomOpportunity__c( InquiryCategory__c = 'Rekruttering', Municipality__c = 'Ski', InclusionStage__c = 'Ny henvendelse', RecordTypeId = recordTypeId, Account__c = acc.Id );
+		CustomOpportunity__c co = new CustomOpportunity__c( InquiryCategory__c = 'Rekruttering', Municipality__c = 'Ski', InclusionStage__c = 'Ny henvendelse', RecordTypeId = recordTypeId, Account__c = acc.Id, Source__c = 'Kontaktskjema' );
 		insert co;
 
 		Test.StartTest();
