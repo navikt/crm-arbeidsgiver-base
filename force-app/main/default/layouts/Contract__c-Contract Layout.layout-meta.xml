@@ -15,21 +15,17 @@
                 <field>TAG_Category__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>TAG_StartDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>TAG_Description__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>TAG_Opportunity__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>TAG_Account__c</field>
             </layoutItems>
             <layoutItems>
@@ -37,7 +33,7 @@
                 <field>TAG_Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>TAG_EndDate__c</field>
             </layoutItems>
         </layoutColumns>
@@ -50,7 +46,7 @@
         <label>Contacts</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>TAG_Contact__c</field>
             </layoutItems>
             <layoutItems>
@@ -133,7 +129,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3N000000Y8Gi</masterLabel>
+        <masterLabel>00h1j000000rlff</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
