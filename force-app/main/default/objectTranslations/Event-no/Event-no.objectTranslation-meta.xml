@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+	<caseValues>
+		<article>Definite</article>
+		<plural>false</plural>
+		<value>Møtet</value>
+	</caseValues>
+	<caseValues>
+		<article>Indefinite</article>
+		<plural>false</plural>
+		<value>Et møte</value>
+	</caseValues>
+	<caseValues>
+		<article>None</article>
+		<plural>false</plural>
+		<value>Møte</value>
+	</caseValues>
+	<caseValues>
+		<article>Definite</article>
+		<plural>true</plural>
+		<value>Møtene</value>
+	</caseValues>
+	<caseValues>
+		<article>Indefinite</article>
+		<plural>true</plural>
+		<value>Møter</value>
+	</caseValues>
+	<caseValues>
+		<article>None</article>
+		<plural>true</plural>
+		<value>Møter</value>
+	</caseValues>
+	<gender>Neuter</gender>
+	<layouts>
+		<layout>Event Layout</layout>
+		<sections>
+			<label>
+				<!-- Custom Links -->
+			</label>
+			<section>Custom Links</section>
+		</sections>
+	</layouts>
+	<layouts>
+		<layout>TAG Event Layout</layout>
+		<sections>
+			<label>
+				<!-- Custom Links -->
+			</label>
+			<section>Custom Links</section>
+		</sections>
+		<sections>
+			<label>
+				<!-- Tidspunkt -->
+			</label>
+			<section>Tidspunkt</section>
+		</sections>
+	</layouts>
+	<validationRules>
+		<errorMessage>
+			<!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger -->
+		</errorMessage>
+		<name>No_person_information_added</name>
+	</validationRules>
+</CustomObjectTranslation>
