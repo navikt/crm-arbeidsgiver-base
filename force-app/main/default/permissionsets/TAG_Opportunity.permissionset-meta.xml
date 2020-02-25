@@ -85,9 +85,11 @@
 	</tabSettings>
 	<objectPermissions>
 		<allowCreate>true</allowCreate>
+		<allowDelete>true</allowDelete>
 		<allowEdit>true</allowEdit>
 		<allowRead>true</allowRead>
 		<object>CustomOpportunity__c</object>
 		<viewAllRecords>true</viewAllRecords>
+		<modifyAllRecords>true</modifyAllRecords>
 	</objectPermissions>
 </PermissionSet>
