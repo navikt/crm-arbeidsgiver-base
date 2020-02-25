@@ -172,23 +172,23 @@ jobs:
           path: ~/junit
 
   ####################################################
-  # ! Authenticate tag using AuthUrl
+  # ! Authenticate preprod using AuthUrl
   ####################################################
-  authenticate-tag:
+  authenticate-preprod:
     <<: *defaults
     steps:
       - attach_workspace_cmd
       - run:
-          name: Authenticate tag sandbox
+          name: Authenticate preprod sandbox
           command: |
-            echo $SFDX_AUTH_URL_TAG_ORG > ~/tag_auth.url
-            sfdx force:auth:sfdxurl:store -s -a tag -f ~/tag_auth.url
+            echo $SFDX_AUTH_URL_PREPROD_ORG > ~/preprod_auth.url
+            sfdx force:auth:sfdxurl:store -s -a preprod -f ~/preprod_auth.url
       - persist_to_workspace_cmd
 
   ####################################################
   # ! install packages to a sandbox
   ####################################################
-  install-package-dependencies-to-tag:
+  install-package-dependencies-to-preprod:
     <<: *defaults
     steps:
       - attach_workspace_cmd
@@ -201,7 +201,7 @@ jobs:
   ####################################################
   # ! Create new package
   ####################################################
-  create-package-tag:
+  create-package-preprod:
     <<: *defaults
     steps:
       - attach_workspace_cmd
@@ -220,7 +220,7 @@ jobs:
   ####################################################
   # ! Install new package
   ####################################################
-  install-package-tag:
+  install-package-preprod:
     <<: *defaults
     steps:
       - attach_workspace_cmd
@@ -229,7 +229,7 @@ jobs:
           command: |
             PACKAGE_ALIAS=$(cat sfdx-project.json | jq '.packageDirectories' | jq '.[0].package' -r)
             PACKAGE_VERSIONID=$(sfdx force:package:version:list -p $PACKAGE_ALIAS --orderby CreatedDate --json | jq '.result[-1].SubscriberPackageVersionId' -r)
-            sfdx force:package:install --wait 10 --publishwait 10 --package $PACKAGE_VERSIONID -u tag --noprompt -k $SFDX_PACKAGE_KEY
+            sfdx force:package:install --wait 10 --publishwait 10 --package $PACKAGE_VERSIONID -u preprod --noprompt -k $SFDX_PACKAGE_KEY
           no_output_timeout: 20m
       - persist_to_workspace_cmd
 
@@ -329,25 +329,25 @@ workflows:
   ####################################################
   # ! Run on every commit to master
   ####################################################
-  deploy_to_tag_master:
+  deploy_to_preprod_master:
     jobs:
       - authenticate-devhub:
           context: salesforce-dx-ci
           filters:
             branches:
               only: master
-      - authenticate-tag:
+      - authenticate-preprod:
           context: salesforce-dx-ci
           requires:
               - authenticate-devhub
-      - create-package-tag:
+      - create-package-preprod:
           context: salesforce-dx-ci
           requires:
-              - authenticate-tag
-      - install-package-tag:
+              - authenticate-preprod
+      - install-package-preprod:
           context: salesforce-dx-ci
           requires:
-              - create-package-tag
+              - create-package-preprod
 
   ####################################################
   # ! Run when creating a pull request
