@@ -13,8 +13,12 @@
         <picklistValueName>Avklaring</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <info>&lt;p&gt;Basert på avklaringen med virksomheten i det forrige steget, så kan du avslutte denne muligheten og velge å opprette en avtale med virksomheten om det er ønskelig.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 13px;&quot;&gt;Husk at muligheten/oppgaven også vil ligge i Gosys og må avsluttes der også.&lt;/b&gt;&lt;/p&gt;</info>
+        <info>&lt;p&gt;Muligheten er nå avsluttet! Resulterte denne muligheten i noen avtaler, vil disse være synlige under &amp;quot;Relaterte&amp;quot;-tabben, deretter Avtaler.&lt;/p&gt;</info>
         <picklistValueName>Avsluttet</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Basert på avklaringen med virksomheten i det forrige steget, så må du nå ta avgjørelsen om å avslutte denne muligheten og velge om du skal opprette en avtale med virksomheten om det er ønskelig, eller ikke.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 13px;&quot;&gt;Husk at muligheten/oppgaven også vil ligge i Gosys og må avsluttes der også.&lt;/b&gt;&lt;/p&gt;</info>
+        <picklistValueName>Ferdig Avklart</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
         <info>&lt;p&gt;&lt;b&gt;&lt;u&gt;Ved å fullføre dette steget, setter du deg selv som eier av denne muligheten (med mindre en eier er allerede satt).&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;</info>
