@@ -10,6 +10,7 @@ global with sharing class TAG_ContactFormWebService_main {
 
 		public String type;
 		public String municipalityCode;
+		public String regionCode;
 		public String organisationName;
 		public String organisationNumber;
 		public String firstName;
@@ -37,9 +38,15 @@ global with sharing class TAG_ContactFormWebService_main {
 			Contact__c = contactId,
 			Source__c = 'Kontaktskjema',
 			InquiryCategory__c = getType( rw.type ),
-			INT_MunicipalityNumber__c = rw.municipalityCode,
 			RecordTypeId = getRecordType( rw.type ),
 			InclusionStage__c = 'Ny henvendelse' );
+
+		if ( isIA( rw.type ) ) {
+			co.INT_RegionNumber__c = rw.regionCode;
+		} else {
+			co.INT_MunicipalityNumber__c = rw.municipalityCode;
+		}
+
 		insert co;
 
 		return [SELECT Name FROM CustomOpportunity__c WHERE Id = : co.Id LIMIT 1].Name;
@@ -71,6 +78,11 @@ global with sharing class TAG_ContactFormWebService_main {
 		} else {
 			return inclusionRecordType;
 		}
+	}
+
+
+	public static Boolean isIA( String val ) {
+		return val == 'FOREBYGGE_SYKEFRAVÆR';
 	}
 
 	public static String getType( String val ) {
