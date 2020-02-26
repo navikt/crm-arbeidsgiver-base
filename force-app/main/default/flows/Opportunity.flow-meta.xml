@@ -38,7 +38,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision7_myRule_6_InclusionStage_c</targetReference>
+            <targetReference>myDecision</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -59,41 +59,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision7_myRule_6_InclusionStage_c</targetReference>
-            </connector>
-            <label>isChangedRule_3_myRule_1_InclusionStage_c</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>isChangedDecision7_myRule_6_InclusionStage_c</name>
-        <label>isChangedDecision7_myRule_6_InclusionStage_c</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>isChangedRule_7_myRule_6_InclusionStage_c</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>myVariable_old</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>myVariable_old.InclusionStage__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>myVariable_current.InclusionStage__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_7_myRule_6_InclusionStage_c</label>
+            <label>isChangedRule_3_myRule_1_InclusionStage_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -260,102 +228,10 @@
             <name>myRule_6</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>isChangedRule_7_myRule_6_InclusionStage_c</leftValueReference>
+                <leftValueReference>formula_myRule_6</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.InclusionStage__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Ny henvendelse</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideReferenceTo</name>
-                    <value>
-                        <stringValue>Organization;User</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>ID</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Owner:Queue.OwnerId</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -380,7 +256,7 @@
 </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_3845892124</name>
+        <name>formula_4_myRule_1_A1_9210093722</name>
         <dataType>String</dataType>
         <expression>LEFT(
 
@@ -399,9 +275,28 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_6_A1_2203179910</name>
+        <name>formula_7_myRule_6_A1_3679240798</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>( LEFT( [CustomOpportunity__c].OwnerId,3) = &quot;00G&quot; ) &amp;&amp;
+
+NOT ( ISPICKVAL( [CustomOpportunity__c].InclusionStage__c, &quot;Ny henvendelse&quot; )) &amp;&amp;
+
+ISCHANGED ( [CustomOpportunity__c].InclusionStage__c )</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_6</name>
+        <dataType>Boolean</dataType>
+        <expression>( LEFT( {!myVariable_current.OwnerId},3) = &quot;00G&quot; ) &amp;&amp;
+
+NOT ( ISPICKVAL( {!myVariable_current.InclusionStage__c}, &quot;Ny henvendelse&quot; )) &amp;&amp;
+
+ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
     </formulas>
     <interviewLabel>Opportunity-2_InterviewLabel</interviewLabel>
     <label>Opportunity Insert/Update</label>
@@ -468,7 +363,7 @@
             </processMetadataValues>
             <field>Name</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_3845892124</elementReference>
+                <elementReference>formula_4_myRule_1_A1_9210093722</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -728,7 +623,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_8_myRule_6_A1_2203179910</elementReference>
+                <elementReference>formula_7_myRule_6_A1_3679240798</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
