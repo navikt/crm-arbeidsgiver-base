@@ -18,7 +18,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"REKRUTTERING_MED_TILRETTELEGGING","municipalityCode":"1111","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"REKRUTTERING_MED_TILRETTELEGGING","municipalityCode":"1111","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 
@@ -46,7 +46,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"REKRUTTERING_MED_TILRETTELEGGING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"REKRUTTERING_MED_TILRETTELEGGING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 
@@ -54,12 +54,15 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 		TAG_ContactFormWebService_main.doPost();
 		Test.stopTest();
 
-		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
+		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, INT_RegionNumber__c, INT_MunicipalityNumber__c, TAG_OrganizationNameFromForm__c, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
 		System.assertEquals( 1, CustomOpportunities.size(), 'Size should be one after insert' );
 
 		System.assertEquals ( 'Rekruttering med tilrettelegging', CustomOpportunities[0].InquiryCategory__c, '"Type" should be "Rekruttering med tilrettelegging"' );
 		System.assertEquals ( 'TestNavn', CustomOpportunities[0].Contact__r.FirstName, '"Contact__r.FirstName" should be "TestNavn"' );
 		System.assertEquals ( 'TestEtternavn', CustomOpportunities[0].Contact__r.LastName, '"Contact__r.LastName" should be "TestEtternavn"' );
+		System.assertEquals ( null, CustomOpportunities[0].INT_RegionNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( '3033', CustomOpportunities[0].INT_MunicipalityNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( 'Finstadtunet', CustomOpportunities[0].TAG_OrganizationNameFromForm__c, 'Name of company should be set as Finstadtunet' );
 		System.assertEquals ( 'test@nav.no', CustomOpportunities[0].Contact__r.Email, '"Contact__r.Email" should be "test@nav.no"' );
 		System.assertEquals ( '90080900', CustomOpportunities[0].Contact__r.MobilePhone, '"Contact__r.MobilePhone" should be "90080900"' );
 		System.assertEquals ( '960507878', CustomOpportunities[0].Account__r.INT_OrganizationNumber__c, '"Account__r.INT_OrganizationNumber__c" should be "960507878"' );
@@ -82,7 +85,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"REKRUTTERING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"REKRUTTERING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 
@@ -90,12 +93,15 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 		TAG_ContactFormWebService_main.doPost();
 		Test.stopTest();
 
-		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
+		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, INT_RegionNumber__c, INT_MunicipalityNumber__c, TAG_OrganizationNameFromForm__c, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
 		System.assertEquals( 1, CustomOpportunities.size(), 'Size should be one after insert' );
 
 		System.assertEquals ( 'Rekruttering', CustomOpportunities[0].InquiryCategory__c, '"Type" should be "Rekruttering"' );
 		System.assertEquals ( 'TestNavn', CustomOpportunities[0].Contact__r.FirstName, '"Contact__r.FirstName" should be "TestNavn"' );
 		System.assertEquals ( 'TestEtternavn', CustomOpportunities[0].Contact__r.LastName, '"Contact__r.LastName" should be "TestEtternavn"' );
+		System.assertEquals ( null, CustomOpportunities[0].INT_RegionNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( '3033', CustomOpportunities[0].INT_MunicipalityNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( 'Finstadtunet', CustomOpportunities[0].TAG_OrganizationNameFromForm__c, 'Name of company should be set as Finstadtunet' );
 		System.assertEquals ( 'test@nav.no', CustomOpportunities[0].Contact__r.Email, '"Contact__r.Email" should be "test@nav.no"' );
 		System.assertEquals ( '90080900', CustomOpportunities[0].Contact__r.MobilePhone, '"Contact__r.MobilePhone" should be "90080900"' );
 		System.assertEquals ( '960507878', CustomOpportunities[0].Account__r.INT_OrganizationNumber__c, '"Account__r.INT_OrganizationNumber__c" should be "960507878"' );
@@ -118,7 +124,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"FOREBYGGE_SYKEFRAVÆR","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"FOREBYGGE_SYKEFRAVÆR","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 
@@ -126,12 +132,15 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 		TAG_ContactFormWebService_main.doPost();
 		Test.stopTest();
 
-		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
+		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, INT_RegionNumber__c, INT_MunicipalityNumber__c, TAG_OrganizationNameFromForm__c, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
 		System.assertEquals( 1, CustomOpportunities.size(), 'Size should be one after insert' );
 
 		System.assertEquals ( 'Forebygge sykefravær', CustomOpportunities[0].InquiryCategory__c, '"Type" should be "Forebygge sykefravær"' );
 		System.assertEquals ( 'TestNavn', CustomOpportunities[0].Contact__r.FirstName, '"Contact__r.FirstName" should be "TestNavn"' );
 		System.assertEquals ( 'TestEtternavn', CustomOpportunities[0].Contact__r.LastName, '"Contact__r.LastName" should be "TestEtternavn"' );
+		System.assertEquals ( '0200', CustomOpportunities[0].INT_RegionNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( '3033', CustomOpportunities[0].INT_MunicipalityNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( 'Finstadtunet', CustomOpportunities[0].TAG_OrganizationNameFromForm__c, 'Name of company should be set as Finstadtunet' );
 		System.assertEquals ( 'test@nav.no', CustomOpportunities[0].Contact__r.Email, '"Contact__r.Email" should be "test@nav.no"' );
 		System.assertEquals ( '90080900', CustomOpportunities[0].Contact__r.MobilePhone, '"Contact__r.MobilePhone" should be "90080900"' );
 		System.assertEquals ( '960507878', CustomOpportunities[0].Account__r.INT_OrganizationNumber__c, '"Account__r.INT_OrganizationNumber__c" should be "960507878"' );
@@ -154,7 +163,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"ARBEIDSTRENING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"ARBEIDSTRENING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 
@@ -162,12 +171,15 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 		TAG_ContactFormWebService_main.doPost();
 		Test.stopTest();
 
-		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
+		CustomOpportunities = [SELECT Id, InquiryCategory__c, RecordTypeId, INT_RegionNumber__c, INT_MunicipalityNumber__c, TAG_OrganizationNameFromForm__c, Contact__r.FirstName, Contact__r.LastName, Contact__r.Email, Contact__r.MobilePhone, Account__r.INT_OrganizationNumber__c FROM CustomOpportunity__c];
 		System.assertEquals( 1, CustomOpportunities.size(), 'Size should be one after insert' );
 
 		System.assertEquals ( 'Arbeidstrening', CustomOpportunities[0].InquiryCategory__c, '"Type" should be "Arbeidstrening"' );
 		System.assertEquals ( 'TestNavn', CustomOpportunities[0].Contact__r.FirstName, '"Contact__r.FirstName" should be "TestNavn"' );
 		System.assertEquals ( 'TestEtternavn', CustomOpportunities[0].Contact__r.LastName, '"Contact__r.LastName" should be "TestEtternavn"' );
+		System.assertEquals ( null, CustomOpportunities[0].INT_RegionNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( '3033', CustomOpportunities[0].INT_MunicipalityNumber__c, 'Region code should be null on non-IA optys' );
+		System.assertEquals ( 'Finstadtunet', CustomOpportunities[0].TAG_OrganizationNameFromForm__c, 'Name of company should be set as Finstadtunet' );
 		System.assertEquals ( 'test@nav.no', CustomOpportunities[0].Contact__r.Email, '"Contact__r.Email" should be "test@nav.no"' );
 		System.assertEquals ( '90080900', CustomOpportunities[0].Contact__r.MobilePhone, '"Contact__r.MobilePhone" should be "90080900"' );
 		System.assertEquals ( '960507878', CustomOpportunities[0].Account__r.INT_OrganizationNumber__c, '"Account__r.INT_OrganizationNumber__c" should be "960507878"' );
@@ -185,7 +197,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"ARBEIDSTRENING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"ARBEIDSTRENING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 
@@ -214,7 +226,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"ARBEIDSTRENING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"ARBEIDSTRENING","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 
@@ -239,7 +251,7 @@ private without sharing class TAG_ContactFormWebService_mainTest {
 
 		req.requestURI = '/services/apexrest/ContactForm';
 		req.httpMethod = 'POST';
-		req.requestBody = Blob.valueof( '{ "type":"SOMETHING_WRONG","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900" }' );
+		req.requestBody = Blob.valueof( '{ "type":"SOMETHING_WRONG","municipalityCode":"3033","organisationName":"Finstadtunet","organisationNumber":"960507878","firstName":"TestNavn","lastName":"TestEtternavn","email":"test@nav.no","phoneNo":"90080900","RegionCode":"0200" }' );
 		RestContext.request = req;
 		RestContext.response = res;
 

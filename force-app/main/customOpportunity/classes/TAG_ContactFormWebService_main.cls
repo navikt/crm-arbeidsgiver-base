@@ -22,7 +22,6 @@ global with sharing class TAG_ContactFormWebService_main {
 	@HttpPost
 	global static String doPost( ) {
 
-
 		String requestString = RestContext.request.requestBody.toString();
 		RequestWrapper rw = (RequestWrapper) JSON.deserialize( requestString, RequestWrapper.class );
 
@@ -37,14 +36,14 @@ global with sharing class TAG_ContactFormWebService_main {
 			Account__c = accountId,
 			Contact__c = contactId,
 			Source__c = 'Kontaktskjema',
+			TAG_OrganizationNameFromForm__c = rw.organisationName,
+			INT_MunicipalityNumber__c = rw.municipalityCode,
 			InquiryCategory__c = getType( rw.type ),
 			RecordTypeId = getRecordType( rw.type ),
 			InclusionStage__c = 'Ny henvendelse' );
 
 		if ( isIA( rw.type ) ) {
 			co.INT_RegionNumber__c = rw.regionCode;
-		} else {
-			co.INT_MunicipalityNumber__c = rw.municipalityCode;
 		}
 
 		insert co;
@@ -79,7 +78,6 @@ global with sharing class TAG_ContactFormWebService_main {
 			return inclusionRecordType;
 		}
 	}
-
 
 	public static Boolean isIA( String val ) {
 		return val == 'FOREBYGGE_SYKEFRAVÆR';
