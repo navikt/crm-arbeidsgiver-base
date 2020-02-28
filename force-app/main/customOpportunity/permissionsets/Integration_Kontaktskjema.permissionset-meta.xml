@@ -55,6 +55,11 @@
         <field>CustomOpportunity__c.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.TAG_OrganizationNameFromForm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Integration_Kontaktskjema</label>
     <objectPermissions>
