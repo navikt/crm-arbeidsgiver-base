@@ -1,5 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-	<label>Kilde</label>
-	<name>Source__c</name>
+    <help><!-- Legg inn hvor henvendelsen kom fra --></help>
+    <label>Kilde</label>
+    <name>Source__c</name>
+    <picklistValues>
+        <masterLabel>Kontaktsenteret</masterLabel>
+        <translation><!-- Kontaktsenteret --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kontaktskjema</masterLabel>
+        <translation><!-- Kontaktskjema --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Messe</masterLabel>
+        <translation><!-- Messe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Utgående henvendelse</masterLabel>
+        <translation><!-- Utgående henvendelse --></translation>
+    </picklistValues>
 </CustomFieldTranslation>

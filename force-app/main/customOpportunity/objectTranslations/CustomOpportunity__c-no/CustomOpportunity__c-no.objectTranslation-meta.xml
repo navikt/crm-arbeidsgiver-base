@@ -1,79 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-	<caseValues>
-		<article>Definite</article>
-		<plural>false</plural>
-		<value>Muligheten</value>
-	</caseValues>
-	<caseValues>
-		<article>Indefinite</article>
-		<plural>false</plural>
-		<value>Mulighet</value>
-	</caseValues>
-	<caseValues>
-		<article>None</article>
-		<plural>false</plural>
-		<value>Mulighet</value>
-	</caseValues>
-	<caseValues>
-		<article>Definite</article>
-		<plural>true</plural>
-		<value>Mulighetene</value>
-	</caseValues>
-	<caseValues>
-		<article>Indefinite</article>
-		<plural>true</plural>
-		<value>Muligheter</value>
-	</caseValues>
-	<caseValues>
-		<article>None</article>
-		<plural>true</plural>
-		<value>Muligheter</value>
-	</caseValues>
-	<gender>Neuter</gender>
-	<layouts>
-		<layout>Inclusive Employment Page Layout</layout>
-		<sections>
-			<label>
-				<!-- Custom Links -->
-			</label>
-			<section>Custom Links</section>
-		</sections>
-	</layouts>
-	<layouts>
-		<layout>Inclusion Page Layout</layout>
-		<sections>
-			<label>
-				<!-- Custom Links -->
-			</label>
-			<section>Custom Links</section>
-		</sections>
-	</layouts>
-	<nameFieldLabel>Muligheter</nameFieldLabel>
-	<recordTypes>
-		<description>
-			<!-- En mulighet for inkludering -->
-		</description>
-		<label>Inkludering</label>
-		<name>Inclusion</name>
-	</recordTypes>
-	<recordTypes>
-		<description>
-			<!-- IA - prosess -->
-		</description>
-		<label>Inkluderende Arbeidsliv</label>
-		<name>Inclusive_Employment</name>
-	</recordTypes>
-	<validationRules>
-		<errorMessage>
-			<!-- Du må fylle inn virksomhet før du går til dette steget. -->
-		</errorMessage>
-		<name>Employer_must_be_set</name>
-	</validationRules>
-	<validationRules>
-		<errorMessage>
-			<!-- Du må fylle ut ansvarlig medarbeider før du går til dette steget -->
-		</errorMessage>
-		<name>Responsible_user_must_be_set</name>
-	</validationRules>
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Muligheten</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>Mulighet</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>Mulighet</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Mulighetene</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>true</plural>
+        <value>Muligheter</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>Muligheter</value>
+    </caseValues>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>Inclusion Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Mulighet --></label>
+            <section>Mulighet</section>
+        </sections>
+        <sections>
+            <label><!-- Tilretteleggingsmuligheter --></label>
+            <section>Tilretteleggingsmuligheter</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Inclusive Employment Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Inkluderende Arbeidsliv --></label>
+            <section>Inkluderende Arbeidsliv</section>
+        </sections>
+        <sections>
+            <label><!-- Mulighet --></label>
+            <section>Mulighet</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Muligheter</nameFieldLabel>
+    <recordTypes>
+        <description><!-- En mulighet for inkludering --></description>
+        <label>Inkludering</label>
+        <name>Inclusion</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- IA - prosess --></description>
+        <label>Inkluderende Arbeidsliv</label>
+        <name>Inclusive_Employment</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Du må fylle inn virksomhet før du går til dette steget. --></errorMessage>
+        <name>Employer_must_be_set</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Velg kilden muligheten kommer fra --></errorMessage>
+        <name>Source_must_be_set</name>
+    </validationRules>
 </CustomObjectTranslation>
