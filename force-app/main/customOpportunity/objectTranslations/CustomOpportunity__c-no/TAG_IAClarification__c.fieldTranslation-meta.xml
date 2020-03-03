@@ -1,5 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-	<label>IA Avklaring</label>
-	<name>TAG_IAClarification__c</name>
+    <label>IA Avklaring</label>
+    <name>TAG_IAClarification__c</name>
+    <picklistValues>
+        <masterLabel>Eget forarbeid gjennomført</masterLabel>
+        <translation><!-- Eget forarbeid gjennomført --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tillitsvalgt involvert</masterLabel>
+        <translation><!-- Tillitsvalgt involvert --></translation>
+    </picklistValues>
 </CustomFieldTranslation>

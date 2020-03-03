@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- IA Process result --></label>
+    <name>TAG_IAProcess_result__c</name>
+    <picklistValues>
+        <masterLabel>Ferdig</masterLabel>
+        <translation><!-- Ferdig --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ikke aktuelt</masterLabel>
+        <translation><!-- Ikke aktuelt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Selvbetjening</masterLabel>
+        <translation><!-- Selvbetjening --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

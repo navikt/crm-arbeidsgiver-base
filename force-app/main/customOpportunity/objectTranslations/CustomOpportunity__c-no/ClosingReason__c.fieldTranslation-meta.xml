@@ -3,11 +3,23 @@
     <label>Begrunnelse</label>
     <name>ClosingReason__c</name>
     <picklistValues>
+        <masterLabel>Ikke Aktuell for IA-Leveranse</masterLabel>
+        <translation><!-- Ikke Aktuell for IA-Leveranse --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Kandidat godkjent</masterLabel>
         <translation><!-- Kandidat godkjent --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Kandidat ikke godkjent</masterLabel>
         <translation><!-- Kandidat ikke godkjent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Leveranse avsluttet</masterLabel>
+        <translation><!-- Leveranse avsluttet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Selvbetjening</masterLabel>
+        <translation><!-- Selvbetjening --></translation>
     </picklistValues>
 </CustomFieldTranslation>
