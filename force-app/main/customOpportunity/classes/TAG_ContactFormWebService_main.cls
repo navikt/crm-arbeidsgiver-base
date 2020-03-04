@@ -52,7 +52,15 @@ global with sharing class TAG_ContactFormWebService_main {
 	}
 
 	public static Id fetchAccount( String organisationNumber ) {
-		List<Account> acc = [SELECT Id FROM Account WHERE INT_OrganizationNumber__c = : organisationNumber AND IsPersonAccount = false LIMIT 1];
+		List<Account> acc = [SELECT Id FROM Account
+
+		                     WHERE
+		                         ( INT_OrganizationNumber__c = : organisationNumber ) AND
+		                         ( INT_OrganizationNumber__c != null ) AND
+		                         ( IsPersonAccount = false )
+
+		                     LIMIT 1];
+
 		if ( acc.size() > 0 ) { return acc[0].Id; }
 		else { return null; }
 	}
