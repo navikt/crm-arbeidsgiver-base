@@ -116,7 +116,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	@isTest
 	private static void testGetRecordTypes() {
 
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
 
 		Test.StartTest();
 		Map<String, Id> recordTypes = TAG_ActivityTimelineHelper.getRecordTypes( sObjectsToQuery );

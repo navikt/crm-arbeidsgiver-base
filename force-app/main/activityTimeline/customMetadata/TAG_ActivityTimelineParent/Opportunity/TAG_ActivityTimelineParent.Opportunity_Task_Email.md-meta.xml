@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<label>Opportunity &lt;= Task (Email)</label>
-	<protected>false</protected>
-	<values>
-		<field>Activity_Timeline_Child__c</field>
-		<value xsi:type="xsd:string">Task_Email</value>
-	</values>
-	<values>
-		<field>CreateableObject_Checkbox__c</field>
-		<value xsi:type="xsd:boolean">true</value>
-	</values>
-	<values>
-		<field>IsActive__c</field>
-		<value xsi:type="xsd:boolean">true</value>
-	</values>
-	<values>
-		<field>SObjectAssigneeId__c</field>
-		<value xsi:type="xsd:string">OwnerId</value>
-	</values>
-	<values>
-		<field>SObjectParent__c</field>
-		<value xsi:type="xsd:string">CustomOpportunity__c</value>
-	</values>
-	<values>
-		<field>SObjectRelationshipField__c</field>
-		<value xsi:type="xsd:string">WhatId</value>
-	</values>
+    <label>Opportunity &lt;= Task (Email)</label>
+    <protected>false</protected>
+    <values>
+        <field>Activity_Timeline_Child__c</field>
+        <value xsi:type="xsd:string">Task_Email</value>
+    </values>
+    <values>
+        <field>CreateableObject_Checkbox__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>SObjectAssigneeId__c</field>
+        <value xsi:type="xsd:string">OwnerId</value>
+    </values>
+    <values>
+        <field>SObjectParent__c</field>
+        <value xsi:type="xsd:string">CustomOpportunity__c</value>
+    </values>
+    <values>
+        <field>SObjectRelationshipField__c</field>
+        <value xsi:type="xsd:string">WhatId</value>
+    </values>
 </CustomMetadata>
