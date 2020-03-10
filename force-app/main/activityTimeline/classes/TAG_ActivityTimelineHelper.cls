@@ -15,8 +15,10 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 	public static List<TAG_ActivityTimelineParent__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
 		List<Boolean> allBools = new List<Boolean> { true, false, null };
+		List<Boolean> allActiveBools = new List<Boolean> { true };
 		if ( createable ) {
 			allBools = new List<Boolean> { true };
+			allActiveBools = new List<Boolean> { true, false, null };
 		}
 
 		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = [SELECT Id,
@@ -41,7 +43,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		                                                         WHERE
 		                                                             ( CreateableObject_Checkbox__c IN : allBools ) AND
 		                                                             ( SObjectParent__c = : parentSObjectType ) AND
-		                                                             ( IsActive__c = true )];
+		                                                             ( IsActive__c IN : allActiveBools )];
 
 		// TODO fix ordering på name Activity_Timeline_Child__r.SObjectName__c and CreatableText
 
