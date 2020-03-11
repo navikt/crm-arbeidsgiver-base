@@ -24,21 +24,7 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 				}
 			});
 
-		} else { // MOBILE
-
-			this[NavigationMixin.Navigate]({
-				type: 'standard__objectPage',
-				attributes: { objectApiName: this.row.Activity_Timeline_Child__r.SObjectName__c, actionName: 'new' },
-				state: {
-					nooverride: '1',
-					recordTypeId: this.row.Activity_Timeline_Child__r.CreateableObject_RecordType__c,
-					navigationLocation: 'LOOKUP',
-					useRecordTypeCheck: 1,
-				}
-			});
-
 		}
-
 	}
 
 	connectedCallback() {
