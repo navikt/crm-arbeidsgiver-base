@@ -30,6 +30,10 @@
                 <behavior>Edit</behavior>
                 <field>IsRestrictionsOnWorkingHours__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>NumberOfEmployees__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
