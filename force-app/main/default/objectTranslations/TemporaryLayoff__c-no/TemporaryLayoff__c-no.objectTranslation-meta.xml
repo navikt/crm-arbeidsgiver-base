@@ -31,5 +31,16 @@
         <value>Permitteringer</value>
     </caseValues>
     <gender>Neuter</gender>
+    <layouts>
+        <layout>Temporary Layoff Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detaljer --></label>
+            <section>Detaljer</section>
+        </sections>
+    </layouts>
     <nameFieldLabel>Permitteringsnavn</nameFieldLabel>
 </CustomObjectTranslation>

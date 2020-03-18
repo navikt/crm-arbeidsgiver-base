@@ -11,6 +11,10 @@
                 <behavior>Edit</behavior>
                 <field>NAV_Unit__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Contact__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -28,15 +32,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IsTemporaryLayoff__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IsResignation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IsRestrictionsOnWorkingHours__c</field>
+                <field>Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
