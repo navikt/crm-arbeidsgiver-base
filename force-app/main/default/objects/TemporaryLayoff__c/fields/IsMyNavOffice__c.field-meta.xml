@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsMyNavOffice__c</fullName>
+    <externalId>false</externalId>
+    <formula>LOWER( $User.CompanyName ) == LOWER( Owner:Queue.QueueName )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is My NAV Office</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
