@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>IsTemporaryLayoff__c</fullName>
-    <defaultValue>false</defaultValue>
+    <fullName>Reason__c</fullName>
     <externalId>false</externalId>
-    <label>Temporary Layoff</label>
+    <label>Reason</label>
+    <length>32768</length>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
 </CustomField>
