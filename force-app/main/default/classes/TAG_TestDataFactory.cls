@@ -59,4 +59,17 @@ public without sharing class TAG_TestDataFactory {
 
 		return user;
 	}
+
+	public static List<CustomOpportunity__c> getCustomOpportunities(Integer numberOfOpportunities) {
+		List<CustomOpportunity__c> customOpportunities = new List<CustomOpportunity__c>();
+
+		for (Integer i = 0; i < numberOfOpportunities; i++) {
+			customOpportunities.add(new CustomOpportunity__c(
+					INT_MunicipalityNumber__c = '0101'
+			));
+		}
+
+		insert customOpportunities;
+		return customOpportunities;
+	}
 }
