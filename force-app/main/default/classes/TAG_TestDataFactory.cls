@@ -60,7 +60,7 @@ public without sharing class TAG_TestDataFactory {
 		return user;
 	}
 
-	public static List<CustomOpportunity__c> getCustomOpportunities(Integer numberOfOpportunities) {
+	public static List<CustomOpportunity__c> getCustomOpportunities(Integer numberOfOpportunities, Boolean doInsert) {
 		List<CustomOpportunity__c> customOpportunities = new List<CustomOpportunity__c>();
 
 		for (Integer i = 0; i < numberOfOpportunities; i++) {
@@ -69,7 +69,7 @@ public without sharing class TAG_TestDataFactory {
 			));
 		}
 
-		insert customOpportunities;
+		if(doInsert) insert customOpportunities;
 		return customOpportunities;
 	}
 }

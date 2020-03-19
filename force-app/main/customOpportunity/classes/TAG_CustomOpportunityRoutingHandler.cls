@@ -1,4 +1,4 @@
-global class TAG_CustomOpportunitiesRoutingHandler extends MyTriggers{
+global class TAG_CustomOpportunityRoutingHandler extends MyTriggers{
 
     global override void onBeforeInsert() {
 
@@ -7,6 +7,7 @@ global class TAG_CustomOpportunitiesRoutingHandler extends MyTriggers{
             ApexSharingRuleWrapper rule=ruleByByOpportunityId.get(opportunity.Id);
             if(rule==null) continue;
             opportunity.OwnerId=rule.queueId;
+            opportunity.TAG_NavUnit__c=rule.navUnitId;
         }
     }
 
