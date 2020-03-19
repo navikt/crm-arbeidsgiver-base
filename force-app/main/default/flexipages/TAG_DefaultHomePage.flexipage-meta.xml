@@ -8,33 +8,6 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>entityName</name>
-                <value>TemporaryLayoff__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>filterName</name>
-                <value>Mitt_NAV_kontor</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>hideActionBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>hideSearchBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>pageSize</name>
-                <value>20</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:filterListCard</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>enableInlineEdit</name>
-                <value>false</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>entityName</name>
                 <value>CustomOpportunity__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
