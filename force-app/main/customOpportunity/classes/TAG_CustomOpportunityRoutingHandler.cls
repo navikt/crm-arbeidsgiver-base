@@ -2,7 +2,7 @@ global class TAG_CustomOpportunityRoutingHandler extends MyTriggers{
 
     global override void onBeforeInsert() {
 
-        Map<Index,ApexSharingRuleWrapper> ruleByByOpportunityId=RecordOwnerService.getQueuesAndNavUnits(getSobjectWrappers(),'CustomOpportunity__c');
+        Map<Integer,ApexSharingRuleWrapper> ruleByByOpportunityId=RecordOwnerService.getQueuesAndNavUnits(getSobjectWrappers(),'CustomOpportunity__c');
         Integer i=0;
         for(CustomOpportunity__c opportunity:(List<CustomOpportunity__c>)records){
             ApexSharingRuleWrapper rule=ruleByByOpportunityId.get(i);
