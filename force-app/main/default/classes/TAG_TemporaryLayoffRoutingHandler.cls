@@ -2,25 +2,24 @@ global class TAG_TemporaryLayoffRoutingHandler extends MyTriggers {
 
     global override void onBeforeInsert() {
 
-        Map<Id, ApexSharingRuleWrapper> ruleByByLayoffId = RecordOwnerService.getQueuesAndNavUnits(getSobjectWrappers(), 'TemporaryLayoff__c');
+        Map<Integer, ApexSharingRuleWrapper> ruleByByLayoffId = RecordOwnerService.getQueuesAndNavUnits(getSobjectWrappers(), 'TemporaryLayoff__c');
+        Integer i=0;
         for (TemporaryLayoff__c layoff : (List<TemporaryLayoff__c>) records) {
-            System.debug(ruleByByLayoffId);
-            ApexSharingRuleWrapper rule = ruleByByLayoffId.get(layoff.Id);
-            System.debug(rule);
+            ApexSharingRuleWrapper rule = ruleByByLayoffId.get(0);
             if (rule == null) continue;
             layoff.OwnerId = rule.queueId;
             layoff.Nav_Unit__c = rule.navUnitId;
-            System.debug(layoff);
+            i++;
         }
     }
 
     private List<SobjectWrapper> getSobjectWrappers() {
         Map<Id, String> municipalityNumberByAccountId = getMunicipalityNumberByAccountId();
         List<SobjectWrapper> wrappers = new List<SobjectWrapper>();
+        Integer recordIndex=0;
         for (TemporaryLayoff__c layoff : (List<TemporaryLayoff__c>) records) {
-            System.debug(layoff.Id);
-            System.debug(municipalityNumberByAccountId.get(layoff.Account__c));
-            wrappers.add(new SobjectWrapper(layoff.Id, municipalityNumberByAccountId.get(layoff.Account__c)));
+            wrappers.add(new SobjectWrapper(recordIndex, municipalityNumberByAccountId.get(layoff.Account__c)));
+            recordIndex++;
         }
         return wrappers;
     }
