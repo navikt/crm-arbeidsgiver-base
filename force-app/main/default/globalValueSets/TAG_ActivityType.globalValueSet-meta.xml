@@ -21,40 +21,9 @@
         <label>Inkludering</label>
     </customValue>
     <customValue>
-        <fullName>Samarbeidsavtale</fullName>
+        <fullName>Permittering</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Samarbeidsavtale</label>
-    </customValue>
-    <customValue>
-        <fullName>Samarbeidsmøte</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Samarbeidsmøte</label>
-    </customValue>
-    <customValue>
-        <fullName>Samarbeidsmøte rektrutteringsbistand</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Samarbeidsmøte rektrutteringsbistand</label>
-    </customValue>
-    <customValue>
-        <fullName>Samarbeidsmøte tiltak</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Samarbeidsmøte tiltak</label>
-    </customValue>
-    <customValue>
-        <fullName>Telefonkontakt</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Telefonkontakt</label>
-    </customValue>
-    <customValue>
-        <fullName>IA Tjeneste: Redusere sykefravær</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>IA Tjeneste: Redusere sykefravær</label>
+        <label>Permittering</label>
     </customValue>
     <customValue>
         <fullName>IA Tjeneste: HelseIArbeid</fullName>
@@ -103,6 +72,42 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Informasjonsmøte - omstilling og nedbemanning</label>
+    </customValue>
+    <customValue>
+        <fullName>IA Tjeneste: Redusere sykefravær</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>IA Tjeneste: Redusere sykefravær</label>
+    </customValue>
+    <customValue>
+        <fullName>Telefonkontakt</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Telefonkontakt</label>
+    </customValue>
+    <customValue>
+        <fullName>Samarbeidsmøte tiltak</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Samarbeidsmøte tiltak</label>
+    </customValue>
+    <customValue>
+        <fullName>Samarbeidsmøte rektrutteringsbistand</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Samarbeidsmøte rektrutteringsbistand</label>
+    </customValue>
+    <customValue>
+        <fullName>Samarbeidsavtale</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Samarbeidsavtale</label>
+    </customValue>
+    <customValue>
+        <fullName>Samarbeidsmøte</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Samarbeidsmøte</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
