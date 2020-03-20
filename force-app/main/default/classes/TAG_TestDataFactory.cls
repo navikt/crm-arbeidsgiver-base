@@ -59,4 +59,34 @@ public without sharing class TAG_TestDataFactory {
 
 		return user;
 	}
+
+	public static List<CustomOpportunity__c> getCustomOpportunities(Integer amount, Boolean doInsert) {
+		List<CustomOpportunity__c> customOpportunities = new List<CustomOpportunity__c>();
+
+		for (Integer i = 0; i < amount; i++) {
+			customOpportunities.add(new CustomOpportunity__c(
+					INT_MunicipalityNumber__c = '0101'
+			));
+		}
+
+		if(doInsert) insert customOpportunities;
+		return customOpportunities;
+	}
+
+	public static List<TemporaryLayoff__c> getTemporaryLayoffs(Integer amount,Account account, Boolean doInsert) {
+
+		List<TemporaryLayoff__c> temporaryLayoffs = new List<TemporaryLayoff__c>();
+
+		for (Integer i = 0; i < amount; i++) {
+			temporaryLayoffs.add(new TemporaryLayoff__c(
+					Account__c=account.Id,
+					Type__c='Masseoppsigelse',
+					StartDate__c=Date.today(),
+					EndDate__c=Date.today().addDays(30)
+			));
+		}
+
+		if(doInsert) insert temporaryLayoffs;
+		return temporaryLayoffs;
+	}
 }
