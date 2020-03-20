@@ -1,3 +1,3 @@
-global with sharing class TAG_ContactFormWebService_main {
+public with sharing class TAG_ContactFormWebService_main {
 	// !Deperecated
 }
