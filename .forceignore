@@ -57,7 +57,14 @@
 **/AsyncRequest__c*
 **/listViews/queue_*
 **/listViews/NAV_Ansatte_*
-**/INT_*
+# -
+# -
+# -
+# **/INT_*
+# TODO rename all int fields to re-enable this ignore
+# -
+# -
+# -
 **/workflows/CustomOpportunity__c*
 **/workflows/Contract__c*
 **/layouts/CustomOpportunity__c-Custom Opportunity Layout.layout-meta.xml
