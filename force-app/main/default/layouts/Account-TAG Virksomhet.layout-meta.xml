@@ -4,6 +4,9 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -164,7 +167,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Type__c</fields>
-        <fields>NAV_Unit__c</fields>
+        <fields>NumberOfEmployees__c</fields>
         <fields>Status__c</fields>
         <relatedList>TemporaryLayoff__c.Account__c</relatedList>
     </relatedLists>
