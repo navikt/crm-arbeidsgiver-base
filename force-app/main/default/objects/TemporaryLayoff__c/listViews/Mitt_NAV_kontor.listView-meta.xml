@@ -8,6 +8,7 @@
 	<columns>NumberOfEmployees__c</columns>
 	<columns>StartDate__c</columns>
 	<columns>EndDate__c</columns>
+	<columns>Status__c</columns>
 	<filterScope>Everything</filterScope>
 	<filters>
 		<field>IsMyNAVOffice__c</field>
