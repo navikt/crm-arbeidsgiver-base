@@ -56,12 +56,34 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>$User.Id </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A2_7598203851</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_2779534046</name>
+        <name>formula_3_myRule_1_A1_5633289429</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>$User.Id </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_4_myRule_1_A1_1713009360</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
     </formulas>
     <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
     <label>Temporary Layoff Update</label>
@@ -95,6 +117,9 @@
         <label>Create task</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myRule_1_A2</targetReference>
+        </connector>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -128,7 +153,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_2779534046</elementReference>
+                <elementReference>formula_3_myRule_1_A1_5633289429</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -153,12 +178,12 @@
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Reference</stringValue>
+                    <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>myVariable_current.LastModifiedById</elementReference>
+                <elementReference>formula_4_myRule_1_A1_1713009360</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -439,6 +464,86 @@
         </inputAssignments>
         <object>Task</object>
     </recordCreates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[TemporaryLayoff__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_1_A2</name>
+        <label>Update owner</label>
+        <locationX>100</locationX>
+        <locationY>300</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Owner ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Group;User</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>formula_2_myRule_1_A2_7598203851</elementReference>
+            </value>
+        </inputAssignments>
+        <object>TemporaryLayoff__c</object>
+    </recordUpdates>
     <startElementReference>myDecision</startElementReference>
     <status>Active</status>
     <variables>
