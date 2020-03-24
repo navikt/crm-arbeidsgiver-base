@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>NAV Temporary Layoff</name>
+    <style>none</style>
+    <subject>[{!TemporaryLayoff__c.Name}] Din henvendelse er registrert.</subject>
+    <textOnly>Hei {!TemporaryLayoff__c.ContactName__c}
+
+Din henvendelse er registrert med ID {!TemporaryLayoff__c.Name}.
+Ønsker du mer informasjon, se på lenkene under.
+
+-------
+Spørsmål og svar - Hva gjelder i deres situasjon?
+Her finner du spørsmål og svar til arbeidsgivere i forbindelse med koronaviruset.
+
+https://www.nav.no/no/bedrift/innhold-til-bedrift-forside/nyttig-a-vite/arbeidsgiver-hva-gjelder-i-min-situasjon
+
+
+-------
+Informasjon om permittering
+Det globale utbruddet av koronaviruset har fått konsekvenser for mange virksomheter. Mange arbeidsgivere blir nå nødt til å permittere ansatte.
+
+https://www.nav.no/no/bedrift/innhold-til-bedrift-forside/nyheter/permitteringer-som-folge-av-koronaviruset
+
+
+-------
+Omsorgsdager
+Arbeidstakere, selvstendig næringsdrivende og frilansere kan bruke omsorgsdager. Endringer i regelverket for omsorgspenger ble vedtatt av Stortinget fredag 20.03.20.
+
+https://www.nav.no/no/person/innhold-til-person-forside/nyttig-a-vite/stengte-skoler-og-barnehager-gir-rett-til-omsorgspenger
+
+
+-------
+Finn oppdatert informasjon her.
+
+https://www.nav.no/no/bedrift/innhold-til-bedrift-forside/nyttig-a-vite/koronavirus-informasjon-til-arbeidsgivere
+
+
+--
+NAV
+Arbeids- og velferdsetaten 2020</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
