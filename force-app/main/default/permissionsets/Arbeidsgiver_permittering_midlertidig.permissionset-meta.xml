@@ -301,12 +301,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>TemporaryLayoff__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -355,6 +355,10 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>TemporaryLayoff__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-home</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
