@@ -49,7 +49,7 @@ public without sharing class TAG_TestDataFactory {
 		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
 		user.isActive = true;
 		user.FirstName = 'First';
-		user.LastName = 'Last';
+		user.LastName = 'Last UNIQUE NAME';
 		user.TimeZoneSidKey = 'Europe/Paris';
 		user.LocaleSidKey = 'no_NO';
 		user.EmailEncodingKey = 'UTF-8';
@@ -60,33 +60,35 @@ public without sharing class TAG_TestDataFactory {
 		return user;
 	}
 
-	public static List<CustomOpportunity__c> getCustomOpportunities(Integer amount, Boolean doInsert) {
+	public static List<CustomOpportunity__c> getCustomOpportunities( Integer amount, Boolean doInsert ) {
 		List<CustomOpportunity__c> customOpportunities = new List<CustomOpportunity__c>();
 
-		for (Integer i = 0; i < amount; i++) {
-			customOpportunities.add(new CustomOpportunity__c(
-					INT_MunicipalityNumber__c = '0101'
-			));
+		for ( Integer i = 0; i < amount; i++ ) {
+			customOpportunities.add( new CustomOpportunity__c(
+										 INT_MunicipalityNumber__c = '0101'
+										 ) );
 		}
 
-		if(doInsert) insert customOpportunities;
+		if ( doInsert ) insert customOpportunities;
+
 		return customOpportunities;
 	}
 
-	public static List<TemporaryLayoff__c> getTemporaryLayoffs(Integer amount,Account account, Boolean doInsert) {
+	public static List<TemporaryLayoff__c> getTemporaryLayoffs( Integer amount, Account account, Boolean doInsert ) {
 
 		List<TemporaryLayoff__c> temporaryLayoffs = new List<TemporaryLayoff__c>();
 
-		for (Integer i = 0; i < amount; i++) {
-			temporaryLayoffs.add(new TemporaryLayoff__c(
-					Account__c=account.Id,
-					Type__c='Masseoppsigelse',
-					StartDate__c=Date.today(),
-					EndDate__c=Date.today().addDays(30)
-			));
+		for ( Integer i = 0; i < amount; i++ ) {
+			temporaryLayoffs.add( new TemporaryLayoff__c(
+									  Account__c = account.Id,
+									  Type__c = 'Masseoppsigelse',
+									  StartDate__c = Date.today(),
+									  EndDate__c = Date.today().addDays( 30 )
+									  ) );
 		}
 
-		if(doInsert) insert temporaryLayoffs;
+		if ( doInsert ) insert temporaryLayoffs;
+
 		return temporaryLayoffs;
 	}
 }
