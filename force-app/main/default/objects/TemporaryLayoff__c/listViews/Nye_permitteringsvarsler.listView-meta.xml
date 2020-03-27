@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+	<fullName>Nye_permitteringsvarsler</fullName>
+	<columns>NAME</columns>
+	<columns>Account__c</columns>
+	<columns>Contact__c</columns>
+	<columns>Type__c</columns>
+	<columns>NumberOfEmployees__c</columns>
+	<columns>StartDate__c</columns>
+	<columns>EndDate__c</columns>
+	<columns>Status__c</columns>
+	<filterScope>Everything</filterScope>
+	<filters>
+		<field>IsMyNavOffice__c</field>
+		<operation>equals</operation>
+		<value>1</value>
+	</filters>
+	<filters>
+		<field>Status__c</field>
+		<operation>equals</operation>
+		<value>Ny</value>
+	</filters>
+	<label>Nye permitteringsvarsler</label>
+</ListView>
