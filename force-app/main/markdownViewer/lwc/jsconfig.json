@@ -13,7 +13,20 @@
             ],
             "c/tagActivityTimelineNewObject": [
                 "../../activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
+            ],
+            "c/markdownViewer": [
+                "markdownViewer/markdownViewer.js"
             ]
-        }
+        },
+        "experimentalDecorators": true
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
     }
 }
