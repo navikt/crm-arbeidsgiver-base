@@ -16,34 +16,10 @@
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Status__c</leftValueReference>
+                <leftValueReference>formula_myRule_1</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Fulgt opp</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -59,7 +35,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A2_7598203851</name>
+        <name>formula_2_myRule_1_A2_8200310984</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -70,7 +46,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_5633289429</name>
+        <name>formula_3_myRule_1_A1_2733943768</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -81,11 +57,22 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_1713009360</name>
+        <name>formula_4_myRule_1_A1_4327561351</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
-    <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].Status__c), TEXT(PRIORVALUE([TemporaryLayoff__c].Status__c)) = &quot;Ny&quot;, TEXT([TemporaryLayoff__c].Status__c) = &quot;Fulgt opp&quot;)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISCHANGED({!myVariable_current.Status__c}), TEXT(PRIORVALUE({!myVariable_current.Status__c})) = &quot;Ny&quot;, TEXT({!myVariable_current.Status__c}) = &quot;Fulgt opp&quot;)</expression>
+    </formulas>
+    <interviewLabel>Temporary_Layoff_Update-3_InterviewLabel</interviewLabel>
     <label>Temporary Layoff Update</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -153,7 +140,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_5633289429</elementReference>
+                <elementReference>formula_3_myRule_1_A1_2733943768</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -183,7 +170,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_1713009360</elementReference>
+                <elementReference>formula_4_myRule_1_A1_4327561351</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -468,7 +455,7 @@
         <processMetadataValues>
             <name>evaluationType</name>
             <value>
-                <stringValue>always</stringValue>
+                <stringValue>criteria</stringValue>
             </value>
         </processMetadataValues>
         <processMetadataValues>
@@ -506,6 +493,55 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Fulgt opp</stringValue>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -539,7 +575,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A2_7598203851</elementReference>
+                <elementReference>formula_2_myRule_1_A2_8200310984</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>
