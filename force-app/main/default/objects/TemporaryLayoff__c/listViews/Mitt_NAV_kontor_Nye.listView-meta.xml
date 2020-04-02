@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-	<fullName>Mitt_NAV_kontor</fullName>
+	<fullName>Mitt_NAV_kontor_Nye</fullName>
 	<columns>NAME</columns>
 	<columns>Account__c</columns>
 	<columns>Contact__c</columns>
@@ -8,7 +8,6 @@
 	<columns>NumberOfEmployees__c</columns>
 	<columns>StartDate__c</columns>
 	<columns>EndDate__c</columns>
-	<columns>Status__c</columns>
 	<columns>OWNER.LAST_NAME</columns>
 	<filterScope>Everything</filterScope>
 	<filters>
@@ -16,5 +15,10 @@
 		<operation>equals</operation>
 		<value>1</value>
 	</filters>
-	<label>Mitt NAV-kontor</label>
+	<filters>
+		<field>Status__c</field>
+		<operation>equals</operation>
+		<value>Ny</value>
+	</filters>
+	<label>Mitt NAV-kontor (Nye)</label>
 </ListView>
