@@ -28,6 +28,10 @@
         <enabled>true</enabled>
         <name>TAG_ActivityTimelineParent__mdt</name>
     </customMetadataTypeAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Arbeidsgiver</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.CRM_Type__c</field>

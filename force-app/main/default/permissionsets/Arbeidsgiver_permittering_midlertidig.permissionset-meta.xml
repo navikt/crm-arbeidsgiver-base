@@ -4,6 +4,10 @@
         <application>Permitteringsvarsler</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Arbeidsgiver</name>
+    </customPermissions>
     <description>Tilgang til permitteringsapp</description>
     <fieldPermissions>
         <editable>false</editable>
