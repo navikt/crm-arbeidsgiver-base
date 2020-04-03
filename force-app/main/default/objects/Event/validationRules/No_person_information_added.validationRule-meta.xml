@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>No_person_information_added</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(TAG_NoPersonInformation__c = FALSE, $Profile.Name &lt;&gt; &#39;System Administrator&#39;)</errorConditionFormula>
+    <errorConditionFormula>AND(TAG_NoPersonInformation__c = FALSE, 	$Permission.Arbeidsgiver = TRUE)</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
     <errorMessage>Du må bekrefte at notatet ikke inneholder personsensitive opplysninger</errorMessage>
 </ValidationRule>
