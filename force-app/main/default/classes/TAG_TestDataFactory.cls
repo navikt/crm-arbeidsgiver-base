@@ -65,7 +65,8 @@ public without sharing class TAG_TestDataFactory {
 
 		for ( Integer i = 0; i < amount; i++ ) {
 			customOpportunities.add( new CustomOpportunity__c(
-										 INT_MunicipalityNumber__c = '0101'
+										 INT_MunicipalityNumber__c = '0101',
+										 Source__c = 'Kontaktskjema'
 										 ) );
 		}
 
