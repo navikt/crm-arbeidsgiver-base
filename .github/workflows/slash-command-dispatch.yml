@@ -12,6 +12,6 @@ jobs:
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           reaction-token: ${{ secrets.GITHUB_TOKEN }}
-          commands: deploy
+          commands: deploy, promote
           permission: admin
           issue-type: issue
