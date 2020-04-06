@@ -78,6 +78,12 @@ jobs:
           echo "::set-output name=result::$(sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -b 10 -u integration-sandbox -r -k ${{ secrets.PACKAGE_KEY }})"
           echo "::set-output name=isSuccess::true"
 
+      # Fetch beta version number
+      - name: 'Fetch beta version number'
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
+        id: packaging-updater
+        uses: muenzpraeger/github-action-sfdx-packaging-updater@master
+
       # set release variables
       - name: "Set release fields"
         if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
