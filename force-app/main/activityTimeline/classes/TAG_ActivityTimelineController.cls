@@ -57,7 +57,7 @@ public with sharing class TAG_ActivityTimelineController {
 	@AuraEnabled(cacheable = true)
 	public static List<TAG_ActivityTimelineParent__mdt> getTimelineObjects( String recordId ) {
 
-		System.debug( '\n------------------------------------------\n------------getTimelineObjects------------\n------------------------------------------' );
+		System.debug( '\n------------------------------------------\n------------getTimelineObjects------------\n-----------------------------------------' );
 
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
