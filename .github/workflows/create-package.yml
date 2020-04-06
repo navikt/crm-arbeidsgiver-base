@@ -61,7 +61,7 @@ jobs:
         id: package-version-create
         run: |
           echo "::set-output name=result::$(sfdx force:package:version:create -f config/package-scratch-def.json -p $(cat sfdx-project.json | jq '.packageDirectories[0].package' -r) -k ${{ secrets.PACKAGE_KEY }} -w 20 --json | jq -c .)"
-          echo "::set-output name=isSuccess::true"
+          echo "::set-output name=isSuccess::true" # TODO check actual results
 
       # Extract data from package version create result
       - name: "Extract package:version:create result data"
