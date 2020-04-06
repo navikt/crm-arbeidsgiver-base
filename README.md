@@ -1,21 +1,48 @@
-# Tag Salesforce
+# crm-arbeidsgiver-integrasjon
 
-Nav bruker Salesforce DX og scratch orgs på utvikling av funksjonalitet i Salesforce, som vil legge alle endringer i git og under versjonskontroll.
+[![Build](https://github.com/navikt/crm-arbeidsgiver-base/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-base/actions?query=workflow%3ABuild)
+[![GitHub Release](https://img.shields.io/github/v/release/navikt/crm-arbeidsgiver-base.svg?style=flat)](https://github.com/navikt/crm-arbeidsgiver-base/releases)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-arbeidsgiver-base/blob/master/LICENSE)
+
+Denne pakken inneholder funksjonalitet og tilgangsstyring på arbeidsgiver-nivået. Blant annet:
+
+- Permitteringer / masseoppsigelser
+- Kontaktskjema for arbeidsgivere
+- Sykefravær
+- Listevisninger
+- Objekter
+- Aktiviteter
+- Arbeidsgiver
+
+## Dependencies
+
+Pakken er avhengig av følgende pakker:
+
+* [crm-platform-base](https://github.com/navikt/crm-platform-base) (internal)
+* [crm-platform-access-control](https://github.com/navikt/crm-platform-access-control) (internal)
+
 
 ## Komme i gang
 
-1. Du trenger en DX-bruker for å kunne lage scratch org-er. Denne får du ved å ta kontakt med #crm-plattform-team på Slack.
-2. Installer kommandolinjeverktøyet til Salesforce, DX CLI. Enkleste måten å gjøre dette på er gjennom npm: `npm install sfdx-cli --global`
-3. Du kloner dette repoet `git clone https://github.com/navikt/tag-salesforce-shared`
-4. Lag en ny branch `git checkout master;git pull --rebase; git checkout -b mitt_branch_navn`
-5. Kjør `install.command` på macOS eller `install.cmd` på Windows
-6. Kjør `run.command` på macOS eller `run.cmd` på Windows
-7. Åpne `ALL ORG COMMANDS` og så `LOGIN to org`, logg inn med din DX-bruker
-8. Lag en scratch org med `CREATE Scratch Org` (denne kommandoen lager en scratch org, pusher all metadata og installerer alle nødvendige pakker)
+1. Salesforce DX-bruker. Kontakt #crm-plattform-team på Slack om du ikke har dette
+2. Installer Salesforce DX CLI (SFDX)
+	- Last ned fra [Salesforce.com](https://developer.salesforce.com/tools/sfdxcli)
+    - Eller benytt npm: `npm install sfdx-cli --global`
+3. Klon dette repoet ([GitHub Desktop](https://desktop.github.com) anbefales for ikke-utviklere)
+4. Installer [SSDX](https://github.com/navikt/ssdx)
+    - Med SSDX kan du lage scratch orger og gjøre deklarative endringer (gjøre endringer i nettleseren på Salesforce, altså ikke-utvikling)
+	- **Trenger du ikke verktøy utvikling kan du stoppe her**
+5. Installer [VS Code](https://code.visualstudio.com) (anbefalt)
+6. Installer [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
+7. Installer [AdoptOpenJDK](https://adoptopenjdk.net) (kun versjon 8 eller 11)
+8. Åpne VS Code Settings og søk etter `salesforcedx-vscode-apex`
+9. Under `Java Home`, legg inn følgende:
+    - macOS: `/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home`
+    - Windows: `C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.3.7-hotspot` (merk at versjonsnummer kan endre seg)
 
 ## Utvikling
 
-Utvikling foregår i hovedsak på to fronter, i nettleseren i din scratch org og på din maskin i din prefererte IDE. Ved endringer i nettleseren på din scratch org (som lever i skyen) på alle endringer pulles til din maskin. Ved endringer av metadata i din IDE, må endringer pushes til din scratch org.
+Utvikling foregår i hovedsak på to fronter, i nettleseren i din scratch org og på din maskin i din prefererte IDE. Ved endringer i nettleseren på din scratch org (som lever i skyen), så må alle endringer pulles til din maskin. Ved endringer av metadata i din IDE, må endringer pushes til din scratch org.
 
 Ved å bruke VS Code som IDE, er det lagt inn konfigurasjon som automatisk pusher endringer av metadata til din scratch org ved lagring. For å pulle endringer fra kan man enten bruke Salesforce DX CLI til å pulle, men også pushe om man ikke ønsker automatisk push. Se under for kommandoer. Man kan også bruke hjelpeverktøyet SSDX (nevnt over) for å pushe, pulle, åpne scratch org-er, slette gamle, blant annet.
 
@@ -25,4 +52,4 @@ Ved å bruke VS Code som IDE, er det lagt inn konfigurasjon som automatisk pushe
 
 ## Annet
 
-For spørsmål om denne applikasjonen, bruk #tag-crm på Slack.
+For spørsmål om denne applikasjonen, bruk #arbeidsgiver-crm på Slack.
