@@ -1,0 +1,102 @@
+name: Promote Command
+on:
+  repository_dispatch:
+    types: [promote-command]
+jobs:
+  promoteCommand:
+    runs-on: ubuntu-latest
+    steps:
+      # Install Salesforce CLI
+      - name: Install Salesforce CLI
+        run: |
+          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+          mkdir sfdx-cli
+          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+          ./sfdx-cli/install
+
+      # Checkout the code in the pull request
+      - name: "Checkout source code"
+        uses: actions/checkout@v2
+
+      # Store secret for dev hub
+      - name: "Populate auth file with PROD_SFDX_URL secret"
+        shell: bash
+        run: "echo ${{ secrets.PROD_SFDX_URL}} > ./PROD_SFDX_URL.txt"
+
+      # Authenticate dev hub
+      - name: "Authenticate Dev Hub"
+        run: "sfdx force:auth:sfdxurl:store -f ./PROD_SFDX_URL.txt -a devhub -d"
+
+      # Remove auth file
+      - name: "Remove auth files"
+        run: |
+          rm -f ./PROD_SFDX_URL.txt
+
+      # Promote package
+      - name: "Promote package"
+        run: "sfdx force:package:version:promote --package ${{ github.event.client_payload.slash_command.arg1 }} --noprompt"
+
+      # set variables
+      - name: "Set release fields"
+        if: success()
+        id: release-fields
+        run: |
+          echo "::set-output name=tagName::v$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+          echo "::set-output name=releaseName::$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+          echo "::set-output name=bodyVersion::$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+
+      # create github release
+      - name: "Create Release"
+        if: success()
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{steps.release-fields.outputs.tagName}}
+          release_name: ${{steps.release-fields.outputs.releaseName}}
+          body: |
+            **Version**: ${{ steps.release-fields.outputs.bodyVersion }}
+            **Package ID**: ${{ github.event.client_payload.slash_command.arg1 }}
+            **Author**: ${{ github.event.client_payload.slash_command.arg2 }}
+
+            ${{ github.event.client_payload.slash_command.unnamed_args }}
+          draft: false
+          prerelease: false
+
+      # Update version number
+      - name: 'Update version number'
+        id: packaging-updater
+        uses: navikt/github-action-sfdx-version-updater@master
+
+      # Create commit message by extracting the latest version number from sfdx-project.json
+      - name: 'Build commit message'
+        id: build-commit-message
+        run: echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+
+      # Re-add changes back to source
+      - name: 'Commit changes'
+        uses: Automattic/action-commit-to-branch@master
+        with:
+          branch: 'master'
+          commit_message: ${{steps.build-commit-message.outputs.message}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Add success reaction
+      - name: "Add success reaction"
+        if: success()
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reaction-type: hooray
+
+      # Add error reaction
+      - name: "Add error reaction"
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reaction-type: '-1'
