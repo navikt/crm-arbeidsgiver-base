@@ -12,6 +12,7 @@
 			"IsAllDayEvent": true,
 			"ShowAs": "Busy",
 			"Subject": "Arbeidstrening",
+			"TAG_NoPersonInformation__c": true,
 			"WhatId": "@AccountRef1"
 		},
 		{
@@ -26,6 +27,7 @@
 			"IsAllDayEvent": true,
 			"ShowAs": "Busy",
 			"Subject": "Jobbmesse",
+			"TAG_NoPersonInformation__c": true,
 			"WhatId": "@AccountRef1"
 		},
 		{
@@ -40,6 +42,7 @@
 			"IsAllDayEvent": false,
 			"ShowAs": "Busy",
 			"Subject": "Rekrutteringsbistand",
+			"TAG_NoPersonInformation__c": true,
 			"WhatId": "@AccountRef1"
 		},
 		{
@@ -54,6 +57,7 @@
 			"IsAllDayEvent": false,
 			"ShowAs": "Busy",
 			"Subject": "Hvordan håndtere vanskelige ansatte",
+			"TAG_NoPersonInformation__c": true,
 			"WhatId": "@AccountRef1"
 		},
 		{
@@ -68,6 +72,7 @@
 			"IsAllDayEvent": false,
 			"ShowAs": "Busy",
 			"Subject": "Tiltak for å redusere sykefravær",
+			"TAG_NoPersonInformation__c": true,
 			"WhatId": "@AccountRef1"
 		}
 	]
