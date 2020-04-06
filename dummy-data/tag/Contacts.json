@@ -1,48 +1,52 @@
 {
-    "records": [
-        {
-            "attributes": {
-                "type": "Contact",
-                "referenceId": "ContactRef1"
-            },
-            "Email": "berit.hansen@testepost.no",
-            "FirstName": "Berit",
-            "LastName": "Hansen",
-            "MobilePhone": "12345667",
-            "AccountId": "@AccountRef17"
-        },
-        {
-            "attributes": {
-                "type": "Contact",
-                "referenceId": "ContactRef2"
-            },
-            "Email": "olarsen@testepost.no",
-            "FirstName": "Ola",
-            "LastName": "Larsen",
-            "MobilePhone": "43563211",
-            "AccountId": "@AccountRef17"
-        },
-        {
-            "attributes": {
-                "type": "Contact",
-                "referenceId": "ContactRef3"
-            },
-            "Email": "gtonnesen@testepost.no",
-            "FirstName": "Geir",
-            "LastName": "Tønnesen",
-            "MobilePhone": "12345689",
-            "AccountId": "@AccountRef17"
-        },
-        {
-            "attributes": {
-                "type": "Contact",
-                "referenceId": "ContactRef4"
-            },
-            "Email": "knormann@testepost.no",
-            "FirstName": "Kari",
-            "LastName": "Normann",
-            "MobilePhone": "22123132",
-            "AccountId": "@AccountRef17"
-        }
-    ]
+	"records": [
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef1"
+			},
+			"Email": "berit.hansen@testepost.no",
+			"FirstName": "Berit",
+			"LastName": "Hansen",
+			"MobilePhone": "12345667",
+			"TAG_Informed__c": true,
+			"AccountId": "@AccountRef17"
+		},
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef2"
+			},
+			"Email": "olarsen@testepost.no",
+			"FirstName": "Ola",
+			"LastName": "Larsen",
+			"MobilePhone": "43563211",
+			"TAG_Informed__c": true,
+			"AccountId": "@AccountRef17"
+		},
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef3"
+			},
+			"Email": "gtonnesen@testepost.no",
+			"FirstName": "Geir",
+			"LastName": "Tønnesen",
+			"MobilePhone": "12345689",
+			"TAG_Informed__c": true,
+			"AccountId": "@AccountRef17"
+		},
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef4"
+			},
+			"Email": "knormann@testepost.no",
+			"FirstName": "Kari",
+			"LastName": "Normann",
+			"MobilePhone": "22123132",
+			"TAG_Informed__c": true,
+			"AccountId": "@AccountRef17"
+		}
+	]
 }
