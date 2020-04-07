@@ -1,7 +1,7 @@
 # crm-arbeidsgiver-integrasjon
 
 [![Build](https://github.com/navikt/crm-arbeidsgiver-base/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-base/actions?query=workflow%3ABuild)
-[![GitHub version](https://badge.fury.io/gh/navikt%2Fcrm-arbeidsgiver-base.svg)](https://badge.fury.io/gh/navikt%2Fcrm-arbeidsgiver-base)
+[![GitHub version](https://badgen.net/github/release/navikt/crm-arbeidsgiver-base/stable)](https://github.com/navikt/crm-arbeidsgiver-base)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-arbeidsgiver-base/blob/master/LICENSE)
 
 Denne pakken inneholder funksjonalitet og tilgangsstyring på arbeidsgiver-nivået. Blant annet:
