@@ -13,11 +13,11 @@ jobs:
           mkdir sfdx-cli
           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
           ./sfdx-cli/install
-
+      
       # Checkout the code in the pull request
       - name: "Checkout source code"
         uses: actions/checkout@v2
-
+      
       # Store secret for dev hub
       - name: "Populate auth file with PROD_SFDX_URL secret"
         shell: bash
@@ -72,17 +72,18 @@ jobs:
       # Create commit message by extracting the latest version number from sfdx-project.json
       - name: 'Build commit message'
         id: build-commit-message
-        run: echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+        run: |
+          echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+          cat sfdx-project.json
 
-      # Re-add changes back to source
-      - name: 'Commit changes'
-        uses: Automattic/action-commit-to-branch@master
+      # Create pull request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
         with:
-          branch: 'master'
-          commit_message: ${{steps.build-commit-message.outputs.message}}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+          title: ${{steps.build-commit-message.outputs.message}}
+          body: 'Please merge me to update version number.'
+          commit-message: ${{steps.build-commit-message.outputs.message}}
+
       # Add success reaction
       - name: "Add success reaction"
         if: success()

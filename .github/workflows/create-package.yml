@@ -101,7 +101,6 @@ jobs:
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
-
       # create github release
       - name: "Create Release - Success"
         if: success() && steps.package-version-create.outputs.isSuccess && steps.install-package-version-to-integration.outputs.isSuccess
