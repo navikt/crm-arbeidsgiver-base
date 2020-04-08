@@ -15,21 +15,11 @@
                 "../../activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
             ],
             "c/markdownViewer": [
-                "markdownViewer/markdownViewer.js"
+                "../../markdownViewer/lwc/markdownViewer/markdownViewer.js"
             ],
             "c/arbeidsplassenView": [
-                "../../arbeidsplassen/lwc/arbeidsplassenView/arbeidsplassenView.js"
+                "arbeidsplassenView/arbeidsplassenView.js"
             ]
-        },
-        "experimentalDecorators": true
-    },
-    "include": [
-        "**/*",
-        "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
+        }
     }
 }
