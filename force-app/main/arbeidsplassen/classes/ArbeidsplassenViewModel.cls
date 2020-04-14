@@ -13,7 +13,7 @@ public with sharing class ArbeidsplassenViewModel {
 	@AuraEnabled public Datetime published {get; set;}
 	@AuraEnabled public String title {get; set;}
 
-	public ArbeidsplassenViewModel( ArbeidsplassenModel.Content content ) {
+	public ArbeidsplassenViewModel( ArbeidsplassenRawModel.Content content ) {
 
 		applicationDue = stringToDate( content.applicationDue );
 		city = uppercaseFirstLetter( content.workLocations[0].city );

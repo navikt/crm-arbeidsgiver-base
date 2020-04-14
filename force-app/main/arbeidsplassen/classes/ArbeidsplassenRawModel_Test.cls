@@ -1,5 +1,6 @@
 @IsTest
-public class ArbeidsplassenModel_Test {
+public class ArbeidsplassenRawModel_Test {
+
 
 	public static String json = '{' +
 	                            '  \"content\": [' +
@@ -111,17 +112,17 @@ public class ArbeidsplassenModel_Test {
 
 	static testMethod void testParse() {
 
-		ArbeidsplassenModel r = ArbeidsplassenModel.parse( json );
+		ArbeidsplassenRawModel r = ArbeidsplassenRawModel.parse( json );
 		System.assert (r != null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
-		ArbeidsplassenModel.OccupationCategories objOccupationCategories = new ArbeidsplassenModel.OccupationCategories( System.JSON.createParser( json ) );
+		ArbeidsplassenRawModel.OccupationCategories objOccupationCategories = new ArbeidsplassenRawModel.OccupationCategories( System.JSON.createParser( json ) );
 		System.assert (objOccupationCategories != null);
 		System.assert (objOccupationCategories.level1 == null);
 		System.assert (objOccupationCategories.level2 == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
-		ArbeidsplassenModel.WorkLocations objWorkLocations = new ArbeidsplassenModel.WorkLocations( System.JSON.createParser( json ) );
+		ArbeidsplassenRawModel.WorkLocations objWorkLocations = new ArbeidsplassenRawModel.WorkLocations( System.JSON.createParser( json ) );
 		System.assert (objWorkLocations != null);
 		System.assert (objWorkLocations.address == null);
 		System.assert (objWorkLocations.city == null);
@@ -131,19 +132,19 @@ public class ArbeidsplassenModel_Test {
 		System.assert (objWorkLocations.postalCode == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
-		ArbeidsplassenModel objArbeidsplassenModel = new ArbeidsplassenModel( System.JSON.createParser( json ) );
-		System.assert (objArbeidsplassenModel != null);
-		System.assert (objArbeidsplassenModel.content == null);
-		System.assert (objArbeidsplassenModel.first == null);
-		System.assert (objArbeidsplassenModel.last == null);
-		System.assert (objArbeidsplassenModel.pageNumber == null);
-		System.assert (objArbeidsplassenModel.pageSize == null);
-		System.assert (objArbeidsplassenModel.sort_Z == null);
-		System.assert (objArbeidsplassenModel.totalElements == null);
-		System.assert (objArbeidsplassenModel.totalPages == null);
+		ArbeidsplassenRawModel objArbeidsplassenRawModel = new ArbeidsplassenRawModel( System.JSON.createParser( json ) );
+		System.assert (objArbeidsplassenRawModel != null);
+		System.assert (objArbeidsplassenRawModel.content == null);
+		System.assert (objArbeidsplassenRawModel.first == null);
+		System.assert (objArbeidsplassenRawModel.last == null);
+		System.assert (objArbeidsplassenRawModel.pageNumber == null);
+		System.assert (objArbeidsplassenRawModel.pageSize == null);
+		System.assert (objArbeidsplassenRawModel.sort_Z == null);
+		System.assert (objArbeidsplassenRawModel.totalElements == null);
+		System.assert (objArbeidsplassenRawModel.totalPages == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
-		ArbeidsplassenModel.Employer objEmployer = new ArbeidsplassenModel.Employer( System.JSON.createParser( json ) );
+		ArbeidsplassenRawModel.Employer objEmployer = new ArbeidsplassenRawModel.Employer( System.JSON.createParser( json ) );
 		System.assert (objEmployer != null);
 		System.assert (objEmployer.description == null);
 		System.assert (objEmployer.homepage == null);
@@ -151,7 +152,7 @@ public class ArbeidsplassenModel_Test {
 		System.assert (objEmployer.orgnr == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
-		ArbeidsplassenModel.Content objContent = new ArbeidsplassenModel.Content( System.JSON.createParser( json ) );
+		ArbeidsplassenRawModel.Content objContent = new ArbeidsplassenRawModel.Content( System.JSON.createParser( json ) );
 		System.assert (objContent != null);
 		System.assert (objContent.applicationDue == null);
 		System.assert (objContent.description == null);

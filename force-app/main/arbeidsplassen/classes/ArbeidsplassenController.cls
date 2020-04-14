@@ -9,10 +9,10 @@ public with sharing class ArbeidsplassenController {
 		}
 
 		HttpResponse response = ArbeidsplassenController.doCallout( acc[0].INT_OrganizationNumber__c );
-		ArbeidsplassenModel model = ArbeidsplassenModel.parse( response.getBody() );
+		ArbeidsplassenRawModel model = ArbeidsplassenRawModel.parse( response.getBody() );
 
 		List<ArbeidsplassenViewModel> viewModels = new List<ArbeidsplassenViewModel>();
-		for ( ArbeidsplassenModel.Content content : model.content ) {
+		for ( ArbeidsplassenRawModel.Content content : model.content ) {
 			viewModels.add( new ArbeidsplassenViewModel( content ) );
 		}
 

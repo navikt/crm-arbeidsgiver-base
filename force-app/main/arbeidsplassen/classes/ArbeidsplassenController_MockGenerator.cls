@@ -9,7 +9,7 @@ global class ArbeidsplassenController_MockGenerator implements HttpCalloutMock {
 		// Create a fake response
 		HttpResponse res = new HttpResponse();
 		res.setHeader( 'Content-Type', 'application/json' );
-		res.setBody( ArbeidsplassenModel_Test.json );
+		res.setBody( ArbeidsplassenRawModel_Test.json );
 		res.setStatusCode( 200 );
 
 		return res;

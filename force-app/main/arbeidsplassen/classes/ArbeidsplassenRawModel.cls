@@ -2,7 +2,7 @@
  * The model that will be used to deserialize the json returned from the API
  */
 
-public class ArbeidsplassenModel {
+public class ArbeidsplassenRawModel {
 
 	public class OccupationCategories {
 		public String level1 {get; set;}
@@ -174,7 +174,7 @@ public class ArbeidsplassenModel {
 	public Integer totalElements {get; set;}
 	public Integer totalPages {get; set;}
 
-	public ArbeidsplassenModel( JSONParser parser ) {
+	public ArbeidsplassenRawModel( JSONParser parser ) {
 		while ( parser.nextToken() != System.JSONToken.END_OBJECT ) {
 			if ( parser.getCurrentToken() == System.JSONToken.FIELD_NAME ) {
 				String text = parser.getText();
@@ -196,7 +196,7 @@ public class ArbeidsplassenModel {
 					} else if ( text == 'totalPages' ) {
 						totalPages = parser.getIntegerValue();
 					} else {
-						System.debug( LoggingLevel.WARN, 'ArbeidsplassenModel consuming unrecognized property: ' + text );
+						System.debug( LoggingLevel.WARN, 'ArbeidsplassenRawModel consuming unrecognized property: ' + text );
 						consumeObject( parser );
 					}
 				}
@@ -204,10 +204,10 @@ public class ArbeidsplassenModel {
 		}
 	}
 
-	public static ArbeidsplassenModel parse( String json ) {
+	public static ArbeidsplassenRawModel parse( String json ) {
 		System.JSONParser parser = System.JSON.createParser( json );
 
-		return new ArbeidsplassenModel( parser );
+		return new ArbeidsplassenRawModel( parser );
 	}
 
 	public static void consumeObject( System.JSONParser parser ) {

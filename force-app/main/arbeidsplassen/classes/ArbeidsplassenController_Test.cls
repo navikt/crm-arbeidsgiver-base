@@ -51,7 +51,7 @@ private without sharing class ArbeidsplassenController_Test {
 		String contentType = res.getHeader( 'Content-Type' );
 		System.assert (contentType == 'application/json');
 		String actualValue = res.getBody();
-		String expectedValue = ArbeidsplassenModel_Test.json;
+		String expectedValue = ArbeidsplassenRawModel_Test.json;
 		System.assertEquals( actualValue, expectedValue );
 		System.assertEquals( 200, res.getStatusCode() );
 	}
