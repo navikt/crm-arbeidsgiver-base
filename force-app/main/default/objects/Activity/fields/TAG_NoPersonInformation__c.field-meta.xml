@@ -3,7 +3,7 @@
     <fullName>TAG_NoPersonInformation__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <inlineHelpText>Notatet inneholder ikke personsensitive opplysninger</inlineHelpText>
+    <inlineHelpText>Notatfelt skal ikke inneholde opplysninger som kan knyttes til en enkeltperson/bruker</inlineHelpText>
     <label>No person information</label>
     <type>Checkbox</type>
 </CustomField>
