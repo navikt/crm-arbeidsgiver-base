@@ -51,6 +51,7 @@ export default class ArbeidsplassenView extends LightningElement {
 	updateColumnSorting(event) {
 		this.sortBy = event.detail.fieldName;
 		this.sortDirection = event.detail.sortDirection;
+
 		this.data = helper.sortData(this.data, this.sortBy, this.sortDirection);
 	}
 

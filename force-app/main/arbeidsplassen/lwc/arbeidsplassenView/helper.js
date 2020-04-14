@@ -1,4 +1,8 @@
+export { sortData };
+
 const sortData = (data, fieldname, direction) => {
+	console.log('sortBy: ' + fieldname);
+	console.log('sortDirection: ' + direction);
 	let parseData = JSON.parse(JSON.stringify(data)); // serialize the data before calling sort function
 	let keyValue = a => {
 		// Return the value stored in the field
