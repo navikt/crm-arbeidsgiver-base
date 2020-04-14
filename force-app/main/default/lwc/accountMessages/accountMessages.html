@@ -1,0 +1,33 @@
+<template>
+	<lightning-card>
+		<template if:true={accountHistory}>
+			<h3 slot="title">
+				<!--<lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>-->
+				Endringer i virksomheten:
+			</h3>
+			<template for:each={accountHistory} for:item="act">
+
+				<p key={act.Id}>
+					Dato:<lightning-formatted-date-time value={act.CreatedDate}></lightning-formatted-date-time>
+					Endring: {pact.Field}
+					Fra: {pact.OldValue}
+					Til: {pact.NewValue}</p>
+			</template>
+		</template>
+	</lightning-card>
+	<lightning-card>
+		<template if:true={parentAccountHistory}>
+			<h3 slot="title">
+				Endringer i overordnet enhet:
+			</h3>
+			<template for:each={parentAccountHistory} for:item="pact">
+
+				<p key={pact.Id}>
+					Dato:<lightning-formatted-date-time value={pact.CreatedDate}></lightning-formatted-date-time>
+					Endring: {pact.Field}
+					Fra: {pact.OldValue}
+					Til: {pact.NewValue}</p>
+			</template>
+		</template>
+	</lightning-card>
+</template>

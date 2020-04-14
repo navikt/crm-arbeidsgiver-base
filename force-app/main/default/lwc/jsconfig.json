@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/tagActivityTimeline": [
+                "../../activityTimeline/lwc/tagActivityTimeline/tagActivityTimeline.js"
+            ],
+            "c/tagActivityTimelineGroup": [
+                "../../activityTimeline/lwc/tagActivityTimelineGroup/tagActivityTimelineGroup.js"
+            ],
+            "c/tagActivityTimelineItem": [
+                "../../activityTimeline/lwc/tagActivityTimelineItem/tagActivityTimelineItem.js"
+            ],
+            "c/tagActivityTimelineNewObject": [
+                "../../activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
+            ],
+            "c/markdownViewer": [
+                "../../markdownViewer/lwc/markdownViewer/markdownViewer.js"
+            ]
+        }
+    }
+}
