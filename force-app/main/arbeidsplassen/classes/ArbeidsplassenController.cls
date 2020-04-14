@@ -6,22 +6,30 @@ public with sharing class ArbeidsplassenController {
 		List<Account> acc = [SELECT INT_OrganizationNumber__c FROM Account WHERE Id = : recordId LIMIT 1];
 		if ( acc.size() == 0 )  { throwAuraError(); }
 
-		HttpResponse response = ArbeidsplassenController.doCallout( acc[0].INT_OrganizationNumber__c );
-		ArbeidsplassenRawModel model = ArbeidsplassenRawModel.parse( response.getBody() );
+		ArbeidsplassenWrapperModel wrapper;
 
-		List<ArbeidsplassenViewModel> viewModels = new List<ArbeidsplassenViewModel>();
-		for ( ArbeidsplassenRawModel.Content content : model.content ) {
-			viewModels.add( new ArbeidsplassenViewModel( content ) );
+		try {
+
+			HttpResponse response = ArbeidsplassenController.doCallout( acc[0].INT_OrganizationNumber__c );
+			ArbeidsplassenRawModel model = ArbeidsplassenRawModel.parse( response.getBody() );
+
+			List<ArbeidsplassenViewModel> viewModels = new List<ArbeidsplassenViewModel>();
+			for ( ArbeidsplassenRawModel.Content content : model.content ) {
+				viewModels.add( new ArbeidsplassenViewModel( content ) );
+			}
+
+			wrapper = new ArbeidsplassenWrapperModel( model.totalElements, viewModels );
+
+		} catch ( Exception e ) {
+			throwAuraError();
 		}
-
-		ArbeidsplassenWrapperModel wrapper = new ArbeidsplassenWrapperModel( model.totalElements, viewModels );
 
 		return wrapper;
 	}
 
 	public static HttpResponse doCallout( String orgNumber ) {
 
-		List<AccessToken__c> accessTokens = [SELECT Token__c FROM AccessToken__c WHERE Name__c = 'arbeidsplassen' LIMIT 1];
+		List<AccessToken__c> accessTokens = [SELECT Token__c FROM AccessToken__c WHERE Name__c = 'arbeiddsplassen' LIMIT 1];
 		String accesToken = accessTokens.size() == 1 ? accessTokens[0].Token__c : '';
 
 		if ( accessTokens.size() == 0 ) { throwAuraError(); }
@@ -44,6 +52,6 @@ public with sharing class ArbeidsplassenController {
 	}
 
 	private static void throwAuraError() {
-		throw new AuraException( 'Feil ved henting av data fra arbeidsplassen.nav.no.\nVennligst prøv igjen senere, eller kontakt din nærmeste leder.' );
+		throw new AuraException( 'Feil ved henting av data fra arbeidsplassen.nav.no. Vennligst prøv igjen senere, eller kontakt din nærmeste leder.' );
 	}
 }
