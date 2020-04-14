@@ -1,33 +1,10 @@
 <template>
-	<lightning-card>
-		<template if:true={accountHistory}>
-			<h3 slot="title">
-				<!--<lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>-->
-				Endringer i virksomheten:
-			</h3>
-			<template for:each={accountHistory} for:item="act">
+	<lightning-card if:true={accountHistory} title="Endringer i virksomheten:" icon-name="utility:warning">
 
-				<p key={act.Id}>
-					Dato:<lightning-formatted-date-time value={act.CreatedDate}></lightning-formatted-date-time>
-					Endring: {pact.Field}
-					Fra: {pact.OldValue}
-					Til: {pact.NewValue}</p>
-			</template>
-		</template>
-	</lightning-card>
-	<lightning-card>
-		<template if:true={parentAccountHistory}>
-			<h3 slot="title">
-				Endringer i overordnet enhet:
-			</h3>
-			<template for:each={parentAccountHistory} for:item="pact">
+		<p if:true={isBankrupt} class="slds-p-horizontal_small">Virksomheten er slått konkurs</p>
+		<p if:true={isInLiquidation} class="slds-p-horizontal_small">Virksomheten er under avvikling</p>
+		<p if:true={isInForcedSettlementOrResolution} class="slds-p-horizontal_small">Virksomheten er under
+			tvangsavvikling</p>
 
-				<p key={pact.Id}>
-					Dato:<lightning-formatted-date-time value={pact.CreatedDate}></lightning-formatted-date-time>
-					Endring: {pact.Field}
-					Fra: {pact.OldValue}
-					Til: {pact.NewValue}</p>
-			</template>
-		</template>
 	</lightning-card>
 </template>
