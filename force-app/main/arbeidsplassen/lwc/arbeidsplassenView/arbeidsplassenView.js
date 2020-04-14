@@ -41,11 +41,12 @@ export default class ArbeidsplassenView extends LightningElement {
 
 			this.amount = result.data.amount;
 			this.data = result.data.models;
+			this.isLoading = false;
 
 		} else if (result.error) {
 			this.setError(result.error);
+			this.isLoading = false;
 		}
-		this.isLoading = false;
 	}
 
 	updateColumnSorting(event) {
