@@ -10,6 +10,7 @@ export default class ArbeidsplassenView extends LightningElement {
 
 	// fetch data
 	wiredData;
+	@track amount;
 	@track data;
 	@track columns = columns.columns;
 
@@ -22,7 +23,8 @@ export default class ArbeidsplassenView extends LightningElement {
 	deWire(result) {
 		this.wiredData = result;
 		if (result.data) {
-			this.data = result.data;
+			this.amount = result.data.amount;
+			this.data = result.data.models;
 		} else if (result.error) {
 			// this.setError(result.error);
 		}

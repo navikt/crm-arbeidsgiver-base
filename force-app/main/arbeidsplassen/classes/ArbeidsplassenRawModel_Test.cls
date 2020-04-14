@@ -1,7 +1,6 @@
 @IsTest
 public class ArbeidsplassenRawModel_Test {
 
-
 	public static String json = '{' +
 	                            '  \"content\": [' +
 	                            '    {' +

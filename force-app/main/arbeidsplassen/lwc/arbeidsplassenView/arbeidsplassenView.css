@@ -2,7 +2,7 @@
 	border: #dddbda 1px solid !important;
 }
 
-.slds-card__header, .slds-card__body, .slds-card__footer {
+.slds-card__header, .slds-card__body {
 	margin: 0;
 }
 
@@ -13,8 +13,4 @@
 
 .slds-card__body {
 	border-top: #dddbda 1px solid !important;
-}
-
-.slds-card__footer {
-	border-top: none !important;
 }

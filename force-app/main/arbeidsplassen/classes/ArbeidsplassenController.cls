@@ -1,7 +1,7 @@
 public with sharing class ArbeidsplassenController {
 
 	@AuraEnabled(cacheable = true)
-	public static List<ArbeidsplassenViewModel> getData( String recordId ) {
+	public static ArbeidsplassenWrapperModel getData( String recordId ) {
 
 		List<Account> acc = [SELECT INT_OrganizationNumber__c FROM Account WHERE Id = : recordId LIMIT 1];
 		if ( acc.size() == 0 )  {
@@ -16,7 +16,9 @@ public with sharing class ArbeidsplassenController {
 			viewModels.add( new ArbeidsplassenViewModel( content ) );
 		}
 
-		return viewModels;
+		ArbeidsplassenWrapperModel wrapper = new ArbeidsplassenWrapperModel( model.totalElements, viewModels );
+
+		return wrapper;
 	}
 
 	public static HttpResponse doCallout( String orgNumber ) {
