@@ -8,6 +8,7 @@ export default class AccountMessages extends LightningElement {
 	@track isBankrupt;
 	@track isInLiquidation;
 	@track isInForcedSettlementOrResolution;
+	@track eventDate;
 
 	accountHistory;
 	parentAccountHistory;
@@ -24,13 +25,14 @@ export default class AccountMessages extends LightningElement {
 					this.isBankrupt = result.isBankrupt;
 					this.isInLiquidation = result.isInLiquidation;
 					this.isInForcedSettlementOrResolution = result.isInForcedSettlementOrResolution;
+					this.eventDate = result.eventDate;
 				}
 				this.error = undefined;
 
 			})
 			.catch(error => {
 				this.error = error;
-				this.parentAccountHistory = undefined;
+				this.accountHistory = undefined;
 
 			})
 	}

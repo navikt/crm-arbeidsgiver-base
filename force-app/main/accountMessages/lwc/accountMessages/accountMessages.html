@@ -1,10 +1,19 @@
 <template>
 	<lightning-card if:true={accountHistory} title="Endringer i virksomheten:" icon-name="utility:warning">
 
+
+		<div if:true={isBankrupt} class="slds-p-horizontal_small">
+			<lightning-formatted-date-time value={eventDate}></lightning-formatted-date-time>
+			<p>Virksomheten er slått konkurs</p>
+		</div>
+		<p if:true={isInLiquidation} class="slds-p-horizontal_small">Virksomheten er under avvikling</p>
+		<p if:true={isInForcedSettlementOrResolution} class="slds-p-horizontal_small">Virksomheten er under
+			tvangsavvikling</p>
+	</lightning-card>
+	<lightning-card if:true={parentAccountHistory} title="Endringer i overordnet enhet:" icon-name="utility:warning">
 		<p if:true={isBankrupt} class="slds-p-horizontal_small">Virksomheten er slått konkurs</p>
 		<p if:true={isInLiquidation} class="slds-p-horizontal_small">Virksomheten er under avvikling</p>
 		<p if:true={isInForcedSettlementOrResolution} class="slds-p-horizontal_small">Virksomheten er under
 			tvangsavvikling</p>
-
 	</lightning-card>
 </template>
