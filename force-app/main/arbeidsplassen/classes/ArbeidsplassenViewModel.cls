@@ -5,13 +5,13 @@
 
 public with sharing class ArbeidsplassenViewModel {
 
-	public Date applicationDue {get; set;}
-	public String city {get; set;}
-	public String engagementtype {get; set;}
-	public String extent {get; set;}
-	public String link {get; set;}
-	public Datetime published {get; set;}
-	public String title {get; set;}
+	@AuraEnabled public Date applicationDue {get; set;}
+	@AuraEnabled public String city {get; set;}
+	@AuraEnabled public String engagementtype {get; set;}
+	@AuraEnabled public String extent {get; set;}
+	@AuraEnabled public String link {get; set;}
+	@AuraEnabled public Datetime published {get; set;}
+	@AuraEnabled public String title {get; set;}
 
 	public ArbeidsplassenViewModel( ArbeidsplassenModel.Content content ) {
 
