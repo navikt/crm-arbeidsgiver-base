@@ -9,7 +9,6 @@ public with sharing class ArbeidsplassenController {
 		ArbeidsplassenWrapperModel wrapper;
 
 		try {
-
 			HttpResponse response = ArbeidsplassenController.doCallout( acc[0].INT_OrganizationNumber__c );
 			ArbeidsplassenRawModel model = ArbeidsplassenRawModel.parse( response.getBody() );
 
@@ -29,7 +28,7 @@ public with sharing class ArbeidsplassenController {
 
 	public static HttpResponse doCallout( String orgNumber ) {
 
-		List<AccessToken__c> accessTokens = [SELECT Token__c FROM AccessToken__c WHERE Name__c = 'arbeiddsplassen' LIMIT 1];
+		List<AccessToken__c> accessTokens = [SELECT Token__c FROM AccessToken__c WHERE Name__c = 'arbeidsplassen' LIMIT 1];
 		String accesToken = accessTokens.size() == 1 ? accessTokens[0].Token__c : '';
 
 		if ( accessTokens.size() == 0 ) { throwAuraError(); }
