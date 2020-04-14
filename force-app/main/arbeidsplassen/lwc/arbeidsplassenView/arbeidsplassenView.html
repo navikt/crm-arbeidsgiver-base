@@ -21,11 +21,10 @@
 		</div>
 		<div class="slds-card__body">
 
-
 			<!-- _______________________________ DATATABLE ______________________________ -->
 			<!-- ________________________________________________________________________ -->
 
-			<lightning-datatable if:false={isLoading} key-field="id" data={data} columns={columns} hide-checkbox-column
+			<lightning-datatable if:true={showData} key-field="id" data={data} columns={columns} hide-checkbox-column
 				sorted-by={sortBy} sorted-direction={sortDirection} onsort={updateColumnSorting}
 				onrowaction={handleRowAction}>
 			</lightning-datatable>
@@ -41,9 +40,13 @@
 
 			<!-- _________________________________ ERROR ________________________________ -->
 			<!-- ________________________________________________________________________ -->
+
 			<div if:true={isError} class="slds-m-top_large">
+				<br>
 				<div class="slds-text-heading_large slds-align_absolute-center">Feil!</div>
-				<div class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large">{errorMsg}
+				<div
+					class="slds-text-color_destructive slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large">
+					{errorMsg}
 				</div>
 			</div>
 
@@ -52,10 +55,13 @@
 			<!-- ________________________________________________________________________ -->
 
 			<div if:true={isEmpty} class="slds-m-top_large">
+				<br>
 				<div class="slds-text-heading_large slds-align_absolute-center">Tomt!
 				</div>
-				<div class="slds-text-heading_small slds-align_absolute-center slds-m-around_x-large">
-					Ingen stillinger er utlyst.</div>
+				<div
+					class="slds-text-heading_small slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large">
+					Ingen stillinger er utlyst.
+				</div>
 			</div>
 
 		</div>

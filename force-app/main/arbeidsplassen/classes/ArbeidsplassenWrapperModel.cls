@@ -1,3 +1,4 @@
+
 public with sharing class ArbeidsplassenWrapperModel {
 
 	@AuraEnabled public Integer amount {get; set;}

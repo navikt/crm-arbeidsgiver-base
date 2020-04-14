@@ -1,11 +1,6 @@
 @isTest
 private without sharing class ArbeidsplassenController_Test {
 
-	@testSetup
-	private static void setup() {
-
-	}
-
 	@isTest
 	private static void testGetData() {
 

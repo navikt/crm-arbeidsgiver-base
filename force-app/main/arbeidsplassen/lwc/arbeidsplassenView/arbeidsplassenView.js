@@ -13,6 +13,7 @@ export default class ArbeidsplassenView extends LightningElement {
 	@track amount = 0;
 	@track data;
 	@track columns = columns.columns;
+	@track showData = false;
 
 	// error
 	@track isError = false;
@@ -35,23 +36,21 @@ export default class ArbeidsplassenView extends LightningElement {
 		this.wiredData = result;
 		if (result.data) {
 
-			if (result.data.amount == 0) { this.isEmpty = true; }
+			this.isEmpty = result.data.amount == 0;
+			this.showData = result.data.amount > 0;
 
-			this.isLoading = false;
 			this.amount = result.data.amount;
 			this.data = result.data.models;
 
 		} else if (result.error) {
 			this.setError(result.error);
-			this.isError = true;
-			this.isLoading = false;
 		}
+		this.isLoading = false;
 	}
 
 	updateColumnSorting(event) {
 		this.sortBy = event.detail.fieldName;
 		this.sortDirection = event.detail.sortDirection;
-
 		this.data = helper.sortData(this.data, this.sortBy, this.sortDirection);
 	}
 
@@ -70,9 +69,8 @@ export default class ArbeidsplassenView extends LightningElement {
 	}
 
 	setError(error) {
-		if (error.body && error.body.exceptionType && error.body.message) {
-			this.errorMsg = `[ ${error.body.exceptionType} ] : ${error.body.message}`;
-		} else if (error.body && error.body.message) {
+		this.isError = true;
+		if (error.body && error.body.message) {
 			this.errorMsg = `${error.body.message}`;
 		} else if (typeof error === String) {
 			this.errorMsg = error;

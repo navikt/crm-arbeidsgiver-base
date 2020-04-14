@@ -9,7 +9,7 @@ export default {
 			typeAttributes: { year: "numeric", month: "2-digit", day: "2-digit" },
 		},
 		{
-			label: "Frist",
+			label: "Søknadsfrist",
 			fieldName: "applicationDue",
 			type: "date-local",
 
