@@ -14,7 +14,7 @@ private without sharing class ArbeidsplassenController_Test {
 		Test.setMock( HttpCalloutMock.class, new ArbeidsplassenController_MockGenerator() );
 
 		Test.StartTest();
-		List<ArbeidsplassenViewModel> results = ArbeidsplassenController.getData( acc.Id );
+		List<ArbeidsplassenViewModel> results = ArbeidsplassenController.getData( acc.Id ).models;
 		Test.StopTest();
 
 		System.assertEquals( 2, results.size(), 'Two positions in the mock json' );
