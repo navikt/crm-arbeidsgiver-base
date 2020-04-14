@@ -1,29 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-	<label>Tjeneste</label>
-	<name>TAG_service__c</name>
-	<picklistValues>
-		<masterLabel>Forebyggende arbeidsmiljøarbeid</masterLabel>
-		<translation>
-			<!-- Forbyggende arbeidsmiljøarbeid -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Helse i arbeid</masterLabel>
-		<translation>
-			<!-- Helse i arbeid -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Redusere sykefravær</masterLabel>
-		<translation>
-			<!-- Redusere sykefravær -->
-		</translation>
-	</picklistValues>
-	<picklistValues>
-		<masterLabel>Vurder IA-oppdraget</masterLabel>
-		<translation>
-			<!-- Vurder IA-oppdraget -->
-		</translation>
-	</picklistValues>
+    <label>Tjeneste</label>
+    <name>TAG_service__c</name>
+    <picklistValues>
+        <masterLabel>Forebyggende arbeidsmiljøarbeid</masterLabel>
+        <translation><!-- Forebyggende arbeidsmiljøarbeid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Helse i arbeid</masterLabel>
+        <translation><!-- Helse i arbeid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Redusere sykefravær</masterLabel>
+        <translation><!-- Redusere sykefravær --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vurder IA-oppdraget</masterLabel>
+        <translation><!-- Vurder IA-oppdraget --></translation>
+    </picklistValues>
 </CustomFieldTranslation>
