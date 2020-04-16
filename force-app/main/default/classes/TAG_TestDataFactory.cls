@@ -30,6 +30,7 @@ public without sharing class TAG_TestDataFactory {
 		for ( Integer i = 0; i < amount; i++ ) {
 			Account acc = new Account();
 			acc.Name = 'test';
+			acc.INT_OrganizationNumber__c = '9000000000';
 
 			accounts.add( acc );
 		}

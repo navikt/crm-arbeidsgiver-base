@@ -1,0 +1,20 @@
+.slds-card {
+	border: #dddbda 1px solid !important;
+}
+
+.slds-card__header, .slds-card__body {
+	margin: 0;
+}
+
+.slds-card__header {
+	background-color: #f3f2f2;
+	padding: 1rem !important;
+}
+
+.slds-card__body {
+	border-top: #dddbda 1px solid !important;
+}
+
+.loading {
+	height: 5rem;
+}
