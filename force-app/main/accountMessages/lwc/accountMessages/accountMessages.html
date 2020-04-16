@@ -1,22 +1,25 @@
 <template>
+
 	<lightning-card if:true={accountHistory} title="Endringer i virksomheten:" icon-name="utility:warning">
+		<template for:each={accountHistory} for:item="history">
+			<div if:true={history.isBankrupt} key={history.counter} class="slds-p-horizontal_small">
+				<lightning-formatted-date-time value={history.eventDate}></lightning-formatted-date-time>
+				<p>Virksomheten er slått konkurs</p>
+			</div>
+			<div if:true={history.isInLiquidation} key={history.counter} class="slds-p-horizontal_small">
+				<lightning-formatted-date-time value={history.eventDate}></lightning-formatted-date-time>
+				<p>Virksomheten er under avvikling</p>
+			</div>
+			<div if:true={history.isInForcedSettlementOrResolution} key={history.counter}
+				class="slds-p-horizontal_small">
+				<lightning-formatted-date-time value={history.eventDate}></lightning-formatted-date-time>
+				<p>Virksomheten er under
+					tvangsavvikling</p>
+			</div>
 
 
-		<div if:true={isBankrupt} class="slds-p-horizontal_small">
-			<lightning-formatted-date-time value={eventDate}></lightning-formatted-date-time>
-			<p>Virksomheten er slått konkurs</p>
-		</div>
-		<div if:true={isInLiquidation} class="slds-p-horizontal_small">
-			<lightning-formatted-date-time value={eventDate}></lightning-formatted-date-time>
-			<p>Virksomheten er under avvikling</p>
-		</div>
-		<div if:true={isInForcedSettlementOrResolution} class="slds-p-horizontal_small">
-			<lightning-formatted-date-time value={eventDate}></lightning-formatted-date-time>
-			<p>Virksomheten er under
-				tvangsavvikling</p>
-		</div>
+		</template>
 	</lightning-card>
-
 	<lightning-card if:true={parentAccountHistory} title="Endringer i overordnet enhet:" icon-name="utility:warning">
 		<p if:true={isBankrupt} class="slds-p-horizontal_small">Virksomheten er slått konkurs</p>
 		<p if:true={isInLiquidation} class="slds-p-horizontal_small">Virksomheten er under avvikling</p>

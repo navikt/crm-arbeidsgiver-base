@@ -5,14 +5,8 @@ import { getRecord } from 'lightning/uiRecordApi';
 
 export default class AccountMessages extends LightningElement {
 	@api recordId;
-	@track isBankrupt;
-	@track isInLiquidation;
-	@track isInForcedSettlementOrResolution;
-	@track eventDate;
-
-	accountHistory;
+	@track accountHistory;
 	parentAccountHistory;
-
 
 	connectedCallback() {
 		this.loadData();
@@ -21,12 +15,6 @@ export default class AccountMessages extends LightningElement {
 		getData({ recordId: this.recordId })
 			.then(result => {
 				this.accountHistory = result;
-				if (result) {
-					this.isBankrupt = result.isBankrupt;
-					this.isInLiquidation = result.isInLiquidation;
-					this.isInForcedSettlementOrResolution = result.isInForcedSettlementOrResolution;
-					this.eventDate = result.eventDate;
-				}
 				this.error = undefined;
 
 			})
