@@ -61,7 +61,7 @@ jobs:
       - name: "Assign permsets"
         run: |
           for row in $(cat config/ssdx-config.json | jq -r '.permsets_to_assign[]'); do
-	          sfdx force:user:permset:assign -n ${row}
+          sfdx force:user:permset:assign -n ${row}
           done
 
       # Run Apex tests in scratch org
