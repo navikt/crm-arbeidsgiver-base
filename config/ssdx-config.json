@@ -1,0 +1,13 @@
+{
+	"locations": {
+		"dummy-data": "dummy-data",
+		"users": "config/users",
+		"manifests": "manifest",
+		"unpackagable": "unpackagable"
+	},
+	"permsets_to_assign": [
+		"TAG_NKS_default",
+		"TAG_default",
+		"Create_reports_and_dashboards"
+	]
+}
