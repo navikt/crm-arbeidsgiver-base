@@ -57,12 +57,12 @@ jobs:
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
       
-      # Assign permsets
-      - name: "Assign permsets"
-        run: |
-          for row in $(cat config/ssdx-config.json | jq -r '.permsets_to_assign[]'); do
-          sfdx force:user:permset:assign -n ${row}
-          done
+      # # Assign permsets
+      # - name: "Assign permsets"
+      #   run: |
+      #     for row in $(cat config/ssdx-config.json | jq -r '.permsets_to_assign[]'); do
+      #     sfdx force:user:permset:assign -n ${row}
+      #     done
 
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
