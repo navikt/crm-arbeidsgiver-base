@@ -30,7 +30,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		insert con;
 
 		Date d = Date.today();
-		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
+		Event ev = new Event( TAG_NoPersonInformation__c = false, WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
 		insert ev;
 
 		Test.StartTest();
