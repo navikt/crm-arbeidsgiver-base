@@ -5,11 +5,11 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 	private static void testGetActivityTimelineData_UpcomingTask() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Contact con = new Contact( LastName = 'Test' );
+		Contact con = new Contact( TAG_Informed__c = true, LastName = 'Test' );
 		insert con;
 
 		Date d = Date.today();
-		Task ta = new Task( WhatId = acc.Id, ActivityDate = d, Subject = 'test', WhoId = con.Id );
+		Task ta = new Task( TAG_NoPersonInformation__c = true, WhatId = acc.Id, ActivityDate = d, Subject = 'test', WhoId = con.Id );
 		insert ta;
 
 		Test.StartTest();
@@ -26,11 +26,11 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 	private static void testGetActivityTimelineData_UpcomingAllDayEvent() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Contact con = new Contact( LastName = 'Test' );
+		Contact con = new Contact( TAG_Informed__c = true, LastName = 'Test' );
 		insert con;
 
 		Date d = Date.today();
-		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
 		insert ev;
 
 		Test.StartTest();
@@ -47,11 +47,11 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 	private static void testGetActivityTimelineData_HistoricTask() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Contact con = new Contact( LastName = 'Test' );
+		Contact con = new Contact( TAG_Informed__c = true, LastName = 'Test' );
 		insert con;
 
 		Date d = Date.today().addDays( -2 );
-		Task ta = new Task( WhatId = acc.Id, ActivityDate = d, Subject = 'test', WhoId = con.Id );
+		Task ta = new Task( TAG_NoPersonInformation__c = true, WhatId = acc.Id, ActivityDate = d, Subject = 'test', WhoId = con.Id );
 		insert ta;
 
 		Test.StartTest();
@@ -72,11 +72,11 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 	private static void testGetActivityTimelineData_HistoricEvent() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Contact con = new Contact( LastName = 'Test' );
+		Contact con = new Contact( TAG_Informed__c = true, LastName = 'Test' );
 		insert con;
 
 		Date d = Date.today().addDays( -1 );
-		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = d, TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'i går', WhoId = con.Id );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = d, TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'i går', WhoId = con.Id );
 		insert ev;
 
 		Test.StartTest();
@@ -126,12 +126,12 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 	private static void testGetOverdueTasks() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'test' );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'test' );
 		insert ev;
-		Task ta = new Task( WhatId = acc.Id, ActivityDate = Date.today(), Subject = 'test' );
+		Task ta = new Task( TAG_NoPersonInformation__c = true, WhatId = acc.Id, ActivityDate = Date.today(), Subject = 'test' );
 		insert ta;
 		Date t = Date.today().addDays( -2 );
-		Task ta2 = new Task( WhatId = acc.Id, ActivityDate = t, Subject = 'test' );
+		Task ta2 = new Task( TAG_NoPersonInformation__c = true, WhatId = acc.Id, ActivityDate = t, Subject = 'test' );
 		insert ta2;
 
 		Test.StartTest();

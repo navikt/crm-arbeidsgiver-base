@@ -75,9 +75,9 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	private static void testGetSObjectsFromQueries() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Event ev = new Event( WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today() );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today() );
 		insert ev;
-		Task ta = new Task( WhatId = acc.Id, ActivityDate = Date.today() );
+		Task ta = new Task( TAG_NoPersonInformation__c = true, WhatId = acc.Id, ActivityDate = Date.today() );
 		insert ta;
 
 		String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( acc.Id );
