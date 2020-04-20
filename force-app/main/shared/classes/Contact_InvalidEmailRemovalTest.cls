@@ -9,7 +9,7 @@ private without sharing class Contact_InvalidEmailRemovalTest {
 	@isTest
 	private static void testRemoveInvalidEmail() {
 
-		Contact c = new Contact( LastName = 'test', InvalidEmail__c = 'test@feilepost' );
+		Contact c = new Contact( TAG_Informed__c = true, LastName = 'test', InvalidEmail__c = 'test@feilepost' );
 		insert c;
 
 		c = [SELECT Id, InvalidEmail__c, Email FROM Contact WHERE Id = : c.Id LIMIT 1];
@@ -31,7 +31,7 @@ private without sharing class Contact_InvalidEmailRemovalTest {
 	@isTest
 	private static void testRemoveInvalidEmail_updateWithInvalidEmail() {
 
-		Contact c = new Contact( LastName = 'test', InvalidEmail__c = 'test@feilepost' );
+		Contact c = new Contact( TAG_Informed__c = true, LastName = 'test', InvalidEmail__c = 'test@feilepost' );
 		insert c;
 
 		c = [SELECT Id, InvalidEmail__c, Email FROM Contact WHERE Id = : c.Id LIMIT 1];
