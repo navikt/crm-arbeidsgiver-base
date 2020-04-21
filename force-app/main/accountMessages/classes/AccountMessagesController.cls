@@ -15,7 +15,7 @@ public with sharing class AccountMessagesController {
 		        FROM AccountHistory
 		        WHERE
 		            ( Field = 'INT_IsInForcedSettlementOrResolution__c' OR Field = 'INT_IsInLiquidation__c' OR Field = 'INT_IsBankrupt__c' ) AND
-		            ( AccountId = : accountId )];
+		            ( AccountId = : accountId ) ORDER BY CreatedDate DESC];
 
 	}
 	@AuraEnabled
@@ -24,41 +24,58 @@ public with sharing class AccountMessagesController {
 
 		for ( Integer i = 0; i < historyList.size(); i++ ) {
 
-			Integer counter = +i;
-			String value;
 			Datetime eventDate = historyList[i].CreatedDate;
 			Object newValue = historyList[i].NewValue;
 			Object oldValue = historyList[i].OldValue;
 			String field = historyList[i].Field;
 
+			Integer counter = +i;
+			String value = 'Bedriften er ';
+
 			Boolean isNew = newValue == true && oldValue == false;
-			Boolean isOld = oldValue == true && newValue == false;
+			//Boolean isOld = oldValue == true && newValue == false;
 
 			if ( field == 'INT_IsBankrupt__c' ) {
-				value = 'isBankrupt';
+				if ( isNew ) {
+					value = value + 'konkurs';
+				} else {
+					value = value + 'ikke lenger konkurs';
+				}
 			}
+
 			if ( field == 'INT_IsInForcedSettlementOrResolution__c' ) {
-				value = 'isInForcedSettlementOrResolution';
+				if ( isNew ) {
+					value = value + 'under tvangsavvikling';
+				} else {
+					value = value + 'ikke lenger under tvangsavvikling';
+				}
 			}
 			if ( field == 'INT_IsInLiquidation__c' ) {
-				value = 'isInLiquidation';
+				if ( isNew ) {
+					value = value + 'under avvikling';
+				} else {
+					value = value + 'ikke lenger under avvikling';
+				}
 			}
+
 			/*Boolean isBankrupt;
 			       Boolean isInLiquidation;
 			       Boolean isInForcedSettlementOrResolution;*/
 
-			/*isBankrupt = (newValue == true && oldValue == false) &&
-			             (field  == 'INT_IsBankrupt__c');
+			/*Boolean isBankrupt = (newValue == true && oldValue == false) &&
+			                     (field  == 'INT_IsBankrupt__c');
 
-			   isInLiquidation = (newValue == true && oldValue == false) &&
-			                  (field == 'INT_IsInLiquidation__c');
+			   Boolean isInLiquidation = (newValue == true && oldValue == false) &&
+			                          (field == 'INT_IsInLiquidation__c');
 
-			   isInForcedSettlementOrResolution = (newValue == true && oldValue == false) &&
-			                                   (field == 'INT_IsInForcedSettlementOrResolution__c');*/
+			   Boolean isInForcedSettlementOrResolution = (newValue == true && oldValue == false) &&
+			                                           (field == 'INT_IsInForcedSettlementOrResolution__c');*/
 
 
-			//history = new AccountMessagesWrapper( isBankrupt, isInLiquidation, isInForcedSettlementOrResolution, eventDate, counter );
-			AccountMessagesWrapper history = new AccountMessagesWrapper( eventDate, counter, value, isNew, isOld );
+
+
+			//AccountMessagesWrapper history = new AccountMessagesWrapper( isBankrupt, isInLiquidation, isInForcedSettlementOrResolution, eventDate, counter, isOld );
+			AccountMessagesWrapper history = new AccountMessagesWrapper( eventDate, counter, value );
 			wrapper.add( history );
 		}
 

@@ -37,7 +37,7 @@ private without sharing class AccountMessagesController_Test {
 
 
 		List<AccountMessagesWrapper> wrapperList = new List<AccountMessagesWrapper>();
-		AccountMessagesWrapper wrapperElement = new AccountMessagesWrapper( eventDate, 0, historyList[0].Field, false, false );
+		AccountMessagesWrapper wrapperElement = new AccountMessagesWrapper( false, false, false, eventDate, 0, false );
 
 		wrapperList.add( wrapperElement );
 
