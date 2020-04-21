@@ -25,8 +25,6 @@ private without sharing class AccountMessagesController_Test {
 	private static void testConvertToWrapper() {
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 
-		Datetime eventDate = datetime.now();
-
 		List<AccountHistory> historyList = new List<AccountHistory>();
 		AccountHistory historyElement = new AccountHistory( AccountId = acc.Id, Field = 'INT_IsBankrupt__c' );
 		historyList.add( historyElement );
@@ -34,17 +32,11 @@ private without sharing class AccountMessagesController_Test {
 		historyList.add( historyElement );
 		historyElement = new AccountHistory( AccountId = acc.Id, Field = 'INT_IsInLiquidation__c' );
 		historyList.add( historyElement );
-
-
-		List<AccountMessagesWrapper> wrapperList = new List<AccountMessagesWrapper>();
-		AccountMessagesWrapper wrapperElement = new AccountMessagesWrapper( false, false, false, eventDate, 0, false );
-
-		wrapperList.add( wrapperElement );
+		insert historyList;
 
 		Test.StartTest();
 		List<AccountMessagesWrapper> result = AccountMessagesController.convertAccountHistoryToWrapper( historyList );
 		Test.StopTest();
-		System.debug( 'result' + result );
 		System.assertEquals( 3, result.size(), 'Three history record returned' );
 
 	}

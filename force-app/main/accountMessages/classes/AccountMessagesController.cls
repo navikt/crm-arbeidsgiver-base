@@ -16,12 +16,11 @@ public with sharing class AccountMessagesController {
 		        WHERE
 		            ( Field = 'INT_IsInForcedSettlementOrResolution__c' OR Field = 'INT_IsInLiquidation__c' OR Field = 'INT_IsBankrupt__c' ) AND
 		            ( AccountId = : accountId ) ORDER BY CreatedDate DESC];
-
 	}
 	@AuraEnabled
 	public static List<AccountMessagesWrapper> convertAccountHistoryToWrapper( List<AccountHistory> historyList ) {
 		List<AccountMessagesWrapper> wrapper = new List<AccountMessagesWrapper>();
-
+		System.debug( 'historyList' + historylist );
 		for ( Integer i = 0; i < historyList.size(); i++ ) {
 
 			Datetime eventDate = historyList[i].CreatedDate;
@@ -33,7 +32,6 @@ public with sharing class AccountMessagesController {
 			String value = 'Bedriften er ';
 
 			Boolean isNew = newValue == true && oldValue == false;
-			//Boolean isOld = oldValue == true && newValue == false;
 
 			if ( field == 'INT_IsBankrupt__c' ) {
 				if ( isNew ) {
@@ -57,24 +55,6 @@ public with sharing class AccountMessagesController {
 					value = value + 'ikke lenger under avvikling';
 				}
 			}
-
-			/*Boolean isBankrupt;
-			       Boolean isInLiquidation;
-			       Boolean isInForcedSettlementOrResolution;*/
-
-			/*Boolean isBankrupt = (newValue == true && oldValue == false) &&
-			                     (field  == 'INT_IsBankrupt__c');
-
-			   Boolean isInLiquidation = (newValue == true && oldValue == false) &&
-			                          (field == 'INT_IsInLiquidation__c');
-
-			   Boolean isInForcedSettlementOrResolution = (newValue == true && oldValue == false) &&
-			                                           (field == 'INT_IsInForcedSettlementOrResolution__c');*/
-
-
-
-
-			//AccountMessagesWrapper history = new AccountMessagesWrapper( isBankrupt, isInLiquidation, isInForcedSettlementOrResolution, eventDate, counter, isOld );
 			AccountMessagesWrapper history = new AccountMessagesWrapper( eventDate, counter, value );
 			wrapper.add( history );
 		}
