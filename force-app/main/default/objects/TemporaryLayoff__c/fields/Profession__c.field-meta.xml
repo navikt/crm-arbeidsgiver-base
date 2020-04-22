@@ -2,8 +2,19 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Profession__c</fullName>
     <externalId>false</externalId>
-    <label>Profession</label>
+    <label>Yrker</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Formann (flytekniske fag)</fullName>
+                <default>false</default>
+                <label>Formann (flytekniske fag)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
 </CustomField>
