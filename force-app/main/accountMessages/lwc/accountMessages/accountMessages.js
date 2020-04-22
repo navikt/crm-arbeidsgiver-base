@@ -5,7 +5,7 @@ import { getRecord } from 'lightning/uiRecordApi';
 export default class AccountMessages extends LightningElement {
 	@api recordId;
 	@track accountHistory;
-	display = false;
+	@track noData = true;
 
 	connectedCallback() {
 		this.loadData();
@@ -16,8 +16,8 @@ export default class AccountMessages extends LightningElement {
 				this.accountHistory = result;
 				this.error = undefined;
 				if (result.length > 0) {
-					this.display = true;
+					this.display = false;
 				}
-			})
+			});
 	}
 }
