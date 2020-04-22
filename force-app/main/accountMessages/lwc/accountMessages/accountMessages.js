@@ -16,7 +16,7 @@ export default class AccountMessages extends LightningElement {
 				this.accountHistory = result;
 				this.error = undefined;
 				if (result.length > 0) {
-					this.display = false;
+					this.noData = false;
 				}
 			});
 	}
