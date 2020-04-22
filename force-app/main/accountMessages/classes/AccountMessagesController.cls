@@ -28,7 +28,6 @@ public with sharing class AccountMessagesController {
 			Object oldValue = historyList[i].OldValue;
 			String field = historyList[i].Field;
 
-			Integer counter = +i;
 			String value = 'Bedriften er ';
 
 			Boolean isNew = newValue == true && oldValue == false;
@@ -55,7 +54,7 @@ public with sharing class AccountMessagesController {
 					value = value + 'ikke lenger under avvikling';
 				}
 			}
-			AccountMessagesWrapper history = new AccountMessagesWrapper( eventDate, counter, value );
+			AccountMessagesWrapper history = new AccountMessagesWrapper( eventDate, i, value );
 			wrapper.add( history );
 		}
 
