@@ -35,7 +35,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A2_8200310984</name>
+        <name>formula_2_myRule_1_A2_8733645472</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -46,7 +46,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_2733943768</name>
+        <name>formula_3_myRule_1_A1_5343371610</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -57,7 +57,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_4327561351</name>
+        <name>formula_4_myRule_1_A1_2284702131</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -65,14 +65,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].Status__c), TEXT(PRIORVALUE([TemporaryLayoff__c].Status__c)) = &quot;Ny&quot;, TEXT([TemporaryLayoff__c].Status__c) = &quot;Fulgt opp&quot;)</stringValue>
+                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].Status__c), TEXT(PRIORVALUE([TemporaryLayoff__c].Status__c)) = &quot;Ny&quot;, TEXT([TemporaryLayoff__c].Status__c) = &quot;Fullført, fulgt opp&quot;)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED({!myVariable_current.Status__c}), TEXT(PRIORVALUE({!myVariable_current.Status__c})) = &quot;Ny&quot;, TEXT({!myVariable_current.Status__c}) = &quot;Fulgt opp&quot;)</expression>
+        <expression>AND(ISCHANGED({!myVariable_current.Status__c}), TEXT(PRIORVALUE({!myVariable_current.Status__c})) = &quot;Ny&quot;, TEXT({!myVariable_current.Status__c}) = &quot;Fullført, fulgt opp&quot;)</expression>
     </formulas>
-    <interviewLabel>Temporary_Layoff_Update-3_InterviewLabel</interviewLabel>
+    <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
     <label>Temporary Layoff Update</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -140,7 +140,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_2733943768</elementReference>
+                <elementReference>formula_3_myRule_1_A1_5343371610</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -170,7 +170,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_4327561351</elementReference>
+                <elementReference>formula_4_myRule_1_A1_2284702131</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -539,7 +539,56 @@
             <field>Status__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Fulgt opp</stringValue>
+                <stringValue>Fullført, fulgt opp</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Fullført, ikke fulgt opp</stringValue>
             </value>
         </filters>
         <inputAssignments>
@@ -575,7 +624,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A2_8200310984</elementReference>
+                <elementReference>formula_2_myRule_1_A2_8733645472</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>
