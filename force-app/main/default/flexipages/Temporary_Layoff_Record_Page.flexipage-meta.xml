@@ -24,13 +24,6 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>fieldName</name>
-                <value>OtherComments__c</value>
-            </componentInstanceProperties>
-            <componentName>markdownViewer</componentName>
-        </componentInstances>
         <mode>Replace</mode>
         <name>main</name>
         <type>Region</type>
