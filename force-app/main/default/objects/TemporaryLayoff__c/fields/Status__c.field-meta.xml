@@ -16,9 +16,14 @@
                 <label>Ny</label>
             </value>
             <value>
-                <fullName>Fulgt opp</fullName>
+                <fullName>Fullført, fulgt opp</fullName>
                 <default>false</default>
-                <label>Fulgt opp</label>
+                <label>Fullført, fulgt opp</label>
+            </value>
+            <value>
+                <fullName>Fullført, ikke fulgt opp</fullName>
+                <default>false</default>
+                <label>Fullført, ikke fulgt opp</label>
             </value>
         </valueSetDefinition>
     </valueSet>
