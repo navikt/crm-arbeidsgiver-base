@@ -1,5 +1,5 @@
 <template>
-	<lightning-card if:true={display} title="Endringer i virksomheten:" icon-name="utility:warning">
+	<lightning-card title="Endringer i virksomheten:" icon-name="utility:warning">
 		<template for:each={accountHistory} for:item="history">
 			<div class="slds-p-horizontal_small" key={history.counter}>
 				<lightning-formatted-date-time key={history.counter} value={history.eventDate}>
@@ -7,5 +7,8 @@
 				<p key={history.counter}>{history.field}</p>
 			</div>
 		</template>
+		<div if:true={noData}>
+			<p class="slds-p-horizontal_small">Ingen endringer</p>
+		</div>
 	</lightning-card>
 </template>
