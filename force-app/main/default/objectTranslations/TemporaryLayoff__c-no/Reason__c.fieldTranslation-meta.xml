@@ -2,4 +2,28 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Årsak</label>
     <name>Reason__c</name>
+    <picklistValues>
+        <masterLabel>Andre årsaker</masterLabel>
+        <translation><!-- Andre årsaker --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Arbeidskonflikt eller streik</masterLabel>
+        <translation><!-- Arbeidskonflikt eller streik --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Brann</masterLabel>
+        <translation><!-- Brann --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mangel på arbeid eller oppdrag</masterLabel>
+        <translation><!-- Mangel på arbeid eller oppdrag --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pålegg fra offentlig myndighet</masterLabel>
+        <translation><!-- Pålegg fra offentlig myndighet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Råstoffmangel</masterLabel>
+        <translation><!-- Råstoffmangel --></translation>
+    </picklistValues>
 </CustomFieldTranslation>
