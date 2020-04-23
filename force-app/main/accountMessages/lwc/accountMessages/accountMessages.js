@@ -14,9 +14,8 @@ export default class AccountMessages extends LightningElement {
 		getData({ recordId: this.recordId })
 			.then(result => {
 				this.accountHistory = result;
-				this.error = undefined;
 				if (result.length > 0) {
-					this.display = false;
+					this.noData = false;
 				}
 			});
 	}
