@@ -1,30 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-	<fullName>Type__c</fullName>
-	<externalId>false</externalId>
-	<label>Type</label>
-	<required>false</required>
-	<trackTrending>false</trackTrending>
-	<type>Picklist</type>
-	<valueSet>
-		<restricted>false</restricted>
-		<valueSetDefinition>
-			<sorted>false</sorted>
-			<value>
-				<fullName>MASSEOPPSIGELSE</fullName>
-				<default>false</default>
-				<label>Masseoppsigelse</label>
-			</value>
-			<value>
-				<fullName>PERMITTERING_UTEN_LØNN</fullName>
-				<default>false</default>
-				<label>Permittering uten lønn</label>
-			</value>
-			<value>
-				<fullName>INNSKRENKNING_I_ARBEIDSTID</fullName>
-				<default>false</default>
-				<label>Innskrenkning i arbeidstid</label>
-			</value>
-		</valueSetDefinition>
-	</valueSet>
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MASSEOPPSIGELSE</fullName>
+                <color>#990000</color>
+                <default>false</default>
+                <label>Masseoppsigelse</label>
+            </value>
+            <value>
+                <fullName>PERMITTERING_UTEN_LØNN</fullName>
+                <color>#CC9933</color>
+                <default>false</default>
+                <label>Permittering uten lønn</label>
+            </value>
+            <value>
+                <fullName>INNSKRENKNING_I_ARBEIDSTID</fullName>
+                <color>#3333FF</color>
+                <default>false</default>
+                <label>Innskrenkning i arbeidstid</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>
