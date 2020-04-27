@@ -19,8 +19,16 @@ public with sharing class AccountMessagesController {
 		            ( AccountId = : accountId ) ORDER BY CreatedDate DESC];
 	}
 	@AuraEnabled
+	public static List<Account> queryAccounts( Id recordId ) {
+		List<Account> accountList = [SELECT Id, CreatedDate, INT_IsBankrupt__c, INT_IsInLiquidation__c, INT_IsInForcedSettlementOrResolution__c FROM Account WHERE ( INT_IsBankrupt__c = TRUE OR INT_IsInForcedSettlementOrResolution__c = TRUE OR INT_IsInLiquidation__c = TRUE ) AND Id = : recordId];
+		System.debug( accountList );
+
+		return accountList;
+	}
+	@AuraEnabled
 	public static List<AccountMessagesWrapper> convertAccountHistoryToWrapper( List<AccountHistory> historyList, List<Account> accountList ) {
 		List<AccountMessagesWrapper> wrapper = new List<AccountMessagesWrapper>();
+
 		String isBankruptValue = 'Bedriften er konkurs';
 		String isInForcedSettlemetValue = 'Bedriften er under tvangsavvikling';
 		String isInLiquidationValue = 'Bedriften er under avvikling';
@@ -29,10 +37,10 @@ public with sharing class AccountMessagesController {
 
 		for ( Integer i = 0; i < historyList.size(); i++ ) {
 
-			eventDate = historyList[i].CreatedDate;
 			Object newValue = historyList[i].NewValue;
 			Object oldValue = historyList[i].OldValue;
 			String field = historyList[i].Field;
+			eventDate = historyList[i].CreatedDate;
 
 			Boolean isNew = newValue == true && oldValue == false;
 
@@ -63,7 +71,8 @@ public with sharing class AccountMessagesController {
 			wrapper.add( history );
 		}
 
-		if ( historyList.size() < 0 && accountList.size() > 0 ) {
+		if ( historyList.isEmpty() && !accountList.isEmpty() ) {
+
 			for ( Integer i = 0; i < accountList.size(); i++ ) {
 				Boolean isBankrupt = accountList[i].INT_IsBankrupt__c;
 				Boolean isInLiquidation = accountList[i].INT_IsInLiquidation__c;
@@ -73,33 +82,20 @@ public with sharing class AccountMessagesController {
 
 				if ( isBankrupt ) {
 					value = isBankruptValue;
-					account = new AccountMessagesWrapper( eventDate, i, value );
-					wrapper.add( account );
+					wrapper.add( account = new AccountMessagesWrapper( eventDate, i, value ) );
 				}
 				if ( isInLiquidation ) {
 					value = isInLiquidationValue;
-					account = new AccountMessagesWrapper( eventDate, i, value );
-					wrapper.add( account );
+					wrapper.add( account = new AccountMessagesWrapper( eventDate, i, value ) );
 				}
 				if ( isInForcedSettlemet ) {
 					value = isInForcedSettlemetValue;
-					account = new AccountMessagesWrapper( eventDate, i, value );
-					wrapper.add( account );
+					wrapper.add( account = new AccountMessagesWrapper( eventDate, i, value ) );
 				}
-
-				/*AccountMessagesWrapper account = new AccountMessagesWrapper( eventDate, i, value );
-				   wrapper.add( account );*/
 			}
 		}
 
 		return wrapper;
-	}
-	@AuraEnabled
-	public static List<Account> queryAccounts( Id recordId ) {
-		List<Account> accountList = [SELECT Id, CreatedDate, INT_IsBankrupt__c, INT_IsInLiquidation__c, INT_IsInForcedSettlementOrResolution__c FROM Account WHERE ( INT_IsBankrupt__c = TRUE OR INT_IsInForcedSettlementOrResolution__c = TRUE OR INT_IsInLiquidation__c = TRUE ) AND Id = : recordId];
-		System.debug( accountList );
-
-		return accountList;
 	}
 }
 
