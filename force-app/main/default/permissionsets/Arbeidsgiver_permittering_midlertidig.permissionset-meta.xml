@@ -316,6 +316,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TemporaryLayoff__c.TAG_Account_zip__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.TAG_Industry_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
