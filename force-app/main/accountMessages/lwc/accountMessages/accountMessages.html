@@ -1,5 +1,7 @@
 <template>
-	<lightning-card title="Endringer fra enhetsregisteret" icon-name="utility:warning">
+	<lightning-card title="Endringer fra enhetsregisteret" variant="Narrow" icon-name="standard:recent">
+		<div style="border-bottom: 1px solid #d3d3d3;"></div>
+		</br>
 		<template for:each={accountHistory} for:item="history">
 			<div class="slds-p-horizontal_small" key={history.counter}>
 				<lightning-formatted-date-time key={history.counter} value={history.eventDate}>
