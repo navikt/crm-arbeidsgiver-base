@@ -331,6 +331,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TemporaryLayoff__c.TAG_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
