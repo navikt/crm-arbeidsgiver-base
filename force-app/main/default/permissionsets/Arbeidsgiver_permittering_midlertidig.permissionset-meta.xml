@@ -170,6 +170,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.Running_User_Office__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Event.TAG_ActivityType__c</field>
         <readable>true</readable>
@@ -177,6 +182,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Event.TAG_NoPersonInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.TAG_Running_User_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -215,6 +225,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.Running_User_Office__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Task.TAG_ActivityType__c</field>
         <readable>true</readable>
@@ -222,6 +237,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.TAG_NoPersonInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.TAG_Running_User_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -322,6 +342,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>TemporaryLayoff__c.TAG_Industry_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TemporaryLayoff__c.TAG_Is_My_NAV_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
