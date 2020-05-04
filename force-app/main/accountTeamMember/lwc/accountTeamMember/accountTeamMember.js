@@ -28,39 +28,34 @@ const columns = [
 
 export default class AccountTeamMember extends NavigationMixin(LightningElement) {
 	@api recordId;
-
 	@track data;
 	@track columns = columns;
-	@track record = [];
-	//@track bShowModal = false;
-	@track currentRecordId;
-	@track isEditForm = false;
-	@track showLoadingSpinner = false;
+	@track showModal = false;
 
-	selectedRecords = [];
 	refreshTable;
 	error;
 	userId = Id;
-	@track showModal = false;
-	@track userName;
+
 
 
 	@wire(getData, { recordId: '$recordId' })
 	member(result) {
-		this.refreshTable = result.data;
-		this.data = result.data;
-		console.log('result', result);
-		console.log('this.data', this.data);
 
+		if (result.data) {
+			this.refreshTable = result;
+			this.data = result.data;
 
-		/*		for (let i = 0; i < result.data.length; i++) {
-					let row = result[i];
-					userName = row.User.Name;
-					console.log('row', row)
-					console.log('userName', row.User.Name);
-		
-		
-				} */
+			let dataList = [];
+			this.data.forEach(element => {
+				let dataElement = {};
+				dataElement.Id = element.Id;
+				dataElement.UserId = element.User.Name;
+				dataElement.TeamMemberRole = element.TeamMemberRole;
+				dataList.push(dataElement);
+			});
+
+			this.data = dataList;
+		}
 	}
 
 
@@ -80,18 +75,11 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 	}
 
 	deleteRow(currentRow) {
-		let currentRecord = [];
-		currentRecord.push(currentRow.Id);
-		this.showLoadingSpinner = true;
-
 		deleteTeamMember({ atmId: currentRow.Id })
 			.then(result => {
-				window.console.log('result ====> ' + result);
-				this.showLoadingSpinner = false;
-
 				this.dispatchEvent(new ShowToastEvent({
-					title: 'Success!!',
-					message: currentRow.UserId + ' ' + currentRow.TeamMemberRole + ' deleted.',
+					title: 'Success',
+					message: 'Kontaktperson ' + currentRow.UserId + ' slettet ',
 					variant: 'success'
 				}));
 
@@ -101,7 +89,7 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 			.catch(error => {
 				window.console.log('Error ====> ' + error);
 				this.dispatchEvent(new ShowToastEvent({
-					title: 'Error!!',
+					title: 'Error',
 					message: error.message,
 					variant: 'error'
 				}));
@@ -129,12 +117,12 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 				objectApiName: 'AccountTeamMember',
 				actionName: 'new'
 			}, state: {
-				//nooverride: '1',
+				nooverride: '1',
 				navigationLocation: 'LOOKUP',
 				defaultFieldValues: defaultValues
 			}
 		});
 		// refreshing table data using refresh apex
-		//return refreshApex(this.refreshTable);
+		return refreshApex(this.refreshTable);
 	}
 }
