@@ -1,7 +1,6 @@
 {
-	"orgName": "NAV VIRKSOMHETSLØSNINGER",
+	"orgName": "NAV Salesforce",
 	"edition": "Enterprise",
-	"release": "Current",
 	"adminEmail": "fakeemail@nav.no.scratchorg",
 	"features": [
 		"Sites",
@@ -15,7 +14,8 @@
 		"ServiceCloud",
 		"LiveAgent",
 		"LightningServiceConsole",
-		"ContactsToMultipleAccounts"
+		"ContactsToMultipleAccounts",
+		"FIELDSERVICE"
 	],
 	"country": "NO",
 	"language": "en_US",
@@ -25,12 +25,6 @@
 		},
 		"lightningExperienceSettings": {
 			"enableS1DesktopEnabled": true
-		},
-		"omniChannelSettings": {
-			"enableOmniChannel": true
-		},
-		"liveAgentSettings": {
-			"enableLiveAgent": true
 		},
 		"languageSettings": {
 			"enableTranslationWorkbench": true

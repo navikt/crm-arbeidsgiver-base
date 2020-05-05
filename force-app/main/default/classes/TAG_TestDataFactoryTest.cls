@@ -58,8 +58,6 @@ private without sharing class TAG_TestDataFactoryTest {
 	@IsTest
 	private static void testGetTemporaryLayoffs() {
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		acc.ShippingPostalCode = '5162';
-		acc.INT_MunicipalityNumber__c = '4601';
 		update acc;
 		Integer amount = 4;
 		Test.StartTest();

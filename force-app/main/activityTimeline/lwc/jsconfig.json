@@ -2,6 +2,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+            "c/accountMessages": [
+                "../../accountMessages/lwc/accountMessages/accountMessages.js"
+            ],
             "c/tagActivityTimeline": [
                 "tagActivityTimeline/tagActivityTimeline.js"
             ],
@@ -13,6 +16,9 @@
             ],
             "c/tagActivityTimelineNewObject": [
                 "tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
+            ],
+            "c/arbeidsplassenView": [
+                "../../arbeidsplassen/lwc/arbeidsplassenView/arbeidsplassenView.js"
             ],
             "c/markdownViewer": [
                 "../../markdownViewer/lwc/markdownViewer/markdownViewer.js"
