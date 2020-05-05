@@ -12,7 +12,7 @@ import Id from '@salesforce/user/Id';
 
 
 const actions = [
-	{ label: 'Delete', name: 'delete' },
+	{ label: 'Slett', name: 'delete' },
 ];
 
 const columns = [
@@ -27,6 +27,7 @@ const columns = [
 export default class AccountTeamMember extends NavigationMixin(LightningElement) {
 	@api recordId;
 	@track data;
+	@track amount = 0;
 	@track columns = columns;
 
 	refreshTable;
@@ -36,10 +37,10 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 
 	@wire(getData, { recordId: '$recordId' })
 	member(result) {
-
+		this.refreshTable = result;
 		if (result.data) {
-			this.refreshTable = result;
 			this.data = result.data;
+			this.amount = result.data.length;
 
 			let dataList = [];
 			this.data.forEach(element => {
@@ -90,6 +91,7 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 	}
 
 	navigateToNewRecordPage() {
+
 		const defaultValues = encodeDefaultFieldValues({
 			AccountId: this.recordId,
 			UserId: this.userId
@@ -102,12 +104,12 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 				actionName: 'new'
 
 			}, state: {
-				//nooverride: '1',
-				navigationLocation: 'LOOKUP',
+				navigationLocation: 'RELATED_LIST',
 				defaultFieldValues: defaultValues
 			}
 		});
-
+	}
+	refreshData() {
 		return refreshApex(this.refreshTable);
 	}
 }

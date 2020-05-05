@@ -9,10 +9,13 @@
 				<div class="slds-media__body">
 					<h2 class="slds-card__header-title">
 						<p class="slds-card__header-link slds-truncate">
-							<span>Kontaktpersoner i NAV</span>
+							<span>Kontaktpersoner i NAV ({amount})</span>
 						</p>
 					</h2>
 				</div>
+				<lightning-button-icon icon-name="action:refresh" style="background-color:white;"
+					alternative-text="Refresh data" onclick={refreshData}>
+				</lightning-button-icon>
 				<lightning-button label="Ny kontakperson" title="Ny kontaktperson" onclick={navigateToNewRecordPage}
 					class="slds-m-right_x-small"></lightning-button>
 			</header>
