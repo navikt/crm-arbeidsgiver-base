@@ -24,11 +24,12 @@ private without sharing class Process_SendEmailTest {
 		Process_SendEmail.sendEmail( new List<Process_SendEmail.Request> { req } );
 		Test.StopTest();
 
-		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress, ActivityId FROM EmailMessage];
 
 		System.assertEquals( 1, emails.size(), 'Only one email sent, only one EmailMessage created' );
 		System.assertEquals( '<html><p>Hi test test. This is regarding Permittering uten lønn.</p></html>', emails[0].HtmlBody, 'The new html body should have converted all variables ( {{{ var }}} )' );
 		System.assertEquals( 'tore.toresen@example.com', emails[0].ToAddress, 'Sent to contact email' );
+		System.assertEquals( null, emails[0].ActivityId, 'No task should be made' );
 	}
 
 	@isTest
