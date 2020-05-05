@@ -12,9 +12,4 @@ public without sharing class accountTeamMemberController {
 		delete recordToDelete;
 	}
 
-	@AuraEnabled
-	public static void addTeamMember( Id recordId, Id userId, String role ) {
-		AccountTeamMember memberToInsert = new AccountTeamMember( AccountId = recordId, UserId = userId, TeamMemberRole = role );
-		insert memberToInsert;
-	}
 }
