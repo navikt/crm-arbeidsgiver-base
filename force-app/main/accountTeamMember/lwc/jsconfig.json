@@ -1,13 +1,12 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
             "c/accountMessages": [
-                "accountMessages/accountMessages.js"
+                "../../accountMessages/lwc/accountMessages/accountMessages.js"
             ],
             "c/accountTeamMember": [
-                "../../accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
+                "accountTeamMember/accountTeamMember.js"
             ],
             "c/tagActivityTimeline": [
                 "../../activityTimeline/lwc/tagActivityTimeline/tagActivityTimeline.js"
@@ -27,7 +26,8 @@
             "c/markdownViewer": [
                 "../../markdownViewer/lwc/markdownViewer/markdownViewer.js"
             ]
-        }
+        },
+        "experimentalDecorators": true
     },
     "include": [
         "**/*",
