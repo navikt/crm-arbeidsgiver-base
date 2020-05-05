@@ -5,7 +5,7 @@ global without sharing class Process_SendEmail {
 
 		List<OrgWideEmailAddress> orgWideAdresses = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'do-not-reply@nav.no' LIMIT 1];
 		Id orgWideEmailId = orgWideAdresses.size() == 1 ? orgWideAdresses[0].Id : null;
-		Map<String, Id> templateMap = Process_SendEmailHelper.fetMapOfEmailTemplates( requests );
+		Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates( requests );
 
 		List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
 
@@ -18,6 +18,8 @@ global without sharing class Process_SendEmail {
 			if ( templateId != null ) { message.setTemplateId( templateId ); }
 			message.setWhatId( req.relatedTo );
 			message.setTargetObjectId( req.recipientContactId );
+			message.setSaveAsActivity( true );
+
 			messages.add( message );
 		}
 

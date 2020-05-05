@@ -1,6 +1,6 @@
 public without sharing class Process_SendEmailHelper {
 
-	public static Map<String, Id> fetMapOfEmailTemplates( List<Process_SendEmail.Request> requests ) {
+	public static Map<String, Id> getMapOfEmailTemplates( List<Process_SendEmail.Request> requests ) {
 
 		Map<String, Id> templateMap = new Map<String, Id>();
 		Set<String> templateNames = new Set<String>();

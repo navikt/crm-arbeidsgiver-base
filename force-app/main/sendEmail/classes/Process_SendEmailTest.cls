@@ -12,7 +12,7 @@ private without sharing class Process_SendEmailTest {
 		Contact con = new Contact( TAG_Informed__c = true, LastName = 'test', FirstName = 'test', Email = 'tore.toresen@example.com' );
 		insert con;
 
-		TemporaryLayoff__c tl = new TemporaryLayoff__c( KafkaId__c = 'test', Contact__c = con.Id, Type__c = 'PERMITTERING', ContactEmail__c = 'tore.toresen@example.com' );
+		TemporaryLayoff__c tl = new TemporaryLayoff__c( KafkaId__c = 'test', Contact__c = con.Id, Type__c = 'PERMITTERING_UTEN_LØNN', ContactEmail__c = 'tore.toresen@example.com' );
 		insert tl;
 
 		Process_SendEmail.Request req = new Process_SendEmail.Request();
@@ -27,18 +27,18 @@ private without sharing class Process_SendEmailTest {
 		List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 
 		System.assertEquals( 1, emails.size(), 'Only one email sent, only one EmailMessage created' );
-		System.assertEquals( '<html><p>Hi test test. This is regarding Permittering.</p></html>', emails[0].HtmlBody, 'The new html body should have converted all variables ( {{{ var }}} )' );
+		System.assertEquals( '<html><p>Hi test test. This is regarding Permittering uten lønn.</p></html>', emails[0].HtmlBody, 'The new html body should have converted all variables ( {{{ var }}} )' );
 		System.assertEquals( 'tore.toresen@example.com', emails[0].ToAddress, 'Sent to contact email' );
 	}
 
 	@isTest
-	private static void testfetMapOfEmailTemplates() {
+	private static void testGetMapOfEmailTemplates() {
 
 		Process_SendEmail.Request req = new Process_SendEmail.Request();
 		req.emailTemplateName = 'testEmailTemplate';
 
 		Test.StartTest();
-		Map<String, Id> templateMap = Process_SendEmailHelper.fetMapOfEmailTemplates( new List<Process_SendEmail.Request> { req } );
+		Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates( new List<Process_SendEmail.Request> { req } );
 		Test.StopTest();
 
 		Id expected = [SELECT Id, Name FROM EmailTemplate WHERE Name = 'testEmailTemplate' LIMIT 1].Id;
