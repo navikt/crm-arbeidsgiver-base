@@ -81,7 +81,7 @@ jobs:
         uses: peter-evans/create-pull-request@v2
         with:
           title: ${{steps.build-commit-message.outputs.message}}
-          body: 'Please merge me to update version number.'
+          body: 'Please merge me to update version number. * You do NOT have to wait for tests to finish, because they will never finish! *'
           commit-message: ${{steps.build-commit-message.outputs.message}}
 
       # Add success reaction
