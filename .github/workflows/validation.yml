@@ -43,7 +43,11 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        run: "sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1"
+        id: createScratchOrg
+        run: |
+          sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1
+          echo "::set-output name=loginUrl::Login to Scratch Org: $(sfdx force:org:open -u scratch-org --json | jq -r '.result.url' ) (valid for 24 hours)"
+          
 
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
@@ -57,12 +61,21 @@ jobs:
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
       
+      # Slack Notification
+      - name: "Slack Notification"
+        uses: rtCamp/action-slack-notify@v2.0.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: 'Scratch Organization Aficionado'
+          SLACK_MESSAGE: ${{steps.createScratchOrg.outputs.loginUrl}}
+          
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
         # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"
         run: sfdx force:source:deploy -m ApexClass --testlevel=RunLocalTests --checkonly
 
-      # Delete scratch orgs
-      - name: "Delete scratch org"
-        if: always()
-        run: "sfdx force:org:delete -p -u scratch-org"
+      # # Delete scratch orgs
+      # - name: "Delete scratch org"
+      #   if: always()
+      #   run: "sfdx force:org:delete -p -u scratch-org"
+
