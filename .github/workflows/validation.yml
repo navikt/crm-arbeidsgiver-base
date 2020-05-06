@@ -45,7 +45,7 @@ jobs:
       - name: "Create scratch org"
         id: createScratchOrg
         run: |
-          "sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1"
+          sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1
           echo "::set-output name=loginUrl::Login to Scratch Org: $(sfdx force:org:open -u scratch-org --json | jq -r '.result.url' ) (valid for 24 hours)"
           
 
