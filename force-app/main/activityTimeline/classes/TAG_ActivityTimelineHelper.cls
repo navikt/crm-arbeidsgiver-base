@@ -182,17 +182,25 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		String dateField = findDateless ? 'CreatedDate' : mdt.Activity_Timeline_Child__r.SObjectDateField__c;
 
+		String parameter = '';
+
 		if ( amountOfMonths != null ) {
-			return '(' +
-			       dateField + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
-			       dateField + ' = THIS_MONTH OR ' +
-			       dateField + ' > ' + now +
-			       ')' + (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
+			parameter = '(' +
+			            dateField + ' = LAST_N_MONTHS:' + (amountOfMonths - 1) + ' OR ' +
+			            dateField + ' = THIS_MONTH OR ' +
+			            dateField + ' > ' + now +
+			            ')' + (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
 		} else { // get overdue only, as no month is specified
-			return '' + dateField + ' < ' + now +
-			       '  AND Status != \'Completed\'' +
-			       (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
+			parameter = dateField + ' < ' + now +
+			            '  AND Status != \'Completed\'' +
+			            (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
 		}
+
+		if ( mdt.Activity_Timeline_Child__r.SObjectName__c == 'Task' ) {
+			parameter += ' AND TaskSubType != \'Email\'';
+		}
+
+		return parameter;
 	}
 
 	public static String getQuery( TAG_ActivityTimelineParent__mdt mdt, String recordId, String extraParameter, String extraField, String fieldsToQuery ) {
