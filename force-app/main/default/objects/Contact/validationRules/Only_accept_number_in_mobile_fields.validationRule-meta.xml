@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Only_accept_number_in_mobile_fields</fullName>
     <active>true</active>
-    <errorConditionFormula>NOT(REGEX(MobilePhone, &quot;\\d*?(\\d*?){10}&quot;))</errorConditionFormula>
+    <errorConditionFormula>NOT(REGEX(MobilePhone, &quot;\\+*?\\d*?(\\d*?){10}&quot;))</errorConditionFormula>
     <errorDisplayField>MobilePhone</errorDisplayField>
     <errorMessage>Mobile: invalid phone number</errorMessage>
 </ValidationRule>
