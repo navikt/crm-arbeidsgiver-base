@@ -1,6 +1,12 @@
 @isTest
 private without sharing class Process_SendEmailTest {
 
+	@testSetup
+	private static void setup() {
+		EmailTemplate et = new EmailTemplate( DeveloperName = 'tempLayoffReceiptSubsidiary', Name = 'tempLayoffReceiptSubsidiary', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'New message', HtmlValue = '<html><head></head><body><p>Hi {{{TemporaryLayoff__c.ContactName__c}}}. This is regarding {{{TemporaryLayoff__c.Type__c}}}.</p></body></html>' );
+		Database.insert( et, false );
+	}
+
 	@isTest
 	private static void testSendEmail() {
 
@@ -19,8 +25,7 @@ private without sharing class Process_SendEmailTest {
 		emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 
 		System.assertEquals( 1, emails.size(), 'Only one email sent, only one EmailMessage created' );
-		System.assert (emails[0].HtmlBody.contains( 'Permittering uten lønn' ), 'The new html body should have converted all variables ( {{{ var }}} ), here {{{ TemporaryLayoff__c.Type__c }}} to Permittering uten lønn' );
-		System.assert (emails[0].HtmlBody.contains( 'test testetternavn' ), 'The new html body should have converted all variables ( {{{ var }}} ), here {{{ TemporaryLayoff__c.ContactName__c }}} to test testetternavn' );
+		System.assertEquals( '<html> <head></head> <body>  <p>Hi test testetternavn. This is regarding Permittering uten lønn.</p> </body></html>', emails[0].HtmlBody.replaceAll( '\n', '' ), 'The new html body should have converted all variables ( {{{ var }}} )' );
 		System.assertEquals( 'tore.toresen@example.com', emails[0].ToAddress, 'Sent to contact email' );
 	}
 
