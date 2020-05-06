@@ -36,7 +36,7 @@ public without sharing class Process_SendEmailHelper {
 		List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
 
 		for ( Process_SendEmail.Request req : requests ) {
-			System.debug( 'for loop' );
+
 			Id templateId = templateMap.containsKey( req.emailTemplateName ) ? templateMap.get( req.emailTemplateName ) : null;
 
 			if ( templateId != null ) {
