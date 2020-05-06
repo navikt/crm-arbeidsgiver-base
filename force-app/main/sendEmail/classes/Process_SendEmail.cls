@@ -6,13 +6,13 @@ global without sharing class Process_SendEmail {
 	@InvocableMethod(label = 'Send Email' )
 	public static void sendEmail( List<Request> requests ) {
 
-		// Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates( requests );
+		Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates( requests );
 
-		// requests = Process_SendEmailHelper.removeInvalidRequests( requests );
+		requests = Process_SendEmailHelper.removeInvalidRequests( requests );
 
-		// List<Messaging.SingleEmailMessage> messages = Process_SendEmailHelper.requestToSingleEmailMessage( requests, templateMap, ORG_WIDE_EMAIL_ID );
+		List<Messaging.SingleEmailMessage> messages = Process_SendEmailHelper.requestToSingleEmailMessage( requests, templateMap, ORG_WIDE_EMAIL_ID );
 
-		// List<Messaging.SendEmailResult> results = Messaging.sendEmail ( messages, false );
+		List<Messaging.SendEmailResult> results = Messaging.sendEmail ( messages, false );
 	}
 
 	global class Request {
