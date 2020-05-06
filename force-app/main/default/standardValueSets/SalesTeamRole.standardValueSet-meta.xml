@@ -2,17 +2,17 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>Account Manager</fullName>
+        <fullName>Key Account Manager</fullName>
         <default>false</default>
         <label>Key Account Manager</label>
     </standardValue>
     <standardValue>
-        <fullName>Market Contact</fullName>
+        <fullName>Markedskontakt</fullName>
         <default>false</default>
         <label>Markedskontakt</label>
     </standardValue>
     <standardValue>
-        <fullName>IA Consultant</fullName>
+        <fullName>IA-rådgiver</fullName>
         <default>false</default>
         <label>IA-rådgiver</label>
     </standardValue>

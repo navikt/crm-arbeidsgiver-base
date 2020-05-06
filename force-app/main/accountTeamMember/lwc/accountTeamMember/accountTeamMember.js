@@ -72,7 +72,6 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 		deleteTeamMember({ atmId: currentRow.Id })
 			.then(result => {
 				this.dispatchEvent(new ShowToastEvent({
-					title: 'Success',
 					message: 'Kontaktperson ' + currentRow.UserId + ' slettet ',
 					variant: 'success'
 				}));
@@ -81,9 +80,8 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 
 			})
 			.catch(error => {
-				window.console.log('Error ====> ' + error);
 				this.dispatchEvent(new ShowToastEvent({
-					title: 'Error',
+					title: 'Feil',
 					message: error.message,
 					variant: 'error'
 				}));
