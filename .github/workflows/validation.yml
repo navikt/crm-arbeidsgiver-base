@@ -66,6 +66,11 @@ jobs:
         # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"
         run: sfdx force:source:deploy -m ApexClass --testlevel=RunLocalTests --checkonly
 
+      # # Delete scratch orgs
+      # - name: "Delete scratch org"
+      #   if: always()
+      #   run: "sfdx force:org:delete -p -u scratch-org"
+
       # Post scratch org login url as comment to PR
       - name: "Post scratch org login url as comment to PR"
         uses: unsplash/comment-on-pr@master
