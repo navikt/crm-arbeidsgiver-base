@@ -93,6 +93,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Is_My_NAV_Region__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Status__c</field>
             <table>TemporaryLayoff__c</table>
         </columns>
@@ -109,6 +114,21 @@
         <columns>
             <checkedByDefault>true</checkedByDefault>
             <field>Name</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_zip__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ContactName__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Industry_Account__c</field>
             <table>TemporaryLayoff__c</table>
         </columns>
         <masterLabel>Temporary Layoffs</masterLabel>

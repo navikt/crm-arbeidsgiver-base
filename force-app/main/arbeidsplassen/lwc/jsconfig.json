@@ -3,6 +3,12 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/accountMessages": [
+                "../../accountMessages/lwc/accountMessages/accountMessages.js"
+            ],
+            "c/accountTeamMember": [
+                "../../accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
+            ],
             "c/tagActivityTimeline": [
                 "../../activityTimeline/lwc/tagActivityTimeline/tagActivityTimeline.js"
             ],
@@ -15,8 +21,14 @@
             "c/tagActivityTimelineNewObject": [
                 "../../activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
             ],
+            "c/arbeidsplassenView": [
+                "arbeidsplassenView/arbeidsplassenView.js"
+            ],
             "c/markdownViewer": [
                 "../../markdownViewer/lwc/markdownViewer/markdownViewer.js"
+            ],
+            "c/accountTeamMember": [
+                "../../accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
             ]
         }
     },

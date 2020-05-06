@@ -6,28 +6,25 @@
                 "../../accountMessages/lwc/accountMessages/accountMessages.js"
             ],
             "c/accountTeamMember": [
-                "../../accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
+                "accountTeamMember/accountTeamMember.js"
             ],
             "c/tagActivityTimeline": [
-                "tagActivityTimeline/tagActivityTimeline.js"
+                "../../activityTimeline/lwc/tagActivityTimeline/tagActivityTimeline.js"
             ],
             "c/tagActivityTimelineGroup": [
-                "tagActivityTimelineGroup/tagActivityTimelineGroup.js"
+                "../../activityTimeline/lwc/tagActivityTimelineGroup/tagActivityTimelineGroup.js"
             ],
             "c/tagActivityTimelineItem": [
-                "tagActivityTimelineItem/tagActivityTimelineItem.js"
+                "../../activityTimeline/lwc/tagActivityTimelineItem/tagActivityTimelineItem.js"
             ],
             "c/tagActivityTimelineNewObject": [
-                "tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
+                "../../activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
             ],
             "c/arbeidsplassenView": [
                 "../../arbeidsplassen/lwc/arbeidsplassenView/arbeidsplassenView.js"
             ],
             "c/markdownViewer": [
                 "../../markdownViewer/lwc/markdownViewer/markdownViewer.js"
-            ],
-            "c/accountTeamMember": [
-                "../../accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
             ]
         },
         "experimentalDecorators": true

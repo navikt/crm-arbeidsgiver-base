@@ -2,6 +2,12 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+            "c/accountMessages": [
+                "../../accountMessages/lwc/accountMessages/accountMessages.js"
+            ],
+            "c/accountTeamMember": [
+                "../../accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
+            ],
             "c/tagActivityTimeline": [
                 "../../activityTimeline/lwc/tagActivityTimeline/tagActivityTimeline.js"
             ],
@@ -14,8 +20,14 @@
             "c/tagActivityTimelineNewObject": [
                 "../../activityTimeline/lwc/tagActivityTimelineNewObject/tagActivityTimelineNewObject.js"
             ],
+            "c/arbeidsplassenView": [
+                "../../arbeidsplassen/lwc/arbeidsplassenView/arbeidsplassenView.js"
+            ],
             "c/markdownViewer": [
                 "markdownViewer/markdownViewer.js"
+            ],
+            "c/accountTeamMember": [
+                "../../accountTeamMember/lwc/accountTeamMember/accountTeamMember.js"
             ]
         },
         "experimentalDecorators": true
