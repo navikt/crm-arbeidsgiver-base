@@ -66,9 +66,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.0
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'Scratch Organization Afficionado'
-          SLACK_ICON_EMOJI: rocket
-          SLACK_COLOR: '#FFFFE0'
+          SLACK_USERNAME: 'Scratch Organization Aficionado'
           SLACK_MESSAGE: ${{steps.createScratchOrg.outputs.loginUrl}}
           
       # Run Apex tests in scratch org
