@@ -191,7 +191,6 @@ public with sharing class TAG_ActivityTimelineHelper {
 			            dateField + ' > ' + now +
 			            ')' + (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
 		} else { // get overdue only, as no month is specified
-			       (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
 			parameter = dateField + ' < ' + now +
 			            '  AND Status != \'Completed\'' +
 			            (findDateless ? ' AND ' + mdt.Activity_Timeline_Child__r.SObjectDateField__c + ' = null' : '');
