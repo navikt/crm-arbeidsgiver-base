@@ -1,3 +1,7 @@
+/*
+   Can use either this class in a process or Trigger_SendEmail as a trigger
+ */
+
 global without sharing class Process_SendEmail {
 
 	private static final List<OrgWideEmailAddress> ORG_WIDE_ADDRESSES = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'do-not-reply@nav.no' LIMIT 1];

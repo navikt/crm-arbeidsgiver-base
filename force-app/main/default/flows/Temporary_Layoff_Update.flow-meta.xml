@@ -1,187 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <processMetadataValues>
-            <name>apexSelection</name>
-            <value>
-                <stringValue>Send Email</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_6_A1</name>
-        <label>Send Email</label>
-        <locationX>600</locationX>
-        <locationY>200</locationY>
-        <actionName>Process_SendEmail</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Recipient Contact Lookup</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue>Contact</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>recipientContact</name>
-            <value>
-                <elementReference>myVariable_current.Contact__r</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Dev Name of Enhanced Email Template</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>emailTemplateName</name>
-            <value>
-                <stringValue>tempLayoffReceiptSubsidiary</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Use do-not-reply@nav.no</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>useDoNotReply</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Object Relation ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>relatedToId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -193,9 +11,6 @@
         <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision5</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
@@ -213,34 +28,6 @@
             <label>Status is changed</label>
         </rules>
     </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision5</name>
-        <label>myDecision5</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_6</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>formula_myRule_6</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_6_A1</targetReference>
-            </connector>
-            <label>Is new</label>
-        </rules>
-    </decisions>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -248,7 +35,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A2_6100928922</name>
+        <name>formula_2_myRule_1_A2_6825450965</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -259,7 +46,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_9253217991</name>
+        <name>formula_3_myRule_1_A1_5910203270</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -270,7 +57,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_6918341170</name>
+        <name>formula_4_myRule_1_A1_2127186019</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -285,18 +72,7 @@
         <dataType>Boolean</dataType>
         <expression>AND(ISCHANGED({!myVariable_current.Status__c}), TEXT(PRIORVALUE({!myVariable_current.Status__c})) = &quot;Ny&quot;, TEXT({!myVariable_current.Status__c}) = &quot;Fullført, fulgt opp&quot;)</expression>
     </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>ISNEW()</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_myRule_6</name>
-        <dataType>Boolean</dataType>
-        <expression>ISNEW()</expression>
-    </formulas>
-    <interviewLabel>Temporary_Layoff_Update-13_InterviewLabel</interviewLabel>
+    <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
     <label>Temporary Layoff</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -364,7 +140,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_9253217991</elementReference>
+                <elementReference>formula_3_myRule_1_A1_5910203270</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -394,7 +170,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_6918341170</elementReference>
+                <elementReference>formula_4_myRule_1_A1_2127186019</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -848,7 +624,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A2_6100928922</elementReference>
+                <elementReference>formula_2_myRule_1_A2_6825450965</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>

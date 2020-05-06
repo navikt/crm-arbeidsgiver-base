@@ -9,9 +9,9 @@ public without sharing class Process_SendEmailHelper {
 			templateNames.add( req.emailTemplateName );
 		}
 
-		List<EmailTemplate> emailTemplates = [SELECT Id, Name FROM EmailTemplate WHERE Name IN : templateNames];
+		List<EmailTemplate> emailTemplates = [SELECT Id, DeveloperName FROM EmailTemplate WHERE DeveloperName IN : templateNames];
 		for ( EmailTemplate et : emailTemplates ) {
-			templateMap.put( et.Name, et.Id );
+			templateMap.put( et.DeveloperName, et.Id );
 		}
 
 		return templateMap;
