@@ -43,7 +43,11 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        run: "sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1"
+        id: createScratchOrg
+        run: |
+          "sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1"
+          echo "::set-output name=loginUrl::Login to Scratch Org: $(sfdx force:org:open -u scratch-org --json | jq -r '.result.url' ) (valid for 24 hours)"
+          
 
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
@@ -62,7 +66,10 @@ jobs:
         # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"
         run: sfdx force:source:deploy -m ApexClass --testlevel=RunLocalTests --checkonly
 
-      # Delete scratch orgs
-      - name: "Delete scratch org"
-        if: always()
-        run: "sfdx force:org:delete -p -u scratch-org"
+      # Post scratch org login url as comment to PR
+      - name: "Post scratch org login url as comment to PR"
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: ${{steps.createScratchOrg.outputs.loginUrl}}
