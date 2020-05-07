@@ -69,11 +69,11 @@ jobs:
           echo "::set-output name=instanceUrl::$( echo $admin | jq -r '.result.instanceUrl' )"
 
           echo "::set-output name=adminUsername::$( echo $admin | jq -r '.result.username' )"
-          echo "::set-output name=adminPassword::$( echo $admin | jq -r '.result.passwrd' )"
+          echo "::set-output name=adminPassword::$( echo $admin | jq -r '.result.password' )"
           echo "::set-output name=adminInstantLogin::$( sfdx force:org:open -u scratch-org -r --json | jq -r '.result.url' )"
 
           echo "::set-output name=employeeUsername::$( echo $employee | jq -r '.result.username' )"
-          echo "::set-output name=employeePassword::$( echo $employee | jq -r '.result.passwrd' )"
+          echo "::set-output name=employeePassword::$( echo $employee | jq -r '.result.password' )"
           echo "::set-output name=employeeInstantLogin::$( sfdx force:org:open -u employee -r --json | jq -r '.result.url' )"
 
       # Slack Notification
