@@ -43,12 +43,8 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        id: createScratchOrg
-        run: |
-          sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1
-          echo "::set-output name=loginUrl::Login to Scratch Org: $(sfdx force:org:open -u scratch-org --json | jq -r '.result.url' ) (valid for 24 hours)"
+        run: sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1
           
-
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
         run: "echo y | sfdx plugins:install sfpowerkit"
@@ -61,13 +57,45 @@ jobs:
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
       
+      - name: "Create users"
+        id: create-users
+        run: |
+          sfdx force:user:create -f config/users/pull_request.json -a employee
+          echo "::set-output name=loginUrl::$(sfdx force:user:password:generate --onbehalfof=scratch-org)"
+          
+          admin=$(sfdx force:user:display -u scratch-org --json)
+          employee=$(sfdx force:user:display -u employee --json)
+
+          echo "::set-output name=instanceUrl::$( echo $admin | jq -r '.result.instanceUrl' )"
+
+          echo "::set-output name=adminUsername::$( echo $admin | jq -r '.result.username' )"
+          echo "::set-output name=adminPassword::$( echo $admin | jq -r '.result.password' )"
+          echo "::set-output name=adminInstantLogin::$( sfdx force:org:open -u scratch-org -r --json | jq -r '.result.url' )"
+
+          echo "::set-output name=employeeUsername::$( echo $employee | jq -r '.result.username' )"
+          echo "::set-output name=employeePassword::$( echo $employee | jq -r '.result.password' )"
+          echo "::set-output name=employeeInstantLogin::$( sfdx force:org:open -u employee -r --json | jq -r '.result.url' )"
+
       # Slack Notification
       - name: "Slack Notification"
         uses: rtCamp/action-slack-notify@v2.0.0
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_USERNAME: 'Scratch Organization Aficionado'
-          SLACK_MESSAGE: ${{steps.createScratchOrg.outputs.loginUrl}}
+          SLACK_MESSAGE: |
+            *Login to Scratch Org*
+
+            URL: ${{steps.create-users.outputs.instanceUrl}}
+
+            *Admin User:*
+            Username: ${{ steps.create-users.outputs.adminUsername }}
+            Password: ${{ steps.create-users.outputs.adminPassword }} (valid for 24 hours)
+            Instant login: ${{ steps.create-users.outputs.adminInstantLogin }} (valid for 2 hours)
+
+            *NAV Employee User:*
+            Username: ${{ steps.create-users.outputs.employeeUsername }}
+            Password: ${{ steps.create-users.outputs.employeePassword }} (valid for 24 hours)
+            Instant login: ${{ steps.create-users.outputs.employeeInstantLogin }} (valid for 2 hours)
           
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
