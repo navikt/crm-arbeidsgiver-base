@@ -6,8 +6,6 @@ global  class Trigger_SendEmailTmpLayoff extends MyTriggers {
 
 	global override void onAfterInsert() {
 
-		System.debug( 'inni trigger' );
-
 		Set<Id> contactIds = new Set<Id>();
 		for ( TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records ) {
 			contactIds.add( tl.Contact__c );
