@@ -82,10 +82,10 @@ jobs:
         with:
           title: ${{steps.build-commit-message.outputs.message}}
           body: |
-            Please merge me to update version number.
+            Please merge me to update my version number :heart_eyes:
             
-            **You do NOT have to wait for tests to finish, because they will never finish!**
-            Simply use your admin privileges to merge this PR.
+            **You do NOT have to wait for my tests to finish, because they will never finish!**
+            Simply use your admin privileges to merge me :smirk: (but just this once!)
           commit-message: ${{steps.build-commit-message.outputs.message}}
 
       # Add success reaction
