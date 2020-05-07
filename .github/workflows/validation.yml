@@ -43,9 +43,23 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        id: createScratchOrg
+        run: sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1
+          
+      # Install sfpowerkit plugin used to install multiple packages only by version number
+      - name: "Install sfpowerkit plugin"
+        run: "echo y | sfdx plugins:install sfpowerkit"
+
+      # Install packages this repo is dependant on
+      - name: "Install dependant packages"
+        run: "sfdx sfpowerkit:package:dependencies:install -u scratch-org -r -a -w 20 -k '1:${{ secrets.PACKAGE_KEY }} 2:${{ secrets.PACKAGE_KEY }} 3:${{ secrets.PACKAGE_KEY }} 4:${{ secrets.PACKAGE_KEY }} 5:${{ secrets.PACKAGE_KEY }} 6:${{ secrets.PACKAGE_KEY }} 7:${{ secrets.PACKAGE_KEY }} 8:${{ secrets.PACKAGE_KEY }} 9:${{ secrets.PACKAGE_KEY }} 10:${{ secrets.PACKAGE_KEY }}'"
+
+      # Deploy source to scratch org
+      - name: "Push source to scratch org"
+        run: "sfdx force:source:push"
+      
+      - name: "Create users"
+        id: create-users
         run: |
-          sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1
           sfdx force:user:create -f config/users/pull_request.json -a employee
           echo "::set-output name=loginUrl::$(sfdx force:user:password:generate --onbehalfof=scratch-org)"
           
@@ -62,18 +76,6 @@ jobs:
           echo "::set-output name=employeePassword::$( echo $employee | jq -r '.result.passwrd' )"
           echo "::set-output name=employeeInstantLogin::$( sfdx force:org:open -u employee -r --json | jq -r '.result.url' )"
 
-      # Install sfpowerkit plugin used to install multiple packages only by version number
-      - name: "Install sfpowerkit plugin"
-        run: "echo y | sfdx plugins:install sfpowerkit"
-
-      # Install packages this repo is dependant on
-      - name: "Install dependant packages"
-        run: "sfdx sfpowerkit:package:dependencies:install -u scratch-org -r -a -w 20 -k '1:${{ secrets.PACKAGE_KEY }} 2:${{ secrets.PACKAGE_KEY }} 3:${{ secrets.PACKAGE_KEY }} 4:${{ secrets.PACKAGE_KEY }} 5:${{ secrets.PACKAGE_KEY }} 6:${{ secrets.PACKAGE_KEY }} 7:${{ secrets.PACKAGE_KEY }} 8:${{ secrets.PACKAGE_KEY }} 9:${{ secrets.PACKAGE_KEY }} 10:${{ secrets.PACKAGE_KEY }}'"
-
-      # Deploy source to scratch org
-      - name: "Push source to scratch org"
-        run: "sfdx force:source:push"
-      
       # Slack Notification
       - name: "Slack Notification"
         uses: rtCamp/action-slack-notify@v2.0.0
@@ -83,17 +85,17 @@ jobs:
           SLACK_MESSAGE: |
             *Login to Scratch Org*
 
-            URL: ${{steps.createScratchOrg.outputs.instanceUrl}}
+            URL: ${{steps.create-users.outputs.instanceUrl}}
 
             *Admin User:*
-            Username: ${{ steps.createScratchOrg.outputs.adminUsername }}
-            Password: ${{ steps.createScratchOrg.outputs.adminPassword }} (valid for 24 hours)
-            Instant login: ${{ steps.createScratchOrg.outputs.adminInstantLogin }} (valid for 2 hours)
+            Username: ${{ steps.create-users.outputs.adminUsername }}
+            Password: ${{ steps.create-users.outputs.adminPassword }} (valid for 24 hours)
+            Instant login: ${{ steps.create-users.outputs.adminInstantLogin }} (valid for 2 hours)
 
             *NAV Employee User:*
-            Username: ${{ steps.createScratchOrg.outputs.employeeUsername }}
-            Password: ${{ steps.createScratchOrg.outputs.employeePassword }} (valid for 24 hours)
-            Instant login: ${{ steps.createScratchOrg.outputs.employeeInstantLogin }} (valid for 2 hours)
+            Username: ${{ steps.create-users.outputs.employeeUsername }}
+            Password: ${{ steps.create-users.outputs.employeePassword }} (valid for 24 hours)
+            Instant login: ${{ steps.create-users.outputs.employeeInstantLogin }} (valid for 2 hours)
           
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
