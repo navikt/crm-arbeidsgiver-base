@@ -60,7 +60,7 @@ jobs:
       - name: "Create users"
         id: create-users
         run: |
-          sfdx force:user:create -f config/users/pull_request.json -a employee
+          sfdx force:user:create -f config/users/pull_request.json -u scratch-org -a employee
           echo "::set-output name=loginUrl::$(sfdx force:user:password:generate --onbehalfof=scratch-org)"
           
           admin=$(sfdx force:user:display -u scratch-org --json)
