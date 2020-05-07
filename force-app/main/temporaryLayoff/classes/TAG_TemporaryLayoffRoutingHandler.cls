@@ -1,7 +1,6 @@
 global class TAG_TemporaryLayoffRoutingHandler extends MyTriggers {
 
 	global override void onBeforeInsert() {
-		System.debug( getSobjectWrappers() );
 		Map<Integer, ApexSharingRuleWrapper> ruleByByLayoffId = RecordOwnerService.getQueuesAndNavUnits( getSobjectWrappers(), 'TemporaryLayoff__c' );
 		Integer i = 0;
 		for ( TemporaryLayoff__c layoff : (List<TemporaryLayoff__c>) records ) {
@@ -19,7 +18,13 @@ global class TAG_TemporaryLayoffRoutingHandler extends MyTriggers {
 		Integer recordIndex = 0;
 		for ( TemporaryLayoff__c layoff : (List<TemporaryLayoff__c>) records ) {
 			SobjectWrapper accountInfo = accountInfoMap.get( layoff.Account__c );
-			wrappers.add( new SobjectWrapper( recordIndex, accountInfo.Municipality, null, accountInfo.PostalCode ) );
+			String municipality = null;
+			String postalCode = null;
+			if ( accountInfo != null ) {
+				municipality = accountInfo.Municipality;
+				postalCode = accountInfo.PostalCode;
+			}
+			wrappers.add( new SobjectWrapper( recordIndex, municipality, null, postalCode ) );
 			recordIndex++;
 		}
 
