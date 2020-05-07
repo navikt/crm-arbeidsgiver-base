@@ -25,7 +25,7 @@ private without sharing class Process_SendEmailTest {
 		emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 
 		System.assertEquals( 1, emails.size(), 'Only one email sent, only one EmailMessage created' );
-		System.assertEquals( '<html> <head></head> <body>  <p>Hi test testetternavn. This is regarding Permittering uten lønn.</p> </body></html>', emails[0].HtmlBody.replaceAll( '\n', '' ), 'The new html body should have converted all variables ( {{{ var }}} )' );
+		System.assertEquals( '<html> <head></head> <body>  <p>Hi test testetternavn. This is regarding Permittering uten lønn.</p>', emails[0].HtmlBody.replaceAll( '\n', '' ).substringBefore( ' <img src="http' ), 'The new html body should have converted all variables ( {{{ var }}} )' );
 		System.assertEquals( 'tore.toresen@example.com', emails[0].ToAddress, 'Sent to contact email' );
 	}
 
