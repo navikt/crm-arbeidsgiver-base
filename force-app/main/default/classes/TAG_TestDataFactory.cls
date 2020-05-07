@@ -86,7 +86,8 @@ public without sharing class TAG_TestDataFactory {
 									  Account__c = account.Id,
 									  Type__c = 'Masseoppsigelse',
 									  StartDate__c = Date.today(),
-									  EndDate__c = Date.today().addDays( 30 )
+									  EndDate__c = Date.today().addDays( 30 ),
+									  KafkaId__c = 'a32423423' + String.valueOf( i )
 									  ) );
 		}
 
