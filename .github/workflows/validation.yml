@@ -56,7 +56,13 @@ jobs:
       # Deploy source to scratch org
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
-      
+          
+      # Run Apex tests in scratch org
+      - name: "Run Apex tests"
+        # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"
+        run: sfdx force:source:deploy -m ApexClass --testlevel=RunLocalTests --checkonly
+
+      # Create users
       - name: "Create users"
         id: create-users
         run: |
@@ -96,14 +102,9 @@ jobs:
             Username: ${{ steps.create-users.outputs.employeeUsername }}
             Password: ${{ steps.create-users.outputs.employeePassword }} (valid for 24 hours)
             Instant login: ${{ steps.create-users.outputs.employeeInstantLogin }} (valid for 2 hours)
-          
-      # Run Apex tests in scratch org
-      - name: "Run Apex tests"
-        # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"
-        run: sfdx force:source:deploy -m ApexClass --testlevel=RunLocalTests --checkonly
 
-      # # Delete scratch orgs
-      # - name: "Delete scratch org"
-      #   if: always()
-      #   run: "sfdx force:org:delete -p -u scratch-org"
+      # Delete scratch orgs
+      - name: "Delete scratch org"
+        if: failure()
+        run: "sfdx force:org:delete -p -u scratch-org"
 
