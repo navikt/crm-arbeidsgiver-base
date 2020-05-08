@@ -489,6 +489,11 @@
             <field>Account__c.ShippingCountry</field>
             <table>TemporaryLayoff__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.TAG_Main_Industry__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
         <masterLabel>Konto</masterLabel>
     </sections>
     <sections>
