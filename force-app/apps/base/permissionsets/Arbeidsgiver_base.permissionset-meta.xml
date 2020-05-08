@@ -71,6 +71,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.INT_RegionNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.NumberOfEmployees</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -92,6 +97,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.TAG_Employer_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.TAG_Main_Industry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -16,6 +16,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>TemporaryLayoff__c.IsMyNavOffice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>TemporaryLayoff__c.NAV_Unit__c</field>
         <readable>true</readable>
@@ -37,6 +42,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TemporaryLayoff__c.ReasonOther__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -52,12 +62,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TemporaryLayoff__c.TAG_Account_zip__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.TAG_Industry_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TemporaryLayoff__c.TAG_Is_My_NAV_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.TAG_NAV_unit_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TemporaryLayoff__c.TAG_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

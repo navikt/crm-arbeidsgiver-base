@@ -326,6 +326,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TemporaryLayoff__c.ReasonOther__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
