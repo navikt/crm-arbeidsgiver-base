@@ -305,6 +305,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>TemporaryLayoff__c.Main_Industry__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>TemporaryLayoff__c.NAV_Unit__c</field>
         <readable>true</readable>
