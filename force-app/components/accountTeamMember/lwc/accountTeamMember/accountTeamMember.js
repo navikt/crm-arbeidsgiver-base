@@ -29,6 +29,7 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 	@track data;
 	@track amount = 0;
 	@track columns = columns;
+	@track showData = false;
 
 	refreshTable;
 	error;
@@ -41,6 +42,7 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 		if (result.data) {
 			this.data = result.data;
 			this.amount = result.data.length;
+			this.showData = result.data.length > 0;
 
 			let dataList = [];
 			this.data.forEach(element => {
