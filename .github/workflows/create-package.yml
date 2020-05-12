@@ -110,8 +110,8 @@ jobs:
           packageAliases=$(cat sfdx-project.json | jq '.packageAliases | keys_unsorted[-1]' -r | sed 's/.*-//')
           
           echo "::set-output name=tagName::v$(echo $versionNumber)-beta$(echo $packageAliases)"
-          echo "::set-output name=releaseName::$(echo $versionNumber)-beta$(echo $packageAliases )"
-          echo "::set-output name=bodyVersion::$(echo $versionNumber) (beta $(echo $packageAliases )"
+          echo "::set-output name=releaseName::$(echo $versionNumber)-beta$(echo $packageAliases)"
+          echo "::set-output name=bodyVersion::$(echo $versionNumber).$(echo $packageAliases)"
           echo "::set-output name=bodyPackage::${{ steps.extract-data-package-version-create.outputs.packageVersionId }}"
 
       # Generate changelog from commits
