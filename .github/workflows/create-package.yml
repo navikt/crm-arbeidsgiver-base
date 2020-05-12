@@ -154,8 +154,8 @@ jobs:
           tag_name: ${{ steps.release-fields.outputs.tagName }}
           release_name: ${{ steps.release-fields.outputs.releaseName }}
           body: |
-            ${{ steps.release-fields.outputs.bodyVersion }}
-            ${{ steps.release-fields.outputs.bodyPackage }}
+            **Version**: ${{ steps.release-fields.outputs.bodyVersion }}
+            **Package ID**: ${{ steps.release-fields.outputs.bodyPackage }}
             **Author**: ${{ github.actor }}
             
             ✅ Package Creation
