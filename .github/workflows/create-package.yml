@@ -84,7 +84,7 @@ jobs:
         if: success() || (failure() && steps.extract-data-package-version-create.outputs.isSuccess)
         id: install-package-version-to-integration
         run: |
-          json=$(sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 20 -b 20 -u integration-sandbox -r -k ${{ secrets.PACKAGE_KEY }})
+          json=$(sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 20 -b 20 -u integration-sandbox -r -k ${{ secrets.PACKAGE_KEY }} --json)
           echo $json
           
           status=$(echo $json |jq '.status')
