@@ -16,15 +16,15 @@
 				<lightning-button-icon icon-name="action:refresh" style="background-color:white;"
 					alternative-text="Refresh data" onclick={refreshData}>
 				</lightning-button-icon>
-				<lightning-button label="Ny kontakperson" title="Ny kontaktperson" onclick={navigateToNewRecordPage}
+				<lightning-button label="Ny kontaktperson" title="Ny kontaktperson" onclick={navigateToNewRecordPage}
 					class="slds-m-right_x-small"></lightning-button>
 			</header>
 		</div>
 
 		<div class="slds-card__body">
-			<div style="height: 300px;">
-				<lightning-datatable key-field="id" data={data} columns={columns} onrowaction={handleRowActions}
-					hide-checkbox-column resize-column-disabled>
+			<div>
+				<lightning-datatable if:true={showData} key-field="id" data={data} columns={columns}
+					onrowaction={handleRowActions} hide-checkbox-column resize-column-disabled>
 				</lightning-datatable>
 			</div>
 		</div>
