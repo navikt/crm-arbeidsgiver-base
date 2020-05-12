@@ -1,5 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>customNotifTypeName</name>
+            <value>
+                <stringValue>Notification</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>recipientCategory</name>
+            <value>
+                <stringValue>owner</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>recipientType</name>
+            <value>
+                <stringValue>reference</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_6_A1</name>
+        <label>New owner</label>
+        <locationX>600</locationX>
+        <locationY>200</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <stringValue>000000000000000</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>customNotifTypeName</name>
+            <value>
+                <stringValue>Notification</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Permitteringsvarsel er tildelt deg</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <stringValue>{!myVariable_current.LastModifiedBy.FirstName} {!myVariable_current.LastModifiedBy.LastName} har tildelt deg permitteringsvarselet: {!myVariable_current.Name} </stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <stringValue>{!myVariable_current.Id}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>recipientIds</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>500.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>myCollection_myRule_6_A1recipientIds</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>myAssignment_myRule_6_A1</name>
+        <label>myAssignment_myRule_6_A1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>myCollection_myRule_6_A1recipientIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>myVariable_current.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_6_A1</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -11,6 +125,9 @@
         <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision5</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
@@ -28,6 +145,34 @@
             <label>Status is changed</label>
         </rules>
     </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision5</name>
+        <label>myDecision5</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_6</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_6</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myAssignment_myRule_6_A1</targetReference>
+            </connector>
+            <label>New owner is set</label>
+        </rules>
+    </decisions>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -35,7 +180,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A2_6825450965</name>
+        <name>formula_2_myRule_1_A2_5909463874</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -46,7 +191,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_5910203270</name>
+        <name>formula_3_myRule_1_A1_1301014090</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -57,7 +202,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_2127186019</name>
+        <name>formula_4_myRule_1_A1_4805637034</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -72,7 +217,18 @@
         <dataType>Boolean</dataType>
         <expression>AND(ISCHANGED({!myVariable_current.Status__c}), TEXT(PRIORVALUE({!myVariable_current.Status__c})) = &quot;Ny&quot;, TEXT({!myVariable_current.Status__c}) = &quot;Fullført, fulgt opp&quot;)</expression>
     </formulas>
-    <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].OwnerId ), [TemporaryLayoff__c].OwnerId  &lt;&gt; CASESAFEID($User.Id))</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_6</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}))</expression>
+    </formulas>
+    <interviewLabel>Temporary_Layoff_Update-20_InterviewLabel</interviewLabel>
     <label>Temporary Layoff</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -140,7 +296,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_5910203270</elementReference>
+                <elementReference>formula_3_myRule_1_A1_1301014090</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -170,7 +326,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_2127186019</elementReference>
+                <elementReference>formula_4_myRule_1_A1_4805637034</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -542,55 +698,6 @@
                 <stringValue>Fullført, fulgt opp</stringValue>
             </value>
         </filters>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Status</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>operatorDataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Status__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Fullført, ikke fulgt opp</stringValue>
-            </value>
-        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -624,13 +731,20 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A2_6825450965</elementReference>
+                <elementReference>formula_2_myRule_1_A2_5909463874</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
     <status>Active</status>
+    <variables>
+        <name>myCollection_myRule_6_A1recipientIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
