@@ -568,7 +568,7 @@
 </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_1388075677</name>
+        <name>formula_4_myRule_1_A1_5733851735</name>
         <dataType>String</dataType>
         <expression>LEFT(
 
@@ -587,7 +587,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_6_A1_7011019022</name>
+        <name>formula_7_myRule_6_A1_5952352945</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -595,12 +595,12 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(ISCHANGED([CustomOpportunity__c].OwnerId ), [CustomOpportunity__c].OwnerId  &lt;&gt; CASESAFEID($User.Id))</stringValue>
+                <stringValue>AND(ISCHANGED([CustomOpportunity__c].OwnerId ), [CustomOpportunity__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([CustomOpportunity__c].OwnerId,3) = &#39;005&#39;))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_12</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}))</expression>
+        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &#39;005&#39;))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -686,7 +686,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>Name</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_1388075677</elementReference>
+                <elementReference>formula_4_myRule_1_A1_5733851735</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -946,7 +946,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_7_myRule_6_A1_7011019022</elementReference>
+                <elementReference>formula_7_myRule_6_A1_5952352945</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
