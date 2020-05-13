@@ -180,7 +180,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A2_5909463874</name>
+        <name>formula_2_myRule_1_A2_4729017320</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -191,7 +191,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_1301014090</name>
+        <name>formula_3_myRule_1_A1_0037605574</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -202,7 +202,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_4805637034</name>
+        <name>formula_4_myRule_1_A1_1558018367</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -221,14 +221,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].OwnerId ), [TemporaryLayoff__c].OwnerId  &lt;&gt; CASESAFEID($User.Id))</stringValue>
+                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].OwnerId ), [TemporaryLayoff__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([TemporaryLayoff__c].OwnerId,3) = &#39;005&#39;))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_6</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}))</expression>
+        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &#39;005&#39;))</expression>
     </formulas>
-    <interviewLabel>Temporary_Layoff_Update-20_InterviewLabel</interviewLabel>
+    <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
     <label>Temporary Layoff</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -296,7 +296,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_1301014090</elementReference>
+                <elementReference>formula_3_myRule_1_A1_0037605574</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -326,7 +326,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_4805637034</elementReference>
+                <elementReference>formula_4_myRule_1_A1_1558018367</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -731,7 +731,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A2_5909463874</elementReference>
+                <elementReference>formula_2_myRule_1_A2_4729017320</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>
