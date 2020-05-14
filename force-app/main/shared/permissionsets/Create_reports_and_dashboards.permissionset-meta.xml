@@ -3,6 +3,10 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>Create reports and dashboards</label>
     <tabSettings>
+        <tab>standard-Dashboard</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>standard-report</tab>
         <visibility>Visible</visibility>
     </tabSettings>
