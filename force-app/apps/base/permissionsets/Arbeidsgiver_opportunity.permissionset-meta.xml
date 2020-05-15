@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Tilgang til muligheter-objektet</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomOpportunity__c.Account__c</field>
@@ -81,8 +82,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>Arbeidsgiver_opportunity</label>
-    <license>Salesforce Platform</license>
+    <label>Arbeidsgiver - Muligheter</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

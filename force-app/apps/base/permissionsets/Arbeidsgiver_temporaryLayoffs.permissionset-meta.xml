@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Tilgang til permitteringobjektet</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>TemporaryLayoff__c.Account__c</field>
@@ -91,8 +92,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>Arbeidsgiver_temporaryLayoffs</label>
-    <license>Salesforce Platform</license>
+    <label>Arbeidsgiver - Permittering</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
