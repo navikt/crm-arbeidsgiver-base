@@ -20,8 +20,8 @@ global class ArenaActivityRoutingHandler extends MyTriggers {
 		List<SobjectWrapper> wrappers = new List<SobjectWrapper>();
 		Integer recordIndex = 0;
 
-		for ( ArenaActivity__c arenaActivity:(List<ArenaActivity__c>) records ) {
-			wrappers.add( new SobjectWrapper( recordIndex, arenaActivity.Account__r.INT_MunicipalityNumber__c, arenaActivity.Account__r.INT_RegionNumber__c ) );
+		for ( ArenaActivity__c arenaActivity : ( List<ArenaActivity__c> ) records ) {
+			wrappers.add( new SobjectWrapper( recordIndex, arenaActivity.Account__r.INT_MunicipalityNumber__c ) );
 			recordIndex++;
 		}
 
