@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>TAG_NAV_default</application>
@@ -220,6 +220,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.Running_User_Office__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Event.TAG_ActivityType__c</field>
         <readable>true</readable>
@@ -232,11 +237,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.TAG_Running_User_Region__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Event.Running_User_Office__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
