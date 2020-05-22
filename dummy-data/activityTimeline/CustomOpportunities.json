@@ -1,52 +1,48 @@
 {
-	"records": [
-		{
-			"attributes": {
-				"type": "CustomOpportunity__c",
-				"referenceId": "CustomOpportunity__cRef1"
-			},
-			"InquiryCategory__c": "Rekruttering",
-			"Municipality__c": "Ski",
-			"InclusionStage__c": "Ny henvendelse",
-			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
-			"Source__c": "Kontaktskjema",
-			"Account__c": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "CustomOpportunity__c",
-				"referenceId": "CustomOpportunity__cRef2"
-			},
-			"InquiryCategory__c": "Inkludering",
-			"Municipality__c": "Ski",
-			"InclusionStage__c": "Ny henvendelse",
-			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
-			"Source__c": "Kontaktskjema",
-			"Account__c": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "CustomOpportunity__c",
-				"referenceId": "CustomOpportunity__cRef4"
-			},
-			"InquiryCategory__c": "Rekruttering med tilrettelegging",
-			"Municipality__c": "Ski",
-			"InclusionStage__c": "Ny henvendelse",
-			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
-			"Source__c": "Kontaktskjema",
-			"Account__c": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "CustomOpportunity__c",
-				"referenceId": "CustomOpportunity__cRef3"
-			},
-			"InquiryCategory__c": "Forebygge sykefravær",
-			"Municipality__c": "Ski",
-			"InclusionStage__c": "Ny henvendelse",
-			"RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
-			"Source__c": "Kontaktskjema",
-			"Account__c": "@AccountRef1"
-		}
-	]
+    "records": [
+        {
+            "attributes": {
+                "type": "CustomOpportunity__c",
+                "referenceId": "CustomOpportunity__cRef1"
+            },
+            "InquiryCategory__c": "Rekruttering",
+            "InclusionStage__c": "Ny henvendelse",
+            "RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
+            "Source__c": "Kontaktskjema",
+            "Account__c": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "CustomOpportunity__c",
+                "referenceId": "CustomOpportunity__cRef2"
+            },
+            "InquiryCategory__c": "Inkludering",
+            "InclusionStage__c": "Ny henvendelse",
+            "RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
+            "Source__c": "Kontaktskjema",
+            "Account__c": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "CustomOpportunity__c",
+                "referenceId": "CustomOpportunity__cRef4"
+            },
+            "InquiryCategory__c": "Rekruttering med tilrettelegging",
+            "InclusionStage__c": "Ny henvendelse",
+            "RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusion}",
+            "Source__c": "Kontaktskjema",
+            "Account__c": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "CustomOpportunity__c",
+                "referenceId": "CustomOpportunity__cRef3"
+            },
+            "InquiryCategory__c": "Forebygge sykefravær",
+            "InclusionStage__c": "Ny henvendelse",
+            "RecordTypeId": "$R{RecordType.CustomOpportunity__c.Inclusive_Employment}",
+            "Source__c": "Kontaktskjema",
+            "Account__c": "@AccountRef1"
+        }
+    ]
 }
