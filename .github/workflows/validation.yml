@@ -64,6 +64,7 @@ jobs:
 
       # Create users
       - name: "Create users"
+        if: contains( github.event.pull_request.labels.*.name, 'saveScratchOrg')
         id: create-users
         run: |
           sfdx force:user:create -f config/users/pull_request.json -u scratch-org -a employee
@@ -84,6 +85,7 @@ jobs:
 
       # Slack Notification
       - name: "Slack Notification"
+        if: contains( github.event.pull_request.labels.*.name, 'saveScratchOrg')
         uses: rtCamp/action-slack-notify@v2.0.0
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -105,6 +107,6 @@ jobs:
 
       # Delete scratch orgs
       - name: "Delete scratch org"
-        if: failure()
+        if: failure() || !contains( github.event.pull_request.labels.*.name, 'saveScratchOrg')
         run: "sfdx force:org:delete -p -u scratch-org"
 

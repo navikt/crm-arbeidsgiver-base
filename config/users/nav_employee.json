@@ -1,13 +1,16 @@
 {
-	"LastName": "Nordmann",
-	"FirstName": "Kari",
-	"TimeZoneSidKey": "Europe/Paris",
-	"LocaleSidKey": "NO",
-	"EmailEncodingKey": "UTF-8",
-	"LanguageLocaleKey": "NO",
-	"profileName": "NAV Kontor No IP Range",
-	"permsets": [
-		"TAG_Default"
-	],
-	"generatePassword": true
+    "LastName": "Nordmann",
+    "FirstName": "Kari",
+    "TimeZoneSidKey": "Europe/Paris",
+    "LocaleSidKey": "NO",
+    "EmailEncodingKey": "UTF-8",
+    "LanguageLocaleKey": "NO",
+    "profileName": "NAV Kontor No IP Range",
+    "permsets": [
+        "Arbeidsgiver_Base_Group",
+        "Arbeidsgiver_tabsForStandardObjects",
+        "Arbeidsgiver_Pilot_Group",
+        "Create_reports_and_dashboards"
+    ],
+    "generatePassword": true
 }
