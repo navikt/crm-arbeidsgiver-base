@@ -12,11 +12,21 @@
     <valueSet>
         <restricted>true</restricted>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Internt tips</fullName>
+                <default>false</default>
+                <label>Internt tips</label>
+            </value>
             <value>
                 <fullName>Kontaktsenteret</fullName>
                 <default>false</default>
                 <label>Kontaktsenteret</label>
+            </value>
+            <value>
+                <fullName>Kontaktskjema</fullName>
+                <default>false</default>
+                <label>Kontaktskjema</label>
             </value>
             <value>
                 <fullName>Messe</fullName>
@@ -27,11 +37,6 @@
                 <fullName>Utgående henvendelse</fullName>
                 <default>false</default>
                 <label>Utgående henvendelse</label>
-            </value>
-            <value>
-                <fullName>Kontaktskjema</fullName>
-                <default>false</default>
-                <label>Kontaktskjema</label>
             </value>
         </valueSetDefinition>
     </valueSet>
