@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Tilgang til muligheter-objektet</description>
     <fieldPermissions>
@@ -64,6 +64,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomOpportunity__c.TAG_IA_Process_Milestones__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_Is_my_NAV_region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_NAV_Unit_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
