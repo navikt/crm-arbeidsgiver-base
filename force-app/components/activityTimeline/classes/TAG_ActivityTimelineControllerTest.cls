@@ -169,7 +169,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 			List<TAG_ActivityTimelineParent__mdt> sObjectType = TAG_ActivityTimelineController.getTimelineObjects( acc.Id );
 			Test.StopTest();
 
-			System.assertEquals( 3, sObjectType.size(), 'Standard user doesn\'t have access to custom object custom opportunity' );
+			System.assertEquals( 4, sObjectType.size(), 'Standard user doesn\'t have access to custom object custom opportunity' );
 
 			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectType ) {
 				System.assertEquals( mdt.Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, mdt.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, 'The norwegian text should be moved to the english field, as this user is norwegian' );

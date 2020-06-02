@@ -1,43 +1,46 @@
 {
-	"orgName": "NAV VIRKSOMHETSLØSNINGER",
-	"edition": "Enterprise",
-	"release": "Current",
-	"adminEmail": "fakeemail@nav.no.scratchorg",
-	"features": [
-		"Sites",
-		"ForceComPlatform",
-		"Communities",
-		"CustomerCommunity",
-		"CustomerCommunityPlus",
-		"PersonAccounts",
-		"ProcessBuilder",
-		"API",
-		"ServiceCloud",
-		"LiveAgent",
-		"LightningServiceConsole",
-		"ContactsToMultipleAccounts",
-		"FIELDSERVICE"
-	],
-	"country": "NO",
-	"language": "en_US",
-	"settings": {
-		"communitiesSettings": {
-			"enableNetworksEnabled": true
-		},
-		"lightningExperienceSettings": {
-			"enableS1DesktopEnabled": true
-		},
-		"omniChannelSettings": {
-			"enableOmniChannel": true
-		},
-		"liveAgentSettings": {
-			"enableLiveAgent": true
-		},
-		"languageSettings": {
-			"enableTranslationWorkbench": true
-		},
-		"accountSettings": {
-			"enableAccountTeams": true
-		}
-	}
+    "orgName": "NAV VIRKSOMHETSLØSNINGER",
+    "edition": "Enterprise",
+    "release": "Current",
+    "adminEmail": "fakeemail@nav.no.scratchorg",
+    "features": [
+        "Sites",
+        "ForceComPlatform",
+        "Communities",
+        "CustomerCommunity",
+        "CustomerCommunityPlus",
+        "PersonAccounts",
+        "ProcessBuilder",
+        "API",
+        "ServiceCloud",
+        "LiveAgent",
+        "LightningServiceConsole",
+        "ContactsToMultipleAccounts",
+        "FIELDSERVICE"
+    ],
+    "country": "NO",
+    "language": "en_US",
+    "settings": {
+        "communitiesSettings": {
+            "enableNetworksEnabled": true
+        },
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "omniChannelSettings": {
+            "enableOmniChannel": true
+        },
+        "liveAgentSettings": {
+            "enableLiveAgent": true
+        },
+        "languageSettings": {
+            "enableTranslationWorkbench": true
+        },
+        "accountSettings": {
+            "enableAccountTeams": true
+        },
+        "emailAdministrationSettings": {
+            "enableEnhancedEmailEnabled": true
+        }
+    }
 }
