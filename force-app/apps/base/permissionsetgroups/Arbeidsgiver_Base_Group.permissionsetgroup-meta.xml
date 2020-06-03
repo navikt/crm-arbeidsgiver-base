@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>For de som jobber med arbeidsgivere</description>
     <label>Arbeidsgiver - Base (Group)</label>
     <permissionSets>Arbeidsgiver_base</permissionSets>
+    <permissionSets>Arbeidsgiver_contract</permissionSets>
+    <permissionSets>Arbeidsgiver_opportunity</permissionSets>
+    <permissionSets>Arbeidsgiver_temporaryLayoffs</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>
