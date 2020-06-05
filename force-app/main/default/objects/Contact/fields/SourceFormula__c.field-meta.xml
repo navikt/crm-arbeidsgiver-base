@@ -3,10 +3,10 @@
     <fullName>SourceFormula__c</fullName>
     <externalId>false</externalId>
     <formula>IF(
-AND(INCLUDES(Source__c,&apos;Integrasjon&apos;),  CreatedBy.FirstName = &apos;Permitteringsvarsler&apos;), &apos;Permittering&apos;,
+CreatedBy.FirstName = &apos;Permitteringsvarsler&apos;, &apos;Permittering&apos;,
 
 IF(
-AND(INCLUDES(Source__c,&apos;Integrasjon&apos;),  CreatedBy.FirstName = &apos;Kontaktskjema&apos;), &apos;Kontaktskjema&apos;, &apos;Opprettet i Salesforce&apos;
+CreatedBy.FirstName = &apos;Kontaktskjema&apos;, &apos;Kontaktskjema&apos;, &apos;Opprettet i Salesforce&apos;
 ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Source</label>
