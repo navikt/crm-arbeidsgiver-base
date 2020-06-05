@@ -1,7 +1,8 @@
 global class Activity_AddAccount extends MyTriggers {
 
 	global override void onBeforeUpdate( Map<Id, SObject> triggerOldMap ) {
-		addAccount( ( List<SObject> ) records );
+		List<SObject>  sObjects = getActivityWithChangedWhatId( triggerOldMap, ( List<SObject> ) records );
+		addAccount( sObjects );
 	}
 
 	global override void onAfterInsert() {
