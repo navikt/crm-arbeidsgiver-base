@@ -128,4 +128,49 @@ private without sharing class Activity_AddAccountHelperTest {
 		System.assertEquals( tl.Id, result.get( 'temporarylayoff__c' )[0].Id, 'Id should be the same' );
 	}
 
+	@isTest
+	private static void testGetMapOfActivityAndAccount() {
+
+		Account account = TAG_TestDataFactory.createAccounts( 1 )[0];
+		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, account, true )[0];
+		Task t = new Task( TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test' );
+		insert t;
+		List<SObject> activities = new List<SObject> { t };
+
+		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { tl.Id } );
+		Map<String, List<SObject> > sObjectsSeparatedBySObject = Activity_AddAccountHelper.getSObjectsSeparatedBySObjectType( idsSeparatedBySObject );
+
+		Test.StartTest();
+		Map<Id, Id> mapOfActivityAndAccount = Activity_AddAccountHelper.getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject );
+		Test.StopTest();
+
+		System.assertEquals( 1, mapOfActivityAndAccount.size(), 'Only one activity added' );
+		System.assert (mapOfActivityAndAccount.containsKey( t.Id ), 'The task id is the only key');
+		System.assertEquals( account.Id, mapOfActivityAndAccount.get( t.Id ), 'The tl id should be the value' );
+	}
+
+
+	@isTest
+	private static void testAddAccountToActivity() {
+
+		Account account = TAG_TestDataFactory.createAccounts( 1 )[0];
+		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, account, true )[0];
+		Task t = new Task( TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test' );
+		insert t;
+		List<SObject> activities = new List<SObject> { t };
+
+		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { tl.Id } );
+		Map<String, List<SObject> > sObjectsSeparatedBySObject = Activity_AddAccountHelper.getSObjectsSeparatedBySObjectType( idsSeparatedBySObject );
+		Map<Id, Id> mapOfActivityAndAccount = Activity_AddAccountHelper.getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject );
+
+		System.assertEquals( null, activities[0].get( 'Account__c' ), 'Should NOT have added the account' );
+
+		Test.StartTest();
+		activities = Activity_AddAccountHelper.addAccountToActivity( activities, mapOfActivityAndAccount );
+		Test.StopTest();
+
+		System.assertEquals( 1, activities.size(), 'Only one activity added' );
+		System.assertEquals( account.Id, activities[0].get( 'Account__c' ), 'Should have added the account' );
+	}
+
 }

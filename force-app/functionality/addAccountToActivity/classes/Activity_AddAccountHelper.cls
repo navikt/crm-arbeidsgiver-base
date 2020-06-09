@@ -88,16 +88,16 @@ public with sharing class Activity_AddAccountHelper {
 		return mapOfActivityAndAccount;
 	}
 
-	public static List<SObject> addAccountToActivity( List<SObject> activities, Map<Id, Id> getMapOfActivityAndAccount ) {
+	public static List<SObject> addAccountToActivity( List<SObject> activities, Map<Id, Id> mapOfActivityAndAccount ) {
 
 		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( activities[0].Id );
 		if ( type == 'Task' ) {
 			for ( Task t : ( List<Task> ) activities ) {
-				t.Account__c = getMapOfActivityAndAccount.get( t.Id );
+				t.Account__c = mapOfActivityAndAccount.get( t.Id );
 			}
 		} else if ( type == 'Event' ) {
 			for ( Event e : ( List<Event> ) activities ) {
-				e.Account__c = getMapOfActivityAndAccount.get( e.Id );
+				e.Account__c = mapOfActivityAndAccount.get( e.Id );
 			}
 		}
 
