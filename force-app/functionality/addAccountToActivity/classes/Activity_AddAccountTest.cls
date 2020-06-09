@@ -5,12 +5,12 @@ private without sharing class Activity_AddAccountTest {
 	private static void testInsertTask() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Task t = createTask( acc );
-		t = [SELECT Id, Account__c FROM Task WHERE Id = : t.Id LIMIT 1];
 
 		Test.StartTest();
+		Task t = createTask( acc );
 		Test.StopTest();
 
+		t = [SELECT Id, Account__c FROM Task WHERE Id = : t.Id LIMIT 1];
 		System.assertEquals( acc.Id, t.Account__c, 'Should have added the temp layoffs account to Task.Account__c' );
 	}
 
@@ -20,12 +20,12 @@ private without sharing class Activity_AddAccountTest {
 
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Event e = createEvent( acc );
-		e = [SELECT Id, Account__c FROM Event WHERE Id = : e.Id LIMIT 1];
 
 		Test.StartTest();
+		Event e = createEvent( acc );
 		Test.StopTest();
 
+		e = [SELECT Id, Account__c FROM Event WHERE Id = : e.Id LIMIT 1];
 		System.assertEquals( acc.Id, e.Account__c, 'Should have added the temp layoffs account to Event.Account__c' );
 	}
 

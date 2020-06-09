@@ -1,11 +1,11 @@
 public with sharing class Activity_AddAccountHelper {
-	public static List<SObject> addAccount( List<SObject> activities ) {
+	public static List<SObject> addAccount( List<SObject> activities, Boolean isInsert ) {
 
 		Set<Id> whatIds = getWhatIds( activities );
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObjectType( idsSeparatedBysObject );
 		Map<Id, Id> mapOfActivityAndAccount = getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject );
-		activities = addAccountToActivity( activities, mapOfActivityAndAccount );
+		activities = addAccountToActivity( activities, mapOfActivityAndAccount, isInsert );
 
 		return activities;
 	}
@@ -70,7 +70,7 @@ public with sharing class Activity_AddAccountHelper {
 		Map<String, String> activityAccountMap = getActivityAccountMapping();
 		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( activities[0].Id );
 
-		for ( SObject activity : (List<Task>) activities ) {
+		for ( SObject activity :  activities ) {
 
 			String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) activity.get( 'WhatId' ) ).toLowerCase();
 
@@ -88,21 +88,34 @@ public with sharing class Activity_AddAccountHelper {
 		return mapOfActivityAndAccount;
 	}
 
-	public static List<SObject> addAccountToActivity( List<SObject> activities, Map<Id, Id> mapOfActivityAndAccount ) {
+	public static List<SObject> addAccountToActivity( List<SObject> originalActivities, Map<Id, Id> mapOfActivityAndAccount, Boolean isInsert ) {
 
-		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( activities[0].Id );
+		List<SObject> sObjectsToUpdate = new List<SObject>();
+
+		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( originalActivities[0].Id );
 		if ( type == 'Task' ) {
-			for ( Task t : ( List<Task> ) activities ) {
-				t.Account__c = mapOfActivityAndAccount.get( t.Id );
+			for ( Task t : ( List<Task> ) originalActivities ) {
+				if ( isInsert ) {
+					Task newTask = new Task( Id = t.Id, Account__c = mapOfActivityAndAccount.get( t.Id ) );
+					sObjectsToUpdate.add( newTask );
+				} else {
+					t.Account__c = mapOfActivityAndAccount.get( t.Id );
+				}
 			}
 		} else if ( type == 'Event' ) {
-			for ( Event e : ( List<Event> ) activities ) {
-				e.Account__c = mapOfActivityAndAccount.get( e.Id );
+			for ( Event e : ( List<Event> ) originalActivities ) {
+				if ( isInsert ) {
+					Event newEvent = new Event( Id = e.Id, Account__c = mapOfActivityAndAccount.get( e.Id ) );
+					sObjectsToUpdate.add( newEvent );
+				} else {
+					e.Account__c = mapOfActivityAndAccount.get( e.Id );
+				}
 			}
 		}
 
+		if ( isInsert ) { return sObjectsToUpdate; }
+		else { return originalActivities; }
 
-		return activities;
 	}
 
 	public static List<SObject> getActivityWithChangedWhatId( Map<Id, SObject> triggerOldMap, List<SObject> newRecords ) {
