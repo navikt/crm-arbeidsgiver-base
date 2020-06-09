@@ -3,7 +3,7 @@ public with sharing class Activity_AddAccountHelper {
 
 		Set<Id> whatIds = getWhatIds( activities );
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
-		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObject( idsSeparatedBysObject );
+		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObjectType( idsSeparatedBysObject );
 		Map<Id, Id> mapOfActivityAndAccount = getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject );
 		activities = addAccountToActivity( activities, mapOfActivityAndAccount );
 
@@ -43,7 +43,7 @@ public with sharing class Activity_AddAccountHelper {
 		return idsSeparatedBysObject;
 	}
 
-	public static Map<String, List<SObject> > getSObjectsSeparatedBySObject( Map<String, Set<Id> > idsSeparatedBysObject ) {
+	public static Map<String, List<SObject> > getSObjectsSeparatedBySObjectType( Map<String, Set<Id> > idsSeparatedBysObject ) {
 
 		Map<String, String> activityAccountMap = getActivityAccountMapping();
 

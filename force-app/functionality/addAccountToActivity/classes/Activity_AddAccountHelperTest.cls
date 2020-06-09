@@ -104,7 +104,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	}
 
 	@isTest
-	private static void testGetSObjectsSeparatedBySObject() {
+	private static void testGetSObjectsSeparatedBySObjectType() {
 
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
@@ -113,7 +113,7 @@ private without sharing class Activity_AddAccountHelperTest {
 		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { opty.Id, tl.Id } );
 
 		Test.StartTest();
-		Map<String, List<SObject> > result = Activity_AddAccountHelper.getSObjectsSeparatedBySObject( idsSeparatedBySObject );
+		Map<String, List<SObject> > result = Activity_AddAccountHelper.getSObjectsSeparatedBySObjectType( idsSeparatedBySObject );
 		Test.StopTest();
 
 
