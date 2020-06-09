@@ -14,7 +14,8 @@ public with sharing class Activity_AddAccountHelper {
 
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObject( idsSeparatedBysObject );
-		sObjects = addAccountToActivity( sObjects, sObjectsSeparatedBySObject );
+		Map<Id, Id> mapOfActivityAndAccount = getMapOfActivityAndAccount( sObjects, sObjectsSeparatedBySObject );
+		sObjects = addAccountToActivity( sObjects, mapOfActivityAndAccount );
 
 		return sObjects;
 	}
@@ -56,15 +57,15 @@ public with sharing class Activity_AddAccountHelper {
 			String ids = '(\'' + String.join( (Iterable<String>) idsSeparatedBysObject.get( sObjectName ), '\', \'' ) + '\')';
 			String query = 'SELECT Id, ' + sObjectFieldName + ' FROM ' + sObjectName + ' WHERE Id IN ' + ids;
 			List<SObject> sObjects = Database.query( query );
-			sObjectsSeparatedBySObject.put( sObjectName, sObjects );
+			sObjectsSeparatedBySObject.put( sObjectName.toLowerCase(), sObjects );
 		}
 
 		return sObjectsSeparatedBySObject;
 	}
 
-// TODO convert sobject to id instead
+	public static Map<Id, Id> getMapOfActivityAndAccount( List<SObject> sObjects, Map<String, List<SObject> > sObjectsSeparatedBySObject ) {
 
-	public static List<SObject> addAccountToActivity( List<SObject> sObjects, Map<String, List<SObject> > sObjectsSeparatedBySObject ) {
+		Map<Id, Id> mapOfActivityAndAccount = new Map<Id, Id>();
 
 		List<Activity_Account_Map__mdt> activityAccountMapping = [SELECT Id, SObject_API_Field_Name__c, SObject_API_Name__c FROM Activity_Account_Map__mdt];
 		Map<String, String> accountMap = new Map<String, String>();
@@ -74,40 +75,38 @@ public with sharing class Activity_AddAccountHelper {
 
 		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( sObjects[0].Id );
 
-		if ( type == 'Task' ) {
+		for ( SObject childSObj : (List<Task>) sObjects ) {
 
-			for ( Task childSObj : (List<Task>) sObjects ) {
+			String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) childSObj.get( 'WhatId' ) ).toLowerCase();
 
-				String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) childSObj.get( 'WhatId' ) );
-
-				if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType ) ) {
-					for ( SObject parentSObj : sObjectsSeparatedBySObject.get( parentSObjectType ) ) {
-						if ( childSObj.get( 'WhatId' ) == parentSObj.Id ) {
-
-							childSObj.Account__c = (Id) parentSObj.get( accountMap.get( parentSObjectType.toLowerCase() ) );
-						}
+			if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType.toLowerCase() ) ) {
+				for ( SObject parentSObj : sObjectsSeparatedBySObject.get( parentSObjectType.toLowerCase() ) ) {
+					if ( childSObj.get( 'WhatId' ) == parentSObj.Id ) {
+						String apiFieldName = accountMap.get( parentSObjectType.toLowerCase() );
+						Id accountId = (Id) parentSObj.get( apiFieldName );
+						mapOfActivityAndAccount.put( childSObj.Id, accountId );
 					}
 				}
+			}
+		}
+
+		return mapOfActivityAndAccount;
+	}
+
+
+	public static List<SObject> addAccountToActivity( List<SObject> sObjects, Map<Id, Id> getMapOfActivityAndAccount ) {
+
+		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( sObjects[0].Id );
+		if ( type == 'Task' ) {
+			for ( Task t : ( List<Task> ) sObjects ) {
+				t.Account__c = getMapOfActivityAndAccount.get( t.Id );
 			}
 		} else if ( type == 'Event' ) {
-
-			for ( Event childSObj : (List<Event>) sObjects ) {
-
-				// TODO refactor to avoid duplicate
-
-				String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) childSObj.get( 'WhatId' ) );
-
-				if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType ) ) {
-					for ( SObject parentSObj : sObjectsSeparatedBySObject.get( parentSObjectType ) ) {
-						if ( childSObj.get( 'WhatId' ) == parentSObj.Id ) {
-
-							childSObj.Account__c = (Id) parentSObj.get( accountMap.get( parentSObjectType.toLowerCase() ) );
-						}
-					}
-				}
+			for ( Event e : ( List<Event> ) sObjects ) {
+				e.Account__c = getMapOfActivityAndAccount.get( e.Id );
 			}
-
 		}
+
 
 		return sObjects;
 	}

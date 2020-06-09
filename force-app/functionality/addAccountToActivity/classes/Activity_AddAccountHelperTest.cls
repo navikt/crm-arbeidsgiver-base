@@ -119,13 +119,13 @@ private without sharing class Activity_AddAccountHelperTest {
 
 		System.assertEquals( 2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key' );
 
-		System.assert (result.containsKey( 'CustomOpportunity__c' ), 'CustomOpportunity__c should exist as a key');
-		System.assertEquals( 1, result.get( 'CustomOpportunity__c' ).size(), 'CustomOpportunity__c should have one ID' );
-		System.assertEquals( opty.Id, result.get( 'CustomOpportunity__c' )[0].Id, 'Id should be the same' );
+		System.assert (result.containsKey( 'customopportunity__c' ), 'CustomOpportunity__c should exist as a key');
+		System.assertEquals( 1, result.get( 'customopportunity__c' ).size(), 'CustomOpportunity__c should have one ID' );
+		System.assertEquals( opty.Id, result.get( 'customopportunity__c' )[0].Id, 'Id should be the same' );
 
-		System.assert (result.containsKey( 'TemporaryLayoff__c' ), 'TemporaryLayoff__c should exist as a key');
-		System.assertEquals( 1, result.get( 'TemporaryLayoff__c' ).size(), 'TemporaryLayoff__c should have one ID' );
-		System.assertEquals( tl.Id, result.get( 'TemporaryLayoff__c' )[0].Id, 'Id should be the same' );
+		System.assert (result.containsKey( 'temporarylayoff__c' ), 'TemporaryLayoff__c should exist as a key');
+		System.assertEquals( 1, result.get( 'temporarylayoff__c' ).size(), 'TemporaryLayoff__c should have one ID' );
+		System.assertEquals( tl.Id, result.get( 'temporarylayoff__c' )[0].Id, 'Id should be the same' );
 	}
 
 }
