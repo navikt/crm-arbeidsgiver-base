@@ -9,10 +9,11 @@ private without sharing class Activity_AddAccountHelperTest {
 		Task t = new Task( TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test' );
 		insert t;
 
+		t = [SELECT Id, WhatId, Account__c FROM Task WHERE Id = : t.Id LIMIT 1][0];
 		System.assertEquals( null, t.Account__c, 'Null before function' );
 
 		Test.StartTest();
-		t = ( Task ) Activity_AddAccountHelper.addAccount( new List<SObject> { t } )[0];
+		t = ( Task ) Activity_AddAccountHelper.addAccount( new List<SObject> { t }, 'Task' )[0];
 		Test.StopTest();
 
 		System.assertEquals( acc.Id, t.Account__c, 'Account is added to Account__c' );
@@ -29,7 +30,7 @@ private without sharing class Activity_AddAccountHelperTest {
 		System.assertEquals( null, e.Account__c, 'Null before function' );
 
 		Test.StartTest();
-		e = ( Event ) Activity_AddAccountHelper.addAccount( new List<SObject> { e } )[0];
+		e = ( Event ) Activity_AddAccountHelper.addAccount( new List<SObject> { e }, 'Event' )[0];
 		Test.StopTest();
 
 		System.assertEquals( acc.Id, e.Account__c, 'Account is added to Account__c' );
@@ -110,13 +111,11 @@ private without sharing class Activity_AddAccountHelperTest {
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
 		CustomOpportunity__c opty = TAG_TestDataFactory.getCustomOpportunities( 1, true )[0];
 		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { opty.Id, tl.Id } );
-		System.debug( 'idsSeparatedBySObject: ' + idsSeparatedBySObject );
 
 		Test.StartTest();
 		Map<String, List<SObject> > result = Activity_AddAccountHelper.getSObjectsSeparatedBySObject( idsSeparatedBySObject );
 		Test.StopTest();
 
-		System.debug( 'result: ' + result );
 
 		System.assertEquals( 2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key' );
 

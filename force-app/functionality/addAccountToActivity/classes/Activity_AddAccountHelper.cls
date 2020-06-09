@@ -1,5 +1,5 @@
 public with sharing class Activity_AddAccountHelper {
-	public static List<SObject> addAccount( List<SObject> sObjects ) {
+	public static List<SObject> addAccount( List<SObject> sObjects, String type ) {
 
 		Set<Id> whatIds = new Set<Id>();
 
@@ -14,7 +14,7 @@ public with sharing class Activity_AddAccountHelper {
 
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObject( idsSeparatedBysObject );
-		sObjects = addAccountToActivity( sObjects, sObjectsSeparatedBySObject );
+		sObjects = addAccountToActivity( sObjects, sObjectsSeparatedBySObject, type );
 
 		return sObjects;
 	}
@@ -46,18 +46,15 @@ public with sharing class Activity_AddAccountHelper {
 		} // TODO its own function
 
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = new Map<String, List<SObject> >();
-
 		List<String> queries = new List<String>();
 
 		for ( String sObjectName : idsSeparatedBysObject.keySet() ) {
 
 			String sObjectFieldName = accountMap.get( sObjectName.toLowerCase() );
-
 			if ( sObjectFieldName == null ) { continue; } // skip iteration
 
 			String ids = '(\'' + String.join( (Iterable<String>) idsSeparatedBysObject.get( sObjectName ), '\', \'' ) + '\')';
 			String query = 'SELECT Id, ' + sObjectFieldName + ' FROM ' + sObjectName + ' WHERE Id IN ' + ids;
-			System.debug( 'query: ' + query );
 			List<SObject> sObjects = Database.query( query );
 			sObjectsSeparatedBySObject.put( sObjectName, sObjects );
 		}
@@ -65,7 +62,9 @@ public with sharing class Activity_AddAccountHelper {
 		return sObjectsSeparatedBySObject;
 	}
 
-	public static List<SObject> addAccountToActivity( List<SObject> sObjects, Map<String, List<SObject> > sObjectsSeparatedBySObject ) {
+// TODO convert sobject to id instead
+
+	public static List<SObject> addAccountToActivity( List<SObject> sObjects, Map<String, List<SObject> > sObjectsSeparatedBySObject, String type ) {
 
 		List<Activity_Account_Map__mdt> activityAccountMapping = [SELECT Id, SObject_API_Field_Name__c, SObject_API_Name__c FROM Activity_Account_Map__mdt];
 		Map<String, String> accountMap = new Map<String, String>();
@@ -73,22 +72,39 @@ public with sharing class Activity_AddAccountHelper {
 			accountMap.put( mdt.SObject_API_Name__c.toLowerCase(), mdt.SObject_API_Field_Name__c );
 		}
 
-		for ( SObject childSObj : sObjects ) {
+		if ( type == 'Task' ) {
 
-			String childSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( childSObj.Id );
-			String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) childSObj.get( 'WhatId' ) );
+			for ( Task childSObj : (List<Task>) sObjects ) {
 
-			if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType ) ) {
-				for ( SObject parentSObj : sObjectsSeparatedBySObject.get( parentSObjectType ) ) {
-					if ( childSObj.get( 'WhatId' ) == parentSObj.Id ) {
-						if ( childSObjectType == 'Task' ) {
-							(Task) childSObj.Account__c = parentSObj.get( accountMap.get( parentSObjectType ) );
-						} else if ( childSObjectType == 'Event' ) {
-							(Event) childSObj.Account__c = parentSObj.get( accountMap.get( parentSObjectType ) );
+				String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) childSObj.get( 'WhatId' ) );
+
+				if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType ) ) {
+					for ( SObject parentSObj : sObjectsSeparatedBySObject.get( parentSObjectType ) ) {
+						if ( childSObj.get( 'WhatId' ) == parentSObj.Id ) {
+
+							childSObj.Account__c = (Id) parentSObj.get( accountMap.get( parentSObjectType.toLowerCase() ) );
 						}
 					}
 				}
 			}
+		} else if ( type == 'Event' ) {
+
+			for ( Event childSObj : (List<Event>) sObjects ) {
+
+				// TODO refactor to avoid duplicate
+
+				String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) childSObj.get( 'WhatId' ) );
+
+				if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType ) ) {
+					for ( SObject parentSObj : sObjectsSeparatedBySObject.get( parentSObjectType ) ) {
+						if ( childSObj.get( 'WhatId' ) == parentSObj.Id ) {
+
+							childSObj.Account__c = (Id) parentSObj.get( accountMap.get( parentSObjectType.toLowerCase() ) );
+						}
+					}
+				}
+			}
+
 		}
 
 		return sObjects;
