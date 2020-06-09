@@ -13,7 +13,7 @@ private without sharing class Activity_AddAccountHelperTest {
 		System.assertEquals( null, t.Account__c, 'Null before function' );
 
 		Test.StartTest();
-		t = ( Task ) Activity_AddAccountHelper.addAccount( new List<SObject> { t }, 'Task' )[0];
+		t = ( Task ) Activity_AddAccountHelper.addAccount( new List<SObject> { t } )[0];
 		Test.StopTest();
 
 		System.assertEquals( acc.Id, t.Account__c, 'Account is added to Account__c' );
@@ -30,7 +30,7 @@ private without sharing class Activity_AddAccountHelperTest {
 		System.assertEquals( null, e.Account__c, 'Null before function' );
 
 		Test.StartTest();
-		e = ( Event ) Activity_AddAccountHelper.addAccount( new List<SObject> { e }, 'Event' )[0];
+		e = ( Event ) Activity_AddAccountHelper.addAccount( new List<SObject> { e } )[0];
 		Test.StopTest();
 
 		System.assertEquals( acc.Id, e.Account__c, 'Account is added to Account__c' );

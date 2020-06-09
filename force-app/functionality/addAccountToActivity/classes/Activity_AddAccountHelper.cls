@@ -1,5 +1,5 @@
 public with sharing class Activity_AddAccountHelper {
-	public static List<SObject> addAccount( List<SObject> sObjects, String type ) {
+	public static List<SObject> addAccount( List<SObject> sObjects ) {
 
 		Set<Id> whatIds = new Set<Id>();
 
@@ -14,7 +14,7 @@ public with sharing class Activity_AddAccountHelper {
 
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObject( idsSeparatedBysObject );
-		sObjects = addAccountToActivity( sObjects, sObjectsSeparatedBySObject, type );
+		sObjects = addAccountToActivity( sObjects, sObjectsSeparatedBySObject );
 
 		return sObjects;
 	}
@@ -64,13 +64,15 @@ public with sharing class Activity_AddAccountHelper {
 
 // TODO convert sobject to id instead
 
-	public static List<SObject> addAccountToActivity( List<SObject> sObjects, Map<String, List<SObject> > sObjectsSeparatedBySObject, String type ) {
+	public static List<SObject> addAccountToActivity( List<SObject> sObjects, Map<String, List<SObject> > sObjectsSeparatedBySObject ) {
 
 		List<Activity_Account_Map__mdt> activityAccountMapping = [SELECT Id, SObject_API_Field_Name__c, SObject_API_Name__c FROM Activity_Account_Map__mdt];
 		Map<String, String> accountMap = new Map<String, String>();
 		for ( Activity_Account_Map__mdt mdt : activityAccountMapping ) {
 			accountMap.put( mdt.SObject_API_Name__c.toLowerCase(), mdt.SObject_API_Field_Name__c );
 		}
+
+		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( sObjects[0].Id );
 
 		if ( type == 'Task' ) {
 
