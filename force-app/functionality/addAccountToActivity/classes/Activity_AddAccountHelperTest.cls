@@ -5,7 +5,9 @@ private without sharing class Activity_AddAccountHelperTest {
 	private static void testAddAccount_Task() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Task t = createTask( acc );
+		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
+		Task t = new Task( TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test' );
+		insert t;
 
 		System.assertEquals( null, t.Account__c, 'Null before function' );
 
@@ -20,7 +22,9 @@ private without sharing class Activity_AddAccountHelperTest {
 	private static void testAddAccount_Event() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Event e = createEvent( acc );
+		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
+		Event e = new Event( TAG_NoPersonInformation__c = true, WhatId = tl.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen' );
+		insert e;
 
 		System.assertEquals( null, e.Account__c, 'Null before function' );
 
@@ -73,6 +77,56 @@ private without sharing class Activity_AddAccountHelperTest {
 		Test.StopTest();
 
 		System.assertEquals( 1, results.size(), 'Same account on temp layoff, WhatId ' );
+	}
+
+
+	@isTest
+	private static void testGetIdsSeparatedBySObject() {
+
+		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
+		CustomOpportunity__c opty = TAG_TestDataFactory.getCustomOpportunities( 1, true )[0];
+
+		Test.StartTest();
+		Map<String, Set<Id> > result = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { opty.Id, tl.Id } );
+		Test.StopTest();
+
+		System.assertEquals( 2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key' );
+
+		System.assert (result.containsKey( 'CustomOpportunity__c' ), 'CustomOpportunity__c should exist as a key');
+		System.assertEquals( 1, result.get( 'CustomOpportunity__c' ).size(), 'CustomOpportunity__c should have one ID' );
+		System.assertEquals( opty.Id, new List<Id>( result.get( 'CustomOpportunity__c' ) )[0], 'Id should be the same' );
+
+		System.assert (result.containsKey( 'TemporaryLayoff__c' ), 'TemporaryLayoff__c should exist as a key');
+		System.assertEquals( 1, result.get( 'TemporaryLayoff__c' ).size(), 'TemporaryLayoff__c should have one ID' );
+		System.assertEquals( tl.Id, new List<Id>( result.get( 'TemporaryLayoff__c' ) )[0], 'Id should be the same' );
+	}
+
+	@isTest
+	private static void testGetSObjectsSeparatedBySObject() {
+
+
+		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
+		CustomOpportunity__c opty = TAG_TestDataFactory.getCustomOpportunities( 1, true )[0];
+		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { opty.Id, tl.Id } );
+		System.debug( 'idsSeparatedBySObject: ' + idsSeparatedBySObject );
+
+		Test.StartTest();
+		Map<String, List<SObject> > result = Activity_AddAccountHelper.getSObjectsSeparatedBySObject( idsSeparatedBySObject );
+		Test.StopTest();
+
+		System.debug( 'result: ' + result );
+
+		System.assertEquals( 2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key' );
+
+		System.assert (result.containsKey( 'CustomOpportunity__c' ), 'CustomOpportunity__c should exist as a key');
+		System.assertEquals( 1, result.get( 'CustomOpportunity__c' ).size(), 'CustomOpportunity__c should have one ID' );
+		System.assertEquals( opty.Id, result.get( 'CustomOpportunity__c' )[0].Id, 'Id should be the same' );
+
+		System.assert (result.containsKey( 'TemporaryLayoff__c' ), 'TemporaryLayoff__c should exist as a key');
+		System.assertEquals( 1, result.get( 'TemporaryLayoff__c' ).size(), 'TemporaryLayoff__c should have one ID' );
+		System.assertEquals( tl.Id, result.get( 'TemporaryLayoff__c' )[0].Id, 'Id should be the same' );
 	}
 
 }
