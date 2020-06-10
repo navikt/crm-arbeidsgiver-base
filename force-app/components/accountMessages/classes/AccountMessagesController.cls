@@ -18,14 +18,10 @@ public with sharing class AccountMessagesController {
             currentId = recordId;	
         }
 
-        Account currentAccount =
-		    [SELECT Id, ParentId, CreatedDate, INT_IsBankrupt__c, INT_IsInForcedSettlementOrResolution__c
-		    FROM Account
-			WHERE  ( INT_IsBankrupt__c = TRUE OR INT_IsInForcedSettlementOrResolution__c = TRUE )
-            AND Id = :currentId]; 
-        
-            return currentAccount;
-	}
+        Account currentAccount = [SELECT Id, ParentId, CreatedDate, INT_IsBankrupt__c, INT_IsInForcedSettlementOrResolution__c FROM Account WHERE  ( INT_IsBankrupt__c = TRUE OR INT_IsInForcedSettlementOrResolution__c = TRUE ) AND Id = :currentId]; 
+        return currentAccount;
+    }
+    
 	@AuraEnabled
 	public static Account findRelatedAccount( Id accountId, String value ) {
 		Account currentAccount = [SELECT Name FROM Account WHERE Id =:accountId LIMIT 1][0];
