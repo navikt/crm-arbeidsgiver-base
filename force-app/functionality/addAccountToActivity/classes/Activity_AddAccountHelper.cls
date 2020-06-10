@@ -70,7 +70,7 @@ public with sharing class Activity_AddAccountHelper {
 		Map<String, String> activityAccountMap = getActivityAccountMapping();
 		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( activities[0].Id );
 
-		for ( SObject activity :  activities ) {
+		for ( SObject activity : activities ) {
 
 			String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( (String) activity.get( 'WhatId' ) ).toLowerCase();
 
