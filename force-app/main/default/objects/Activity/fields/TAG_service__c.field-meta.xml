@@ -30,22 +30,130 @@
                 <default>false</default>
                 <label>Vurder IA-oppdraget</label>
             </value>
+            <value>
+                <fullName>Jobbmesser og møteplasser</fullName>
+                <default>false</default>
+                <label>Jobbmesser og møteplasser</label>
+            </value>
+            <value>
+                <fullName>EURES</fullName>
+                <default>false</default>
+                <label>EURES</label>
+            </value>
+            <value>
+                <fullName>Rekrutteringsoppdrag</fullName>
+                <default>false</default>
+                <label>Rekrutteringsoppdrag</label>
+            </value>
+            <value>
+                <fullName>Informasjon om NAVs tjenester</fullName>
+                <default>false</default>
+                <label>Informasjon om NAVs tjenester</label>
+            </value>
+            <value>
+                <fullName>Informasjon om inkludering</fullName>
+                <default>false</default>
+                <label>Informasjon om inkludering</label>
+            </value>
+            <value>
+                <fullName>Flyktningtjenesten</fullName>
+                <default>false</default>
+                <label>Flyktningtjenesten</label>
+            </value>
+            <value>
+                <fullName>Inkluderende rekruttering</fullName>
+                <default>false</default>
+                <label>Inkluderende rekruttering</label>
+            </value>
+            <value>
+                <fullName>Jobbspesialist</fullName>
+                <default>false</default>
+                <label>Jobbspesialist</label>
+            </value>
+            <value>
+                <fullName>Konkurs</fullName>
+                <default>false</default>
+                <label>Konkurs</label>
+            </value>
+            <value>
+                <fullName>Nedbemanning</fullName>
+                <default>false</default>
+                <label>Nedbemanning</label>
+            </value>
+            <value>
+                <fullName>Permittering</fullName>
+                <default>false</default>
+                <label>Permittering</label>
+            </value>
+            <value>
+                <fullName>Masseoppsigelser</fullName>
+                <default>false</default>
+                <label>Masseoppsigelser</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>IA</controllingFieldValue>
             <valueName>Helse i arbeid</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>IA</controllingFieldValue>
             <valueName>Redusere sykefravær</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>IA</controllingFieldValue>
             <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>IA</controllingFieldValue>
             <valueName>Vurder IA-oppdraget</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
+            <valueName>Jobbmesser og møteplasser</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
+            <valueName>EURES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
+            <valueName>Rekrutteringsoppdrag</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
+            <valueName>Informasjon om NAVs tjenester</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
+            <valueName>Informasjon om inkludering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
+            <valueName>Flyktningtjenesten</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
+            <valueName>Inkluderende rekruttering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
+            <valueName>Jobbspesialist</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Varsler</controllingFieldValue>
+            <valueName>Konkurs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Varsler</controllingFieldValue>
+            <valueName>Nedbemanning</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Varsler</controllingFieldValue>
+            <valueName>Permittering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Varsler</controllingFieldValue>
+            <valueName>Masseoppsigelser</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
