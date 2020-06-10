@@ -23,15 +23,8 @@
         <targetPageType>standard__recordPage</targetPageType>
         <timesToDisplay>5</timesToDisplay>
         <title>Ny kilde på mulighet</title>
-        <uiFormulaRule>
-            <criteria>
-                <leftValue>{!ENCODED:{!ID:$User.Profile.Key}}</leftValue>
-                <operator>EQUAL</operator>
-                <rightValue>custom_nav kontor</rightValue>
-            </criteria>
-        </uiFormulaRule>
         <userAccess>Everyone</userAccess>
-        <userProfileAccess>SpecificProfiles</userProfileAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
         <versionNumber>1</versionNumber>
     </promptVersions>
 </Prompt>

@@ -3,32 +3,32 @@
     <caseValues>
         <article>Definite</article>
         <plural>false</plural>
-        <value>Permitteringen</value>
+        <value>Varsel til NAV</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value>Permittering</value>
+        <value>Varsel til NAV</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>false</plural>
-        <value>Permittering</value>
+        <value>Varsel til NAV</value>
     </caseValues>
     <caseValues>
         <article>Definite</article>
         <plural>true</plural>
-        <value>Permitteringene</value>
+        <value>Varsler til NAV</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value>Permitteringer</value>
+        <value>Varsler til NAV</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>true</plural>
-        <value>Permitteringer</value>
+        <value>Varsler til NAV</value>
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
@@ -50,5 +50,5 @@
             <section>Opplysninger</section>
         </sections>
     </layouts>
-    <nameFieldLabel>Permitteringsnavn</nameFieldLabel>
+    <nameFieldLabel>Varsel til NAV</nameFieldLabel>
 </CustomObjectTranslation>

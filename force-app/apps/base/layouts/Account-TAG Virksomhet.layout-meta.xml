@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
@@ -77,7 +77,7 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Description Information</label>
-        <layoutColumns/>
+        <layoutColumns />
         <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
@@ -104,8 +104,8 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -113,9 +113,9 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -123,8 +123,8 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Additional Information</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <platformActionList>
@@ -182,9 +182,9 @@
         <excludeButtons>MassAddToCampaign</excludeButtons>
         <excludeButtons>Merge</excludeButtons>
         <fields>CONTACT.FULL_NAME</fields>
-        <fields>CONTACT.ACCOUNT_NAME</fields>
         <fields>CONTACT.TITLE</fields>
         <fields>CONTACT.EMAIL</fields>
+        <fields>SourceFormula__c</fields>
         <fields>CONTACT.PHONE1</fields>
         <fields>ACCCONRELATION.ROLES</fields>
         <relatedList>RelatedAccountContactRelationList</relatedList>
@@ -223,7 +223,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000000laKF</masterLabel>
+        <masterLabel>00h1X000000t0AO</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

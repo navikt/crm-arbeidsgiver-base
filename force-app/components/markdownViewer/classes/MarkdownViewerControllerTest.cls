@@ -3,7 +3,7 @@ private without sharing class MarkdownViewerControllerTest {
 
 	@testSetup
 	private static void setup() {
-		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'TAG_default' LIMIT 1];
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
 		User u = TAG_TestDataFactory.createStandardUser();
 		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
 

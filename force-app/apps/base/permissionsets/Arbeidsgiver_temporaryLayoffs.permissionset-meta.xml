@@ -108,6 +108,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TemporaryLayoff__c.KafkaId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TemporaryLayoff__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>

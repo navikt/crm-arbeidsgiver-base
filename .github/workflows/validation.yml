@@ -43,8 +43,8 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        run: sfdx force:org:create -f config/package-scratch-def.json -a scratch-org -s -d 1
-          
+        run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1
+
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
         run: "echo y | sfdx plugins:install sfpowerkit"
@@ -56,7 +56,7 @@ jobs:
       # Deploy source to scratch org
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
-          
+
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
         # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"
@@ -69,7 +69,7 @@ jobs:
         run: |
           sfdx force:user:create -f config/users/pull_request.json -u scratch-org -a employee
           echo "::set-output name=loginUrl::$(sfdx force:user:password:generate --onbehalfof=scratch-org)"
-          
+
           admin=$(sfdx force:user:display -u scratch-org --json)
           employee=$(sfdx force:user:display -u employee --json)
 
@@ -89,7 +89,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.0
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'Scratch Organization Aficionado'
+          SLACK_USERNAME: "Scratch Organization Aficionado"
           SLACK_MESSAGE: |
             *Login to Scratch Org*
 
@@ -109,4 +109,3 @@ jobs:
       - name: "Delete scratch org"
         if: failure() || !contains( github.event.pull_request.labels.*.name, 'saveScratchOrg')
         run: "sfdx force:org:delete -p -u scratch-org"
-
