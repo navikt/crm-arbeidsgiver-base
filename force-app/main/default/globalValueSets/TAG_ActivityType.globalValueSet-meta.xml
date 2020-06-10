@@ -1,95 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
+        <fullName>Rekrutteringsbistand</fullName>
+        <default>false</default>
+        <label>Rekrutteringsbistand</label>
+    </customValue>
+    <customValue>
+        <fullName>Inkluderingbistand</fullName>
+        <default>false</default>
+        <label>Inkluderingsbistand</label>
+    </customValue>
+    <customValue>
+        <fullName>IA</fullName>
+        <default>false</default>
+        <label>IA</label>
+    </customValue>
+    <customValue>
+        <fullName>Varsler</fullName>
+        <default>false</default>
+        <label>Varsler</label>
+    </customValue>
+    <customValue>
+        <fullName>Arbeidsgiverkontakt</fullName>
+        <default>false</default>
+        <label>Arbeidsgiverkontakt</label>
+    </customValue>
+    <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
         <default>false</default>
         <label>Bedriftsundersøkelse</label>
-    </customValue>
-    <customValue>
-        <fullName>IA-arbeid</fullName>
-        <default>false</default>
-        <label>IA-arbeid</label>
-    </customValue>
-    <customValue>
-        <fullName>Markedsarbeid</fullName>
-        <default>false</default>
-        <label>Markedsarbeid</label>
-    </customValue>
-    <customValue>
-        <fullName>Inkludering</fullName>
-        <default>false</default>
-        <label>Inkludering</label>
-    </customValue>
-    <customValue>
-        <fullName>Permittering</fullName>
-        <default>false</default>
-        <label>Permittering</label>
-    </customValue>
-    <customValue>
-        <fullName>IA Tjeneste: HelseIArbeid</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>IA Tjeneste: Helse i arbeid</label>
-    </customValue>
-    <customValue>
-        <fullName>Bedriftsbesøk</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Bedriftsbesøk</label>
-    </customValue>
-    <customValue>
-        <fullName>E-post eller SMS</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>E-post eller SMS</label>
-    </customValue>
-    <customValue>
-        <fullName>Rekrutteringsbistand i EØS-området</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Rekrutteringsbistand i EØS-området</label>
-    </customValue>
-    <customValue>
-        <fullName>Kontaktskjema</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Kontaktskjema</label>
-    </customValue>
-    <customValue>
-        <fullName>Jobbmesse</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Jobbmesse</label>
-    </customValue>
-    <customValue>
-        <fullName>IA Tjeneste Forbyggende Arbeidsmiljøarbeid</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>IA Tjeneste: Forbyggende Arbeidsmiljøarbeid</label>
-    </customValue>
-    <customValue>
-        <fullName>Informasjonsmøte - omstilling og nedbemanning</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Informasjonsmøte - omstilling og nedbemanning</label>
-    </customValue>
-    <customValue>
-        <fullName>IA Tjeneste: Redusere sykefravær</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>IA Tjeneste: Redusere sykefravær</label>
-    </customValue>
-    <customValue>
-        <fullName>Telefonkontakt</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Telefonkontakt</label>
-    </customValue>
-    <customValue>
-        <fullName>Samarbeidsmøte tiltak</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Samarbeidsmøte tiltak</label>
     </customValue>
     <customValue>
         <fullName>Samarbeidsmøte rektrutteringsbistand</fullName>
@@ -104,12 +43,48 @@
         <label>Samarbeidsavtale</label>
     </customValue>
     <customValue>
-        <fullName>Samarbeidsmøte</fullName>
+        <fullName>Samarbeidsmøte tiltak</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Samarbeidsmøte</label>
+        <label>Samarbeidsmøte tiltak</label>
+    </customValue>
+    <customValue>
+        <fullName>Telefonkontakt</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Telefonkontakt</label>
+    </customValue>
+    <customValue>
+        <fullName>IA Tjeneste: Redusere sykefravær</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>IA Tjeneste: Redusere sykefravær</label>
+    </customValue>
+    <customValue>
+        <fullName>Informasjonsmøte - omstilling og nedbemanning</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Informasjonsmøte - omstilling og nedbemanning</label>
+    </customValue>
+    <customValue>
+        <fullName>IA Tjeneste Forbyggende Arbeidsmiljøarbeid</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>IA Tjeneste: Forbyggende Arbeidsmiljøarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Kontaktskjema</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Kontaktskjema</label>
+    </customValue>
+    <customValue>
+        <fullName>Jobbmesse</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Jobbmesse</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
-    <sorted>true</sorted>
+    <sorted>false</sorted>
 </GlobalValueSet>
