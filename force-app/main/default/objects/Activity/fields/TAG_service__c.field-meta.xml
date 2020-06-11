@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_service__c</fullName>
     <externalId>false</externalId>
@@ -92,68 +92,20 @@
             </value>
         </valueSetDefinition>
         <valueSettings>
-            <controllingFieldValue>IA</controllingFieldValue>
+            <controllingFieldValue>IA-arbeid</controllingFieldValue>
             <valueName>Helse i arbeid</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA</controllingFieldValue>
+            <controllingFieldValue>IA-arbeid</controllingFieldValue>
             <valueName>Redusere sykefravær</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA</controllingFieldValue>
+            <controllingFieldValue>IA-arbeid</controllingFieldValue>
             <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA</controllingFieldValue>
+            <controllingFieldValue>IA-arbeid</controllingFieldValue>
             <valueName>Vurder IA-oppdraget</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
-            <valueName>Jobbmesser og møteplasser</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
-            <valueName>EURES</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
-            <valueName>Rekrutteringsoppdrag</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Rekrutteringsbistand</controllingFieldValue>
-            <valueName>Informasjon om NAVs tjenester</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
-            <valueName>Informasjon om inkludering</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
-            <valueName>Flyktningtjenesten</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
-            <valueName>Inkluderende rekruttering</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Inkluderingbistand</controllingFieldValue>
-            <valueName>Jobbspesialist</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Varsler</controllingFieldValue>
-            <valueName>Konkurs</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Varsler</controllingFieldValue>
-            <valueName>Nedbemanning</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Varsler</controllingFieldValue>
-            <valueName>Permittering</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Varsler</controllingFieldValue>
-            <valueName>Masseoppsigelser</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
