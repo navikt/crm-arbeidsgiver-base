@@ -84,7 +84,7 @@
     </values>
     <values>
         <field>SubtitleFutureNorwegian__c</field>
-        <value xsi:type="xsd:string">planlegger en telefonsamtale</value>
+        <value xsi:type="xsd:string">planlegger en telefonsamtale med</value>
     </values>
     <values>
         <field>SubtitlePastEnglish__c</field>
@@ -92,7 +92,7 @@
     </values>
     <values>
         <field>SubtitlePastNorwegian__c</field>
-        <value xsi:type="xsd:string">hadde en telefonsamtale</value>
+        <value xsi:type="xsd:string">hadde en telefonsamtale med</value>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionEng__c</field>
@@ -100,6 +100,6 @@
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionNor__c</field>
-        <value xsi:type="xsd:string">med</value>
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>
