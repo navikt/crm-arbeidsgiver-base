@@ -180,7 +180,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A2_1859547751</name>
+        <name>formula_2_myRule_1_A2_0527099331</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -191,7 +191,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_0443595734</name>
+        <name>formula_3_myRule_1_A1_0180056656</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -202,7 +202,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_6612451199</name>
+        <name>formula_4_myRule_1_A1_7344597214</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -228,7 +228,7 @@
         <dataType>Boolean</dataType>
         <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &apos;005&apos;))</expression>
     </formulas>
-    <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Temporary_Layoff_Update-4_InterviewLabel</interviewLabel>
     <label>Temporary Layoff</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -296,7 +296,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_0443595734</elementReference>
+                <elementReference>formula_3_myRule_1_A1_0180056656</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -326,7 +326,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_6612451199</elementReference>
+                <elementReference>formula_4_myRule_1_A1_7344597214</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -495,42 +495,6 @@
             <field>TAG_NoPersonInformation__c</field>
             <value>
                 <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Service</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>TAG_service__c</field>
-            <value>
-                <stringValue>Permittering</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -767,7 +731,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A2_1859547751</elementReference>
+                <elementReference>formula_2_myRule_1_A2_0527099331</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>
