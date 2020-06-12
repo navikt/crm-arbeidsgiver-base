@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_must_be_active</fullName>
+    <active>true</active>
+    <errorConditionFormula>Course_registration__r.Active__c = False</errorConditionFormula>
+    <errorMessage>Dette kurset er ikke aktivt</errorMessage>
+</ValidationRule>

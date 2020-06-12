@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Region__c</fullName>
+    <externalId>false</externalId>
+    <label>Region</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Agder</fullName>
+                <default>false</default>
+                <label>Agder</label>
+            </value>
+            <value>
+                <fullName>Innlandet</fullName>
+                <default>false</default>
+                <label>Innlandet</label>
+            </value>
+            <value>
+                <fullName>Møre og Romsdal</fullName>
+                <default>false</default>
+                <label>Møre og Romsdal</label>
+            </value>
+            <value>
+                <fullName>Nordland</fullName>
+                <default>false</default>
+                <label>Nordland</label>
+            </value>
+            <value>
+                <fullName>Oslo</fullName>
+                <default>false</default>
+                <label>Oslo</label>
+            </value>
+            <value>
+                <fullName>Rogaland</fullName>
+                <default>false</default>
+                <label>Rogaland</label>
+            </value>
+            <value>
+                <fullName>Troms og Finnmark</fullName>
+                <default>false</default>
+                <label>Troms og Finnmark</label>
+            </value>
+            <value>
+                <fullName>Trøndelag</fullName>
+                <default>false</default>
+                <label>Trøndelag</label>
+            </value>
+            <value>
+                <fullName>Vestfold og Telemark</fullName>
+                <default>false</default>
+                <label>Vestfold og Telemark</label>
+            </value>
+            <value>
+                <fullName>Vestland</fullName>
+                <default>false</default>
+                <label>Vestland</label>
+            </value>
+            <value>
+                <fullName>Vest-Viken</fullName>
+                <default>false</default>
+                <label>Vest-Viken</label>
+            </value>
+            <value>
+                <fullName>Øst-Viken</fullName>
+                <default>false</default>
+                <label>Øst-Viken</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
