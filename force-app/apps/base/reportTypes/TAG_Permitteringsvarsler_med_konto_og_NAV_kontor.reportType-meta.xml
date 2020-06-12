@@ -446,6 +446,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.TAG_Power_of_one__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.PersonContact</field>
             <table>TemporaryLayoff__c</table>
         </columns>
@@ -555,5 +560,3 @@
         <masterLabel>NAV Kontor</masterLabel>
     </sections>
 </ReportType>
-
-
