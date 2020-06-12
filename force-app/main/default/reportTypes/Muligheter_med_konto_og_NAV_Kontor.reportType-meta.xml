@@ -271,6 +271,11 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.TAG_Power_of_one__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.Id</field>
             <table>CustomOpportunity__c</table>
         </columns>
