@@ -1,29 +1,32 @@
 {
-	"orgName": "NAV VIRKSOMHETSLØSNINGER",
-	"edition": "Enterprise",
-	"release": "Current",
-	"adminEmail": "fakeemail@nav.no.scratchorg",
-	"features": [
-		"PersonAccounts",
-		"ProcessBuilder",
-		"API",
-		"ServiceCloud",
-		"LightningServiceConsole",
-		"ContactsToMultipleAccounts",
-		"LiveAgent",
-		"ForceComPlatform"
-	],
-	"country": "NO",
-	"language": "en_US",
-	"settings": {
-		"lightningExperienceSettings": {
-			"enableS1DesktopEnabled": true
-		},
-		"languageSettings": {
-			"enableTranslationWorkbench": true
-		},
-		"accountSettings": {
-			"enableAccountTeams": true
-		}
-	}
+    "orgName": "NAV VIRKSOMHETSLØSNINGER",
+    "edition": "Enterprise",
+    "release": "Current",
+    "adminEmail": "fakeemail@nav.no.scratchorg",
+    "features": [
+        "PersonAccounts",
+        "ProcessBuilder",
+        "API",
+        "ServiceCloud",
+        "LightningServiceConsole",
+        "ContactsToMultipleAccounts",
+        "LiveAgent",
+        "ForceComPlatform"
+    ],
+    "country": "NO",
+    "language": "en_US",
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "languageSettings": {
+            "enableTranslationWorkbench": true
+        },
+        "accountSettings": {
+            "enableAccountTeams": true
+        },
+        "nameSettings": {
+            "enableMiddleName": true
+        }
+    }
 }
