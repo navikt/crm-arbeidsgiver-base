@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Type</label>
+    <name>Type_of_course__c</name>
+    <picklistValues>
+        <masterLabel>E-læring</masterLabel>
+        <translation><!-- E-læring --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Informasjonsmøte</masterLabel>
+        <translation><!-- Informasjonsmøte --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Konferanse</masterLabel>
+        <translation><!-- Konferanse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kurs</masterLabel>
+        <translation><!-- Kurs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nettverks- og erfaringssamling</masterLabel>
+        <translation><!-- Nettverks- og erfaringssamling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Webinar</masterLabel>
+        <translation><!-- Webinar --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

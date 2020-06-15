@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Tema</label>
+    <name>Theme__c</name>
+    <picklistValues>
+        <masterLabel>Annet</masterLabel>
+        <translation><!-- Annet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Arbeidssøkeraktivitet</masterLabel>
+        <translation><!-- Arbeidssøkeraktivitet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hjelpemidler og tilrettelegging</masterLabel>
+        <translation><!-- Hjelpemidler og tilrettelegging --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inkluderende arbeidsliv (IA)</masterLabel>
+        <translation><!-- Inkluderende arbeidsliv (IA) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
