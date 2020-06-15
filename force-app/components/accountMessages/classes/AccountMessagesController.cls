@@ -1,99 +1,56 @@
 public with sharing class AccountMessagesController {
 
 	@AuraEnabled(cacheable = true)
-	public static List<AccountMessagesWrapper> getData( String recordId ) {
-		List<AccountHistory> historyList = queryAccountHistory( recordId );
-		List<Account> accountList = queryAccounts( recordId );
-		List<AccountMessagesWrapper> wrapper = convertAccountHistoryToWrapper( historyList, accountList );
+	public static AccountMessagesWrapper getData( String recordId ) {
+		Account account = getAccount( recordId );
+		AccountMessagesWrapper wrapper = convertAccountHistoryToWrapper( account );
 
 		return wrapper;
-
 	}
+
 	@AuraEnabled
-	public static List<AccountHistory> queryAccountHistory( Id accountId ) {
-		return [SELECT
-		        AccountId, CreatedDate, Field, IsDeleted, NewValue, OldValue
-		        FROM AccountHistory
-		        WHERE
-		            ( Field = 'INT_IsInForcedSettlementOrResolution__c' OR Field = 'INT_IsInLiquidation__c' OR Field = 'INT_IsBankrupt__c' ) AND
-		            ( AccountId = : accountId ) ORDER BY CreatedDate DESC];
+	public static Account getAccount( Id recordId ) {
+		Account parent = [SELECT ParentId FROM Account WHERE Id =:recordId];
+        Id currentId;
+		if ( parent.ParentId != null ) {
+           currentId = parent.ParentId;
+		} else {
+            currentId = recordId;	
+        }
+
+        Account currentAccount = [SELECT Id, ParentId, CreatedDate, INT_IsBankrupt__c, INT_IsInForcedSettlementOrResolution__c FROM Account WHERE  ( INT_IsBankrupt__c = TRUE OR INT_IsInForcedSettlementOrResolution__c = TRUE ) AND Id = :currentId]; 
+        return currentAccount;
+    }
+    
+	@AuraEnabled
+	public static Account findRelatedAccount( Id accountId, String value ) {
+		Account currentAccount = [SELECT Name FROM Account WHERE Id =:accountId LIMIT 1][0];
+		String newAccountName = currentAccount.Name + value;
+		Account newAccount = [SELECT Id, Name FROM Account WHERE Name =:newAccountName AND INT_OrganizationalStructure__c = 'AAFY'];
+
+		return newAccount;
 	}
+
 	@AuraEnabled
-	public static List<Account> queryAccounts( Id recordId ) {
-		List<Account> accountList = [SELECT Id, CreatedDate, INT_IsBankrupt__c, INT_IsInLiquidation__c, INT_IsInForcedSettlementOrResolution__c FROM Account WHERE ( INT_IsBankrupt__c = TRUE OR INT_IsInForcedSettlementOrResolution__c = TRUE OR INT_IsInLiquidation__c = TRUE ) AND Id = : recordId];
-		System.debug( accountList );
+	public static AccountMessagesWrapper convertAccountHistoryToWrapper( Account account ) {
+		String value = 'Denne virksomheten er ';
+		Id accountId = account.Id;
+		Account relatedAccount;
+		Id relatedAccountId;
 
-		return accountList;
-	}
-	@AuraEnabled
-	public static List<AccountMessagesWrapper> convertAccountHistoryToWrapper( List<AccountHistory> historyList, List<Account> accountList ) {
-		List<AccountMessagesWrapper> wrapper = new List<AccountMessagesWrapper>();
 
-		String isBankruptValue = 'Bedriften er konkurs';
-		String isInForcedSettlemetValue = 'Bedriften er under tvangsavvikling';
-		String isInLiquidationValue = 'Bedriften er under avvikling';
-		Datetime eventDate;
-		String value = '';
-
-		for ( Integer i = 0; i < historyList.size(); i++ ) {
-
-			Object newValue = historyList[i].NewValue;
-			Object oldValue = historyList[i].OldValue;
-			String field = historyList[i].Field;
-			eventDate = historyList[i].CreatedDate;
-
-			Boolean isNew = newValue == true && oldValue == false;
-
-			if ( field == 'INT_IsBankrupt__c' ) {
-				if ( isNew ) {
-					value = isBankruptValue;
-				} else {
-					value = 'Bedriften er ikke lenger konkurs';
-				}
-			}
-
-			if ( field == 'INT_IsInForcedSettlementOrResolution__c' ) {
-				if ( isNew ) {
-					value = isInForcedSettlemetValue;
-				} else {
-					value = 'Bedriften er ikke lenger under tvangsavvikling';
-				}
-			}
-			if ( field == 'INT_IsInLiquidation__c' ) {
-				if ( isNew ) {
-					value = isInLiquidationValue;
-				} else {
-					value = 'Bedriften er ikke lenger under avvikling';
-				}
-			}
-
-			AccountMessagesWrapper history = new AccountMessagesWrapper( eventDate, i, value );
-			wrapper.add( history );
+		if ( account.INT_IsBankrupt__c == true ) {
+			relatedAccount = findRelatedAccount( accountId, ' KONKURSBO' );
+			relatedAccountId = relatedAccount.Id;
+			value = value + 'konkurs';
+		}
+		if ( account.INT_IsInForcedSettlementOrResolution__c ) {
+			relatedAccount = findRelatedAccount( accountId, ' TVANGSAVVIKLINGSBO' );
+			relatedAccountId = relatedAccount.Id;
+			value = value + 'under tvangsavvikling';
 		}
 
-		if ( historyList.isEmpty() && !accountList.isEmpty() ) {
-
-			for ( Integer i = 0; i < accountList.size(); i++ ) {
-				Boolean isBankrupt = accountList[i].INT_IsBankrupt__c;
-				Boolean isInLiquidation = accountList[i].INT_IsInLiquidation__c;
-				Boolean isInForcedSettlemet = accountList[i].INT_IsInForcedSettlementOrResolution__c;
-				eventDate = accountList[i].CreatedDate;
-				AccountMessagesWrapper account;
-
-				if ( isBankrupt ) {
-					value = isBankruptValue;
-					wrapper.add( account = new AccountMessagesWrapper( eventDate, i, value ) );
-				}
-				if ( isInLiquidation ) {
-					value = isInLiquidationValue;
-					wrapper.add( account = new AccountMessagesWrapper( eventDate, i, value ) );
-				}
-				if ( isInForcedSettlemet ) {
-					value = isInForcedSettlemetValue;
-					wrapper.add( account = new AccountMessagesWrapper( eventDate, i, value ) );
-				}
-			}
-		}
+		AccountMessagesWrapper wrapper = new AccountMessagesWrapper( relatedAccountId, value );
 
 		return wrapper;
 	}
