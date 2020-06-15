@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Kurset</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>Kurs</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>Kurs</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Kursene</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>true</plural>
+        <value>Kurs</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>Kurs</value>
+    </caseValues>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>Course Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Date --></label>
+            <section>Date</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Place --></label>
+            <section>Place</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Kurs ID</nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- Start tid kan ikke være senere enn slutt tid --></errorMessage>
+        <name>Start_time_not_later_than_end_time</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -19,10 +19,6 @@
                 <field>Course_participant__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Get_course_ID__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Status__c</field>
             </layoutItems>
