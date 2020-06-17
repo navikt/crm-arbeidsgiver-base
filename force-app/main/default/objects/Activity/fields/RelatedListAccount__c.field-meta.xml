@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RelatedListAccount__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Dette feltet brukes for å si hvilken Account aktiviteten tilhører. Uavhengig om en aktivitet er knyttet direkte til Account i WhatId, så fylles dette feltet. Bruk WhatIdAccount__c for de tilfellene der aktivitet IKKE er knyttet til Account, altså indirekte via CustomOpportunity__c eller TemoLayoff.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Dette feltet brukes for å si hvilken Account aktiviteten tilhører. Uavhengig om en aktivitet er knyttet direkte til Account i WhatId, så fylles dette feltet. Bruk WhatIdAccount for de tilfellene der aktivitet IKKE er knyttet til Account, altså indirekte.</inlineHelpText>
+    <label>Virksomhet</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Virksomhetens Aktiviteter</relationshipLabel>
+    <relationshipName>VirksomhetensAktiviteter</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

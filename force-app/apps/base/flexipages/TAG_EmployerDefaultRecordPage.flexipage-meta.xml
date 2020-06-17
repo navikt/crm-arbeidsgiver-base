@@ -16,9 +16,6 @@
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentName>accountMessages</componentName>
-        </componentInstances>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -42,6 +39,44 @@
             <componentName>accountTeamMember</componentName>
         </componentInstances>
         <name>Facet-8a12c5ef-b1b3-4d1c-a97b-a71ab4438a53</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p&gt;Her vises alle oppgaver og møter relatert til denne virksomheten. Det inkluderer oppgaver og møter som er knyttet til, for eksempel, varsler og muligheter, som tilhører virksomheten.&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Account.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>VirksomhetensAktiviteter__r</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>ADVGRID</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>rowsToDisplay</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showActionBar</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
+        <name>Facet-0ed7db69-f9c9-45df-ab57-9d5ded462959</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -129,29 +164,6 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>Histories</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
-        </componentInstances>
         <name>Facet-30ba79a4-429f-4ca9-b271-f750c3fe0663</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -175,6 +187,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Kontaktpersoner</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-0ed7db69-f9c9-45df-ab57-9d5ded462959</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Siste aktivitet</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -252,6 +275,9 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentName>accountMessages</componentName>
+        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>amountOfMonths</name>
