@@ -12,15 +12,15 @@ private without sharing class Activity_AddAccountHelperTest {
 		tl.Account__c = acc2.Id;
 		update tl;
 
-		System.assertEquals( null, t.Account__c, 'Null before function' );
-		t = [SELECT Id, WhatId, Account__c FROM Task WHERE Id = : t.Id LIMIT 1][0];
-		System.assertEquals( acc.Id, t.Account__c, 'old acc after insertion' );
+		System.assertEquals( null, t.RelatedToAccount__c, 'Null before function' );
+		t = [SELECT Id, WhatId, RelatedToAccount__c FROM Task WHERE Id = : t.Id LIMIT 1][0];
+		System.assertEquals( acc.Id, t.RelatedToAccount__c, 'old acc after insertion' );
 
 		Test.StartTest();
 		t = ( Task ) Activity_AddAccountHelper.addAccount( new List<SObject> { t }, false )[0];
 		Test.StopTest();
 
-		System.assertEquals( acc2.Id, t.Account__c, 'Account is added to Account__c' );
+		System.assertEquals( acc2.Id, t.RelatedToAccount__c, 'Account is added to RelatedToAccount__c' );
 	}
 
 	@isTest
@@ -34,15 +34,15 @@ private without sharing class Activity_AddAccountHelperTest {
 		tl.Account__c = acc2.Id;
 		update tl;
 
-		System.assertEquals( null, e.Account__c, 'Null before function' );
-		e = [SELECT Id, WhatId, Account__c FROM Event WHERE Id = : e.Id LIMIT 1][0];
-		System.assertEquals( acc.Id, e.Account__c, 'old acc after insertion' );
+		System.assertEquals( null, e.RelatedToAccount__c, 'Null before function' );
+		e = [SELECT Id, WhatId, RelatedToAccount__c FROM Event WHERE Id = : e.Id LIMIT 1][0];
+		System.assertEquals( acc.Id, e.RelatedToAccount__c, 'old acc after insertion' );
 
 		Test.StartTest();
 		e = ( Event ) Activity_AddAccountHelper.addAccount( new List<SObject> { e }, false )[0];
 		Test.StopTest();
 
-		System.assertEquals( acc2.Id, e.Account__c, 'Account is added to Account__c' );
+		System.assertEquals( acc2.Id, e.RelatedToAccount__c, 'Account is added to RelatedToAccount__c' );
 	}
 
 
@@ -172,14 +172,14 @@ private without sharing class Activity_AddAccountHelperTest {
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = Activity_AddAccountHelper.getSObjectsSeparatedBySObjectType( idsSeparatedBySObject );
 		Map<Id, Id> mapOfActivityAndAccount = Activity_AddAccountHelper.getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject );
 
-		System.assertEquals( null, activities[0].get( 'Account__c' ), 'Should NOT have added the account' );
+		System.assertEquals( null, activities[0].get( 'RelatedToAccount__c' ), 'Should NOT have added the account' );
 
 		Test.StartTest();
 		activities = Activity_AddAccountHelper.addAccountToActivity( activities, mapOfActivityAndAccount, false );
 		Test.StopTest();
 
 		System.assertEquals( 1, activities.size(), 'Only one activity added' );
-		System.assertEquals( account.Id, activities[0].get( 'Account__c' ), 'Should have added the account' );
+		System.assertEquals( account.Id, activities[0].get( 'RelatedToAccount__c' ), 'Should have added the account' );
 	}
 
 }

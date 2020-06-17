@@ -96,19 +96,19 @@ public with sharing class Activity_AddAccountHelper {
 		if ( type == 'Task' ) {
 			for ( Task t : ( List<Task> ) originalActivities ) {
 				if ( isInsert ) {
-					Task newTask = new Task( Id = t.Id, Account__c = mapOfActivityAndAccount.get( t.Id ) );
+					Task newTask = new Task( Id = t.Id, RelatedToAccount__c = mapOfActivityAndAccount.get( t.Id ) );
 					sObjectsToUpdate.add( newTask );
 				} else {
-					t.Account__c = mapOfActivityAndAccount.get( t.Id );
+					t.RelatedToAccount__c = mapOfActivityAndAccount.get( t.Id );
 				}
 			}
 		} else if ( type == 'Event' ) {
 			for ( Event e : ( List<Event> ) originalActivities ) {
 				if ( isInsert ) {
-					Event newEvent = new Event( Id = e.Id, Account__c = mapOfActivityAndAccount.get( e.Id ) );
+					Event newEvent = new Event( Id = e.Id, RelatedToAccount__c = mapOfActivityAndAccount.get( e.Id ) );
 					sObjectsToUpdate.add( newEvent );
 				} else {
-					e.Account__c = mapOfActivityAndAccount.get( e.Id );
+					e.RelatedToAccount__c = mapOfActivityAndAccount.get( e.Id );
 				}
 			}
 		}

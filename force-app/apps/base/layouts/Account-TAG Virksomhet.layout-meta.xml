@@ -4,9 +4,6 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -130,6 +127,11 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
+            <actionName>AccountHierarchy</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>0</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>LogACall</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
@@ -143,11 +145,6 @@
             <actionName>Account.TAG_CreateTask</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>3</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>AccountHierarchy</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedContent>
@@ -163,10 +160,11 @@
         <fields>Date__c</fields>
         <fields>ACTIVITY_SUBTYPE</fields>
         <fields>TAG_ActivityType__c</fields>
+        <fields>WhatIdType__c</fields>
         <fields>TASK.WHAT_NAME</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.WHO_NAME</fields>
-        <relatedList>Activity.RelatedListAccount__c</relatedList>
+        <relatedList>Activity.RelatedToAccount__c</relatedList>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>

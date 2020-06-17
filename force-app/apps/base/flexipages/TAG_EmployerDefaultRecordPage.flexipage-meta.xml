@@ -60,7 +60,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListApiName</name>
-                <value>VirksomhetensAktiviteter__r</value>
+                <value>Aktiviteter__r</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
@@ -197,7 +197,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>Siste aktivitet</value>
+                <value>Aktivitet</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -301,11 +301,11 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>headerTitleEnglish</name>
-                <value>Activities</value>
+                <value>Timeline</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>headerTitleNorwegian</name>
-                <value>Aktiviteter</value>
+                <value>Tidslinje</value>
             </componentInstanceProperties>
             <componentName>tagActivityTimeline</componentName>
         </componentInstances>

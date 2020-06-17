@@ -10,8 +10,8 @@ private without sharing class Activity_AddAccountTest {
 		Task t = createTask( acc );
 		Test.StopTest();
 
-		t = [SELECT Id, Account__c FROM Task WHERE Id = : t.Id LIMIT 1];
-		System.assertEquals( acc.Id, t.Account__c, 'Should have added the temp layoffs account to Task.Account__c' );
+		t = [SELECT Id, RelatedToAccount__c FROM Task WHERE Id = : t.Id LIMIT 1];
+		System.assertEquals( acc.Id, t.RelatedToAccount__c, 'Should have added the temp layoffs account to Task.RelatedToAccount__c' );
 	}
 
 
@@ -25,8 +25,8 @@ private without sharing class Activity_AddAccountTest {
 		Event e = createEvent( acc );
 		Test.StopTest();
 
-		e = [SELECT Id, Account__c FROM Event WHERE Id = : e.Id LIMIT 1];
-		System.assertEquals( acc.Id, e.Account__c, 'Should have added the temp layoffs account to Event.Account__c' );
+		e = [SELECT Id, RelatedToAccount__c FROM Event WHERE Id = : e.Id LIMIT 1];
+		System.assertEquals( acc.Id, e.RelatedToAccount__c, 'Should have added the temp layoffs account to Event.RelatedToAccount__c' );
 	}
 
 
@@ -35,20 +35,20 @@ private without sharing class Activity_AddAccountTest {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 		Task t = createTask( acc );
-		t = [SELECT Id, Account__c FROM Task WHERE Id = : t.Id LIMIT 1];
+		t = [SELECT Id, RelatedToAccount__c FROM Task WHERE Id = : t.Id LIMIT 1];
 
 		Account newAccount = TAG_TestDataFactory.createAccounts( 1 )[0];
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, newAccount, true )[0];
 		t.WhatId = tl.Id;
 
-		// System.assertEquals( acc.Id, t.Account__c, 'Should have added the temp layoffs account to Task.Account__c' ); // TODO re-enable when inserts work
+		// System.assertEquals( acc.Id, t.RelatedToAccount__c, 'Should have added the temp layoffs account to Task.RelatedToAccount__c' ); // TODO re-enable when inserts work
 
 		Test.StartTest();
 		update t;
 		Test.StopTest();
 
-		t = [SELECT Id, Account__c FROM Task WHERE Id = : t.Id LIMIT 1];
-		System.assertEquals( newAccount.Id, t.Account__c, 'Should have changed to the new temp layoffs account on Task.Account__c' );
+		t = [SELECT Id, RelatedToAccount__c FROM Task WHERE Id = : t.Id LIMIT 1];
+		System.assertEquals( newAccount.Id, t.RelatedToAccount__c, 'Should have changed to the new temp layoffs account on Task.RelatedToAccount__c' );
 
 
 	}
@@ -59,20 +59,20 @@ private without sharing class Activity_AddAccountTest {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 		Event e = createEvent( acc );
-		e = [SELECT Id, Account__c FROM Event WHERE Id = : e.Id LIMIT 1];
+		e = [SELECT Id, RelatedToAccount__c FROM Event WHERE Id = : e.Id LIMIT 1];
 
 		Account newAccount = TAG_TestDataFactory.createAccounts( 1 )[0];
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, newAccount, true )[0];
 		e.WhatId = tl.Id;
 
-		// System.assertEquals( acc.Id, e.Account__c, 'Should have added the temp layoffs account to Event.Account__c' ); // TODO re-enable when inserts work
+		// System.assertEquals( acc.Id, e.RelatedToAccount__c, 'Should have added the temp layoffs account to Event.RelatedToAccount__c' ); // TODO re-enable when inserts work
 
 		Test.StartTest();
 		update e;
 		Test.StopTest();
 
-		e = [SELECT Id, Account__c FROM Event WHERE Id = : e.Id LIMIT 1];
-		System.assertEquals( newAccount.Id, e.Account__c, 'Should have changed to the new temp layoffs account on Event.Account__c' );
+		e = [SELECT Id, RelatedToAccount__c FROM Event WHERE Id = : e.Id LIMIT 1];
+		System.assertEquals( newAccount.Id, e.RelatedToAccount__c, 'Should have changed to the new temp layoffs account on Event.RelatedToAccount__c' );
 
 	}
 
