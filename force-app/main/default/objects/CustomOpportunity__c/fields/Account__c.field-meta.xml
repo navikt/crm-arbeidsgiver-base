@@ -4,6 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Arbeidsgiver</description>
     <externalId>false</externalId>
+    <inlineHelpText>Virksomheten muligheten tilhører</inlineHelpText>
     <label>Account</label>
     <lookupFilter>
         <active>true</active>
@@ -15,6 +16,7 @@
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Account</referenceTo>
+    <relationshipLabel>Custom Opportunities</relationshipLabel>
     <relationshipName>Inkluderingsmuligheter</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

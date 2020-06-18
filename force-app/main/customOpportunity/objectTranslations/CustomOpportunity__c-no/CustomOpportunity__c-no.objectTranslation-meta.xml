@@ -61,6 +61,21 @@
             <section>Mulighet</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Simple Opp Layout</layout>
+        <sections>
+            <label><!-- Beskrivelse --></label>
+            <section>Beskrivelse</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Mulighet --></label>
+            <section>Mulighet</section>
+        </sections>
+    </layouts>
     <nameFieldLabel>Muligheter</nameFieldLabel>
     <recordTypes>
         <description><!-- En mulighet for inkludering --></description>
