@@ -56,7 +56,7 @@ public with sharing class Activity_AddAccountHelper {
 			if ( sObjectFieldName == null ) { continue; } // skip iteration
 
 			String ids = '(\'' + String.join( (Iterable<String>) idsSeparatedBysObject.get( sObjectName ), '\', \'' ) + '\')';
-			String query = 'SELECT Id, ' + sObjectFieldName + ' FROM ' + sObjectName + ' WHERE Id IN ' + ids;
+			String query = 'SELECT ' + sObjectFieldName + ' FROM ' + sObjectName + ' WHERE Id IN ' + ids;
 			List<SObject> sObjects = Database.query( query );
 			sObjectsSeparatedBySObject.put( sObjectName.toLowerCase(), sObjects );
 		}
