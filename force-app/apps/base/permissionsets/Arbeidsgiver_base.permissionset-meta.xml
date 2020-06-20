@@ -212,7 +212,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -231,7 +231,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Event.RelatedListAccount__c</field>
+        <field>Event.RelatedToAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -276,11 +276,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Event.WhatIdType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Event.WhoId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -292,7 +287,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -301,7 +296,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Task.RelatedListAccount__c</field>
+        <field>Task.RelatedToAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -342,11 +337,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.WhatId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Task.WhatIdType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
