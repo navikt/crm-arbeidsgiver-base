@@ -3,7 +3,7 @@
     <fullName>Date__c</fullName>
     <externalId>false</externalId>
     <formula>IF ( ISNULL ( ActivityDate ) , DATEVALUE(CreatedDate), (ActivityDate) )</formula>
-    <label>Date</label>
+    <label>Dato</label>
     <required>false</required>
     <type>Date</type>
 </CustomField>
