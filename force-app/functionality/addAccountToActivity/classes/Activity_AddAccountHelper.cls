@@ -19,6 +19,7 @@ public with sharing class Activity_AddAccountHelper {
 		if ( activities.size() == 0 ) { return null; }
 		// if ( !userHaveAccess() ) { return null; }
 
+		activities = keepActivitiesWithWhatId( activities );
 		Set<Id> whatIds = getWhatIds( activities );
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObjectType( idsSeparatedBysObject );
@@ -26,6 +27,20 @@ public with sharing class Activity_AddAccountHelper {
 		activities = addAccountToActivity( activities, mapOfActivityAndAccount, isInsert );
 
 		return activities;
+	}
+
+	public static List<SObject> keepActivitiesWithWhatId( List<SObject> activities ) {
+
+		List<SObject> sObjectsToKeep = new List<SObject>();
+
+		for ( SObject sObj : activities ) {
+
+			if ( (Id) sObj.get( 'WhatId' ) != null ) {
+				sObjectsToKeep.add( sObj );
+			}
+		}
+
+		return sObjectsToKeep;
 	}
 
 	public static Boolean userHaveAccess() {
