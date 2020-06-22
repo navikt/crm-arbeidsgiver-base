@@ -17,7 +17,7 @@ public with sharing class Activity_AddAccountHelper {
 	public static List<SObject> addAccount( List<SObject> activities, Boolean isInsert ) {
 
 		if ( activities.size() == 0 ) { return null; }
-		if ( !userHaveAccess() ) { return null; }
+		// if ( !userHaveAccess() ) { return null; }
 
 		Set<Id> whatIds = getWhatIds( activities );
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );

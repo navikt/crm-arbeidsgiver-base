@@ -110,16 +110,6 @@ private without sharing class Activity_AddAccountHelperTest {
 	}
 
 	@isTest
-	private static void testUserHaveAccess_anon() {
-
-		Test.StartTest();
-		Boolean result = Activity_AddAccountHelper.userHaveAccess();
-		Test.StopTest();
-
-		System.assert (result, 'Anonymous user should always have access');
-	}
-
-	@isTest
 	private static void testUserHaveAccess_emptyUser() {
 
 		User u = TAG_TestDataFactory.createStandardUser();
