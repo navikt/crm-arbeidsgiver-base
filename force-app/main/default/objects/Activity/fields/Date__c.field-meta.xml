@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Date__c</fullName>
     <externalId>false</externalId>
-    <formula>IF ( ISNULL ( ActivityDate ) , DATEVALUE(LastModifiedDate), ActivityDate )</formula>
+    <formula>ActivityDate</formula>
     <label>Dato</label>
     <required>false</required>
     <type>Date</type>
