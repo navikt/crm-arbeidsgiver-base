@@ -9,16 +9,6 @@ private without sharing class AccessControlValidatorTest {
 	}
 
 	@isTest
-	private static void testSObjectIsAccessible_anon() {
-
-		Test.StartTest();
-		Boolean result = AccessControlValidator.sObjectIsAccessible( 'TemporaryLayoff__c' );
-		Test.StopTest();
-
-		System.assert (result, 'Anonymous user should always have access');
-	}
-
-	@isTest
 	private static void testSObjectIsAccessible_emptyUser() {
 
 		User u = TAG_TestDataFactory.createStandardUser();
@@ -48,16 +38,6 @@ private without sharing class AccessControlValidatorTest {
 		Test.StopTest();
 
 		System.assert (result, 'New user should have access');
-	}
-
-	@isTest
-	private static void testSObjectIsCreateable_anon() {
-
-		Test.StartTest();
-		Boolean result = AccessControlValidator.sObjectIsCreateable( 'CustomOpportunity__c' );
-		Test.StopTest();
-
-		System.assert (result, 'Anonymous user should always have access');
 	}
 
 	@isTest
@@ -93,16 +73,6 @@ private without sharing class AccessControlValidatorTest {
 	}
 
 	@isTest
-	private static void testFieldIsAccessible_anon() {
-
-		Test.StartTest();
-		Boolean result = AccessControlValidator.fieldIsAccessible( 'Task', 'RelatedToAccount__c' );
-		Test.StopTest();
-
-		System.assert (result, 'Anonymous user should always have access');
-	}
-
-	@isTest
 	private static void testFieldIsAccessible_emptyUser() {
 
 		User u = TAG_TestDataFactory.createStandardUser();
@@ -132,16 +102,6 @@ private without sharing class AccessControlValidatorTest {
 		Test.StopTest();
 
 		System.assert (result, 'New user should have access');
-	}
-
-	@isTest
-	private static void testFieldIsCreateable_anon() {
-
-		Test.StartTest();
-		Boolean result = AccessControlValidator.fieldIsCreateable( 'Task', 'RelatedToAccount__c' );
-		Test.StopTest();
-
-		System.assert (result, 'Anonymous user should always have access');
 	}
 
 	@isTest
