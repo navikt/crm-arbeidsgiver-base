@@ -26,6 +26,10 @@
                 <behavior>Required</behavior>
                 <field>EndDateTime</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Date__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
