@@ -16,7 +16,7 @@
                 <field>Theme__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Max_number_of_participants__c</field>
             </layoutItems>
             <layoutItems>
@@ -34,7 +34,7 @@
                 <field>Type_of_course__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Number_Of_Participants__c</field>
             </layoutItems>
         </layoutColumns>
@@ -155,7 +155,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1x000000w2qQ</masterLabel>
+        <masterLabel>00h1x000000r0lQ</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
