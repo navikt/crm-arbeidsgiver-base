@@ -54,7 +54,7 @@ private without sharing class Activity_AddAccountTest {
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, newAccount, true )[0];
 		t.WhatId = tl.Id;
 
-		// System.assertEquals( acc.Id, t.RelatedToAccount__c, 'Should have added the temp layoffs account to Task.RelatedToAccount__c' ); // TODO re-enable when inserts work
+		System.assertEquals( acc.Id, t.RelatedToAccount__c, 'Should have added the temp layoffs account to Task.RelatedToAccount__c' );
 
 		Test.StartTest();
 		update t;
@@ -78,7 +78,7 @@ private without sharing class Activity_AddAccountTest {
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, newAccount, true )[0];
 		e.WhatId = tl.Id;
 
-		// System.assertEquals( acc.Id, e.RelatedToAccount__c, 'Should have added the temp layoffs account to Event.RelatedToAccount__c' ); // TODO re-enable when inserts work
+		System.assertEquals( acc.Id, e.RelatedToAccount__c, 'Should have added the temp layoffs account to Event.RelatedToAccount__c' );
 
 		Test.StartTest();
 		update e;
