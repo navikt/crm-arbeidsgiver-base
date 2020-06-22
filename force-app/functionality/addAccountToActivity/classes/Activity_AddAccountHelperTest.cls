@@ -110,6 +110,51 @@ private without sharing class Activity_AddAccountHelperTest {
 	}
 
 	@isTest
+	private static void testUserHaveAccess_anon() {
+
+		Test.StartTest();
+		Boolean result = Activity_AddAccountHelper.userHaveAccess();
+		Test.StopTest();
+
+		System.assert (result, 'Anonymous user should always have access');
+	}
+
+	@isTest
+	private static void testUserHaveAccess_emptyUser() {
+
+		User u = TAG_TestDataFactory.createStandardUser();
+		Boolean result;
+
+		Test.StartTest();
+		System.runAs( u )
+		{
+			result = Activity_AddAccountHelper.userHaveAccess();
+		}
+		Test.StopTest();
+
+		System.assert (!result, 'Empty user user should NOT have access');
+	}
+
+	@isTest
+	private static void testUserHaveAccess_emptyUserWithPermset() {
+
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
+		User u = TAG_TestDataFactory.createStandardUser();
+		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
+
+		Boolean result;
+
+		Test.StartTest();
+		System.runAs( u )
+		{
+			result = Activity_AddAccountHelper.userHaveAccess();
+		}
+		Test.StopTest();
+
+		System.assert (result, 'New user should have access');
+	}
+
+	@isTest
 	private static void testGetIdsSeparatedBySObject() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
