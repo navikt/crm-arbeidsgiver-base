@@ -167,13 +167,16 @@ public with sharing class Activity_AddAccountHelper {
 			String whatIdPrefix = ( (String) activity.get( 'WhatId' ) ).substring( 0, 3 );
 			String parentSObjectType = mapOfSObjectPrefix.get( whatIdPrefix ).toLowerCase();
 
-			if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType.toLowerCase() ) ) {
-				for ( SObject parentSObj : sObjectsSeparatedBySObject.get( parentSObjectType.toLowerCase() ) ) {
-					if ( activity.get( 'WhatId' ) == parentSObj.Id ) {
-						String apiFieldName = activityAccountMapping.get( parentSObjectType.toLowerCase() );
-						Id accountId = (Id) parentSObj.get( apiFieldName );
-						mapOfActivityAndAccount.put( activity.Id, accountId );
-					}
+			if ( sObjectsSeparatedBySObject.containsKey( parentSObjectType ) ) {
+
+				Map<Id, SObject> parentSObjects = new Map<Id, SObject> ( sObjectsSeparatedBySObject.get( parentSObjectType ) );
+				Id whatId = (Id) activity.get( 'WhatId' );
+
+				if ( parentSObjects.containsKey( whatId ) ) {
+					SObject parentSObj = parentSObjects.get( whatId );
+					String apiFieldName = activityAccountMapping.get( parentSObjectType );
+					Id accountId = (Id) parentSObj.get( apiFieldName );
+					mapOfActivityAndAccount.put( activity.Id, accountId );
 				}
 			}
 		}
