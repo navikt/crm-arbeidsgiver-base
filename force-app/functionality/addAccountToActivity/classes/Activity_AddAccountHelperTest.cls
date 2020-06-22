@@ -89,6 +89,25 @@ private without sharing class Activity_AddAccountHelperTest {
 		System.assertEquals( 1, results.size(), 'Same account on temp layoff, WhatId ' );
 	}
 
+	@isTest
+	private static void testGetWhatIds() {
+
+		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
+
+		Task t = new Task( TAG_NoPersonInformation__c = true, WhatId = acc.Id, ActivityDate = Date.today(), Subject = 'test' );
+		insert t;
+
+		Task t2 = new Task( TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test' );
+		insert t2;
+
+		Test.StartTest();
+		Set<Id> whatIds = Activity_AddAccountHelper.getWhatIds( new List<SObject> { t, t2 } );
+		Test.StopTest();
+
+		System.assert (whatIds.contains( acc.Id ), 'Should contain acc id');
+		System.assert (whatIds.contains( tl.Id ), 'Should contain tl id');
+	}
 
 	@isTest
 	private static void testGetIdsSeparatedBySObject() {
@@ -181,5 +200,4 @@ private without sharing class Activity_AddAccountHelperTest {
 		System.assertEquals( 1, activities.size(), 'Only one activity added' );
 		System.assertEquals( account.Id, activities[0].get( 'RelatedToAccount__c' ), 'Should have added the account' );
 	}
-
 }

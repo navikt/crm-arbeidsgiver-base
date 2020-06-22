@@ -1,6 +1,11 @@
 public with sharing class Activity_AddAccountHelper {
 	public static List<SObject> addAccount( List<SObject> activities, Boolean isInsert ) {
 
+		if ( activities.size() == 0 ) { return null; }
+
+		// TODO check if user have access
+
+
 		Set<Id> whatIds = getWhatIds( activities );
 		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObjectType( idsSeparatedBysObject );
