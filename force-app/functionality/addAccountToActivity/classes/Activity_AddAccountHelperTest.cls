@@ -89,8 +89,9 @@ private without sharing class Activity_AddAccountHelperTest {
 		System.assertEquals( 1, results.size(), 'Same account on temp layoff, WhatId ' );
 	}
 
+
 	@isTest
-	private static void testGetWhatIds() {
+	private static void testGetWhatIdMap() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
@@ -102,11 +103,13 @@ private without sharing class Activity_AddAccountHelperTest {
 		insert t2;
 
 		Test.StartTest();
-		Set<Id> whatIds = Activity_AddAccountHelper.getWhatIds( new List<SObject> { t, t2 } );
+		Map<String, Set<Id> > whatIdMap = Activity_AddAccountHelper.getWhatIdMap( new List<SObject> { t, t2 } );
 		Test.StopTest();
 
-		System.assert (whatIds.contains( acc.Id ), 'Should contain acc id');
-		System.assert (whatIds.contains( tl.Id ), 'Should contain tl id');
+		System.assert (whatIdMap.containsKey( ( (String) acc.Id ).substring( 0, 3 ) ), 'Should contain acc id substring as key');
+		System.assert (whatIdMap.get( ( (String) acc.Id ).substring( 0, 3 ) ).contains( acc.Id ), 'Should contain acc id');
+		System.assert (whatIdMap.containsKey( ( (String) tl.Id ).substring( 0, 3 ) ), 'Should contain tl id substring as key');
+		System.assert (whatIdMap.get( ( (String) tl.Id ).substring( 0, 3 ) ).contains( tl.Id ), 'Should contain tl id');
 	}
 
 	@isTest
@@ -151,8 +154,12 @@ private without sharing class Activity_AddAccountHelperTest {
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
 		CustomOpportunity__c opty = TAG_TestDataFactory.getCustomOpportunities( 1, true )[0];
 
+		Map<String, Set<Id> > whatIdMap = new Map<String, Set<Id> >();
+		whatIdMap.put( ( (String) tl.Id ).substring( 0, 3 ), new Set<Id> { tl.Id } );
+		whatIdMap.put( ( (String) opty.Id ).substring( 0, 3 ), new Set<Id> { opty.Id } );
+
 		Test.StartTest();
-		Map<String, Set<Id> > result = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { opty.Id, tl.Id } );
+		Map<String, Set<Id> > result = Activity_AddAccountHelper.getIdsSeparatedBySObject( whatIdMap );
 		Test.StopTest();
 
 		System.assertEquals( 2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key' );
@@ -173,7 +180,12 @@ private without sharing class Activity_AddAccountHelperTest {
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
 		CustomOpportunity__c opty = TAG_TestDataFactory.getCustomOpportunities( 1, true )[0];
-		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { opty.Id, tl.Id } );
+
+		Map<String, Set<Id> > whatIdMap = new Map<String, Set<Id> >();
+		whatIdMap.put( ( (String) tl.Id ).substring( 0, 3 ), new Set<Id> { tl.Id } );
+		whatIdMap.put( ( (String) opty.Id ).substring( 0, 3 ), new Set<Id> { opty.Id } );
+
+		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( whatIdMap );
 
 		Test.StartTest();
 		Map<String, List<SObject> > result = Activity_AddAccountHelper.getSObjectsSeparatedBySObjectType( idsSeparatedBySObject );
@@ -200,7 +212,9 @@ private without sharing class Activity_AddAccountHelperTest {
 		insert t;
 		List<SObject> activities = new List<SObject> { t };
 
-		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { tl.Id } );
+		Map<String, Set<Id> > whatIdMap = Activity_AddAccountHelper.getWhatIdMap( activities );
+
+		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( whatIdMap );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = Activity_AddAccountHelper.getSObjectsSeparatedBySObjectType( idsSeparatedBySObject );
 
 		Test.StartTest();
@@ -222,7 +236,9 @@ private without sharing class Activity_AddAccountHelperTest {
 		insert t;
 		List<SObject> activities = new List<SObject> { t };
 
-		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( new Set<Id> { tl.Id } );
+		Map<String, Set<Id> > whatIdMap = Activity_AddAccountHelper.getWhatIdMap( activities );
+
+		Map<String, Set<Id> > idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject( whatIdMap );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = Activity_AddAccountHelper.getSObjectsSeparatedBySObjectType( idsSeparatedBySObject );
 		Map<Id, Id> mapOfActivityAndAccount = Activity_AddAccountHelper.getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject );
 

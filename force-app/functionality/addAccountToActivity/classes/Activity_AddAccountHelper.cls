@@ -20,27 +20,13 @@ public with sharing class Activity_AddAccountHelper {
 		// if ( !userHaveAccess() ) { return null; }
 
 		activities = keepActivitiesWithWhatId( activities );
-		Set<Id> whatIds = getWhatIds( activities );
-		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIds );
+		Map<String, Set<Id> > whatIdMap = getWhatIdMap( activities );
+		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIdMap );
 		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObjectType( idsSeparatedBysObject );
 		Map<Id, Id> mapOfActivityAndAccount = getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject );
 		activities = addAccountToActivity( activities, mapOfActivityAndAccount, isInsert );
 
 		return activities;
-	}
-
-	public static List<SObject> keepActivitiesWithWhatId( List<SObject> activities ) {
-
-		List<SObject> sObjectsToKeep = new List<SObject>();
-
-		for ( SObject sObj : activities ) {
-
-			if ( (Id) sObj.get( 'WhatId' ) != null ) {
-				sObjectsToKeep.add( sObj );
-			}
-		}
-
-		return sObjectsToKeep;
 	}
 
 	public static Boolean userHaveAccess() {
@@ -75,34 +61,55 @@ public with sharing class Activity_AddAccountHelper {
 		return true;
 	}
 
-	public static Set<Id> getWhatIds( List<SObject> activities ) {
-		Set<Id> whatIds = new Set<Id>();
+	public static List<SObject> keepActivitiesWithWhatId( List<SObject> activities ) {
 
-		for ( SObject activity : activities ) {
-			whatIds.add( (Id) activity.get( 'WhatId' ) );
+		List<SObject> sObjectsToKeep = new List<SObject>();
+
+		for ( SObject sObj : activities ) {
+
+			if ( (Id) sObj.get( 'WhatId' ) != null ) {
+				sObjectsToKeep.add( sObj );
+			}
 		}
 
-		List<Id> whatIdList = new List<Id>();
-		whatIdList.addAll( whatIds );
-		whatIdList.sort();
-		whatIds = new Set<Id>( whatIdList );
-
-		return whatIds;
+		return sObjectsToKeep;
 	}
 
-	public static Map<String, Set<Id> > getIdsSeparatedBySObject( Set<Id> whatIds ) {
+	public static Map<String, Set<Id> > getWhatIdMap( List<SObject> activities ) {
+
+		Map<String, Set<Id> > whatIdMap = new Map<String, Set<Id> >();
+
+		for ( SObject activity : activities ) {
+			Id whatId = (Id) activity.get( 'WhatId' );
+			String sObjPrefix = ( (String) whatId ).substring( 0, 3 );
+
+			if ( whatIdMap.containsKey( sObjPrefix ) ) {
+				whatIdMap.get( sObjPrefix ).add( whatId );
+			} else {
+				Set<Id> whatIds = new Set<Id>();
+				whatIds.add( whatId );
+				whatIdMap.put( sObjPrefix, whatIds );
+			}
+		}
+
+		return whatIdMap;
+	}
+
+	public static Map<String, Set<Id> > getIdsSeparatedBySObject( Map<String, Set<Id> > whatIdMap ) {
 
 		Map<String, Set<Id> > idsSeparatedBysObject = new Map<String, Set<Id> >();
 
-		for ( Id i : whatIds ) {
+		for ( String sObjPrefix : whatIdMap.keyset() ) {
 
-			String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( i );
-
-			if ( idsSeparatedBysObject.containsKey( parentSObjectType ) ) {
-				idsSeparatedBysObject.get( parentSObjectType ).add( i );
-			} else {
-				idsSeparatedBysObject.put( parentSObjectType, new Set<Id> { i } );
+			Set<Id> whatIds = whatIdMap.get( sObjPrefix );
+			Id firstWhatId;
+			for ( Id i : whatIds ) {
+				firstWhatId = i;
+				break;
 			}
+
+			String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( firstWhatId );
+			idsSeparatedBysObject.put( parentSObjectType, whatIds );
 		}
 
 		return idsSeparatedBysObject;
