@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_not_exceed_max_number_of_participants</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+AND(ISNEW(),ISPICKVAL(Status__c, &quot;Påmeldt&quot;), Course_registration__r.Number_Of_Participants__c  &gt;=  Course_registration__r.Max_number_of_participants__c),
+AND(
+ISCHANGED(Status__c),
+OR(ISPICKVAL(PRIORVALUE(Status__c), &quot;Avmeldt&quot;),
+ISPICKVAL(PRIORVALUE(Status__c), &quot;Venteliste&quot;)),
+ISPICKVAL(Status__c, &quot;Påmeldt&quot;),
+Course_registration__r.Number_Of_Participants__c  &gt;=  Course_registration__r.Max_number_of_participants__c),
+AND(
+ISCHANGED(Status__c),
+ISPICKVAL(PRIORVALUE(Status__c), &quot;Påmeldt&quot;),
+OR(ISPICKVAL(Status__c, &quot;Venteliste&quot;),
+ISPICKVAL(Status__c, &quot;Avmeldt&quot;)), 
+Course_registration__r.Number_Of_Participants__c  &gt;  Course_registration__r.Max_number_of_participants__c))</errorConditionFormula>
+    <errorMessage>Maks antall deltagere er registrert på dette kurset.</errorMessage>
+</ValidationRule>
