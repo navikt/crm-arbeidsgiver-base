@@ -16,6 +16,9 @@
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>accountMessages</componentName>
+        </componentInstances>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -275,9 +278,6 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>accountMessages</componentName>
-        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>amountOfMonths</name>
