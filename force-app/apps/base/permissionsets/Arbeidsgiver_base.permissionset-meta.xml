@@ -35,7 +35,7 @@
     <description>Standard tilgang for ansatte som jobber med arbeidsgivere. Gir tilgang til Account, Contact, Activities og Nav Unit</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.CRM_Type__c</field>
+        <field>Account.CRM_AccountType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
