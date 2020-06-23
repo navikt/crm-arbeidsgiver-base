@@ -9,6 +9,8 @@ private with sharing class CourseHandlerTest {
 			course.Name = 'Test ' + i;
 			course.Description__c = 'Testkurs';
 			course.Region__c = 'Oslo';
+			course.Active__c = true;
+			course.Max_number_of_participants__c = 10;
 			courses.add( course );
 		}
 		insert courses;
@@ -29,8 +31,12 @@ private with sharing class CourseHandlerTest {
 		String result = res.responseBody.toString();
 
 		System.assertNotEquals( null, result );
+		System.assert ( result.contains( 'Test 0' ) );
 		System.assert ( result.contains( 'Test 1' ) );
 		System.assert ( result.contains( 'Oslo' ) );
+		System.assert ( result.contains( 'Testkurs' ) );
+		System.assert ( result.contains( '1' ) );
+
 
 
 
