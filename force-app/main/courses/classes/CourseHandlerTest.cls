@@ -37,10 +37,5 @@ private with sharing class CourseHandlerTest {
 		System.assert ( result.contains( 'Testkurs' ) );
 		System.assert ( result.contains( '1' ) );
 
-
-
-
-
-
 	}
 }
