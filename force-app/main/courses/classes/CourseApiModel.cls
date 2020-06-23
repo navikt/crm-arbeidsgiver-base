@@ -1,4 +1,4 @@
-public class CourseWrapper {
+public class CourseApiModel {
 
 	public Id RegistrationID;
 	public String Title;
