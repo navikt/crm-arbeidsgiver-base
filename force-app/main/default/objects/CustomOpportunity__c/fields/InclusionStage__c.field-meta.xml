@@ -17,6 +17,11 @@
                 <label>Ny henvendelse</label>
             </value>
             <value>
+                <fullName>Aktiv</fullName>
+                <default>false</default>
+                <label>Aktiv</label>
+            </value>
+            <value>
                 <fullName>Avklaring</fullName>
                 <default>false</default>
                 <label>Avklaring</label>

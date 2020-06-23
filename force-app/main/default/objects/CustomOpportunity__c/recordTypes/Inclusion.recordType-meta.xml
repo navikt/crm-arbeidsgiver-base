@@ -65,15 +65,11 @@
     <picklistValues>
         <picklist>InclusionStage__c</picklist>
         <values>
-            <fullName>Avklaring</fullName>
+            <fullName>Aktiv</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Avsluttet</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Ferdig Avklart</fullName>
             <default>false</default>
         </values>
         <values>
