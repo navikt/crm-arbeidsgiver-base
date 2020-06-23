@@ -26,16 +26,11 @@ global with sharing class CourseHandler {
 			wrapper.configurable_custom.Type = courses[i].Type_of_course__c;
 			wrapper.configurable_custom.Tema = courses[i].Theme__c;
 
-
 			wrapperList.add( wrapper );
 		}
-
-		//String result = System.JSON.serialize( wrapperList, true );
 
 		RestContext.response.addHeader( 'Content-Type', 'application/json' );
 		RestContext.response.responseBody = Blob.valueOf( JSON.serialize( wrapperList ) );
 
 	}
-
-
 }
