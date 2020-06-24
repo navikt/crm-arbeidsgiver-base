@@ -68,4 +68,24 @@ private without sharing class TAG_TestDataFactoryTest {
 
 		System.assertEquals( amount, afterLayoffs, 'New layoffs should have been created' );
 	}
+
+	@isTest
+	private static void testCreateUserWithPermset() {
+
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = : 'Arbeidsgiver_Base_Group' LIMIT 1];
+		System.assertNotEquals( null, ps, 'permset should exist' );
+
+		List<User> u = [SELECT Id FROM User WHERE LastName = 'LAST NAME'];
+		System.assertEquals( 0, u.size(), 'function should NOT have created one user' );
+
+		Test.StartTest();
+		TAG_TestDataFactory.createUserWithPermset( 'LAST NAME', 'Arbeidsgiver_Base_Group' );
+		Test.StopTest();
+
+		u = [SELECT Id FROM User WHERE LastName = 'LAST NAME'];
+		System.assertEquals( 1, u.size(), 'function should have created one user' );
+
+		List<PermissionSetAssignment> permsetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = : u[0].Id AND PermissionSetId = : ps.Id];
+		System.assertEquals( 1, permsetAssignments.size(), 'one assignments added' );
+	}
 }

@@ -61,6 +61,12 @@ public without sharing class TAG_TestDataFactory {
 		return user;
 	}
 
+	public static void createUserWithPermset( String lastName, String permset ) {
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = : permset LIMIT 1];
+		User u = TAG_TestDataFactory.createStandardUser( lastName );
+		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
+	}
+
 	public static List<CustomOpportunity__c> getCustomOpportunities( Integer amount, Boolean doInsert ) {
 		List<CustomOpportunity__c> customOpportunities = new List<CustomOpportunity__c>();
 

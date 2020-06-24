@@ -3,9 +3,7 @@ private without sharing class Activity_AddAccountHelperTest {
 
 	@testSetup
 	private static void setup() {
-		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
-		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
-		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
+		TAG_TestDataFactory.createUserWithPermset( 'ARBEIDSGIVER USER', 'Arbeidsgiver_Base_Group' );
 	}
 
 	@isTest
@@ -99,7 +97,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHasPermissionArbeidsgiver_doesHavePermission() {
 
-		User u = [SELECT Id FROM User WHERE LastName = 'Last UNIQUE NAME' LIMIT 1];
+		User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
 
 		Boolean actual;
 
@@ -116,7 +114,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHasPermissionArbeidsgiver_doesNOTHavePermission() {
 
-		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
+		User u = TAG_TestDataFactory.createStandardUser( 'regular user' );
 
 		Boolean actual;
 
@@ -180,7 +178,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHaveAccess_emptyUser() {
 
-		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
+		User u = TAG_TestDataFactory.createStandardUser( 'regluar user' );
 		Boolean result;
 
 		Test.StartTest();
@@ -196,9 +194,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHaveAccess_emptyUserWithPermset() {
 
-		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
-		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
-		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
+		User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
 
 		Boolean result;
 
