@@ -17,10 +17,10 @@ public with sharing class Activity_AddAccountHelper {
 	public static List<SObject> addAccount( List<SObject> activities, Boolean isInsert ) {
 
 		if ( !userHasPermissionArbeidsgiver() ) { return null; }
+		if ( !userHaveAccess() ) { return null; }
 
 		activities = keepActivitiesWithWhatId( activities );
 		if ( activities.size() == 0 ) { return null; }
-		// if ( !userHaveAccess() ) { return null; }
 
 		Map<String, String> activityAccountMapping =                getActivityAccountMapping();
 		Map<String, Set<Id> > whatIdMap =                           getWhatIdMap( activities );
