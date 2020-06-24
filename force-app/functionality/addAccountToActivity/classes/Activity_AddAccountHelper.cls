@@ -16,8 +16,9 @@ public with sharing class Activity_AddAccountHelper {
 
 	public static List<SObject> addAccount( List<SObject> activities, Boolean isInsert ) {
 
-		activities = keepActivitiesWithWhatId( activities );
+		if ( !userHasPermissionArbeidsgiver() ) { return null; }
 
+		activities = keepActivitiesWithWhatId( activities );
 		if ( activities.size() == 0 ) { return null; }
 		// if ( !userHaveAccess() ) { return null; }
 
@@ -31,6 +32,24 @@ public with sharing class Activity_AddAccountHelper {
 		activities = addAccountToActivity( activities, mapOfActivityAndAccount, isInsert, mapOfSObjectPrefix );
 
 		return activities;
+	}
+
+	public static Boolean userHasPermissionArbeidsgiver() {
+		return FeatureManagement.checkPermission( 'Arbeidsgiver' );
+	}
+
+	public static List<SObject> keepActivitiesWithWhatId( List<SObject> activities ) {
+
+		List<SObject> sObjectsToKeep = new List<SObject>();
+
+		for ( SObject sObj : activities ) {
+
+			if ( (Id) sObj.get( 'WhatId' ) != null ) {
+				sObjectsToKeep.add( sObj );
+			}
+		}
+
+		return sObjectsToKeep;
 	}
 
 	public static Boolean userHaveAccess() {
@@ -63,20 +82,6 @@ public with sharing class Activity_AddAccountHelper {
 		if ( !AccessControlValidator.fieldIsAccessible( 'Event', sObjectFieldStr ) ) { return false; }
 
 		return true;
-	}
-
-	public static List<SObject> keepActivitiesWithWhatId( List<SObject> activities ) {
-
-		List<SObject> sObjectsToKeep = new List<SObject>();
-
-		for ( SObject sObj : activities ) {
-
-			if ( (Id) sObj.get( 'WhatId' ) != null ) {
-				sObjectsToKeep.add( sObj );
-			}
-		}
-
-		return sObjectsToKeep;
 	}
 
 	public static Map<String, Set<Id> > getWhatIdMap( List<SObject> activities ) {

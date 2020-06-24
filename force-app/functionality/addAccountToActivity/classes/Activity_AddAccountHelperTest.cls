@@ -1,6 +1,13 @@
 @isTest
 private without sharing class Activity_AddAccountHelperTest {
 
+	@testSetup
+	private static void setup() {
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
+		User u = TAG_TestDataFactory.createStandardUser();
+		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
+	}
+
 	@isTest
 	private static void testAddAccount_Task() {
 
@@ -87,6 +94,40 @@ private without sharing class Activity_AddAccountHelperTest {
 		Test.StopTest();
 
 		System.assertEquals( 1, results.size(), 'Same account on temp layoff, WhatId ' );
+	}
+
+	@isTest
+	private static void testUserHasPermissionArbeidsgiver_doesHavePermission() {
+
+		User u = [SELECT Id FROM User WHERE LastName = 'Last UNIQUE NAME' LIMIT 1];
+
+		Boolean actual;
+
+		Test.StartTest();
+		System.runAs( u )
+		{
+			actual = Activity_AddAccountHelper.userHasPermissionArbeidsgiver();
+		}
+		Test.StopTest();
+
+		System.assert (actual, 'User does have permission, but function returned false');
+	}
+
+	@isTest
+	private static void testUserHasPermissionArbeidsgiver_doesNOTHavePermission() {
+
+		User u = TAG_TestDataFactory.createStandardUser();
+
+		Boolean actual;
+
+		Test.StartTest();
+		System.runAs( u )
+		{
+			actual = Activity_AddAccountHelper.userHasPermissionArbeidsgiver();
+		}
+		Test.StopTest();
+
+		System.assert (!actual, 'User does NOT have permission, but function returned true');
 	}
 
 
