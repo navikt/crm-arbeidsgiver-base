@@ -16,17 +16,18 @@ public with sharing class Activity_AddAccountHelper {
 
 	public static List<SObject> addAccount( List<SObject> activities, Boolean isInsert ) {
 
+		activities = keepActivitiesWithWhatId( activities );
+
 		if ( activities.size() == 0 ) { return null; }
 		// if ( !userHaveAccess() ) { return null; }
 
-		Map<String, String> activityAccountMapping = getActivityAccountMapping();
+		Map<String, String> activityAccountMapping =                getActivityAccountMapping();
+		Map<String, Set<Id> > whatIdMap =                           getWhatIdMap( activities );
+		Map<String, String> mapOfSObjectPrefix =                    getMapOfSObjectPrefix( whatIdMap );
+		Map<String, Set<Id> > idsSeparatedBysObject =               getIdsSeparatedBySObject( whatIdMap, mapOfSObjectPrefix );
+		Map<String, List<SObject> > sObjectsSeparatedBySObject =    getSObjectsSeparatedBySObjectType( idsSeparatedBysObject, activityAccountMapping );
+		Map<Id, Id> mapOfActivityAndAccount =                       getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject, activityAccountMapping, mapOfSObjectPrefix );
 
-		activities = keepActivitiesWithWhatId( activities );
-		Map<String, Set<Id> > whatIdMap = getWhatIdMap( activities );
-		Map<String, String> mapOfSObjectPrefix = getMapOfSObjectPrefix( whatIdMap );
-		Map<String, Set<Id> > idsSeparatedBysObject = getIdsSeparatedBySObject( whatIdMap, mapOfSObjectPrefix );
-		Map<String, List<SObject> > sObjectsSeparatedBySObject = getSObjectsSeparatedBySObjectType( idsSeparatedBysObject, activityAccountMapping );
-		Map<Id, Id> mapOfActivityAndAccount = getMapOfActivityAndAccount( activities, sObjectsSeparatedBySObject, activityAccountMapping, mapOfSObjectPrefix );
 		activities = addAccountToActivity( activities, mapOfActivityAndAccount, isInsert, mapOfSObjectPrefix );
 
 		return activities;

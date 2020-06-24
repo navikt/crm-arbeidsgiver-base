@@ -42,6 +42,19 @@ private without sharing class Activity_AddAccountTest {
 		System.assertEquals( acc.Id, e.RelatedToAccount__c, 'Should have added the temp layoffs account to Event.RelatedToAccount__c' );
 	}
 
+	@isTest
+	private static void testInsertTask_noWhatId() {
+
+		Task t = new Task( TAG_NoPersonInformation__c = true, ActivityDate = Date.today(), Subject = 'test' );
+
+		Test.StartTest();
+		insert t;
+		Test.StopTest();
+
+		t = [SELECT Id, RelatedToAccount__c FROM Task WHERE Id = : t.Id LIMIT 1];
+		System.assertEquals( null, t.RelatedToAccount__c, 'Should NOT have added the account to Event.RelatedToAccount__c' );
+	}
+
 
 	@isTest
 	private static void testUpdateTask() {
