@@ -35,7 +35,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_2548766724</name>
+        <name>formula_2_myRule_1_A1_5471047147</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -43,14 +43,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ISNULL ( [Task].ActivityDate )</stringValue>
+                <stringValue>ISNULL ( [Task].ActivityDate ) &amp;&amp; $Permission.Arbeidsgiver </stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>ISNULL ( {!myVariable_current.ActivityDate} )</expression>
+        <expression>ISNULL ( {!myVariable_current.ActivityDate} ) &amp;&amp; {!$Permission.Arbeidsgiver}</expression>
     </formulas>
-    <interviewLabel>Task-1_InterviewLabel</interviewLabel>
+    <interviewLabel>Task-2_InterviewLabel</interviewLabel>
     <label>Task</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -152,7 +152,7 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_2548766724</elementReference>
+                <elementReference>formula_2_myRule_1_A1_5471047147</elementReference>
             </value>
         </inputAssignments>
         <object>Task</object>
