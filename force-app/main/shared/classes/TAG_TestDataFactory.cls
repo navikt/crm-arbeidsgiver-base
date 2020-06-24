@@ -40,7 +40,7 @@ public without sharing class TAG_TestDataFactory {
 		return accounts;
 	}
 
-	public static User createStandardUser() {
+	public static User createStandardUser( String lastName ) {
 
 		User user = new User();
 		String d = String.valueOf( DateTime.now().millisecond() ) + String.valueOf( DateTime.now().second() ) + String.valueOf( DateTime.now().minute() );
@@ -50,7 +50,7 @@ public without sharing class TAG_TestDataFactory {
 		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
 		user.isActive = true;
 		user.FirstName = 'First';
-		user.LastName = 'Last UNIQUE NAME';
+		user.LastName = lastName;
 		user.TimeZoneSidKey = 'Europe/Paris';
 		user.LocaleSidKey = 'no_NO';
 		user.EmailEncodingKey = 'UTF-8';

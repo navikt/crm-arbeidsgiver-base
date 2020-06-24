@@ -4,7 +4,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@testSetup
 	private static void setup() {
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
 	}
 
@@ -116,7 +116,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHasPermissionArbeidsgiver_doesNOTHavePermission() {
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 
 		Boolean actual;
 
@@ -180,7 +180,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHaveAccess_emptyUser() {
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		Boolean result;
 
 		Test.StartTest();
@@ -197,7 +197,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	private static void testUserHaveAccess_emptyUserWithPermset() {
 
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
 
 		Boolean result;

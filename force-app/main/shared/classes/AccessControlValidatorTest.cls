@@ -4,14 +4,14 @@ private without sharing class AccessControlValidatorTest {
 	@testSetup
 	private static void setup() {
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
 	}
 
 	@isTest
 	private static void testSObjectIsAccessible_emptyUser() {
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		Boolean result;
 
 		Test.StartTest();
@@ -43,7 +43,7 @@ private without sharing class AccessControlValidatorTest {
 	@isTest
 	private static void testSObjectIsCreateable_emptyUser() {
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		Boolean result;
 
 		Test.StartTest();
@@ -75,7 +75,7 @@ private without sharing class AccessControlValidatorTest {
 	@isTest
 	private static void testFieldIsAccessible_emptyUser() {
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		Boolean result;
 
 		Test.StartTest();
@@ -107,7 +107,7 @@ private without sharing class AccessControlValidatorTest {
 	@isTest
 	private static void testFieldIsCreateable_emptyUser() {
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		Boolean result;
 
 		Test.StartTest();

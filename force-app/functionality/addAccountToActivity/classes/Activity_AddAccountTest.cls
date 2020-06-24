@@ -1,6 +1,13 @@
 @isTest
 private without sharing class Activity_AddAccountTest {
 
+	@testSetup
+	private static void setup() {
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
+		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
+	}
+
 	@isTest
 	private static void testInsertTask() {
 

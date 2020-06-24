@@ -4,7 +4,7 @@ private without sharing class MarkdownViewerControllerTest {
 	@testSetup
 	private static void setup() {
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
 
 	}
@@ -37,7 +37,7 @@ private without sharing class MarkdownViewerControllerTest {
 		tl.OtherComments__c = '### Årsak\nSlett denne\n### Yrker\nkokk\n### Annet\n';
 		insert tl;
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		String results;
 
 		Test.StartTest();

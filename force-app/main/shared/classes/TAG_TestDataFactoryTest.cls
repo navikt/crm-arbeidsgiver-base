@@ -2,12 +2,12 @@
 private without sharing class TAG_TestDataFactoryTest {
 
 	@isTest
-	private static void testCreateStandardUser() {
+	private static void testcreateStandardUser( ) {
 
 		Integer beforeUser = [SELECT Id FROM User].size();
 
 		Test.StartTest();
-		TAG_TestDataFactory.createStandardUser();
+		TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 		Test.StopTest();
 
 		Integer afterUser = [SELECT Id FROM User].size();
