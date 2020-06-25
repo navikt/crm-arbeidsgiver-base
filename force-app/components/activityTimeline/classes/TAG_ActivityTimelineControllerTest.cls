@@ -161,7 +161,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'Last UNIQUE NAME' );
 
 		System.runAs( u )
 		{
