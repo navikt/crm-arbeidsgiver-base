@@ -37,6 +37,10 @@
         <name>Course_must_be_active</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Maks antall deltagere er registrert på dette kurset. --></errorMessage>
+        <name>Do_not_exceed_max_number_of_participants</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Påmeldingsfristen har utløpt --></errorMessage>
         <name>Do_not_exceed_registration_deadline</name>
     </validationRules>

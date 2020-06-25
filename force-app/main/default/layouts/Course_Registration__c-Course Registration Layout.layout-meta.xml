@@ -11,7 +11,7 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Course_registration__c</field>
             </layoutItems>
             <layoutItems>
@@ -19,8 +19,12 @@
                 <field>Course_participant__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Attendance__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

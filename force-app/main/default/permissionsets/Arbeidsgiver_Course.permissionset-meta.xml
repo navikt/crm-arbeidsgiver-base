@@ -2,6 +2,11 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Tilgang til kurs objekt</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Registration__c.Attendance__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Active__c</field>
         <readable>true</readable>
@@ -12,12 +17,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Max_number_of_participants__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Course__c.Number_Of_Participants__c</field>
         <readable>true</readable>
     </fieldPermissions>
