@@ -82,8 +82,9 @@ private without sharing class TAG_TestDataFactoryTest {
 
 		List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId =:users[0].Id AND PermissionSetId =:permissionSets[0].Id];
 		System.assertEquals( 1, PermissionSetAssignments.size(), 'Permission set is not assigned to new user' );
-	
-	@isTest
+	}
+
+	@IsTest
 	private static void testCreateUserWithPermset() {
 
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = : 'Arbeidsgiver_Base_Group' LIMIT 1];
