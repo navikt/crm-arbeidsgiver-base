@@ -1,48 +1,63 @@
 @isTest
 private without sharing class Activity_AddAccountHelperTest {
 
+	@testSetup
+	private static void setup() {
+		TAG_TestDataFactory.createUserWithPermset( 'ARBEIDSGIVER USER', 'Arbeidsgiver_Base_Group' );
+	}
+
 	@isTest
 	private static void testAddAccount_Task() {
 
-		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Account acc2 = TAG_TestDataFactory.createAccounts( 1 )[0];
-		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
-		Task t = new Task( TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test' );
-		insert t;
-		tl.Account__c = acc2.Id;
-		update tl;
+		User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
 
-		System.assertEquals( null, t.RelatedToAccount__c, 'Null before function' );
-		t = [SELECT Id, WhatId, RelatedToAccount__c FROM Task WHERE Id = : t.Id LIMIT 1][0];
-		System.assertEquals( acc.Id, t.RelatedToAccount__c, 'old acc after insertion' );
+		System.runAs( u )
+		{
+			Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+			Account acc2 = TAG_TestDataFactory.createAccounts( 1 )[0];
+			TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
+			Task t = new Task( TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test' );
+			insert t;
+			tl.Account__c = acc2.Id;
+			update tl;
 
-		Test.StartTest();
-		t = ( Task ) Activity_AddAccountHelper.addAccount( new List<SObject> { t }, false )[0];
-		Test.StopTest();
+			System.assertEquals( null, t.RelatedToAccount__c, 'Null before function' );
+			t = [SELECT Id, WhatId, RelatedToAccount__c FROM Task WHERE Id = : t.Id LIMIT 1][0];
+			System.assertEquals( acc.Id, t.RelatedToAccount__c, 'old acc after insertion' );
 
-		System.assertEquals( acc2.Id, t.RelatedToAccount__c, 'Account is added to RelatedToAccount__c' );
+			Test.StartTest();
+			t = ( Task ) Activity_AddAccountHelper.addAccount( new List<SObject> { t }, false )[0];
+			Test.StopTest();
+
+			System.assertEquals( acc2.Id, t.RelatedToAccount__c, 'Account is added to RelatedToAccount__c' );
+		}
 	}
 
 	@isTest
 	private static void testAddAccount_Event() {
 
-		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Account acc2 = TAG_TestDataFactory.createAccounts( 1 )[0];
-		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
-		Event e = new Event( TAG_NoPersonInformation__c = true, WhatId = tl.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen' );
-		insert e;
-		tl.Account__c = acc2.Id;
-		update tl;
+		User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
 
-		System.assertEquals( null, e.RelatedToAccount__c, 'Null before function' );
-		e = [SELECT Id, WhatId, RelatedToAccount__c FROM Event WHERE Id = : e.Id LIMIT 1][0];
-		System.assertEquals( acc.Id, e.RelatedToAccount__c, 'old acc after insertion' );
+		System.runAs( u )
+		{
+			Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
+			Account acc2 = TAG_TestDataFactory.createAccounts( 1 )[0];
+			TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, acc, true )[0];
+			Event e = new Event( TAG_NoPersonInformation__c = true, WhatId = tl.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen' );
+			insert e;
+			tl.Account__c = acc2.Id;
+			update tl;
 
-		Test.StartTest();
-		e = ( Event ) Activity_AddAccountHelper.addAccount( new List<SObject> { e }, false )[0];
-		Test.StopTest();
+			System.assertEquals( null, e.RelatedToAccount__c, 'Null before function' );
+			e = [SELECT Id, WhatId, RelatedToAccount__c FROM Event WHERE Id = : e.Id LIMIT 1][0];
+			System.assertEquals( acc.Id, e.RelatedToAccount__c, 'old acc after insertion' );
 
-		System.assertEquals( acc2.Id, e.RelatedToAccount__c, 'Account is added to RelatedToAccount__c' );
+			Test.StartTest();
+			e = ( Event ) Activity_AddAccountHelper.addAccount( new List<SObject> { e }, false )[0];
+			Test.StopTest();
+
+			System.assertEquals( acc2.Id, e.RelatedToAccount__c, 'Account is added to RelatedToAccount__c' );
+		}
 	}
 
 
@@ -87,6 +102,40 @@ private without sharing class Activity_AddAccountHelperTest {
 		Test.StopTest();
 
 		System.assertEquals( 1, results.size(), 'Same account on temp layoff, WhatId ' );
+	}
+
+	@isTest
+	private static void testUserHasPermissionArbeidsgiver_doesHavePermission() {
+
+		User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+
+		Boolean actual;
+
+		Test.StartTest();
+		System.runAs( u )
+		{
+			actual = Activity_AddAccountHelper.userHasPermissionArbeidsgiver();
+		}
+		Test.StopTest();
+
+		System.assert (actual, 'User does have permission, but function returned false');
+	}
+
+	@isTest
+	private static void testUserHasPermissionArbeidsgiver_doesNOTHavePermission() {
+
+		User u = TAG_TestDataFactory.createStandardUser( 'regular user' );
+
+		Boolean actual;
+
+		Test.StartTest();
+		System.runAs( u )
+		{
+			actual = Activity_AddAccountHelper.userHasPermissionArbeidsgiver();
+		}
+		Test.StopTest();
+
+		System.assert (!actual, 'User does NOT have permission, but function returned true');
 	}
 
 
@@ -139,7 +188,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHaveAccess_emptyUser() {
 
-		User u = TAG_TestDataFactory.createStandardUser();
+		User u = TAG_TestDataFactory.createStandardUser( 'regluar user' );
 		Boolean result;
 
 		Test.StartTest();
@@ -155,9 +204,7 @@ private without sharing class Activity_AddAccountHelperTest {
 	@isTest
 	private static void testUserHaveAccess_emptyUserWithPermset() {
 
-		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Arbeidsgiver_Base_Group' LIMIT 1];
-		User u = TAG_TestDataFactory.createStandardUser();
-		insert new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id );
+		User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
 
 		Boolean result;
 
