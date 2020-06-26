@@ -155,9 +155,8 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Course</label>
     <nameField>
-        <displayFormat>K-{000000}</displayFormat>
-        <label>Course ID</label>
-        <type>AutoNumber</type>
+        <label>Title</label>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Courses</pluralLabel>
     <searchLayouts/>

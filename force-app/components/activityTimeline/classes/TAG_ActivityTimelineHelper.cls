@@ -52,9 +52,9 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 			List<TAG_ActivityTimelineParent__mdt> sObjectsToUse = new List<TAG_ActivityTimelineParent__mdt>();
 			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
-				if ( createable && TAG_ActivityTimelineHelper.isCreateable( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
+				if ( createable && AccessControlValidator.sObjectIsCreateable( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
 					sObjectsToUse.add( mdt );
-				} else if ( !createable && TAG_ActivityTimelineHelper.isAccessible( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
+				} else if ( !createable && AccessControlValidator.sObjectIsAccessible( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
 					sObjectsToUse.add( mdt );
 				}
 			}
@@ -394,13 +394,4 @@ public with sharing class TAG_ActivityTimelineHelper {
 
 		return sObjectsToQueryMap;
 	}
-
-	public static Boolean isCreateable( String sObjectType ) {
-		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isCreateable();
-	}
-
-	public static Boolean isAccessible( String sObjectType ) {
-		return Schema.getGlobalDescribe().get( sObjectType ).getDescribe().isAccessible();
-	}
-
 }
