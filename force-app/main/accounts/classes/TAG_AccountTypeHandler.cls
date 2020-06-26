@@ -1,10 +1,27 @@
 global class TAG_AccountTypeHandler extends MyTriggers {
 
 	global override void onBeforeInsert() {
-		setAccountType();
+		setAccountType( (List<Account>) records );
 	}
 
-	private void setAccountType() {
+	global override void onBeforeUpdate( Map<Id, SObject> triggerOldMap ) {
+		List<Account> accountsWithChangedOrganizationalStructure = new List<Account>();
+
+		//check if organization structure is changed
+		List<String> fieldNamesToCheck = new String[] {'INT_OrganizationalStructure__c'};
+
+		for ( Account account: (List<Account>) records ) {
+			if ( MyTriggers.hasChangedFields( fieldNamesToCheck, account, triggerOldMap.get( account.Id ) ) ) {
+				accountsWithChangedOrganizationalStructure.add( account );
+			}
+		}
+
+		if ( accountsWithChangedOrganizationalStructure.size() > 0 ) {
+			setAccountType( accountsWithChangedOrganizationalStructure );
+		}
+	}
+
+	private void setAccountType( List<Account> accounts ) {
 		Map<String, String> organizationalStructureMap = getOrganizationalStructureMaps();
 		for ( Account account:(List<Account>) records ) {
 			if ( organizationalStructureMap.keySet().contains( account.INT_OrganizationalStructure__c ) ) {
@@ -16,7 +33,6 @@ global class TAG_AccountTypeHandler extends MyTriggers {
 			}
 		}
 	}
-
 
 	private Map<String, String> getOrganizationalStructureMaps() {
 
