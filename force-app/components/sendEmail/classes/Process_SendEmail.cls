@@ -17,6 +17,12 @@ global without sharing class Process_SendEmail {
 		List<Messaging.SingleEmailMessage> messages = Process_SendEmailHelper.requestToSingleEmailMessage( requests, templateMap, ORG_WIDE_EMAIL_ID );
 
 		List<Messaging.SendEmailResult> results = Messaging.sendEmail ( messages, false );
+
+		for ( Messaging.SendEmailResult msg : results ) {
+			if ( !msg.isSuccess() ) {
+				System.debug( 'FATAL: ' + msg.getErrors() );
+			}
+		}
 	}
 
 	global class Request {
