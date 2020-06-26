@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Legg inn hvor henvendelsen kom fra --></help>
+    <help><!-- Hvor henvendelsen kommer fra. 
+Kontaktskjema: Innkommende henvendelse fra web
+Internt tips: Tips av kollega eller funnet selv --></help>
     <label>Kilde</label>
     <name>Source__c</name>
+    <picklistValues>
+        <masterLabel>Internt tips</masterLabel>
+        <translation><!-- Internt tips --></translation>
+    </picklistValues>
     <picklistValues>
         <masterLabel>Kontaktsenteret</masterLabel>
         <translation><!-- Kontaktsenteret --></translation>
