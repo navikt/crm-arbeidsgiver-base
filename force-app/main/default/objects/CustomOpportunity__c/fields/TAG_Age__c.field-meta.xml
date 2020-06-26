@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>NOW() - CreatedDate</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Hvor mange dager det er siden muligheten ble lag til.</inlineHelpText>
     <label>Age</label>
     <precision>18</precision>
     <required>false</required>

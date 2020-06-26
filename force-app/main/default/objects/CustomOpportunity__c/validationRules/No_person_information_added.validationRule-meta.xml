@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_person_information_added</fullName>
+    <active>true</active>
+    <description>Du må bekrefte at notatet ikke inneholder personsensitive opplysninger</description>
+    <errorConditionFormula>AND( TAG_No_person_information__c  = FALSE, $Permission.Arbeidsgiver = TRUE)</errorConditionFormula>
+    <errorMessage>Du må bekrefte at notatet ikke inneholder personsensitive opplysninger</errorMessage>
+</ValidationRule>

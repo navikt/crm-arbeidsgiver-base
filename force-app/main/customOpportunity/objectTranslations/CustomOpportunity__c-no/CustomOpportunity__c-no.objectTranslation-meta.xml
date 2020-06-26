@@ -92,6 +92,10 @@
         <name>Employer_must_be_set</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger --></errorMessage>
+        <name>No_person_information_added</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Velg kilden muligheten kommer fra --></errorMessage>
         <name>Source_must_be_set</name>
     </validationRules>

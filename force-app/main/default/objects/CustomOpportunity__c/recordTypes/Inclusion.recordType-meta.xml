@@ -1942,18 +1942,10 @@
         <picklist>Source__c</picklist>
         <values>
             <fullName>Internt tips</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Kontaktsenteret</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Kontaktskjema</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Messe</fullName>
             <default>false</default>
         </values>
         <values>

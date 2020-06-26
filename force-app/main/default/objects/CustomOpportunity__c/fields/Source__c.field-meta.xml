@@ -3,16 +3,18 @@
     <fullName>Source__c</fullName>
     <description>Legg inn hvor henvendelsen kom fra</description>
     <externalId>false</externalId>
-    <inlineHelpText>Legg inn hvor henvendelsen kom fra</inlineHelpText>
+    <inlineHelpText>Hvor henvendelsen kommer fra. 
+Kontaktskjema: Innkommende henvendelse fra web
+Internt tips: Tips av kollega eller funnet selv</inlineHelpText>
     <label>Source</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
         <valueSetDefinition>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
             <value>
                 <fullName>Internt tips</fullName>
                 <default>false</default>

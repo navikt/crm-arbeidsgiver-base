@@ -23,6 +23,29 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>CustomOpportunity__c.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>Histories</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>rowsToDisplay</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showActionBar</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -34,7 +57,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>richTextValue</name>
-                <value>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Om Mulighet&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Brukes for å melde inn at arbeidsgiver har behov for arbeidskraft eller kan inkludere. Muligheter kan komme inn via&lt;/span&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;a href=&quot;https://arbeidsgiver.nav.no/kontakt-oss/kontaktskjema&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;&lt;b&gt;kontaktskjema på nav.no&lt;/b&gt;&lt;/a&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;eller legges inn manuelt.&lt;/span&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Her kan de se film om hvordan du registrerer ny mulighet.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du kan også klikke på &quot;i&quot; en som står ved feltene for beskrivelse av disse.&lt;/p&gt;</value>
+                <value>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Om Mulighet&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Brukes for å melde inn at arbeidsgiver har behov for arbeidskraft eller kan inkludere. Muligheter kan komme inn via&lt;/span&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;a href=&quot;https://arbeidsgiver.nav.no/kontakt-oss/kontaktskjema&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;kontaktskjema på nav.no&lt;/b&gt;&lt;/a&gt;&lt;b style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/b&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;eller legges inn manuelt.&lt;/span&gt;&lt;b style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/b&gt;&lt;/p&gt;&lt;p&gt;​&lt;/p&gt;&lt;p&gt;Ny mulighet kan registreres fra arbeidsgiverkortet.&lt;/p&gt;&lt;p&gt;​&lt;/p&gt;&lt;p&gt;Her kan de se film om hvordan du registrerer ny mulighet.&lt;/p&gt;&lt;p&gt;​&lt;/p&gt;&lt;p&gt;Klikk på &quot;i&quot; en som står ved feltene for beskrivelse av disse.&lt;/p&gt;</value>
             </componentInstanceProperties>
             <componentName>flexipage:richText</componentName>
         </componentInstances>
