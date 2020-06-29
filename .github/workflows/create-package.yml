@@ -47,11 +47,11 @@ jobs:
         run: "sfdx force:auth:sfdxurl:store -f ./PROD_SFDX_URL.txt -a devhub -d"
 
       # Authenticate integration sandbox
-      - name: "Authenticate package target org"
+      - name: "Authenticate integration sandbox"
         run: "sfdx force:auth:sfdxurl:store -f ./INTEGRATION_SANDBOX_SFDX_URL.txt -a integration-sandbox -s"
 
       # Authenticate dev sandbox
-      - name: "Authenticate package target org"
+      - name: "Authenticate dev sandbox"
         run: "sfdx force:auth:sfdxurl:store -f ./DEV_SFDX_URL.txt -a dev -s"
 
       # Remove auth files
