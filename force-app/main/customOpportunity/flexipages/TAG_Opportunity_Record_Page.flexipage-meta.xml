@@ -113,6 +113,24 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Om Mulighet&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Brukes for å melde inn at arbeidsgiver har behov for arbeidskraft eller kan inkludere. Muligheter kan komme inn via&lt;/span&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;a href=&quot;https://arbeidsgiver.nav.no/kontakt-oss/kontaktskjema&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;kontaktskjema på nav.no&lt;/b&gt;&lt;/a&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;eller legges inn manuelt.&lt;/span&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;/p&gt;&lt;p&gt;​&lt;/p&gt;&lt;p&gt;Ny mulighet kan registreres fra arbeidsgiverkortet.&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+            <visibilityRule>
+                <criteria>
+                    <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Inclusion</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>amountOfMonths</name>
                 <value>4</value>
             </componentInstanceProperties>
