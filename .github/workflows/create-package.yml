@@ -37,6 +37,11 @@ jobs:
         shell: bash
         run: "echo ${{ secrets.INTEGRATION_SANDBOX_SFDX_URL}} > ./INTEGRATION_SANDBOX_SFDX_URL.txt"
 
+      # Store secret for package target org installation
+      - name: "Populate auth file with DEV_SFDX_URL secret"
+        shell: bash
+        run: "echo ${{ secrets.DEV_SFDX_URL}} > ./DEV_SFDX_URL.txt"
+
       # Authenticate dev hub
       - name: "Authenticate Dev Hub"
         run: "sfdx force:auth:sfdxurl:store -f ./PROD_SFDX_URL.txt -a devhub -d"
@@ -45,12 +50,17 @@ jobs:
       - name: "Authenticate package target org"
         run: "sfdx force:auth:sfdxurl:store -f ./INTEGRATION_SANDBOX_SFDX_URL.txt -a integration-sandbox -s"
 
+      # Authenticate dev sandbox
+      - name: "Authenticate package target org"
+        run: "sfdx force:auth:sfdxurl:store -f ./DEV_SFDX_URL.txt -a dev -s"
+
       # Remove auth files
       - name: "Remove auth files"
         if: always()
         run: |
           rm -f ./PROD_SFDX_URL.txt
           rm -f ./INTEGRATION_SANDBOX_SFDX_URL.txt
+          rm -f ./DEV_SFDX_URL.txt
 
       # Delete unpackagable
       - name: "Delete unpackagable"
@@ -78,6 +88,19 @@ jobs:
         uses: muenzpraeger/github-action-extract-sfdx-packaging-result@master
         with:
           json: ${{steps.package-version-create.outputs.result}}
+
+      # Install sfpowerkit plugin used to install multiple packages only by version number
+      - name: "Install sfpowerkit plugin"
+        run: "echo y | sfdx plugins:install sfpowerkit"
+
+      # Install packages this repo is dependant on
+      - name: "Install dependant packages"
+        run: "sfdx sfpowerkit:package:dependencies:install -u dev -r -a -w 60 -k '1:${{ secrets.PACKAGE_KEY }} 2:${{ secrets.PACKAGE_KEY }} 3:${{ secrets.PACKAGE_KEY }} 4:${{ secrets.PACKAGE_KEY }} 5:${{ secrets.PACKAGE_KEY }} 6:${{ secrets.PACKAGE_KEY }} 7:${{ secrets.PACKAGE_KEY }} 8:${{ secrets.PACKAGE_KEY }} 9:${{ secrets.PACKAGE_KEY }} 10:${{ secrets.PACKAGE_KEY }}'"
+
+      # Install new package version into dev sandbox
+      - name: "Install new package version into dev sandbox"
+        if: success()
+        run: sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 20 -b 20 -u dev -r -k ${{ secrets.PACKAGE_KEY }} --json
 
       # Install new package version into integration org
       - name: "Install new package version into integration org"
