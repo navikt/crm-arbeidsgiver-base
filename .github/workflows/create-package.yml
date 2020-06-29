@@ -138,6 +138,7 @@ jobs:
           echo "::set-output name=bodyPackage::${{ steps.extract-data-package-version-create.outputs.packageVersionId }}"
 
       # Generate changelog from commits
+      # TODO check if dev sandbox failed
       - name: Generate changelog
         id: changelog
         uses: metcalfc/changelog-generator@v0.2.3
