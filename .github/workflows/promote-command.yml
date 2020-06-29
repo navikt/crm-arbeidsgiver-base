@@ -13,28 +13,43 @@ jobs:
           mkdir sfdx-cli
           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
           ./sfdx-cli/install
-      
+
       # Checkout the code in the pull request
       - name: "Checkout source code"
         uses: actions/checkout@v2
-      
+
       # Store secret for dev hub
       - name: "Populate auth file with PROD_SFDX_URL secret"
         shell: bash
         run: "echo ${{ secrets.PROD_SFDX_URL}} > ./PROD_SFDX_URL.txt"
 
+      # Store secret for package target org installation
+      - name: "Populate auth file with PREPROD_SFDX_URL secret"
+        shell: bash
+        run: "echo ${{ secrets.PREPROD_SFDX_URL}} > ./PREPROD_SFDX_URL.txt"
+
       # Authenticate dev hub
       - name: "Authenticate Dev Hub"
         run: "sfdx force:auth:sfdxurl:store -f ./PROD_SFDX_URL.txt -a devhub -d"
+
+      # Authenticate preprod
+      - name: "Authenticate package target org"
+        run: "sfdx force:auth:sfdxurl:store -f ./PREPROD_SFDX_URL.txt -a preprod -s"
 
       # Remove auth file
       - name: "Remove auth files"
         run: |
           rm -f ./PROD_SFDX_URL.txt
+          rm -f ./PREPROD_SFDX_URL.txt
 
       # Promote package
       - name: "Promote package"
         run: "sfdx force:package:version:promote --package ${{ github.event.client_payload.slash_command.arg1 }} --noprompt"
+
+      # Install new package version into preprod
+      - name: "Install new package version into preprod org"
+        if: success()
+        run: sfdx force:package:install --package ${{ github.event.client_payload.slash_command.arg1 }} -w 20 -b 20 -u preprod -r -k ${{ secrets.PACKAGE_KEY }} --json
 
       # set variables
       - name: "Set release fields"
@@ -65,12 +80,12 @@ jobs:
           prerelease: false
 
       # Update version number
-      - name: 'Update version number'
+      - name: "Update version number"
         id: packaging-updater
         uses: navikt/github-action-sfdx-version-updater@master
 
       # Create commit message by extracting the latest version number from sfdx-project.json
-      - name: 'Build commit message'
+      - name: "Build commit message"
         id: build-commit-message
         run: |
           echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
@@ -83,7 +98,7 @@ jobs:
           title: ${{steps.build-commit-message.outputs.message}}
           body: |
             Please merge me to update my version number :heart_eyes:
-            
+
             **You do NOT have to wait for my tests to finish, because they will never finish!**
             Simply use your admin privileges to merge me :smirk: (but just this once!)
           commit-message: ${{steps.build-commit-message.outputs.message}}
@@ -104,4 +119,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
-          reaction-type: '-1'
+          reaction-type: "-1"
