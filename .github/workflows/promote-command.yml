@@ -34,7 +34,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
 
       # # Store secret for dev hub
       # - name: "Populate auth file with PROD_SFDX_URL secret"
