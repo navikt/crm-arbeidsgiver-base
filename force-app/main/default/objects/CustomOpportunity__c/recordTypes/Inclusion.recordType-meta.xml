@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Inclusion</fullName>
     <active>true</active>
-    <compactLayoutAssignment>OpportunityCompactLayout</compactLayoutAssignment>
+    <compactLayoutAssignment>Simple_Opportunity</compactLayoutAssignment>
     <description>En mulighet for inkludering</description>
     <label>Inclusion</label>
     <picklistValues>
@@ -65,15 +65,11 @@
     <picklistValues>
         <picklist>InclusionStage__c</picklist>
         <values>
-            <fullName>Avklaring</fullName>
+            <fullName>Aktiv</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Avsluttet</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Ferdig Avklart</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1946,18 +1942,10 @@
         <picklist>Source__c</picklist>
         <values>
             <fullName>Internt tips</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Kontaktsenteret</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Kontaktskjema</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Messe</fullName>
             <default>false</default>
         </values>
         <values>

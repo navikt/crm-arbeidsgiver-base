@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <label>Stage</label>
     <required>true</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -15,6 +15,11 @@
                 <fullName>Ny henvendelse</fullName>
                 <default>true</default>
                 <label>Ny henvendelse</label>
+            </value>
+            <value>
+                <fullName>Aktiv</fullName>
+                <default>false</default>
+                <label>Aktiv</label>
             </value>
             <value>
                 <fullName>Avklaring</fullName>

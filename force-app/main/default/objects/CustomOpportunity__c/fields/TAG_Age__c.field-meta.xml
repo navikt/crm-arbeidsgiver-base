@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_NAV_Unit_Region__c</fullName>
+    <fullName>TAG_Age__c</fullName>
     <externalId>false</externalId>
-    <formula>TAG_NavUnit__r.INT_Region__c</formula>
+    <formula>NOW() - CreatedDate</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Regionen/Fylket som NAV kontoret er knyttet til.</inlineHelpText>
-    <label>NAV Unit Region</label>
+    <inlineHelpText>Hvor mange dager det er siden muligheten ble lag til.</inlineHelpText>
+    <label>Age</label>
+    <precision>18</precision>
     <required>false</required>
+    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
+    <type>Number</type>
     <unique>false</unique>
 </CustomField>

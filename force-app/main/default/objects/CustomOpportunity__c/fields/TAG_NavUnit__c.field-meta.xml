@@ -3,12 +3,13 @@
     <fullName>TAG_NavUnit__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <inlineHelpText>NAV kontoret muligheten tilhører, vanligvis samme kontor som virksomheten tilhører.</inlineHelpText>
     <label>NAV Unit</label>
     <referenceTo>NavUnit__c</referenceTo>
     <relationshipLabel>Custom Opportunities</relationshipLabel>
     <relationshipName>Custom_Opportunities</relationshipName>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

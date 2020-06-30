@@ -37,13 +37,22 @@ jobs:
         shell: bash
         run: "echo ${{ secrets.INTEGRATION_SANDBOX_SFDX_URL}} > ./INTEGRATION_SANDBOX_SFDX_URL.txt"
 
+      # Store secret for package target org installation
+      - name: "Populate auth file with DEV_SFDX_URL secret"
+        shell: bash
+        run: "echo ${{ secrets.DEV_SFDX_URL}} > ./DEV_SFDX_URL.txt"
+
       # Authenticate dev hub
       - name: "Authenticate Dev Hub"
         run: "sfdx force:auth:sfdxurl:store -f ./PROD_SFDX_URL.txt -a devhub -d"
 
       # Authenticate integration sandbox
-      - name: "Authenticate package target org"
+      - name: "Authenticate integration sandbox"
         run: "sfdx force:auth:sfdxurl:store -f ./INTEGRATION_SANDBOX_SFDX_URL.txt -a integration-sandbox -s"
+
+      # Authenticate dev sandbox
+      - name: "Authenticate dev sandbox"
+        run: "sfdx force:auth:sfdxurl:store -f ./DEV_SFDX_URL.txt -a dev -s"
 
       # Remove auth files
       - name: "Remove auth files"
@@ -51,6 +60,7 @@ jobs:
         run: |
           rm -f ./PROD_SFDX_URL.txt
           rm -f ./INTEGRATION_SANDBOX_SFDX_URL.txt
+          rm -f ./DEV_SFDX_URL.txt
 
       # Delete unpackagable
       - name: "Delete unpackagable"
@@ -79,10 +89,34 @@ jobs:
         with:
           json: ${{steps.package-version-create.outputs.result}}
 
+      # Install sfpowerkit plugin used to install multiple packages only by version number
+      - name: "Install sfpowerkit plugin"
+        run: "echo y | sfdx plugins:install sfpowerkit"
+
+      # Install packages this repo is dependant on
+      - name: "Install dependant packages"
+        run: "sfdx sfpowerkit:package:dependencies:install -u dev -r -a -w 60 -k '1:${{ secrets.PACKAGE_KEY }} 2:${{ secrets.PACKAGE_KEY }} 3:${{ secrets.PACKAGE_KEY }} 4:${{ secrets.PACKAGE_KEY }} 5:${{ secrets.PACKAGE_KEY }} 6:${{ secrets.PACKAGE_KEY }} 7:${{ secrets.PACKAGE_KEY }} 8:${{ secrets.PACKAGE_KEY }} 9:${{ secrets.PACKAGE_KEY }} 10:${{ secrets.PACKAGE_KEY }}'"
+
+      # Install new package version into dev sandbox
+      - name: "Install new package version into dev sandbox"
+        if: success()
+        id: dev-installation
+        run: |
+          json=$(sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 20 -b 20 -u dev -r -k ${{ secrets.PACKAGE_KEY }} --json)
+          echo $json
+
+          status=$(echo $json |jq '.status')
+          if [[ "$status" = "0" ]]
+          then
+            echo "::set-output name=isSuccess::true"
+          else
+            echo "::set-output name=isSuccess::false"
+          fi
+
       # Install new package version into integration org
       - name: "Install new package version into integration org"
         if: success() || (failure() && steps.extract-data-package-version-create.outputs.isSuccess)
-        id: install-package-version-to-integration
+        id: integration-installation
         run: |
           json=$(sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 20 -b 20 -u integration-sandbox -r -k ${{ secrets.PACKAGE_KEY }} --json)
           echo $json
@@ -114,39 +148,33 @@ jobs:
           echo "::set-output name=bodyVersion::$(echo $versionNumber).$(echo $packageAliases)"
           echo "::set-output name=bodyPackage::${{ steps.extract-data-package-version-create.outputs.packageVersionId }}"
 
+          echo "::set-output name=packageCreation::✅ Package Creation"
+
+          if [[ "${{ steps.integration-installation.outputs.isSuccess }}" = "true" ]]
+          then
+            echo "::set-output name=integrationInstallation::✅ Package Installation (Integration Sandbox)"
+          else
+            echo "::set-output name=integrationInstallation::❌ Package Installation (Integration Sandbox)"
+          fi
+
+          if [[ "${{ steps.dev-installation.outputs.isSuccess }}" = "true" ]]
+          then
+            echo "::set-output name=devInstallation::✅ Package Installation (Dev Sandbox)"
+          else
+            echo "::set-output name=devInstallation::❌ Package Installation (Dev Sandbox)"
+          fi
+
       # Generate changelog from commits
       - name: Generate changelog
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
         id: changelog
         uses: metcalfc/changelog-generator@v0.2.3
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
       # create github release
-      - name: "Create Release - Success"
-        if: success() && steps.package-version-create.outputs.isSuccess && steps.install-package-version-to-integration.outputs.isSuccess
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.release-fields.outputs.tagName }}
-          release_name: ${{ steps.release-fields.outputs.releaseName }}
-          body: |
-            **Version**: ${{ steps.release-fields.outputs.bodyVersion }}
-            **Package ID**: ${{ steps.release-fields.outputs.bodyPackage }}
-            **Author**: ${{ github.actor }}
-
-            ✅ Package Creation
-            ✅ Package Installation
-
-            ## Changelog
-
-            ${{ steps.changelog.outputs.changelog }}
-          draft: false
-          prerelease: true
-
-      # create github release
       - name: "Create Release - Failed to install"
-        if: failure() && steps.package-version-create.outputs.isSuccess && !steps.install-package-version-to-integration.outputs.isSuccess
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -158,8 +186,9 @@ jobs:
             **Package ID**: ${{ steps.release-fields.outputs.bodyPackage }}
             **Author**: ${{ github.actor }}
 
-            ✅ Package Creation
-            ❌ Package Installation
+            ${{ steps.release-fields.outputs.packageCreation }}
+            ${{ steps.release-fields.outputs.integrationInstallation }}
+            ${{ steps.release-fields.outputs.devInstallation }}
 
             ## Changelog
 

@@ -3,6 +3,10 @@
     <label>Steg</label>
     <name>InclusionStage__c</name>
     <picklistValues>
+        <masterLabel>Aktiv</masterLabel>
+        <translation><!-- Aktiv --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Ansvarlig tildelt</masterLabel>
         <translation><!-- Ansvarlig tildelt --></translation>
     </picklistValues>
