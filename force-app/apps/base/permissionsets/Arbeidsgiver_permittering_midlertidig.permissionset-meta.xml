@@ -11,7 +11,7 @@
     <description>Tilgang til permitteringsapp</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.CRM_Type__c</field>
+        <field>Account.CRM_AccountType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -101,4 +101,32 @@ public without sharing class TAG_TestDataFactory {
 
 		return temporaryLayoffs;
 	}
+
+	public static void assignPermissionSet( String username, String permissionSetName ) {
+		String d = String.valueOf( DateTime.now().millisecond() ) + String.valueOf( DateTime.now().second() ) + String.valueOf( DateTime.now().minute() );
+		User user = new User();
+		user.Username = username;
+		user.Email = username;
+		user.Alias = 'tsamp';
+		user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
+		user.isActive = true;
+		user.FirstName = 'First';
+		user.LastName = 'Last UNIQUE NAME';
+		user.TimeZoneSidKey = 'Europe/Paris';
+		user.LocaleSidKey = 'no_NO';
+		user.EmailEncodingKey = 'UTF-8';
+		user.LanguageLocaleKey = 'no';
+		user.CommunityNickname = 'testUser' + d;
+		insert user;
+
+		List<PermissionSet> permissionSets = [SELECT Id FROM PermissionSet WHERE Name =: permissionSetName];
+
+		if ( permissionSets.size() > 0 ) {
+			PermissionSetAssignment permissionSetAssignment = new PermissionSetAssignment();
+			permissionSetAssignment.AssigneeId = user.Id;
+			permissionSetAssignment.PermissionSetId = permissionSets[0].Id;
+			insert permissionSetAssignment;
+		}
+
+	}
 }

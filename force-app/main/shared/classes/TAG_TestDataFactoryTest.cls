@@ -69,7 +69,22 @@ private without sharing class TAG_TestDataFactoryTest {
 		System.assertEquals( amount, afterLayoffs, 'New layoffs should have been created' );
 	}
 
-	@isTest
+	@IsTest
+	private static void testAssignPermissionSet() {
+		Test.startTest();
+		TAG_TestDataFactory.assignPermissionSet( 'testgfd899@nav.test', 'ManageAccounts' );
+		Test.stopTest();
+
+		List<User> users = [SELECT Id FROM User WHERE Username = 'testgfd899@nav.test'];
+		System.assertEquals( 1, users.size(), 'User is not created' );
+		List<PermissionSet> permissionSets = [SELECT Id FROM PermissionSet WHERE Name = 'ManageAccounts'];
+		System.assertEquals( 1, permissionSets.size(), 'Permission set is not created' );
+
+		List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId =:users[0].Id AND PermissionSetId =:permissionSets[0].Id];
+		System.assertEquals( 1, PermissionSetAssignments.size(), 'Permission set is not assigned to new user' );
+	}
+
+	@IsTest
 	private static void testCreateUserWithPermset() {
 
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = : 'Arbeidsgiver_Base_Group' LIMIT 1];
