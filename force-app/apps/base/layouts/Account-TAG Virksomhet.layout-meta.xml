@@ -4,9 +4,6 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -224,8 +221,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>InquiryCategory__c</fields>
+        <fields>Source__c</fields>
         <fields>InclusionStage__c</fields>
         <fields>OWNER.ALIAS</fields>
+        <fields>TAG_Age__c</fields>
         <relatedList>CustomOpportunity__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
@@ -235,7 +234,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3E000001Rqnb</masterLabel>
+        <masterLabel>00h1x000000jhWM</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
