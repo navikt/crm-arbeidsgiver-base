@@ -195,6 +195,7 @@
         <excludeButtons>Merge</excludeButtons>
         <fields>CONTACT.FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>
+        <fields>CONTACT.PHONE3</fields>
         <fields>CONTACT.PHONE1</fields>
         <fields>CONTACT.EMAIL</fields>
         <fields>SourceFormula__c</fields>
@@ -236,7 +237,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3E000001SI4a</masterLabel>
+        <masterLabel>00h1x000000rRzc</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
