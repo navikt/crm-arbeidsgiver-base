@@ -1,4 +1,5 @@
-name: Promote Command
+# ! deprecated, remove once dispatch workflows are sufficient
+name: [SLASH] Promote Command
 on:
   repository_dispatch:
     types: [promote-command]

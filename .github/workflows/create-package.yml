@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: master
+name: Create Package from Master
 
 # Definition when the workflow should run
 on:
@@ -127,7 +127,7 @@ jobs:
       - name: Generate changelog
         if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
         id: changelog
-        uses: metcalfc/changelog-generator@v0.2.3
+        uses: metcalfc/changelog-generator@v0.4.0
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 

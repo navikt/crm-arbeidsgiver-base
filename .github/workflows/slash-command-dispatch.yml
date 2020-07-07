@@ -1,4 +1,5 @@
-name: Slash Command Dispatch
+# ! deprecated, remove once dispatch workflows are sufficient
+name: [SLASH] Command Dispatch
 on:
   issue_comment:
     types: [created]

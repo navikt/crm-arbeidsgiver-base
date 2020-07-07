@@ -1,4 +1,5 @@
-name: Deploy Command
+# ! deprecated, remove once dispatch workflows are sufficient
+name: [SLASH] Deploy Command
 on:
   repository_dispatch:
     types: [deploy-command]
