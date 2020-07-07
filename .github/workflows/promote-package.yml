@@ -2,7 +2,6 @@ name: Promote Package
 on:
   workflow_dispatch:
     inputs:
-      org:
       packageId:
         description: "Package ID"
         required: true
