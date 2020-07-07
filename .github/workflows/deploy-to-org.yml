@@ -19,31 +19,25 @@ jobs:
           echo "Package ID: ${{ github.event.inputs.packageId }}"
           echo "Initiator: ${{ github.actor }}"
 
-      # Store secret for production
-      - name: "Populate auth file with PROD_SFDX_URL secret"
-        if: ${{ github.event.inputs.org }} == 'prod'
-        run: "echo ${{ secrets.PROD_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
-
-      # Store secret for preprod
-      - name: "Populate auth file with PREPROD_SFDX_URL secret"
-        if: ${{ github.event.inputs.org }} == 'preprod'
-        run: "echo ${{ secrets.PREPROD_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
-
-      # Store secret for dev sandbox
-      - name: "Populate auth file with DEV_SFDX_URL secret"
-        if: ${{ github.event.inputs.org }} == 'dev'
-        run: "echo ${{ secrets.DEV_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
+      # Set auth URL
+      - name: "Set auth URL"
+        id: auth-url
+        run: |
+          if [[ "${{ github.event.inputs.org }}" = "prod" ]]
+          then
+            echo "::set-output name=target::$(echo ${{ secrets.PROD_SFDX_URL }})"
+          elif [[ "${{ github.event.inputs.org }}" = "preprod" ]]
+          then
+            echo "::set-output name=target::$(echo ${{ secrets.PREPROD_SFDX_URL }})"
+          else
+            echo "::set-output name=target::$(echo ${{ secrets.DEV_SFDX_URL }})"
+          fi
 
       # Authorize SFDX
       - name: Authorize SFDX
         uses: sfdx-actions/setup-sfdx@v1
         with:
-          sfdx-auth-url: "$(< ./SFDX_AUTH_URL.txt)"
-
-      # Remove auth file
-      - name: "Remove auth files"
-        run: |
-          rm -f ./SFDX_AUTH_URL.txt
+          sfdx-auth-url: ${{ steps.auth-url.outputs.target }}
 
       # Install package in target org
       - name: "Install package in target org"
