@@ -2,11 +2,11 @@ name: Deploy to Org
 on:
   workflow_dispatch:
     inputs:
-      org:
-        description: "Org (prod, preprod, dev)"
-        required: true
       packageId:
         description: "Package ID"
+        required: true
+      org:
+        description: "Org (prod, preprod, dev)"
         required: true
 jobs:
   deploy-package:
