@@ -21,17 +21,17 @@ jobs:
 
       # Store secret for production
       - name: "Populate auth file with PROD_SFDX_URL secret"
-        if: github.event.client_payload.slash_command.arg1 == 'prod'
+        if: ${{ github.event.inputs.org }} == 'prod'
         run: "echo ${{ secrets.PROD_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
 
       # Store secret for preprod
       - name: "Populate auth file with PREPROD_SFDX_URL secret"
-        if: github.event.client_payload.slash_command.arg1 == 'preprod'
+        if: ${{ github.event.inputs.org }} == 'preprod'
         run: "echo ${{ secrets.PREPROD_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
 
       # Store secret for dev sandbox
       - name: "Populate auth file with DEV_SFDX_URL secret"
-        if: github.event.client_payload.slash_command.arg1 == 'dev'
+        if: ${{ github.event.inputs.org }} == 'dev'
         run: "echo ${{ secrets.DEV_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
 
       # Authorize SFDX
