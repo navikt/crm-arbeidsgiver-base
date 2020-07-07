@@ -132,7 +132,7 @@ jobs:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
       # create github release
-      - name: "Create Release - Failed to install"
+      - name: "Create Release"
         if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
         uses: actions/create-release@latest
         env:
