@@ -23,13 +23,14 @@ jobs:
       - name: "Set auth URL"
         id: auth-url
         run: |
-          if [[ "${{ github.event.inputs.org }}" = "prod" ]]
+          if [ ${{ github.event.inputs.org }} == "prod" ]
           then
             echo "::set-output name=target::$(echo ${{ secrets.PROD_SFDX_URL }})"
-          elif [[ "${{ github.event.inputs.org }}" = "preprod" ]]
+          elif [ ${{ github.event.inputs.org }} == "preprod" ]
           then
             echo "::set-output name=target::$(echo ${{ secrets.PREPROD_SFDX_URL }})"
-          else
+          elif [ ${{ github.event.inputs.org }} == "dev" ]
+          then
             echo "::set-output name=target::$(echo ${{ secrets.DEV_SFDX_URL }})"
           fi
 
