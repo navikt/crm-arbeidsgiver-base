@@ -9,29 +9,32 @@ on:
         description: "Package ID"
         required: true
 jobs:
-  deploy:
+  deploy-package:
     runs-on: ubuntu-latest
     steps:
-      # Input Values
-      - name: "Input Values"
+      # Print Input Values
+      - name: "Print Input Values"
         run: |
           echo "Org: ${{ github.event.inputs.org }}"
           echo "Package ID: ${{ github.event.inputs.packageId }}"
           echo "Initiator: ${{ github.actor }}"
 
-      # Set auth URL
-      - name: "Set auth URL"
+      # Set SFDX Auth URL
+      - name: "Set SFDX Auth URL"
         id: auth-url
         run: |
           if [ ${{ github.event.inputs.org }} == "prod" ]
           then
             echo "::set-output name=target::$(echo ${{ secrets.PROD_SFDX_URL }})"
+            echo "'prod' was set"
           elif [ ${{ github.event.inputs.org }} == "preprod" ]
           then
             echo "::set-output name=target::$(echo ${{ secrets.PREPROD_SFDX_URL }})"
+            echo "'preprod' was set"
           elif [ ${{ github.event.inputs.org }} == "dev" ]
           then
             echo "::set-output name=target::$(echo ${{ secrets.DEV_SFDX_URL }})"
+            echo "'dev' was set"
           fi
 
       # Authorize SFDX
