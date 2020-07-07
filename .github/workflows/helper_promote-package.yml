@@ -9,7 +9,7 @@ on:
         description: "Release Comment"
         required: true
 jobs:
-  promote:
+  promote-package:
     runs-on: ubuntu-latest
     steps:
       # Print Input Values

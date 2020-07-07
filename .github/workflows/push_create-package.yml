@@ -11,7 +11,7 @@ on:
 
 # Jobs to be executed
 jobs:
-  packaging:
+  create-package:
     name: Create new package
     runs-on: ubuntu-latest
     steps:
