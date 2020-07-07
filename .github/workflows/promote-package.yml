@@ -1,0 +1,101 @@
+name: Promote Package
+on:
+  workflow_dispatch:
+    inputs:
+      org:
+      packageId:
+        description: "Package ID"
+        required: true
+      comment:
+        description: "Release Comment"
+jobs:
+  promoteCommand:
+    runs-on: ubuntu-latest
+    steps:
+      # Print Input Values
+      - name: Print input values
+        run: |
+          echo "Package ID: ${{ github.event.inputs.packageId }}"
+          echo "Initiator: ${{ github.actor }}"
+          echo "Comment: ${{ github.event.inputs.comment }}"
+
+      # Authorize SFDX
+      - name: Authorize SFDX
+        uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.PROD_SFDX_URL }}
+
+      # Checkout code in master
+      - name: Checkout source code from master
+        uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+      # Promote package
+      - name: Promote package
+        run: "sfdx force:package:version:promote --package ${{ github.event.inputs.packageId }} --noprompt"
+
+      # Authenticate preprod
+      - name: Authenticate preprod
+        run: |
+          echo ${{ secrets.PREPROD_SFDX_URL}} > ./PREPROD_SFDX_URL.txt
+          sfdx force:auth:sfdxurl:store -f ./PREPROD_SFDX_URL.txt -a preprod -s
+          rm -f ./PREPROD_SFDX_URL.txt
+
+      # Install package version to preprod
+      - name: Install package version to preprod
+        if: success()
+        run: sfdx force:package:install --package ${{ github.event.inputs.packageId }} -w 20 -b 20 -u preprod -r -k ${{ secrets.PACKAGE_KEY }} --json
+
+      # Set release variables
+      - name: Set release fields
+        if: success()
+        id: release-fields
+        run: |
+          echo "::set-output name=tagName::v$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+          echo "::set-output name=releaseName::$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+          echo "::set-output name=bodyVersion::$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+
+      # create github release
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{steps.release-fields.outputs.tagName}}
+          release_name: ${{steps.release-fields.outputs.releaseName}}
+          body: |
+            **Version**: ${{ steps.release-fields.outputs.bodyVersion }}
+            **Package ID**: ${{ github.event.inputs.packageId }}
+            **Author**: ${{ github.actor }}
+
+            ${{ github.event.inputs.comment }}
+          draft: false
+          prerelease: false
+
+      # Update version number
+      - name: Update version number
+        id: packaging-updater
+        uses: navikt/github-action-sfdx-version-updater@master
+
+      # Create commit message by extracting the latest version number from sfdx-project.json
+      - name: Build commit message
+        id: build-commit-message
+        run: |
+          echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+          cat sfdx-project.json
+
+      # Commit files
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "${{steps.build-commit-message.outputs.message}}" -a
+
+      # Push commit
+      - name: Push new version number
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
