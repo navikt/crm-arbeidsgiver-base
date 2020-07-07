@@ -1,4 +1,4 @@
-name: SLASH - Promote Command
+name: "[Slash] Promote Command"
 on:
   repository_dispatch:
     types: [promote-command]
