@@ -1,4 +1,4 @@
-name: DEPLOYMENT HELPER - Deploy to Org
+name: "[Helper] Deploy to Org"
 on:
   workflow_dispatch:
     inputs:
