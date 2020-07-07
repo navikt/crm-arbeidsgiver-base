@@ -1,0 +1,52 @@
+name: Deploy to Org
+on:
+  workflow_dispatch:
+    inputs:
+      org:
+        description: '"prod", "preprod", "dev" are the only valid values'     
+        required: true
+        default: 'prod'
+      packageId:
+        description: 'Get the package ID from Releases'  
+        required: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Input Values
+      - name: "Input Values"
+        run: |
+          echo "Org: ${{ github.event.inputs.org }}"
+          echo "Package ID: ${{ github.event.inputs.packageId }}"
+          echo "Initiator: ${{ github.actor }}"
+
+      # Store secret for production
+      - name: "Populate auth file with PROD_SFDX_URL secret"
+        if: github.event.client_payload.slash_command.arg1 == 'prod'
+        run: "echo ${{ secrets.PROD_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
+
+      # Store secret for preprod
+      - name: "Populate auth file with PREPROD_SFDX_URL secret"
+        if: github.event.client_payload.slash_command.arg1 == 'preprod'
+        run: "echo ${{ secrets.PREPROD_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
+
+      # Store secret for dev sandbox
+      - name: "Populate auth file with DEV_SFDX_URL secret"
+        if: github.event.client_payload.slash_command.arg1 == 'dev'
+        run: "echo ${{ secrets.DEV_SFDX_URL }} > ./SFDX_AUTH_URL.txt"
+
+      # Authorize SFDX
+      - name: Authorize SFDX
+        uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ./SFDX_AUTH_URL.txt
+
+      # Remove auth file
+      - name: "Remove auth files"
+        run: |
+          rm -f ./SFDX_AUTH_URL.txt
+
+      # Install package in target org
+      - name: "Install package in target org"
+        run: "sfdx force:package:install --package ${{ github.event.inputs.packageId }}" -k ${{ secrets.PACKAGE_KEY }} -w 10 -b 10 -r"
