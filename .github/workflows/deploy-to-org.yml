@@ -5,7 +5,6 @@ on:
       org:
         description: '"prod", "preprod", "dev" are the only valid values'     
         required: true
-        default: 'prod'
       packageId:
         description: 'Get the package ID from Releases'  
         required: true
