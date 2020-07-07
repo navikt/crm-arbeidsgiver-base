@@ -1,4 +1,4 @@
-name: [SLASH] Deploy Command
+name: SLASH - Deploy Command
 on:
   repository_dispatch:
     types: [deploy-command]
