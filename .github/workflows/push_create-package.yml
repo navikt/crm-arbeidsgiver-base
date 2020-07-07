@@ -65,7 +65,7 @@ jobs:
           echo "::set-output name=result::$(echo $json | jq -c .)"
 
           status=$(echo $json |jq '.status')
-          if [[ "$status" = "0" ]]
+          if [ $status == "0" ]
           then
             echo "::set-output name=isSuccess::true"
           else
@@ -88,7 +88,7 @@ jobs:
           echo $json
 
           status=$(echo $json |jq '.status')
-          if [[ "$status" = "0" ]]
+          if [ $status == "0" ]
           then
             echo "::set-output name=isSuccess::true"
           else
@@ -116,7 +116,7 @@ jobs:
 
           echo "::set-output name=packageCreation::✅ Package Creation"
 
-          if [[ "${{ steps.integration-installation.outputs.isSuccess }}" = "true" ]]
+          if [ ${{ steps.integration-installation.outputs.isSuccess }} == "true" ]
           then
             echo "::set-output name=integrationInstallation::✅ Package Installation (Integration Sandbox)"
           else
