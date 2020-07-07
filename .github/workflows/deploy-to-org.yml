@@ -38,7 +38,7 @@ jobs:
       - name: Authorize SFDX
         uses: sfdx-actions/setup-sfdx@v1
         with:
-          sfdx-auth-url: ./SFDX_AUTH_URL.txt
+          sfdx-auth-url: "$(< ./SFDX_AUTH_URL.txt)"
 
       # Remove auth file
       - name: "Remove auth files"
