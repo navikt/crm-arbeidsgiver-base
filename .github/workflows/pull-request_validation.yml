@@ -47,11 +47,11 @@ jobs:
 
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
-        run: "echo y | sfdx plugins:install sfpowerkit@1.45.2-13"
+        run: "echo y | sfdx plugins:install sfpowerkit"
 
       # Install packages this repo is dependant on
       - name: "Install dependant packages"
-        run: "sfdx sfpowerkit:package:dependencies:install -u scratch-org -r -a -w 60 -k '1:${{ secrets.PACKAGE_KEY }} 2:${{ secrets.PACKAGE_KEY }} 3:${{ secrets.PACKAGE_KEY }} 4:${{ secrets.PACKAGE_KEY }} 5:${{ secrets.PACKAGE_KEY }} 6:${{ secrets.PACKAGE_KEY }} 7:${{ secrets.PACKAGE_KEY }} 8:${{ secrets.PACKAGE_KEY }} 9:${{ secrets.PACKAGE_KEY }} 10:${{ secrets.PACKAGE_KEY }}'"
+        run: "sfdx sfpowerkit:package:dependencies:install -u scratch-org -r -a -w 60 -k '${{ secrets.ALL_PACKAGE_KEYS }}'"
 
       # Deploy source to scratch org
       - name: "Push source to scratch org"
