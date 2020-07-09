@@ -141,6 +141,7 @@ jobs:
           prerelease: true
 
   check-code-coverage:
+    name: Check Code Coverage
     runs-on: ubuntu-latest
     steps:
       # Install SFDX
