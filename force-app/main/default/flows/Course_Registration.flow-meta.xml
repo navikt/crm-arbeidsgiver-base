@@ -1,5 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Send Email</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A2</name>
+        <label>EmailConfirmation</label>
+        <locationX>100</locationX>
+        <locationY>300</locationY>
+        <actionName>Process_SendEmail</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Dev Name of Enhanced Email Template</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>emailTemplateName</name>
+            <value>
+                <stringValue>CourseRegistrationConfirmation_1594280974969</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Use do-not-reply@nav.no</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>useDoNotReply</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Recipient Contact Lookup</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue>Contact</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>recipientContact</name>
+            <value>
+                <elementReference>myVariable_current.Course_participant__r.Account.PersonContact</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Object Relation ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>relatedToId</name>
+            <value>
+                <elementReference>myVariable_current.Course_registration__r.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -121,7 +303,7 @@
             <label>Changed from Påmeldt</label>
         </rules>
     </decisions>
-    <description>Counts number of participants in course</description>
+    <description>Counts number of participants in course and sends email to confirm registration</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -129,7 +311,7 @@
                 <stringValue>[Course_Registration__c].Course_registration__c.Number_Of_Participants__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_7206674809</name>
+        <name>formula_11_myRule_10_A1_1514647057</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course_registration__r.Number_Of_Participants__c} - 1</expression>
         <scale>18</scale>
@@ -141,7 +323,7 @@
                 <stringValue>[Course_Registration__c].Course_registration__c.Number_Of_Participants__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_1556536452</name>
+        <name>formula_2_myRule_1_A1_0454637857</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course_registration__r.Number_Of_Participants__c} + 1</expression>
         <scale>18</scale>
@@ -153,7 +335,7 @@
                 <stringValue>[Course_Registration__c].Course_registration__c.Number_Of_Participants__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_3564315328</name>
+        <name>formula_5_myRule_4_A1_1176207425</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course_registration__r.Number_Of_Participants__c} + 1</expression>
         <scale>18</scale>
@@ -165,7 +347,7 @@
                 <stringValue>[Course_Registration__c].Course_registration__c.Number_Of_Participants__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_2028425339</name>
+        <name>formula_8_myRule_7_A1_5090764953</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course_registration__r.Number_Of_Participants__c} + 1</expression>
         <scale>18</scale>
@@ -222,8 +404,8 @@ ISPICKVAL(PRIORVALUE([Course_Registration__c].Status__c ),&quot;Venteliste&quot;
 ISCHANGED( {!myVariable_current.Status__c}),
 ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), ISPICKVAL({!myVariable_current.Status__c} ,&quot;Påmeldt&quot;))</expression>
     </formulas>
-    <interviewLabel>Course_Registration-1_InterviewLabel</interviewLabel>
-    <label>Course Registration</label>
+    <interviewLabel>Course_Registration-2_InterviewLabel</interviewLabel>
+    <label>Course Registration + Email</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -324,7 +506,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             </processMetadataValues>
             <field>Number_Of_Participants__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_7206674809</elementReference>
+                <elementReference>formula_11_myRule_10_A1_1514647057</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -358,6 +540,9 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
         <label>+1 registered</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myRule_1_A2</targetReference>
+        </connector>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -404,7 +589,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             </processMetadataValues>
             <field>Number_Of_Participants__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_1556536452</elementReference>
+                <elementReference>formula_2_myRule_1_A1_0454637857</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -484,7 +669,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             </processMetadataValues>
             <field>Number_Of_Participants__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_3564315328</elementReference>
+                <elementReference>formula_5_myRule_4_A1_1176207425</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -564,7 +749,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             </processMetadataValues>
             <field>Number_Of_Participants__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_2028425339</elementReference>
+                <elementReference>formula_8_myRule_7_A1_5090764953</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
