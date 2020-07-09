@@ -1,4 +1,4 @@
-# crm-arbeidsgiver-integrasjon
+# crm-arbeidsgiver-base
 
 [![Build](https://github.com/navikt/crm-arbeidsgiver-base/workflows/master/badge.svg)](https://github.com/navikt/crm-arbeidsgiver-base/actions?query=workflow%3ABuild)
 [![GitHub version](https://badgen.net/github/release/navikt/crm-arbeidsgiver-base/stable)](https://github.com/navikt/crm-arbeidsgiver-base)
