@@ -13,8 +13,7 @@ public with sharing class TAG_ActivityTimelineController {
 		String parentSObjectType =                              TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
 		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
 
-		List<TAG_ActivityTimelineModelList> results =           new Lis
-		                                              t<TAG_ActivityTimelineModelList>();
+		List<TAG_ActivityTimelineModelList> results =           new List<TAG_ActivityTimelineModelList>();
 
 		List<String>                    query =                 TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, recordId, amountOfMonths );
 		List<SObject>                   sObjects =              TAG_ActivityTimelineHelper.getSObjectsFromQueries( query );
