@@ -56,7 +56,6 @@ jobs:
             echo "::set-output name=isSuccess::true"
           else
             echo "::set-output name=isSuccess::false"
-            exit 125
           fi
 
       # Extract data from package version create result
@@ -79,7 +78,6 @@ jobs:
             echo "::set-output name=isSuccess::true"
           else
             echo "::set-output name=isSuccess::false"
-            exit 125
           fi
 
       # set release variables
