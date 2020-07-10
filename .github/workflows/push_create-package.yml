@@ -56,6 +56,7 @@ jobs:
             echo "::set-output name=isSuccess::true"
           else
             echo "::set-output name=isSuccess::false"
+            exit 125
           fi
 
       # Extract data from package version create result
@@ -67,7 +68,6 @@ jobs:
 
       # Install new package version into integration org
       - name: "Install new package version into integration org"
-        if: success() || (failure() && steps.extract-data-package-version-create.outputs.isSuccess)
         id: integration-installation
         run: |
           json=$(sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 20 -b 20 -u integration-sandbox -r -k ${{ secrets.PACKAGE_KEY }} --json)
@@ -79,17 +79,12 @@ jobs:
             echo "::set-output name=isSuccess::true"
           else
             echo "::set-output name=isSuccess::false"
+            exit 125
           fi
-
-      # Fetch beta version number
-      - name: "Fetch beta version number"
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
-        id: packaging-updater
-        uses: muenzpraeger/github-action-sfdx-packaging-updater@master
 
       # set release variables
       - name: "Set release fields"
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
         id: release-fields
         run: |
           versionNumber=$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')
@@ -111,7 +106,7 @@ jobs:
 
       # Generate changelog from commits
       - name: Generate changelog
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
         id: changelog
         uses: metcalfc/changelog-generator@v0.4.0
         with:
@@ -119,7 +114,7 @@ jobs:
 
       # create github release
       - name: "Create Release"
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
