@@ -1,0 +1,35 @@
+name: "[Helper] Promote Package test"
+on:
+  workflow_dispatch:
+    inputs:
+      packageId:
+        description: "Package ID"
+        required: true
+      comment:
+        description: "Release Comment"
+        required: true
+jobs:
+  promote-package-test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout source code
+        uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+      # Commit files
+      - name: Commit files
+        run: |
+          echo "test" >> test.txt
+          git add test.txt
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "test" -a
+
+      # Push commit
+      - name: Push new version number
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
