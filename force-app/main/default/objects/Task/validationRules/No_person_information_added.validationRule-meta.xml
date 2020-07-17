@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>No_person_information_added</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(TAG_NoPersonInformation__c  = FALSE, 	$Permission.Arbeidsgiver = TRUE)</errorConditionFormula>
+    <errorConditionFormula>TAG_NoPersonInformation__c = FALSE &amp;&amp; $Permission.Arbeidsgiver = TRUE &amp;&amp; !ISBLANK( Description ) &amp;&amp; !ISNULL( Description )</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
     <errorMessage>Du må bekrefte at feltet &quot;Kort beskrivelse&quot; ikke inneholder personsensitive opplysninger</errorMessage>
 </ValidationRule>
