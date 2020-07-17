@@ -3,6 +3,7 @@ name: "[Push] Deploy to Dev Sandbox"
 
 # Definition when the workflow should run
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
@@ -15,13 +16,9 @@ jobs:
     name: Create new package
     runs-on: ubuntu-latest
     steps:
-      # Install Salesforce CLI
-      - name: "Install Salesforce CLI" # TODO implement https://github.com/marketplace/actions/salesforce-sfdx-cli-action
-        run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-          mkdir sfdx-cli
-          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
-          ./sfdx-cli/install
+      # Install SFDX
+      - name: Install SFDX
+        uses: sfdx-actions/setup-sfdx@v1
 
       # Checkout the code in the pull request
       - name: "Checkout source code"
@@ -34,8 +31,8 @@ jobs:
           sfdx force:auth:sfdxurl:store -f ./PROD_SFDX_URL.txt -a devhub -d
           rm -f ./PROD_SFDX_URL.txt
 
-      # Authenticate ev sandbox
-      - name: Authenticate ev sandbox
+      # Authenticate dev sandbox
+      - name: Authenticate dev sandbox
         run: |
           echo ${{ secrets.DEV_SFDX_URL}} > ./DEV_SFDX_URL.txt
           sfdx force:auth:sfdxurl:store -f ./DEV_SFDX_URL.txt -a dev -s
