@@ -40,7 +40,9 @@ jobs:
 
       # Delete unpackagable
       - name: "Delete unpackagable"
-        run: rm -rf unpackagable
+        run: |
+          rm -rf ./unpackagable
+          rm -rf ./force-app/unpackagable
 
       # Create package version
       - name: "Create package version"
