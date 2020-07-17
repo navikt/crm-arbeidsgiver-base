@@ -3,6 +3,7 @@ name: "[Push] Deploy to Dev Sandbox"
 
 # Definition when the workflow should run
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
@@ -15,31 +16,26 @@ jobs:
     name: Create new package
     runs-on: ubuntu-latest
     steps:
-      # Install Salesforce CLI
-      - name: "Install Salesforce CLI" # TODO implement https://github.com/marketplace/actions/salesforce-sfdx-cli-action
-        run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-          mkdir sfdx-cli
-          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
-          ./sfdx-cli/install
+      # Install SFDX
+      - name: Install SFDX
+        uses: sfdx-actions/setup-sfdx@v1
 
       # Checkout the code in the pull request
       - name: "Checkout source code"
         uses: actions/checkout@v2
 
-      # Store secret for package target org installation
-      - name: "Populate auth file with DEV_SFDX_URL secret"
-        shell: bash
-        run: "echo ${{ secrets.DEV_SFDX_URL}} > ./DEV_SFDX_URL.txt"
+      # Authenticate prod
+      - name: Authenticate prod
+        run: |
+          echo ${{ secrets.PROD_SFDX_URL}} > ./PROD_SFDX_URL.txt
+          sfdx force:auth:sfdxurl:store -f ./PROD_SFDX_URL.txt -a devhub -d
+          rm -f ./PROD_SFDX_URL.txt
 
       # Authenticate dev sandbox
-      - name: "Authenticate dev sandbox"
-        run: "sfdx force:auth:sfdxurl:store -f ./DEV_SFDX_URL.txt -a dev -s"
-
-      # Remove auth files
-      - name: "Remove auth files"
-        if: always()
+      - name: Authenticate dev sandbox
         run: |
+          echo ${{ secrets.DEV_SFDX_URL}} > ./DEV_SFDX_URL.txt
+          sfdx force:auth:sfdxurl:store -f ./DEV_SFDX_URL.txt -a dev -s
           rm -f ./DEV_SFDX_URL.txt
 
       # Delete unpackagable
@@ -50,9 +46,20 @@ jobs:
       - name: "Install sfpowerkit plugin"
         run: "echo y | sfdx plugins:install sfpowerkit"
 
+      # Get package keys
+      - name: "Get package keys"
+        id: install-keys
+        run: |
+          keys=""
+          for p in $(jq '.result | .[].Name' -r <<< "$(sfdx force:package:list --json)"); do
+              keys+=$p":${{ secrets.PACKAGE_KEY}} "
+          done
+
+          echo "::set-output name=keys::$(echo $keys)"
+
       # Install packages this repo is dependant on
       - name: "Install dependant packages"
-        run: "sfdx sfpowerkit:package:dependencies:install -u dev -r -a -w 60 -k '${{ secrets.ALL_PACKAGE_KEYS }}'"
+        run: "sfdx sfpowerkit:package:dependencies:install -u dev -r -a -w 60 -k '${{ steps.install-keys.outputs.keys }}'"
 
       # Install new package version into dev sandbox
       - name: "Install new package version into dev sandbox"
