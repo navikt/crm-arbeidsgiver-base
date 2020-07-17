@@ -50,9 +50,20 @@ jobs:
       - name: "Install sfpowerkit plugin"
         run: "echo y | sfdx plugins:install sfpowerkit"
 
+      # Get package keys
+      - name: "Get package keys"
+        id: install-keys
+        run: |
+          keys=""
+          for p in $(jq '.result | .[].Name' -r <<< "$(sfdx force:package:list --json)"); do
+              keys+=$p":${{ secrets.PACKAGE_KEY}} "
+          done
+
+          echo "::set-output name=keys::$(echo $keys)"
+
       # Install packages this repo is dependant on
       - name: "Install dependant packages"
-        run: "sfdx sfpowerkit:package:dependencies:install -u dev -r -a -w 60 -k '${{ secrets.ALL_PACKAGE_KEYS }}'"
+        run: "sfdx sfpowerkit:package:dependencies:install -u dev -r -a -w 60 -k '${{ steps.install-keys.outputs.keys }}'"
 
       # Install new package version into dev sandbox
       - name: "Install new package version into dev sandbox"
