@@ -121,7 +121,7 @@ public with sharing class SharedFunctions_Helper {
 			if ( !contactMap.containsKey( cw.email.toLowerCase() ) ) {
 
 				Id accountId = accountMap.containsKey( cw.companyNumber ) ? accountMap.get( cw.companyNumber ).Id : null;
-				Contact con = new Contact( FirstName = cw.firstName, LastName = cw.lastName, MobilePhone = cw.phone, AccountId = accountId, Source__c = cw.soruce );
+				Contact con = new Contact( FirstName = cw.firstName, LastName = cw.lastName, MobilePhone = cw.phone, AccountId = accountId, Source__c = cw.source );
 
 				// if cw.email is a valid email, add the email
 				if ( SharedFunctions_Helper.checkIfValidEmail( cw.email ) ) {
