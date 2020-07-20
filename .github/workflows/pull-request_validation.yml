@@ -68,6 +68,12 @@ jobs:
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
 
+      # Sleep for 1 minute while permset groups are updating
+      - name: Sleep for 1 minute while permset groups are updating
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "1m"
+
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
         # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"

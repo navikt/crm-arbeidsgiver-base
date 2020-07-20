@@ -16,6 +16,10 @@
         <apexClass>TAG_ActivityTimelineModelList</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>CustomNotificationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>Activity_Account_Map__mdt</name>
