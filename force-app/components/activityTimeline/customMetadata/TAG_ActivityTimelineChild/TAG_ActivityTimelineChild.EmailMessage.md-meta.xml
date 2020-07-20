@@ -4,39 +4,39 @@
     <protected>false</protected>
     <values>
         <field>CreateableObject_Field1__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Field2__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Field3__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_RecordType__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_TextEnglish__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_TextNorwegian__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Value1__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Value2__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Value3__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>SLDS_Dropdown_Icon__c</field>
@@ -64,7 +64,7 @@
     </values>
     <values>
         <field>SObjectRelatedUserId__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>SObjectTitle__c</field>
@@ -72,27 +72,27 @@
     </values>
     <values>
         <field>SObjectTypeField__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>SObjectTypeValue__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>SubtitleFutureEnglish__c</field>
-        <value xsi:type="xsd:string">Automatic Email</value>
+        <value xsi:type="xsd:string">Email sent</value>
     </values>
     <values>
         <field>SubtitleFutureNorwegian__c</field>
-        <value xsi:type="xsd:string">Automatisk E-post</value>
+        <value xsi:type="xsd:string">E-post sendt</value>
     </values>
     <values>
         <field>SubtitlePastEnglish__c</field>
-        <value xsi:type="xsd:string">Automatic Email</value>
+        <value xsi:type="xsd:string">Email sent</value>
     </values>
     <values>
         <field>SubtitlePastNorwegian__c</field>
-        <value xsi:type="xsd:string">Automatisk E-post</value>
+        <value xsi:type="xsd:string">E-post sendt</value>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionEng__c</field>
@@ -100,6 +100,6 @@
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionNor__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
 </CustomMetadata>
