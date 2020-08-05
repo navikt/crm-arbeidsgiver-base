@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Kurspåmelding</label>
-    <name>Course_registration__c</name>
-    <relationshipLabel><!-- Course Registrations --></relationshipLabel>
+    <name>Course__c</name>
+    <relationshipLabel>
+        <!-- Course Registrations -->
+    </relationshipLabel>
 </CustomFieldTranslation>
