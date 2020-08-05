@@ -3,7 +3,7 @@ global with sharing class CourseHandler {
 	@HttpGet
 	global static void doGet() {
 
-		List<Course__c> courses = [SELECT Id, Name, RegistrationUrl__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, RegistrationDeadline__c, RegistrationPlaceName__c, DescriptionInternal__c, Description__c, FrontPageDescription__c, Active__c, Region__c, Type_of_course__c, Theme__c FROM Course__c];
+		List<Course__c> courses = [SELECT Id, Name, RegistrationUrl2__c, RegistrationFromDateTime__c, RegistrationToDateTime__c, RegistrationDeadline__c, RegistrationPlaceName__c, DescriptionInternal__c, Description__c, FrontPageDescription__c, Active__c, Region__c, Type_of_course__c, Theme__c FROM Course__c];
 
 		List<CourseApiModel> wrapperList = new List<CourseApiModel>();
 
@@ -12,7 +12,7 @@ global with sharing class CourseHandler {
 
 			wrapper.RegistrationID = course.Id;
 			wrapper.Title = course.Name;
-			wrapper.RegistrationUrl = course.RegistrationUrl__c;
+			wrapper.RegistrationUrl = course.RegistrationUrl2__c;
 			wrapper.RegistrationFromDateTime = course.RegistrationFromDateTime__c;
 			wrapper.RegistrationToDateTime = course.RegistrationToDateTime__c;
 			wrapper.RegistrationDeadline = course.RegistrationDeadline__c;
