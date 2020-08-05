@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Course_Place__c</fullName>
     <externalId>false</externalId>
-    <formula>Course_registration__r.RegistrationPlaceName__c</formula>
+    <formula>Course__r.RegistrationPlaceName__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Course Place</label>
     <required>false</required>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Course_Date__c</fullName>
     <externalId>false</externalId>
-    <formula>TEXT(Course_registration__r.RegistrationFromDateTime__c)  &amp; &quot; - &quot; &amp;  TEXT(Course_registration__r.RegistrationToDateTime__c)</formula>
+    <formula>TEXT(Course__r.RegistrationFromDateTime__c)  &amp; &quot; - &quot; &amp;  TEXT(Course__r.RegistrationToDateTime__c)</formula>
     <label>Course Date</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
