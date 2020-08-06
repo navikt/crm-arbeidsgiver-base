@@ -168,7 +168,14 @@
     </nameField>
     <pluralLabel>Custom Opportunities</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_OrganizationNameFromForm__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>InquiryCategory__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>InclusionStage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.LAST_NAME</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
