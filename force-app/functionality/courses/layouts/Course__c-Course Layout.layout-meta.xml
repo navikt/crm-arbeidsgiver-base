@@ -25,6 +25,7 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
+
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
@@ -37,6 +38,7 @@
                 <behavior>Readonly</behavior>
                 <field>Number_Of_Participants__c</field>
             </layoutItems>
+
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Available_seats__c</field>
@@ -192,7 +194,11 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
+
         <masterLabel>00h1x000000sIti</masterLabel>
+
+        <masterLabel>00h6E000000l4iB</masterLabel>
+
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
