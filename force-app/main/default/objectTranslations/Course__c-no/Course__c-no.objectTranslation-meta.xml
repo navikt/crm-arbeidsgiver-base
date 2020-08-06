@@ -34,20 +34,24 @@
     <layouts>
         <layout>Course Layout</layout>
         <sections>
+            <label><!-- Beskrivelse --></label>
+            <section>Beskrivelse</section>
+        </sections>
+        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Date --></label>
-            <section>Date</section>
+            <label><!-- Dato --></label>
+            <section>Dato</section>
         </sections>
         <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
+            <label><!-- Invitasjonskode --></label>
+            <section>Invitasjonskode</section>
         </sections>
         <sections>
-            <label><!-- Place --></label>
-            <section>Place</section>
+            <label><!-- Sted --></label>
+            <section>Sted</section>
         </sections>
     </layouts>
     <nameFieldLabel>Kurs ID</nameFieldLabel>
