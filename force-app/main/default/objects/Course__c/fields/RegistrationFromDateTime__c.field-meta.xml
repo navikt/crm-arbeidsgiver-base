@@ -3,7 +3,7 @@
     <fullName>RegistrationFromDateTime__c</fullName>
     <externalId>false</externalId>
     <label>Start time</label>
-    <required>false</required>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>DateTime</type>
 </CustomField>

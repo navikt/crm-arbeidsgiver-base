@@ -3,7 +3,7 @@
     <fullName>RegistrationDeadline__c</fullName>
     <externalId>false</externalId>
     <label>Registration deadline</label>
-    <required>false</required>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>DateTime</type>
 </CustomField>
