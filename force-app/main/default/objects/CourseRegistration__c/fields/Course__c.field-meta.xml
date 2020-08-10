@@ -6,7 +6,7 @@
     <label>Course</label>
     <referenceTo>Course__c</referenceTo>
     <relationshipLabel>Course Registrations</relationshipLabel>
-    <relationshipName>Course_Registrations1</relationshipName>
+    <relationshipName>CourseRegistrations</relationshipName>
     <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

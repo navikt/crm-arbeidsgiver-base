@@ -34,29 +34,41 @@
     <layouts>
         <layout>Course Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label>
+                <!-- Custom Links -->
+            </label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Date --></label>
-            <section>Date</section>
+            <label>
+                <!-- Date -->
+            </label>
+            <section>Tidspunkt</section>
         </sections>
         <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
+            <label>
+                <!-- Description -->
+            </label>
+            <section>Kursbeskrivelse</section>
         </sections>
         <sections>
-            <label><!-- Invitasjonskode --></label>
+            <label>
+                <!-- Invitasjonskode -->
+            </label>
             <section>Invitasjonskode</section>
         </sections>
         <sections>
-            <label><!-- Location --></label>
-            <section>Location</section>
+            <label>
+                <!-- Location -->
+            </label>
+            <section>Sted</section>
         </sections>
     </layouts>
-    <nameFieldLabel>Kurs ID</nameFieldLabel>
+    <nameFieldLabel>Tittel</nameFieldLabel>
     <validationRules>
-        <errorMessage><!-- Start tid kan ikke være senere enn slutt tid --></errorMessage>
+        <errorMessage>
+            <!-- Start tid kan ikke være senere enn slutt tid -->
+        </errorMessage>
         <name>Start_time_not_later_than_end_time</name>
     </validationRules>
 </CustomObjectTranslation>
