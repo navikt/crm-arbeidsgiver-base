@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Available_seats__c</fullName>
+    <fullName>NumberOfParticipants__c</fullName>
+    <defaultValue>0</defaultValue>
     <externalId>false</externalId>
-    <formula>Max_number_of_participants__c - Number_Of_Participants__c</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Available seats</label>
-    <precision>18</precision>
+    <label>Number of participants</label>
+    <precision>8</precision>
     <required>false</required>
     <scale>0</scale>
     <trackTrending>false</trackTrending>

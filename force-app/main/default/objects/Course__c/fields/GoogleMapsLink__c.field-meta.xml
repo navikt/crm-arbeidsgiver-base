@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Google_Maps_Link__c</fullName>
+    <fullName>GoogleMapsLink__c</fullName>
     <externalId>false</externalId>
     <formula>&quot;https://www.google.com/maps/place/&quot; + SUBSTITUTE( RegistrationPlaceName__c , &quot; &quot;, &quot;+&quot;)</formula>
     <label>Google Maps Link</label>
