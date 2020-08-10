@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Kurspåmeldingen</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>Kurspåmelding</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>Kurspåmelding</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Kurspåmeldingene</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>true</plural>
+        <value>Kurspåmeldinger</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>Kurspåmeldinger</value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>Course Registration Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Kurspåmelding ID</nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- Dette kurset er ikke aktivt --></errorMessage>
+        <name>Course_must_be_active</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Maks antall deltagere er registrert på dette kurset. --></errorMessage>
+        <name>Do_not_exceed_max_number_of_participants</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Påmeldingsfristen har utløpt --></errorMessage>
+        <name>Do_not_exceed_registration_deadline</name>
+    </validationRules>
+</CustomObjectTranslation>
