@@ -3,19 +3,39 @@
     <label>Tjeneste</label>
     <name>TAG_service__c</name>
     <picklistValues>
-        <masterLabel>Forebyggende arbeidsmiljøarbeid</masterLabel>
-        <translation><!-- Forebyggende arbeidsmiljøarbeid --></translation>
+        <masterLabel>Forebyggende arbeidsmiljø</masterLabel>
+        <translation><!-- Forebyggende arbeidsmiljø --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Helse i arbeid</masterLabel>
         <translation><!-- Helse i arbeid --></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Informasjon og relasjonsbygging</masterLabel>
+        <translation><!-- Informasjon og relasjonsbygging --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inkludering (med virkemidler, inkl. oppfølging)</masterLabel>
+        <translation><!-- Inkludering (med virkemidler, inkl. oppfølging) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jobbmesser og møteplass</masterLabel>
+        <translation><!-- Jobbmesser og møteplass --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Oppsigelser</masterLabel>
+        <translation><!-- Oppsigelser --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Permittering</masterLabel>
+        <translation><!-- Permittering --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Redusere sykefravær</masterLabel>
         <translation><!-- Redusere sykefravær --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Vurder IA-oppdraget</masterLabel>
-        <translation><!-- Vurder IA-oppdraget --></translation>
+        <masterLabel>Rekruttering (uten virkemidler, inkl. oppfølging)</masterLabel>
+        <translation><!-- Rekruttering (uten virkemidler, inkl. oppfølging) --></translation>
     </picklistValues>
 </CustomFieldTranslation>
