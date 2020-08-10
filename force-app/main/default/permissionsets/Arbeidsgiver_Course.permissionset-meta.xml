@@ -373,12 +373,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Automatic_deactivation__c</field>
+        <field>Course__c.AutomaticDeactivation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Available_seats__c</field>
+        <field>Course__c.AvailableSeats__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -393,22 +393,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Generate_invitation_code__c</field>
+        <field>Course__c.GenerateInvitationCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Google_Maps_Link__c</field>
+        <field>Course__c.GoogleMapsLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Invitation_code__c</field>
+        <field>Course__c.InvitationCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Number_Of_Participants__c</field>
+        <field>Course__c.NumberOfParticipants__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -443,7 +443,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Type_of_course__c</field>
+        <field>Course__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>AvailableSeats__c</fullName>
     <externalId>false</externalId>
-    <formula>Max_number_of_participants__c - Number_Of_Participants__c</formula>
+    <formula>MaxNumberOfParticipants__c - NumberOfParticipants__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Available seats</label>
     <precision>18</precision>

@@ -3,18 +3,18 @@
     <fullName>Do_not_exceed_max_number_of_participants</fullName>
     <active>true</active>
     <errorConditionFormula>OR(
-AND(ISNEW(),ISPICKVAL(Status__c, &quot;Påmeldt&quot;), Course__r.Number_Of_Participants__c  &gt;=  Course__r.Max_number_of_participants__c),
+AND(ISNEW(),ISPICKVAL(Status__c, &quot;Påmeldt&quot;), Course__r.NumberOfParticipants__c  &gt;=  Course__r.MaxNumberOfParticipants__c),
 AND(
 ISCHANGED(Status__c),
 OR(ISPICKVAL(PRIORVALUE(Status__c), &quot;Avmeldt&quot;),
 ISPICKVAL(PRIORVALUE(Status__c), &quot;Venteliste&quot;)),
 ISPICKVAL(Status__c, &quot;Påmeldt&quot;),
-Course__r.Number_Of_Participants__c  &gt;=  Course__r.Max_number_of_participants__c),
+Course__r.NumberOfParticipants__c  &gt;=  Course__r.MaxNumberOfParticipants__c),
 AND(
 ISCHANGED(Status__c),
 ISPICKVAL(PRIORVALUE(Status__c), &quot;Påmeldt&quot;),
 OR(ISPICKVAL(Status__c, &quot;Venteliste&quot;),
 ISPICKVAL(Status__c, &quot;Avmeldt&quot;)), 
-Course__r.Number_Of_Participants__c  &gt;  Course__r.Max_number_of_participants__c))</errorConditionFormula>
+Course__r.NumberOfParticipants__c  &gt;  Course__r.MaxNumberOfParticipants__c))</errorConditionFormula>
     <errorMessage>Maks antall deltagere er registrert på dette kurset.</errorMessage>
 </ValidationRule>

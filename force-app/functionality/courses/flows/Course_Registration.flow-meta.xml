@@ -308,48 +308,48 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>[Course_Registration__c].Course__c.Number_Of_Participants__c - 1</stringValue>
+                <stringValue>[Course_Registration__c].Course__c.NumberOfParticipants__c - 1</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_11_myRule_10_A1_2930821168</name>
         <dataType>Number</dataType>
-        <expression>{!myVariable_current.Course__r.Number_Of_Participants__c} - 1</expression>
+        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} - 1</expression>
         <scale>18</scale>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>[Course_Registration__c].Course__c.Number_Of_Participants__c + 1</stringValue>
+                <stringValue>[Course_Registration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_2_myRule_1_A1_9782295856</name>
         <dataType>Number</dataType>
-        <expression>{!myVariable_current.Course__r.Number_Of_Participants__c} + 1</expression>
+        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
         <scale>18</scale>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>[Course_Registration__c].Course__c.Number_Of_Participants__c + 1</stringValue>
+                <stringValue>[Course_Registration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_5_myRule_4_A1_3584497134</name>
         <dataType>Number</dataType>
-        <expression>{!myVariable_current.Course__r.Number_Of_Participants__c} + 1</expression>
+        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
         <scale>18</scale>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>[Course_Registration__c].Course__c.Number_Of_Participants__c + 1</stringValue>
+                <stringValue>[Course_Registration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_8_myRule_7_A1_4107632392</name>
         <dataType>Number</dataType>
-        <expression>{!myVariable_current.Course__r.Number_Of_Participants__c} + 1</expression>
+        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
         <scale>18</scale>
     </formulas>
     <formulas>
@@ -504,7 +504,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Number_Of_Participants__c</field>
+            <field>NumberOfParticipants__c</field>
             <value>
                 <elementReference>formula_11_myRule_10_A1_2930821168</elementReference>
             </value>
@@ -587,7 +587,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Number_Of_Participants__c</field>
+            <field>NumberOfParticipants__c</field>
             <value>
                 <elementReference>formula_2_myRule_1_A1_9782295856</elementReference>
             </value>
@@ -667,7 +667,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Number_Of_Participants__c</field>
+            <field>NumberOfParticipants__c</field>
             <value>
                 <elementReference>formula_5_myRule_4_A1_3584497134</elementReference>
             </value>
@@ -747,7 +747,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Number_Of_Participants__c</field>
+            <field>NumberOfParticipants__c</field>
             <value>
                 <elementReference>formula_8_myRule_7_A1_4107632392</elementReference>
             </value>
