@@ -16,7 +16,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Course_participant__c</field>
+                <field>CourseParticipant__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -84,7 +84,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1x0000013L4d</masterLabel>
+        <masterLabel>00h1x000000ks8K</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

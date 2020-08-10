@@ -31,6 +31,13 @@
         <value>Kurspåmeldinger</value>
     </caseValues>
     <gender>Masculine</gender>
+    <layouts>
+        <layout>Course Registration Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel>Kurspåmelding ID</nameFieldLabel>
     <validationRules>
         <errorMessage><!-- Dette kurset er ikke aktivt --></errorMessage>
