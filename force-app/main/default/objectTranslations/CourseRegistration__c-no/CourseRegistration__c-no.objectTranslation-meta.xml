@@ -3,60 +3,52 @@
     <caseValues>
         <article>Definite</article>
         <plural>false</plural>
-        <value>Kurset</value>
+        <value>Kurspåmeldingen</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value>Kurs</value>
+        <value>Kurspåmelding</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>false</plural>
-        <value>Kurs</value>
+        <value>Kurspåmelding</value>
     </caseValues>
     <caseValues>
         <article>Definite</article>
         <plural>true</plural>
-        <value>Kursene</value>
+        <value>Kurspåmeldingene</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value>Kurs</value>
+        <value>Kurspåmeldinger</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>true</plural>
-        <value>Kurs</value>
+        <value>Kurspåmeldinger</value>
     </caseValues>
-    <gender>Neuter</gender>
+    <gender>Masculine</gender>
     <layouts>
-        <layout>Course Layout</layout>
+        <layout>Course Registration Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
-        <sections>
-            <label><!-- Date --></label>
-            <section>Date</section>
-        </sections>
-        <sections>
-            <label><!-- Description --></label>
-            <section>Description</section>
-        </sections>
-        <sections>
-            <label><!-- Invitasjonskode --></label>
-            <section>Invitasjonskode</section>
-        </sections>
-        <sections>
-            <label><!-- Location --></label>
-            <section>Location</section>
-        </sections>
     </layouts>
-    <nameFieldLabel>Kurs ID</nameFieldLabel>
+    <nameFieldLabel>Kurspåmelding ID</nameFieldLabel>
     <validationRules>
-        <errorMessage><!-- Start tid kan ikke være senere enn slutt tid --></errorMessage>
-        <name>Start_time_not_later_than_end_time</name>
+        <errorMessage><!-- Dette kurset er ikke aktivt --></errorMessage>
+        <name>Course_must_be_active</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Maks antall deltagere er registrert på dette kurset. --></errorMessage>
+        <name>Do_not_exceed_max_number_of_participants</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Påmeldingsfristen har utløpt --></errorMessage>
+        <name>Do_not_exceed_registration_deadline</name>
     </validationRules>
 </CustomObjectTranslation>
