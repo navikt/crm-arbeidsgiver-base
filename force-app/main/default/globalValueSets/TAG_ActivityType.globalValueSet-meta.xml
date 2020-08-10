@@ -3,26 +3,27 @@
     <customValue>
         <fullName>Markedsarbeid</fullName>
         <default>false</default>
-        <label>Markedsarbeid</label>
+        <label>Generelt markedsarbeid</label>
     </customValue>
     <customValue>
         <fullName>Inkludering</fullName>
         <default>false</default>
-        <label>Inkludering</label>
+        <label>Rekruttere og inkludere</label>
     </customValue>
     <customValue>
         <fullName>IA-arbeid</fullName>
         <default>false</default>
-        <label>IA-arbeid</label>
+        <label>Forebygge sykefravær og redusere frafall</label>
     </customValue>
     <customValue>
         <fullName>Permittering</fullName>
         <default>false</default>
-        <label>Permittering</label>
+        <label>Nedbemanne</label>
     </customValue>
     <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Bedriftsundersøkelse</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
