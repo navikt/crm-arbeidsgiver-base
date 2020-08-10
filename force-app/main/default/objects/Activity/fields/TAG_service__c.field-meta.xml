@@ -7,7 +7,6 @@
     <type>Picklist</type>
     <valueSet>
         <controllingField>TAG_ActivityType__c</controllingField>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -54,48 +53,6 @@
                 <fullName>Masseoppsigelser</fullName>
                 <default>false</default>
                 <label>Oppsigelser</label>
-            </value>
-            <value>
-                <fullName>EURES</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>EURES</label>
-            </value>
-            <value>
-                <fullName>Flyktningtjenesten</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Flyktningtjenesten</label>
-            </value>
-            <value>
-                <fullName>Informasjon om inkludering</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Informasjon om inkludering</label>
-            </value>
-            <value>
-                <fullName>Jobbspesialist</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Jobbspesialist</label>
-            </value>
-            <value>
-                <fullName>Konkurs</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Konkurs</label>
-            </value>
-            <value>
-                <fullName>Nedbemanning</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Nedbemanning</label>
-            </value>
-            <value>
-                <fullName>Vurder IA-oppdraget</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Vurder IA-oppdraget</label>
             </value>
         </valueSetDefinition>
         <valueSettings>
