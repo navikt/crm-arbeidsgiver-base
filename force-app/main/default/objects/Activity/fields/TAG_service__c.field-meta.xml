@@ -7,7 +7,6 @@
     <type>Picklist</type>
     <valueSet>
         <controllingField>TAG_ActivityType__c</controllingField>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -55,86 +54,44 @@
                 <default>false</default>
                 <label>Oppsigelser</label>
             </value>
-            <value>
-                <fullName>EURES</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>EURES</label>
-            </value>
-            <value>
-                <fullName>Flyktningtjenesten</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Flyktningtjenesten</label>
-            </value>
-            <value>
-                <fullName>Informasjon om inkludering</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Informasjon om inkludering</label>
-            </value>
-            <value>
-                <fullName>Jobbspesialist</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Jobbspesialist</label>
-            </value>
-            <value>
-                <fullName>Konkurs</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Konkurs</label>
-            </value>
-            <value>
-                <fullName>Nedbemanning</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Nedbemanning</label>
-            </value>
-            <value>
-                <fullName>Vurder IA-oppdraget</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Vurder IA-oppdraget</label>
-            </value>
         </valueSetDefinition>
         <valueSettings>
-            <controllingFieldValue>Markedsarbeid</controllingFieldValue>
-            <controllingFieldValue>Inkludering</controllingFieldValue>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
-            <controllingFieldValue>Permittering</controllingFieldValue>
+            <controllingFieldValue>Generelt markedsarbeid</controllingFieldValue>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <controllingFieldValue>Nedbemanne</controllingFieldValue>
             <valueName>Informasjon om NAVs tjenester</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Inkludering</controllingFieldValue>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
             <valueName>Jobbmesser og møteplasser</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Inkludering</controllingFieldValue>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
             <valueName>Rekrutteringsoppdrag</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Inkludering</controllingFieldValue>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
             <valueName>Inkluderende rekruttering</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
             <valueName>Helse i arbeid</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
             <valueName>Redusere sykefravær</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
             <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Permittering</controllingFieldValue>
+            <controllingFieldValue>Nedbemanne</controllingFieldValue>
             <valueName>Permittering</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Permittering</controllingFieldValue>
+            <controllingFieldValue>Nedbemanne</controllingFieldValue>
             <valueName>Masseoppsigelser</valueName>
         </valueSettings>
     </valueSet>
