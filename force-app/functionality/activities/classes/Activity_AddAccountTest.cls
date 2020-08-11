@@ -159,7 +159,7 @@ private without sharing class Activity_AddAccountTest {
 	private static Event createEvent( Account account ) {
 
 		TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs( 1, account, true )[0];
-		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = tl.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen' );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = tl.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Generelt markedsarbeid', Subject = 'Hele dagen' );
 		insert ev;
 
 		return ev;

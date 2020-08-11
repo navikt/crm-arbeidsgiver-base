@@ -11,7 +11,7 @@ private class TAG_ActivityTimelineModelTest {
 		insert ta;
 
 		t = t.addMonths( -1 );
-		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = t, TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'test' );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = t, TAG_ActivityType__c = 'Generelt markedsarbeid', Subject = 'test' );
 		insert ev;
 
 		t = t.addMonths( -1 );
@@ -42,7 +42,7 @@ private class TAG_ActivityTimelineModelTest {
 		insert ta;
 
 		t = t.addDays( 1 );
-		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = t, TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'test' );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = t, TAG_ActivityType__c = 'Generelt markedsarbeid', Subject = 'test' );
 		insert ev;
 
 		t = t.addDays( 1 );

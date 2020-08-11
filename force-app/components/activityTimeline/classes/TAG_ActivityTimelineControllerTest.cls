@@ -30,7 +30,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		insert con;
 
 		Date d = Date.today();
-		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'Hele dagen', WhoId = con.Id );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1440, IsAllDayEvent = true, ActivityDate = Date.today(), TAG_ActivityType__c = 'Generelt markedsarbeid', Subject = 'Hele dagen', WhoId = con.Id );
 		insert ev;
 
 		Test.StartTest();
@@ -76,7 +76,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		insert con;
 
 		Date d = Date.today().addDays( -1 );
-		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = d, TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'i går', WhoId = con.Id );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = d, TAG_ActivityType__c = 'Generelt markedsarbeid', Subject = 'i går', WhoId = con.Id );
 		insert ev;
 
 		Test.StartTest();
@@ -126,7 +126,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 	private static void testGetOverdueTasks() {
 
 		Account acc = TAG_TestDataFactory.createAccounts( 1 )[0];
-		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today(), TAG_ActivityType__c = 'Bedriftsundersøkelse', Subject = 'test' );
+		Event ev = new Event( TAG_NoPersonInformation__c = true, WhatId = acc.Id, DurationInMinutes = 1, ActivityDateTime = Date.today(), TAG_ActivityType__c = 'Generelt markedsarbeid', Subject = 'test' );
 		insert ev;
 		Task ta = new Task( TAG_NoPersonInformation__c = true, WhatId = acc.Id, ActivityDate = Date.today(), Subject = 'test' );
 		insert ta;
