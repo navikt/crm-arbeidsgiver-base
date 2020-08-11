@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_service__c</fullName>
     <externalId>false</externalId>
@@ -23,62 +23,27 @@
             <value>
                 <fullName>Forbyggende arbeidsmiljøarbeid</fullName>
                 <default>false</default>
-                <label>Forebyggende arbeidsmiljøarbeid</label>
-            </value>
-            <value>
-                <fullName>Vurder IA-oppdraget</fullName>
-                <default>false</default>
-                <label>Vurder IA-oppdraget</label>
+                <label>Forebyggende arbeidsmiljø</label>
             </value>
             <value>
                 <fullName>Jobbmesser og møteplasser</fullName>
                 <default>false</default>
-                <label>Jobbmesser og møteplasser</label>
-            </value>
-            <value>
-                <fullName>EURES</fullName>
-                <default>false</default>
-                <label>EURES</label>
+                <label>Jobbmesser og møteplass</label>
             </value>
             <value>
                 <fullName>Rekrutteringsoppdrag</fullName>
                 <default>false</default>
-                <label>Rekrutteringsoppdrag</label>
+                <label>Rekruttering (uten virkemidler, inkl. oppfølging)</label>
             </value>
             <value>
                 <fullName>Informasjon om NAVs tjenester</fullName>
                 <default>false</default>
-                <label>Informasjon om NAVs tjenester</label>
-            </value>
-            <value>
-                <fullName>Informasjon om inkludering</fullName>
-                <default>false</default>
-                <label>Informasjon om inkludering</label>
-            </value>
-            <value>
-                <fullName>Flyktningtjenesten</fullName>
-                <default>false</default>
-                <label>Flyktningtjenesten</label>
+                <label>Informasjon og relasjonsbygging</label>
             </value>
             <value>
                 <fullName>Inkluderende rekruttering</fullName>
                 <default>false</default>
-                <label>Inkluderende rekruttering</label>
-            </value>
-            <value>
-                <fullName>Jobbspesialist</fullName>
-                <default>false</default>
-                <label>Jobbspesialist</label>
-            </value>
-            <value>
-                <fullName>Konkurs</fullName>
-                <default>false</default>
-                <label>Konkurs</label>
-            </value>
-            <value>
-                <fullName>Nedbemanning</fullName>
-                <default>false</default>
-                <label>Nedbemanning</label>
+                <label>Inkludering (med virkemidler, inkl. oppfølging)</label>
             </value>
             <value>
                 <fullName>Permittering</fullName>
@@ -88,9 +53,70 @@
             <value>
                 <fullName>Masseoppsigelser</fullName>
                 <default>false</default>
-                <label>Masseoppsigelser</label>
+                <label>Oppsigelser</label>
+            </value>
+            <value>
+                <fullName>EURES</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>EURES</label>
+            </value>
+            <value>
+                <fullName>Flyktningtjenesten</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Flyktningtjenesten</label>
+            </value>
+            <value>
+                <fullName>Informasjon om inkludering</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Informasjon om inkludering</label>
+            </value>
+            <value>
+                <fullName>Jobbspesialist</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Jobbspesialist</label>
+            </value>
+            <value>
+                <fullName>Konkurs</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Konkurs</label>
+            </value>
+            <value>
+                <fullName>Nedbemanning</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Nedbemanning</label>
+            </value>
+            <value>
+                <fullName>Vurder IA-oppdraget</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vurder IA-oppdraget</label>
             </value>
         </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Markedsarbeid</controllingFieldValue>
+            <controllingFieldValue>Inkludering</controllingFieldValue>
+            <controllingFieldValue>IA-arbeid</controllingFieldValue>
+            <controllingFieldValue>Permittering</controllingFieldValue>
+            <valueName>Informasjon om NAVs tjenester</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inkludering</controllingFieldValue>
+            <valueName>Jobbmesser og møteplasser</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inkludering</controllingFieldValue>
+            <valueName>Rekrutteringsoppdrag</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inkludering</controllingFieldValue>
+            <valueName>Inkluderende rekruttering</valueName>
+        </valueSettings>
         <valueSettings>
             <controllingFieldValue>IA-arbeid</controllingFieldValue>
             <valueName>Helse i arbeid</valueName>
@@ -104,8 +130,12 @@
             <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>IA-arbeid</controllingFieldValue>
-            <valueName>Vurder IA-oppdraget</valueName>
+            <controllingFieldValue>Permittering</controllingFieldValue>
+            <valueName>Permittering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Permittering</controllingFieldValue>
+            <valueName>Masseoppsigelser</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

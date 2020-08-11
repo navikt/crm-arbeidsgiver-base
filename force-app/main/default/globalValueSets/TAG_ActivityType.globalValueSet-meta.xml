@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>Markedsarbeid</fullName>
+        <fullName>Generelt markedsarbeid</fullName>
         <default>false</default>
-        <label>Markedsarbeid</label>
+        <label>Generelt markedsarbeid</label>
     </customValue>
     <customValue>
-        <fullName>Inkludering</fullName>
+        <fullName>Rekruttere og inkludere</fullName>
         <default>false</default>
-        <label>Inkludering</label>
+        <label>Rekruttere og inkludere</label>
     </customValue>
     <customValue>
-        <fullName>IA-arbeid</fullName>
+        <fullName>Forebygge sykefravær og redusere frafall</fullName>
         <default>false</default>
-        <label>IA-arbeid</label>
+        <label>Forebygge sykefravær og redusere frafall</label>
     </customValue>
     <customValue>
-        <fullName>Permittering</fullName>
+        <fullName>Nedbemanne</fullName>
         <default>false</default>
-        <label>Permittering</label>
+        <label>Nedbemanne</label>
     </customValue>
     <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Bedriftsundersøkelse</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
