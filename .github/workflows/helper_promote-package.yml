@@ -66,7 +66,7 @@ jobs:
       - name: Generate changelog
         if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
         id: changelog
-        uses: metcalfc/changelog-generator@v0.4.0
+        uses: metcalfc/changelog-generator@v0.4.1
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
