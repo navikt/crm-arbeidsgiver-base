@@ -7,6 +7,10 @@
                 <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>enableActionsConfiguration</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>hideChatterActions</name>
                 <value>false</value>
             </componentInstanceProperties>
@@ -61,6 +65,17 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p&gt;&lt;b&gt;Om bedriftsavtale&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Avtaler som er ingått mellom en virksomhet og NAV på nasjonalt, regionalt eller lokalt nivå.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;, serif; font-size: 11pt; color: rgb(0, 0, 0);&quot;&gt;Det skal ikke registreres avtaler spesifikt relatert til personbruker eller enkelt tilltak. Arbeidstrening, lønnstilskudd, eller andre tiltak, skal registreres som mulighet under Mulighet.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;, serif; font-size: 11pt; color: rgb(0, 0, 0);&quot;&gt;Avtale kan registreres før de er signert, da med status &quot;Utkast&quot;. Når de er signert/godkjent endres status til &quot;Aktiv&quot;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;, serif; font-size: 11pt; color: rgb(0, 0, 0);&quot;&gt;Ved avtaleutløp, settes status automatisk til &quot;Evaluering&quot; og NAV kontakt på avtalen vil få et varsel på e-post om å evaluere avtalen. Om avtalen skal forlenges må kontaktperson sette den til &quot;Aktiv&quot; igjen. Dersom avtalen ikke blir satt til &quot;Aktiv&quot;, vil den automatisk bli satt til &quot;Inaktiv&quot; en måned etter avtalens sluttdato. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>amountOfMonths</name>

@@ -3,10 +3,12 @@
     <fullName>TAG_InternalContact__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <inlineHelpText>NAVs kontaktperson for avtalen</inlineHelpText>
     <label>Internal Contact</label>
     <referenceTo>User</referenceTo>
     <relationshipName>Contracts</relationshipName>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

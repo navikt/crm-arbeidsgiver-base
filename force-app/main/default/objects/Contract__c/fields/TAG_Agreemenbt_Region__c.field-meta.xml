@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_Status__c</fullName>
+    <fullName>TAG_Agreemenbt_Region__c</fullName>
     <externalId>false</externalId>
-    <label>Status</label>
+    <inlineHelpText>Geografisk område for avtalen
+Lokale, gjort med lokalt NAV kontor og arbeidsgiver tilknyttet dette kontoret
+Regionale, går på tvers av lokalkontorer eller hele fylket og kan også inkludere flere virksomheter.
+Nasjonale, dekker hele landet og</inlineHelpText>
+    <label>Region</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
@@ -12,24 +16,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Utkast</fullName>
-                <default>true</default>
-                <label>Utkast</label>
+                <fullName>Lokal</fullName>
+                <default>false</default>
+                <label>Lokal</label>
             </value>
             <value>
-                <fullName>Aktiv</fullName>
+                <fullName>Regional</fullName>
                 <default>false</default>
-                <label>Aktiv</label>
+                <label>Regional</label>
             </value>
             <value>
-                <fullName>Evaluering</fullName>
+                <fullName>Nasjonal</fullName>
                 <default>false</default>
-                <label>Evaluering</label>
-            </value>
-            <value>
-                <fullName>Inaktiv</fullName>
-                <default>false</default>
-                <label>Inaktiv</label>
+                <label>Nasjonal</label>
             </value>
         </valueSetDefinition>
     </valueSet>

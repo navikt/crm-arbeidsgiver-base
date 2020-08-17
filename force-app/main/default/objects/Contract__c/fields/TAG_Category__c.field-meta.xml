@@ -2,8 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Category__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Område avtalen gjelder</inlineHelpText>
     <label>Category</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -13,12 +15,12 @@
             <value>
                 <fullName>Rekrutteringsavtale</fullName>
                 <default>false</default>
-                <label>Rekrutteringsavtale</label>
+                <label>Rekruttere og inkludere</label>
             </value>
             <value>
                 <fullName>IA-avtale</fullName>
                 <default>false</default>
-                <label>IA-avtale</label>
+                <label>Forebygge sykefravær og redusere frafall</label>
             </value>
         </valueSetDefinition>
     </valueSet>

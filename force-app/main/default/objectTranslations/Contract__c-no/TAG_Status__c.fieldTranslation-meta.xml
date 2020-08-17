@@ -3,8 +3,16 @@
     <label>Status</label>
     <name>TAG_Status__c</name>
     <picklistValues>
-        <masterLabel>Godkjent</masterLabel>
-        <translation><!-- Godkjent --></translation>
+        <masterLabel>Aktiv</masterLabel>
+        <translation><!-- Aktiv --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Evaluering</masterLabel>
+        <translation><!-- Evaluering --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inaktiv</masterLabel>
+        <translation><!-- Inaktiv --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Utkast</masterLabel>

@@ -2,8 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Description__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Kort beskrivelse om hva avtalen gjelder og målet med avtalen</inlineHelpText>
     <label>Description</label>
-    <length>32768</length>
+    <length>500</length>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>
     <visibleLines>3</visibleLines>
