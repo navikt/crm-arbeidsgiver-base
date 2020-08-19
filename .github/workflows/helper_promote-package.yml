@@ -9,26 +9,30 @@ on:
         description: "Release Comment"
         required: true
 jobs:
-  promote-package:
+  debug:
+    name: Debug Information
     runs-on: ubuntu-latest
     steps:
-      # Print Input Values
       - name: Print input values
         run: |
           echo "Package ID: ${{ github.event.inputs.packageId }}"
           echo "Initiator: ${{ github.actor }}"
           echo "Comment: ${{ github.event.inputs.comment }}"
 
-      # Install SFDX
-      - name: Authorize SFDX
-        uses: sfdx-actions/setup-sfdx@v1
-
+  promote-package:
+    name: Promote Package
+    runs-on: ubuntu-latest
+    steps:
       # Checkout code in master
       - name: Checkout source code from master
         uses: actions/checkout@master
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          persist-credentials: false
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+      # Install SFDX
+      - name: Authorize SFDX
+        uses: sfdx-actions/setup-sfdx@v1
 
       # Authenticate prod
       - name: Authenticate prod
@@ -41,6 +45,15 @@ jobs:
       - name: Promote package
         run: "sfdx force:package:version:promote --package ${{ github.event.inputs.packageId }} --noprompt"
 
+  install-package-preprod:
+    name: Install Package in Preprod
+    runs-on: ubuntu-latest
+    needs: promote-package
+    steps:
+      # Install SFDX
+      - name: Authorize SFDX
+        uses: sfdx-actions/setup-sfdx@v1
+
       # Authenticate preprod
       - name: Authenticate preprod
         run: |
@@ -50,12 +63,65 @@ jobs:
 
       # Install package version to preprod
       - name: Install package version to preprod
-        if: success()
         run: sfdx force:package:install --package ${{ github.event.inputs.packageId }} -w 20 -b 20 -u preprod -r -k ${{ secrets.PACKAGE_KEY }} --json
+
+  push-new-version-number-to-master:
+    name: Push new version number to master
+    runs-on: ubuntu-latest
+    needs: promote-package
+    steps:
+      # Checkout code in master
+      - name: Checkout source code from master
+        uses: actions/checkout@master
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+      # Update version number
+      - name: Update version number
+        id: packaging-updater
+        uses: navikt/github-action-sfdx-version-updater@master
+
+      # Create commit message by extracting the latest version number from sfdx-project.json
+      - name: Build commit message
+        id: build-commit-message
+        run: |
+          echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
+          cat sfdx-project.json
+
+      # The main branch is protected
+      - name: "Create new branch and pull request for updated package version ID"
+        uses: peter-evans/create-pull-request@v2
+        with:
+          title: "Added new package version ID"
+          commit-message: ${{steps.build-commit-message.outputs.message}}
+          branch: "auto/package-version-update"
+
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Merge pull request
+      - name: "Merge pull request"
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          # ! USES CUSTOM PAT TO INITIATE STATUS CHECKS (SEE "Require status checks to pass before merging" IN BRANCHES SETTINGS IN REPO)
+          github-token: ${{ secrets.DEPLOYMENT_PAT }}
+          number: ${{ env.PULL_REQUEST_NUMBER }}
+          method: squash
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: promote-package
+    steps:
+      # Checkout code in master
+      - name: Checkout source code from master
+        uses: actions/checkout@master
+        with:
+          persist-credentials: true # ! set to true to be able to checkout correctly
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       # Set release variables
       - name: Set release fields
-        if: success()
         id: release-fields
         run: |
           echo "::set-output name=tagName::v$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
@@ -64,15 +130,13 @@ jobs:
 
       # Generate changelog from commits
       - name: Generate changelog
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess)
         id: changelog
-        uses: metcalfc/changelog-generator@v0.4.1
+        uses: metcalfc/changelog-generator@v0.4.0
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
       # create github release
       - name: Create GitHub Release
-        id: create_release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -90,59 +154,3 @@ jobs:
             ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
-
-      # Update version number
-      - name: Update version number
-        id: packaging-updater
-        uses: navikt/github-action-sfdx-version-updater@master
-
-      # Create commit message by extracting the latest version number from sfdx-project.json
-      - name: Build commit message
-        id: build-commit-message
-        run: |
-          echo "::set-output name=message::(CI) Updated to new version number $(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')"
-          cat sfdx-project.json
-
-      # # Commit files
-      # - name: Commit files
-      #   run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
-      #     git commit -m "${{steps.build-commit-message.outputs.message}}" -a
-
-      # # Push commit
-      # - name: Push new version number
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      # The main branch is protected, so we have to take a sequea for updating the README through a new PR
-      - name: "Create new branch and pull request for updated package version ID"
-        uses: peter-evans/create-pull-request@v2
-        with:
-          title: "Added new package version ID"
-          commit-message: ${{steps.build-commit-message.outputs.message}}
-          branch: "auto/package-version-update"
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      # Approve pull request
-      - name: "Approve Pull Request"
-        uses: juliangruber/approve-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ env.PULL_REQUEST_NUMBER }}
-
-      # Merge pull request
-      - name: "Merge pull request"
-        uses: juliangruber/merge-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ env.PULL_REQUEST_NUMBER }}
-          method: squash
-
-      # Delete pull request, for GitHub Actions initiated PRs the auto-delete of GitHub doesn't work
-      - name: "Delete pull request branch"
-        uses: dawidd6/action-delete-branch@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          numbers: ${{ env.PULL_REQUEST_NUMBER }}
