@@ -4,9 +4,6 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -158,6 +155,14 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>DateFrom__c</fields>
+        <fields>DateTo__c</fields>
+        <fields>AktivitetStatuskode__c</fields>
+        <fields>Description__c</fields>
+        <relatedList>ArenaActivity__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>NewEvent</excludeButtons>
         <excludeButtons>NewTask</excludeButtons>
         <fields>TASK.SUBJECT</fields>
@@ -237,7 +242,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1x000000rRzc</masterLabel>
+        <masterLabel>00h6E0000015z2x</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
