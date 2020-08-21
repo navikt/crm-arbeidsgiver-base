@@ -24,11 +24,6 @@
                 <label>Inkludering</label>
             </value>
             <value>
-                <fullName>Forebygge sykefravær</fullName>
-                <default>false</default>
-                <label>Forebygge sykefravær</label>
-            </value>
-            <value>
                 <fullName>Rekruttering med tilrettelegging</fullName>
                 <default>false</default>
                 <label>Rekruttering med tilrettelegging</label>
@@ -37,6 +32,11 @@
                 <fullName>Arbeidstrening</fullName>
                 <default>false</default>
                 <label>Arbeidstrening</label>
+            </value>
+            <value>
+                <fullName>Forebygge sykefravær</fullName>
+                <default>false</default>
+                <label>Forebygge sykefravær</label>
             </value>
         </valueSetDefinition>
     </valueSet>
