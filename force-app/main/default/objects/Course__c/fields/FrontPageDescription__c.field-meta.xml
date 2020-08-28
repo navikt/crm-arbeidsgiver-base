@@ -3,7 +3,9 @@
     <fullName>FrontPageDescription__c</fullName>
     <externalId>false</externalId>
     <label>Front Page Description</label>
-    <required>true</required>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <length>32768</length>
+    <type>Html</type>
+    <trackTrending>false</trackTrending>
+    <visibleLines>10</visibleLines>
 </CustomField>
