@@ -42,7 +42,6 @@
   "files.exclude": {
     "**/*.cls-meta.xml": true,
     "**/*.trigger-meta.xml": true
-  },
-  "python.pythonPath": "venv/bin/python",
+},
   "eslint.nodePath": "./node_modules"
 }
