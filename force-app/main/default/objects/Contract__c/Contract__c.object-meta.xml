@@ -146,7 +146,7 @@
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>false</enableHistory>
+    <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
@@ -155,8 +155,10 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Contract</label>
     <nameField>
+        <displayFormat>BA-{000000}</displayFormat>
         <label>Contract Name</label>
-        <type>Text</type>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Contracts</pluralLabel>
     <searchLayouts>
