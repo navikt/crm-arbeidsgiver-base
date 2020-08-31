@@ -24,6 +24,11 @@
                 <default>false</default>
                 <label>Venteliste</label>
             </value>
+            <value>
+                <fullName>Invitert</fullName>
+                <default>false</default>
+                <label>Invitert</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
