@@ -36,6 +36,5 @@ private class DeleteContactExtensionTest {
 
 		Test.stopTest();
 		System.assertEquals( '/' + contacts[0].Id, redirectUrl, 'redirected back to contact' );
-
 	}
 }
