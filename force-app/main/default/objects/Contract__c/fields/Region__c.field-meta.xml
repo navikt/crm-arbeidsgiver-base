@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Status__c</fullName>
+    <fullName>Region__c</fullName>
     <externalId>false</externalId>
-    <label>Status</label>
-    <required>true</required>
+    <inlineHelpText>Område avtalen er gjeldende for.</inlineHelpText>
+    <label>Region</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
+        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Påmeldt</fullName>
+                <fullName>Lokal</fullName>
                 <default>false</default>
-                <label>Påmeldt</label>
+                <label>Lokal</label>
             </value>
             <value>
-                <fullName>Avmeldt</fullName>
+                <fullName>Regional</fullName>
                 <default>false</default>
-                <label>Avmeldt</label>
+                <label>Regional</label>
             </value>
             <value>
-                <fullName>Venteliste</fullName>
+                <fullName>Nasjonal</fullName>
                 <default>false</default>
-                <label>Venteliste</label>
-            </value>
-            <value>
-                <fullName>Invitert</fullName>
-                <default>false</default>
-                <label>Invitert</label>
+                <label>Nasjonal</label>
             </value>
         </valueSetDefinition>
     </valueSet>
