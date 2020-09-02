@@ -40,6 +40,24 @@ public without sharing class TAG_TestDataFactory {
 		return accounts;
 	}
 
+	public static List<Contact> createContacts( List<Account> accounts, Integer amountPerAccount ) {
+
+		List<Contact> contacts = new List<Contact>();
+		for ( Account acc:accounts ) {
+			for ( Integer i = 1; i <= amountPerAccount; i++ ) {
+				contacts.add( new Contact(
+								  FirstName = 'Contact',
+								  LastName = String.valueOf( i ),
+								  AccountId = acc.Id,
+								  TAG_Informed__c = true
+								  ) );
+			}
+		}
+		insert contacts;
+
+		return contacts;
+	}
+
 	public static User createStandardUser( String lastName ) {
 
 		User user = new User();
