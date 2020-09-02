@@ -1,7 +1,8 @@
-public without sharing class deleteContactExtension {
+public without sharing class DeleteContactExtension {
 	private final Contact cont;
 
-	public deleteContactExtension( ApexPages.StandardController stdController ) {
+	public deleteContactExtension( ApexPages.StandardController stdController )
+	{
 		Contact currentContact = (Contact)stdController.getRecord();
 		this.cont = [SELECT AccountId FROM Contact WHERE Id =:currentContact.Id];
 	}

@@ -103,4 +103,13 @@ private without sharing class TAG_TestDataFactoryTest {
 		List<PermissionSetAssignment> permsetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = : u[0].Id AND PermissionSetId = : ps.Id];
 		System.assertEquals( 1, permsetAssignments.size(), 'one assignments added' );
 	}
+
+	@IsTest
+	private static void testCreateContacts() {
+		List<Account> accounts = TAG_TestDataFactory.createAccounts( 2 );
+		Test.startTest();
+		List<Contact> contacts = TAG_TestDataFactory.createContacts( accounts, 3 );
+		Test.stopTest();
+		System.assertEquals( 6, contacts.size(), 'three contacts per account added' );
+	}
 }
