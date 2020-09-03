@@ -383,12 +383,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.DescriptionInternal__c</field>
+        <field>Course__c.DescriptionShort__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.FrontPageDescription__c</field>
+        <field>Course__c.DescriptionFormatted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

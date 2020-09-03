@@ -3,6 +3,9 @@
     <fullName>InclusionStage__c</fullName>
     <description>Steg</description>
     <externalId>false</externalId>
+    <inlineHelpText>Ny Henvendelse: Ny henvendelse fra web, vi har ikke besvart enda
+Aktiv: Muligheten er aktiv og åpen for kandidater eller det jobbes med å redusere sykefravær
+Avsluttet: Muligheten er avsluttet og ikke lenger aktiv</inlineHelpText>
     <label>Stage</label>
     <required>true</required>
     <trackHistory>true</trackHistory>

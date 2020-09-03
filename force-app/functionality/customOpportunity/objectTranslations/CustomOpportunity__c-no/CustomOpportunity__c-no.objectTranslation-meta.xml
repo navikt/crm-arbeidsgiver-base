@@ -34,91 +34,73 @@
     <layouts>
         <layout>Inclusion Page Layout</layout>
         <sections>
-            <label>
-                <!-- Custom Links -->
-            </label>
+            <label><!-- Beskrivelse --></label>
+            <section>Beskrivelse</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label>
-                <!-- Mulighet -->
-            </label>
+            <label><!-- Mulighet --></label>
             <section>Mulighet</section>
         </sections>
     </layouts>
     <layouts>
         <layout>Inclusive Employment Page Layout</layout>
         <sections>
-            <label>
-                <!-- Custom Links -->
-            </label>
+            <label><!-- Beskrivelse --></label>
+            <section>Beskrivelse</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label>
-                <!-- Inkluderende Arbeidsliv -->
-            </label>
+            <label><!-- Inkluderende Arbeidsliv --></label>
             <section>Inkluderende Arbeidsliv</section>
         </sections>
         <sections>
-            <label>
-                <!-- Mulighet -->
-            </label>
+            <label><!-- Mulighet --></label>
             <section>Mulighet</section>
         </sections>
     </layouts>
     <layouts>
         <layout>Simple Opp Layout</layout>
         <sections>
-            <label>
-                <!-- Beskrivelse -->
-            </label>
+            <label><!-- Beskrivelse --></label>
             <section>Beskrivelse</section>
         </sections>
         <sections>
-            <label>
-                <!-- Custom Links -->
-            </label>
+            <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label>
-                <!-- Mulighet -->
-            </label>
+            <label><!-- Mulighet --></label>
             <section>Mulighet</section>
         </sections>
     </layouts>
     <nameFieldLabel>Muligheter</nameFieldLabel>
     <recordTypes>
-        <description>
-            <!-- En mulighet for inkludering -->
-        </description>
+        <description><!-- En mulighet for inkludering --></description>
         <label>Inkludering</label>
         <name>Inclusion</name>
     </recordTypes>
     <recordTypes>
-        <description>
-            <!-- IA - prosess -->
-        </description>
+        <description><!-- IA - prosess --></description>
         <label>Inkluderende Arbeidsliv</label>
         <name>Inclusive_Employment</name>
     </recordTypes>
     <validationRules>
-        <errorMessage>
-            <!-- Du må fylle inn virksomhet før du går til dette steget. -->
-        </errorMessage>
+        <errorMessage><!-- Du må fylle inn virksomhet før du går til dette steget. --></errorMessage>
         <name>Employer_must_be_set</name>
     </validationRules>
     <validationRules>
-        <errorMessage>
-            <!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger -->
-        </errorMessage>
+        <errorMessage><!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger --></errorMessage>
         <name>No_person_information_added</name>
     </validationRules>
     <validationRules>
-        <errorMessage>
-            <!-- Velg kilden muligheten kommer fra -->
-        </errorMessage>
+        <errorMessage><!-- Velg kilden muligheten kommer fra --></errorMessage>
         <name>Source_must_be_set</name>
     </validationRules>
 </CustomObjectTranslation>
