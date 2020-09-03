@@ -48,15 +48,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FrontPageDescription__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Description__c</field>
+                <field>DescriptionShort__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DescriptionInternal__c</field>
+                <field>DescriptionFormatted__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -188,7 +184,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1x0000013hu3</masterLabel>
+        <masterLabel>00h1x000000suol</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
