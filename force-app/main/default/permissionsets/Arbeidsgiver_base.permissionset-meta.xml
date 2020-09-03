@@ -79,6 +79,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.OrganizationNumberFormula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.INT_OrganizationalStructureDesc__c</field>
         <readable>true</readable>
     </fieldPermissions>
