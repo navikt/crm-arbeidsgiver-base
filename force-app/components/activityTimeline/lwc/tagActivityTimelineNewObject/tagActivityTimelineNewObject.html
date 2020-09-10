@@ -1,6 +1,6 @@
 <template>
 
-    <lightning-button-menu alternative-text={labels.newObj} label={labels.newObj} variant="border"
+    <lightning-button-menu if:false={error} alternative-text={newObj} label={newObj} variant="border"
         menu-alignment="Right">
         <template for:each={sObjectKinds} for:item="row" for:index="index">
             <lightning-menu-item key={row.Id} data-index={index}

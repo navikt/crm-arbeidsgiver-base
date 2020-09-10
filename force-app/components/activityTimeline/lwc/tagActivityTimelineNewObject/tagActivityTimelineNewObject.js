@@ -1,14 +1,26 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
 import { NavigationMixin } from "lightning/navigation";
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import * as helper from "./helper";
+import getTimelineObjects from '@salesforce/apex/TAG_ActivityTimelineController.getTimelineObjects';
+import newObj from "@salesforce/label/c.ActTime_New";
 
 export default class TagActivityTimelineNewObject extends NavigationMixin(LightningElement) {
 
     @api recordId;
     @api labels;
-    @api sObjectKinds;
-    @track fieldValues;
+    @track sObjectKinds;
+    @track error = false;
+    newObj = newObj;
+
+    @wire(getTimelineObjects, { recordId: '$recordId' })
+    deWire(result) {
+        if (result.data) {
+            this.sObjectKinds = result.data;
+        } else if (result.error) {
+            this.error = true;
+        }
+    };
 
     createRecord(event) {
 
