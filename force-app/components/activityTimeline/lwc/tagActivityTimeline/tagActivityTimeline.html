@@ -1,76 +1,74 @@
 <template>
-	<lightning-card title={header} variant="Narrow" icon-name={headerIcon}>
+    <lightning-card title={header} variant="Narrow" icon-name={headerIcon}>
 
-		<!-- HEADER -->
-		<!-- ________________________________________________________________________ -->
-		<div slot="actions">
-			<lightning-button-group>
-				<lightning-button-icon icon-name={collapseIcon} alternative-text={collapseText}
-					onclick={collapseAccordions}>
-				</lightning-button-icon>
-				<!-- <lightning-button-icon icon-name="action:refresh" alternative-text="VIEW ALL" onclick={refreshData}>
+        <!-- HEADER -->
+        <!-- ________________________________________________________________________ -->
+        <div slot="actions">
+            <lightning-button-group>
+                <lightning-button-icon icon-name={collapseIcon} alternative-text={collapseText}
+                    onclick={collapseAccordions}>
+                </lightning-button-icon>
+                <!-- <lightning-button-icon icon-name="action:refresh" alternative-text="VIEW ALL" onclick={refreshData}>
 				</lightning-button-icon> -->
-				<!-- <lightning-button-icon icon-name="utility:filterList" alternative-text="Filter" onclick={filter}>
+                <!-- <lightning-button-icon icon-name="utility:filterList" alternative-text="Filter" onclick={filter}>
 				</lightning-button-icon> -->
-				<lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
-				</lightning-button-icon>
-				<lightning-button-menu if:true={showCreateRecords} alternative-text={labels.newObj}
-					label={labels.newObj} variant="border" menu-alignment="Right">
-					<template for:each={sObjectKinds} for:item="row">
-						<c-tag-activity-timeline-new-object key={row.Id} row={row} record-id={recordId}>
-						</c-tag-activity-timeline-new-object>
-					</template>
-				</lightning-button-menu>
-			</lightning-button-group>
-		</div>
+                <lightning-button-icon icon-name="action:refresh" alternative-text="Refresh data" onclick={refreshData}>
+                </lightning-button-icon>
+            </lightning-button-group>
 
-		<!-- DATA -->
-		<!-- ________________________________________________________________________ -->
-		<ul if:false={error} class="slds-timeline">
-			<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
-				onsectiontoggle={handleSectionToggle} style="border-top: 1px solid #d3d3d3;">
+            <c-tag-activity-timeline-new-object class="slds-p-left_small" if:true={showCreateRecords}
+                s-object-kinds={sObjectKinds} labels={labels} record-id={recordId}>
+            </c-tag-activity-timeline-new-object>
 
-				<!-- OVERDUE TASKS -->
-				<template if:true={finishedLoading} for:each={overdueData} for:item="overdueTask">
-					<lightning-accordion-section class="slds-is-open" name={overdueTask.id} key={overdueTask.id}
-						label={overdueTask.name}>
-						<c-tag-activity-timeline-group key={overdueTask.id} group={overdueTask} labels={labels}
-							amount-of-records={amountOfRecords} amount-of-records-to-load={amountOfRecordsToLoad}>
-						</c-tag-activity-timeline-group>
-					</lightning-accordion-section>
-				</template>
+        </div>
 
-				<!-- UPCOMING + INDIVIDUAL MONTHS -->
-				<template for:each={data} for:item="group">
-					<lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
-						<c-tag-activity-timeline-group key={group.id} group={group} labels={labels}
-							amount-of-records={amountOfRecords} amount-of-records-to-load={amountOfRecordsToLoad}>
-						</c-tag-activity-timeline-group>
-					</lightning-accordion-section>
-				</template>
-			</lightning-accordion>
-		</ul>
+        <!-- DATA -->
+        <!-- ________________________________________________________________________ -->
+        <ul if:false={error} class="slds-timeline">
+            <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}
+                onsectiontoggle={handleSectionToggle} style="border-top: 1px solid #d3d3d3;">
 
-		<!-- LOADING AND INFO/ERROR TEXT -->
-		<!-- ________________________________________________________________________ -->
-		<div if:true={loading} class="slds-scrollable" style={loadingStyle}>
-			<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
-		</div>
-		<div if:true={error} class="slds-m-top_large">
-			<div class="slds-text-heading_large slds-align_absolute-center">{labels.errorTitle}
-			</div>
-			<div class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large">{errorMsg}</div>
-		</div>
-		<div if:true={empty} class="slds-m-top_large">
-			<div class="slds-text-heading_large slds-align_absolute-center">{labels.emptyTitle}
-			</div>
-			<div class="slds-text-heading_small slds-align_absolute-center slds-m-around_x-large">
-				{labels.emptySubtitle}</div>
-		</div>
+                <!-- OVERDUE TASKS -->
+                <template if:true={finishedLoading} for:each={overdueData} for:item="overdueTask">
+                    <lightning-accordion-section class="slds-is-open" name={overdueTask.id} key={overdueTask.id}
+                        label={overdueTask.name}>
+                        <c-tag-activity-timeline-group key={overdueTask.id} group={overdueTask} labels={labels}
+                            amount-of-records={amountOfRecords} amount-of-records-to-load={amountOfRecordsToLoad}>
+                        </c-tag-activity-timeline-group>
+                    </lightning-accordion-section>
+                </template>
 
-		<!-- LOAD MORE MONTHS -->
-		<!-- ________________________________________________________________________ -->
-		<div if:false={error} class="slds-align_absolute-center loadMoreFooter" onclick={loadMore}><button
-				class="slds-button loadMoreBtn">{labels.loadMore}</button></div>
-	</lightning-card>
+                <!-- UPCOMING + INDIVIDUAL MONTHS -->
+                <template for:each={data} for:item="group">
+                    <lightning-accordion-section class="slds-is-open" name={group.id} key={group.id} label={group.name}>
+                        <c-tag-activity-timeline-group key={group.id} group={group} labels={labels}
+                            amount-of-records={amountOfRecords} amount-of-records-to-load={amountOfRecordsToLoad}>
+                        </c-tag-activity-timeline-group>
+                    </lightning-accordion-section>
+                </template>
+            </lightning-accordion>
+        </ul>
+
+        <!-- LOADING AND INFO/ERROR TEXT -->
+        <!-- ________________________________________________________________________ -->
+        <div if:true={loading} class="slds-scrollable" style={loadingStyle}>
+            <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+        </div>
+        <div if:true={error} class="slds-m-top_large">
+            <div class="slds-text-heading_large slds-align_absolute-center">{labels.errorTitle}
+            </div>
+            <div class="slds-text-color_destructive slds-align_absolute-center slds-m-around_x-large">{errorMsg}</div>
+        </div>
+        <div if:true={empty} class="slds-m-top_large">
+            <div class="slds-text-heading_large slds-align_absolute-center">{labels.emptyTitle}
+            </div>
+            <div class="slds-text-heading_small slds-align_absolute-center slds-m-around_x-large">
+                {labels.emptySubtitle}</div>
+        </div>
+
+        <!-- LOAD MORE MONTHS -->
+        <!-- ________________________________________________________________________ -->
+        <div if:false={error} class="slds-align_absolute-center loadMoreFooter" onclick={loadMore}><button
+                class="slds-button loadMoreBtn">{labels.loadMore}</button></div>
+    </lightning-card>
 </template>
