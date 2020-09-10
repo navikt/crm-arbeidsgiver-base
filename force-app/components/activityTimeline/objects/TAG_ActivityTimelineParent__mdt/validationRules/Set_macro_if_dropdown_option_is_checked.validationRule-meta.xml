@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Set_macro_if_dropdown_option_is_checked</fullName>
+    <active>true</active>
+    <errorConditionFormula>IsMacro__c &amp;&amp; !CreateableObject_Checkbox__c</errorConditionFormula>
+    <errorDisplayField>IsMacro__c</errorDisplayField>
+    <errorMessage>Can&apos;t set as macro without being able to see it in the dropdown menu</errorMessage>
+</ValidationRule>

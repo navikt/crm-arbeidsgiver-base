@@ -13,54 +13,49 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return String.valueOf( i.getSobjectType() );
 	}
 
-	public static List<TAG_ActivityTimelineParent__mdt> getSObjectsToQuery( String parentSObjectType, Boolean createable ) {
-		List<Boolean> allBools = new List<Boolean> { true, false, null };
-		List<Boolean> allActiveBools = new List<Boolean> { true };
-		if ( createable ) {
-			allBools = new List<Boolean> { true };
-			allActiveBools = new List<Boolean> { true, false, null };
-		}
+	public static List<TAG_ActivityTimelineParent__mdt> getSObjectsToQuery( String parentSObjectType, Boolean isCreateable ) {
 
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = [SELECT Id,
+		String query = 'SELECT Id, ' +
 
-		                                                         SObjectAssigneeId__c, SObjectParent__c, SObjectRelationshipField__c,
+		               'SObjectAssigneeId__c, SObjectParent__c, SObjectRelationshipField__c,  ' +
 
-		                                                         Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,
-		                                                         Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,
-		                                                         Activity_Timeline_Child__r.SObjectDateField__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,
-		                                                         Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,
-		                                                         Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectName__c,
-		                                                         Activity_Timeline_Child__r.SObjectRelatedUserId__c,
-		                                                         Activity_Timeline_Child__r.CreateableObject_Field1__c, Activity_Timeline_Child__r.CreateableObject_Value1__c,
-		                                                         Activity_Timeline_Child__r.CreateableObject_Field2__c, Activity_Timeline_Child__r.CreateableObject_Value2__c,
-		                                                         Activity_Timeline_Child__r.CreateableObject_Field3__c, Activity_Timeline_Child__r.CreateableObject_Value3__c,
-		                                                         Activity_Timeline_Child__r.SubtitlePastEnglish__c, Activity_Timeline_Child__r.SubtitlePastNorwegian__c,
-		                                                         Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,
-		                                                         Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c
+		               'Activity_Timeline_Child__r.SLDS_Timeline_Color__c, Activity_Timeline_Child__r.SLDS_Icon__c, Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c,  ' +
+		               'Activity_Timeline_Child__r.CreateableObject_TextEnglish__c, Activity_Timeline_Child__r.CreateableObject_TextNorwegian__c, Activity_Timeline_Child__r.CreateableObject_RecordType__c,  ' +
+		               'Activity_Timeline_Child__r.SObjectDateField__c, Activity_Timeline_Child__r.SObjectDateFieldIsDate__c,  ' +
+		               'Activity_Timeline_Child__r.SObjectTypeField__c, Activity_Timeline_Child__r.SObjectTypeValue__c,  ' +
+		               'Activity_Timeline_Child__r.SObjectTitle__c, Activity_Timeline_Child__r.SObjectName__c,  ' +
+		               'Activity_Timeline_Child__r.SObjectRelatedUserId__c, IsMacro__c, ' +
+		               'Activity_Timeline_Child__r.CreateableObject_Field1__c, Activity_Timeline_Child__r.CreateableObject_Value1__c,  ' +
+		               'Activity_Timeline_Child__r.CreateableObject_Field2__c, Activity_Timeline_Child__r.CreateableObject_Value2__c,  ' +
+		               'Activity_Timeline_Child__r.CreateableObject_Field3__c, Activity_Timeline_Child__r.CreateableObject_Value3__c,  ' +
+		               'Activity_Timeline_Child__r.SubtitlePastEnglish__c, Activity_Timeline_Child__r.SubtitlePastNorwegian__c,  ' +
+		               'Activity_Timeline_Child__r.SubtitleFutureEnglish__c, Activity_Timeline_Child__r.SubtitleFutureNorwegian__c,  ' +
+		               'Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionEng__c, Activity_Timeline_Child__r.SubtitleRelatedUserPrepositionNor__c ' +
 
-		                                                         FROM TAG_ActivityTimelineParent__mdt
+		               'FROM TAG_ActivityTimelineParent__mdt ' +
 
-		                                                         WHERE
-		                                                             ( CreateableObject_Checkbox__c IN : allBools ) AND
-		                                                             ( SObjectParent__c = : parentSObjectType ) AND
-		                                                             ( IsActive__c IN : allActiveBools )];
+		               'WHERE SObjectParent__c = : parentSObjectType';
 
-		// TODO fix ordering på name Activity_Timeline_Child__r.SObjectName__c and CreatableText
+		if ( isCreateable ) { query += ' AND CreateableObject_Checkbox__c = true'; }
+		else {                query += ' AND IsActive__c = true'; }
+
+		query += ' ORDER BY IsMacro__c, Activity_Timeline_Child__c';
+
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = Database.query( query );
 
 		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
-		else {
 
-			List<TAG_ActivityTimelineParent__mdt> sObjectsToUse = new List<TAG_ActivityTimelineParent__mdt>();
-			for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
-				if ( createable && AccessControlValidator.sObjectIsCreateable( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
-					sObjectsToUse.add( mdt );
-				} else if ( !createable && AccessControlValidator.sObjectIsAccessible( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
-					sObjectsToUse.add( mdt );
-				}
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToUse = new List<TAG_ActivityTimelineParent__mdt>();
+		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
+			if ( isCreateable && AccessControlValidator.sObjectIsCreateable( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
+				sObjectsToUse.add( mdt );
+			} else if ( !isCreateable && AccessControlValidator.sObjectIsAccessible( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
+				sObjectsToUse.add( mdt );
 			}
 
-			return sObjectsToUse;
 		}
+
+		return sObjectsToUse;
 	}
 
 	public static String getMonth( Integer monthNo ) {

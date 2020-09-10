@@ -1,6 +1,27 @@
 <template>
-	<lightning-menu-item key={row.Id} value={row.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c}
-		label={row.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c} onclick={createRecord}
-		icon-name={row.Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c}>
-	</lightning-menu-item>
+
+    <lightning-button-menu if:false={error} alternative-text={newObj} label={newObj} variant="border"
+        menu-alignment="Right">
+
+        <template for:each={sObjects} for:item="row" for:index="index">
+            <lightning-menu-item key={row.Id} data-index={index} if:false={row.IsMacro__c}
+                value={row.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c}
+                label={row.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c} onclick={createRecord}
+                icon-name={row.Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c}>
+            </lightning-menu-item>
+        </template>
+
+        <lightning-menu-divider>
+        </lightning-menu-divider>
+
+        <template for:each={sObjects} for:item="row" for:index="index">
+            <lightning-menu-item key={row.Id} data-index={index} if:true={row.IsMacro__c}
+                value={row.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c}
+                label={row.Activity_Timeline_Child__r.CreateableObject_TextEnglish__c} onclick={createRecord}
+                icon-name={row.Activity_Timeline_Child__r.SLDS_Dropdown_Icon__c}>
+            </lightning-menu-item>
+        </template>
+    </lightning-button-menu>
+
+
 </template>
