@@ -13,7 +13,7 @@ public with sharing class TAG_ActivityTimelineHelper {
 		return String.valueOf( i.getSobjectType() );
 	}
 
-	public static List<TAG_ActivityTimelineParent__mdt> getSObjectsToQuery( String parentSObjectType, Boolean isCreateable, Boolean isMacro ) {
+	public static List<TAG_ActivityTimelineParent__mdt> getSObjectsToQuery( String parentSObjectType, Boolean isCreateable ) {
 
 		String query = 'SELECT Id, ' +
 
@@ -37,19 +37,19 @@ public with sharing class TAG_ActivityTimelineHelper {
 		               'WHERE SObjectParent__c = : parentSObjectType';
 
 		if ( isCreateable ) { query += ' AND CreateableObject_Checkbox__c = true'; }
-		// else if ( isMacro ) { query += ' '; }
 		else {                query += ' AND IsActive__c = true'; }
+
 		query += ' ORDER BY IsMacro__c, Activity_Timeline_Child__c';
-		System.debug( 'query: ' + query );
+
 		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = Database.query( query );
 
 		if ( sObjectsToQuery.isEmpty() ) { throw new AuraException( Label.ActTime_NotConfugred ); }
 
 		List<TAG_ActivityTimelineParent__mdt> sObjectsToUse = new List<TAG_ActivityTimelineParent__mdt>();
 		for ( TAG_ActivityTimelineParent__mdt mdt : sObjectsToQuery ) {
-			if ( (isCreateable || isMacro ) && AccessControlValidator.sObjectIsCreateable( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
+			if ( isCreateable && AccessControlValidator.sObjectIsCreateable( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
 				sObjectsToUse.add( mdt );
-			} else if ( !isCreateable && !isMacro && AccessControlValidator.sObjectIsAccessible( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
+			} else if ( !isCreateable && AccessControlValidator.sObjectIsAccessible( mdt.Activity_Timeline_Child__r.SObjectName__c ) ) {
 				sObjectsToUse.add( mdt );
 			}
 

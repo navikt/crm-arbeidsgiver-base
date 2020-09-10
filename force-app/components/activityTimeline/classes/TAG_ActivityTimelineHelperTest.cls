@@ -81,7 +81,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		insert ta;
 
 		String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( acc.Id );
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
 		List<String> queries = TAG_ActivityTimelineHelper.createSoqlQueries( sObjectsToQuery, acc.Id, 3 );
 
 		Test.StartTest();
@@ -95,7 +95,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	private static void testGetSObjectsToQuery() {
 
 		Test.StartTest();
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
 		Test.StopTest();
 
 		System.assert (sObjectsToQuery.size() >= 0, 'Should already be some mdt\'s for account as parent');
@@ -116,7 +116,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 	@isTest
 	private static void testGetRecordTypes() {
 
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
 
 		Test.StartTest();
 		Map<String, Id> recordTypes = TAG_ActivityTimelineHelper.getRecordTypes( sObjectsToQuery );
