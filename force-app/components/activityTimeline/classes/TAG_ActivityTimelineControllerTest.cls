@@ -108,7 +108,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		List<TAG_ActivityTimelineModelList> wrapper = TAG_ActivityTimelineController.getActivityTimelineData( acc.Id, 5, '' );
 		Test.StopTest();
 
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', false, false );
 		Map<String, TAG_ActivityTimelineParent__mdt> sObjectsToQueryMap = TAG_ActivityTimelineHelper.getMapOfActivityTimelineConfig( sObjectsToQuery );
 		System.assertEquals( 2, wrapper.size(), 'One for upcoming (empty) and this month ' );
 
@@ -151,7 +151,7 @@ private without sharing class TAG_ActivityTimelineControllerTest {
 		List<TAG_ActivityTimelineParent__mdt> sObjectType = TAG_ActivityTimelineController.getTimelineObjects( acc.Id );
 		Test.StopTest();
 
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( 'Account', true, false );
 
 		System.assertEquals( sObjectsToQuery.size(), sObjectType.size(), 'Should be the same size of MDT objects' );
 	}

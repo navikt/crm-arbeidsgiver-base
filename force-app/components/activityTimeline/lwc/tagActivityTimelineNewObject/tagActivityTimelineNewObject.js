@@ -8,15 +8,18 @@ import newObj from "@salesforce/label/c.ActTime_New";
 export default class TagActivityTimelineNewObject extends NavigationMixin(LightningElement) {
 
     @api recordId;
-    @api labels;
-    @track sObjectKinds;
+
+    @track sObjects;
+
     @track error = false;
+
+    // label
     newObj = newObj;
 
     @wire(getTimelineObjects, { recordId: '$recordId' })
     deWire(result) {
         if (result.data) {
-            this.sObjectKinds = result.data;
+            this.sObjects = result.data;
         } else if (result.error) {
             this.error = true;
         }
@@ -24,7 +27,7 @@ export default class TagActivityTimelineNewObject extends NavigationMixin(Lightn
 
     createRecord(event) {
 
-        const row = this.sObjectKinds[event.target.dataset.index];
+        const row = this.sObjects[event.target.dataset.index];
 
         if (formFactorPropertyName !== 'Small') { // PC AND TABLET
 

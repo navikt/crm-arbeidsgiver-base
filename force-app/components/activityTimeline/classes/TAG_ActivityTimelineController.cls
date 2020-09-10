@@ -11,7 +11,7 @@ public with sharing class TAG_ActivityTimelineController {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
 		String parentSObjectType =                              TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false, false );
 
 		List<TAG_ActivityTimelineModelList> results =           new List<TAG_ActivityTimelineModelList>();
 
@@ -41,7 +41,7 @@ public with sharing class TAG_ActivityTimelineController {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
 		String parentSObjectType =                              TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false );
+		List<TAG_ActivityTimelineParent__mdt> sObjectsToQuery = TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, false, false );
 
 		List<TAG_ActivityTimelineModelList> data =              new List<TAG_ActivityTimelineModelList>();
 		List<TAG_ActivityTimelineModel> overdue =               TAG_ActivityTimelineHelper.getOverdueOnly( sObjectsToQuery, recordId );
@@ -62,7 +62,7 @@ public with sharing class TAG_ActivityTimelineController {
 		if ( recordId == null ) { throw new AuraException( 'Error. Invalid record ID.' ); }
 
 		String parentSObjectType =                              TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( recordId );
-		List<TAG_ActivityTimelineParent__mdt> data =            TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, true );
+		List<TAG_ActivityTimelineParent__mdt> data =            TAG_ActivityTimelineHelper.getSObjectsToQuery( parentSObjectType, true, false );
 
 		Map<String, Id> recordTypes =                           TAG_ActivityTimelineHelper.getRecordTypes( data );
 
