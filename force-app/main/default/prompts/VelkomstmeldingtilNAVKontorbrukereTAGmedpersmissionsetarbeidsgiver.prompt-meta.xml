@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
-    <masterLabel>Velkomst melding til NAV Kontor brukere (TAG)</masterLabel>
+    <masterLabel>Velkomst melding til NAV Kontor brukere (TAG) med persmission set arbeidsgiver</masterLabel>
     <promptVersions>
         <actionButtonLabel>Til Navet</actionButtonLabel>
         <actionButtonLink>https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx</actionButtonLink>
         <body>Du finner brukerveildeninger og informasjonsfilmer på Navet. Vi oppfordrer deg til å ta en titt der før du begynner å bruke løsningen.</body>
         <delayDays>1</delayDays>
-        <description>Velkomstmelding med link til opplæringssider på navet.</description>
         <dismissButtonLabel>Skjul tipset</dismissButtonLabel>
         <displayPosition>TopCenter</displayPosition>
         <displayType>FloatingPanel</displayType>
         <endDate>2020-12-31</endDate>
         <isPublished>true</isPublished>
-        <masterLabel>Velkomst melding til NAV Kontor brukere (TAG)</masterLabel>
+        <masterLabel>Velkomst melding til NAV Kontor brukere (TAG) med persmission set arbeidsgiver</masterLabel>
         <publishedDate>2020-09-11</publishedDate>
         <shouldDisplayActionButton>true</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
@@ -23,20 +22,14 @@
         <timesToDisplay>5</timesToDisplay>
         <title>Velkommen til CRM</title>
         <uiFormulaRule>
-            <booleanFilter>1 OR 2</booleanFilter>
             <criteria>
-                <leftValue>{!$User.Profile.Key}</leftValue>
+                <leftValue>{!$Permission.CustomPermission.Arbeidsgiver}</leftValue>
                 <operator>EQUAL</operator>
-                <rightValue>custom_nav kontor</rightValue>
-            </criteria>
-            <criteria>
-                <leftValue>{!$User.Profile.Key}</leftValue>
-                <operator>EQUAL</operator>
-                <rightValue>custom_nav kontor no ip range</rightValue>
+                <rightValue>TRUE</rightValue>
             </criteria>
         </uiFormulaRule>
-        <userAccess>Everyone</userAccess>
-        <userProfileAccess>SpecificProfiles</userProfileAccess>
+        <userAccess>SpecificPermissions</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
         <versionNumber>1</versionNumber>
     </promptVersions>
 </Prompt>
