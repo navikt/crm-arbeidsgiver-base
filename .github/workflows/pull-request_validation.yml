@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: "[Pull Request] Validate Metadata"
+name: "[PR] Validate Metadata"
 
 # Definition when the workflow should run
 on:
@@ -12,27 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Install SFDX
-      # ! enable when sfdx works
-      # - name: Install SFDX
-      # uses: sfdx-actions/setup-sfdx@v1
+      - name: Install SFDX
+        uses: sfdx-actions/setup-sfdx@v1
 
       # Checkout the code in the pull request
       - name: "Checkout source code"
         uses: actions/checkout@v2
-
-      # Install npm
-      # ! delete when sfdx works
-      - name: "Install npm"
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12"
-          check-latest: true
-
-      # Install Salesforce CLI
-      # ! delete when sfdx works
-      - name: Install Salesforce CLI
-        run: |
-          npm install sfdx-cli@7.70.1 --global
 
       # Store secret for dev hub
       - name: "Populate auth file with PROD_SFDX_URL secret"
@@ -66,7 +51,7 @@ jobs:
         run: |
           keys=""
           for p in $(jq '.result | .[].Name' -r <<< "$(sfdx force:package:list --json)"); do
-              keys+=$p":${{ secrets.PACKAGE_KEY}} "
+              keys+=$p":${{ secrets.PACKAGE_KEY }} "
           done
 
           echo "::set-output name=keys::$(echo $keys)"
@@ -90,50 +75,7 @@ jobs:
         # run: "sfdx force:apex:test:run -l RunLocalTests -c -r human -d ./tests/apex -w 30"
         run: sfdx force:source:deploy -m ApexClass --testlevel=RunLocalTests --checkonly
 
-      # Create users
-      - name: "Create users"
-        if: contains( github.event.pull_request.labels.*.name, 'saveScratchOrg')
-        id: create-users
-        run: |
-          sfdx force:user:create -f config/users/pull_request.json -u scratch-org -a employee
-          echo "::set-output name=loginUrl::$(sfdx force:user:password:generate --onbehalfof=scratch-org)"
-
-          admin=$(sfdx force:user:display -u scratch-org --json)
-          employee=$(sfdx force:user:display -u employee --json)
-
-          echo "::set-output name=instanceUrl::$( echo $admin | jq -r '.result.instanceUrl' )"
-
-          echo "::set-output name=adminUsername::$( echo $admin | jq -r '.result.username' )"
-          echo "::set-output name=adminPassword::$( echo $admin | jq -r '.result.password' )"
-          echo "::set-output name=adminInstantLogin::$( sfdx force:org:open -u scratch-org -r --json | jq -r '.result.url' )"
-
-          echo "::set-output name=employeeUsername::$( echo $employee | jq -r '.result.username' )"
-          echo "::set-output name=employeePassword::$( echo $employee | jq -r '.result.password' )"
-          echo "::set-output name=employeeInstantLogin::$( sfdx force:org:open -u employee -r --json | jq -r '.result.url' )"
-
-      # Slack Notification
-      - name: "Slack Notification"
-        if: contains( github.event.pull_request.labels.*.name, 'saveScratchOrg')
-        uses: rtCamp/action-slack-notify@v2.0.0
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: "Scratch Organization Aficionado"
-          SLACK_MESSAGE: |
-            *Login to Scratch Org*
-
-            URL: ${{steps.create-users.outputs.instanceUrl}}
-
-            *Admin User:*
-            Username: ${{ steps.create-users.outputs.adminUsername }}
-            Password: ${{ steps.create-users.outputs.adminPassword }} (valid for 24 hours)
-            Instant login: ${{ steps.create-users.outputs.adminInstantLogin }} (valid for 2 hours)
-
-            *NAV Employee User:*
-            Username: ${{ steps.create-users.outputs.employeeUsername }}
-            Password: ${{ steps.create-users.outputs.employeePassword }} (valid for 24 hours)
-            Instant login: ${{ steps.create-users.outputs.employeeInstantLogin }} (valid for 2 hours)
-
       # Delete scratch orgs
       - name: "Delete scratch org"
-        if: failure() || !contains( github.event.pull_request.labels.*.name, 'saveScratchOrg')
+        if: always()
         run: "sfdx force:org:delete -p -u scratch-org"

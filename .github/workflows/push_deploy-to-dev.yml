@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: "[Push] Deploy to Dev Sandbox"
+name: "[PUSH] Deploy to Dev"
 
 # Definition when the workflow should run
 on:
@@ -17,27 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Install SFDX
-      # ! enable when sfdx works
-      # - name: Install SFDX
-      # uses: sfdx-actions/setup-sfdx@v1
+      - name: Install SFDX
+        uses: sfdx-actions/setup-sfdx@v1
 
       # Checkout the code in the pull request
       - name: "Checkout source code"
         uses: actions/checkout@v2
-
-      # Install npm
-      # ! delete when sfdx works
-      - name: "Install npm"
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12"
-          check-latest: true
-
-      # Install Salesforce CLI
-      # ! delete when sfdx works
-      - name: Install Salesforce CLI
-        run: |
-          npm install sfdx-cli@7.70.1 --global
 
       # Authenticate prod
       - name: Authenticate prod
@@ -67,7 +52,7 @@ jobs:
         run: |
           keys=""
           for p in $(jq '.result | .[].Name' -r <<< "$(sfdx force:package:list --json)"); do
-              keys+=$p":${{ secrets.PACKAGE_KEY}} "
+              keys+=$p":${{ secrets.PACKAGE_KEY }} "
           done
 
           echo "::set-output name=keys::$(echo $keys)"
