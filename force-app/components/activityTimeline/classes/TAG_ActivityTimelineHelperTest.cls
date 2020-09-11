@@ -122,7 +122,7 @@ private without sharing class TAG_ActivityTimelineHelperTest {
 		Map<String, Id> recordTypes = TAG_ActivityTimelineHelper.getRecordTypes( sObjectsToQuery );
 		Test.StopTest();
 
-		System.assertEquals( 2, recordTypes.size(), 'Currently two mdt objects with record types' );
+		System.assertEquals( 0, recordTypes.size(), 'Currently zero mdt objects with record types' );
 	}
 
 
