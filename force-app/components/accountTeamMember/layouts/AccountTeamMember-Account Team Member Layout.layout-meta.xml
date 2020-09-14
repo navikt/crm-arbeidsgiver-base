@@ -47,10 +47,6 @@
                 <field>AccountAccessLevel</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Departments__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>ContactAccessLevel</field>
             </layoutItems>
