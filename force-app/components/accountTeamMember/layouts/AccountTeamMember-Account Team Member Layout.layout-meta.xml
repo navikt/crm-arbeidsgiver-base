@@ -47,6 +47,10 @@
                 <field>AccountAccessLevel</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Departments__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>ContactAccessLevel</field>
             </layoutItems>
@@ -76,7 +80,6 @@
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
-    <summaryLayout>
         <masterLabel>00h1x0000016XIp</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
