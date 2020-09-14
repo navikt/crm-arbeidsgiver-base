@@ -7,7 +7,6 @@
     <trackFeedHistory>false</trackFeedHistory>
     <type>MultiselectPicklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -24,6 +23,11 @@
                 <fullName>Integrasjon</fullName>
                 <default>false</default>
                 <label>Integrasjon</label>
+            </value>
+            <value>
+                <fullName>Opprettet i Salesforce</fullName>
+                <default>true</default>
+                <label>Opprettet i Salesforce</label>
             </value>
         </valueSetDefinition>
     </valueSet>

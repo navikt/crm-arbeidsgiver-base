@@ -5,6 +5,10 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>CustomNotificationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TAG_ActivityTimelineController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -14,10 +18,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TAG_ActivityTimelineModelList</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CustomNotificationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <customMetadataTypeAccesses>
@@ -79,11 +79,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.OrganizationNumberFormula__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.INT_OrganizationalStructureDesc__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -105,6 +100,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.NumberOfEmployees</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.OrganizationNumberFormula__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -140,6 +140,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Website</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AccountTeamMember.Departments__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -190,6 +195,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.SourceFormula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -391,11 +401,11 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
-        <tab>standard-home</tab>
+        <tab>standard-Dashboard</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>standard-Dashboard</tab>
+        <tab>standard-home</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
