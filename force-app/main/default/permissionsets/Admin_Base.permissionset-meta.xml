@@ -2,11 +2,6 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>AccountTeamMember.Departments__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>ArenaActivity__c.JsonPayload__c</field>
         <readable>true</readable>
