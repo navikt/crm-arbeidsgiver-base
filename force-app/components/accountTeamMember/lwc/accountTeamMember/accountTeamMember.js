@@ -3,8 +3,8 @@ import { LightningElement, api, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 
-import getData from '@salesforce/apex/AccountTeamMemberController.getData';
-import deleteTeamMember from '@salesforce/apex/AccountTeamMemberController.deleteTeamMember';
+import getData from '@salesforce/apex/accountTeamMemberController.getData';
+import deleteTeamMember from '@salesforce/apex/accountTeamMemberController.deleteTeamMember';
 import { refreshApex } from '@salesforce/apex';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -12,12 +12,13 @@ import Id from '@salesforce/user/Id';
 
 
 const actions = [
+    { label: 'Rediger', name: 'edit' },
     { label: 'Slett', name: 'delete' },
 ];
 
 const columns = [
-    { label: 'Navn', fieldName: 'UserId' },
-    { label: 'Rolle', fieldName: 'TeamMemberRole' },
+    { label: 'Navn', fieldName: 'UserId', initialWidth: 200 },
+    { label: 'Rolle', fieldName: 'TeamMemberRole', initialWidth: 200 },
     { label: 'Område', fieldName: 'Departments' },
     {
         type: 'action',
@@ -67,6 +68,9 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
             case 'delete':
                 this.deleteRow(row);
                 break;
+            case 'edit':
+                this.editRow(row);
+                break;
             default:
                 break;
         }
@@ -90,6 +94,17 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
                     variant: 'error'
                 }));
             });
+    }
+
+    editRow(currentRow) {
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: currentRow.Id,
+                objectApiName: 'AccountTeamMember',
+                actionName: 'edit'
+            }
+        });
     }
 
     navigateToNewRecordPage() {
