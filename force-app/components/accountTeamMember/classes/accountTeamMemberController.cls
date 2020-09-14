@@ -1,7 +1,7 @@
 public without sharing class accountTeamMemberController {
 	@AuraEnabled( cacheable = true )
 	public static List<AccountTeamMember> getData( Id recordId ) {
-		List<AccountTeamMember> actm = [SELECT Id, AccountId, toLabel( TeamMemberRole ), User.Name FROM AccountTeamMember WHERE AccountId = :recordId];
+		List<AccountTeamMember> actm = [SELECT Id, AccountId, toLabel( TeamMemberRole ), toLabel( Departments__c ), User.Name FROM AccountTeamMember WHERE AccountId = :recordId];
 
 		return actm;
 	}

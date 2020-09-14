@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Departments__c</fullName>
+    <externalId>false</externalId>
+    <label>Område</label>
+    <required>false</required>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Generelt markedsarbeid</fullName>
+                <default>false</default>
+                <label>Generelt markedsarbeid</label>
+            </value>
+            <value>
+                <fullName>Rekruttering og inkludering</fullName>
+                <default>false</default>
+                <label>Rekruttering og inkludering</label>
+            </value>
+            <value>
+                <fullName>Forebygge og redusere sykefravær og frafall</fullName>
+                <default>false</default>
+                <label>Forebygge og redusere sykefravær og frafall</label>
+            </value>
+            <value>
+                <fullName>Nedbemanne</fullName>
+                <default>false</default>
+                <label>Nedbemanne</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>
