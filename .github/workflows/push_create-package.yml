@@ -144,11 +144,11 @@ jobs:
       - name: Check if secret for code coverage exists
         id: secretChecker
         run: |
-          if ["${{ secrets.CODECOV_TOKEN }}" == ""]; then
-            echo "Code coverage secrets does NOT exist for this repo, aborting"
-          else
+          if ["${{ secrets.CODECOV_TOKEN }}" != ""]; then
             echo "::set-output name=shouldContinue::true"
             echo "Code coverage secrets exists for this repo, so process continues"
+          else
+            echo "Code coverage secrets does NOT exist for this repo, aborting"
             exit 125
           fi
 
