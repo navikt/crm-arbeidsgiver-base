@@ -171,7 +171,6 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        id: createScratchOrg
         run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1 --json
    
       # Install sfpowerkit plugin used to install multiple packages only by version number
@@ -218,5 +217,5 @@ jobs:
 
       # Housekeeping
       - name: "Delete scratch org"
-        if: always() && steps.createScratchOrg.outputs.isSuccess
+        if: always()
         run: "sfdx force:org:delete -p -u scratch-org"
