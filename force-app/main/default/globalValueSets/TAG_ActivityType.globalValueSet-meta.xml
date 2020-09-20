@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>Generelt markedsarbeid</fullName>
-        <default>false</default>
-        <label>Generelt markedsarbeid</label>
-    </customValue>
-    <customValue>
         <fullName>Rekruttere og inkludere</fullName>
         <default>false</default>
         <label>Rekruttere og inkludere</label>
@@ -19,6 +14,11 @@
         <fullName>Nedbemanne</fullName>
         <default>false</default>
         <label>Nedbemanne</label>
+    </customValue>
+    <customValue>
+        <fullName>Generelt markedsarbeid</fullName>
+        <default>false</default>
+        <label>Generelt markedsarbeid</label>
     </customValue>
     <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
