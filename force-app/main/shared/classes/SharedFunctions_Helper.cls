@@ -19,7 +19,7 @@ public with sharing class SharedFunctions_Helper {
 			emails.add( cw.email );
 		}
 
-		List<Contact> existingContacts = [SELECT Id, Email, Account.INT_OrganizationNumber__c, InvalidEmail__c
+		List<Contact> existingContacts = [SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c
 		                                  FROM Contact
 		                                  WHERE
 		                                      ( Email IN : emails AND Email != null ) OR
