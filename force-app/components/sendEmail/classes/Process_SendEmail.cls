@@ -11,11 +11,7 @@ global without sharing class Process_SendEmail {
 	public static void sendEmail( List<Request> requests ) {
 
 		Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates( requests );
-
-		requests = Process_SendEmailHelper.removeInvalidRequests( requests );
-
 		List<Messaging.SingleEmailMessage> messages = Process_SendEmailHelper.requestToSingleEmailMessage( requests, templateMap, ORG_WIDE_EMAIL_ID );
-
 		List<Messaging.SendEmailResult> results = Messaging.sendEmail ( messages, false );
 
 		for ( Messaging.SendEmailResult msg : results ) {
@@ -27,8 +23,11 @@ global without sharing class Process_SendEmail {
 
 	global class Request {
 
-		@InvocableVariable(required = false label = 'Recipient Contact Lookup' description = 'The contact to email (if contact has no email, the email is not sent)')
+		@InvocableVariable(required = false label = 'Recipient Contact Lookup (choose lookup or id)' description = 'The contact to email (if contact has no email, the email is not sent)')
 		global Contact recipientContact;
+
+		@InvocableVariable(required = false label = 'Recipient Contact Id (choose lookup or id)' description = 'The contact Id for the recipient')
+		global Id recipientContactId;
 
 		@InvocableVariable(required = false label = 'Object Relation ID' description = 'Fill if email template contains references ( {{{ var }}} )')
 		global Id relatedToId;
