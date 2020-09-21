@@ -29,28 +29,24 @@
                 <label>Tiltak</label>
             </value>
             <value>
-                <fullName>Arbeidstrening</fullName>
+                <fullName>Rekruttering</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
-                <label>Arbeidstrening</label>
+                <label>Rekruttering</label>
             </value>
             <value>
                 <fullName>Inkludering</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Inkludering</label>
-            </value>
-            <value>
-                <fullName>Rekruttering</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Rekruttering</label>
             </value>
             <value>
                 <fullName>Rekruttering med tilrettelegging</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Rekruttering med tilrettelegging</label>
+            </value>
+            <value>
+                <fullName>Arbeidstrening</fullName>
+                <default>false</default>
+                <label>Arbeidstrening</label>
             </value>
         </valueSetDefinition>
     </valueSet>
