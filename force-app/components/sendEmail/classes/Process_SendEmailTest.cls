@@ -6,6 +6,9 @@ private without sharing class Process_SendEmailTest {
 		EmailTemplate et = new EmailTemplate( DeveloperName = 'tempLayoffReceiptSubsidiary', Name = 'tempLayoffReceiptSubsidiary', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'New message', HtmlValue = '<html><head></head><body><p>Hi {{{TemporaryLayoff__c.ContactName__c}}}. This is regarding {{{TemporaryLayoff__c.Type__c}}}.</p></body></html>' );
 		Database.insert( et, false );
 
+		EmailTemplate et2 = new EmailTemplate( DeveloperName = 'MY_UNIQUE_TEMPLATE', Name = 'MY_UNIQUE_TEMPLATE', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'New message', HtmlValue = '<html><head></head><body><p>Hi.</p></body></html>' );
+		Database.insert( et2, false );
+
 		Profile profile = [SELECT Id, UserLicense.Name FROM Profile WHERE Name = 'Standard Platform User' OR Name = 'Standard plattformbruker' LIMIT 1];
 		User user = new User(
 			FirstName = 'test',
@@ -67,6 +70,115 @@ private without sharing class Process_SendEmailTest {
 
 			emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 			System.assertEquals( 0, emails.size(), 'No email after, due to wrong email' );
+		}
+	}
+
+	@isTest
+	private static void testSendEmail_missingEmail() {
+		System.runAs( getTestUser() )
+		{
+
+			Contact con = new Contact( TAG_Informed__c = true, LastName = 'test', FirstName = 'test' );
+			insert con;
+
+			TemporaryLayoff__c tl = new TemporaryLayoff__c( KafkaId__c = 'test', Contact__c = con.Id, Type__c = 'PERMITTERING_UTEN_LØNN', ContactEmail__c = '' );
+
+			List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 0, emails.size(), 'No emails sent before' );
+
+			Test.StartTest();
+			insert tl;
+			Test.StopTest();
+
+			emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 0, emails.size(), 'No email after, due to wrong email' );
+		}
+	}
+
+	@isTest
+	private static void testSendEmail_oneWrongEmailOneCorrect() {
+		System.runAs( getTestUser() )
+		{
+
+			Contact con1 = new Contact( TAG_Informed__c = true, LastName = 'test1', FirstName = 'test1' );
+			Contact con2 = new Contact( TAG_Informed__c = true, LastName = 'test2', FirstName = 'test2', Email = 'tore.toresen@example.com' );
+			insert con1;
+			insert con2;
+
+			TemporaryLayoff__c tl1 = new TemporaryLayoff__c( KafkaId__c = 'test', Contact__c = con1.Id, Type__c = 'PERMITTERING_UTEN_LØNN', ContactEmail__c = '' );
+			TemporaryLayoff__c tl2 = new TemporaryLayoff__c( KafkaId__c = 'test', Contact__c = con2.Id, Type__c = 'PERMITTERING_UTEN_LØNN', ContactEmail__c = '' );
+
+			List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 0, emails.size(), 'No emails sent before' );
+
+			Test.StartTest();
+			insert new List<TemporaryLayoff__c> { tl1, tl2 };
+			Test.StopTest();
+
+			emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 1, emails.size(), 'One email after, due to one wrong email' );
+		}
+	}
+
+	@isTest
+	private static void testSendEmail_testFunctionWithLookup() {
+		System.runAs( getTestUser() )
+		{
+
+			Contact con = new Contact( TAG_Informed__c = true, LastName = 'test', FirstName = 'test', Email = 'tore.toresen@example.com' );
+			insert con;
+
+			Account acc = new Account( Name = 'test' );
+			insert acc;
+
+			List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
+			Process_SendEmail.Request request = new Process_SendEmail.Request();
+			request.emailTemplateName = 'MY_UNIQUE_TEMPLATE';
+			request.recipientContact = con;
+			request.useDoNotReply = true;
+			request.relatedToId = acc.Id;
+			requests.add( request );
+
+			List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 0, emails.size(), 'No emails sent before' );
+
+			Test.StartTest();
+			Process_SendEmail.sendEmail( requests );
+			Test.StopTest();
+
+			emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 1, emails.size(), 'One email after' );
+		}
+	}
+
+	@isTest
+	private static void testSendEmail_testFunctionWithId() {
+		System.runAs( getTestUser() )
+		{
+
+			Contact con = new Contact( TAG_Informed__c = true, LastName = 'test', FirstName = 'test', Email = 'tore.toresen@example.com' );
+			insert con;
+
+			Account acc = new Account( Name = 'test' );
+			insert acc;
+
+			List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
+			Process_SendEmail.Request request = new Process_SendEmail.Request();
+			request.emailTemplateName = 'MY_UNIQUE_TEMPLATE';
+			request.recipientContactId = con.Id;
+			request.useDoNotReply = false;
+			request.relatedToId = acc.Id;
+			requests.add( request );
+
+			List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 0, emails.size(), 'No emails sent before' );
+
+			Test.StartTest();
+			Process_SendEmail.sendEmail( requests );
+			Test.StopTest();
+
+			emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+			System.assertEquals( 1, emails.size(), 'One email after' );
 		}
 	}
 
