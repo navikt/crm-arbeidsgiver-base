@@ -65,11 +65,15 @@
     <picklistValues>
         <picklist>InclusionStage__c</picklist>
         <values>
-            <fullName>Aktiv</fullName>
+            <fullName>Avklaring</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Avsluttet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ferdig Avklart</fullName>
             <default>false</default>
         </values>
         <values>
@@ -80,23 +84,15 @@
     <picklistValues>
         <picklist>InquiryCategory__c</picklist>
         <values>
-            <fullName>Arbeidstrening</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Forebygge sykefravær</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Inkludering</fullName>
+            <fullName>Skal ansette</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Rekruttering</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Rekruttering med tilrettelegging</fullName>
+            <fullName>Tiltak</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1943,13 +1939,36 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Result__c</picklist>
+        <values>
+            <fullName>Ikke aktuelt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAV skal bistå</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skal ansette selv</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Source__c</picklist>
         <values>
             <fullName>Internt tips</fullName>
             <default>true</default>
         </values>
         <values>
+            <fullName>Kontaktsenteret</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Kontaktskjema</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Messe</fullName>
             <default>false</default>
         </values>
         <values>

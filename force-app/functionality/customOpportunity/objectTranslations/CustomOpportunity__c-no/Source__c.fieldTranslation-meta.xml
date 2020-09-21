@@ -8,8 +8,12 @@ Utgående henvendese: Oppsøkende kontakt --></help>
     <label>Kilde</label>
     <name>Source__c</name>
     <picklistValues>
-        <masterLabel>Internt tips</masterLabel>
-        <translation><!-- Internt tips --></translation>
+        <masterLabel>Arbeidsgiveren tok kontakt</masterLabel>
+        <translation><!-- Arbeidsgiveren tok kontakt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jobbmesse</masterLabel>
+        <translation><!-- Jobbmesse --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Kontaktsenteret</masterLabel>
@@ -20,11 +24,7 @@ Utgående henvendese: Oppsøkende kontakt --></help>
         <translation><!-- Kontaktskjema --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Messe</masterLabel>
-        <translation><!-- Messe --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Utgående henvendelse</masterLabel>
-        <translation><!-- Utgående henvendelse --></translation>
+        <masterLabel>NAV tok kontakt</masterLabel>
+        <translation><!-- NAV tok kontakt --></translation>
     </picklistValues>
 </CustomFieldTranslation>

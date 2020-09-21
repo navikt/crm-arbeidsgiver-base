@@ -14,29 +14,43 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Rekruttering</fullName>
+                <fullName>Forebygge sykefravær</fullName>
                 <default>false</default>
-                <label>Rekruttering</label>
+                <label>Forebygge sykefravær</label>
             </value>
             <value>
-                <fullName>Inkludering</fullName>
+                <fullName>Skal ansette</fullName>
                 <default>false</default>
-                <label>Inkludering</label>
+                <label>Skal ansette</label>
             </value>
             <value>
-                <fullName>Rekruttering med tilrettelegging</fullName>
+                <fullName>Tiltak</fullName>
                 <default>false</default>
-                <label>Rekruttering med tilrettelegging</label>
+                <label>Tiltak</label>
             </value>
             <value>
                 <fullName>Arbeidstrening</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Arbeidstrening</label>
             </value>
             <value>
-                <fullName>Forebygge sykefravær</fullName>
+                <fullName>Inkludering</fullName>
                 <default>false</default>
-                <label>Forebygge sykefravær</label>
+                <isActive>false</isActive>
+                <label>Inkludering</label>
+            </value>
+            <value>
+                <fullName>Rekruttering</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Rekruttering</label>
+            </value>
+            <value>
+                <fullName>Rekruttering med tilrettelegging</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Rekruttering med tilrettelegging</label>
             </value>
         </valueSetDefinition>
     </valueSet>

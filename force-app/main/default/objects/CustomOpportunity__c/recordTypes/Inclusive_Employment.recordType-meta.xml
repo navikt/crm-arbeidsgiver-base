@@ -1935,6 +1935,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Result__c</picklist>
+        <values>
+            <fullName>Ikke aktuelt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAV skal bistå</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skal ansette selv</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Source__c</picklist>
         <values>
             <fullName>Internt tips</fullName>

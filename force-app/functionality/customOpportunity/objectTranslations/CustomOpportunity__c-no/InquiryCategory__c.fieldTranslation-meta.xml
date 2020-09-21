@@ -4,23 +4,15 @@
     <label>Henvendelseskategori</label>
     <name>InquiryCategory__c</name>
     <picklistValues>
-        <masterLabel>Arbeidstrening</masterLabel>
-        <translation><!-- Arbeidstrening --></translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>Forebygge sykefravær</masterLabel>
         <translation><!-- Forebygge sykefravær --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Inkludering</masterLabel>
-        <translation><!-- Inkludering --></translation>
+        <masterLabel>Skal ansette</masterLabel>
+        <translation><!-- Skal ansette --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Rekruttering</masterLabel>
-        <translation><!-- Rekruttering --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Rekruttering med tilrettelegging</masterLabel>
-        <translation><!-- Rekruttering med tilrettelegging --></translation>
+        <masterLabel>Tiltak</masterLabel>
+        <translation><!-- Tiltak --></translation>
     </picklistValues>
 </CustomFieldTranslation>

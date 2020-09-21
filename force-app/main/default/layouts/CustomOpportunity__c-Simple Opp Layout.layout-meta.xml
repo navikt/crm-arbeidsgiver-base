@@ -23,6 +23,10 @@
                 <behavior>Readonly</behavior>
                 <field>TAG_Age__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Result__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

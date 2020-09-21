@@ -20,7 +20,7 @@ Utgående henvendese: Oppsøkende kontakt</inlineHelpText>
             <value>
                 <fullName>Internt tips</fullName>
                 <default>false</default>
-                <label>Internt tips</label>
+                <label>NAV tok kontakt</label>
             </value>
             <value>
                 <fullName>Kontaktsenteret</fullName>
@@ -35,12 +35,12 @@ Utgående henvendese: Oppsøkende kontakt</inlineHelpText>
             <value>
                 <fullName>Messe</fullName>
                 <default>false</default>
-                <label>Messe</label>
+                <label>Jobbmesse</label>
             </value>
             <value>
                 <fullName>Utgående henvendelse</fullName>
                 <default>false</default>
-                <label>Utgående henvendelse</label>
+                <label>Arbeidsgiveren tok kontakt</label>
             </value>
         </valueSetDefinition>
     </valueSet>
