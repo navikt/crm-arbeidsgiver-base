@@ -54,6 +54,13 @@
                 <value>10</value>
             </componentInstanceProperties>
             <componentName>flexipage:filterListCard</componentName>
+            <visibilityRule>
+                <criteria>
+                    <leftValue>{!$Permission.CustomPermission.NavTasks}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>true</rightValue>
+                </criteria>
+            </visibilityRule>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
