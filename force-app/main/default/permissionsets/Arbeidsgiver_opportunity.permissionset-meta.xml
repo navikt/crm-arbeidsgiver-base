@@ -141,10 +141,6 @@
         <recordType>CustomOpportunity__c.Inclusion</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>CustomOpportunity__c.Inclusive_Employment</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
     <tabSettings>
         <tab>CustomOpportunity__c</tab>
         <visibility>Visible</visibility>
