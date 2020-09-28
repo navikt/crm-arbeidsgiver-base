@@ -14,18 +14,42 @@ public with sharing class SharedFunctions_Helper {
 	// will check both Email and InvalidEmail__c in case the email is Salesforce invalid (but not invalid for Norwegians, e.g., ÆØÅ)
 	public static List<Contact> getExistingContacts( List<ContactWrapper> wrapperList ) {
 
-		List<String> emails = new List<String>();
+		Set<String> emails = new Set<String>();
 		for ( ContactWrapper cw : wrapperList ) {
 			emails.add( cw.email );
 		}
 
-		List<Contact> existingContacts = [SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c
+		List<Contact> existingContacts = [SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c, Source__c
 		                                  FROM Contact
 		                                  WHERE
 		                                      ( Email IN : emails AND Email != null ) OR
 		                                      ( InvalidEmail__c IN : emails AND InvalidEmail__c != null )];
 
 		return existingContacts;
+	}
+
+	// append new source if its not already on the contact
+	public static void addNewSourceToExistingContacts( List<ContactWrapper> wrapperList, List<Contact> contacts ) {
+
+		Map<String, ContactWrapper> wrapperMap = new Map<String, ContactWrapper>();
+		for ( ContactWrapper cw : wrapperList ) {
+			wrapperMap.put( cw.email, cw );
+		}
+
+		for ( Contact con : contacts ) {
+
+			List<String> sources = con.Source__c.split( ';' );
+
+			ContactWrapper cw = wrapperMap.containsKey( con.Email ) ? wrapperMap.get( con.Email ) : wrapperMap.get( con.InvalidEmail__c );
+			if ( cw != null ) {
+
+				String newSource = cw.source;
+				if ( !sources.contains( newSource ) ) {
+					sources.add( newSource );
+					con.Source__c = String.join( sources, ';' );
+				}
+			}
+		}
 	}
 
 	// create AccountContactRelation for unmapped contacts (e.g., when a contact is found originally but not mapped to the new account they're inquiring from)

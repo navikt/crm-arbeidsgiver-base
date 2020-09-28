@@ -23,6 +23,8 @@ public with sharing class SharedFunctions {
 		// get existing contacts based on email address on Contact.Email or Contact.InvalidEmail__c
 		List<Contact> existingContacts = SharedFunctions_Helper.getExistingContacts( wrapperList );
 
+		SharedFunctions_Helper.addNewSourceToExistingContacts( wrapperList, existingContacts );
+
 		// map existing conacts to a new account (if user sent a request on behalf on a another account but same email)
 		SharedFunctions_Helper.mapUnmappedContacts( wrapperList, existingContacts, accountMap );
 

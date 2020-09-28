@@ -60,6 +60,7 @@ private without sharing class SharedFunctionsTest {
 			wrapper.lastName = 'etternavn';
 			wrapper.phone = '90080900';
 			wrapper.email = 'test@test.com';
+			wrapper.source = 'kurs';
 			wrapper.companyNumber = '99999999';
 			wrapperList.add( wrapper );
 
@@ -70,6 +71,7 @@ private without sharing class SharedFunctionsTest {
 			Test.StopTest();
 
 			System.assertEquals( acc.Id, result.get( 'test@test.com' ).AccountId, 'Should be same account' );
+			System.assert ( result.get( 'test@test.com' ).Source__c.contains( 'kurs' ), 'Should be same account' );
 
 			Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
 			System.assertEquals( 1, contactRelationships, 'Should have added the contact to the new accounts as a relationship' );
@@ -259,6 +261,40 @@ private without sharing class SharedFunctionsTest {
 
 			Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
 			System.assertEquals( 1, contactRelationships, 'Should have added the contact to the new accounts as a relationship' );
+		}
+	}
+
+
+	@isTest
+	private static void testFetchOrCreateContact_existingContact_newSource() {
+		System.runAs( getTestUser() )
+		{
+
+			Account acc = new Account( Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999' );
+			insert acc;
+
+			Contact con = new Contact( TAG_Informed__c = true, LastName = 'test', FirstName = 'test', Source__c = 'Kurs', Email = 'test@test.com', AccountId = acc.Id );
+			insert con;
+
+			List<SharedFunctions_Helper.ContactWrapper> wrapperList = new List<SharedFunctions_Helper.ContactWrapper>();
+			SharedFunctions_Helper.ContactWrapper wrapper = new SharedFunctions_Helper.ContactWrapper();
+			wrapper.firstName = 'test';
+			wrapper.lastName = 'etternavn';
+			wrapper.phone = '90080900';
+			wrapper.email = 'test@test.com';
+			wrapper.source = 'Permittering';
+			wrapper.companyNumber = '99999999';
+			wrapperList.add( wrapper );
+
+			Map<String, Account> accountMap = SharedFunctions.fetchAccounts( new List<String> { wrapper.companyNumber } );
+
+			Test.StartTest();
+			SharedFunctions.fetchOrCreateContact( wrapperList, accountMap );
+			Test.StopTest();
+
+			con = [SELECT Id, Source__c FROM contact WHERE Id = : con.Id LIMIT 1];
+			System.assert ( con.Source__c.contains( 'Kurs' ), 'Source should contain kurs' );
+			System.assert ( con.Source__c.contains( 'Permittering' ), 'Source should contain Permittering' );
 		}
 	}
 
