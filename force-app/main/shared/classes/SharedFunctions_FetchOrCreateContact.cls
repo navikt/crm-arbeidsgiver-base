@@ -33,14 +33,10 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
 			if ( cw != null ) {
 
 				List<String> sources = con.Source__c.split( ';' );
-				System.debug( 'sources: ' + sources );
 				String newSource = cw.source;
-				System.debug( 'newSource: ' + newSource );
 				if ( !sources.contains( newSource ) ) {
 					sources.add( newSource );
-					System.debug( 'sources: ' + sources );
 					con.Source__c = String.join( sources, ';' );
-					System.debug( 'con: ' + con );
 					contactsToUpdate.add( con );
 				}
 			}
