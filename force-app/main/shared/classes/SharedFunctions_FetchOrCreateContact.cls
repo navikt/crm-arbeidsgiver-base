@@ -1,25 +1,14 @@
-public with sharing class SharedFunctions_Helper {
-
-	public class ContactWrapper {
-		public String firstName;
-		public String lastName;
-		public String phone;
-		public String email;
-		public String companyNumber;
-		public String source;
-
-	}
-
+public with sharing class SharedFunctions_FetchOrCreateContact {
 
 	// will check both Email and InvalidEmail__c in case the email is Salesforce invalid (but not invalid for Norwegians, e.g., ÆØÅ)
-	public static List<Contact> getExistingContacts( List<ContactWrapper> wrapperList ) {
+	public static List<Contact> getExistingContacts( List<SharedFunctions_ContactModel> wrapperList ) {
 
-		List<String> emails = new List<String>();
-		for ( ContactWrapper cw : wrapperList ) {
+		Set<String> emails = new Set<String>();
+		for ( SharedFunctions_ContactModel cw : wrapperList ) {
 			emails.add( cw.email );
 		}
 
-		List<Contact> existingContacts = [SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c
+		List<Contact> existingContacts = [SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c, Source__c
 		                                  FROM Contact
 		                                  WHERE
 		                                      ( Email IN : emails AND Email != null ) OR
@@ -28,10 +17,41 @@ public with sharing class SharedFunctions_Helper {
 		return existingContacts;
 	}
 
-	// create AccountContactRelation for unmapped contacts (e.g., when a contact is found originally but not mapped to the new account they're inquiring from)
-	public static void mapUnmappedContacts( List<ContactWrapper> wrapperList, List<Contact> existingContacts, Map<String, Account> accountMap ) {
+	// append new source if its not already on the contact
+	public static void addNewSourceToExistingContacts( List<SharedFunctions_ContactModel> wrapperList, List<Contact> contacts ) {
 
-		Map<String, List<ContactWrapper> > contactWrapperMap = createMapOfContactWrapper( wrapperList );
+		Map<String, SharedFunctions_ContactModel> wrapperMap = new Map<String, SharedFunctions_ContactModel>();
+		for ( SharedFunctions_ContactModel cw : wrapperList ) {
+			wrapperMap.put( cw.email, cw );
+		}
+
+		List<Contact> contactsToUpdate = new List<Contact>();
+
+		for ( Contact con : contacts ) {
+
+			SharedFunctions_ContactModel cw = wrapperMap.containsKey( con.Email ) ? wrapperMap.get( con.Email ) : wrapperMap.get( con.InvalidEmail__c );
+			if ( cw != null ) {
+
+				List<String> sources = con.Source__c.split( ';' );
+				System.debug( 'sources: ' + sources );
+				String newSource = cw.source;
+				System.debug( 'newSource: ' + newSource );
+				if ( !sources.contains( newSource ) ) {
+					sources.add( newSource );
+					System.debug( 'sources: ' + sources );
+					con.Source__c = String.join( sources, ';' );
+					System.debug( 'con: ' + con );
+					contactsToUpdate.add( con );
+				}
+			}
+		}
+		update contactsToUpdate;
+	}
+
+	// create AccountContactRelation for unmapped contacts (e.g., when a contact is found originally but not mapped to the new account they're inquiring from)
+	public static void mapUnmappedContacts( List<SharedFunctions_ContactModel> wrapperList, List<Contact> existingContacts, Map<String, Account> accountMap ) {
+
+		Map<String, List<SharedFunctions_ContactModel> > contactWrapperMap = createMapOfContactWrapper( wrapperList );
 		List<AccountContactRelation> relationships = new List<AccountContactRelation>();
 
 		Map<Id, Id> contactAndAccountToMap = new Map<Id, Id>();
@@ -46,8 +66,8 @@ public with sharing class SharedFunctions_Helper {
 
 			if ( contactWrapperMap.containsKey( email.toLowerCase() ) ) {
 
-				List<ContactWrapper> wrapper = contactWrapperMap.get( email.toLowerCase() );
-				for ( ContactWrapper cw : wrapper ) {
+				List<SharedFunctions_ContactModel> wrapper = contactWrapperMap.get( email.toLowerCase() );
+				for ( SharedFunctions_ContactModel cw : wrapper ) {
 
 					if ( email == cw.email ) {
 
@@ -85,13 +105,13 @@ public with sharing class SharedFunctions_Helper {
 		return MyMatcher.matches();
 	}
 
-	public static Map<String, List<ContactWrapper> > createMapOfContactWrapper( List<ContactWrapper> wrapperList ) {
-		Map<String, List<ContactWrapper> > contactWrapperMap = new Map<String, List<ContactWrapper> >();
-		for ( ContactWrapper cw : wrapperList ) {
+	public static Map<String, List<SharedFunctions_ContactModel> > createMapOfContactWrapper( List<SharedFunctions_ContactModel> wrapperList ) {
+		Map<String, List<SharedFunctions_ContactModel> > contactWrapperMap = new Map<String, List<SharedFunctions_ContactModel> >();
+		for ( SharedFunctions_ContactModel cw : wrapperList ) {
 			if ( contactWrapperMap.containsKey( cw.email.toLowerCase() ) ) {
 				contactWrapperMap.get( cw.email.toLowerCase() ).add( cw );
 			} else {
-				contactWrapperMap.put( cw.email.toLowerCase(), new List<ContactWrapper> { cw } );
+				contactWrapperMap.put( cw.email.toLowerCase(), new List<SharedFunctions_ContactModel> { cw } );
 			}
 		}
 
@@ -113,10 +133,10 @@ public with sharing class SharedFunctions_Helper {
 		return contactMap;
 	}
 
-	public static void createRemainingContacts( List<SharedFunctions_Helper.ContactWrapper> wrapperList, Map<String, Account> accountMap, Map<String, Contact> contactMap ) {
+	public static void createRemainingContacts( List<SharedFunctions_ContactModel> wrapperList, Map<String, Account> accountMap, Map<String, Contact> contactMap ) {
 
 		List<Contact> newContacts = new List<Contact>();
-		for ( SharedFunctions_Helper.ContactWrapper cw : wrapperList ) {
+		for ( SharedFunctions_ContactModel cw : wrapperList ) {
 
 			if ( !contactMap.containsKey( cw.email.toLowerCase() ) ) {
 
@@ -124,7 +144,7 @@ public with sharing class SharedFunctions_Helper {
 				Contact con = new Contact( FirstName = cw.firstName, LastName = cw.lastName, MobilePhone = cw.phone, AccountId = accountId, Source__c = cw.source );
 
 				// if cw.email is a valid email, add the email
-				if ( SharedFunctions_Helper.checkIfValidEmail( cw.email ) ) {
+				if ( SharedFunctions_FetchOrCreateContact.checkIfValidEmail( cw.email ) ) {
 					con.Email = cw.email;
 				}
 				// if invalid, add it only to the invalid email field (to be later fixed by an employee)
