@@ -3,17 +3,7 @@
     <description>Kafka og Async-tilgang</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>AsyncRequest__c.CRM_Completed__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>AsyncRequest__c.CRM_ErrorMessage__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>AsyncRequest__c.CRM_Error__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24,11 +14,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AsyncRequest__c.CRM_Priority__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>AsyncRequest__c.CRM_RetryRequest__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
