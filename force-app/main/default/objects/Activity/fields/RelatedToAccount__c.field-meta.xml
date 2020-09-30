@@ -3,7 +3,7 @@
     <fullName>RelatedToAccount__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Virksomhet</label>
+    <label>Konto</label>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Aktiviteter</relationshipLabel>
     <relationshipName>Aktiviteter</relationshipName>
