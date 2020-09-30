@@ -3,5 +3,5 @@
     <fullName>Start_time_not_later_than_end_time</fullName>
     <active>true</active>
     <errorConditionFormula>RegistrationFromDateTime__c &gt;  RegistrationToDateTime__c</errorConditionFormula>
-    <errorMessage>Start tid kan ikke være senere enn slutt tid</errorMessage>
+    <errorMessage>Starttid kan ikke være senere enn sluttid</errorMessage>
 </ValidationRule>
