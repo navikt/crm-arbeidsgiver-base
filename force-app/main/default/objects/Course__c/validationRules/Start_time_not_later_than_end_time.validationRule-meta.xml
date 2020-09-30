@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Start_time_not_later_than_end_time</fullName>
     <active>true</active>
-    <errorConditionFormula>RegistrationFromDateTime__c &gt;=  RegistrationToDateTime__c</errorConditionFormula>
+    <errorConditionFormula>RegistrationFromDateTime__c &gt;  RegistrationToDateTime__c</errorConditionFormula>
     <errorMessage>Start tid kan ikke være senere enn slutt tid</errorMessage>
 </ValidationRule>
