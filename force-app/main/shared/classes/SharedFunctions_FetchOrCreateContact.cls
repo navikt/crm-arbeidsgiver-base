@@ -32,7 +32,7 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
 			SharedFunctions_ContactModel cw = wrapperMap.containsKey( con.Email ) ? wrapperMap.get( con.Email ) : wrapperMap.get( con.InvalidEmail__c );
 			if ( cw != null ) {
 
-				List<String> sources = con.Source__c.split( ';' );
+				List<String> sources = con.Source__c != null ? con.Source__c.split( ';' ) : new List<String>();
 				String newSource = cw.source;
 				if ( !sources.contains( newSource ) ) {
 					sources.add( newSource );
