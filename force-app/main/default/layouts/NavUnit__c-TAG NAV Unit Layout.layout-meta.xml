@@ -74,18 +74,33 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Aktivitetstype__c</fields>
+        <fields>DateFrom__c</fields>
+        <fields>DateTo__c</fields>
         <relatedList>ArenaActivity__c.NAV_Kontor__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Type__c</fields>
+        <fields>NumberOfEmployees__c</fields>
+        <fields>Status__c</fields>
         <relatedList>TemporaryLayoff__c.NAV_Unit__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>CRM_Account__c</fields>
+        <fields>CRM_Theme__c</fields>
+        <fields>CRM_Status__c</fields>
         <relatedList>NavTask__c.CRM_NavUnit__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>InquiryCategory__c</fields>
+        <fields>Source__c</fields>
+        <fields>InclusionStage__c</fields>
         <relatedList>CustomOpportunity__c.TAG_NavUnit__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
