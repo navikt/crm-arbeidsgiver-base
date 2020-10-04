@@ -47,8 +47,9 @@ jobs:
       # TODO throw error on below 75% code coverage
       - name: "Create package version"
         id: package-version-create
+        # TODO add -c parameter to package create after fixing package testing failing due to non-updated permset groups
         run: |
-          sfdx force:package:version:create -f config/project-scratch-def.json -p $(cat sfdx-project.json | jq '.packageDirectories[0].package' -r) -k ${{ secrets.PACKAGE_KEY }} -w 90 -c --json | tee output
+          sfdx force:package:version:create -f config/project-scratch-def.json -p $(cat sfdx-project.json | jq '.packageDirectories[0].package' -r) -k ${{ secrets.PACKAGE_KEY }} -w 90 --json | tee output
           echo "::set-output name=result::$(cat output | jq -c .)"
 
           status=$(cat output |jq '.status')
@@ -214,7 +215,7 @@ jobs:
     name: Check valid CODECOV_TOKEN
     runs-on: ubuntu-latest
     steps:
-      - name: check CODECOV_TOKEN secret 
+      - name: check CODECOV_TOKEN secret
         id: checkSecret
         run: |
           echo "Enable: ${{ env.SECRET != '' }}"
@@ -233,7 +234,7 @@ jobs:
     if: ${{ needs.check-code-coverage-secret.outputs.shouldContinue == 'true' }}
     runs-on: ubuntu-latest
     steps:
-       # Install SFDX
+      # Install SFDX
       - name: Install SFDX
         uses: sfdx-actions/setup-sfdx@v1
 
@@ -251,7 +252,7 @@ jobs:
       # Create scratch org
       - name: "Create scratch org"
         run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1 --json
-   
+
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
         run: "echo y | sfdx plugins:install sfpowerkit"
