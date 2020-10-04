@@ -47,7 +47,7 @@ jobs:
       # TODO throw error on below 75% code coverage
       - name: "Create package version"
         id: package-version-create
-        # TODO add -c parameter to package create after fixing package testing failing due to non-updated permset groups
+        # TODO add -c parameter to package create after fixing package testing failing due to non-updated permset groups (fix classes)
         run: |
           sfdx force:package:version:create -f config/project-scratch-def.json -p $(cat sfdx-project.json | jq '.packageDirectories[0].package' -r) -k ${{ secrets.PACKAGE_KEY }} -w 90 --json | tee output
           echo "::set-output name=result::$(cat output | jq -c .)"
@@ -124,7 +124,7 @@ jobs:
           body: |
             **Version**: ${{ steps.release-fields.outputs.bodyVersion }}
             **Package ID**: ${{ steps.release-fields.outputs.bodyPackage }}
-            **Code Coverage**: ${{ steps.release-fields.outputs.codeCoverage }}%
+            # **Code Coverage**: ${{ steps.release-fields.outputs.codeCoverage }}%
 
             **Author**: ${{ github.actor }}
 
