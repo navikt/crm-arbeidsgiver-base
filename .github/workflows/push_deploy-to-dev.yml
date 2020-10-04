@@ -38,10 +38,6 @@ jobs:
           sfdx force:auth:sfdxurl:store -f ./DEV_SFDX_URL.txt -a dev -s
           rm -f ./DEV_SFDX_URL.txt
 
-      # Delete unpackagable
-      - name: "Delete unpackagable"
-        run: rm -rf unpackagable
-
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
         run: "echo y | sfdx plugins:install sfpowerkit"

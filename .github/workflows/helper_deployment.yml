@@ -9,16 +9,19 @@ on:
         description: "Org (prod, preprod, dev)"
         required: true
 jobs:
-  deploy-package:
+  debug:
+    name: Debug Information
     runs-on: ubuntu-latest
     steps:
-      # Print Input Values
-      - name: "Print Input Values"
+      - name: Print input values
         run: |
           echo "Org: ${{ github.event.inputs.org }}"
           echo "Package ID: ${{ github.event.inputs.packageId }}"
           echo "Initiator: ${{ github.actor }}"
 
+  deploy-package:
+    runs-on: ubuntu-latest
+    steps:
       # Set SFDX Auth URL
       - name: "Set SFDX Auth URL"
         id: auth-url
