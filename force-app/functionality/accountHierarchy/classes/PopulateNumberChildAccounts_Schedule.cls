@@ -19,7 +19,7 @@ public without sharing class PopulateNumberChildAccounts_Schedule implements Sch
 			accountIds.add( accountHistory.AccountId );
 		}
 
-		//get parrent Ids
+		//get parent Ids
 		Set<Id> parentIds = new Set<Id>();
 		for ( Account acc:[SELECT ParentId FROM Account WHERE Id in:accountIds AND ParentId != null] ) {
 			parentIds.add( acc.ParentId );
@@ -34,8 +34,8 @@ public without sharing class PopulateNumberChildAccounts_Schedule implements Sch
 
 		//update numberOfChildAccounts
 		List<Account> accountsToUpdate = [SELECT Id, TAG_NumberOfChildAccounts__c FROM Account WHERE Id in:numberOfChildAccountsByParentId.keySet()];
-		for ( Account parrentAcc:accountsToUpdate ) {
-			parrentAcc.TAG_NumberOfChildAccounts__c = numberOfChildAccountsByParentId.get( parrentAcc.Id );
+		for ( Account parentAcc:accountsToUpdate ) {
+			parentAcc.TAG_NumberOfChildAccounts__c = numberOfChildAccountsByParentId.get( parentAcc.Id );
 		}
 
 		update accountsToUpdate;
