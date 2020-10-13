@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Mitt_NAV_kontor</fullName>
+    <fullName>Mitt_NAV_kontor_Alle</fullName>
     <columns>NAME</columns>
     <columns>CRM_Account__c</columns>
     <columns>CRM_SubTheme__c</columns>
@@ -15,12 +15,7 @@
     <filters>
         <field>CRM_Status__c</field>
         <operation>equals</operation>
-        <value>Ny</value>
+        <value>Ny,Fullført</value>
     </filters>
-    <filters>
-        <field>CRM_IsOwnerNAVUnitQueue__c</field>
-        <operation>equals</operation>
-        <value>1</value>
-    </filters>
-    <label>Mitt NAV-kontor (Nye)</label>
+    <label>Mitt NAV-kontor (Alle)</label>
 </ListView>

@@ -169,6 +169,8 @@
         <fields>Description__c</fields>
         <fields>AktivitetStatuskode__c</fields>
         <relatedList>ArenaActivity__c.Account__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>NewEvent</excludeButtons>
