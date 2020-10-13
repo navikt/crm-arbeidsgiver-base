@@ -14,13 +14,8 @@
     </filters>
     <filters>
         <field>CRM_Status__c</field>
-        <operation>equals</operation>
-        <value>Ny</value>
+        <operation>notEqual</operation>
+        <value>Fullført</value>
     </filters>
-    <filters>
-        <field>CRM_IsOwnerNAVUnitQueue__c</field>
-        <operation>equals</operation>
-        <value>1</value>
-    </filters>
-    <label>Mitt NAV-kontor (Nye)</label>
+    <label>Mitt NAV-kontor</label>
 </ListView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_NavUnit__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Nav unit related to company based on Temporary Layoff routing in access control</description>
+    <externalId>false</externalId>
+    <label>NAV Unit</label>
+    <referenceTo>NavUnit__c</referenceTo>
+    <relationshipLabel>Virksomheter</relationshipLabel>
+    <relationshipName>Virksomheter</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>
