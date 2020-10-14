@@ -5,6 +5,11 @@
         <name>NavTasks</name>
     </customPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>NavTask__c.CRM_AccountRelated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>NavTask__c.CRM_Account__c</field>
         <readable>true</readable>
