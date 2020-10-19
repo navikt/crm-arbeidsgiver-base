@@ -4,15 +4,15 @@
             "path": "force-app",
             "default": true,
             "package": "crm-arbeidsgiver-base",
-            "versionNumber": "1.11.0.NEXT",
+            "versionNumber": "1.20.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
-                    "versionNumber": "0.34.0.LATEST"
+                    "versionNumber": "0.40.0.LATEST"
                 },
                 {
                     "package": "crm-platform-access-control",
-                    "versionNumber": "0.26.0.LATEST"
+                    "versionNumber": "0.29.0.LATEST"
                 }
             ]
         }
