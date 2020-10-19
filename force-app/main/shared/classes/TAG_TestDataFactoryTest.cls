@@ -87,14 +87,14 @@ private without sharing class TAG_TestDataFactoryTest {
 	@IsTest
 	private static void testCreateUserWithPermset() {
 
-		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = : 'Arbeidsgiver_Base_Group' LIMIT 1];
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = : 'Arbeidsgiver_base' LIMIT 1];
 		System.assertNotEquals( null, ps, 'permset should exist' );
 
 		List<User> u = [SELECT Id FROM User WHERE LastName = 'LAST NAME'];
 		System.assertEquals( 0, u.size(), 'function should NOT have created one user' );
 
 		Test.StartTest();
-		TAG_TestDataFactory.createUserWithPermset( 'LAST NAME', 'Arbeidsgiver_Base_Group' );
+		TAG_TestDataFactory.createUserWithPermset( 'LAST NAME', 'Arbeidsgiver_base' );
 		Test.StopTest();
 
 		u = [SELECT Id FROM User WHERE LastName = 'LAST NAME'];
@@ -102,6 +102,29 @@ private without sharing class TAG_TestDataFactoryTest {
 
 		List<PermissionSetAssignment> permsetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = : u[0].Id AND PermissionSetId = : ps.Id];
 		System.assertEquals( 1, permsetAssignments.size(), 'one assignments added' );
+	}
+
+	@IsTest
+	private static void testCreateUserWithPermset_multiple() {
+
+		List<String> permsetNames = new List<String> { 'Arbeidsgiver_arenaActivity', 'Arbeidsgiver_base', 'Arbeidsgiver_contract', 'Arbeidsgiver_opportunity', 'Arbeidsgiver_temporaryLayoffs' };
+
+		List<PermissionSet> permsets = [SELECT Id FROM PermissionSet WHERE Name IN : permsetNames];
+		Set<Id> permsetIds = new Map<Id, PermissionSet> ( permsets ).keySet();
+		System.assertEquals( 5, permsets.size(), 'permsets should exist' );
+
+		List<User> u = [SELECT Id FROM User WHERE LastName = 'LAST NAME'];
+		System.assertEquals( 0, u.size(), 'function should NOT have created one user' );
+
+		Test.StartTest();
+		TAG_TestDataFactory.createUserWithPermset( 'LAST NAME', permsetNames );
+		Test.StopTest();
+
+		u = [SELECT Id FROM User WHERE LastName = 'LAST NAME'];
+		System.assertEquals( 1, u.size(), 'function should have created one user' );
+
+		List<PermissionSetAssignment> permsetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = : u[0].Id AND PermissionSetId IN : permsetIds];
+		System.assertEquals( 5, permsetAssignments.size(), 'five assignments added' );
 	}
 
 	@IsTest

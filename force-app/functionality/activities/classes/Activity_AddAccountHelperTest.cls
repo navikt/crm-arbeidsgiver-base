@@ -3,7 +3,7 @@ private without sharing class Activity_AddAccountHelperTest {
 
 	@testSetup
 	private static void setup() {
-		TAG_TestDataFactory.createUserWithPermset( 'ARBEIDSGIVER USER', 'Arbeidsgiver_Base_Group' );
+		TAG_TestDataFactory.createUserWithPermset( 'ARBEIDSGIVER USER', new List<String> { 'Arbeidsgiver_arenaActivity', 'Arbeidsgiver_base', 'Arbeidsgiver_contract', 'Arbeidsgiver_opportunity', 'Arbeidsgiver_temporaryLayoffs' } );
 	}
 
 	@isTest
