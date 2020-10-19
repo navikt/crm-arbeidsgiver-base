@@ -79,6 +79,18 @@ public without sharing class TAG_TestDataFactory {
 		return user;
 	}
 
+	public static void createUserWithPermset( String lastName, List<String> permsetNames ) {
+
+		User u = TAG_TestDataFactory.createStandardUser( lastName );
+
+		List<PermissionSet> permsets = [SELECT Id FROM PermissionSet WHERE Name IN : permsetNames];
+		List<PermissionSetAssignment> assignemnts = new List<PermissionSetAssignment>();
+		for ( PermissionSet ps : permsets ) {
+			assignemnts.add( new PermissionSetAssignment( AssigneeId = U.id, PermissionSetId = ps.Id ) );
+		}
+		insert assignemnts;
+	}
+
 	public static void createUserWithPermset( String lastName, String permset ) {
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = : permset LIMIT 1];
 		User u = TAG_TestDataFactory.createStandardUser( lastName );
