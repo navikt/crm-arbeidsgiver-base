@@ -44,6 +44,7 @@ jobs:
           rm -f ./INTEGRATION_SANDBOX_SFDX_URL.txt
 
       # Create package version
+      # TODO throw error on below 75% code coverage
       - name: "Create package version"
         id: package-version-create
         run: |
@@ -81,7 +82,7 @@ jobs:
 
       # set release variables
       - name: "Set release fields"
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
         id: release-fields
         run: |
           versionNumber=$(cat sfdx-project.json | jq '.packageDirectories[0].versionNumber' -r | sed 's/.\{5\}$//')
@@ -104,7 +105,7 @@ jobs:
 
       # Generate changelog from commits
       - name: Generate changelog
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
         id: changelog
         uses: metcalfc/changelog-generator@v0.4.3
         with:
@@ -112,7 +113,7 @@ jobs:
 
       # create github release
       - name: "Create Release"
-        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
+        if: success() || (failure() && steps.package-version-create.outputs.isSuccess && steps.extract-data-package-version-create.outputs.isSuccess )
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -213,7 +214,7 @@ jobs:
     name: Check valid CODECOV_TOKEN
     runs-on: ubuntu-latest
     steps:
-      - name: check CODECOV_TOKEN secret 
+      - name: check CODECOV_TOKEN secret
         id: checkSecret
         run: |
           echo "Enable: ${{ env.SECRET != '' }}"
@@ -232,7 +233,7 @@ jobs:
     if: ${{ needs.check-code-coverage-secret.outputs.shouldContinue == 'true' }}
     runs-on: ubuntu-latest
     steps:
-       # Install SFDX
+      # Install SFDX
       - name: Install SFDX
         uses: sfdx-actions/setup-sfdx@v1
 
@@ -250,7 +251,7 @@ jobs:
       # Create scratch org
       - name: "Create scratch org"
         run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1 --json
-   
+
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: "Install sfpowerkit plugin"
         run: "echo y | sfdx plugins:install sfpowerkit"
@@ -272,6 +273,13 @@ jobs:
       # Deploy source to scratch org
       - name: "Push source to scratch org"
         run: "sfdx force:source:push"
+
+      # Sleep for 1 minute while permset groups are updating
+      # TODO replace with soql checker
+      - name: Sleep for 1 minute while permset groups are updating
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "1m"
 
       # Get all test classes from current repo
       - name: Get all test classes from currentrepo
