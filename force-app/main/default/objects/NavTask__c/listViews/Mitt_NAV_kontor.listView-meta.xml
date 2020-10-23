@@ -6,6 +6,7 @@
     <columns>CRM_SubTheme__c</columns>
     <columns>CREATED_DATE</columns>
     <columns>CRM_DueDate__c</columns>
+    <columns>CRM_Urgent__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>CRM_IsMyNavUnit__c</field>
