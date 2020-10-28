@@ -53,7 +53,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CustomOpportunity__c.Position_in_Rekrutteringsbistand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CustomOpportunity__c.Profession__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.Result__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

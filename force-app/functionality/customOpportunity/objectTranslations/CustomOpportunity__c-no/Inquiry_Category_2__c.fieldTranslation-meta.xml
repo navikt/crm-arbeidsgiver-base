@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Hva gjelder henvendelsen --></help>
+    <label>Henvendelseskategori</label>
+    <name>Inquiry_Category_2__c</name>
+    <picklistValues>
+        <masterLabel>Forebygge sykefravær</masterLabel>
+        <translation><!-- Forebygge sykefravær --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Skal ansette</masterLabel>
+        <translation><!-- Skal ansette --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tiltak</masterLabel>
+        <translation><!-- Tiltak --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

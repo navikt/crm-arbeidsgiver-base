@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
-    <active>false</active>
+    <active>true</active>
     <entityName>CustomOpportunity__c</entityName>
     <fieldName>InclusionStage__c</fieldName>
     <masterLabel>Opportunity (Inclusion)</masterLabel>
     <pathAssistantSteps>
-        <info>&lt;p&gt;&lt;b style=&quot;font-size: 13px;&quot;&gt;&lt;u&gt;Ved å fullføre dette steget, setter du deg selv som eier av denne muligheten (med mindre en eier er allerede satt).&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;</info>
+        <info>&lt;p&gt;Dette steget betyr at ansvarlig (den som står som eier) for muligheten er i kontakt med arbeidsgiver for å avdekke behov&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Husk fokus på inkludering,&lt;/b&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/Nyhet%20Ny-veileder-for-inkluderingskompetanse-i-NAV.aspx&quot; target=&quot;_blank&quot;&gt;&lt;b&gt; få tips til å snu rekrutteringsoppdrag til inkluderingsoppdrag.&lt;/b&gt;&lt;/a&gt;&lt;/p&gt;</info>
+        <picklistValueName>Avklaring</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Result__c</fieldNames>
+        <info>&lt;ol&gt;&lt;li&gt;Arbeidsgiver har fått ansatt og har ikke behov for ytterligre kandidater nå&lt;/li&gt;&lt;li&gt;Ønsket ikke videre bistand fra NAV&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Avsluttet</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Result__c</fieldNames>
+        <info>&lt;p&gt;Oppdater resultat og når du har avklart behovet, kan stillingen registreres i rekrutteringsbistand.&lt;/p&gt;</info>
+        <picklistValueName>Ferdig Avklart</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Result__c</fieldNames>
+        <info>&lt;p&gt;Dersom du ønsker å ta ansvar for denne muligheten, registrerer du deg som eier av denne.&lt;a href=&quot;https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; target=&quot;_blank&quot;&gt; Se hvordan&lt;/a&gt;&lt;/p&gt;</info>
         <picklistValueName>Ny henvendelse</picklistValueName>
     </pathAssistantSteps>
     <recordTypeName>Inclusion</recordTypeName>

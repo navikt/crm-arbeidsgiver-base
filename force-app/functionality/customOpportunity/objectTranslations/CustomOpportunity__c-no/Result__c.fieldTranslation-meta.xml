@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Hva var resultatet av henvendelsen --></help>
+    <label><!-- Result --></label>
+    <name>Result__c</name>
+    <picklistValues>
+        <masterLabel>Ikke aktuelt</masterLabel>
+        <translation><!-- Ikke aktuelt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NAV skal bistå</masterLabel>
+        <translation><!-- NAV skal bistå --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Skal ansette selv</masterLabel>
+        <translation><!-- Skal ansette selv --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

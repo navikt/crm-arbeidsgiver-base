@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Ny Henvendelse: Ny henvendelse fra web, vi har ikke besvart enda
-Aktiv: Muligheten er aktiv og åpen for kandidater eller det jobbes med å redusere sykefravær
-Avsluttet: Muligheten er avsluttet og ikke lenger aktiv --></help>
     <label>Steg</label>
     <name>InclusionStage__c</name>
     <picklistValues>
@@ -14,20 +11,12 @@ Avsluttet: Muligheten er avsluttet og ikke lenger aktiv --></help>
         <translation><!-- Ansvarlig tildelt --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Avklaring</masterLabel>
-        <translation><!-- Avklaring --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Avsluttet</masterLabel>
-        <translation><!-- Avsluttet --></translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>Evaluering</masterLabel>
         <translation><!-- Evaluering --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Ferdig Avklart</masterLabel>
-        <translation><!-- Ferdig Avklart --></translation>
+        <masterLabel>Ferdig</masterLabel>
+        <translation><!-- Ferdig --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Finn kandidat</masterLabel>
@@ -42,6 +31,10 @@ Avsluttet: Muligheten er avsluttet og ikke lenger aktiv --></help>
         <translation><!-- Kandidat presentert --></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Klar</masterLabel>
+        <translation><!-- Klar --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Lukket</masterLabel>
         <translation><!-- Lukket --></translation>
     </picklistValues>
@@ -52,6 +45,10 @@ Avsluttet: Muligheten er avsluttet og ikke lenger aktiv --></help>
     <picklistValues>
         <masterLabel>Plan</masterLabel>
         <translation><!-- Plan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Utforskes</masterLabel>
+        <translation><!-- Utforskes --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Virksomhet kontaktet</masterLabel>

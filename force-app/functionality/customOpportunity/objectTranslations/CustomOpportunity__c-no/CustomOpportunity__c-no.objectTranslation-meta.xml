@@ -42,8 +42,12 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Mulighet --></label>
-            <section>Mulighet</section>
+            <label><!-- Oversikt --></label>
+            <section>Oversikt</section>
+        </sections>
+        <sections>
+            <label><!-- Tilknytninger --></label>
+            <section>Tilknytninger</section>
         </sections>
     </layouts>
     <layouts>
@@ -98,6 +102,10 @@
     <validationRules>
         <errorMessage><!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger --></errorMessage>
         <name>No_person_information_added</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Du må legge in resultat --></errorMessage>
+        <name>Result_must_be_set</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Velg kilden muligheten kommer fra --></errorMessage>
