@@ -1964,15 +1964,23 @@
     <picklistValues>
         <picklist>Result__c</picklist>
         <values>
+            <fullName>Andre tiltak</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arbeidstrening</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direktemeldt stilling</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Ikke aktuelt</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>NAV skal bistå</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Skal ansette selv</fullName>
+            <fullName>Skal rekruttere selv</fullName>
             <default>false</default>
         </values>
     </picklistValues>

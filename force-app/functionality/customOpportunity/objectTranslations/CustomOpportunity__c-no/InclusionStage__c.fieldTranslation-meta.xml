@@ -11,12 +11,12 @@
         <translation><!-- Ansvarlig tildelt --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Evaluering</masterLabel>
-        <translation><!-- Evaluering --></translation>
+        <masterLabel>Avsluttet</masterLabel>
+        <translation><!-- Avsluttet --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Ferdig</masterLabel>
-        <translation><!-- Ferdig --></translation>
+        <masterLabel>Evaluering</masterLabel>
+        <translation><!-- Evaluering --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Finn kandidat</masterLabel>
@@ -29,10 +29,6 @@
     <picklistValues>
         <masterLabel>Kandidat presentert</masterLabel>
         <translation><!-- Kandidat presentert --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Klar</masterLabel>
-        <translation><!-- Klar --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Lukket</masterLabel>
@@ -53,5 +49,9 @@
     <picklistValues>
         <masterLabel>Virksomhet kontaktet</masterLabel>
         <translation><!-- Virksomhet kontaktet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Åpen for kandidater</masterLabel>
+        <translation><!-- Åpen for kandidater --></translation>
     </picklistValues>
 </CustomFieldTranslation>
