@@ -25,6 +25,17 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentInstanceProperties>
+                <name>hideUpdateButton</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>variant</name>
+                <value>linear</value>
+            </componentInstanceProperties>
+            <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
         <componentInstances>

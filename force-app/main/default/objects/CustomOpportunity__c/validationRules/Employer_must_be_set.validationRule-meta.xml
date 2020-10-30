@@ -3,8 +3,8 @@
     <fullName>Employer_must_be_set</fullName>
     <active>true</active>
     <description>Employer must be set before Stage is set to Employer contacted</description>
-    <errorConditionFormula>OR( TEXT( InclusionStage__c ) == &#39;Avklaring&#39;,
-    TEXT( InclusionStage__c ) == &#39;Avsluttet&#39; )
+    <errorConditionFormula>OR( TEXT( InclusionStage__c ) == &apos;Avklaring&apos;,
+    TEXT( InclusionStage__c ) == &apos;Avsluttet&apos; )
  
 &amp;&amp; 
 

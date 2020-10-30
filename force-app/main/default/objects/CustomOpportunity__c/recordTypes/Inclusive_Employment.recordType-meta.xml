@@ -93,6 +93,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Inquiry_Category_2__c</picklist>
+        <values>
+            <fullName>Forebygge sykefravær</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skal ansette</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tiltak</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Municipality__c</picklist>
         <values>
             <fullName>Agdenes</fullName>
@@ -1931,6 +1946,29 @@
         </values>
         <values>
             <fullName>Varierte arbeidsstillinger</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Result__c</picklist>
+        <values>
+            <fullName>Andre tiltak</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arbeidstrening</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direktemeldt stilling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ikke aktuelt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skal rekruttere selv</fullName>
             <default>false</default>
         </values>
     </picklistValues>
