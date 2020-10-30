@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Result__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Hva var resultatet av henvendelsen</inlineHelpText>
+    <label>Result</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>InclusionStage__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Direktemeldt stilling</fullName>
+                <default>false</default>
+                <label>Direktemeldt stilling</label>
+            </value>
+            <value>
+                <fullName>Arbeidstrening</fullName>
+                <default>false</default>
+                <label>Arbeidstrening</label>
+            </value>
+            <value>
+                <fullName>Andre tiltak</fullName>
+                <default>false</default>
+                <label>Andre tiltak</label>
+            </value>
+            <value>
+                <fullName>Skal rekruttere selv</fullName>
+                <default>false</default>
+                <label>Skal rekruttere selv</label>
+            </value>
+            <value>
+                <fullName>Ikke aktuelt</fullName>
+                <default>false</default>
+                <label>Ikke aktuelt</label>
+            </value>
+            <value>
+                <fullName>NAV skal bistå</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>NAV skal bistå</label>
+            </value>
+            <value>
+                <fullName>Skal ansette selv</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Skal ansette selv</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Ferdig Avklart</controllingFieldValue>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Direktemeldt stilling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ferdig Avklart</controllingFieldValue>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Arbeidstrening</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ferdig Avklart</controllingFieldValue>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Andre tiltak</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ferdig Avklart</controllingFieldValue>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Skal rekruttere selv</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ferdig Avklart</controllingFieldValue>
+            <controllingFieldValue>Avsluttet</controllingFieldValue>
+            <valueName>Ikke aktuelt</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>
