@@ -11,6 +11,7 @@ private class NavUnitAccountRoutingServiceTest {
 	@IsTest
 	private static void testGetNavUnits() {
 		myTriggers.disable( TAG_AccountTypeHandler.class );
+		myTriggers.disable( PopulateNavUnitOnAccountHandler.class );
 		List<Account> testAccounts = TAG_TestDataFactory.createAccounts( 20 );
 		for ( Integer i = 0; i < 20; i++ ) {
 			Account acc = testAccounts[i];
