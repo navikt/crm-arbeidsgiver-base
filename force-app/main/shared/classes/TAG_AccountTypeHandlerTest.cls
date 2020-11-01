@@ -8,6 +8,7 @@ private class TAG_AccountTypeHandlerTest {
 
 	@IsTest
 	private static void insertAccounts() {
+		myTriggers.disable( PopulateNavUnitOnAccountHandler.class );
 		User integrationUser = [SELECT Id FROM User WHERE Username = 'accountTypeHandler@nav.test'];
 		System.runAs( integrationUser )
 		{
@@ -41,8 +42,8 @@ private class TAG_AccountTypeHandlerTest {
 
 	@IsTest
 	private static void updateAccounts() {
-
-		User integrationUser = [SELECT Id FROM User WHERE Username = 'accountTypeHandler@nav.test'];
+		myTriggers.disable( PopulateNavUnitOnAccountHandler.class );
+		User integrationUser =   [SELECT Id FROM User WHERE Username = 'accountTypeHandler@nav.test'];
 		System.runAs( integrationUser )
 		{
 			List<Account> accounts = TAG_TestDataFactory.createAccounts( 1000 );
