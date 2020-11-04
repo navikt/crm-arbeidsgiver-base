@@ -159,7 +159,14 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Courses</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Theme__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RegistrationFromDateTime__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RegistrationToDateTime__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RegistrationPlaceName__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
