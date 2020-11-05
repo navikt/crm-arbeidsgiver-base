@@ -199,6 +199,7 @@
     <relatedLists>
         <fields>CourseParticipant__c</fields>
         <fields>Status__c</fields>
+        <fields>Attendance__c</fields>
         <relatedList>CourseRegistration__c.Course__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
