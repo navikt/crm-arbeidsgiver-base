@@ -117,7 +117,7 @@ public with sharing class Activity_AddAccountHelper {
 				break;
 			}
 
-			String parentSObjectType = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( firstWhatId );
+			String parentSObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId( firstWhatId );
 			mapOfSObjectPrefix.put( sObjPrefix, parentSObjectType );
 		}
 
@@ -194,7 +194,7 @@ public with sharing class Activity_AddAccountHelper {
 
 		List<SObject> sObjectsToUpdate = new List<SObject>();
 
-		String type = TAG_ActivityTimelineHelper.getSOjectTypeFromRecordId( originalActivities[0].Id );
+		String type = ActivityTimelineHelper.getSOjectTypeFromRecordId( originalActivities[0].Id );
 		if ( type == 'Task' ) {
 			for ( Task t : ( List<Task> ) originalActivities ) {
 				if ( isInsert ) {
