@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Overdue_Sign__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+TEXT(InclusionStage__c) =&quot;Ny Henvendelse&quot; &amp;&amp; TAG_Age__c  &gt;=  2,
+IMAGE(&quot;/resource/OrangeSquareUrgent&quot;,&quot;&quot;,15,15),&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Overdue Sign</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -123,6 +123,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Profession__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Inclusion_Owner__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
@@ -138,12 +143,32 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Response_Days__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Is_My_NAV_Office__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Age__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>TAG_Is_my_NAV_region__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Resolved_Date_Time__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Result__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -159,6 +184,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedBy</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Short_Description__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -193,12 +223,32 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>OwnerFullName__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_No_person_information__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Notes__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Inquiry_Category_2__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>CompanyContactedNumberOfHours__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Position_in_Rekrutteringsbistand__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
