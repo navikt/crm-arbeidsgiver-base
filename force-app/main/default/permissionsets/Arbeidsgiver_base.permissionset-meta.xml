@@ -441,31 +441,31 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_ActivityTimelineController</apexClass>
+        <apexClass>ActivityTimelineController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_ActivityTimelineControllerTest</apexClass>
+        <apexClass>ActivityTimelineControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_ActivityTimelineHelper</apexClass>
+        <apexClass>ActivityTimelineHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_ActivityTimelineHelperTest</apexClass>
+        <apexClass>ActivityTimelineHelperTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_ActivityTimelineModel</apexClass>
+        <apexClass>ActivityTimelineModel</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_ActivityTimelineModelList</apexClass>
+        <apexClass>ActivityTimelineModelList</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_ActivityTimelineModelTest</apexClass>
+        <apexClass>ActivityTimelineModelTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -566,11 +566,11 @@
     </customMetadataTypeAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
-        <name>TAG_ActivityTimelineChild__mdt</name>
+        <name>ActivityTimelineChild__mdt</name>
     </customMetadataTypeAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
-        <name>TAG_ActivityTimelineParent__mdt</name>
+        <name>ActivityTimelineParent__mdt</name>
     </customMetadataTypeAccesses>
     <customPermissions>
         <enabled>true</enabled>
