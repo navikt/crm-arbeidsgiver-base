@@ -206,7 +206,7 @@
         <fields>Date__c</fields>
         <fields>TAG_ActivityType__c</fields>
         <fields>ACTIVITY_SUBTYPE</fields>
-        <fields>TASK.STATUS</fields>
+        <fields>TAG_Status__c</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
         <fields>TASK.WHO_NAME</fields>
@@ -298,7 +298,6 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000001Voca</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
