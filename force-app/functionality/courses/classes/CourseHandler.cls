@@ -16,8 +16,8 @@ global with sharing class CourseHandler {
 			wrapper.RegistrationFromDateTime = course.RegistrationFromDateTime__c;
 			wrapper.RegistrationToDateTime = course.RegistrationToDateTime__c;
 			wrapper.RegistrationDeadline = course.RegistrationDeadline__c;
-			wrapper.Description = course.DescriptionFormatted__c;
-			wrapper.FrontPageDescription = course.DescriptionShort__c;
+			wrapper.FrontPageDescription = course.DescriptionFormatted__c;
+			wrapper.Description = course.DescriptionShort__c;
 			wrapper.ShowInActivityList = course.Active__c ? 1 : 0;
 
 			wrapper.configurable_custom = new CourseApiModel.Configurable_custom();
