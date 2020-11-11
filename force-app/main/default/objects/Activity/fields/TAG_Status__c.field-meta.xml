@@ -5,8 +5,12 @@
     <formula>IF(
 ISBLANK(TEXT(Status)),
 IF( ActivityDate &gt;= TODAY() , &quot;Åpen&quot;, &quot;Fullført&quot;)
-, (TEXT(Status)))</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+, CASE((TEXT(Status)),
+&quot;Open&quot;, &quot;Åpen&quot;,
+&quot;Completed&quot;, &quot;Fullført&quot;,
+&quot;&quot;
+)
+)</formula>
     <label>Status</label>
     <required>false</required>
     <type>Text</type>
