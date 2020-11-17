@@ -37,6 +37,34 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ActivityTimelineController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ActivityTimelineControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ActivityTimelineHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ActivityTimelineHelperTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ActivityTimelineModel</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ActivityTimelineModelList</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ActivityTimelineModelTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Activity_AddAccount</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -441,34 +469,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ActivityTimelineController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ActivityTimelineControllerTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ActivityTimelineHelper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ActivityTimelineHelperTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ActivityTimelineModel</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ActivityTimelineModelList</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ActivityTimelineModelTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TAG_CustomOpportunityRoutingHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -562,15 +562,15 @@
     </classAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
-        <name>Activity_Account_Map__mdt</name>
-    </customMetadataTypeAccesses>
-    <customMetadataTypeAccesses>
-        <enabled>true</enabled>
         <name>ActivityTimelineChild__mdt</name>
     </customMetadataTypeAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>ActivityTimelineParent__mdt</name>
+    </customMetadataTypeAccesses>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>Activity_Account_Map__mdt</name>
     </customMetadataTypeAccesses>
     <customPermissions>
         <enabled>true</enabled>
@@ -858,6 +858,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.TaskEvent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Event.Type</field>
         <readable>true</readable>
@@ -935,6 +940,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.TAG_service__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.TaskEvent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
