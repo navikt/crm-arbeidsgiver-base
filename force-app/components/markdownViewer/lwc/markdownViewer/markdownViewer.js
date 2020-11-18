@@ -5,57 +5,53 @@ import getData from '@salesforce/apex/MarkdownViewerController.getData';
 
 export default class MarkdownViewer extends LightningElement {
 
-	isRendered = false;
+    isRendered = false;
 
-	@api recordId;
-	@api objectApiName;
-	@api fieldName;
+    @api recordId;
+    @api objectApiName;
+    @api fieldName;
 
-	@track empty = false;
+    @track empty = false;
 
-	@track body;
+    @track body;
 
+    renderedCallback() {
+        console.log(this.objectApiName);
+        if (this.isRendered) {
+            return;
+        }
 
-	// @wire(getActivityTimelineData, { recordId: '$recordId', amountOfMonths: '$amountOfMonths', timestamp: '$timestamp' })
-	// deWire(result) {
+        this.isRendered = true;
 
-	renderedCallback() {
-		console.log(this.objectApiName);
-		if (this.isRendered) {
-			return;
-		}
+        loadScript(this, markedJs).then(() => {
+            this.renderMarkdown();
+        });
 
-		this.isRendered = true;
+    }
 
-		loadScript(this, markedJs).then(() => {
-			this.renderMarkdown();
-		});
-
-	}
-
-	@wire(getData, {
-		recordId: '$recordId',
-		objectApiName: '$objectApiName',
-		fieldName: '$fieldName'
-	})
-	deWire(result) {
-		this.body = result.data;
-		this.renderMarkdown();
-	}
+    @wire(getData, {
+        recordId: '$recordId',
+        objectApiName: '$objectApiName',
+        fieldName: '$fieldName'
+    })
+    deWire(result) {
+        this.body = result.data;
+        this.renderMarkdown();
+    }
 
 
-	renderMarkdown() {
-		try {
-			if (this.body === null) {
-				this.empty = true;
-			}
-			let formattedData = marked(this.body);
-			var last = formattedData.substr(formattedData.length - 5);
-			if (!last.includes('</p>')) {
-				formattedData += '<p></p>';
-			}
-			this.template.querySelector('div').innerHTML = formattedData;
-		}
-		catch (error) { }
-	}
+    renderMarkdown() {
+        try {
+            if (this.body === null) {
+                this.empty = true;
+            }
+            let formattedData = marked(this.body);
+            var last = formattedData.substr(formattedData.length - 5);
+            if (!last.includes('</p>')) {
+                formattedData += '<p></p>';
+            }
+            this.template.querySelector('div').innerHTML = formattedData;
+        }
+        catch (error) { }
+    }
 }
