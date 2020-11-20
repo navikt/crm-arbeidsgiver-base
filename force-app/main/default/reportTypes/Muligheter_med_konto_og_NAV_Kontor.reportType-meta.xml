@@ -168,11 +168,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Result__c</field>
-            <table>CustomOpportunity__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>JsonPayload__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
