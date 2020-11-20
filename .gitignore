@@ -8,6 +8,8 @@
 !**/unpackagable/objects/*
 # NOTE!! USE **/ before
 
+# lwc config
+**/jsconfig.json
 
 # standard fields not needed in source control
 # ----------------------------------------------------------------------------------------
