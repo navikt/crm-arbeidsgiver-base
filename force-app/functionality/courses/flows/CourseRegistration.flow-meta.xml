@@ -41,7 +41,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -83,7 +83,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -167,7 +167,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -181,6 +181,29 @@
                 <elementReference>myVariable_current.Course__c</elementReference>
             </value>
         </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>flow</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>flowSelection</name>
+            <value>
+                <stringValue>Update waitinglist</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_7_A1</name>
+        <label>Set next in line to påmeldt</label>
+        <locationX>700</locationX>
+        <locationY>200</locationY>
+        <actionName>Update_waitinglist</actionName>
+        <actionType>flow</actionType>
+        <connector>
+            <targetReference>myDecision8</targetReference>
+        </connector>
     </actionCalls>
     <decisions>
         <processMetadataValues>
@@ -210,7 +233,35 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>New registration record</label>
+            <label>Status is set to Påmeldt</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision11</name>
+        <label>myDecision11</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_12</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_12</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_12_A1</targetReference>
+            </connector>
+            <label>Status is changed from Venteliste</label>
         </rules>
     </decisions>
     <decisions>
@@ -241,7 +292,7 @@
             <connector>
                 <targetReference>myRule_4_A1</targetReference>
             </connector>
-            <label>Changed status Avmeldt</label>
+            <label>Status is changed from Påmeldt</label>
         </rules>
     </decisions>
     <decisions>
@@ -256,7 +307,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision9</targetReference>
+            <targetReference>myDecision8</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -272,7 +323,7 @@
             <connector>
                 <targetReference>myRule_7_A1</targetReference>
             </connector>
-            <label>Changed status Venteliste</label>
+            <label>Status is set to Avmeldt</label>
         </rules>
     </decisions>
     <decisions>
@@ -282,25 +333,28 @@
                 <numberValue>3.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision9</name>
-        <label>myDecision9</label>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision11</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_10</name>
+            <name>myRule_9</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_10</leftValueReference>
+                <leftValueReference>formula_myRule_9</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_10_A1</targetReference>
+                <targetReference>myRule_9_A1</targetReference>
             </connector>
-            <label>Changed from Påmeldt</label>
+            <label>Status is set to Venteliste</label>
         </rules>
     </decisions>
     <description>Counts number of participants in course and sends email to confirm registration</description>
@@ -308,10 +362,46 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c + 1</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_10_myRule_9_A1_4002424113</name>
+        <dataType>Number</dataType>
+        <expression>{!myVariable_current.Course__r.Waitinglist__c} + 1</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[CourseRegistration__c].Course__r.Waitinglist__c - 1</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_13_myRule_12_A1_1044891406</name>
+        <dataType>Number</dataType>
+        <expression>{!myVariable_current.Course__r.Waitinglist__c} - 1</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_6147145924</name>
+        <dataType>Number</dataType>
+        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_2930821168</name>
+        <name>formula_5_myRule_4_A1_6920920894</name>
         <dataType>Number</dataType>
         <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} - 1</expression>
         <scale>18</scale>
@@ -320,48 +410,29 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_2_myRule_1_A1_9782295856</name>
-        <dataType>Number</dataType>
-        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
-        <scale>18</scale>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_5_myRule_4_A1_3584497134</name>
-        <dataType>Number</dataType>
-        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
-        <scale>18</scale>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>[CourseRegistration__c].Course__c.NumberOfParticipants__c + 1</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_8_myRule_7_A1_4107632392</name>
-        <dataType>Number</dataType>
-        <expression>{!myVariable_current.Course__r.NumberOfParticipants__c} + 1</expression>
-        <scale>18</scale>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>AND(ISNEW(),ISPICKVAL([CourseRegistration__c].Status__c,&quot;Påmeldt&quot;))</stringValue>
+                <stringValue>OR(
+AND(ISNEW(),ISPICKVAL([CourseRegistration__c].Status__c,&quot;Påmeldt&quot;) ),
+AND(ISCHANGED( [CourseRegistration__c].Status__c),ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Påmeldt&quot;))
+)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISNEW(),ISPICKVAL({!myVariable_current.Status__c},&quot;Påmeldt&quot;))</expression>
+        <expression>OR(
+AND(ISNEW(),ISPICKVAL({!myVariable_current.Status__c},&quot;Påmeldt&quot;) ),
+AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Påmeldt&quot;))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(ISCHANGED( [CourseRegistration__c].Status__c ), ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Venteliste&quot;))</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_12</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISCHANGED( {!myVariable_current.Status__c} ), ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -370,7 +441,7 @@
                 <stringValue>AND(ISCHANGED( [CourseRegistration__c].Status__c ), ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Påmeldt&quot;))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_10</name>
+        <name>formula_myRule_4</name>
         <dataType>Boolean</dataType>
         <expression>AND(ISCHANGED( {!myVariable_current.Status__c} ), ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Påmeldt&quot;))</expression>
     </formulas>
@@ -378,33 +449,32 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(
-ISCHANGED( [CourseRegistration__c].Status__c),
-ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Avmeldt&quot;), ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Påmeldt&quot;))</stringValue>
+                <stringValue>AND(ISCHANGED( [CourseRegistration__c].Status__c),ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Avmeldt&quot;))
+</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_4</name>
+        <name>formula_myRule_7</name>
         <dataType>Boolean</dataType>
-        <expression>AND(
-ISCHANGED( {!myVariable_current.Status__c}),
-ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Avmeldt&quot;), ISPICKVAL({!myVariable_current.Status__c} ,&quot;Påmeldt&quot;))</expression>
+        <expression>AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Avmeldt&quot;))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(
-ISCHANGED( [CourseRegistration__c].Status__c),
-ISPICKVAL(PRIORVALUE([CourseRegistration__c].Status__c ),&quot;Venteliste&quot;), ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Påmeldt&quot;))</stringValue>
+                <stringValue>OR(
+AND(ISNEW(),ISPICKVAL([CourseRegistration__c].Status__c,&quot;Venteliste&quot;) ),
+AND(ISCHANGED( [CourseRegistration__c].Status__c),ISPICKVAL([CourseRegistration__c].Status__c ,&quot;Venteliste&quot;))
+)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_7</name>
+        <name>formula_myRule_9</name>
         <dataType>Boolean</dataType>
-        <expression>AND(
-ISCHANGED( {!myVariable_current.Status__c}),
-ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), ISPICKVAL({!myVariable_current.Status__c} ,&quot;Påmeldt&quot;))</expression>
+        <expression>OR(
+AND(ISNEW(),ISPICKVAL({!myVariable_current.Status__c},&quot;Venteliste&quot;) ),
+AND(ISCHANGED( {!myVariable_current.Status__c}),ISPICKVAL({!myVariable_current.Status__c} ,&quot;Venteliste&quot;))
+)</expression>
     </formulas>
-    <interviewLabel>Course_Registration-4_InterviewLabel</interviewLabel>
+    <interviewLabel>CourseRegistration-12_InterviewLabel</interviewLabel>
     <label>Course Registration + Email Ver4</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -456,9 +526,9 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_10_A1</name>
-        <label>-1 registered</label>
-        <locationX>1000</locationX>
+        <name>myRule_12_A1</name>
+        <label>-1 waitinglist</label>
+        <locationX>1200</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>
@@ -489,13 +559,13 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Number of participants</stringValue>
+                    <stringValue>Waitinglist</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -504,9 +574,9 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>NumberOfParticipants__c</field>
+            <field>Waitinglist__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_2930821168</elementReference>
+                <elementReference>formula_13_myRule_12_A1_1044891406</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -578,7 +648,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -589,7 +659,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_9782295856</elementReference>
+                <elementReference>formula_2_myRule_1_A1_6147145924</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -620,9 +690,12 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_4_A1</name>
-        <label>+1 registered</label>
+        <label>-1 registered</label>
         <locationX>400</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision6</targetReference>
+        </connector>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -658,7 +731,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -669,7 +742,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             </processMetadataValues>
             <field>NumberOfParticipants__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_3584497134</elementReference>
+                <elementReference>formula_5_myRule_4_A1_6920920894</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
@@ -699,10 +772,13 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_7_A1</name>
-        <label>+1 registered</label>
-        <locationX>700</locationX>
+        <name>myRule_9_A1</name>
+        <label>+1 waitinglist</label>
+        <locationX>900</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision11</targetReference>
+        </connector>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -732,13 +808,13 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Number of participants</stringValue>
+                    <stringValue>Waitinglist</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -747,9 +823,9 @@ ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ),&quot;Venteliste&quot;), 
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>NumberOfParticipants__c</field>
+            <field>Waitinglist__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_4107632392</elementReference>
+                <elementReference>formula_10_myRule_9_A1_4002424113</elementReference>
             </value>
         </inputAssignments>
         <object>Course__c</object>
