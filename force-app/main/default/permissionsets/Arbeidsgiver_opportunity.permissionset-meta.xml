@@ -128,21 +128,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CustomOpportunity__c.TAG_Overdue_Sign__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomOpportunity__c.TAG_Resolved_Date_Time__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomOpportunity__c.TAG_Response_Days__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomOpportunity__c.TAG_Short_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>

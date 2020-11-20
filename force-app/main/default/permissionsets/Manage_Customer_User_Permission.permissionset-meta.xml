@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Custom permission set to allow for language changes</description>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomOpportunity__c.TAG_Overdue_Sign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomOpportunity__c.TAG_Resolved_Date_Time__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomOpportunity__c.TAG_Response_Days__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Manage Customer User Permission</label>
     <objectPermissions>
