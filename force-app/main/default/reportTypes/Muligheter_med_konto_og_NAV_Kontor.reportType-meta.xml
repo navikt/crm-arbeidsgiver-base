@@ -4,7 +4,7 @@
     <category>accounts</category>
     <deployed>true</deployed>
     <description>Viser muligheter, virksomheten de tilhører og NAV kontoret de hører til.</description>
-    <label>Muligheter med konto og NAV Kontor</label>
+    <label>Muligheter med konto og NAV-Kontor</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
@@ -123,6 +123,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Profession__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Inclusion_Owner__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
@@ -138,7 +143,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Response_Days__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Is_My_NAV_Office__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Age__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -148,7 +163,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Resolved_Date_Time__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>JsonPayload__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Short_Description__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Result__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -178,6 +208,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>TAG_No_person_information__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IsMyInclusionOppty__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
@@ -193,6 +228,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>OwnerFullName__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Notes__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
@@ -204,6 +244,11 @@
         <columns>
             <checkedByDefault>true</checkedByDefault>
             <field>Name</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Position_in_Rekrutteringsbistand__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -253,6 +298,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Inquiry_Category_2__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>UnitNumber__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
@@ -271,6 +321,11 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.NAV_Region__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.TAG_Power_of_one__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
@@ -286,7 +341,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.Is_My_NAV_Office__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.TextName</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.TAG_NavUnit__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -332,6 +397,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account__c.BillingCity</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.Is_My_NAV_Region__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -690,6 +760,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>TAG_NavUnit__c.INT_UnitType__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NavUnit__c.IsMyNavRegion__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NavUnit__c.IsMyNavUnit__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NavUnit__c.MarketRegion__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <masterLabel>NAV Kontor</masterLabel>

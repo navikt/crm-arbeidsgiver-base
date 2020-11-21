@@ -94,6 +94,10 @@
                 <value>3</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>configId</name>
+                <value>TAG_NAV_default</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>headerIcon</name>
                 <value>custom:custom18</value>
             </componentInstanceProperties>
@@ -105,7 +109,7 @@
                 <name>headerTitleNorwegian</name>
                 <value>Aktiviteter</value>
             </componentInstanceProperties>
-            <componentName>tagActivityTimeline</componentName>
+            <componentName>activityTimeline</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>sidebar</name>

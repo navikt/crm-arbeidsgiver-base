@@ -131,6 +131,21 @@
             <field>TAG_Industry_Account__c</field>
             <table>TemporaryLayoff__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Main_Industry__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NAV_unit_Region__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Source__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
         <masterLabel>Temporary Layoffs</masterLabel>
     </sections>
     <sections>
@@ -142,6 +157,26 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account__c.AccountSource</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.Is_My_NAV_Office__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.Is_My_NAV_Region__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.TAG_NavUnit__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.NAV_Region__c</field>
             <table>TemporaryLayoff__c</table>
         </columns>
         <columns>
@@ -545,6 +580,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>NAV_Unit__c.INT_UnitType__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Unit__c.IsMyNavRegion__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Unit__c.IsMyNavUnit__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Unit__c.MarketRegion__c</field>
             <table>TemporaryLayoff__c</table>
         </columns>
         <columns>
