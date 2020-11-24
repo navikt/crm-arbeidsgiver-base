@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Dette Permission Settet er kun benyttet i en pilot periode for testing av nye felter på Account objektet</description>
+    <description>Dette Permission Settet er kun benyttet i en pilot periode for testing av nye felter på Account objektet og responstid på mulighet</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Alias__c</field>
@@ -19,6 +19,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.EditableWebsite__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_Overdue_Sign__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_Resolved_Date_Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_Response_Days__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
