@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Fullføre oppgaven</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;&lt;b&gt;Hvor loggfører arbeidsgivertelefonen fra samtalen med arbeidsgiver?&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Samtalenotat: her beskrives henvendelsen og hvilken informasjon som er gitt arbeidsgiver.&lt;/li&gt;&lt;li&gt;Oppgave til NAV-enhet: her beskrives hva NAV-enheten må gjøre for å følge opp arbeidsgiver videre.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hvordan loggføre du oppfølging med arbeidsgiver?&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Skriv en kort beskrivelse av oppfølgingen med arbeidsgiver i feltet «Resultat av oppfølging» og sett status til «Fullført».&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <endDate>2021-01-31</endDate>
+        <header>Fullføre oppgaven</header>
+        <isPublished>true</isPublished>
+        <masterLabel>Fullføre oppgaven</masterLabel>
+        <publishedDate>2020-11-26</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2020-12-01</startDate>
+        <targetPageKey1>NavTask__c</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <timesToDisplay>5</timesToDisplay>
+        <title>Hvordan fullfører du oppgaven?</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

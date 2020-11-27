@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Finn Innkomne oppgaver</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;Velg listevisningen øverst til venstre. Her kan du velge fem typer listevisninger:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&quot;&lt;b&gt;Mine Innkomne oppgaver&lt;/b&gt;&quot; (kun oppgaver du &quot;eier&quot;)&lt;/li&gt;&lt;li&gt;&quot;&lt;b&gt;Mitt NAV-kontor&lt;/b&gt;&quot; (per dags dato, kun oppgaver som ingen på NAV-kontoret ditt &quot;eier&quot;)&lt;/li&gt;&lt;li&gt;&quot;&lt;b&gt;Alle Innkomne oppgaver&lt;/b&gt;&quot;&lt;/li&gt;&lt;li&gt;&quot;&lt;b&gt;Mitt NAV-kontor forfalte&lt;/b&gt;&quot;&lt;/li&gt;&lt;li&gt;&quot;&lt;b&gt;NAV x&lt;/b&gt;&quot; (alle oppgaver til x NAV-kontor som ikke eies av en person)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Gjerne klikk på stiften for å sette din favoritt listevisning som standard listevisning.&lt;/p&gt;</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <endDate>2021-01-31</endDate>
+        <header>Innkomne oppgaver fra AG tlf</header>
+        <isPublished>true</isPublished>
+        <masterLabel>Finn Innkomne oppgaver</masterLabel>
+        <publishedDate>2020-11-27</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2020-12-01</startDate>
+        <targetPageKey1>NavTask__c</targetPageKey1>
+        <targetPageKey2>list</targetPageKey2>
+        <targetPageType>standard__objectPage</targetPageType>
+        <timesToDisplay>5</timesToDisplay>
+        <title>Finn Innkomne oppgaver</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
