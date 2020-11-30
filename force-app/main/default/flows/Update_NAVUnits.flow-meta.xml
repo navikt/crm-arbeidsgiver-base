@@ -1,5 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Assign_chosen_Fylke</name>
+        <label>Assign chosen Fylke</label>
+        <locationX>285</locationX>
+        <locationY>188</locationY>
+        <assignmentItems>
+            <assignToReference>chosenFylke</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fylkePicklist</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Nav_Units</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>Agder</name>
+        <choiceText>Agder</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Agder</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Innlandet</name>
+        <choiceText>Innlandet&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Innlandet</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>MoreogRomsdal</name>
+        <choiceText>Møre og Romsdal</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Møre og Romsdal</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Nordland</name>
+        <choiceText>Nordland&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Nordland</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Olso</name>
+        <choiceText>Olso</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Olso</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Oslo</name>
+        <choiceText>Oslo</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Oslo</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>OstViken</name>
+        <choiceText>Øst-Viken&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Øst-Viken</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Rogaland</name>
+        <choiceText>Rogaland</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Rogaland</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>TromsogFinnmark</name>
+        <choiceText>Troms og Finnmark</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Troms og Finnmark</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Trondelag</name>
+        <choiceText>Trøndelag</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Trøndelag</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>VestfoldogTelemark</name>
+        <choiceText>Vestfold og Telemark</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Vestfold og Telemark</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Vestland</name>
+        <choiceText>Vestland</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Vestland</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>VestViken</name>
+        <choiceText>Vest-Viken</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Vest-Viken</stringValue>
+        </value>
+    </choices>
     <formulas>
         <name>createQueueNameFromUnitNumber</name>
         <dataType>String</dataType>
@@ -10,8 +130,8 @@
     <loops>
         <name>Loop_Nav_Units_to_update</name>
         <label>Loop Nav Units to update</label>
-        <locationX>837</locationX>
-        <locationY>393</locationY>
+        <locationX>175</locationX>
+        <locationY>354</locationY>
         <collectionReference>colNavUnits</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -40,8 +160,8 @@
     <recordLookups>
         <name>Get_Nav_Units</name>
         <label>Get Nav Units</label>
-        <locationX>828</locationX>
-        <locationY>225</locationY>
+        <locationX>139</locationX>
+        <locationY>195</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Nav_Units_to_update</targetReference>
@@ -53,6 +173,13 @@
                 <stringValue>Møre og Romsdal</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>INT_Region__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>chosenFylke</elementReference>
+            </value>
+        </filters>
         <object>NavUnit__c</object>
         <outputReference>colNavUnits</outputReference>
         <queriedFields>Id</queriedFields>
@@ -62,8 +189,8 @@
     <recordLookups>
         <name>Get_Queue_with_same_Unit_Number</name>
         <label>Get Queue with same Unit Number</label>
-        <locationX>812</locationX>
-        <locationY>583</locationY>
+        <locationX>297</locationX>
+        <locationY>472</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Queue_Id_field_in_NAV_Unit</targetReference>
@@ -91,8 +218,8 @@
     <recordUpdates>
         <name>Update_Queue_Id_field_in_NAV_Unit</name>
         <label>Update Queue Id field in NAV Unit</label>
-        <locationX>616</locationX>
-        <locationY>565</locationY>
+        <locationX>34</locationX>
+        <locationY>470</locationY>
         <connector>
             <targetReference>Loop_Nav_Units_to_update</targetReference>
         </connector>
@@ -111,14 +238,54 @@
         </inputAssignments>
         <object>NavUnit__c</object>
     </recordUpdates>
-    <start>
-        <locationX>399</locationX>
-        <locationY>63</locationY>
+    <screens>
+        <name>Fylke</name>
+        <label>Fylke</label>
+        <locationX>413</locationX>
+        <locationY>145</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
         <connector>
-            <targetReference>Get_Nav_Units</targetReference>
+            <targetReference>Assign_chosen_Fylke</targetReference>
+        </connector>
+        <fields>
+            <name>fylkePicklist</name>
+            <choiceReferences>Agder</choiceReferences>
+            <choiceReferences>Innlandet</choiceReferences>
+            <choiceReferences>MoreogRomsdal</choiceReferences>
+            <choiceReferences>Nordland</choiceReferences>
+            <choiceReferences>Olso</choiceReferences>
+            <choiceReferences>Oslo</choiceReferences>
+            <choiceReferences>Rogaland</choiceReferences>
+            <choiceReferences>TromsogFinnmark</choiceReferences>
+            <choiceReferences>Trondelag</choiceReferences>
+            <choiceReferences>VestfoldogTelemark</choiceReferences>
+            <choiceReferences>Vestland</choiceReferences>
+            <choiceReferences>VestViken</choiceReferences>
+            <choiceReferences>OstViken</choiceReferences>
+            <dataType>String</dataType>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>58</locationX>
+        <locationY>39</locationY>
+        <connector>
+            <targetReference>Fylke</targetReference>
         </connector>
     </start>
     <status>Draft</status>
+    <variables>
+        <name>chosenFylke</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>collectionQueuesfromGroup</name>
         <dataType>SObject</dataType>
