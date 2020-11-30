@@ -249,6 +249,13 @@
                 <elementReference>chosenFylke</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>INT_Region__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>chosenFylke</elementReference>
+            </value>
+        </filters>
         <object>NavUnit__c</object>
         <outputReference>colNavUnits</outputReference>
         <queriedFields>Id</queriedFields>
