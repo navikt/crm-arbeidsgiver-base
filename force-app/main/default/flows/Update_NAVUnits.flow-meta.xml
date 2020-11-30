@@ -143,7 +143,7 @@
             <targetReference>Get_Queue_with_same_Unit_Number</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Get_Nav_Units_0</targetReference>
+            <targetReference>Next_Step</targetReference>
         </noMoreValuesConnector>
     </loops>
     <loops>
@@ -240,13 +240,6 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue/>
-            </value>
-        </filters>
-        <filters>
-            <field>INT_Region__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>chosenFylke</elementReference>
             </value>
         </filters>
         <filters>
@@ -398,6 +391,20 @@
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Next_Step</name>
+        <label>Next Step</label>
+        <locationX>416</locationX>
+        <locationY>321</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Nav_Units_0</targetReference>
+        </connector>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
     </screens>
     <start>
         <locationX>58</locationX>
