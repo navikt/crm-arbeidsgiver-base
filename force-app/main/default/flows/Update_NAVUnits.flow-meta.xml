@@ -125,17 +125,36 @@
         <dataType>String</dataType>
         <expression>&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update.INT_UnitNumber__c}))</expression>
     </formulas>
+    <formulas>
+        <name>createQueueNameFromUnitNumber2</name>
+        <dataType>String</dataType>
+        <expression>&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update_0.INT_UnitNumber__c}))</expression>
+    </formulas>
     <interviewLabel>Update Queues {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update NAVUnits</label>
     <loops>
         <name>Loop_Nav_Units_to_update</name>
         <label>Loop Nav Units to update</label>
-        <locationX>175</locationX>
-        <locationY>354</locationY>
+        <locationX>174</locationX>
+        <locationY>351</locationY>
         <collectionReference>colNavUnits</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Get_Queue_with_same_Unit_Number</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Nav_Units_0</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Nav_Units_to_update_0</name>
+        <label>Loop Nav Units to update</label>
+        <locationX>526</locationX>
+        <locationY>502</locationY>
+        <collectionReference>colNavUnits</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Get_Queue_with_same_Unit_Number_0</targetReference>
         </nextValueConnector>
     </loops>
     <processMetadataValues>
@@ -161,16 +180,73 @@
         <name>Get_Nav_Units</name>
         <label>Get Nav Units</label>
         <locationX>139</locationX>
-        <locationY>195</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <locationY>176</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Nav_Units_to_update</targetReference>
         </connector>
         <filters>
             <field>INT_Region__c</field>
-            <operator>NotEqualTo</operator>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue>Møre og Romsdal</stringValue>
+                <elementReference>chosenFylke</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>INT_UnitType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>LOKAL</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>INT_UnitType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>KO</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>INT_UnitType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>IT</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CRM_QueueId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </filters>
+        <object>NavUnit__c</object>
+        <outputReference>colNavUnits</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>CRM_QueueId__c</queriedFields>
+        <queriedFields>INT_UnitNumber__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Nav_Units_0</name>
+        <label>Get Nav Units</label>
+        <locationX>545</locationX>
+        <locationY>363</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Nav_Units_to_update_0</targetReference>
+        </connector>
+        <filters>
+            <field>CRM_QueueId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </filters>
+        <filters>
+            <field>INT_Region__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>chosenFylke</elementReference>
             </value>
         </filters>
         <filters>
@@ -189,8 +265,8 @@
     <recordLookups>
         <name>Get_Queue_with_same_Unit_Number</name>
         <label>Get Queue with same Unit Number</label>
-        <locationX>297</locationX>
-        <locationY>472</locationY>
+        <locationX>299</locationX>
+        <locationY>473</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Queue_Id_field_in_NAV_Unit</targetReference>
@@ -215,11 +291,40 @@
             <field>Id</field>
         </outputAssignments>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Queue_with_same_Unit_Number_0</name>
+        <label>Get Queue with same Unit Number</label>
+        <locationX>657</locationX>
+        <locationY>650</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Queue_Id_field_in_NAV_Unit_0</targetReference>
+        </connector>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Queue</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>createQueueNameFromUnitNumber2</elementReference>
+            </value>
+        </filters>
+        <object>Group</object>
+        <outputAssignments>
+            <assignToReference>queueIdForNavUnit</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Queue_Id_field_in_NAV_Unit</name>
         <label>Update Queue Id field in NAV Unit</label>
-        <locationX>34</locationX>
-        <locationY>470</locationY>
+        <locationX>36</locationX>
+        <locationY>467</locationY>
         <connector>
             <targetReference>Loop_Nav_Units_to_update</targetReference>
         </connector>
@@ -228,6 +333,29 @@
             <operator>EqualTo</operator>
             <value>
                 <elementReference>Loop_Nav_Units_to_update.INT_UnitNumber__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CRM_QueueId__c</field>
+            <value>
+                <elementReference>queueIdForNavUnit</elementReference>
+            </value>
+        </inputAssignments>
+        <object>NavUnit__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Queue_Id_field_in_NAV_Unit_0</name>
+        <label>Update Queue Id field in NAV Unit</label>
+        <locationX>380</locationX>
+        <locationY>646</locationY>
+        <connector>
+            <targetReference>Loop_Nav_Units_to_update_0</targetReference>
+        </connector>
+        <filters>
+            <field>INT_UnitNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Loop_Nav_Units_to_update_0.INT_UnitNumber__c</elementReference>
             </value>
         </filters>
         <inputAssignments>
