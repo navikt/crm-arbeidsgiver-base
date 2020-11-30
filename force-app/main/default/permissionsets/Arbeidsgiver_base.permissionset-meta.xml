@@ -637,6 +637,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.NAV_Market_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.NAV_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
