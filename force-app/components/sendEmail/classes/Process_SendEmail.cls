@@ -9,6 +9,9 @@ global without sharing class Process_SendEmail {
 
 	@InvocableMethod(label = 'Send Email' )
 	public static void sendEmail( List<Request> requests ) {
+		sendEmailWithLogs( requests );
+	}
+	public static List<Messaging.SendEmailResult> sendEmailWithLogs( List<Request> requests ) {
 
 		Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates( requests );
 		List<Messaging.SingleEmailMessage> messages = Process_SendEmailHelper.requestToSingleEmailMessage( requests, templateMap, ORG_WIDE_EMAIL_ID );
@@ -19,6 +22,8 @@ global without sharing class Process_SendEmail {
 				System.debug( 'FATAL: ' + msg.getErrors() );
 			}
 		}
+
+		return results;
 	}
 
 	global class Request {
