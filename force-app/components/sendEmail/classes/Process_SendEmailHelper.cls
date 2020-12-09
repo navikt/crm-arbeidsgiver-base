@@ -34,7 +34,7 @@ public without sharing class Process_SendEmailHelper {
 				if ( templateId != null ) { message.setTemplateId( templateId ); }
 				message.setWhatId( req.relatedToId );
 				message.setTargetObjectId( contactId );
-				message.setSaveAsActivity( true );
+				message.setSaveAsActivity( req.saveAsActivity );
 
 				messages.add( message );
 			}
