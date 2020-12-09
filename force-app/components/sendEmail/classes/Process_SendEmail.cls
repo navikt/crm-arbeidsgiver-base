@@ -42,5 +42,7 @@ global without sharing class Process_SendEmail {
 
 		@InvocableVariable(required = false label = 'Use do-not-reply@nav.no' description = 'If false, the running user will be sender of email!')
 		global Boolean useDoNotReply;
+
+		global Boolean saveAsActivity = true;
 	}
 }
