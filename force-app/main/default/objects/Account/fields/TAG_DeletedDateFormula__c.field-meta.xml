@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_DeletedDateFormula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF((YEAR(TAG_DeletedDate__c) = 2020), &apos;2020&apos;,  
+
+
+
+TEXT(DAY(TAG_DeletedDate__c)) &amp; &quot;.&quot; &amp; TEXT(MONTH(TAG_DeletedDate__c)) &amp; &quot;.&quot; &amp; TEXT(YEAR(TAG_DeletedDate__c))
+
+
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Deleted Date Formula</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
