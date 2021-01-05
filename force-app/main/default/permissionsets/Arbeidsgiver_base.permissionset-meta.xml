@@ -697,6 +697,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.TAG_Last_completed_activity_date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_Main_Industry__c</field>
         <readable>true</readable>
     </fieldPermissions>
