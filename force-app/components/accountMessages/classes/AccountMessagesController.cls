@@ -60,9 +60,21 @@ public with sharing class AccountMessagesController {
 		AccountMessagesWrapper wrapper = new AccountMessagesWrapper( relatedAccountId, value );
 
 		return wrapper;
-	}
+    }
+
+    @AuraEnabled
+    public static string getDeletedDate( String recordId){
+        String deletedDate;
+
+        Account checkAccount = [Select Id, TAG_DeletedDateFormula__c FROM Account WHERE Id =:recordId AND TAG_IsDeleted__c = true LIMIT 1];
+
+        if (checkAccount.Id != null) {
+
+            Id checkAccountId = checkAccount.Id;
+            Account deletedAccount = [SELECT Id, TAG_DeletedDateFormula__c FROM Account WHERE Id = :checkAccountId LIMIT 1];
+            deletedDate = deletedAccount.TAG_DeletedDateFormula__c; 
+
+        }
+            return deletedDate;
+    }    
 }
-
-
-
-
