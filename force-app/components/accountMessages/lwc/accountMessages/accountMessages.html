@@ -5,4 +5,10 @@
             <p>{field}. <a onclick={openRecord}>Klikk her for å gå til boet</a></p>
         </div>
     </div>
+    <div if:true={displayDeleted} class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info"
+        role="alert" style="height:50px;">
+        <div class="slds-p-horizontal_small">
+            <p>Denne virksomheten ble avsluttet {deletedDate}</p>
+        </div>
+    </div>
 </template>

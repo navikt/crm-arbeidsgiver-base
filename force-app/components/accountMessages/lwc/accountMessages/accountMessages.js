@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getData from '@salesforce/apex/AccountMessagesController.getData';
+import getDeletedDate from '@salesforce/apex/AccountMessagesController.getDeletedDate';
 import { NavigationMixin } from 'lightning/navigation'
 
 export default class AccountMessages extends NavigationMixin(LightningElement) {
@@ -7,9 +8,12 @@ export default class AccountMessages extends NavigationMixin(LightningElement) {
     @track display = false;
     @track accountId;
     @track field;
+    @track displayDeleted = false;
+    @track deletedDate;
 
     connectedCallback() {
         this.loadData();
+        this.loadDeletedDate();
     }
     loadData() {
         getData({ recordId: this.recordId })
@@ -19,6 +23,17 @@ export default class AccountMessages extends NavigationMixin(LightningElement) {
                     this.field = result.field;
                     this.accountId = result.accountId;
                 }
+            });
+    }
+
+    loadDeletedDate() {
+        getDeletedDate({ recordId: this.recordId })
+            .then(date => {
+                if (date) {
+                    this.deletedDate = date;
+                    this.displayDeleted = true;
+                }
+
             });
     }
     openRecord() {
