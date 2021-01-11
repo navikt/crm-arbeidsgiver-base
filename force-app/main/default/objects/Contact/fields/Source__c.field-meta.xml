@@ -25,6 +25,11 @@
                 <label>Integrasjon</label>
             </value>
             <value>
+                <fullName>Kurs</fullName>
+                <default>false</default>
+                <label>Kurs</label>
+            </value>
+            <value>
                 <fullName>Opprettet i Salesforce</fullName>
                 <default>true</default>
                 <label>Opprettet i Salesforce</label>
