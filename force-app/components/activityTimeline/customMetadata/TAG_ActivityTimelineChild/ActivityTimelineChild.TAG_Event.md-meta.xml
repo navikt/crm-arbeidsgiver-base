@@ -37,7 +37,11 @@
 	<values>
 		<field>SObjectName__c</field>
 		<value xsi:type="xsd:string">Event</value>
-	</values>
+    </values>
+    <values>
+        <field>SObjectRelationshipName__c</field>
+        <value xsi:type="xsd:string">Events</value>
+    </values>
 	<values>
 		<field>SObjectRelatedUserId__c</field>
 		<value xsi:type="xsd:string">WhoId</value>

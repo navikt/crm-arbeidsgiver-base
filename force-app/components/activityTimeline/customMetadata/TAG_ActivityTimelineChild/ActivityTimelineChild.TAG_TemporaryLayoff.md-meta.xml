@@ -63,6 +63,10 @@
         <value xsi:type="xsd:string">TemporaryLayoff__c</value>
     </values>
     <values>
+        <field>SObjectRelationshipName__c</field>
+        <value xsi:type="xsd:string">TemporaryLayoff__r</value>
+    </values>
+    <values>
         <field>SObjectRelatedUserId__c</field>
         <value xsi:type="xsd:string">Contact__c</value>
     </values>

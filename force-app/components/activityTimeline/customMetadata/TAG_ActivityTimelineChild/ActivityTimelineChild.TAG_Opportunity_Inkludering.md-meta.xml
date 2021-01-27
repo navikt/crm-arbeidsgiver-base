@@ -31,6 +31,10 @@
         <value xsi:type="xsd:string">CustomOpportunity__c</value>
     </values>
     <values>
+        <field>SObjectRelationshipName__c</field>
+        <value xsi:type="xsd:string">CustomOpportunity__r</value>
+    </values>
+    <values>
         <field>SObjectDateFieldIsDate__c</field>
         <value xsi:type="xsd:boolean">false</value>
     </values>

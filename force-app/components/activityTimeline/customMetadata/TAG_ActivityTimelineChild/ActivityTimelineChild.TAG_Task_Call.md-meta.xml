@@ -63,6 +63,10 @@
         <value xsi:type="xsd:string">Task</value>
     </values>
     <values>
+        <field>SObjectRelationshipName__c</field>
+        <value xsi:type="xsd:string">Tasks</value>
+    </values>
+    <values>
         <field>SObjectRelatedUserId__c</field>
         <value xsi:type="xsd:string">WhoId</value>
     </values>
