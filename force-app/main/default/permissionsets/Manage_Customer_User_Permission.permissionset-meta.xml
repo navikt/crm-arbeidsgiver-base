@@ -3,57 +3,42 @@
     <description>Custom permission set to allow for language changes</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.TAG_Absence_last_quarter__c</field>
+        <field>Account.TAG_Is_My_NAV_Market_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TAG_absence__c.Absence_Country__c</field>
+        <field>Contract__c.Is_My_NAV_Market_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TAG_absence__c.Absence_Industry__c</field>
+        <field>Contract__c.Is_My_NAV_Office__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TAG_absence__c.Absence_Quarter__c</field>
+        <field>Contract__c.Is_My_NAV_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TAG_absence__c.Absence_Sector__c</field>
+        <field>Contract__c.NAV_Market_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TAG_absence__c.Absence_value__c</field>
+        <field>Contract__c.NAV_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TAG_absence__c.Is_Masked__c</field>
+        <field>Contract__c.NAV_Unit__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TAG_absence__c.Last_Quarter__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TAG_absence__c.Lost_man_days__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TAG_absence__c.Possible_Man_Days__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TAG_absence__c.Quarter__c</field>
+        <field>NavTask__c.TAG_Is_My_NAV_Market_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
