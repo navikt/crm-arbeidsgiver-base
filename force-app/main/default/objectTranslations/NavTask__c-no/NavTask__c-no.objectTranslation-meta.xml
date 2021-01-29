@@ -52,6 +52,10 @@
     </layouts>
     <nameFieldLabel><!-- Navn --></nameFieldLabel>
     <validationRules>
+        <errorMessage><!-- Du har ikke rettigheter til å endre dette feltet. --></errorMessage>
+        <name>Allowed_change_only_status</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Du må bekrefte at feltet &quot;Kommentarer&quot; ikke inneholder personsensitive opplysninger --></errorMessage>
         <name>No_person_information_added</name>
     </validationRules>
