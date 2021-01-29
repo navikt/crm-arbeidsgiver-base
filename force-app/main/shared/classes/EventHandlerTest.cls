@@ -13,15 +13,18 @@ private without sharing class EventHandlerTest {
         Contact c = new Contact( TAG_Informed__c = true, LastName = 'test' );
         
         Test.StartTest();
-        Event e = new Event( WhatId = acc[0].Id, WhoId = c.Id, TAG_NoPersonInformation__c = true, Subject = 'testSubject', TAG_ActivityType__c = 'Rekruttere og inkludere', StartDateTime = System.Now(), EndDateTime = System.Now().addHours(1) );
-        insert e;
+        List<Event> eventShadowsData = new List<Event>();
+
+        for(Integer i=0; i < 200; i++) {
+            eventShadowsData.add( new Event(WhatId = acc[0].Id, WhoId = c.Id, TAG_NoPersonInformation__c = true, Subject = 'testSubject', TAG_ActivityType__c = 'Rekruttere og inkludere', StartDateTime = System.Now(), EndDateTime = System.Now().addHours(1)));
+        }        
+        insert eventShadowsData;
         Test.StopTest();
 
         List<EventShadow__c> es = [SELECT Id, SH_EventId__c FROM EventShadow__c];
         Integer EventShadowCount = es.size() ;
 
-		System.assertEquals( 1, EventShadowCount );
-		System.assertEquals( e.Id, es[0].SH_EventId__c );
+		System.assertEquals( 200, EventShadowCount );
 
     }
     
@@ -54,14 +57,17 @@ private without sharing class EventHandlerTest {
         Contact c = new Contact( TAG_Informed__c = true, LastName = 'test' );
         Event e = new Event( WhatId = acc[0].Id, WhoId = c.Id, TAG_NoPersonInformation__c = true, Subject = 'testSubject', TAG_ActivityType__c = 'Rekruttere og inkludere', StartDateTime = System.Now(), EndDateTime = System.Now().addHours(1) );
         insert e;
+
+        EventShadow__c eu = new EventShadow__c( SH_EventId__c = e.id );
+        upsert eu SH_EventId__c;
+
         List<EventShadow__c> es = [SELECT Id FROM EventShadow__c];
         Integer EventShadowCount = es.size() ;
+        
+        System.assertEquals( 1, EventShadowCount );
 
         Test.StartTest();
-        if (EventShadowCount > 0) {
             delete e;
-        }
-        
         Test.StopTest();
 
         List<EventShadow__c> esUpd = [SELECT Id FROM EventShadow__c];
