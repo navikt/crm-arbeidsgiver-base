@@ -3,42 +3,17 @@
     <description>Custom permission set to allow for language changes</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.TAG_Is_My_NAV_Market_Region__c</field>
+        <field>NavTask__c.TAG_Is_My_NAV_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contract__c.Is_My_NAV_Market_Region__c</field>
+        <field>NavTask__c.TAG_NAV_Market_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contract__c.Is_My_NAV_Office__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.Is_My_NAV_Region__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.NAV_Market_Region__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.NAV_Region__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.NAV_Unit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NavTask__c.TAG_Is_My_NAV_Market_Region__c</field>
+        <field>NavTask__c.TAG_NAV_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
