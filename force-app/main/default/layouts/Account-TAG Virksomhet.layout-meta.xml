@@ -32,6 +32,10 @@
                 <behavior>Edit</behavior>
                 <field>EditableEmail__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TAG_Absence_last_quarter__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -246,6 +250,15 @@
         <relatedList>TemporaryLayoff__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>Date__c</fields>
+        <fields>Absence_Quarter__c</fields>
+        <fields>Absence_Industry__c</fields>
+        <fields>Absence_Country__c</fields>
+        <relatedList>TAG_absence__c.Account__c</relatedList>
+        <sortField>Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
         <fields>MEMBER_NAME</fields>
         <fields>TEAM_MEMBER_ROLE</fields>
         <fields>TAG_Active__c</fields>
@@ -260,7 +273,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Inquiry_Category_2__c</fields>
+        <fields>InquiryCategory__c</fields>
         <fields>Source__c</fields>
         <fields>InclusionStage__c</fields>
         <fields>OWNER.ALIAS</fields>
@@ -286,6 +299,14 @@
         <relatedList>NavTask__c.CRM_AccountRelated__c</relatedList>
         <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Absence_Quarter__c</fields>
+        <fields>Last_Quarter__c</fields>
+        <fields>Absence_value__c</fields>
+        <fields>Date__c</fields>
+        <relatedList>TAG_absence__c.MasterAccount__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
