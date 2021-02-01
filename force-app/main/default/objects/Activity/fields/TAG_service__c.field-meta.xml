@@ -54,14 +54,17 @@
                 <default>false</default>
                 <label>Oppsigelser</label>
             </value>
+            <value>
+                <fullName>IPS Jobbutvikling</fullName>
+                <default>false</default>
+                <label>IPS Jobbutvikling</label>
+            </value>
+            <value>
+                <fullName>IPS Jobbstøtte</fullName>
+                <default>false</default>
+                <label>IPS Jobbstøtte</label>
+            </value>
         </valueSetDefinition>
-        <valueSettings>
-            <controllingFieldValue>Generelt markedsarbeid</controllingFieldValue>
-            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
-            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
-            <controllingFieldValue>Nedbemanne</controllingFieldValue>
-            <valueName>Informasjon om NAVs tjenester</valueName>
-        </valueSettings>
         <valueSettings>
             <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
             <valueName>Jobbmesser og møteplasser</valueName>
@@ -72,7 +75,21 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <controllingFieldValue>Nedbemanne</controllingFieldValue>
+            <valueName>Informasjon om NAVs tjenester</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
             <valueName>Inkluderende rekruttering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>IPS Jobbutvikling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>IPS Jobbstøtte</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
