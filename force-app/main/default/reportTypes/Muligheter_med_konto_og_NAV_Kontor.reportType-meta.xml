@@ -242,6 +242,11 @@
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NAV_Market_Region__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
             <checkedByDefault>true</checkedByDefault>
             <field>Name</field>
             <table>CustomOpportunity__c</table>
@@ -258,7 +263,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Overdue_Sign__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_IsMyMarketRegion__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <columns>
@@ -314,6 +329,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>WorkTime__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.TAG_Is_My_NAV_Market_Region__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.NAV_Market_Region__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
         <masterLabel>Custom Opportunities</masterLabel>

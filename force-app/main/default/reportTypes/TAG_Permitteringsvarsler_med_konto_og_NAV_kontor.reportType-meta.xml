@@ -146,6 +146,26 @@
             <field>TAG_Source__c</field>
             <table>TemporaryLayoff__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_IsMyMarketRegion__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NAV_Market_Region__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.TAG_Is_My_NAV_Market_Region__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.NAV_Market_Region__c</field>
+            <table>TemporaryLayoff__c</table>
+        </columns>
         <masterLabel>Temporary Layoffs</masterLabel>
     </sections>
     <sections>
