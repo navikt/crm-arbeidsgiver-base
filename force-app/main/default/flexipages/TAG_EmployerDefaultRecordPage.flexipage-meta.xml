@@ -34,11 +34,11 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListApiName</name>
-                <value>AccountContactRelations</value>
+                <value>Inkluderingsmuligheter__r</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
-                <value>GRID</value>
+                <value>CARD</value>
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
@@ -51,14 +51,26 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>decorate</name>
-                <value>true</value>
+                <name>parentFieldApiName</name>
+                <value>Account.Id</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;p&gt;Se nylig kontakt som NAV har utført hos virksomheten. Det inkluderer:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Møter og oppgaver knyttet til virksomheten.&lt;/li&gt;&lt;li&gt;Møter og oppgaver knyttet til varsler, muligheter, avtaler, osv.&lt;/li&gt;&lt;/ul&gt;</value>
+                <name>relatedListApiName</name>
+                <value>Temporary_Layoffs__r</value>
             </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>rowsToDisplay</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showActionBar</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
@@ -129,37 +141,6 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <name>Facet-0ed7db69-f9c9-45df-ab57-9d5ded462959</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>Temporary_Layoffs__r</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
-        </componentInstances>
-        <name>Facet-3317f026-e02e-49dd-a720-18da91adde7f</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>parentFieldApiName</name>
@@ -183,7 +164,7 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <name>Facet-bve4zv3cljr</name>
+        <name>Facet-0ed7db69-f9c9-45df-ab57-9d5ded462959</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -194,26 +175,14 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListApiName</name>
-                <value>Inkluderingsmuligheter__r</value>
+                <value>AccountContactRelations</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
-                <value>NONE</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
+                <value>GRID</value>
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
-        <name>Facet-3587bc4c-2713-4188-83db-2379a0ec93d7</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
@@ -232,7 +201,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>Kontaktpersoner</value>
+                <value>Oversikt</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -243,40 +212,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>Aktivitet</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-3317f026-e02e-49dd-a720-18da91adde7f</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Varsler</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-bve4zv3cljr</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Bedriftsavtaler</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-3587bc4c-2713-4188-83db-2379a0ec93d7</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Muligheter</value>
+                <value>Relatert</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
