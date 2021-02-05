@@ -222,6 +222,31 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Market_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Last_completed_activity_date__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Is_My_NAV_Market_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EditablePhone__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EditableWebsite__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>CreatedDate</field>
             <table>Account</table>
         </columns>
@@ -238,6 +263,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedBy</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EditableEmail__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -480,6 +510,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>CurrentStatus</field>
+            <table>Account.AccountTeamMembers</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Division</field>
             <table>Account.AccountTeamMembers</table>
         </columns>
@@ -491,6 +526,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Title</field>
+            <table>Account.AccountTeamMembers</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_NAV_Ident__c</field>
+            <table>Account.AccountTeamMembers</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_MarketRegion__c</field>
             <table>Account.AccountTeamMembers</table>
         </columns>
         <columns>
