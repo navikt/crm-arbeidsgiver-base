@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <decisions>
         <processMetadataValues>
@@ -43,12 +43,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ISNULL ( [Task].ActivityDate ) &amp;&amp; ([Task].ActivityDate &gt;TODAY()) ||  ISCHANGED([Task].Status ) &amp;&amp; ISPICKVAL([Task].Status , &apos;Completed&apos;)  &amp;&amp; $Permission.Arbeidsgiver </stringValue>
+                <stringValue
+                >ISNULL ( [Task].ActivityDate ) &amp;&amp; ([Task].ActivityDate &gt;TODAY()) ||  ISCHANGED([Task].Status ) &amp;&amp; ISPICKVAL([Task].Status , &apos;Completed&apos;)  &amp;&amp; $Permission.Arbeidsgiver </stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>ISNULL ( {!myVariable_current.ActivityDate} ) &amp;&amp; ({!myVariable_current.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!myVariable_current.Status} ) &amp;&amp; ISPICKVAL({!myVariable_current.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}</expression>
+        <expression
+        >ISNULL ( {!myVariable_current.ActivityDate} ) &amp;&amp; ({!myVariable_current.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!myVariable_current.Status} ) &amp;&amp; ISPICKVAL({!myVariable_current.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}</expression>
     </formulas>
     <interviewLabel>Task-2_InterviewLabel</interviewLabel>
     <label>Task</label>
@@ -141,7 +143,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -152,7 +154,8 @@
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_1439278577</elementReference>
+                <elementReference
+                >formula_2_myRule_1_A1_1439278577</elementReference>
             </value>
         </inputAssignments>
         <object>Task</object>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
         <processMetadataValues>
@@ -46,7 +46,8 @@
         <inputParameters>
             <name>body</name>
             <value>
-                <stringValue>Klikk her for å fylle inn informasjon om avtalen.</stringValue>
+                <stringValue
+                >Klikk her for å fylle inn informasjon om avtalen.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -83,7 +84,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -94,7 +95,8 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference>myCollection_myRule_1_A1recipientIds</elementReference>
+                <elementReference
+                >myCollection_myRule_1_A1recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -104,10 +106,12 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myCollection_myRule_1_A1recipientIds</assignToReference>
+            <assignToReference
+            >myCollection_myRule_1_A1recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>myVariable_current.TAG_InternalContact__r.Id</elementReference>
+                <elementReference
+                >myVariable_current.TAG_InternalContact__r.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -160,7 +164,8 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.TAG_InternalContact__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.TAG_InternalContact__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>

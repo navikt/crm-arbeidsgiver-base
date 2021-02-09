@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
@@ -162,10 +162,14 @@
     </nameField>
     <pluralLabel>Contracts</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>TAG_Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>TAG_Category__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>TAG_StartDate__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>TAG_EndDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields
+        >TAG_Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields
+        >TAG_Category__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields
+        >TAG_StartDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields
+        >TAG_EndDate__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

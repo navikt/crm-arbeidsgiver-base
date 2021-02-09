@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
@@ -14,7 +14,8 @@
         <groupingColumn>DUE_DATE</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <secondaryGroupingColumn>Activity.TAG_ActivityType__c</secondaryGroupingColumn>
+        <secondaryGroupingColumn
+        >Activity.TAG_ActivityType__c</secondaryGroupingColumn>
         <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
@@ -33,7 +34,8 @@
     <columns>
         <field>ACCOUNT.NAME</field>
     </columns>
-    <description>Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
+    <description
+    >Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
     <filter>
         <criteriaItems>
             <column>DUE_DATE</column>

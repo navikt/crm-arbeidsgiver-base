@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignments>
         <name>Assign_chosen_Fylke</name>
@@ -123,12 +123,14 @@
     <formulas>
         <name>createQueueNameFromUnitNumber</name>
         <dataType>String</dataType>
-        <expression>&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update.INT_UnitNumber__c}))</expression>
+        <expression
+        >&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update.INT_UnitNumber__c}))</expression>
     </formulas>
     <formulas>
         <name>createQueueNameFromUnitNumber2</name>
         <dataType>String</dataType>
-        <expression>&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update_0.INT_UnitNumber__c}))</expression>
+        <expression
+        >&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update_0.INT_UnitNumber__c}))</expression>
     </formulas>
     <interviewLabel>Update Queues {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update NAVUnits</label>
@@ -181,7 +183,8 @@
         <label>Get Nav Units</label>
         <locationX>139</locationX>
         <locationY>176</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound
+        >true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Nav_Units_to_update</targetReference>
         </connector>
@@ -217,7 +220,7 @@
             <field>CRM_QueueId__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue/>
+                <stringValue />
             </value>
         </filters>
         <object>NavUnit__c</object>
@@ -231,7 +234,8 @@
         <label>Get Nav Units</label>
         <locationX>545</locationX>
         <locationY>363</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound
+        >true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Nav_Units_to_update_0</targetReference>
         </connector>
@@ -239,7 +243,7 @@
             <field>CRM_QueueId__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue/>
+                <stringValue />
             </value>
         </filters>
         <filters>
@@ -260,7 +264,8 @@
         <label>Get Queue with same Unit Number</label>
         <locationX>299</locationX>
         <locationY>473</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound
+        >false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Queue_Id_field_in_NAV_Unit</targetReference>
         </connector>
@@ -275,7 +280,8 @@
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>createQueueNameFromUnitNumber</elementReference>
+                <elementReference
+                >createQueueNameFromUnitNumber</elementReference>
             </value>
         </filters>
         <object>Group</object>
@@ -289,9 +295,11 @@
         <label>Get Queue with same Unit Number</label>
         <locationX>657</locationX>
         <locationY>650</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound
+        >false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Update_Queue_Id_field_in_NAV_Unit_0</targetReference>
+            <targetReference
+            >Update_Queue_Id_field_in_NAV_Unit_0</targetReference>
         </connector>
         <filters>
             <field>Type</field>
@@ -304,7 +312,8 @@
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>createQueueNameFromUnitNumber2</elementReference>
+                <elementReference
+                >createQueueNameFromUnitNumber2</elementReference>
             </value>
         </filters>
         <object>Group</object>
@@ -325,7 +334,8 @@
             <field>INT_UnitNumber__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Loop_Nav_Units_to_update.INT_UnitNumber__c</elementReference>
+                <elementReference
+                >Loop_Nav_Units_to_update.INT_UnitNumber__c</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -348,7 +358,8 @@
             <field>INT_UnitNumber__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Loop_Nav_Units_to_update_0.INT_UnitNumber__c</elementReference>
+                <elementReference
+                >Loop_Nav_Units_to_update_0.INT_UnitNumber__c</elementReference>
             </value>
         </filters>
         <inputAssignments>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <article>Definite</article>
@@ -52,7 +52,8 @@
     </layouts>
     <nameFieldLabel><!-- Navn --></nameFieldLabel>
     <validationRules>
-        <errorMessage><!-- Du må bekrefte at feltet &quot;Kommentarer&quot; ikke inneholder personsensitive opplysninger --></errorMessage>
+        <errorMessage
+        ><!-- Du må bekrefte at feltet &quot;Kommentarer&quot; ikke inneholder personsensitive opplysninger --></errorMessage>
         <name>No_person_information_added</name>
     </validationRules>
 </CustomObjectTranslation>

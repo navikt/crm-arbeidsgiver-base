@@ -1,80 +1,122 @@
 public with sharing class AccountMessagesController {
+    @AuraEnabled(cacheable=true)
+    public static AccountMessagesWrapper getData(String recordId) {
+        Account account = getAccount(recordId);
 
-	@AuraEnabled(cacheable = true)
-	public static AccountMessagesWrapper getData( String recordId ) {
-		Account account = getAccount( recordId );
+        if (
+            account.INT_IsBankrupt__c == true ||
+            account.INT_IsInForcedSettlementOrResolution__c == true
+        ) {
+            AccountMessagesWrapper wrapper = convertAccountHistoryToWrapper(
+                account
+            );
 
-		if ( account.INT_IsBankrupt__c == true || account.INT_IsInForcedSettlementOrResolution__c == true ) {
-			AccountMessagesWrapper wrapper = convertAccountHistoryToWrapper( account );
+            return wrapper;
+        }
 
-			return wrapper;
-		}
-
-		return null;
-
-	}
-
-	@AuraEnabled
-	public static Account getAccount( Id recordId ) {
-		Id currentId;
-		Account parent = [SELECT ParentId FROM Account WHERE Id =:recordId LIMIT 1];
-		if ( parent.ParentId != null ) {
-			currentId = parent.ParentId;
-		} else {
-			currentId = recordId;
-		}
-
-		Account currentAccount = [SELECT Id, INT_IsBankrupt__c, INT_IsInForcedSettlementOrResolution__c FROM Account WHERE Id = :currentId LIMIT 1];
-
-		return currentAccount;
-	}
-
-	@AuraEnabled
-	public static Account findRelatedAccount( Id accountId, String value ) {
-		Account currentAccount = [SELECT Name FROM Account WHERE Id =:accountId LIMIT 1][0];
-		String newAccountName = currentAccount.Name + value;
-		Account newAccount = [SELECT Id, Name FROM Account WHERE Name =:newAccountName AND INT_OrganizationalStructure__c = 'AAFY'];
-
-		return newAccount;
-	}
-
-	@AuraEnabled
-	public static AccountMessagesWrapper convertAccountHistoryToWrapper( Account account ) {
-		String value = 'Denne virksomheten er ';
-		Id accountId = account.Id;
-		Account relatedAccount;
-		Id relatedAccountId;
-
-
-		if ( account.INT_IsBankrupt__c == true ) {
-			relatedAccount = findRelatedAccount( accountId, ' KONKURSBO' );
-			relatedAccountId = relatedAccount.Id;
-			value = value + 'konkurs';
-		}
-		if ( account.INT_IsInForcedSettlementOrResolution__c ) {
-			relatedAccount = findRelatedAccount( accountId, ' TVANGSAVVIKLINGSBO' );
-			relatedAccountId = relatedAccount.Id;
-			value = value + 'under tvangsavvikling';
-		}
-
-		AccountMessagesWrapper wrapper = new AccountMessagesWrapper( relatedAccountId, value );
-
-		return wrapper;
+        return null;
     }
 
     @AuraEnabled
-    public static string getDeletedDate( String recordId){
+    public static Account getAccount(Id recordId) {
+        Id currentId;
+        Account parent = [
+            SELECT ParentId
+            FROM Account
+            WHERE Id = :recordId
+            LIMIT 1
+        ];
+        if (parent.ParentId != null) {
+            currentId = parent.ParentId;
+        } else {
+            currentId = recordId;
+        }
+
+        Account currentAccount = [
+            SELECT
+                Id,
+                INT_IsBankrupt__c,
+                INT_IsInForcedSettlementOrResolution__c
+            FROM Account
+            WHERE Id = :currentId
+            LIMIT 1
+        ];
+
+        return currentAccount;
+    }
+
+    @AuraEnabled
+    public static Account findRelatedAccount(Id accountId, String value) {
+        Account currentAccount = [
+            SELECT Name
+            FROM Account
+            WHERE Id = :accountId
+            LIMIT 1
+        ][0];
+        String newAccountName = currentAccount.Name + value;
+        Account newAccount = [
+            SELECT Id, Name
+            FROM Account
+            WHERE
+                Name = :newAccountName
+                AND INT_OrganizationalStructure__c = 'AAFY'
+        ];
+
+        return newAccount;
+    }
+
+    @AuraEnabled
+    public static AccountMessagesWrapper convertAccountHistoryToWrapper(
+        Account account
+    ) {
+        String value = 'Denne virksomheten er ';
+        Id accountId = account.Id;
+        Account relatedAccount;
+        Id relatedAccountId;
+
+        if (account.INT_IsBankrupt__c == true) {
+            relatedAccount = findRelatedAccount(accountId, ' KONKURSBO');
+            relatedAccountId = relatedAccount.Id;
+            value = value + 'konkurs';
+        }
+        if (account.INT_IsInForcedSettlementOrResolution__c) {
+            relatedAccount = findRelatedAccount(
+                accountId,
+                ' TVANGSAVVIKLINGSBO'
+            );
+            relatedAccountId = relatedAccount.Id;
+            value = value + 'under tvangsavvikling';
+        }
+
+        AccountMessagesWrapper wrapper = new AccountMessagesWrapper(
+            relatedAccountId,
+            value
+        );
+
+        return wrapper;
+    }
+
+    @AuraEnabled
+    public static string getDeletedDate(String recordId) {
         String deletedDate;
 
-        Account checkAccount = [Select Id, TAG_DeletedDateFormula__c FROM Account WHERE Id =:recordId AND TAG_IsDeleted__c = true LIMIT 1];
+        Account checkAccount = [
+            SELECT Id, TAG_DeletedDateFormula__c
+            FROM Account
+            WHERE Id = :recordId AND TAG_IsDeleted__c = TRUE
+            LIMIT 1
+        ];
 
         if (checkAccount.Id != null) {
-
             Id checkAccountId = checkAccount.Id;
-            Account deletedAccount = [SELECT Id, TAG_DeletedDateFormula__c FROM Account WHERE Id = :checkAccountId LIMIT 1];
-            deletedDate = deletedAccount.TAG_DeletedDateFormula__c; 
-
+            Account deletedAccount = [
+                SELECT Id, TAG_DeletedDateFormula__c
+                FROM Account
+                WHERE Id = :checkAccountId
+                LIMIT 1
+            ];
+            deletedDate = deletedAccount.TAG_DeletedDateFormula__c;
         }
-            return deletedDate;
-    }    
+        return deletedDate;
+    }
 }

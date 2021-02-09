@@ -1,50 +1,70 @@
 @isTest
 private without sharing class MarkdownViewerControllerTest {
+    @testSetup
+    private static void setup() {
+        TAG_TestDataFactory.createUserWithPermset(
+            'ARBEIDSGIVER USER',
+            new List<String>{
+                'Arbeidsgiver_arenaActivity',
+                'Arbeidsgiver_base',
+                'Arbeidsgiver_contract',
+                'Arbeidsgiver_opportunity',
+                'Arbeidsgiver_temporaryLayoffs'
+            }
+        );
+    }
 
-	@testSetup
-	private static void setup() {
-		TAG_TestDataFactory.createUserWithPermset( 'ARBEIDSGIVER USER', new List<String> { 'Arbeidsgiver_arenaActivity', 'Arbeidsgiver_base', 'Arbeidsgiver_contract', 'Arbeidsgiver_opportunity', 'Arbeidsgiver_temporaryLayoffs' } );
-	}
+    @isTest
+    private static void testGetData() {
+        TemporaryLayoff__c tl = new TemporaryLayoff__c();
+        tl.OtherComments__c = '### Årsak\nSlett denne\n### Yrker\nkokk\n### Annet\n';
+        insert tl;
 
-	@isTest
-	private static void testGetData() {
+        User u = [
+            SELECT Id
+            FROM User
+            WHERE LastName = 'ARBEIDSGIVER USER'
+            LIMIT 1
+        ];
+        String results;
 
-		TemporaryLayoff__c tl = new TemporaryLayoff__c();
-		tl.OtherComments__c = '### Årsak\nSlett denne\n### Yrker\nkokk\n### Annet\n';
-		insert tl;
+        Test.StartTest();
+        System.runAs(u) {
+            results = MarkdownViewerController.getData(
+                tl.Id,
+                'TemporaryLayoff__c',
+                'OtherComments__c'
+            );
+        }
+        Test.StopTest();
 
-		User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
-		String results;
+        System.assertNotEquals(null, results, 'Results should not be null');
+        System.assertEquals(
+            tl.OtherComments__c.replace('\n', ''),
+            results.replace('\n', ''),
+            'Should just be the same data'
+        );
+    }
 
-		Test.StartTest();
-		System.runAs( u )
-		{
-			results = MarkdownViewerController.getData( tl.Id, 'TemporaryLayoff__c', 'OtherComments__c' );
-		}
-		Test.StopTest();
+    @isTest
+    private static void testGetData_noAccess() {
+        TemporaryLayoff__c tl = new TemporaryLayoff__c();
+        tl.OtherComments__c = '### Årsak\nSlett denne\n### Yrker\nkokk\n### Annet\n';
+        insert tl;
 
-		System.assertNotEquals( null, results, 'Results should not be null' );
-		System.assertEquals( tl.OtherComments__c.replace( '\n', '' ), results.replace( '\n', '' ), 'Should just be the same data' );
-	}
+        User u = TAG_TestDataFactory.createStandardUser('ARBEIDSGIVER USER');
+        String results;
 
-	@isTest
-	private static void testGetData_noAccess() {
+        Test.StartTest();
+        System.runAs(u) {
+            results = MarkdownViewerController.getData(
+                tl.Id,
+                'TemporaryLayoff__c',
+                'OtherComments__c'
+            );
+        }
+        Test.StopTest();
 
-		TemporaryLayoff__c tl = new TemporaryLayoff__c();
-		tl.OtherComments__c = '### Årsak\nSlett denne\n### Yrker\nkokk\n### Annet\n';
-		insert tl;
-
-		User u = TAG_TestDataFactory.createStandardUser( 'ARBEIDSGIVER USER' );
-		String results;
-
-		Test.StartTest();
-		System.runAs( u )
-		{
-			results = MarkdownViewerController.getData( tl.Id, 'TemporaryLayoff__c', 'OtherComments__c' );
-		}
-		Test.StopTest();
-
-		System.assertEquals( null, results, 'Results should be null' );
-
-	}
+        System.assertEquals(null, results, 'Results should be null');
+    }
 }

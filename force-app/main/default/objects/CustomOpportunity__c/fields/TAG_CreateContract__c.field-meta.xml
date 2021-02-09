@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_CreateContract__c</fullName>
-    <description>Ønsker du at det skal opprettes en avtale fra denne muligheten?</description>
+    <description
+    >Ønsker du at det skal opprettes en avtale fra denne muligheten?</description>
     <externalId>false</externalId>
-    <inlineHelpText>Ønsker du at det skal opprettes en avtale fra denne muligheten?</inlineHelpText>
+    <inlineHelpText
+    >Ønsker du at det skal opprettes en avtale fra denne muligheten?</inlineHelpText>
     <label>Create Contract</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
