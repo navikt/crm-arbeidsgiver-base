@@ -10,10 +10,9 @@ import { refreshApex } from '@salesforce/apex';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import Id from '@salesforce/user/Id';
 
-
 const actions = [
     { label: 'Rediger', name: 'edit' },
-    { label: 'Slett', name: 'delete' },
+    { label: 'Slett', name: 'delete' }
 ];
 
 const columns = [
@@ -24,11 +23,13 @@ const columns = [
     { label: 'Telefon', fieldName: 'MobilePhone', initialWidth: 150 },
     {
         type: 'action',
-        typeAttributes: { rowActions: actions },
-    },
+        typeAttributes: { rowActions: actions }
+    }
 ];
 
-export default class AccountTeamMember extends NavigationMixin(LightningElement) {
+export default class AccountTeamMember extends NavigationMixin(
+    LightningElement
+) {
     @api recordId;
     @track data;
     @track amount = 0;
@@ -39,7 +40,6 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
     error;
     userId = Id;
 
-
     @wire(getData, { recordId: '$recordId' })
     member(result) {
         this.refreshTable = result;
@@ -49,7 +49,7 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
             this.showData = result.data.length > 0;
 
             let dataList = [];
-            this.data.forEach(element => {
+            this.data.forEach((element) => {
                 let dataElement = {};
                 dataElement.Id = element.Id;
                 dataElement.UserId = element.User.Name;
@@ -82,21 +82,25 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
 
     deleteRow(currentRow) {
         deleteTeamMember({ atmId: currentRow.Id })
-            .then(result => {
-                this.dispatchEvent(new ShowToastEvent({
-                    message: 'Kontaktperson ' + currentRow.UserId + ' slettet ',
-                    variant: 'success'
-                }));
+            .then((result) => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        message:
+                            'Kontaktperson ' + currentRow.UserId + ' slettet ',
+                        variant: 'success'
+                    })
+                );
 
                 return refreshApex(this.refreshTable);
-
             })
-            .catch(error => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Feil',
-                    message: error.message,
-                    variant: 'error'
-                }));
+            .catch((error) => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Feil',
+                        message: error.message,
+                        variant: 'error'
+                    })
+                );
             });
     }
 
@@ -112,7 +116,6 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
     }
 
     navigateToNewRecordPage() {
-
         const defaultValues = encodeDefaultFieldValues({
             AccountId: this.recordId,
             UserId: this.userId
@@ -123,8 +126,8 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
             attributes: {
                 objectApiName: 'AccountTeamMember',
                 actionName: 'new'
-
-            }, state: {
+            },
+            state: {
                 navigationLocation: 'RELATED_LIST',
                 defaultFieldValues: defaultValues
             }

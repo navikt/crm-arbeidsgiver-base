@@ -1,45 +1,59 @@
 public without sharing class Process_SendEmailHelper {
+    public static Map<String, Id> getMapOfEmailTemplates(
+        List<Process_SendEmail.Request> requests
+    ) {
+        Map<String, Id> templateMap = new Map<String, Id>();
+        Set<String> templateNames = new Set<String>();
 
-	public static Map<String, Id> getMapOfEmailTemplates( List<Process_SendEmail.Request> requests ) {
+        for (Process_SendEmail.Request req : requests) {
+            templateNames.add(req.emailTemplateName);
+        }
 
-		Map<String, Id> templateMap = new Map<String, Id>();
-		Set<String> templateNames = new Set<String>();
+        List<EmailTemplate> emailTemplates = [
+            SELECT Id, DeveloperName
+            FROM EmailTemplate
+            WHERE DeveloperName IN :templateNames
+        ];
+        for (EmailTemplate et : emailTemplates) {
+            templateMap.put(et.DeveloperName, et.Id);
+        }
 
-		for ( Process_SendEmail.Request req : requests ) {
-			templateNames.add( req.emailTemplateName );
-		}
+        return templateMap;
+    }
 
-		List<EmailTemplate> emailTemplates = [SELECT Id, DeveloperName FROM EmailTemplate WHERE DeveloperName IN : templateNames];
-		for ( EmailTemplate et : emailTemplates ) {
-			templateMap.put( et.DeveloperName, et.Id );
-		}
+    public static List<Messaging.SingleEmailMessage> requestToSingleEmailMessage(
+        List<Process_SendEmail.Request> requests,
+        Map<String, Id> templateMap,
+        Id orgWideEmailId
+    ) {
+        List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
 
-		return templateMap;
-	}
+        for (Process_SendEmail.Request req : requests) {
+            Id templateId = templateMap.containsKey(req.emailTemplateName)
+                ? templateMap.get(req.emailTemplateName)
+                : null;
 
-	public static List<Messaging.SingleEmailMessage> requestToSingleEmailMessage( List<Process_SendEmail.Request> requests, Map<String, Id> templateMap, Id orgWideEmailId ) {
-		List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
+            if (templateId != null) {
+                Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
 
-		for ( Process_SendEmail.Request req : requests ) {
+                Id contactId = req.recipientContact != null
+                    ? req.recipientContact.Id
+                    : req.recipientContactId;
 
-			Id templateId = templateMap.containsKey( req.emailTemplateName ) ? templateMap.get( req.emailTemplateName ) : null;
+                if (orgWideEmailId != null && req.useDoNotReply) {
+                    message.setOrgWideEmailAddressId(orgWideEmailId);
+                }
+                if (templateId != null) {
+                    message.setTemplateId(templateId);
+                }
+                message.setWhatId(req.relatedToId);
+                message.setTargetObjectId(contactId);
+                message.setSaveAsActivity(req.saveAsActivity);
 
-			if ( templateId != null ) {
+                messages.add(message);
+            }
+        }
 
-				Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-
-				Id contactId = req.recipientContact != null ? req.recipientContact.Id : req.recipientContactId;
-
-				if ( orgWideEmailId != null && req.useDoNotReply ) { message.setOrgWideEmailAddressId( orgWideEmailId ); }
-				if ( templateId != null ) { message.setTemplateId( templateId ); }
-				message.setWhatId( req.relatedToId );
-				message.setTargetObjectId( contactId );
-				message.setSaveAsActivity( req.saveAsActivity );
-
-				messages.add( message );
-			}
-		}
-
-		return messages;
-	}
+        return messages;
+    }
 }

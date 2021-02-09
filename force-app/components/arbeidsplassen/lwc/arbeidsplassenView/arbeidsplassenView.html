@@ -1,69 +1,88 @@
 <template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header
+                class="slds-media slds-media_center slds-has-flexi-truncate"
+            >
+                <div class="slds-media__figure">
+                    <lightning-icon
+                        icon-name="standard:contract"
+                        alternative-text="Approved"
+                        title="Approved"
+                    >
+                    </lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <p class="slds-card__header-link slds-truncate">
+                            <span>Stillinger ({amount})</span>
+                        </p>
+                    </h2>
+                    <span
+                        >Hentet fra
+                        <a href="https://arbeidsplassen.nav.no" target="_blank">
+                            arbeidsplassen.nav.no
+                        </a></span
+                    >
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body">
+            <!-- _______________________________ DATATABLE ______________________________ -->
+            <!-- ________________________________________________________________________ -->
 
-	<article class="slds-card">
-		<div class="slds-card__header slds-grid">
-			<header class="slds-media slds-media_center slds-has-flexi-truncate">
-				<div class="slds-media__figure">
-					<lightning-icon icon-name="standard:contract" alternative-text="Approved" title="Approved">
-					</lightning-icon>
-				</div>
-				<div class="slds-media__body">
-					<h2 class="slds-card__header-title">
-						<p class="slds-card__header-link slds-truncate">
-							<span>Stillinger ({amount})</span>
-						</p>
-					</h2>
-					<span>Hentet fra <a href="https://arbeidsplassen.nav.no" target="_blank">
-							arbeidsplassen.nav.no
-						</a></span>
-				</div>
-			</header>
-		</div>
-		<div class="slds-card__body">
+            <lightning-datatable
+                if:true={showData}
+                key-field="id"
+                data={data}
+                columns={columns}
+                hide-checkbox-column
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                onsort={updateColumnSorting}
+                onrowaction={handleRowAction}
+            >
+            </lightning-datatable>
 
-			<!-- _______________________________ DATATABLE ______________________________ -->
-			<!-- ________________________________________________________________________ -->
+            <!-- _______________________________ LOADING ________________________________ -->
+            <!-- ________________________________________________________________________ -->
 
-			<lightning-datatable if:true={showData} key-field="id" data={data} columns={columns} hide-checkbox-column
-				sorted-by={sortBy} sorted-direction={sortDirection} onsort={updateColumnSorting}
-				onrowaction={handleRowAction}>
-			</lightning-datatable>
+            <div if:true={isLoading} class="slds-scrollable loading">
+                <lightning-spinner
+                    alternative-text="Laster"
+                    size="large"
+                ></lightning-spinner>
+            </div>
 
+            <!-- _________________________________ ERROR ________________________________ -->
+            <!-- ________________________________________________________________________ -->
 
-			<!-- _______________________________ LOADING ________________________________ -->
-			<!-- ________________________________________________________________________ -->
+            <div if:true={isError} class="slds-m-top_large">
+                <br />
+                <div class="slds-text-heading_large slds-align_absolute-center">
+                    Feil!
+                </div>
+                <div
+                    class="slds-text-color_destructive slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large"
+                >
+                    {errorMsg}
+                </div>
+            </div>
 
-			<div if:true={isLoading} class="slds-scrollable loading">
-				<lightning-spinner alternative-text="Laster" size="large"></lightning-spinner>
-			</div>
+            <!-- _________________________________ EMPTY ________________________________ -->
+            <!-- ________________________________________________________________________ -->
 
-
-			<!-- _________________________________ ERROR ________________________________ -->
-			<!-- ________________________________________________________________________ -->
-
-			<div if:true={isError} class="slds-m-top_large">
-				<br>
-				<div class="slds-text-heading_large slds-align_absolute-center">Feil!</div>
-				<div
-					class="slds-text-color_destructive slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large">
-					{errorMsg}
-				</div>
-			</div>
-
-
-			<!-- _________________________________ EMPTY ________________________________ -->
-			<!-- ________________________________________________________________________ -->
-
-			<div if:true={isEmpty} class="slds-m-top_large">
-				<br>
-				<div class="slds-text-heading_large slds-align_absolute-center">Tomt!
-				</div>
-				<div
-					class="slds-text-heading_small slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large">
-					Ingen stillinger er utlyst.
-				</div>
-			</div>
-
-		</div>
-	</article>
+            <div if:true={isEmpty} class="slds-m-top_large">
+                <br />
+                <div class="slds-text-heading_large slds-align_absolute-center">
+                    Tomt!
+                </div>
+                <div
+                    class="slds-text-heading_small slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large"
+                >
+                    Ingen stillinger er utlyst.
+                </div>
+            </div>
+        </div>
+    </article>
 </template>

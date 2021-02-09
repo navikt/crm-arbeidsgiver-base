@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <decisions>
         <processMetadataValues>
@@ -43,7 +43,8 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Inquiry_Category_2__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.Inquiry_Category_2__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -74,7 +75,8 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.InquiryCategory__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.InquiryCategory__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Forebygge sykefravær</stringValue>
@@ -129,7 +131,8 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.InquiryCategory__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.InquiryCategory__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Rekruttering</stringValue>
@@ -160,7 +163,8 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Inquiry_Category_2__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.Inquiry_Category_2__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -215,7 +219,8 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.InquiryCategory__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.InquiryCategory__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Inkludering</stringValue>
@@ -246,7 +251,8 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.InquiryCategory__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.InquiryCategory__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Rekruttering med tilrettelegging</stringValue>
@@ -277,7 +283,8 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.InquiryCategory__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.InquiryCategory__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Arbeidstrening</stringValue>
@@ -308,7 +315,8 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Inquiry_Category_2__c</leftValueReference>
+                <leftValueReference
+                >myVariable_current.Inquiry_Category_2__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -348,7 +356,8 @@
             <label>Update resolved</label>
         </rules>
     </decisions>
-    <description>Updates inquiry category 2 from Inquiry category. Inq. cat 2 is shown to user, this process can be deleted if we fieldst on nav.no are changed to reflect new values</description>
+    <description
+    >Updates inquiry category 2 from Inquiry category. Inq. cat 2 is shown to user, this process can be deleted if we fieldst on nav.no are changed to reflect new values</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -377,7 +386,8 @@
     ISPICKVAL(PRIORVALUE({!myVariable_current.InclusionStage__c}), &quot;Ny henvendelse&quot;) 
 )</expression>
     </formulas>
-    <interviewLabel>Custom_Opportunity_update_Inq_Cat_2-5_InterviewLabel</interviewLabel>
+    <interviewLabel
+    >Custom_Opportunity_update_Inq_Cat_2-5_InterviewLabel</interviewLabel>
     <label>Custom Opportunity update Inq. Cat 2</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -471,7 +481,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -554,7 +564,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -637,7 +647,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -717,7 +727,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -728,7 +738,8 @@
             </processMetadataValues>
             <field>TAG_Resolved_Date_Time__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_1141726220</elementReference>
+                <elementReference
+                >formula_8_myRule_7_A1_1141726220</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>

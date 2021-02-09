@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_IsMyMarketRegion__c</fullName>
     <externalId>false</externalId>
-    <formula>TAG_NAV_Market_Region__c != null  &amp;&amp; $User.CRM_MarketRegion__c=$User.CRM_MarketRegion__c</formula>
+    <formula
+    >TAG_NAV_Market_Region__c != null  &amp;&amp; $User.CRM_MarketRegion__c=$User.CRM_MarketRegion__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My Market Region</label>
     <trackTrending>false</trackTrending>

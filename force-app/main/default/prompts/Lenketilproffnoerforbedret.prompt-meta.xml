@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>Lenke til proff.no er forbedret</masterLabel>
     <promptVersions>
-        <body>Nå har lenken til virksomhten til proff blitt bedre. Dersom det kun er en underenhet vil oppslaget vise hovedenheten (J´en). Merk at det ikke alle underenheter ligger på proff.no, forsøk da lenken på overordnet enhet.</body>
+        <body
+        >Nå har lenken til virksomhten til proff blitt bedre. Dersom det kun er en underenhet vil oppslaget vise hovedenheten (J´en). Merk at det ikke alle underenheter ligger på proff.no, forsøk da lenken på overordnet enhet.</body>
         <delayDays>1</delayDays>
-        <description>Infomrasjon om oppdatering av lenken til proff.no, vises tre ganger og deatkvieres 31.10.2020</description>
+        <description
+        >Infomrasjon om oppdatering av lenken til proff.no, vises tre ganger og deatkvieres 31.10.2020</description>
         <dismissButtonLabel>Skjul tipset</dismissButtonLabel>
         <displayPosition>TopRight</displayPosition>
         <displayType>FloatingPanel</displayType>

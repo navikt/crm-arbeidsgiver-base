@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>TemporaryLayoff__c</baseObject>
     <category>accounts</category>
     <deployed>true</deployed>
-    <description>Rapport som viser permitteringsvarsler med informasjon fra konto og tilhørende NAV kontor</description>
+    <description
+    >Rapport som viser permitteringsvarsler med informasjon fra konto og tilhørende NAV kontor</description>
     <label>Permitteringsvarsler med konto og NAV kontor</label>
     <sections>
         <columns>

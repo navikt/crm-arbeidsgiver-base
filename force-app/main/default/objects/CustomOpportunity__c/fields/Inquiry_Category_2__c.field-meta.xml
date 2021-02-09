@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Inquiry_Category_2__c</fullName>
-    <description>Added field number 2, as the inq. cat original field reflects fields on contactform. In order not to have to change on contactform, this field is used. On Change here, inq. cat field is updated</description>
+    <description
+    >Added field number 2, as the inq. cat original field reflects fields on contactform. In order not to have to change on contactform, this field is used. On Change here, inq. cat field is updated</description>
     <externalId>false</externalId>
     <inlineHelpText>Hva gjelder henvendelsen</inlineHelpText>
     <label>Inquiry Category 2</label>

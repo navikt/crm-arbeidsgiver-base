@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Field_Tag_Informed_chekced_before_save</fullName>
     <active>true</active>
-    <description>The checkbox TAG_Informed must be checked in order to save. This to ensure user have informed contact that date will be stored.</description>
+    <description
+    >The checkbox TAG_Informed must be checked in order to save. This to ensure user have informed contact that date will be stored.</description>
     <errorConditionFormula>AND(
 $Permission.Arbeidsgiver = TRUE,
 TAG_Informed__c = FALSE,
 ISBLANK(Source__c)
 )</errorConditionFormula>
     <errorDisplayField>TAG_Informed__c</errorDisplayField>
-    <errorMessage>For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.</errorMessage>
+    <errorMessage
+    >For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.</errorMessage>
 </ValidationRule>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
         <label><!-- Permitteringsvarsler --></label>
@@ -121,11 +121,13 @@
         <name>Errors_InvalidSettingConfiguration</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when selecting a cross-object fieldsset is not allowed and attempted. --></label>
+        <label
+        ><!-- Error when selecting a cross-object fieldsset is not allowed and attempted. --></label>
         <name>fflib_QueryFactory_crossobject_fieldsets_not_allowed_error</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when selecting a field set for a different sobject type. --></label>
+        <label
+        ><!-- Error when selecting a field set for a different sobject type. --></label>
         <name>fflib_QueryFactory_fieldset_wrong_sobject_error</name>
     </customLabels>
     <customLabels>
@@ -133,7 +135,8 @@
         <name>fflib_QueryFactory_recursive_subquery_error</name>
     </customLabels>
     <customLabels>
-        <label><!-- Presented when attempting to create a subquery from an invalid relationship. --></label>
+        <label
+        ><!-- Presented when attempting to create a subquery from an invalid relationship. --></label>
         <name>fflib_QueryFactory_subquery_invalid_relationship</name>
     </customLabels>
     <customLabels>
@@ -165,35 +168,35 @@
         <name>fflib_security_error_object_not_updateable</name>
     </customLabels>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Account_Team_Update</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Contract</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Custom_Opportunity_update_Inq_Cat_2</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>NAVTask_Owner_Change</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Opportunity</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>TAG_Update_NavUnit_in_NavTask</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Task</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Temporary_Layoff_Update</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -346,7 +349,8 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Kontoer med eller uten kontaktpersponer fra NAV --></description>
+        <description
+        ><!-- Kontoer med eller uten kontaktpersponer fra NAV --></description>
         <label><!-- Kontoer med eller uten kontaktpersponer fra NAV --></label>
         <name>Kontoer_med_eller_uten_kontaktpersponer_fra_NAV</name>
         <sections>
@@ -359,7 +363,8 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Kontoer uten kontaktpersponer fra NAV --></description>
+        <description
+        ><!-- Kontoer uten kontaktpersponer fra NAV --></description>
         <label><!-- Kontoer uten kontaktpersponer fra NAV --></label>
         <name>Kontoer_uten_kontaktpersponer_fra_NAV</name>
         <sections>
@@ -389,7 +394,8 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Permitteringsvarsler med konto og NAV kontor --></description>
+        <description
+        ><!-- Permitteringsvarsler med konto og NAV kontor --></description>
         <label><!-- Permitteringsvarsler med konto og NAV kontor --></label>
         <name>TAG_Permitteringsvarsler_med_konto_og_NAV_kontor</name>
         <sections>

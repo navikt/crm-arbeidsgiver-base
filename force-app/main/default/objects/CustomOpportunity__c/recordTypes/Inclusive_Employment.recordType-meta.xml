@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Inclusive_Employment</fullName>
     <active>true</active>
@@ -1530,7 +1530,8 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Storfjord %E2%80%93 Omasvuotna %E2%80%93 Omasvuono</fullName>
+            <fullName
+            >Storfjord %E2%80%93 Omasvuotna %E2%80%93 Omasvuono</fullName>
             <default>false</default>
         </values>
         <values>

@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Notatfelt skal ikke inneholde opplysninger som kan knyttes til en enkeltperson/bruker --></help>
+    <help
+    ><!-- Notatfelt skal ikke inneholde opplysninger som kan knyttes til en enkeltperson/bruker --></help>
     <label>Ingen brukeropplysninger</label>
     <name>TAG_NoPersonInformation__c</name>
 </CustomFieldTranslation>

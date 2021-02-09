@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
         <processMetadataValues>
@@ -46,7 +46,8 @@
         <inputParameters>
             <name>body</name>
             <value>
-                <stringValue>{!myVariable_current.LastModifiedBy.FirstName} {!myVariable_current.LastModifiedBy.LastName} har tildelt deg permitteringsvarselet: {!myVariable_current.Name} </stringValue>
+                <stringValue
+                >{!myVariable_current.LastModifiedBy.FirstName} {!myVariable_current.LastModifiedBy.LastName} har tildelt deg permitteringsvarselet: {!myVariable_current.Name} </stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -83,7 +84,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -94,7 +95,8 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference>myCollection_myRule_4_A1recipientIds</elementReference>
+                <elementReference
+                >myCollection_myRule_4_A1recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -104,7 +106,8 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myCollection_myRule_4_A1recipientIds</assignToReference>
+            <assignToReference
+            >myCollection_myRule_4_A1recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>myVariable_current.OwnerId</elementReference>
@@ -188,23 +191,27 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].Status__c), TEXT(PRIORVALUE([TemporaryLayoff__c].Status__c)) = &quot;Ny&quot;, TEXT([TemporaryLayoff__c].Status__c) = &quot;Fullført, fulgt opp&quot;)</stringValue>
+                <stringValue
+                >AND(ISCHANGED([TemporaryLayoff__c].Status__c), TEXT(PRIORVALUE([TemporaryLayoff__c].Status__c)) = &quot;Ny&quot;, TEXT([TemporaryLayoff__c].Status__c) = &quot;Fullført, fulgt opp&quot;)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED({!myVariable_current.Status__c}), TEXT(PRIORVALUE({!myVariable_current.Status__c})) = &quot;Ny&quot;, TEXT({!myVariable_current.Status__c}) = &quot;Fullført, fulgt opp&quot;)</expression>
+        <expression
+        >AND(ISCHANGED({!myVariable_current.Status__c}), TEXT(PRIORVALUE({!myVariable_current.Status__c})) = &quot;Ny&quot;, TEXT({!myVariable_current.Status__c}) = &quot;Fullført, fulgt opp&quot;)</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(ISCHANGED([TemporaryLayoff__c].OwnerId ), [TemporaryLayoff__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([TemporaryLayoff__c].OwnerId,3) = &apos;005&apos;))</stringValue>
+                <stringValue
+                >AND(ISCHANGED([TemporaryLayoff__c].OwnerId ), [TemporaryLayoff__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([TemporaryLayoff__c].OwnerId,3) = &apos;005&apos;))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_4</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &apos;005&apos;))</expression>
+        <expression
+        >AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &apos;005&apos;))</expression>
     </formulas>
     <interviewLabel>Temporary_Layoff_Update-2_InterviewLabel</interviewLabel>
     <label>Temporary Layoff</label>
@@ -297,7 +304,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -357,7 +364,8 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_7740763240</elementReference>
+                <elementReference
+                >formula_2_myRule_1_A1_7740763240</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>

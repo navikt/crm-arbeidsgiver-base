@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
@@ -33,7 +33,8 @@
                 <name>variant</name>
                 <value>linear</value>
             </componentInstanceProperties>
-            <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
+            <componentName
+            >runtime_sales_pathassistant:pathAssistant</componentName>
         </componentInstances>
         <componentInstances>
             <componentName>force:detailPanel</componentName>
@@ -72,7 +73,8 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>richTextValue</name>
-                <value>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Om Mulighet&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Brukes for å melde inn at arbeidsgiver har:&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Behov for arbeidskraft eller kan inkludere. Henvendelseskategori; Rekruttering, Inkludering, Rekruttering med tilrettelegging eller Arbeidstrening.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Arbeidsgiver er interessert i eller har behov for støtte til å redusere sykefravær. Henvendelseskategori; Forebygge sykefravær.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Muligheter kan komme inn via&lt;/span&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;a href=&quot;https://arbeidsgiver.nav.no/kontakt-oss/kontaktskjema&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;kontaktskjema på nav.no&lt;/b&gt;&lt;/a&gt;&lt;b style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/b&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;eller legges inn manuelt.&lt;/span&gt;&lt;b style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ny mulighet kan registreres fra arbeidsgiverkortet.&lt;/p&gt;&lt;p&gt;​&lt;/p&gt;&lt;p&gt;Klikk på &quot;i&quot; en som står ved feltene for beskrivelse av disse.&lt;/p&gt;</value>
+                <value
+                >&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Om Mulighet&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Brukes for å melde inn at arbeidsgiver har:&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Behov for arbeidskraft eller kan inkludere. Henvendelseskategori; Rekruttering, Inkludering, Rekruttering med tilrettelegging eller Arbeidstrening.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Arbeidsgiver er interessert i eller har behov for støtte til å redusere sykefravær. Henvendelseskategori; Forebygge sykefravær.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Muligheter kan komme inn via&lt;/span&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; &lt;/b&gt;&lt;a href=&quot;https://arbeidsgiver.nav.no/kontakt-oss/kontaktskjema&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;kontaktskjema på nav.no&lt;/b&gt;&lt;/a&gt;&lt;b style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/b&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;eller legges inn manuelt.&lt;/span&gt;&lt;b style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ny mulighet kan registreres fra arbeidsgiverkortet.&lt;/p&gt;&lt;p&gt;​&lt;/p&gt;&lt;p&gt;Klikk på &quot;i&quot; en som står ved feltene for beskrivelse av disse.&lt;/p&gt;</value>
             </componentInstanceProperties>
             <componentName>flexipage:richText</componentName>
         </componentInstances>
