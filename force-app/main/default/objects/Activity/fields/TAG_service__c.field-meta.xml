@@ -55,14 +55,14 @@
                 <label>Oppsigelser</label>
             </value>
             <value>
-                <fullName>IPS Jobbutvikling</fullName>
+                <fullName>Jobbutvikling_Jobbspesialist</fullName>
                 <default>false</default>
-                <label>IPS Jobbutvikling</label>
+                <label>Jobbutvikling (Jobbspesialist)</label>
             </value>
             <value>
-                <fullName>IPS Jobbstøtte</fullName>
+                <fullName>Jobbstøtte_Jobbspesialist</fullName>
                 <default>false</default>
-                <label>IPS Jobbstøtte</label>
+                <label>Jobbstøtte (Jobbspesialist)</label>
             </value>
         </valueSetDefinition>
         <valueSettings>
@@ -91,12 +91,12 @@
         <valueSettings>
             <controllingFieldValue
             >Rekruttere og inkludere</controllingFieldValue>
-            <valueName>IPS Jobbutvikling</valueName>
+            <valueName>Jobbutvikling_Jobbspesialist</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue
             >Rekruttere og inkludere</controllingFieldValue>
-            <valueName>IPS Jobbstøtte</valueName>
+            <valueName>Jobbstøtte_Jobbspesialist</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue
