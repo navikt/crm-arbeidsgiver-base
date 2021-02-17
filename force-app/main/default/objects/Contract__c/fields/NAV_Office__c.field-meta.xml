@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NAV_Office__c</fullName>
     <externalId>false</externalId>
-    <formula>TAG_Account__r.TAG_NavUnit__c</formula>
+    <formula>TAG_Account__r.TAG_NavUnit__r.Name</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>NAV Office</label>
     <required>false</required>
