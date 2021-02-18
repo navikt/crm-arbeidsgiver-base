@@ -55,7 +55,10 @@ public class ArbeidsplassenRawModel {
                         } else if (text == 'postalCode') {
                             postalCode = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'WorkLocations consuming unrecognized property: ' + text);
+                            System.debug(
+                                LoggingLevel.WARN,
+                                'WorkLocations consuming unrecognized property: ' + text
+                            );
                             consumeObject(parser);
                         }
                     }
@@ -84,7 +87,10 @@ public class ArbeidsplassenRawModel {
                         } else if (text == 'orgnr') {
                             orgnr = parser.getText();
                         } else {
-                            System.debug(LoggingLevel.WARN, 'Employer consuming unrecognized property: ' + text);
+                            System.debug(
+                                LoggingLevel.WARN,
+                                'Employer consuming unrecognized property: ' + text
+                            );
                             consumeObject(parser);
                         }
                     }
@@ -158,7 +164,10 @@ public class ArbeidsplassenRawModel {
                         } else if (text == 'workLocations') {
                             workLocations = arrayOfWorkLocations(parser);
                         } else {
-                            System.debug(LoggingLevel.WARN, 'Content consuming unrecognized property: ' + text);
+                            System.debug(
+                                LoggingLevel.WARN,
+                                'Content consuming unrecognized property: ' + text
+                            );
                             consumeObject(parser);
                         }
                     }

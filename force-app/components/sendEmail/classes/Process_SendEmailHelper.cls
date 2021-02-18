@@ -34,7 +34,9 @@ public without sharing class Process_SendEmailHelper {
             if (templateId != null) {
                 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
 
-                Id contactId = req.recipientContact != null ? req.recipientContact.Id : req.recipientContactId;
+                Id contactId = req.recipientContact != null
+                    ? req.recipientContact.Id
+                    : req.recipientContactId;
 
                 if (orgWideEmailId != null && req.useDoNotReply) {
                     message.setOrgWideEmailAddressId(orgWideEmailId);

@@ -25,7 +25,11 @@ private without sharing class MarkdownViewerControllerTest {
 
         Test.StartTest();
         System.runAs(u) {
-            results = MarkdownViewerController.getData(tl.Id, 'TemporaryLayoff__c', 'OtherComments__c');
+            results = MarkdownViewerController.getData(
+                tl.Id,
+                'TemporaryLayoff__c',
+                'OtherComments__c'
+            );
         }
         Test.StopTest();
 
@@ -48,7 +52,11 @@ private without sharing class MarkdownViewerControllerTest {
 
         Test.StartTest();
         System.runAs(u) {
-            results = MarkdownViewerController.getData(tl.Id, 'TemporaryLayoff__c', 'OtherComments__c');
+            results = MarkdownViewerController.getData(
+                tl.Id,
+                'TemporaryLayoff__c',
+                'OtherComments__c'
+            );
         }
         Test.StopTest();
 

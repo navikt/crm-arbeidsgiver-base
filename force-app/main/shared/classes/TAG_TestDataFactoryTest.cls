@@ -36,7 +36,11 @@ private without sharing class TAG_TestDataFactoryTest {
 
         Integer afterAccount = [SELECT Id FROM Account].size();
 
-        System.assertEquals(amount, afterAccount - beforeAccount, 'New user should have been created');
+        System.assertEquals(
+            amount,
+            afterAccount - beforeAccount,
+            'New user should have been created'
+        );
     }
 
     @IsTest
@@ -73,7 +77,11 @@ private without sharing class TAG_TestDataFactoryTest {
 
         List<User> users = [SELECT Id FROM User WHERE Username = 'testgfd899@nav.test'];
         System.assertEquals(1, users.size(), 'User is not created');
-        List<PermissionSet> permissionSets = [SELECT Id FROM PermissionSet WHERE Name = 'ManageAccounts'];
+        List<PermissionSet> permissionSets = [
+            SELECT Id
+            FROM PermissionSet
+            WHERE Name = 'ManageAccounts'
+        ];
         System.assertEquals(1, permissionSets.size(), 'Permission set is not created');
 
         List<PermissionSetAssignment> permissionSetAssignments = [
@@ -81,7 +89,11 @@ private without sharing class TAG_TestDataFactoryTest {
             FROM PermissionSetAssignment
             WHERE AssigneeId = :users[0].Id AND PermissionSetId = :permissionSets[0].Id
         ];
-        System.assertEquals(1, PermissionSetAssignments.size(), 'Permission set is not assigned to new user');
+        System.assertEquals(
+            1,
+            PermissionSetAssignments.size(),
+            'Permission set is not assigned to new user'
+        );
     }
 
     @IsTest

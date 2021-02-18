@@ -52,7 +52,10 @@ public with sharing class ArbeidsplassenViewModel {
             for (String iter : name.split('[ ]+')) {
                 if (iter != null && iter != '') {
                     if (iter.length() > 1) {
-                        result += iter.substring(0, 1).toUpperCase() + iter.substring(1, iter.length()) + ' ';
+                        result +=
+                            iter.substring(0, 1).toUpperCase() +
+                            iter.substring(1, iter.length()) +
+                            ' ';
                     } else {
                         result += iter.substring(0, 1).toUpperCase() + ' ';
                     }

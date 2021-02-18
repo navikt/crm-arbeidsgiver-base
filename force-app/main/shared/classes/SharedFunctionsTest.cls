@@ -27,8 +27,14 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchAccounts() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
-            Account acc2 = new Account(Name = 'Test Employer 2', INT_OrganizationNumber__c = '77777777');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
+            Account acc2 = new Account(
+                Name = 'Test Employer 2',
+                INT_OrganizationNumber__c = '77777777'
+            );
             insert new List<Account>{ acc, acc2 };
             Contact con = new Contact(
                 TAG_Informed__c = true,
@@ -46,8 +52,16 @@ private without sharing class SharedFunctionsTest {
             Test.StopTest();
 
             Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
-            System.assertEquals(acc.Id, result.get(acc.INT_OrganizationNumber__c).Id, 'Should be same account');
-            System.assertEquals(acc2.Id, result.get(acc2.INT_OrganizationNumber__c).Id, 'Should be same account');
+            System.assertEquals(
+                acc.Id,
+                result.get(acc.INT_OrganizationNumber__c).Id,
+                'Should be same account'
+            );
+            System.assertEquals(
+                acc2.Id,
+                result.get(acc2.INT_OrganizationNumber__c).Id,
+                'Should be same account'
+            );
             System.assertEquals(
                 1,
                 contactRelationships,
@@ -59,7 +73,10 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_create() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
             insert acc;
 
             SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel(
@@ -70,16 +87,30 @@ private without sharing class SharedFunctionsTest {
                 '99999999',
                 'kurs'
             );
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+                wrapper
+            };
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             Test.StartTest();
-            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(
+                wrapperList,
+                accountMap
+            );
             Test.StopTest();
 
             Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
-            System.assertEquals(acc.Id, result.get('test@test.com').AccountId, 'Should be same account');
-            System.assert(result.get('test@test.com').Source__c.contains('kurs'), 'Should be same account');
+            System.assertEquals(
+                acc.Id,
+                result.get('test@test.com').AccountId,
+                'Should be same account'
+            );
+            System.assert(
+                result.get('test@test.com').Source__c.contains('kurs'),
+                'Should be same account'
+            );
             System.assertEquals(
                 1,
                 contactRelationships,
@@ -91,8 +122,14 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_emptyEmail() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
-            Account acc2 = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '677777');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
+            Account acc2 = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '677777'
+            );
             insert new List<Account>{ acc, acc2 };
             Contact con = new Contact(
                 TAG_Informed__c = true,
@@ -110,8 +147,12 @@ private without sharing class SharedFunctionsTest {
                 '677777',
                 'test'
             );
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+                wrapper
+            };
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             List<Contact> contacts = [SELECT Id FROM Contact];
             System.assertEquals(1, contacts.size(), 'Before, only 1 contact');
@@ -128,7 +169,10 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_invalidEmail() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
             insert acc;
 
             SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel(
@@ -188,7 +232,9 @@ private without sharing class SharedFunctionsTest {
                 wrapper6
             };
 
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             List<Contact> contacts = [SELECT Id FROM Contact];
             System.assertEquals(0, contacts.size(), 'Before, only 1 contact');
@@ -201,7 +247,11 @@ private without sharing class SharedFunctionsTest {
             System.assertEquals(6, contacts.size(), 'After, 6 contacts despite invalid email');
 
             for (Contact c : contacts) {
-                System.assertEquals(null, c.Email, 'Email should be null, as the emailed added is invalid');
+                System.assertEquals(
+                    null,
+                    c.Email,
+                    'Email should be null, as the emailed added is invalid'
+                );
                 System.assertNotEquals(
                     null,
                     c.InvalidEmail__c,
@@ -214,7 +264,10 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_invalidEmailExisting_CreateNewWithInvalidEmail() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
             insert acc;
             Contact con = new Contact(
                 TAG_Informed__c = true,
@@ -232,9 +285,13 @@ private without sharing class SharedFunctionsTest {
                 '99999999',
                 'test'
             );
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+                wrapper
+            };
 
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             List<Contact> contacts = [SELECT Id FROM Contact];
             System.assertEquals(1, contacts.size(), 'Before, only 1 contact');
@@ -244,10 +301,18 @@ private without sharing class SharedFunctionsTest {
             Test.StopTest();
 
             contacts = [SELECT Id, InvalidEmail__c, Email FROM Contact];
-            System.assertEquals(1, contacts.size(), 'After, still only one contact despite invalid email');
+            System.assertEquals(
+                1,
+                contacts.size(),
+                'After, still only one contact despite invalid email'
+            );
 
             for (Contact c : contacts) {
-                System.assertEquals(null, c.Email, 'Email should be null, as the emailed added is invalid');
+                System.assertEquals(
+                    null,
+                    c.Email,
+                    'Email should be null, as the emailed added is invalid'
+                );
                 System.assertEquals(
                     'test @domain.com',
                     c.InvalidEmail__c,
@@ -261,7 +326,10 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_existingContact() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
             insert acc;
             Contact con = new Contact(
                 TAG_Informed__c = true,
@@ -280,14 +348,25 @@ private without sharing class SharedFunctionsTest {
                 '99999999',
                 'test'
             );
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+                wrapper
+            };
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             Test.StartTest();
-            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(
+                wrapperList,
+                accountMap
+            );
             Test.StopTest();
 
-            System.assertEquals(con.Id, result.get('test@test.com').Id, 'Should be same existing contact');
+            System.assertEquals(
+                con.Id,
+                result.get('test@test.com').Id,
+                'Should be same existing contact'
+            );
 
             Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
             System.assertEquals(
@@ -301,7 +380,10 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_existingContact_newSource() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
             insert acc;
             Contact con = new Contact(
                 TAG_Informed__c = true,
@@ -321,8 +403,12 @@ private without sharing class SharedFunctionsTest {
                 '99999999',
                 'Permittering'
             );
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+                wrapper
+            };
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             Test.StartTest();
             SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
@@ -330,15 +416,24 @@ private without sharing class SharedFunctionsTest {
 
             con = [SELECT Id, Source__c FROM contact WHERE Id = :con.Id LIMIT 1];
             System.assert(con.Source__c.contains('Kurs'), 'Source should contain kurs');
-            System.assert(con.Source__c.contains('Permittering'), 'Source should contain Permittering');
+            System.assert(
+                con.Source__c.contains('Permittering'),
+                'Source should contain Permittering'
+            );
         }
     }
 
     @isTest
     private static void testFetchOrCreateContact_existingContactOnAnotherAccount() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
-            Account acc2 = new Account(Name = 'Test Employer 2', INT_OrganizationNumber__c = '77777777');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
+            Account acc2 = new Account(
+                Name = 'Test Employer 2',
+                INT_OrganizationNumber__c = '77777777'
+            );
             insert new List<Account>{ acc, acc2 };
             Contact con = new Contact(
                 TAG_Informed__c = true,
@@ -357,15 +452,26 @@ private without sharing class SharedFunctionsTest {
                 '77777777',
                 'test'
             );
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+                wrapper
+            };
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             Test.StartTest();
-            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(
+                wrapperList,
+                accountMap
+            );
             Test.StopTest();
 
             Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
-            System.assertEquals(con.Id, result.get('test@test.com').Id, 'Should be same existing contact');
+            System.assertEquals(
+                con.Id,
+                result.get('test@test.com').Id,
+                'Should be same existing contact'
+            );
             System.assertEquals(
                 2,
                 contactRelationships,
@@ -377,9 +483,18 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_existingContactOnAnotherAccount_sameUserMultipleInsertions() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
-            Account acc2 = new Account(Name = 'Test Employer 2', INT_OrganizationNumber__c = '77777777');
-            Account acc3 = new Account(Name = 'Test Employer 2', INT_OrganizationNumber__c = '4444');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
+            Account acc2 = new Account(
+                Name = 'Test Employer 2',
+                INT_OrganizationNumber__c = '77777777'
+            );
+            Account acc3 = new Account(
+                Name = 'Test Employer 2',
+                INT_OrganizationNumber__c = '4444'
+            );
             insert new List<Account>{ acc, acc2, acc3 };
 
             Contact con = new Contact(
@@ -417,11 +532,18 @@ private without sharing class SharedFunctionsTest {
             );
 
             Test.StartTest();
-            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(
+                wrapperList,
+                accountMap
+            );
             Test.StopTest();
 
             Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
-            System.assertEquals(con.Id, result.get('test@test.com').Id, 'Should be same existing contact');
+            System.assertEquals(
+                con.Id,
+                result.get('test@test.com').Id,
+                'Should be same existing contact'
+            );
             System.assertEquals(
                 3,
                 contactRelationships,
@@ -433,10 +555,22 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_existingContactOnAnotherAccount_multipleUsers() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '77777777');
-            Account acc2 = new Account(Name = 'Test Employer 2', INT_OrganizationNumber__c = '4444');
-            Account acc3 = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '9999999');
-            Account acc4 = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '3333');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '77777777'
+            );
+            Account acc2 = new Account(
+                Name = 'Test Employer 2',
+                INT_OrganizationNumber__c = '4444'
+            );
+            Account acc3 = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '9999999'
+            );
+            Account acc4 = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '3333'
+            );
             insert new List<Account>{ acc, acc2, acc3, acc4 };
 
             Contact con = new Contact(
@@ -480,11 +614,18 @@ private without sharing class SharedFunctionsTest {
             );
 
             Test.StartTest();
-            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(
+                wrapperList,
+                accountMap
+            );
             Test.StopTest();
 
             Integer contactRelationships = [SELECT Id FROM AccountContactRelation].size();
-            System.assertEquals(con.Id, result.get('test@test.com').Id, 'Should be same existing contact');
+            System.assertEquals(
+                con.Id,
+                result.get('test@test.com').Id,
+                'Should be same existing contact'
+            );
             System.assertEquals(
                 4,
                 contactRelationships,
@@ -496,7 +637,10 @@ private without sharing class SharedFunctionsTest {
     @isTest
     private static void testFetchOrCreateContact_uppcaseEmail() {
         System.runAs(getTestUser()) {
-            Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+            Account acc = new Account(
+                Name = 'Test Employer 1',
+                INT_OrganizationNumber__c = '99999999'
+            );
             insert acc;
             Contact con = new Contact(
                 TAG_Informed__c = true,
@@ -515,14 +659,25 @@ private without sharing class SharedFunctionsTest {
                 '77777777',
                 'test'
             );
-            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
-            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(new List<String>{ wrapper.companyNumber });
+            List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+                wrapper
+            };
+            Map<String, Account> accountMap = SharedFunctions.fetchAccounts(
+                new List<String>{ wrapper.companyNumber }
+            );
 
             Test.StartTest();
-            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+            Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(
+                wrapperList,
+                accountMap
+            );
             Test.StopTest();
 
-            System.assertEquals(con.Id, result.get('test@test.com').Id, 'Should be same existing contact');
+            System.assertEquals(
+                con.Id,
+                result.get('test@test.com').Id,
+                'Should be same existing contact'
+            );
         }
     }
 

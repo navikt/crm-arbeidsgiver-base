@@ -22,16 +22,29 @@ private without sharing class AccountMessagesController_Test {
         AccountMessagesWrapper accountIsNull = AccountMessagesController.getData(acts[6].Id);
         Account getBankruptAccount = AccountMessagesController.getAccount(acts[0].Id);
         Account getBankruptParent = AccountMessagesController.getAccount(acts[1].Id);
-        Account getRelatedAccount = AccountMessagesController.findRelatedAccount(acts[1].Id, ' KONKURSBO');
-        Account getRelatedAccount2 = AccountMessagesController.findRelatedAccount(acts[3].Id, ' TVANGSAVVIKLINGSBO');
-        AccountMessagesWrapper accountIsBankrupt = AccountMessagesController.convertAccountHistoryToWrapper(acts[0]);
+        Account getRelatedAccount = AccountMessagesController.findRelatedAccount(
+            acts[1].Id,
+            ' KONKURSBO'
+        );
+        Account getRelatedAccount2 = AccountMessagesController.findRelatedAccount(
+            acts[3].Id,
+            ' TVANGSAVVIKLINGSBO'
+        );
+        AccountMessagesWrapper accountIsBankrupt = AccountMessagesController.convertAccountHistoryToWrapper(
+            acts[0]
+        );
         AccountMessagesWrapper accountIsInForcedSettlement = AccountMessagesController.convertAccountHistoryToWrapper(
             acts[3]
         );
-        AccountMessagesWrapper accountIsNotBankrupt = AccountMessagesController.convertAccountHistoryToWrapper(acts[6]);
+        AccountMessagesWrapper accountIsNotBankrupt = AccountMessagesController.convertAccountHistoryToWrapper(
+            acts[6]
+        );
         Test.StopTest();
         System.assertEquals(accountIsBankrupt.field, 'Denne virksomheten er konkurs');
-        System.assertEquals(accountIsInForcedSettlement.field, 'Denne virksomheten er under tvangsavvikling');
+        System.assertEquals(
+            accountIsInForcedSettlement.field,
+            'Denne virksomheten er under tvangsavvikling'
+        );
         System.assertEquals(accountIsNotBankrupt.field, 'Denne virksomheten er ');
         System.assertEquals(accountIsNull, null);
     }

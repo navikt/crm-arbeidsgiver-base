@@ -40,7 +40,11 @@ private without sharing class Activity_AddAccountHelperTest {
             t = (Task) Activity_AddAccountHelper.addAccount(new List<SObject>{ t }, false)[0];
             Test.StopTest();
 
-            System.assertEquals(acc2.Id, t.RelatedToAccount__c, 'Account is added to RelatedToAccount__c');
+            System.assertEquals(
+                acc2.Id,
+                t.RelatedToAccount__c,
+                'Account is added to RelatedToAccount__c'
+            );
         }
     }
 
@@ -73,7 +77,11 @@ private without sharing class Activity_AddAccountHelperTest {
             e = (Event) Activity_AddAccountHelper.addAccount(new List<SObject>{ e }, false)[0];
             Test.StopTest();
 
-            System.assertEquals(acc2.Id, e.RelatedToAccount__c, 'Account is added to RelatedToAccount__c');
+            System.assertEquals(
+                acc2.Id,
+                e.RelatedToAccount__c,
+                'Account is added to RelatedToAccount__c'
+            );
         }
     }
 
@@ -107,7 +115,10 @@ private without sharing class Activity_AddAccountHelperTest {
         List<SObject> newRecords = new List<SObject>{ e_new };
 
         Test.StartTest();
-        List<SObject> results = Activity_AddAccountHelper.getActivityWithChangedWhatId(triggerOldMap, newRecords);
+        List<SObject> results = Activity_AddAccountHelper.getActivityWithChangedWhatId(
+            triggerOldMap,
+            newRecords
+        );
         Test.StopTest();
 
         System.assertEquals(0, results.size(), 'Same account on temp layoff, WhatId ');
@@ -144,7 +155,10 @@ private without sharing class Activity_AddAccountHelperTest {
         List<SObject> newRecords = new List<SObject>{ e_new };
 
         Test.StartTest();
-        List<SObject> results = Activity_AddAccountHelper.getActivityWithChangedWhatId(triggerOldMap, newRecords);
+        List<SObject> results = Activity_AddAccountHelper.getActivityWithChangedWhatId(
+            triggerOldMap,
+            newRecords
+        );
         Test.StopTest();
 
         System.assertEquals(1, results.size(), 'Same account on temp layoff, WhatId ');
@@ -202,16 +216,27 @@ private without sharing class Activity_AddAccountHelperTest {
         insert t2;
 
         Test.StartTest();
-        Map<String, Set<Id>> whatIdMap = Activity_AddAccountHelper.getWhatIdMap(new List<SObject>{ t, t2 });
+        Map<String, Set<Id>> whatIdMap = Activity_AddAccountHelper.getWhatIdMap(
+            new List<SObject>{ t, t2 }
+        );
         Test.StopTest();
 
         System.assert(
             whatIdMap.containsKey(((String) acc.Id).substring(0, 3)),
             'Should contain acc id substring as key'
         );
-        System.assert(whatIdMap.get(((String) acc.Id).substring(0, 3)).contains(acc.Id), 'Should contain acc id');
-        System.assert(whatIdMap.containsKey(((String) tl.Id).substring(0, 3)), 'Should contain tl id substring as key');
-        System.assert(whatIdMap.get(((String) tl.Id).substring(0, 3)).contains(tl.Id), 'Should contain tl id');
+        System.assert(
+            whatIdMap.get(((String) acc.Id).substring(0, 3)).contains(acc.Id),
+            'Should contain acc id'
+        );
+        System.assert(
+            whatIdMap.containsKey(((String) tl.Id).substring(0, 3)),
+            'Should contain tl id substring as key'
+        );
+        System.assert(
+            whatIdMap.get(((String) tl.Id).substring(0, 3)).contains(tl.Id),
+            'Should contain tl id'
+        );
     }
 
     @isTest
@@ -235,10 +260,14 @@ private without sharing class Activity_AddAccountHelperTest {
         );
         insert t2;
 
-        Map<String, Set<Id>> whatIdMap = Activity_AddAccountHelper.getWhatIdMap(new List<SObject>{ t, t2 });
+        Map<String, Set<Id>> whatIdMap = Activity_AddAccountHelper.getWhatIdMap(
+            new List<SObject>{ t, t2 }
+        );
 
         Test.StartTest();
-        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(whatIdMap);
+        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(
+            whatIdMap
+        );
         Test.StopTest();
 
         System.assert(
@@ -250,7 +279,10 @@ private without sharing class Activity_AddAccountHelperTest {
             mapOfSObjectPrefix.get(((String) acc.Id).substring(0, 3)),
             'Should contain account id'
         );
-        System.assert(mapOfSObjectPrefix.containsKey(((String) tl.Id).substring(0, 3)), 'Should contain tl id prefix');
+        System.assert(
+            mapOfSObjectPrefix.containsKey(((String) tl.Id).substring(0, 3)),
+            'Should contain tl id prefix'
+        );
         System.assertEquals(
             'TemporaryLayoff__c',
             mapOfSObjectPrefix.get(((String) tl.Id).substring(0, 3)),
@@ -296,21 +328,52 @@ private without sharing class Activity_AddAccountHelperTest {
         Map<String, Set<Id>> whatIdMap = new Map<String, Set<Id>>();
         whatIdMap.put(((String) tl.Id).substring(0, 3), new Set<Id>{ tl.Id });
         whatIdMap.put(((String) opty.Id).substring(0, 3), new Set<Id>{ opty.Id });
-        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(whatIdMap);
+        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(
+            whatIdMap
+        );
 
         Test.StartTest();
-        Map<String, Set<Id>> result = Activity_AddAccountHelper.getIdsSeparatedBySObject(whatIdMap, mapOfSObjectPrefix);
+        Map<String, Set<Id>> result = Activity_AddAccountHelper.getIdsSeparatedBySObject(
+            whatIdMap,
+            mapOfSObjectPrefix
+        );
         Test.StopTest();
 
-        System.assertEquals(2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key');
+        System.assertEquals(
+            2,
+            result.size(),
+            'CustomOpportunity__c and temp layoff should have they\'re own key'
+        );
 
-        System.assert(result.containsKey('CustomOpportunity__c'), 'CustomOpportunity__c should exist as a key');
-        System.assertEquals(1, result.get('CustomOpportunity__c').size(), 'CustomOpportunity__c should have one ID');
-        System.assertEquals(opty.Id, new List<Id>(result.get('CustomOpportunity__c'))[0], 'Id should be the same');
+        System.assert(
+            result.containsKey('CustomOpportunity__c'),
+            'CustomOpportunity__c should exist as a key'
+        );
+        System.assertEquals(
+            1,
+            result.get('CustomOpportunity__c').size(),
+            'CustomOpportunity__c should have one ID'
+        );
+        System.assertEquals(
+            opty.Id,
+            new List<Id>(result.get('CustomOpportunity__c'))[0],
+            'Id should be the same'
+        );
 
-        System.assert(result.containsKey('TemporaryLayoff__c'), 'TemporaryLayoff__c should exist as a key');
-        System.assertEquals(1, result.get('TemporaryLayoff__c').size(), 'TemporaryLayoff__c should have one ID');
-        System.assertEquals(tl.Id, new List<Id>(result.get('TemporaryLayoff__c'))[0], 'Id should be the same');
+        System.assert(
+            result.containsKey('TemporaryLayoff__c'),
+            'TemporaryLayoff__c should exist as a key'
+        );
+        System.assertEquals(
+            1,
+            result.get('TemporaryLayoff__c').size(),
+            'TemporaryLayoff__c should have one ID'
+        );
+        System.assertEquals(
+            tl.Id,
+            new List<Id>(result.get('TemporaryLayoff__c'))[0],
+            'Id should be the same'
+        );
     }
 
     @isTest
@@ -322,7 +385,9 @@ private without sharing class Activity_AddAccountHelperTest {
         Map<String, Set<Id>> whatIdMap = new Map<String, Set<Id>>();
         whatIdMap.put(((String) tl.Id).substring(0, 3), new Set<Id>{ tl.Id });
         whatIdMap.put(((String) opty.Id).substring(0, 3), new Set<Id>{ opty.Id });
-        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(whatIdMap);
+        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(
+            whatIdMap
+        );
 
         Map<String, Set<Id>> idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject(
             whatIdMap,
@@ -337,14 +402,36 @@ private without sharing class Activity_AddAccountHelperTest {
         );
         Test.StopTest();
 
-        System.assertEquals(2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key');
+        System.assertEquals(
+            2,
+            result.size(),
+            'CustomOpportunity__c and temp layoff should have they\'re own key'
+        );
 
-        System.assert(result.containsKey('customopportunity__c'), 'CustomOpportunity__c should exist as a key');
-        System.assertEquals(1, result.get('customopportunity__c').size(), 'CustomOpportunity__c should have one ID');
-        System.assertEquals(opty.Id, result.get('customopportunity__c')[0].Id, 'Id should be the same');
+        System.assert(
+            result.containsKey('customopportunity__c'),
+            'CustomOpportunity__c should exist as a key'
+        );
+        System.assertEquals(
+            1,
+            result.get('customopportunity__c').size(),
+            'CustomOpportunity__c should have one ID'
+        );
+        System.assertEquals(
+            opty.Id,
+            result.get('customopportunity__c')[0].Id,
+            'Id should be the same'
+        );
 
-        System.assert(result.containsKey('temporarylayoff__c'), 'TemporaryLayoff__c should exist as a key');
-        System.assertEquals(1, result.get('temporarylayoff__c').size(), 'TemporaryLayoff__c should have one ID');
+        System.assert(
+            result.containsKey('temporarylayoff__c'),
+            'TemporaryLayoff__c should exist as a key'
+        );
+        System.assertEquals(
+            1,
+            result.get('temporarylayoff__c').size(),
+            'TemporaryLayoff__c should have one ID'
+        );
         System.assertEquals(tl.Id, result.get('temporarylayoff__c')[0].Id, 'Id should be the same');
     }
 
@@ -362,7 +449,9 @@ private without sharing class Activity_AddAccountHelperTest {
         List<SObject> activities = new List<SObject>{ t };
 
         Map<String, Set<Id>> whatIdMap = Activity_AddAccountHelper.getWhatIdMap(activities);
-        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(whatIdMap);
+        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(
+            whatIdMap
+        );
         Map<String, String> activityAccountMapping = Activity_AddAccountHelper.getActivityAccountMapping();
 
         Map<String, Set<Id>> idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject(
@@ -385,7 +474,11 @@ private without sharing class Activity_AddAccountHelperTest {
 
         System.assertEquals(1, mapOfActivityAndAccount.size(), 'Only one activity added');
         System.assert(mapOfActivityAndAccount.containsKey(t.Id), 'The task id is the only key');
-        System.assertEquals(account.Id, mapOfActivityAndAccount.get(t.Id), 'The tl id should be the value');
+        System.assertEquals(
+            account.Id,
+            mapOfActivityAndAccount.get(t.Id),
+            'The tl id should be the value'
+        );
     }
 
     @isTest
@@ -402,7 +495,9 @@ private without sharing class Activity_AddAccountHelperTest {
         List<SObject> activities = new List<SObject>{ t };
 
         Map<String, Set<Id>> whatIdMap = Activity_AddAccountHelper.getWhatIdMap(activities);
-        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(whatIdMap);
+        Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(
+            whatIdMap
+        );
         Map<String, String> activityAccountMapping = Activity_AddAccountHelper.getActivityAccountMapping();
 
         Map<String, Set<Id>> idsSeparatedBySObject = Activity_AddAccountHelper.getIdsSeparatedBySObject(
@@ -420,7 +515,11 @@ private without sharing class Activity_AddAccountHelperTest {
             mapOfSObjectPrefix
         );
 
-        System.assertEquals(null, activities[0].get('RelatedToAccount__c'), 'Should NOT have added the account');
+        System.assertEquals(
+            null,
+            activities[0].get('RelatedToAccount__c'),
+            'Should NOT have added the account'
+        );
 
         Test.StartTest();
         activities = Activity_AddAccountHelper.addAccountToActivity(
@@ -432,6 +531,10 @@ private without sharing class Activity_AddAccountHelperTest {
         Test.StopTest();
 
         System.assertEquals(1, activities.size(), 'Only one activity added');
-        System.assertEquals(account.Id, activities[0].get('RelatedToAccount__c'), 'Should have added the account');
+        System.assertEquals(
+            account.Id,
+            activities[0].get('RelatedToAccount__c'),
+            'Should have added the account'
+        );
     }
 }

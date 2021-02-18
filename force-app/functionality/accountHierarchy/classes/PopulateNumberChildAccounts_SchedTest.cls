@@ -50,8 +50,16 @@ private class PopulateNumberChildAccounts_SchedTest {
             ORDER BY TAG_NumberOfChildAccounts__c
         ];
         System.assertEquals(2, accounts.size(), 'Two parent accounts with child accounts');
-        System.assertEquals(7, accounts[0].TAG_NumberOfChildAccounts__c, 'First parent has 7 child');
-        System.assertEquals(11, accounts[1].TAG_NumberOfChildAccounts__c, 'Second parent has 11 child');
+        System.assertEquals(
+            7,
+            accounts[0].TAG_NumberOfChildAccounts__c,
+            'First parent has 7 child'
+        );
+        System.assertEquals(
+            11,
+            accounts[1].TAG_NumberOfChildAccounts__c,
+            'Second parent has 11 child'
+        );
     }
 
     @IsTest

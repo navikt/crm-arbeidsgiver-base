@@ -33,7 +33,8 @@
     <columns>
         <field>ACCOUNT.NAME</field>
     </columns>
-    <description>Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
+    <description
+    >Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
     <filter>
         <criteriaItems>
             <column>DUE_DATE</column>

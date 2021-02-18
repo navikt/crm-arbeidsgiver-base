@@ -26,12 +26,17 @@ public without sharing class NumberOfChildForAllAccounts_Batch implements Databa
             GROUP BY ParentId
         ];
         for (AggregateResult ar : arNumberOfAccounts) {
-            numberOfChildAccountsByParentId.put((Id) ar.get('ParentId'), (Integer) ar.get('numberOfAccounts'));
+            numberOfChildAccountsByParentId.put(
+                (Id) ar.get('ParentId'),
+                (Integer) ar.get('numberOfAccounts')
+            );
         }
 
         //update numberOfChildAccounts
         for (Account parentAcc : scope) {
-            parentAcc.TAG_NumberOfChildAccounts__c = numberOfChildAccountsByParentId.get(parentAcc.Id);
+            parentAcc.TAG_NumberOfChildAccounts__c = numberOfChildAccountsByParentId.get(
+                parentAcc.Id
+            );
         }
 
         update scope;

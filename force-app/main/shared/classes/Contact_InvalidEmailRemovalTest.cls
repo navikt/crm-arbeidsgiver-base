@@ -6,7 +6,11 @@ private without sharing class Contact_InvalidEmailRemovalTest {
 
     @isTest
     private static void testRemoveInvalidEmail() {
-        Contact c = new Contact(TAG_Informed__c = true, LastName = 'test', InvalidEmail__c = 'test@feilepost');
+        Contact c = new Contact(
+            TAG_Informed__c = true,
+            LastName = 'test',
+            InvalidEmail__c = 'test@feilepost'
+        );
         insert c;
 
         c = [SELECT Id, InvalidEmail__c, Email FROM Contact WHERE Id = :c.Id LIMIT 1];
@@ -24,13 +28,25 @@ private without sharing class Contact_InvalidEmailRemovalTest {
         Test.StopTest();
 
         c = [SELECT Id, InvalidEmail__c, Email FROM Contact WHERE Id = :c.Id LIMIT 1];
-        System.assertEquals(null, c.InvalidEmail__c, 'Invalid email should be null after adding correct email');
-        System.assertEquals('correct@email.com', c.Email, 'Email should not be null after adding valid email');
+        System.assertEquals(
+            null,
+            c.InvalidEmail__c,
+            'Invalid email should be null after adding correct email'
+        );
+        System.assertEquals(
+            'correct@email.com',
+            c.Email,
+            'Email should not be null after adding valid email'
+        );
     }
 
     @isTest
     private static void testRemoveInvalidEmail_updateWithInvalidEmail() {
-        Contact c = new Contact(TAG_Informed__c = true, LastName = 'test', InvalidEmail__c = 'test@feilepost');
+        Contact c = new Contact(
+            TAG_Informed__c = true,
+            LastName = 'test',
+            InvalidEmail__c = 'test@feilepost'
+        );
         insert c;
 
         c = [SELECT Id, InvalidEmail__c, Email FROM Contact WHERE Id = :c.Id LIMIT 1];

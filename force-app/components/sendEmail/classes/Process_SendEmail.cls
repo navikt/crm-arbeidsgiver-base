@@ -9,7 +9,9 @@ global without sharing class Process_SendEmail {
         WHERE Address = 'do-not-reply@info.nav.no'
         LIMIT 1
     ];
-    private static final Id ORG_WIDE_EMAIL_ID = ORG_WIDE_ADDRESSES.size() == 1 ? ORG_WIDE_ADDRESSES[0].Id : null;
+    private static final Id ORG_WIDE_EMAIL_ID = ORG_WIDE_ADDRESSES.size() == 1
+        ? ORG_WIDE_ADDRESSES[0].Id
+        : null;
 
     @InvocableMethod(label='Send Email')
     public static void sendEmail(List<Request> requests) {

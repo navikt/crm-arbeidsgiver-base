@@ -21,13 +21,26 @@ public with sharing class SharedFunctions {
         List<SharedFunctions_ContactModel> wrapperList,
         Map<String, Account> accountMap
     ) {
-        List<Contact> existingContacts = SharedFunctions_FetchOrCreateContact.getExistingContacts(wrapperList);
-        SharedFunctions_FetchOrCreateContact.addNewSourceToExistingContacts(wrapperList, existingContacts);
-        SharedFunctions_FetchOrCreateContact.mapUnmappedContacts(wrapperList, existingContacts, accountMap);
+        List<Contact> existingContacts = SharedFunctions_FetchOrCreateContact.getExistingContacts(
+            wrapperList
+        );
+        SharedFunctions_FetchOrCreateContact.addNewSourceToExistingContacts(
+            wrapperList,
+            existingContacts
+        );
+        SharedFunctions_FetchOrCreateContact.mapUnmappedContacts(
+            wrapperList,
+            existingContacts,
+            accountMap
+        );
         Map<String, Contact> contactMap = SharedFunctions_FetchOrCreateContact.createContactMapWithEmailAsKey(
             existingContacts
         );
-        SharedFunctions_FetchOrCreateContact.createRemainingContacts(wrapperList, accountMap, contactMap);
+        SharedFunctions_FetchOrCreateContact.createRemainingContacts(
+            wrapperList,
+            accountMap,
+            contactMap
+        );
 
         return contactMap;
     }

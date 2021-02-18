@@ -170,7 +170,8 @@
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>TAG_OrganizationNameFromForm__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields
+        >TAG_OrganizationNameFromForm__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>InquiryCategory__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>InclusionStage__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>

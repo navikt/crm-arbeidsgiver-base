@@ -14,12 +14,19 @@ global without sharing class PopulateNavUnitOnAccountHandler extends MyTriggers 
 
     global override void onBeforeUpdate(Map<Id, SObject> triggerOldMap) {
         //check if municipality number or postal code is changed
-        List<String> fieldNamesToCheck = new List<String>{ 'INT_MunicipalityNumber__c', 'ShippingPostalCode' };
+        List<String> fieldNamesToCheck = new List<String>{
+            'INT_MunicipalityNumber__c',
+            'ShippingPostalCode'
+        };
         List<Account> accountsToUpdate = new List<Account>();
         for (Account account : (List<Account>) records) {
             if (
                 !account.IsPersonAccount &&
-                MyTriggers.hasChangedFields(fieldNamesToCheck, account, triggerOldMap.get(account.Id))
+                MyTriggers.hasChangedFields(
+                    fieldNamesToCheck,
+                    account,
+                    triggerOldMap.get(account.Id)
+                )
             ) {
                 accountsToUpdate.add(account);
             }

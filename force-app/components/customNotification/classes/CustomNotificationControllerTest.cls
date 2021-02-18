@@ -16,7 +16,11 @@ private without sharing class CustomNotificationControllerTest {
         String res = CustomNotificationController.getFieldValue(ta.Id, 'Description');
         Test.StopTest();
 
-        System.assertEquals('test', res, 'Since Description is test, the returned value should be the same');
+        System.assertEquals(
+            'test',
+            res,
+            'Since Description is test, the returned value should be the same'
+        );
     }
 
     @isTest
@@ -35,7 +39,11 @@ private without sharing class CustomNotificationControllerTest {
         String res = CustomNotificationController.getFieldValue(ta.Id, 'Description');
         Test.StopTest();
 
-        System.assertEquals(null, res, 'Since Description is empty, the returned value should be empty');
+        System.assertEquals(
+            null,
+            res,
+            'Since Description is empty, the returned value should be empty'
+        );
     }
 
     @isTest
@@ -54,6 +62,10 @@ private without sharing class CustomNotificationControllerTest {
         String res = CustomNotificationController.getFieldValue(ta.Id, 'DOESNT_EXIST__c');
         Test.StopTest();
 
-        System.assertEquals(null, res, 'Since DOESNT_EXIST__C doesnt exist, the returned value should be empty ');
+        System.assertEquals(
+            null,
+            res,
+            'Since DOESNT_EXIST__C doesnt exist, the returned value should be empty '
+        );
     }
 }

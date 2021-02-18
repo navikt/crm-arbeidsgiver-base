@@ -316,7 +316,8 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_2_myRule_1_TAG_CreateContract_c</leftValueReference>
+                <leftValueReference
+                >isChangedRule_2_myRule_1_TAG_CreateContract_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -646,7 +647,8 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>( LEFT( [CustomOpportunity__c].OwnerId,3) = &quot;00G&quot; ) &amp;&amp;
+                <stringValue
+                >( LEFT( [CustomOpportunity__c].OwnerId,3) = &quot;00G&quot; ) &amp;&amp;
 
 NOT ( ISPICKVAL( [CustomOpportunity__c].InclusionStage__c, &quot;Ny henvendelse&quot; )) &amp;&amp;
 

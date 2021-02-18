@@ -5,7 +5,12 @@ public with sharing class MarkdownViewerController {
             return null;
         }
 
-        String query = 'SELECT ' + fieldName + ' FROM ' + objectApiName + ' WHERE Id = : recordId LIMIT 1';
+        String query =
+            'SELECT ' +
+            fieldName +
+            ' FROM ' +
+            objectApiName +
+            ' WHERE Id = : recordId LIMIT 1';
         List<SObject> results = Database.query(query);
         System.debug('(String) results[0].get( fieldName ): ' + (String) results[0].get(fieldName));
 

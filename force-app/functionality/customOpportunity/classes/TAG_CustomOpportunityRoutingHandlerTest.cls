@@ -11,7 +11,10 @@ public class TAG_CustomOpportunityRoutingHandlerTest {
         NavUnit__c navUnit = TestDataFactory.getNavUnits(1, false)[0];
         navUnit.INT_UnitNumber__c = '1037';
         insert navUnit;
-        CustomOpportunity__c customOpportunity = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+        CustomOpportunity__c customOpportunity = TAG_TestDataFactory.getCustomOpportunities(
+            1,
+            false
+        )[0];
         customOpportunity.INT_MunicipalityNumber__c = '4206';
 
         Test.startTest();
@@ -29,7 +32,10 @@ public class TAG_CustomOpportunityRoutingHandlerTest {
 
     @IsTest
     private static void insertCustomOpportunity_whenMatchingQueueButNoMatchingNavUnit() {
-        CustomOpportunity__c customOpportunity = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+        CustomOpportunity__c customOpportunity = TAG_TestDataFactory.getCustomOpportunities(
+            1,
+            false
+        )[0];
         customOpportunity.INT_MunicipalityNumber__c = '3035';
 
         Test.startTest();
@@ -46,13 +52,20 @@ public class TAG_CustomOpportunityRoutingHandlerTest {
     }
     @IsTest
     private static void insertWhenNoMatchingSharingRule_whenNoMatchingRules() {
-        CustomOpportunity__c customOpportunity = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+        CustomOpportunity__c customOpportunity = TAG_TestDataFactory.getCustomOpportunities(
+            1,
+            false
+        )[0];
         customOpportunity.INT_MunicipalityNumber__c = '999988';
 
         Test.startTest();
         insert customOpportunity;
         Test.stopTest();
 
-        System.assertEquals(UserInfo.getUserId(), [SELECT OwnerId FROM CustomOpportunity__c LIMIT 1].OwnerId);
+        System.assertEquals(
+            UserInfo.getUserId(),
+            [SELECT OwnerId FROM CustomOpportunity__c LIMIT 1]
+            .OwnerId
+        );
     }
 }

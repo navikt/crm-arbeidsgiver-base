@@ -20,7 +20,9 @@
 	</values>
 	<values>
 		<field>Description__c</field>
-		<value xsi:type="xsd:string">When adding email address to Contact.Email, remove value from InvalidEmail__c</value>
+		<value
+            xsi:type="xsd:string"
+        >When adding email address to Contact.Email, remove value from InvalidEmail__c</value>
 	</values>
 	<values>
 		<field>Event__c</field>

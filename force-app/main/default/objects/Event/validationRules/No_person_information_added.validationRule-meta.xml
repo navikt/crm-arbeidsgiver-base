@@ -5,5 +5,6 @@
     <errorConditionFormula
     >AND(TAG_NoPersonInformation__c = FALSE, 	$Permission.Arbeidsgiver = TRUE)</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
-    <errorMessage>Du må bekrefte at notatet ikke inneholder personsensitive opplysninger</errorMessage>
+    <errorMessage
+    >Du må bekrefte at notatet ikke inneholder personsensitive opplysninger</errorMessage>
 </ValidationRule>

@@ -20,7 +20,11 @@ global class TAG_CustomOpportunityRoutingHandler extends MyTriggers {
         Integer recordIndex = 0;
         for (CustomOpportunity__c opportunity : (List<CustomOpportunity__c>) records) {
             wrappers.add(
-                new SobjectWrapper(recordIndex, opportunity.INT_MunicipalityNumber__c, opportunity.INT_RegionNumber__c)
+                new SobjectWrapper(
+                    recordIndex,
+                    opportunity.INT_MunicipalityNumber__c,
+                    opportunity.INT_RegionNumber__c
+                )
             );
             recordIndex++;
         }

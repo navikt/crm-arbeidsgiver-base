@@ -20,7 +20,11 @@ public without sharing class PopulateNumberChildAccounts_Schedule implements Sch
 
         //get parent Ids
         Set<Id> parentIds = new Set<Id>();
-        for (Account acc : [SELECT ParentId FROM Account WHERE Id IN :accountIds AND ParentId != NULL]) {
+        for (Account acc : [
+            SELECT ParentId
+            FROM Account
+            WHERE Id IN :accountIds AND ParentId != NULL
+        ]) {
             parentIds.add(acc.ParentId);
         }
 
@@ -33,7 +37,10 @@ public without sharing class PopulateNumberChildAccounts_Schedule implements Sch
             GROUP BY ParentId
         ];
         for (AggregateResult ar : arNumberOfAccounts) {
-            numberOfChildAccountsByParentId.put((Id) ar.get('ParentId'), (Integer) ar.get('numberOfAccounts'));
+            numberOfChildAccountsByParentId.put(
+                (Id) ar.get('ParentId'),
+                (Integer) ar.get('numberOfAccounts')
+            );
         }
 
         //update numberOfChildAccounts
@@ -43,7 +50,9 @@ public without sharing class PopulateNumberChildAccounts_Schedule implements Sch
             WHERE Id IN :numberOfChildAccountsByParentId.keySet()
         ];
         for (Account parentAcc : accountsToUpdate) {
-            parentAcc.TAG_NumberOfChildAccounts__c = numberOfChildAccountsByParentId.get(parentAcc.Id);
+            parentAcc.TAG_NumberOfChildAccounts__c = numberOfChildAccountsByParentId.get(
+                parentAcc.Id
+            );
         }
 
         update accountsToUpdate;

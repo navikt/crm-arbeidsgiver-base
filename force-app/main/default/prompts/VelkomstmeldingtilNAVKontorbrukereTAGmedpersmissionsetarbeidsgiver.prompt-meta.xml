@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
-    <masterLabel>Velkomst melding til NAV Kontor brukere (TAG) med persmission set arbeidsgiver</masterLabel>
+    <masterLabel
+    >Velkomst melding til NAV Kontor brukere (TAG) med persmission set arbeidsgiver</masterLabel>
     <promptVersions>
         <actionButtonLabel>Til Navet</actionButtonLabel>
         <actionButtonLink
@@ -13,7 +14,8 @@
         <displayType>FloatingPanel</displayType>
         <endDate>2020-12-31</endDate>
         <isPublished>true</isPublished>
-        <masterLabel>Velkomst melding til NAV Kontor brukere (TAG) med persmission set arbeidsgiver</masterLabel>
+        <masterLabel
+        >Velkomst melding til NAV Kontor brukere (TAG) med persmission set arbeidsgiver</masterLabel>
         <publishedDate>2020-09-11</publishedDate>
         <shouldDisplayActionButton>true</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>

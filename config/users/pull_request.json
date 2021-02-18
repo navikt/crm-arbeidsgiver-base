@@ -6,6 +6,10 @@
     "EmailEncodingKey": "UTF-8",
     "LanguageLocaleKey": "NO",
     "profileName": "Standard Platform User",
-    "permsets": ["Arbeidsgiver_Base_Group", "Arbeidsgiver_tabsForStandardObjects", "Create_reports_and_dashboards"],
+    "permsets": [
+        "Arbeidsgiver_Base_Group",
+        "Arbeidsgiver_tabsForStandardObjects",
+        "Create_reports_and_dashboards"
+    ],
     "generatePassword": true
 }

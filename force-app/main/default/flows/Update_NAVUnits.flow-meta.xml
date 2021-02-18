@@ -123,12 +123,14 @@
     <formulas>
         <name>createQueueNameFromUnitNumber</name>
         <dataType>String</dataType>
-        <expression>&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update.INT_UnitNumber__c}))</expression>
+        <expression
+        >&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update.INT_UnitNumber__c}))</expression>
     </formulas>
     <formulas>
         <name>createQueueNameFromUnitNumber2</name>
         <dataType>String</dataType>
-        <expression>&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update_0.INT_UnitNumber__c}))</expression>
+        <expression
+        >&quot;queue_&quot;&amp;TEXT(VALUE({!Loop_Nav_Units_to_update_0.INT_UnitNumber__c}))</expression>
     </formulas>
     <interviewLabel>Update Queues {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update NAVUnits</label>

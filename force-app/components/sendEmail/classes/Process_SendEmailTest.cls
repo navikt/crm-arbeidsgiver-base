@@ -75,7 +75,11 @@ private without sharing class Process_SendEmailTest {
 
             emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 
-            System.assertEquals(1, emails.size(), 'Only one email sent, only one EmailMessage created');
+            System.assertEquals(
+                1,
+                emails.size(),
+                'Only one email sent, only one EmailMessage created'
+            );
             System.assert(
                 emails[0]
                     .HtmlBody.replaceAll('\n', '')
@@ -84,7 +88,11 @@ private without sharing class Process_SendEmailTest {
                     ),
                 'The new html body should have converted all variables ( {{{ var }}} )'
             );
-            System.assertEquals('tore.toresen@example.com', emails[0].ToAddress, 'Sent to contact email');
+            System.assertEquals(
+                'tore.toresen@example.com',
+                emails[0].ToAddress,
+                'Sent to contact email'
+            );
         }
     }
 
@@ -121,7 +129,11 @@ private without sharing class Process_SendEmailTest {
     @isTest
     private static void testSendEmail_missingEmail() {
         System.runAs(getTestUser()) {
-            Contact con = new Contact(TAG_Informed__c = true, LastName = 'test', FirstName = 'test');
+            Contact con = new Contact(
+                TAG_Informed__c = true,
+                LastName = 'test',
+                FirstName = 'test'
+            );
             insert con;
 
             TemporaryLayoff__c tl = new TemporaryLayoff__c(
@@ -146,7 +158,11 @@ private without sharing class Process_SendEmailTest {
     @isTest
     private static void testSendEmail_oneWrongEmailOneCorrect() {
         System.runAs(getTestUser()) {
-            Contact con1 = new Contact(TAG_Informed__c = true, LastName = 'test1', FirstName = 'test1');
+            Contact con1 = new Contact(
+                TAG_Informed__c = true,
+                LastName = 'test1',
+                FirstName = 'test1'
+            );
             Contact con2 = new Contact(
                 TAG_Informed__c = true,
                 LastName = 'test2',
@@ -260,9 +276,19 @@ private without sharing class Process_SendEmailTest {
         );
         Test.StopTest();
 
-        Id expected = [SELECT Id, Name FROM EmailTemplate WHERE Name = 'tempLayoffReceiptSubsidiary' LIMIT 1].Id;
+        Id expected = [
+            SELECT Id, Name
+            FROM EmailTemplate
+            WHERE Name = 'tempLayoffReceiptSubsidiary'
+            LIMIT 1
+        ]
+        .Id;
 
-        System.assertEquals(1, templateMap.size(), 'Only one template with name "tempLayoffReceiptSubsidiary"');
+        System.assertEquals(
+            1,
+            templateMap.size(),
+            'Only one template with name "tempLayoffReceiptSubsidiary"'
+        );
         System.assert(
             templateMap.containsKey('tempLayoffReceiptSubsidiary'),
             'key "tempLayoffReceiptSubsidiary" should exist in map'

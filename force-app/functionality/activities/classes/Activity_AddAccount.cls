@@ -8,7 +8,10 @@ global class Activity_AddAccount extends MyTriggers {
     }
 
     global override void onAfterInsert() {
-        List<SObject> sObjects = Activity_AddAccountHelper.addAccount((List<SObject>) records, true);
+        List<SObject> sObjects = Activity_AddAccountHelper.addAccount(
+            (List<SObject>) records,
+            true
+        );
 
         if (sObjects != null) {
             if (sObjects.size() > 0) {

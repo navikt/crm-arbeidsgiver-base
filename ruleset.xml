@@ -8,7 +8,10 @@
 	<description>Default ruleset used by the Code Climate Engine for Salesforce.com Apex</description>
 	<exclude-pattern>.*/.sfdx/.*</exclude-pattern>
 	<!-- COMPLEXITY -->
-	<rule ref="category/apex/design.xml/ExcessiveClassLength" message="Avoid really long classes (lines of code)">
+	<rule
+        ref="category/apex/design.xml/ExcessiveClassLength"
+        message="Avoid really long classes (lines of code)"
+    >
 		<priority>3</priority>
 		<properties>
 			<property name="minimum" value="1000" />
@@ -30,13 +33,19 @@
 			<property name="minimum" value="25" />
 		</properties>
 	</rule>
-	<rule ref="category/apex/design.xml/NcssConstructorCount" message="The constructor has an NCSS line count of {0}">
+	<rule
+        ref="category/apex/design.xml/NcssConstructorCount"
+        message="The constructor has an NCSS line count of {0}"
+    >
 		<priority>3</priority>
 		<properties>
 			<property name="minimum" value="20" />
 		</properties>
 	</rule>
-	<rule ref="category/apex/design.xml/NcssMethodCount" message="The method {0}() has an NCSS line count of {1}">
+	<rule
+        ref="category/apex/design.xml/NcssMethodCount"
+        message="The method {0}() has an NCSS line count of {1}"
+    >
 		<priority>3</priority>
 		<properties>
 			<property name="minimum" value="60" />
@@ -78,15 +87,24 @@
 	</rule>
 
 	<!-- PERFORMANCE -->
-	<rule ref="category/apex/performance.xml/AvoidSoqlInLoops" message="Avoid Soql queries inside loops">
+	<rule
+        ref="category/apex/performance.xml/AvoidSoqlInLoops"
+        message="Avoid Soql queries inside loops"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
-	<rule ref="category/apex/performance.xml/AvoidSoslInLoops" message="Avoid Sosl queries inside loops">
+	<rule
+        ref="category/apex/performance.xml/AvoidSoslInLoops"
+        message="Avoid Sosl queries inside loops"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
-	<rule ref="category/apex/performance.xml/AvoidDmlStatementsInLoops" message="Avoid DML Statements inside loops">
+	<rule
+        ref="category/apex/performance.xml/AvoidDmlStatementsInLoops"
+        message="Avoid DML Statements inside loops"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
@@ -101,7 +119,10 @@
 		<priority>3</priority>
 		<properties />
 	</rule>
-	<rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier" message="Avoid using global modifier">
+	<rule
+        ref="category/apex/bestpractices.xml/AvoidGlobalModifier"
+        message="Avoid using global modifier"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
@@ -135,7 +156,10 @@
 		<priority>3</priority>
 		<properties />
 	</rule>
-	<rule ref="category/apex/codestyle.xml/VariableNamingConventions" message="{0} variable {1} should begin with {2}">
+	<rule
+        ref="category/apex/codestyle.xml/VariableNamingConventions"
+        message="{0} variable {1} should begin with {2}"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
@@ -205,7 +229,10 @@
 		<priority>3</priority>
 		<properties />
 	</rule>
-	<rule ref="category/apex/security.xml/ApexXSSFromEscapeFalse" message="Apex classes should escape addError strings">
+	<rule
+        ref="category/apex/security.xml/ApexXSSFromEscapeFalse"
+        message="Apex classes should escape addError strings"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
@@ -214,7 +241,10 @@
 		<properties />
 	</rule>
 
-	<rule ref="category/apex/security.xml/ApexDangerousMethods" message="Calling potentially dangerous method">
+	<rule
+        ref="category/apex/security.xml/ApexDangerousMethods"
+        message="Calling potentially dangerous method"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
@@ -227,7 +257,10 @@
 	</rule>
 
 	<!-- BRACES -->
-	<rule ref="category/apex/codestyle.xml/IfStmtsMustUseBraces" message="Avoid using if statements without curly braces">
+	<rule
+        ref="category/apex/codestyle.xml/IfStmtsMustUseBraces"
+        message="Avoid using if statements without curly braces"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
@@ -266,11 +299,17 @@
 		<priority>3</priority>
 		<properties />
 	</rule>
-	<rule ref="category/apex/errorprone.xml/EmptyTryOrFinallyBlock" message="Avoid empty try or finally blocks">
+	<rule
+        ref="category/apex/errorprone.xml/EmptyTryOrFinallyBlock"
+        message="Avoid empty try or finally blocks"
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>
-	<rule ref="category/apex/errorprone.xml/EmptyStatementBlock" message="Avoid empty block statements.">
+	<rule
+        ref="category/apex/errorprone.xml/EmptyStatementBlock"
+        message="Avoid empty block statements."
+    >
 		<priority>3</priority>
 		<properties />
 	</rule>

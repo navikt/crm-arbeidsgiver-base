@@ -75,7 +75,13 @@ public without sharing class TAG_TestDataFactory {
         user.Username = d + 'test@nav.no';
         user.Email = d + 'test@nav.no';
         user.Alias = 'tsamp';
-        user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
+        user.ProfileId = [
+            SELECT Id
+            FROM Profile
+            WHERE Name = 'Standard User' OR Name = 'Standardbruker'
+            LIMIT 1
+        ]
+        .Id;
         user.isActive = true;
         user.FirstName = 'First';
         user.LastName = lastName;
@@ -95,7 +101,9 @@ public without sharing class TAG_TestDataFactory {
         List<PermissionSet> permsets = [SELECT Id FROM PermissionSet WHERE Name IN :permsetNames];
         List<PermissionSetAssignment> assignemnts = new List<PermissionSetAssignment>();
         for (PermissionSet ps : permsets) {
-            assignemnts.add(new PermissionSetAssignment(AssigneeId = U.id, PermissionSetId = ps.Id));
+            assignemnts.add(
+                new PermissionSetAssignment(AssigneeId = U.id, PermissionSetId = ps.Id)
+            );
         }
         insert assignemnts;
     }
@@ -106,7 +114,10 @@ public without sharing class TAG_TestDataFactory {
         insert new PermissionSetAssignment(AssigneeId = U.id, PermissionSetId = ps.Id);
     }
 
-    public static List<CustomOpportunity__c> getCustomOpportunities(Integer amount, Boolean doInsert) {
+    public static List<CustomOpportunity__c> getCustomOpportunities(
+        Integer amount,
+        Boolean doInsert
+    ) {
         List<CustomOpportunity__c> customOpportunities = new List<CustomOpportunity__c>();
 
         for (Integer i = 0; i < amount; i++) {
@@ -125,7 +136,11 @@ public without sharing class TAG_TestDataFactory {
         return customOpportunities;
     }
 
-    public static List<TemporaryLayoff__c> getTemporaryLayoffs(Integer amount, Account account, Boolean doInsert) {
+    public static List<TemporaryLayoff__c> getTemporaryLayoffs(
+        Integer amount,
+        Account account,
+        Boolean doInsert
+    ) {
         List<TemporaryLayoff__c> temporaryLayoffs = new List<TemporaryLayoff__c>();
 
         for (Integer i = 0; i < amount; i++) {
@@ -155,7 +170,13 @@ public without sharing class TAG_TestDataFactory {
         user.Username = username;
         user.Email = username;
         user.Alias = 'tsamp';
-        user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
+        user.ProfileId = [
+            SELECT Id
+            FROM Profile
+            WHERE Name = 'Standard User' OR Name = 'Standardbruker'
+            LIMIT 1
+        ]
+        .Id;
         user.isActive = true;
         user.FirstName = 'First';
         user.LastName = 'Last UNIQUE NAME';
@@ -166,7 +187,11 @@ public without sharing class TAG_TestDataFactory {
         user.CommunityNickname = 'testUser' + d;
         insert user;
 
-        List<PermissionSet> permissionSets = [SELECT Id FROM PermissionSet WHERE Name = :permissionSetName];
+        List<PermissionSet> permissionSets = [
+            SELECT Id
+            FROM PermissionSet
+            WHERE Name = :permissionSetName
+        ];
 
         if (permissionSets.size() > 0) {
             PermissionSetAssignment permissionSetAssignment = new PermissionSetAssignment();

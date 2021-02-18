@@ -11,9 +11,18 @@ public with sharing class CustomNotificationController {
         SObject so = convertType.newSObject();
 
         if (hasSObjectField(field, so)) {
-            String query = 'SELECT ' + field + ' FROM ' + sObjectType + ' WHERE Id = \'' + recordId + '\'' + ' LIMIT 1';
+            String query =
+                'SELECT ' +
+                field +
+                ' FROM ' +
+                sObjectType +
+                ' WHERE Id = \'' +
+                recordId +
+                '\'' +
+                ' LIMIT 1';
             System.debug(
-                '(String) Database.query( query )[0].get( field );: ' + (String) Database.query(query)[0].get(field)
+                '(String) Database.query( query )[0].get( field );: ' +
+                (String) Database.query(query)[0].get(field)
             );
 
             return (String) Database.query(query)[0].get(field);
@@ -29,6 +38,10 @@ public with sharing class CustomNotificationController {
     }
 
     public static boolean hasSObjectField(String fieldName, SObject so) {
-        return so.getSobjectType().getDescribe().fields.getMap().keySet().contains(fieldName.toLowerCase());
+        return so.getSobjectType()
+            .getDescribe()
+            .fields.getMap()
+            .keySet()
+            .contains(fieldName.toLowerCase());
     }
 }

@@ -85,7 +85,11 @@ private without sharing class Activity_AddAccountTest {
         User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
 
         System.runAs(u) {
-            Task t = new Task(TAG_NoPersonInformation__c = true, ActivityDate = Date.today(), Subject = 'test');
+            Task t = new Task(
+                TAG_NoPersonInformation__c = true,
+                ActivityDate = Date.today(),
+                Subject = 'test'
+            );
 
             Test.StartTest();
             insert t;

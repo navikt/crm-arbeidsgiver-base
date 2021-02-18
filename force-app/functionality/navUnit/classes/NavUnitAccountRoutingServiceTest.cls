@@ -35,7 +35,15 @@ private class NavUnitAccountRoutingServiceTest {
         List<Account> accountsWithUnits = NavUnitAccountRoutingService.getNavUnits(accounts);
         Test.stopTest();
 
-        System.assertEquals(units[0].Id, accountsWithUnits[0].TAG_NavUnit__c, 'First account belongs to Asker');
-        System.assertEquals(units[1].Id, accountsWithUnits[19].TAG_NavUnit__c, 'Last account belongs to Drammen');
+        System.assertEquals(
+            units[0].Id,
+            accountsWithUnits[0].TAG_NavUnit__c,
+            'First account belongs to Asker'
+        );
+        System.assertEquals(
+            units[1].Id,
+            accountsWithUnits[19].TAG_NavUnit__c,
+            'Last account belongs to Drammen'
+        );
     }
 }

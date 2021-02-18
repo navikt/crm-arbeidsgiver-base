@@ -1,15 +1,28 @@
 public with sharing class SharedFunctions_FetchOrCreateContact {
     // will check both Email and InvalidEmail__c in case the email is Salesforce invalid (but not invalid for Norwegians, e.g., ÆØÅ)
-    public static List<Contact> getExistingContacts(List<SharedFunctions_ContactModel> wrapperList) {
+    public static List<Contact> getExistingContacts(
+        List<SharedFunctions_ContactModel> wrapperList
+    ) {
         Set<String> emails = new Set<String>();
         for (SharedFunctions_ContactModel cw : wrapperList) {
             emails.add(cw.email);
         }
 
         List<Contact> existingContacts = [
-            SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c, Source__c
+            SELECT
+                Id,
+                Email,
+                FirstName,
+                LastName,
+                Account.INT_OrganizationNumber__c,
+                InvalidEmail__c,
+                Source__c
             FROM Contact
-            WHERE (Email IN :emails AND Email != NULL) OR (InvalidEmail__c IN :emails AND InvalidEmail__c != NULL)
+            WHERE
+                (Email IN :emails
+                AND Email != NULL)
+                OR (InvalidEmail__c IN :emails
+                AND InvalidEmail__c != NULL)
         ];
 
         return existingContacts;
@@ -32,7 +45,9 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
                 ? wrapperMap.get(con.Email)
                 : wrapperMap.get(con.InvalidEmail__c);
             if (cw != null) {
-                List<String> sources = con.Source__c != null ? con.Source__c.split(';') : new List<String>();
+                List<String> sources = con.Source__c != null
+                    ? con.Source__c.split(';')
+                    : new List<String>();
                 String newSource = cw.source;
                 if (!sources.contains(newSource)) {
                     sources.add(newSource);
@@ -50,7 +65,9 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
         List<Contact> existingContacts,
         Map<String, Account> accountMap
     ) {
-        Map<String, List<SharedFunctions_ContactModel>> contactWrapperMap = createMapOfContactWrapper(wrapperList);
+        Map<String, List<SharedFunctions_ContactModel>> contactWrapperMap = createMapOfContactWrapper(
+            wrapperList
+        );
         List<AccountContactRelation> relationships = new List<AccountContactRelation>();
 
         Map<Id, Id> contactAndAccountToMap = new Map<Id, Id>();
@@ -63,17 +80,22 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
             }
 
             if (contactWrapperMap.containsKey(email.toLowerCase())) {
-                List<SharedFunctions_ContactModel> wrapper = contactWrapperMap.get(email.toLowerCase());
+                List<SharedFunctions_ContactModel> wrapper = contactWrapperMap.get(
+                    email.toLowerCase()
+                );
                 for (SharedFunctions_ContactModel cw : wrapper) {
                     if (email == cw.email) {
                         String postedCompanyNumber = cw.companyNumber;
                         String currentCompanyNumber = con.Account.INT_OrganizationNumber__c;
 
                         if (
-                            postedCompanyNumber != currentCompanyNumber && accountMap.containsKey(postedCompanyNumber)
+                            postedCompanyNumber != currentCompanyNumber &&
+                            accountMap.containsKey(postedCompanyNumber)
                         ) {
                             Id accId = accountMap.get(postedCompanyNumber).Id;
-                            relationships.add(new AccountContactRelation(AccountId = accId, ContactId = con.Id));
+                            relationships.add(
+                                new AccountContactRelation(AccountId = accId, ContactId = con.Id)
+                            );
                         }
                     }
                 }
@@ -110,14 +132,19 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
             if (contactWrapperMap.containsKey(cw.email.toLowerCase())) {
                 contactWrapperMap.get(cw.email.toLowerCase()).add(cw);
             } else {
-                contactWrapperMap.put(cw.email.toLowerCase(), new List<SharedFunctions_ContactModel>{ cw });
+                contactWrapperMap.put(
+                    cw.email.toLowerCase(),
+                    new List<SharedFunctions_ContactModel>{ cw }
+                );
             }
         }
 
         return contactWrapperMap;
     }
 
-    public static Map<String, Contact> createContactMapWithEmailAsKey(List<Contact> existingContacts) {
+    public static Map<String, Contact> createContactMapWithEmailAsKey(
+        List<Contact> existingContacts
+    ) {
         Map<String, Contact> contactMap = new Map<String, Contact>();
 
         for (Contact con : existingContacts) {
@@ -139,7 +166,9 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
         List<Contact> newContacts = new List<Contact>();
         for (SharedFunctions_ContactModel cw : wrapperList) {
             if (!contactMap.containsKey(cw.email.toLowerCase())) {
-                Id accountId = accountMap.containsKey(cw.companyNumber) ? accountMap.get(cw.companyNumber).Id : null;
+                Id accountId = accountMap.containsKey(cw.companyNumber)
+                    ? accountMap.get(cw.companyNumber).Id
+                    : null;
                 Contact con = new Contact(
                     FirstName = cw.firstName,
                     LastName = cw.lastName,

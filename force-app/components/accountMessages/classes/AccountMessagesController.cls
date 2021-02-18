@@ -3,7 +3,10 @@ public with sharing class AccountMessagesController {
     public static AccountMessagesWrapper getData(String recordId) {
         Account account = getAccount(recordId);
 
-        if (account.INT_IsBankrupt__c == true || account.INT_IsInForcedSettlementOrResolution__c == true) {
+        if (
+            account.INT_IsBankrupt__c == true ||
+            account.INT_IsInForcedSettlementOrResolution__c == true
+        ) {
             AccountMessagesWrapper wrapper = convertAccountHistoryToWrapper(account);
 
             return wrapper;
