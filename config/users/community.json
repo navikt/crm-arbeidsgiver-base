@@ -6,10 +6,6 @@
     "EmailEncodingKey": "UTF-8",
     "LanguageLocaleKey": "NO",
     "profileName": "NAV Kontor No IP Range",
-    "permsets": [
-        "Arbeidsgiver_Base_Group",
-        "Arbeidsgiver_tabsForStandardObjects",
-        "Create_reports_and_dashboards"
-    ],
+    "permsets": ["Arbeidsgiver_Base_Group", "Arbeidsgiver_tabsForStandardObjects", "Create_reports_and_dashboards"],
     "generatePassword": true
 }

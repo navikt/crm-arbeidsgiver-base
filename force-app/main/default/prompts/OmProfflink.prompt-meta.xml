@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>Om ny Proff link</masterLabel>
     <promptVersions>
         <actionButtonLabel>Til Navet</actionButtonLabel>
-        <actionButtonLink>https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx</actionButtonLink>
-        <body>Nå har lenken til virksomhten til proff blitt bedre. Dersom det kun er en underenhet vil oppslaget vise hovedenheten (J´en). Merk at det ikke alle underenheter ligger på proff.no, forsøk da lenken på overordnet enhet.</body>
+        <actionButtonLink
+        >https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx</actionButtonLink>
+        <body
+        >Nå har lenken til virksomhten til proff blitt bedre. Dersom det kun er en underenhet vil oppslaget vise hovedenheten (J´en). Merk at det ikke alle underenheter ligger på proff.no, forsøk da lenken på overordnet enhet.</body>
         <delayDays>1</delayDays>
         <description>Med lenke til Navet</description>
         <dismissButtonLabel>Lukk</dismissButtonLabel>

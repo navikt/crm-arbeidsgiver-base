@@ -13,18 +13,32 @@
                         </p>
                     </h2>
                 </div>
-                <lightning-button-icon icon-name="action:refresh" style="background-color:white;"
-                    alternative-text="Refresh data" onclick={refreshData}>
+                <lightning-button-icon
+                    icon-name="action:refresh"
+                    style="background-color: white"
+                    alternative-text="Refresh data"
+                    onclick={refreshData}
+                >
                 </lightning-button-icon>
-                <lightning-button label="Ny NAV-kontakt" title="Ny NAV-kontakt" onclick={navigateToNewRecordPage}
-                    class="slds-m-right_x-small"></lightning-button>
+                <lightning-button
+                    label="Ny NAV-kontakt"
+                    title="Ny NAV-kontakt"
+                    onclick={navigateToNewRecordPage}
+                    class="slds-m-right_x-small"
+                ></lightning-button>
             </header>
         </div>
 
         <div class="slds-card__body">
             <div>
-                <lightning-datatable if:true={showData} key-field="id" data={data} columns={columns}
-                    onrowaction={handleRowActions} hide-checkbox-column>
+                <lightning-datatable
+                    if:true={showData}
+                    key-field="id"
+                    data={data}
+                    columns={columns}
+                    onrowaction={handleRowActions}
+                    hide-checkbox-column
+                >
                 </lightning-datatable>
             </div>
         </div>

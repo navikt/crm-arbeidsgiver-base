@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <decisions>
         <processMetadataValues>
@@ -348,7 +348,8 @@
             <label>Update resolved</label>
         </rules>
     </decisions>
-    <description>Updates inquiry category 2 from Inquiry category. Inq. cat 2 is shown to user, this process can be deleted if we fieldst on nav.no are changed to reflect new values</description>
+    <description
+    >Updates inquiry category 2 from Inquiry category. Inq. cat 2 is shown to user, this process can be deleted if we fieldst on nav.no are changed to reflect new values</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -471,7 +472,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -554,7 +555,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -637,7 +638,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -717,7 +718,7 @@
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>

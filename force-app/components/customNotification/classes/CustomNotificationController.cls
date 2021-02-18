@@ -1,39 +1,34 @@
 public with sharing class CustomNotificationController {
+    @AuraEnabled(cacheable=true)
+    public static String getFieldValue(String recordId, String field) {
+        String sObjectType = getSOjectTypeFromRecordId(recordId);
 
-	@AuraEnabled(cacheable = true)
-	public static String getFieldValue( String recordId, String field ) {
+        return getValue(recordId, sObjectType, field);
+    }
 
-		String sObjectType = getSOjectTypeFromRecordId( recordId );
+    public static String getValue(String recordId, String sObjectType, String field) {
+        Schema.SObjectType convertType = Schema.getGlobalDescribe().get(sObjectType);
+        SObject so = convertType.newSObject();
 
-		return getValue( recordId, sObjectType, field );
-	}
+        if (hasSObjectField(field, so)) {
+            String query = 'SELECT ' + field + ' FROM ' + sObjectType + ' WHERE Id = \'' + recordId + '\'' + ' LIMIT 1';
+            System.debug(
+                '(String) Database.query( query )[0].get( field );: ' + (String) Database.query(query)[0].get(field)
+            );
 
-	public static String getValue( String recordId, String sObjectType, String field ) {
+            return (String) Database.query(query)[0].get(field);
+        }
 
-		Schema.SObjectType convertType = Schema.getGlobalDescribe().get( sObjectType );
-		SObject so = convertType.newSObject();
+        return null;
+    }
 
-		if ( hasSObjectField( field, so ) ) {
-			String query = 'SELECT ' + field +
-			               ' FROM ' + sObjectType +
-			               ' WHERE Id = \'' + recordId + '\'' +
-			               ' LIMIT 1';
-			System.debug( '(String) Database.query( query )[0].get( field );: ' + (String) Database.query( query )[0].get( field ) );
+    public static String getSOjectTypeFromRecordId(String recordId) {
+        Id i = (Id) recordId;
 
-			return (String) Database.query( query )[0].get( field );
-		}
+        return String.valueOf(i.getSobjectType());
+    }
 
-		return null;
-
-	}
-
-	public static String getSOjectTypeFromRecordId( String recordId ) {
-		Id i = (Id) recordId;
-
-		return String.valueOf( i.getSobjectType() );
-	}
-
-	public static boolean hasSObjectField( String fieldName, SObject so ) {
-		return so.getSobjectType().getDescribe().fields.getMap().keySet().contains( fieldName.toLowerCase() );
-	}
+    public static boolean hasSObjectField(String fieldName, SObject so) {
+        return so.getSobjectType().getDescribe().fields.getMap().keySet().contains(fieldName.toLowerCase());
+    }
 }

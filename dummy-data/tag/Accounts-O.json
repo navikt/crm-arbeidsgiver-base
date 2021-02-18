@@ -1,121 +1,121 @@
 {
-	"records": [
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef1"
-			},
-			"Name": "IKT FOLLO",
-			"INT_Industry__c": "Generell offentlig administrasjon",
-			"INT_IndustryCode__c": "84.110",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef3"
-			},
-			"Name": "SKI KOMMUNE LEVEKÅR",
-			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-			"INT_IndustryCode__c": "84.120",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef4"
-			},
-			"Name": "SKI KOMMUNE OPPVEKST",
-			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-			"INT_IndustryCode__c": "84.120",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef7"
-			},
-			"Name": "SKI KOMMUNE PLEIE- OG OMSORGSETATEN",
-			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-			"INT_IndustryCode__c": "84.120",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef8"
-			},
-			"Name": "SKI KOMMUNE BARNEHAGESEKSJONEN",
-			"INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
-			"INT_IndustryCode__c": "84.120",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef9"
-			},
-			"Name": "SKI KOMMUNESKOGER",
-			"INT_Industry__c": "Avvirkning",
-			"INT_IndustryCode__c": "02.200",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef10"
-			},
-			"Name": "NAV TOLKETJENESTEN I FOLLO",
-			"INT_Industry__c": "Oversettelses- og tolkevirksomhet",
-			"INT_IndustryCode__c": "74.300",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef11"
-			},
-			"Name": "SKI KOMMUNE ADMINISTRASJON",
-			"INT_Industry__c": "Generell offentlig administrasjon",
-			"INT_IndustryCode__c": "84.110",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		},
-		{
-			"attributes": {
-				"type": "Account",
-				"referenceId": "AccountRef16"
-			},
-			"Name": "FOLLO BARNEVERNVAKT",
-			"INT_Industry__c": "Barneverntjenester",
-			"INT_IndustryCode__c": "88.991",
-			"INT_OrganizationNumber__c": "960507878",
-			"INT_OrganizationalStructure__c": "BEDR",
-			"RecordTypeId": "$R{RecordType.Account.Employer}",
-			"ParentId": "@AccountRef15"
-		}
-	]
+    "records": [
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef1"
+            },
+            "Name": "IKT FOLLO",
+            "INT_Industry__c": "Generell offentlig administrasjon",
+            "INT_IndustryCode__c": "84.110",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef3"
+            },
+            "Name": "SKI KOMMUNE LEVEKÅR",
+            "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+            "INT_IndustryCode__c": "84.120",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef4"
+            },
+            "Name": "SKI KOMMUNE OPPVEKST",
+            "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+            "INT_IndustryCode__c": "84.120",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef7"
+            },
+            "Name": "SKI KOMMUNE PLEIE- OG OMSORGSETATEN",
+            "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+            "INT_IndustryCode__c": "84.120",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef8"
+            },
+            "Name": "SKI KOMMUNE BARNEHAGESEKSJONEN",
+            "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
+            "INT_IndustryCode__c": "84.120",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef9"
+            },
+            "Name": "SKI KOMMUNESKOGER",
+            "INT_Industry__c": "Avvirkning",
+            "INT_IndustryCode__c": "02.200",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef10"
+            },
+            "Name": "NAV TOLKETJENESTEN I FOLLO",
+            "INT_Industry__c": "Oversettelses- og tolkevirksomhet",
+            "INT_IndustryCode__c": "74.300",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef11"
+            },
+            "Name": "SKI KOMMUNE ADMINISTRASJON",
+            "INT_Industry__c": "Generell offentlig administrasjon",
+            "INT_IndustryCode__c": "84.110",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        },
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef16"
+            },
+            "Name": "FOLLO BARNEVERNVAKT",
+            "INT_Industry__c": "Barneverntjenester",
+            "INT_IndustryCode__c": "88.991",
+            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationalStructure__c": "BEDR",
+            "RecordTypeId": "$R{RecordType.Account.Employer}",
+            "ParentId": "@AccountRef15"
+        }
+    ]
 }

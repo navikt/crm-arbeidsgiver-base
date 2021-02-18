@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomHelpMenuSection xmlns="http://soap.sforce.com/2006/04/metadata">
     <customHelpMenuItems>
-        <linkUrl>https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/Brukerveiledning.aspx</linkUrl>
+        <linkUrl
+        >https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/Brukerveiledning.aspx</linkUrl>
         <masterLabel>Brukerveiledning for arbeidsgiverområdet</masterLabel>
         <sortOrder>1</sortOrder>
     </customHelpMenuItems>
     <customHelpMenuItems>
-        <linkUrl>https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Chat-i-Salesforce---Brukerveiledning.aspx</linkUrl>
+        <linkUrl
+        >https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Chat-i-Salesforce---Brukerveiledning.aspx</linkUrl>
         <masterLabel>Brukerveiledning for NKS</masterLabel>
         <sortOrder>2</sortOrder>
     </customHelpMenuItems>

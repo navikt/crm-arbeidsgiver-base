@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
@@ -72,7 +72,8 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>richTextValue</name>
-                <value>&lt;p&gt;Her registreres avtaler NAV har med ulike arbeidsgivere om rekruttering og inkludering eller Inkluderende Arbeidsliv(IA). &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Det skal ikke registreres avtaler om spesifikke stillinger/tiltak.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Registreres som:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Lokale&lt;/b&gt;&amp;nbsp;- avtale gjort mellom lokalt NAV kontor og arbeidsgiver tilknyttet dette kontoret&lt;/li&gt;&lt;li&gt;&lt;b&gt;Regionale&lt;/b&gt;&amp;nbsp;- avtale som går på tvers av lokalkontorer eller hele fylket og kan også inkludere flere virksomheter.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Nasjonale&lt;/b&gt;&amp;nbsp;- avtale som dekker hele landet og er gjort sentralt.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;NB! I beskrivelse legges det inn en kort oppsummering om hva avtalen gjelder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Lenke til avtalen&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Avtalen lastes ikke opp som kopi, men lenkes til ved å lime inn kopi av url i feltet Ekstern URL.&lt;/p&gt;</value>
+                <value
+                >&lt;p&gt;Her registreres avtaler NAV har med ulike arbeidsgivere om rekruttering og inkludering eller Inkluderende Arbeidsliv(IA). &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Det skal ikke registreres avtaler om spesifikke stillinger/tiltak.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Registreres som:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Lokale&lt;/b&gt;&amp;nbsp;- avtale gjort mellom lokalt NAV kontor og arbeidsgiver tilknyttet dette kontoret&lt;/li&gt;&lt;li&gt;&lt;b&gt;Regionale&lt;/b&gt;&amp;nbsp;- avtale som går på tvers av lokalkontorer eller hele fylket og kan også inkludere flere virksomheter.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Nasjonale&lt;/b&gt;&amp;nbsp;- avtale som dekker hele landet og er gjort sentralt.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;NB! I beskrivelse legges det inn en kort oppsummering om hva avtalen gjelder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Lenke til avtalen&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Avtalen lastes ikke opp som kopi, men lenkes til ved å lime inn kopi av url i feltet Ekstern URL.&lt;/p&gt;</value>
             </componentInstanceProperties>
             <componentName>flexipage:richText</componentName>
         </componentInstances>

@@ -4,7 +4,6 @@ import markedJs from '@salesforce/resourceUrl/marked';
 import getData from '@salesforce/apex/MarkdownViewerController.getData';
 
 export default class MarkdownViewer extends LightningElement {
-
     isRendered = false;
 
     @api recordId;
@@ -26,7 +25,6 @@ export default class MarkdownViewer extends LightningElement {
         loadScript(this, markedJs).then(() => {
             this.renderMarkdown();
         });
-
     }
 
     @wire(getData, {
@@ -39,7 +37,6 @@ export default class MarkdownViewer extends LightningElement {
         this.renderMarkdown();
     }
 
-
     renderMarkdown() {
         try {
             if (this.body === null) {
@@ -51,7 +48,6 @@ export default class MarkdownViewer extends LightningElement {
                 formattedData += '<p></p>';
             }
             this.template.querySelector('div').innerHTML = formattedData;
-        }
-        catch (error) { }
+        } catch (error) {}
     }
 }
