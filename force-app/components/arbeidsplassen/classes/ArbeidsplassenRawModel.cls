@@ -19,8 +19,7 @@ public class ArbeidsplassenRawModel {
                         } else {
                             System.debug(
                                 LoggingLevel.WARN,
-                                'OccupationCategories consuming unrecognized property: ' +
-                                text
+                                'OccupationCategories consuming unrecognized property: ' + text
                             );
                             consumeObject(parser);
                         }
@@ -56,11 +55,7 @@ public class ArbeidsplassenRawModel {
                         } else if (text == 'postalCode') {
                             postalCode = parser.getText();
                         } else {
-                            System.debug(
-                                LoggingLevel.WARN,
-                                'WorkLocations consuming unrecognized property: ' +
-                                text
-                            );
+                            System.debug(LoggingLevel.WARN, 'WorkLocations consuming unrecognized property: ' + text);
                             consumeObject(parser);
                         }
                     }
@@ -89,11 +84,7 @@ public class ArbeidsplassenRawModel {
                         } else if (text == 'orgnr') {
                             orgnr = parser.getText();
                         } else {
-                            System.debug(
-                                LoggingLevel.WARN,
-                                'Employer consuming unrecognized property: ' +
-                                text
-                            );
+                            System.debug(LoggingLevel.WARN, 'Employer consuming unrecognized property: ' + text);
                             consumeObject(parser);
                         }
                     }
@@ -145,9 +136,7 @@ public class ArbeidsplassenRawModel {
                         } else if (text == 'link') {
                             link = parser.getText();
                         } else if (text == 'occupationCategories') {
-                            occupationCategories = arrayOfOccupationCategories(
-                                parser
-                            );
+                            occupationCategories = arrayOfOccupationCategories(parser);
                         } else if (text == 'positioncount') {
                             positioncount = parser.getText();
                         } else if (text == 'published') {
@@ -169,11 +158,7 @@ public class ArbeidsplassenRawModel {
                         } else if (text == 'workLocations') {
                             workLocations = arrayOfWorkLocations(parser);
                         } else {
-                            System.debug(
-                                LoggingLevel.WARN,
-                                'Content consuming unrecognized property: ' +
-                                text
-                            );
+                            System.debug(LoggingLevel.WARN, 'Content consuming unrecognized property: ' + text);
                             consumeObject(parser);
                         }
                     }
@@ -215,8 +200,7 @@ public class ArbeidsplassenRawModel {
                     } else {
                         System.debug(
                             LoggingLevel.WARN,
-                            'ArbeidsplassenRawModel consuming unrecognized property: ' +
-                            text
+                            'ArbeidsplassenRawModel consuming unrecognized property: ' + text
                         );
                         consumeObject(parser);
                     }
@@ -235,23 +219,15 @@ public class ArbeidsplassenRawModel {
         Integer depth = 0;
         do {
             System.JSONToken curr = parser.getCurrentToken();
-            if (
-                curr == System.JSONToken.START_OBJECT ||
-                curr == System.JSONToken.START_ARRAY
-            ) {
+            if (curr == System.JSONToken.START_OBJECT || curr == System.JSONToken.START_ARRAY) {
                 depth++;
-            } else if (
-                curr == System.JSONToken.END_OBJECT ||
-                curr == System.JSONToken.END_ARRAY
-            ) {
+            } else if (curr == System.JSONToken.END_OBJECT || curr == System.JSONToken.END_ARRAY) {
                 depth--;
             }
         } while (depth > 0 && parser.nextToken() != null);
     }
 
-    private static List<OccupationCategories> arrayOfOccupationCategories(
-        System.JSONParser p
-    ) {
+    private static List<OccupationCategories> arrayOfOccupationCategories(System.JSONParser p) {
         List<OccupationCategories> res = new List<OccupationCategories>();
         if (p.getCurrentToken() == null)
             p.nextToken();
@@ -262,9 +238,7 @@ public class ArbeidsplassenRawModel {
         return res;
     }
 
-    private static List<WorkLocations> arrayOfWorkLocations(
-        System.JSONParser p
-    ) {
+    private static List<WorkLocations> arrayOfWorkLocations(System.JSONParser p) {
         List<WorkLocations> res = new List<WorkLocations>();
         if (p.getCurrentToken() == null)
             p.nextToken();

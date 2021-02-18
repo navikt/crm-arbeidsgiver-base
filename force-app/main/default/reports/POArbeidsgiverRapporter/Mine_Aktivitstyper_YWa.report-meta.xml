@@ -14,8 +14,7 @@
         <groupingColumn>DUE_DATE</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <secondaryGroupingColumn
-        >Activity.TAG_ActivityType__c</secondaryGroupingColumn>
+        <secondaryGroupingColumn>Activity.TAG_ActivityType__c</secondaryGroupingColumn>
         <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
@@ -34,8 +33,7 @@
     <columns>
         <field>ACCOUNT.NAME</field>
     </columns>
-    <description
-    >Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
+    <description>Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
     <filter>
         <criteriaItems>
             <column>DUE_DATE</column>

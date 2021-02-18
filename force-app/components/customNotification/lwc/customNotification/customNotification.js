@@ -10,8 +10,7 @@ export default class CustomNotification extends LightningElement {
     @api recordId;
 
     @track message;
-    @track mainCss =
-        'slds-notify slds-notify_alert slds-theme_alert-texture round ';
+    @track mainCss = 'slds-notify slds-notify_alert slds-theme_alert-texture round ';
     @track titleCss = 'slds-text-title_caps slds-var-p-right_large ';
 
     connectedCallback() {

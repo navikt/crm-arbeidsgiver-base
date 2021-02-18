@@ -3,8 +3,7 @@
     <fullName>Contact__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <inlineHelpText
-    >Kontaktperson for muligheten hos arbeidsgiver.</inlineHelpText>
+    <inlineHelpText>Kontaktperson for muligheten hos arbeidsgiver.</inlineHelpText>
     <label>Contact</label>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Custom Opportunities</relationshipLabel>

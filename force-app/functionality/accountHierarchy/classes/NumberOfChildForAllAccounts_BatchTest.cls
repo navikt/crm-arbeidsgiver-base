@@ -34,20 +34,8 @@ private class NumberOfChildForAllAccounts_BatchTest {
             WHERE TAG_NumberOfChildAccounts__c > 0
             ORDER BY TAG_NumberOfChildAccounts__c
         ];
-        System.assertEquals(
-            2,
-            accounts.size(),
-            'Two parent accounts with child accounts'
-        );
-        System.assertEquals(
-            6,
-            accounts[0].TAG_NumberOfChildAccounts__c,
-            'First parent has 6 child'
-        );
-        System.assertEquals(
-            12,
-            accounts[1].TAG_NumberOfChildAccounts__c,
-            'Second parent has 12 child'
-        );
+        System.assertEquals(2, accounts.size(), 'Two parent accounts with child accounts');
+        System.assertEquals(6, accounts[0].TAG_NumberOfChildAccounts__c, 'First parent has 6 child');
+        System.assertEquals(12, accounts[1].TAG_NumberOfChildAccounts__c, 'Second parent has 12 child');
     }
 }

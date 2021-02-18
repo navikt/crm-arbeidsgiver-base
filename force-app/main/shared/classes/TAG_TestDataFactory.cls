@@ -6,12 +6,7 @@ public without sharing class TAG_TestDataFactory {
             WHERE Name = 'System Administrator' OR Name = 'Systemadministrator'
             LIMIT 1
         ];
-        User testUser = [
-            SELECT Id
-            FROM User
-            WHERE ProfileId = :p.Id AND IsActive = TRUE
-            LIMIT 1
-        ];
+        User testUser = [SELECT Id FROM User WHERE ProfileId = :p.Id AND IsActive = TRUE LIMIT 1];
         User u = new user();
         System.runAs(testUser) {
             // UserRole ur = [SELECT Id FROM UserRole WHERE Name = 'Default' LIMIT 1];
@@ -52,10 +47,7 @@ public without sharing class TAG_TestDataFactory {
         return accounts;
     }
 
-    public static List<Contact> createContacts(
-        List<Account> accounts,
-        Integer amountPerAccount
-    ) {
+    public static List<Contact> createContacts(List<Account> accounts, Integer amountPerAccount) {
         List<Contact> contacts = new List<Contact>();
         for (Account acc : accounts) {
             for (Integer i = 1; i <= amountPerAccount; i++) {
@@ -83,13 +75,7 @@ public without sharing class TAG_TestDataFactory {
         user.Username = d + 'test@nav.no';
         user.Email = d + 'test@nav.no';
         user.Alias = 'tsamp';
-        user.ProfileId = [
-            SELECT Id
-            FROM Profile
-            WHERE Name = 'Standard User' OR Name = 'Standardbruker'
-            LIMIT 1
-        ]
-        .Id;
+        user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
         user.isActive = true;
         user.FirstName = 'First';
         user.LastName = lastName;
@@ -103,47 +89,24 @@ public without sharing class TAG_TestDataFactory {
         return user;
     }
 
-    public static void createUserWithPermset(
-        String lastName,
-        List<String> permsetNames
-    ) {
+    public static void createUserWithPermset(String lastName, List<String> permsetNames) {
         User u = TAG_TestDataFactory.createStandardUser(lastName);
 
-        List<PermissionSet> permsets = [
-            SELECT Id
-            FROM PermissionSet
-            WHERE Name IN :permsetNames
-        ];
+        List<PermissionSet> permsets = [SELECT Id FROM PermissionSet WHERE Name IN :permsetNames];
         List<PermissionSetAssignment> assignemnts = new List<PermissionSetAssignment>();
         for (PermissionSet ps : permsets) {
-            assignemnts.add(
-                new PermissionSetAssignment(
-                    AssigneeId = U.id,
-                    PermissionSetId = ps.Id
-                )
-            );
+            assignemnts.add(new PermissionSetAssignment(AssigneeId = U.id, PermissionSetId = ps.Id));
         }
         insert assignemnts;
     }
 
     public static void createUserWithPermset(String lastName, String permset) {
-        PermissionSet ps = [
-            SELECT Id
-            FROM PermissionSet
-            WHERE Name = :permset
-            LIMIT 1
-        ];
+        PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = :permset LIMIT 1];
         User u = TAG_TestDataFactory.createStandardUser(lastName);
-        insert new PermissionSetAssignment(
-            AssigneeId = U.id,
-            PermissionSetId = ps.Id
-        );
+        insert new PermissionSetAssignment(AssigneeId = U.id, PermissionSetId = ps.Id);
     }
 
-    public static List<CustomOpportunity__c> getCustomOpportunities(
-        Integer amount,
-        Boolean doInsert
-    ) {
+    public static List<CustomOpportunity__c> getCustomOpportunities(Integer amount, Boolean doInsert) {
         List<CustomOpportunity__c> customOpportunities = new List<CustomOpportunity__c>();
 
         for (Integer i = 0; i < amount; i++) {
@@ -162,11 +125,7 @@ public without sharing class TAG_TestDataFactory {
         return customOpportunities;
     }
 
-    public static List<TemporaryLayoff__c> getTemporaryLayoffs(
-        Integer amount,
-        Account account,
-        Boolean doInsert
-    ) {
+    public static List<TemporaryLayoff__c> getTemporaryLayoffs(Integer amount, Account account, Boolean doInsert) {
         List<TemporaryLayoff__c> temporaryLayoffs = new List<TemporaryLayoff__c>();
 
         for (Integer i = 0; i < amount; i++) {
@@ -187,10 +146,7 @@ public without sharing class TAG_TestDataFactory {
         return temporaryLayoffs;
     }
 
-    public static void assignPermissionSet(
-        String username,
-        String permissionSetName
-    ) {
+    public static void assignPermissionSet(String username, String permissionSetName) {
         String d =
             String.valueOf(DateTime.now().millisecond()) +
             String.valueOf(DateTime.now().second()) +
@@ -199,13 +155,7 @@ public without sharing class TAG_TestDataFactory {
         user.Username = username;
         user.Email = username;
         user.Alias = 'tsamp';
-        user.ProfileId = [
-            SELECT Id
-            FROM Profile
-            WHERE Name = 'Standard User' OR Name = 'Standardbruker'
-            LIMIT 1
-        ]
-        .Id;
+        user.ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User' OR Name = 'Standardbruker' LIMIT 1].Id;
         user.isActive = true;
         user.FirstName = 'First';
         user.LastName = 'Last UNIQUE NAME';
@@ -216,11 +166,7 @@ public without sharing class TAG_TestDataFactory {
         user.CommunityNickname = 'testUser' + d;
         insert user;
 
-        List<PermissionSet> permissionSets = [
-            SELECT Id
-            FROM PermissionSet
-            WHERE Name = :permissionSetName
-        ];
+        List<PermissionSet> permissionSets = [SELECT Id FROM PermissionSet WHERE Name = :permissionSetName];
 
         if (permissionSets.size() > 0) {
             PermissionSetAssignment permissionSetAssignment = new PermissionSetAssignment();

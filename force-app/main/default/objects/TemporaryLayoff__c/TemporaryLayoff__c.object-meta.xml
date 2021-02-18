@@ -141,8 +141,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment
-    >Temporary_Layoff_Default_Compact_Layout</compactLayoutAssignment>
+    <compactLayoutAssignment>Temporary_Layoff_Default_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -162,17 +161,12 @@
     </nameField>
     <pluralLabel>Temporary Layoffs</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields
-        >Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >NumberOfEmployees__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >StartDate__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >EndDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>NumberOfEmployees__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>StartDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>EndDate__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>

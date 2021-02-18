@@ -19,11 +19,7 @@ public without sharing class accountTeamMemberController {
 
     @AuraEnabled
     public static void deleteTeamMember(Id atmId) {
-        AccountTeamMember recordToDelete = [
-            SELECT Id
-            FROM AccountTeamMember
-            WHERE Id = :atmId
-        ];
+        AccountTeamMember recordToDelete = [SELECT Id FROM AccountTeamMember WHERE Id = :atmId];
         delete recordToDelete;
     }
 }

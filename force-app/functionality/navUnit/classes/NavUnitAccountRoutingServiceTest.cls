@@ -2,16 +2,8 @@
 private class NavUnitAccountRoutingServiceTest {
     @TestSetup
     private static void makeData() {
-        TestDataFactory.getQueue(
-            'NAV Drammen',
-            'queue_602',
-            'TemporaryLayoff__c'
-        );
-        TestDataFactory.getQueue(
-            'NAV Asker',
-            'queue_220',
-            'TemporaryLayoff__c'
-        );
+        TestDataFactory.getQueue('NAV Drammen', 'queue_602', 'TemporaryLayoff__c');
+        TestDataFactory.getQueue('NAV Asker', 'queue_220', 'TemporaryLayoff__c');
     }
 
     @IsTest
@@ -30,12 +22,8 @@ private class NavUnitAccountRoutingServiceTest {
         update testAccounts;
 
         List<NavUnit__c> units = new List<NavUnit__c>();
-        units.add(
-            new NavUnit__c(Name = 'NAV Drammen', INT_UnitNumber__c = '0602')
-        );
-        units.add(
-            new NavUnit__c(Name = 'NAV Asker', INT_UnitNumber__c = '0220')
-        );
+        units.add(new NavUnit__c(Name = 'NAV Drammen', INT_UnitNumber__c = '0602'));
+        units.add(new NavUnit__c(Name = 'NAV Asker', INT_UnitNumber__c = '0220'));
         insert units;
 
         List<Account> accounts = [
@@ -44,20 +32,10 @@ private class NavUnitAccountRoutingServiceTest {
             ORDER BY INT_MunicipalityNumber__c
         ];
         Test.startTest();
-        List<Account> accountsWithUnits = NavUnitAccountRoutingService.getNavUnits(
-            accounts
-        );
+        List<Account> accountsWithUnits = NavUnitAccountRoutingService.getNavUnits(accounts);
         Test.stopTest();
 
-        System.assertEquals(
-            units[0].Id,
-            accountsWithUnits[0].TAG_NavUnit__c,
-            'First account belongs to Asker'
-        );
-        System.assertEquals(
-            units[1].Id,
-            accountsWithUnits[19].TAG_NavUnit__c,
-            'Last account belongs to Drammen'
-        );
+        System.assertEquals(units[0].Id, accountsWithUnits[0].TAG_NavUnit__c, 'First account belongs to Asker');
+        System.assertEquals(units[1].Id, accountsWithUnits[19].TAG_NavUnit__c, 'Last account belongs to Drammen');
     }
 }

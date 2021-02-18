@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TaskEvent__c</fullName>
     <externalId>false</externalId>
-    <formula
-    >IF( IsTask = true , &quot;Oppgave&quot; , &quot;Møte&quot; )</formula>
+    <formula>IF( IsTask = true , &quot;Oppgave&quot; , &quot;Møte&quot; )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Task / Event</label>
     <required>false</required>

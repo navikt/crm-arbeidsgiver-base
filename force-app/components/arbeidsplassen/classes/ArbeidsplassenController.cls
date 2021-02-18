@@ -3,12 +3,7 @@ public with sharing class ArbeidsplassenController {
 
     @AuraEnabled(cacheable=true)
     public static ArbeidsplassenWrapperModel getData(String recordId) {
-        List<Account> acc = [
-            SELECT INT_OrganizationNumber__c
-            FROM Account
-            WHERE Id = :recordId
-            LIMIT 1
-        ];
+        List<Account> acc = [SELECT INT_OrganizationNumber__c FROM Account WHERE Id = :recordId LIMIT 1];
         if (acc.size() == 0) {
             throwAuraError();
         }
@@ -19,22 +14,15 @@ public with sharing class ArbeidsplassenController {
         ArbeidsplassenWrapperModel wrapper;
 
         try {
-            HttpResponse response = ArbeidsplassenController.doCallout(
-                acc[0].INT_OrganizationNumber__c
-            );
-            ArbeidsplassenRawModel model = ArbeidsplassenRawModel.parse(
-                response.getBody()
-            );
+            HttpResponse response = ArbeidsplassenController.doCallout(acc[0].INT_OrganizationNumber__c);
+            ArbeidsplassenRawModel model = ArbeidsplassenRawModel.parse(response.getBody());
 
             List<ArbeidsplassenViewModel> viewModels = new List<ArbeidsplassenViewModel>();
             for (ArbeidsplassenRawModel.Content content : model.content) {
                 viewModels.add(new ArbeidsplassenViewModel(content));
             }
 
-            wrapper = new ArbeidsplassenWrapperModel(
-                model.totalElements,
-                viewModels
-            );
+            wrapper = new ArbeidsplassenWrapperModel(model.totalElements, viewModels);
         } catch (Exception e) {
             throwAuraError();
         }
@@ -49,21 +37,14 @@ public with sharing class ArbeidsplassenController {
             WHERE Name__c = 'arbeidsplassen'
             LIMIT 1
         ];
-        String accesToken = accessTokens.size() == 1
-            ? accessTokens[0].Token__c
-            : '';
+        String accesToken = accessTokens.size() == 1 ? accessTokens[0].Token__c : '';
 
         if (accessTokens.size() == 0 && !Test.isRunningTest()) {
             throwAuraError();
         }
 
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(
-            'https://arbeidsplassen.nav.no/public-feed/api/v1/ads?orgnr=' +
-            orgNumber +
-            '&size=' +
-            SIZE
-        );
+        req.setEndpoint('https://arbeidsplassen.nav.no/public-feed/api/v1/ads?orgnr=' + orgNumber + '&size=' + SIZE);
         req.setMethod('GET');
         req.setHeader('Content-Type', 'application/json');
         req.setHeader('Authorization', accesToken);

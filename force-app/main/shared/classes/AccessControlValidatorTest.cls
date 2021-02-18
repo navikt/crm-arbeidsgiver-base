@@ -21,9 +21,7 @@ private without sharing class AccessControlValidatorTest {
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.sObjectIsAccessible(
-                'TemporaryLayoff__c'
-            );
+            result = AccessControlValidator.sObjectIsAccessible('TemporaryLayoff__c');
         }
         Test.StopTest();
 
@@ -32,19 +30,12 @@ private without sharing class AccessControlValidatorTest {
 
     @isTest
     private static void testSObjectIsAccessible_emptyUserWithPermset() {
-        User u = [
-            SELECT Id
-            FROM User
-            WHERE LastName = 'ARBEIDSGIVER USER'
-            LIMIT 1
-        ];
+        User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         Boolean result;
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.sObjectIsAccessible(
-                'TemporaryLayoff__c'
-            );
+            result = AccessControlValidator.sObjectIsAccessible('TemporaryLayoff__c');
         }
         Test.StopTest();
 
@@ -58,9 +49,7 @@ private without sharing class AccessControlValidatorTest {
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.sObjectIsCreateable(
-                'CustomOpportunity__c'
-            );
+            result = AccessControlValidator.sObjectIsCreateable('CustomOpportunity__c');
         }
         Test.StopTest();
 
@@ -69,19 +58,12 @@ private without sharing class AccessControlValidatorTest {
 
     @isTest
     private static void testSObjectIsCreateable_emptyUserWithPermset() {
-        User u = [
-            SELECT Id
-            FROM User
-            WHERE LastName = 'ARBEIDSGIVER USER'
-            LIMIT 1
-        ];
+        User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         Boolean result;
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.sObjectIsCreateable(
-                'CustomOpportunity__c'
-            );
+            result = AccessControlValidator.sObjectIsCreateable('CustomOpportunity__c');
         }
         Test.StopTest();
 
@@ -95,10 +77,7 @@ private without sharing class AccessControlValidatorTest {
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.fieldIsAccessible(
-                'Task',
-                'RelatedToAccount__c'
-            );
+            result = AccessControlValidator.fieldIsAccessible('Task', 'RelatedToAccount__c');
         }
         Test.StopTest();
 
@@ -107,20 +86,12 @@ private without sharing class AccessControlValidatorTest {
 
     @isTest
     private static void testFieldIsAccessible_emptyUserWithPermset() {
-        User u = [
-            SELECT Id
-            FROM User
-            WHERE LastName = 'ARBEIDSGIVER USER'
-            LIMIT 1
-        ];
+        User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         Boolean result;
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.fieldIsAccessible(
-                'Task',
-                'RelatedToAccount__c'
-            );
+            result = AccessControlValidator.fieldIsAccessible('Task', 'RelatedToAccount__c');
         }
         Test.StopTest();
 
@@ -134,10 +105,7 @@ private without sharing class AccessControlValidatorTest {
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.fieldIsCreateable(
-                'Task',
-                'RelatedToAccount__c'
-            );
+            result = AccessControlValidator.fieldIsCreateable('Task', 'RelatedToAccount__c');
         }
         Test.StopTest();
 
@@ -146,20 +114,12 @@ private without sharing class AccessControlValidatorTest {
 
     @isTest
     private static void testFieldIsCreateable_emptyUserWithPermset() {
-        User u = [
-            SELECT Id
-            FROM User
-            WHERE LastName = 'ARBEIDSGIVER USER'
-            LIMIT 1
-        ];
+        User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         Boolean result;
 
         Test.StartTest();
         System.runAs(u) {
-            result = AccessControlValidator.fieldIsCreateable(
-                'Task',
-                'RelatedToAccount__c'
-            );
+            result = AccessControlValidator.fieldIsCreateable('Task', 'RelatedToAccount__c');
         }
         Test.StopTest();
 

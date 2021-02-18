@@ -7,18 +7,10 @@ global class TAG_AccountTypeHandler extends MyTriggers {
         List<Account> accountsWithChangedOrganizationalStructure = new List<Account>();
 
         //check if organization structure is changed
-        List<String> fieldNamesToCheck = new List<String>{
-            'INT_OrganizationalStructure__c'
-        };
+        List<String> fieldNamesToCheck = new List<String>{ 'INT_OrganizationalStructure__c' };
 
         for (Account account : (List<Account>) records) {
-            if (
-                MyTriggers.hasChangedFields(
-                    fieldNamesToCheck,
-                    account,
-                    triggerOldMap.get(account.Id)
-                )
-            ) {
+            if (MyTriggers.hasChangedFields(fieldNamesToCheck, account, triggerOldMap.get(account.Id))) {
                 accountsWithChangedOrganizationalStructure.add(account);
             }
         }
@@ -31,18 +23,11 @@ global class TAG_AccountTypeHandler extends MyTriggers {
     private void setAccountType(List<Account> accounts) {
         Map<String, String> organizationalStructureMap = getOrganizationalStructureMaps();
         for (Account account : (List<Account>) records) {
-            if (
-                organizationalStructureMap.keySet()
-                    .contains(account.INT_OrganizationalStructure__c)
-            ) {
-                account.CRM_AccountType__c = organizationalStructureMap.get(
-                    account.INT_OrganizationalStructure__c
-                );
+            if (organizationalStructureMap.keySet().contains(account.INT_OrganizationalStructure__c)) {
+                account.CRM_AccountType__c = organizationalStructureMap.get(account.INT_OrganizationalStructure__c);
             } else {
                 //set default account type
-                account.CRM_AccountType__c = organizationalStructureMap.get(
-                    'Default'
-                );
+                account.CRM_AccountType__c = organizationalStructureMap.get('Default');
             }
         }
     }
@@ -57,10 +42,7 @@ global class TAG_AccountTypeHandler extends MyTriggers {
             if (structureCode == 'null') {
                 structureCode = null;
             }
-            organizationalStructureMap.put(
-                structureCode,
-                structure.AccountType__c
-            );
+            organizationalStructureMap.put(structureCode, structure.AccountType__c);
         }
 
         return organizationalStructureMap;

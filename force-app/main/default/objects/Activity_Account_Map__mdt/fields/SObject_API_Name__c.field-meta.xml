@@ -5,8 +5,7 @@
     <description>(e.g., CustomOpportunity__c, TemporaryLayoff__c)</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText
-    >(e.g., CustomOpportunity__c, TemporaryLayoff__c)</inlineHelpText>
+    <inlineHelpText>(e.g., CustomOpportunity__c, TemporaryLayoff__c)</inlineHelpText>
     <label>SObject API Name</label>
     <length>255</length>
     <required>true</required>

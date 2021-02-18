@@ -29,9 +29,7 @@ private without sharing class Process_SendEmailTest {
         Profile profile = [
             SELECT Id, UserLicense.Name
             FROM Profile
-            WHERE
-                Name = 'Standard Platform User'
-                OR Name = 'Standard plattformbruker'
+            WHERE Name = 'Standard Platform User' OR Name = 'Standard plattformbruker'
             LIMIT 1
         ];
         User user = new User(
@@ -68,10 +66,7 @@ private without sharing class Process_SendEmailTest {
                 ContactEmail__c = 'tore.toresen@example.com'
             );
 
-            List<EmailMessage> emails = [
-                SELECT HtmlBody, ToAddress
-                FROM EmailMessage
-            ];
+            List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
             System.assertEquals(0, emails.size(), 'No emails sent before');
 
             Test.StartTest();
@@ -80,11 +75,7 @@ private without sharing class Process_SendEmailTest {
 
             emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
 
-            System.assertEquals(
-                1,
-                emails.size(),
-                'Only one email sent, only one EmailMessage created'
-            );
+            System.assertEquals(1, emails.size(), 'Only one email sent, only one EmailMessage created');
             System.assert(
                 emails[0]
                     .HtmlBody.replaceAll('\n', '')
@@ -93,11 +84,7 @@ private without sharing class Process_SendEmailTest {
                     ),
                 'The new html body should have converted all variables ( {{{ var }}} )'
             );
-            System.assertEquals(
-                'tore.toresen@example.com',
-                emails[0].ToAddress,
-                'Sent to contact email'
-            );
+            System.assertEquals('tore.toresen@example.com', emails[0].ToAddress, 'Sent to contact email');
         }
     }
 
@@ -119,10 +106,7 @@ private without sharing class Process_SendEmailTest {
                 ContactEmail__c = ''
             );
 
-            List<EmailMessage> emails = [
-                SELECT HtmlBody, ToAddress
-                FROM EmailMessage
-            ];
+            List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
             System.assertEquals(0, emails.size(), 'No emails sent before');
 
             Test.StartTest();
@@ -130,22 +114,14 @@ private without sharing class Process_SendEmailTest {
             Test.StopTest();
 
             emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
-            System.assertEquals(
-                0,
-                emails.size(),
-                'No email after, due to wrong email'
-            );
+            System.assertEquals(0, emails.size(), 'No email after, due to wrong email');
         }
     }
 
     @isTest
     private static void testSendEmail_missingEmail() {
         System.runAs(getTestUser()) {
-            Contact con = new Contact(
-                TAG_Informed__c = true,
-                LastName = 'test',
-                FirstName = 'test'
-            );
+            Contact con = new Contact(TAG_Informed__c = true, LastName = 'test', FirstName = 'test');
             insert con;
 
             TemporaryLayoff__c tl = new TemporaryLayoff__c(
@@ -155,10 +131,7 @@ private without sharing class Process_SendEmailTest {
                 ContactEmail__c = ''
             );
 
-            List<EmailMessage> emails = [
-                SELECT HtmlBody, ToAddress
-                FROM EmailMessage
-            ];
+            List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
             System.assertEquals(0, emails.size(), 'No emails sent before');
 
             Test.StartTest();
@@ -166,22 +139,14 @@ private without sharing class Process_SendEmailTest {
             Test.StopTest();
 
             emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
-            System.assertEquals(
-                0,
-                emails.size(),
-                'No email after, due to wrong email'
-            );
+            System.assertEquals(0, emails.size(), 'No email after, due to wrong email');
         }
     }
 
     @isTest
     private static void testSendEmail_oneWrongEmailOneCorrect() {
         System.runAs(getTestUser()) {
-            Contact con1 = new Contact(
-                TAG_Informed__c = true,
-                LastName = 'test1',
-                FirstName = 'test1'
-            );
+            Contact con1 = new Contact(TAG_Informed__c = true, LastName = 'test1', FirstName = 'test1');
             Contact con2 = new Contact(
                 TAG_Informed__c = true,
                 LastName = 'test2',
@@ -204,10 +169,7 @@ private without sharing class Process_SendEmailTest {
                 ContactEmail__c = ''
             );
 
-            List<EmailMessage> emails = [
-                SELECT HtmlBody, ToAddress
-                FROM EmailMessage
-            ];
+            List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
             System.assertEquals(0, emails.size(), 'No emails sent before');
 
             Test.StartTest();
@@ -215,11 +177,7 @@ private without sharing class Process_SendEmailTest {
             Test.StopTest();
 
             emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
-            System.assertEquals(
-                1,
-                emails.size(),
-                'One email after, due to one wrong email'
-            );
+            System.assertEquals(1, emails.size(), 'One email after, due to one wrong email');
         }
     }
 
@@ -245,10 +203,7 @@ private without sharing class Process_SendEmailTest {
             request.relatedToId = acc.Id;
             requests.add(request);
 
-            List<EmailMessage> emails = [
-                SELECT HtmlBody, ToAddress
-                FROM EmailMessage
-            ];
+            List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
             System.assertEquals(0, emails.size(), 'No emails sent before');
 
             Test.StartTest();
@@ -282,10 +237,7 @@ private without sharing class Process_SendEmailTest {
             request.relatedToId = acc.Id;
             requests.add(request);
 
-            List<EmailMessage> emails = [
-                SELECT HtmlBody, ToAddress
-                FROM EmailMessage
-            ];
+            List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
             System.assertEquals(0, emails.size(), 'No emails sent before');
 
             Test.StartTest();
@@ -308,28 +260,14 @@ private without sharing class Process_SendEmailTest {
         );
         Test.StopTest();
 
-        Id expected = [
-            SELECT Id, Name
-            FROM EmailTemplate
-            WHERE Name = 'tempLayoffReceiptSubsidiary'
-            LIMIT 1
-        ]
-        .Id;
+        Id expected = [SELECT Id, Name FROM EmailTemplate WHERE Name = 'tempLayoffReceiptSubsidiary' LIMIT 1].Id;
 
-        System.assertEquals(
-            1,
-            templateMap.size(),
-            'Only one template with name "tempLayoffReceiptSubsidiary"'
-        );
+        System.assertEquals(1, templateMap.size(), 'Only one template with name "tempLayoffReceiptSubsidiary"');
         System.assert(
             templateMap.containsKey('tempLayoffReceiptSubsidiary'),
             'key "tempLayoffReceiptSubsidiary" should exist in map'
         );
-        System.assertEquals(
-            expected,
-            templateMap.values()[0],
-            'Fetch the EmailTemplate id'
-        );
+        System.assertEquals(expected, templateMap.values()[0], 'Fetch the EmailTemplate id');
     }
 
     private static User getTestUser() {

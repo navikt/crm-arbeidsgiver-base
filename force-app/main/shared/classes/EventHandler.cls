@@ -52,11 +52,7 @@ global class EventHandler extends MyTriggers {
         for (Event e : events) {
             idForDeletion.add(e.Id);
         }
-        delete [
-            SELECT Id
-            FROM EventShadow__c
-            WHERE SH_EventId__c IN :idForDeletion
-        ];
+        delete [SELECT Id FROM EventShadow__c WHERE SH_EventId__c IN :idForDeletion];
     }
 
     private void upsertEventShadow(List<Event> events) {

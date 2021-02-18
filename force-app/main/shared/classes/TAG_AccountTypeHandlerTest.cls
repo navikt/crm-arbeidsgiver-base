@@ -2,20 +2,13 @@
 private class TAG_AccountTypeHandlerTest {
     @TestSetup
     static void makeData() {
-        TAG_TestDataFactory.assignPermissionSet(
-            'accountTypeHandler@nav.test',
-            'ManageAccounts'
-        );
+        TAG_TestDataFactory.assignPermissionSet('accountTypeHandler@nav.test', 'ManageAccounts');
     }
 
     @IsTest
     private static void insertAccounts() {
         myTriggers.disable(PopulateNavUnitOnAccountHandler.class);
-        User integrationUser = [
-            SELECT Id
-            FROM User
-            WHERE Username = 'accountTypeHandler@nav.test'
-        ];
+        User integrationUser = [SELECT Id FROM User WHERE Username = 'accountTypeHandler@nav.test'];
         System.runAs(integrationUser) {
             List<Account> accounts = new List<Account>();
             accounts.add(
@@ -91,56 +84,16 @@ private class TAG_AccountTypeHandlerTest {
             insert accounts;
         }
 
-        List<Account> savedAccounts = [
-            SELECT CRM_AccountType__c
-            FROM Account
-            ORDER BY Name
-        ];
-        System.assertEquals(
-            'B',
-            savedAccounts[0].CRM_AccountType__c,
-            'AAFY accountype should be B'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[1].CRM_AccountType__c,
-            'ADOS accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[2].CRM_AccountType__c,
-            'AS accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[3].CRM_AccountType__c,
-            'ASA accountype should be J'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[4].CRM_AccountType__c,
-            'BEDR accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[5].CRM_AccountType__c,
-            'FKF accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[6].CRM_AccountType__c,
-            'KF accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[7].CRM_AccountType__c,
-            'ORGL accountype should be B'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[8].CRM_AccountType__c,
-            'UTLA accountype should be J'
-        );
+        List<Account> savedAccounts = [SELECT CRM_AccountType__c FROM Account ORDER BY Name];
+        System.assertEquals('B', savedAccounts[0].CRM_AccountType__c, 'AAFY accountype should be B');
+        System.assertEquals('J', savedAccounts[1].CRM_AccountType__c, 'ADOS accountype should be J');
+        System.assertEquals('J', savedAccounts[2].CRM_AccountType__c, 'AS accountype should be J');
+        System.assertEquals('J', savedAccounts[3].CRM_AccountType__c, 'ASA accountype should be J');
+        System.assertEquals('B', savedAccounts[4].CRM_AccountType__c, 'BEDR accountype should be B');
+        System.assertEquals('B', savedAccounts[5].CRM_AccountType__c, 'FKF accountype should be B');
+        System.assertEquals('B', savedAccounts[6].CRM_AccountType__c, 'KF accountype should be B');
+        System.assertEquals('B', savedAccounts[7].CRM_AccountType__c, 'ORGL accountype should be B');
+        System.assertEquals('J', savedAccounts[8].CRM_AccountType__c, 'UTLA accountype should be J');
         System.assertEquals(
             null,
             savedAccounts[9].CRM_AccountType__c,
@@ -151,11 +104,7 @@ private class TAG_AccountTypeHandlerTest {
     @IsTest
     private static void updateAccounts() {
         myTriggers.disable(PopulateNavUnitOnAccountHandler.class);
-        User integrationUser = [
-            SELECT Id
-            FROM User
-            WHERE Username = 'accountTypeHandler@nav.test'
-        ];
+        User integrationUser = [SELECT Id FROM User WHERE Username = 'accountTypeHandler@nav.test'];
         System.runAs(integrationUser) {
             List<Account> accounts = TAG_TestDataFactory.createAccounts(1000);
 
@@ -216,96 +165,24 @@ private class TAG_AccountTypeHandlerTest {
         }
 
         List<Account> savedAccounts = [SELECT CRM_AccountType__c FROM Account];
-        System.assertEquals(
-            'B',
-            savedAccounts[0].CRM_AccountType__c,
-            'AAFY accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[77].CRM_AccountType__c,
-            'AAFY accountype should be B'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[100].CRM_AccountType__c,
-            'ADOS accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[180].CRM_AccountType__c,
-            'ADOS accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[200].CRM_AccountType__c,
-            'AS accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[299].CRM_AccountType__c,
-            'AS accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[300].CRM_AccountType__c,
-            'ASA accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[353].CRM_AccountType__c,
-            'ASA accountype should be J'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[400].CRM_AccountType__c,
-            'BEDR accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[499].CRM_AccountType__c,
-            'BEDR accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[500].CRM_AccountType__c,
-            'FKF accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[570].CRM_AccountType__c,
-            'FKF accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[600].CRM_AccountType__c,
-            'KF accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[699].CRM_AccountType__c,
-            'KF accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[700].CRM_AccountType__c,
-            'ORGL accountype should be B'
-        );
-        System.assertEquals(
-            'B',
-            savedAccounts[799].CRM_AccountType__c,
-            'ORGL accountype should be B'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[800].CRM_AccountType__c,
-            'UTLA accountype should be J'
-        );
-        System.assertEquals(
-            'J',
-            savedAccounts[899].CRM_AccountType__c,
-            'UTLA accountype should be J'
-        );
+        System.assertEquals('B', savedAccounts[0].CRM_AccountType__c, 'AAFY accountype should be B');
+        System.assertEquals('B', savedAccounts[77].CRM_AccountType__c, 'AAFY accountype should be B');
+        System.assertEquals('J', savedAccounts[100].CRM_AccountType__c, 'ADOS accountype should be J');
+        System.assertEquals('J', savedAccounts[180].CRM_AccountType__c, 'ADOS accountype should be J');
+        System.assertEquals('J', savedAccounts[200].CRM_AccountType__c, 'AS accountype should be J');
+        System.assertEquals('J', savedAccounts[299].CRM_AccountType__c, 'AS accountype should be J');
+        System.assertEquals('J', savedAccounts[300].CRM_AccountType__c, 'ASA accountype should be J');
+        System.assertEquals('J', savedAccounts[353].CRM_AccountType__c, 'ASA accountype should be J');
+        System.assertEquals('B', savedAccounts[400].CRM_AccountType__c, 'BEDR accountype should be B');
+        System.assertEquals('B', savedAccounts[499].CRM_AccountType__c, 'BEDR accountype should be B');
+        System.assertEquals('B', savedAccounts[500].CRM_AccountType__c, 'FKF accountype should be B');
+        System.assertEquals('B', savedAccounts[570].CRM_AccountType__c, 'FKF accountype should be B');
+        System.assertEquals('B', savedAccounts[600].CRM_AccountType__c, 'KF accountype should be B');
+        System.assertEquals('B', savedAccounts[699].CRM_AccountType__c, 'KF accountype should be B');
+        System.assertEquals('B', savedAccounts[700].CRM_AccountType__c, 'ORGL accountype should be B');
+        System.assertEquals('B', savedAccounts[799].CRM_AccountType__c, 'ORGL accountype should be B');
+        System.assertEquals('J', savedAccounts[800].CRM_AccountType__c, 'UTLA accountype should be J');
+        System.assertEquals('J', savedAccounts[899].CRM_AccountType__c, 'UTLA accountype should be J');
         System.assertEquals(
             null,
             savedAccounts[900].CRM_AccountType__c,

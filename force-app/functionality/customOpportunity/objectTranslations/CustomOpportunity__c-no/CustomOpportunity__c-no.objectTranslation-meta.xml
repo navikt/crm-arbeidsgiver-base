@@ -96,13 +96,11 @@
         <name>Inclusive_Employment</name>
     </recordTypes>
     <validationRules>
-        <errorMessage
-        ><!-- Du må fylle inn virksomhet før du går til dette steget. --></errorMessage>
+        <errorMessage><!-- Du må fylle inn virksomhet før du går til dette steget. --></errorMessage>
         <name>Employer_must_be_set</name>
     </validationRules>
     <validationRules>
-        <errorMessage
-        ><!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger --></errorMessage>
+        <errorMessage><!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger --></errorMessage>
         <name>No_person_information_added</name>
     </validationRules>
     <validationRules>

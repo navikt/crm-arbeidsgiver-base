@@ -2,10 +2,7 @@
 private without sharing class EventHandlerTest {
     @testSetup
     private static void setup() {
-        TAG_TestDataFactory.assignPermissionSet(
-            'accountTypeHandler@nav.test',
-            'ManageAccounts'
-        );
+        TAG_TestDataFactory.assignPermissionSet('accountTypeHandler@nav.test', 'ManageAccounts');
     }
 
     @isTest
@@ -32,10 +29,7 @@ private without sharing class EventHandlerTest {
         insert eventShadowsData;
         Test.StopTest();
 
-        List<EventShadow__c> es = [
-            SELECT Id, SH_EventId__c
-            FROM EventShadow__c
-        ];
+        List<EventShadow__c> es = [SELECT Id, SH_EventId__c FROM EventShadow__c];
         Integer EventShadowCount = es.size();
 
         System.assertEquals(200, EventShadowCount);
@@ -61,10 +55,7 @@ private without sharing class EventHandlerTest {
         update e;
         Test.StopTest();
 
-        List<EventShadow__c> es = [
-            SELECT Id, SH_EventId__c, SH_Subject__c
-            FROM EventShadow__c
-        ];
+        List<EventShadow__c> es = [SELECT Id, SH_EventId__c, SH_Subject__c FROM EventShadow__c];
         Integer EventShadowCount = es.size();
 
         System.assertEquals(1, EventShadowCount);

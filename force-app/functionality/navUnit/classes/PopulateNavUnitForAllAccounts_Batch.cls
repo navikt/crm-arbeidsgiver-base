@@ -6,9 +6,7 @@ public with sharing class PopulateNavUnitForAllAccounts_Batch implements Databas
     }
 
     public void execute(Database.BatchableContext BC, List<Account> scope) {
-        List<Account> accountsWithUnits = NavUnitAccountRoutingService.getNavUnits(
-            scope
-        );
+        List<Account> accountsWithUnits = NavUnitAccountRoutingService.getNavUnits(scope);
         update accountsWithUnits;
     }
 

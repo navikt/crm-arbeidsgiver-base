@@ -2,24 +2,14 @@
 private class PopulateNavUnitOnAccountHandlerTest {
     @TestSetup
     private static void makeData() {
-        TestDataFactory.getQueue(
-            'NAV Drammen',
-            'queue_602',
-            'TemporaryLayoff__c'
-        );
-        TestDataFactory.getQueue(
-            'NAV Asker',
-            'queue_220',
-            'TemporaryLayoff__c'
-        );
+        TestDataFactory.getQueue('NAV Drammen', 'queue_602', 'TemporaryLayoff__c');
+        TestDataFactory.getQueue('NAV Asker', 'queue_220', 'TemporaryLayoff__c');
     }
 
     @IsTest
     private static void testOnBeforeInsert() {
         List<NavUnit__c> units = new List<NavUnit__c>();
-        units.add(
-            new NavUnit__c(Name = 'NAV Drammen', INT_UnitNumber__c = '0602')
-        );
+        units.add(new NavUnit__c(Name = 'NAV Drammen', INT_UnitNumber__c = '0602'));
         insert units;
 
         myTriggers.disable(TAG_AccountTypeHandler.class);
@@ -35,12 +25,8 @@ private class PopulateNavUnitOnAccountHandlerTest {
     @IsTest
     private static void testOnBeforeUpdate() {
         List<NavUnit__c> units = new List<NavUnit__c>();
-        units.add(
-            new NavUnit__c(Name = 'NAV Drammen', INT_UnitNumber__c = '0602')
-        );
-        units.add(
-            new NavUnit__c(Name = 'NAV Asker', INT_UnitNumber__c = '0220')
-        );
+        units.add(new NavUnit__c(Name = 'NAV Drammen', INT_UnitNumber__c = '0602'));
+        units.add(new NavUnit__c(Name = 'NAV Asker', INT_UnitNumber__c = '0220'));
         insert units;
 
         myTriggers.disable(TAG_AccountTypeHandler.class);

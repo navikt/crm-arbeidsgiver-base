@@ -17,9 +17,7 @@ public without sharing class NavUnitAccountRoutingService {
         return accounts;
     }
 
-    private static List<SobjectWrapper> getSobjectWrappers(
-        List<Account> accounts
-    ) {
+    private static List<SobjectWrapper> getSobjectWrappers(List<Account> accounts) {
         List<SobjectWrapper> wrappers = new List<SobjectWrapper>();
         Integer i = 0;
         for (Account acc : accounts) {

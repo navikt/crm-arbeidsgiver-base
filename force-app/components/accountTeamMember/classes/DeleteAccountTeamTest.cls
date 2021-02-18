@@ -3,9 +3,7 @@ private without sharing class DeleteAccountTeamTest {
     @isTest
     private static void testAccountTeamDelete() {
         List<Account> accounts = TAG_TestDataFactory.createAccounts(1);
-        User standardUser = TAG_TestDataFactory.createStandardUser(
-            'Last UNIQUE NAME'
-        );
+        User standardUser = TAG_TestDataFactory.createStandardUser('Last UNIQUE NAME');
 
         List<AccountTeamMember> atms = new List<AccountTeamMember>();
         AccountTeamMember atm = new AccountTeamMember();
@@ -31,9 +29,7 @@ private without sharing class DeleteAccountTeamTest {
     @isTest
     private static void testAccountTeamDelete_DeleteMultipleMembers() {
         List<Account> accounts = TAG_TestDataFactory.createAccounts(5);
-        User standardUser = TAG_TestDataFactory.createStandardUser(
-            'Last UNIQUE NAME'
-        );
+        User standardUser = TAG_TestDataFactory.createStandardUser('Last UNIQUE NAME');
 
         List<AccountTeamMember> atms = new List<AccountTeamMember>();
 
@@ -61,9 +57,7 @@ private without sharing class DeleteAccountTeamTest {
     @isTest
     private static void testAccountTeamDelete_UpdateWithoutDeleting() {
         List<Account> accounts = TAG_TestDataFactory.createAccounts(1);
-        User standardUser = TAG_TestDataFactory.createStandardUser(
-            'Last UNIQUE NAME'
-        );
+        User standardUser = TAG_TestDataFactory.createStandardUser('Last UNIQUE NAME');
 
         List<AccountTeamMember> atms = new List<AccountTeamMember>();
         AccountTeamMember atm = new AccountTeamMember();

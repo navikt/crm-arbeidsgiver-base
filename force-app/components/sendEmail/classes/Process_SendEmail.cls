@@ -9,29 +9,20 @@ global without sharing class Process_SendEmail {
         WHERE Address = 'do-not-reply@info.nav.no'
         LIMIT 1
     ];
-    private static final Id ORG_WIDE_EMAIL_ID = ORG_WIDE_ADDRESSES.size() == 1
-        ? ORG_WIDE_ADDRESSES[0].Id
-        : null;
+    private static final Id ORG_WIDE_EMAIL_ID = ORG_WIDE_ADDRESSES.size() == 1 ? ORG_WIDE_ADDRESSES[0].Id : null;
 
     @InvocableMethod(label='Send Email')
     public static void sendEmail(List<Request> requests) {
         sendEmailWithLogs(requests);
     }
-    public static List<Messaging.SendEmailResult> sendEmailWithLogs(
-        List<Request> requests
-    ) {
-        Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates(
-            requests
-        );
+    public static List<Messaging.SendEmailResult> sendEmailWithLogs(List<Request> requests) {
+        Map<String, Id> templateMap = Process_SendEmailHelper.getMapOfEmailTemplates(requests);
         List<Messaging.SingleEmailMessage> messages = Process_SendEmailHelper.requestToSingleEmailMessage(
             requests,
             templateMap,
             ORG_WIDE_EMAIL_ID
         );
-        List<Messaging.SendEmailResult> results = Messaging.sendEmail(
-            messages,
-            false
-        );
+        List<Messaging.SendEmailResult> results = Messaging.sendEmail(messages, false);
 
         for (Messaging.SendEmailResult msg : results) {
             if (!msg.isSuccess()) {
@@ -64,10 +55,7 @@ global without sharing class Process_SendEmail {
         )
         global Id relatedToId;
 
-        @InvocableVariable(
-            required=false
-            label='Dev Name of Enhanced Email Template'
-        )
+        @InvocableVariable(required=false label='Dev Name of Enhanced Email Template')
         global String emailTemplateName;
 
         @InvocableVariable(

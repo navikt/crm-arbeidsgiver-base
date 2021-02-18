@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>InvalidEmail__c</fullName>
-    <description
-    >Hvis noen skriver en ugyldig e-postadresse på nav.no så havner den her.
+    <description>Hvis noen skriver en ugyldig e-postadresse på nav.no så havner den her.
 
 Gyldige tegn:
 - A-Z
@@ -16,8 +15,7 @@ Ugyldig:
 - To krøllalfa (@)
 - Mellomrom</description>
     <externalId>false</externalId>
-    <inlineHelpText
-    >Hvis noen skriver en ugyldig e-postadresse på nav.no så havner den her.</inlineHelpText>
+    <inlineHelpText>Hvis noen skriver en ugyldig e-postadresse på nav.no så havner den her.</inlineHelpText>
     <label>Ugyldig E-postadresse</label>
     <length>255</length>
     <required>false</required>

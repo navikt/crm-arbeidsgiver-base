@@ -1,7 +1,5 @@
 public without sharing class Process_SendEmailHelper {
-    public static Map<String, Id> getMapOfEmailTemplates(
-        List<Process_SendEmail.Request> requests
-    ) {
+    public static Map<String, Id> getMapOfEmailTemplates(List<Process_SendEmail.Request> requests) {
         Map<String, Id> templateMap = new Map<String, Id>();
         Set<String> templateNames = new Set<String>();
 
@@ -36,9 +34,7 @@ public without sharing class Process_SendEmailHelper {
             if (templateId != null) {
                 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
 
-                Id contactId = req.recipientContact != null
-                    ? req.recipientContact.Id
-                    : req.recipientContactId;
+                Id contactId = req.recipientContact != null ? req.recipientContact.Id : req.recipientContactId;
 
                 if (orgWideEmailId != null && req.useDoNotReply) {
                     message.setOrgWideEmailAddressId(orgWideEmailId);

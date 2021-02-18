@@ -27,9 +27,7 @@ const columns = [
     }
 ];
 
-export default class AccountTeamMember extends NavigationMixin(
-    LightningElement
-) {
+export default class AccountTeamMember extends NavigationMixin(LightningElement) {
     @api recordId;
     @track data;
     @track amount = 0;
@@ -85,8 +83,7 @@ export default class AccountTeamMember extends NavigationMixin(
             .then((result) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
-                        message:
-                            'Kontaktperson ' + currentRow.UserId + ' slettet ',
+                        message: 'Kontaktperson ' + currentRow.UserId + ' slettet ',
                         variant: 'success'
                     })
                 );

@@ -134,9 +134,7 @@ public class ArbeidsplassenRawModel_Test {
         System.assert(objWorkLocations.postalCode == null);
 
         json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
-        ArbeidsplassenRawModel objArbeidsplassenRawModel = new ArbeidsplassenRawModel(
-            System.JSON.createParser(json)
-        );
+        ArbeidsplassenRawModel objArbeidsplassenRawModel = new ArbeidsplassenRawModel(System.JSON.createParser(json));
         System.assert(objArbeidsplassenRawModel != null);
         System.assert(objArbeidsplassenRawModel.content == null);
         System.assert(objArbeidsplassenRawModel.first == null);
@@ -158,9 +156,7 @@ public class ArbeidsplassenRawModel_Test {
         System.assert(objEmployer.orgnr == null);
 
         json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
-        ArbeidsplassenRawModel.Content objContent = new ArbeidsplassenRawModel.Content(
-            System.JSON.createParser(json)
-        );
+        ArbeidsplassenRawModel.Content objContent = new ArbeidsplassenRawModel.Content(System.JSON.createParser(json));
         System.assert(objContent != null);
         System.assert(objContent.applicationDue == null);
         System.assert(objContent.description == null);

@@ -1,15 +1,9 @@
 <template>
     <article class="slds-card">
         <div class="slds-card__header slds-grid">
-            <header
-                class="slds-media slds-media_center slds-has-flexi-truncate"
-            >
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
                 <div class="slds-media__figure">
-                    <lightning-icon
-                        icon-name="standard:contract"
-                        alternative-text="Approved"
-                        title="Approved"
-                    >
+                    <lightning-icon icon-name="standard:contract" alternative-text="Approved" title="Approved">
                     </lightning-icon>
                 </div>
                 <div class="slds-media__body">
@@ -20,9 +14,7 @@
                     </h2>
                     <span
                         >Hentet fra
-                        <a href="https://arbeidsplassen.nav.no" target="_blank">
-                            arbeidsplassen.nav.no
-                        </a></span
+                        <a href="https://arbeidsplassen.nav.no" target="_blank"> arbeidsplassen.nav.no </a></span
                     >
                 </div>
             </header>
@@ -48,10 +40,7 @@
             <!-- ________________________________________________________________________ -->
 
             <div if:true={isLoading} class="slds-scrollable loading">
-                <lightning-spinner
-                    alternative-text="Laster"
-                    size="large"
-                ></lightning-spinner>
+                <lightning-spinner alternative-text="Laster" size="large"></lightning-spinner>
             </div>
 
             <!-- _________________________________ ERROR ________________________________ -->
@@ -59,9 +48,7 @@
 
             <div if:true={isError} class="slds-m-top_large">
                 <br />
-                <div class="slds-text-heading_large slds-align_absolute-center">
-                    Feil!
-                </div>
+                <div class="slds-text-heading_large slds-align_absolute-center">Feil!</div>
                 <div
                     class="slds-text-color_destructive slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large"
                 >
@@ -74,9 +61,7 @@
 
             <div if:true={isEmpty} class="slds-m-top_large">
                 <br />
-                <div class="slds-text-heading_large slds-align_absolute-center">
-                    Tomt!
-                </div>
+                <div class="slds-text-heading_large slds-align_absolute-center">Tomt!</div>
                 <div
                     class="slds-text-heading_small slds-align_absolute-center slds-m-horizontal_x-large slds-m-bottom_x-large"
                 >

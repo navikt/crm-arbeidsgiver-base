@@ -20,21 +20,12 @@ private without sharing class MarkdownViewerControllerTest {
         tl.OtherComments__c = '### Årsak\nSlett denne\n### Yrker\nkokk\n### Annet\n';
         insert tl;
 
-        User u = [
-            SELECT Id
-            FROM User
-            WHERE LastName = 'ARBEIDSGIVER USER'
-            LIMIT 1
-        ];
+        User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         String results;
 
         Test.StartTest();
         System.runAs(u) {
-            results = MarkdownViewerController.getData(
-                tl.Id,
-                'TemporaryLayoff__c',
-                'OtherComments__c'
-            );
+            results = MarkdownViewerController.getData(tl.Id, 'TemporaryLayoff__c', 'OtherComments__c');
         }
         Test.StopTest();
 
@@ -57,11 +48,7 @@ private without sharing class MarkdownViewerControllerTest {
 
         Test.StartTest();
         System.runAs(u) {
-            results = MarkdownViewerController.getData(
-                tl.Id,
-                'TemporaryLayoff__c',
-                'OtherComments__c'
-            );
+            results = MarkdownViewerController.getData(tl.Id, 'TemporaryLayoff__c', 'OtherComments__c');
         }
         Test.StopTest();
 

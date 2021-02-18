@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Employer_Region__c</fullName>
     <externalId>false</externalId>
-    <formula
-    >IF(BEGINS(INT_MunicipalityNumber__c , &quot;30&quot;),&quot;Viken&quot;,
+    <formula>IF(BEGINS(INT_MunicipalityNumber__c , &quot;30&quot;),&quot;Viken&quot;,
 IF(BEGINS(INT_MunicipalityNumber__c  , &quot;03&quot;),&quot;Oslo&quot;,
 IF(BEGINS(INT_MunicipalityNumber__c  , &quot;34&quot;),&quot;Innlandet&quot;,
 IF(BEGINS(INT_MunicipalityNumber__c  , &quot;38&quot;),&quot;Vestfold og Telemark&quot;,

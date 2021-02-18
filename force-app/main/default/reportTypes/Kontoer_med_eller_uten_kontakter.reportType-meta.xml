@@ -3,8 +3,7 @@
     <baseObject>Account</baseObject>
     <category>accounts</category>
     <deployed>true</deployed>
-    <description
-    >Viser alle kontoer og kontakt, dersom det er en relaterte kontakter</description>
+    <description>Viser alle kontoer og kontakt, dersom det er en relaterte kontakter</description>
     <join>
         <outerJoin>true</outerJoin>
         <relationship>Contacts</relationship>

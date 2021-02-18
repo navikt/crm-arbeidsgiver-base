@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ActivitiesSettings xmlns="http://soap.sforce.com/2006/04/metadata">
-    <allowUsersToRelateMultipleContactsToTasksAndEvents
-    >false</allowUsersToRelateMultipleContactsToTasksAndEvents>
+    <allowUsersToRelateMultipleContactsToTasksAndEvents>false</allowUsersToRelateMultipleContactsToTasksAndEvents>
     <autoRelateEventAttendees>true</autoRelateEventAttendees>
     <enableActivityReminders>true</enableActivityReminders>
     <enableClickCreateEvents>false</enableClickCreateEvents>
@@ -16,8 +15,7 @@
     <enableRollUpActivToContactsAcct>true</enableRollUpActivToContactsAcct>
     <enableSidebarCalendarShortcut>false</enableSidebarCalendarShortcut>
     <enableSimpleTaskCreateUI>true</enableSimpleTaskCreateUI>
-    <enableUNSTaskDelegatedToNotifications
-    >true</enableUNSTaskDelegatedToNotifications>
+    <enableUNSTaskDelegatedToNotifications>true</enableUNSTaskDelegatedToNotifications>
     <enableUserListViewCalendars>false</enableUserListViewCalendars>
     <showCustomLogoMeetingRequests>false</showCustomLogoMeetingRequests>
     <showEventDetailsMultiUserCalendar>false</showEventDetailsMultiUserCalendar>

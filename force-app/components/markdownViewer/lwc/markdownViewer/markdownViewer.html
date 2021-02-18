@@ -2,11 +2,6 @@
     <lightning-card variant="narrow" icon-name="custom:custom13">
         <h1 class="title" slot="title">Andre relevante opplysninger</h1>
         <div class="container" lwc:dom="manual"></div>
-        <div
-            if:true={empty}
-            class="container slds-m-top_large slds-text-heading_small"
-        >
-            Ingen data ble sendt.
-        </div>
+        <div if:true={empty} class="container slds-m-top_large slds-text-heading_small">Ingen data ble sendt.</div>
     </lightning-card>
 </template>

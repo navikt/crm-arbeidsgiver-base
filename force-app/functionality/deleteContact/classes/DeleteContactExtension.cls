@@ -3,11 +3,7 @@ public without sharing class DeleteContactExtension {
 
     public deleteContactExtension(ApexPages.StandardController stdController) {
         Contact currentContact = (Contact) stdController.getRecord();
-        this.cont = [
-            SELECT AccountId
-            FROM Contact
-            WHERE Id = :currentContact.Id
-        ];
+        this.cont = [SELECT AccountId FROM Contact WHERE Id = :currentContact.Id];
     }
 
     public PageReference deleteContact() {

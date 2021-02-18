@@ -34,11 +34,7 @@ private class PopulateNumberChildAccounts_SchedTest {
         test.startTest();
         List<AccountHistory> history = Database.query(query);
         test.stopTest();
-        System.assertEquals(
-            18,
-            history.size(),
-            '18 changed child accounts in test data setup'
-        );
+        System.assertEquals(18, history.size(), '18 changed child accounts in test data setup');
     }
 
     @IsTest
@@ -53,21 +49,9 @@ private class PopulateNumberChildAccounts_SchedTest {
             WHERE TAG_NumberOfChildAccounts__c > 0
             ORDER BY TAG_NumberOfChildAccounts__c
         ];
-        System.assertEquals(
-            2,
-            accounts.size(),
-            'Two parent accounts with child accounts'
-        );
-        System.assertEquals(
-            7,
-            accounts[0].TAG_NumberOfChildAccounts__c,
-            'First parent has 7 child'
-        );
-        System.assertEquals(
-            11,
-            accounts[1].TAG_NumberOfChildAccounts__c,
-            'Second parent has 11 child'
-        );
+        System.assertEquals(2, accounts.size(), 'Two parent accounts with child accounts');
+        System.assertEquals(7, accounts[0].TAG_NumberOfChildAccounts__c, 'First parent has 7 child');
+        System.assertEquals(11, accounts[1].TAG_NumberOfChildAccounts__c, 'Second parent has 11 child');
     }
 
     @IsTest
@@ -77,10 +61,6 @@ private class PopulateNumberChildAccounts_SchedTest {
         String chron = '0 0 23 * * ?';
         System.schedule('Populate child accounts', chron, scheduleClass);
         Test.stopTest();
-        System.assertEquals(
-            1,
-            [SELECT COUNT() FROM CronTrigger],
-            'A job should be scheduled'
-        );
+        System.assertEquals(1, [SELECT COUNT() FROM CronTrigger], 'A job should be scheduled');
     }
 }

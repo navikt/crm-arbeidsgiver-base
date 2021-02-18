@@ -95,8 +95,7 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference
-                >myCollection_myRule_4_A1recipientIds</elementReference>
+                <elementReference>myCollection_myRule_4_A1recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -106,8 +105,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference
-            >myCollection_myRule_4_A1recipientIds</assignToReference>
+            <assignToReference>myCollection_myRule_4_A1recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>myVariable_current.OwnerId</elementReference>
@@ -364,8 +362,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference
-                >formula_2_myRule_1_A1_7740763240</elementReference>
+                <elementReference>formula_2_myRule_1_A1_7740763240</elementReference>
             </value>
         </inputAssignments>
         <object>TemporaryLayoff__c</object>

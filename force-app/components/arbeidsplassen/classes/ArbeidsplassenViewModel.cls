@@ -38,9 +38,7 @@ public with sharing class ArbeidsplassenViewModel {
 
     private static Datetime stringToDatetime(String datetimeString) {
         try {
-            return Datetime.valueOf(
-                datetimeString.replace('T', ' ').split('\\.')[0]
-            );
+            return Datetime.valueOf(datetimeString.replace('T', ' ').split('\\.')[0]);
         } catch (Exception e) {
             return null;
         }
@@ -54,10 +52,7 @@ public with sharing class ArbeidsplassenViewModel {
             for (String iter : name.split('[ ]+')) {
                 if (iter != null && iter != '') {
                     if (iter.length() > 1) {
-                        result +=
-                            iter.substring(0, 1).toUpperCase() +
-                            iter.substring(1, iter.length()) +
-                            ' ';
+                        result += iter.substring(0, 1).toUpperCase() + iter.substring(1, iter.length()) + ' ';
                     } else {
                         result += iter.substring(0, 1).toUpperCase() + ' ';
                     }

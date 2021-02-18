@@ -1,14 +1,9 @@
 public with sharing class Activity_AddAccountHelper {
-    public static List<SObject> getActivityWithChangedWhatId(
-        Map<Id, SObject> triggerOldMap,
-        List<SObject> newRecords
-    ) {
+    public static List<SObject> getActivityWithChangedWhatId(Map<Id, SObject> triggerOldMap, List<SObject> newRecords) {
         List<SObject> sObjectsToAddAccount = new List<SObject>();
 
         for (SObject sObj : newRecords) {
-            if (
-                sObj.get('WhatId') != triggerOldMap.get(sObj.Id).get('WhatId')
-            ) {
+            if (sObj.get('WhatId') != triggerOldMap.get(sObj.Id).get('WhatId')) {
                 sObjectsToAddAccount.add(sObj);
             }
         }
@@ -16,10 +11,7 @@ public with sharing class Activity_AddAccountHelper {
         return sObjectsToAddAccount;
     }
 
-    public static List<SObject> addAccount(
-        List<SObject> activities,
-        Boolean isInsert
-    ) {
+    public static List<SObject> addAccount(List<SObject> activities, Boolean isInsert) {
         if (!userHasPermissionArbeidsgiver()) {
             return null;
         }
@@ -34,13 +26,8 @@ public with sharing class Activity_AddAccountHelper {
 
         Map<String, String> activityAccountMapping = getActivityAccountMapping();
         Map<String, Set<Id>> whatIdMap = getWhatIdMap(activities);
-        Map<String, String> mapOfSObjectPrefix = getMapOfSObjectPrefix(
-            whatIdMap
-        );
-        Map<String, Set<Id>> idsSeparatedBysObject = getIdsSeparatedBySObject(
-            whatIdMap,
-            mapOfSObjectPrefix
-        );
+        Map<String, String> mapOfSObjectPrefix = getMapOfSObjectPrefix(whatIdMap);
+        Map<String, Set<Id>> idsSeparatedBysObject = getIdsSeparatedBySObject(whatIdMap, mapOfSObjectPrefix);
         Map<String, List<SObject>> sObjectsSeparatedBySObject = getSObjectsSeparatedBySObjectType(
             idsSeparatedBysObject,
             activityAccountMapping
@@ -52,12 +39,7 @@ public with sharing class Activity_AddAccountHelper {
             mapOfSObjectPrefix
         );
 
-        activities = addAccountToActivity(
-            activities,
-            mapOfActivityAndAccount,
-            isInsert,
-            mapOfSObjectPrefix
-        );
+        activities = addAccountToActivity(activities, mapOfActivityAndAccount, isInsert, mapOfSObjectPrefix);
 
         return activities;
     }
@@ -66,9 +48,7 @@ public with sharing class Activity_AddAccountHelper {
         return FeatureManagement.checkPermission('Arbeidsgiver');
     }
 
-    public static List<SObject> keepActivitiesWithWhatId(
-        List<SObject> activities
-    ) {
+    public static List<SObject> keepActivitiesWithWhatId(List<SObject> activities) {
         List<SObject> sObjectsToKeep = new List<SObject>();
 
         for (SObject sObj : activities) {
@@ -88,39 +68,20 @@ public with sharing class Activity_AddAccountHelper {
             return false;
         }
 
-        if (
-            !AccessControlValidator.sObjectIsAccessible(
-                'Activity_Account_Map__mdt'
-            )
-        ) {
+        if (!AccessControlValidator.sObjectIsAccessible('Activity_Account_Map__mdt')) {
             return false;
         }
-        if (
-            !AccessControlValidator.fieldIsAccessible(
-                'Activity_Account_Map__mdt',
-                'SObject_API_Field_Name__c'
-            )
-        ) {
+        if (!AccessControlValidator.fieldIsAccessible('Activity_Account_Map__mdt', 'SObject_API_Field_Name__c')) {
             return false;
         }
-        if (
-            !AccessControlValidator.fieldIsAccessible(
-                'Activity_Account_Map__mdt',
-                'SObject_API_Name__c'
-            )
-        ) {
+        if (!AccessControlValidator.fieldIsAccessible('Activity_Account_Map__mdt', 'SObject_API_Name__c')) {
             return false;
         }
         Map<String, String> activityAccountMapping = getActivityAccountMapping();
 
         // see if all parent WhatIds' Account field can be queried
         for (String key : activityAccountMapping.keySet()) {
-            if (
-                !AccessControlValidator.fieldIsAccessible(
-                    key,
-                    activityAccountMapping.get(key)
-                )
-            ) {
+            if (!AccessControlValidator.fieldIsAccessible(key, activityAccountMapping.get(key))) {
                 return false;
             }
         }
@@ -129,14 +90,10 @@ public with sharing class Activity_AddAccountHelper {
     }
 
     public static Boolean fieldIsCreateable(String sObjectFieldStr) {
-        if (
-            !AccessControlValidator.fieldIsCreateable('Task', sObjectFieldStr)
-        ) {
+        if (!AccessControlValidator.fieldIsCreateable('Task', sObjectFieldStr)) {
             return false;
         }
-        if (
-            !AccessControlValidator.fieldIsCreateable('Event', sObjectFieldStr)
-        ) {
+        if (!AccessControlValidator.fieldIsCreateable('Event', sObjectFieldStr)) {
             return false;
         }
 
@@ -144,14 +101,10 @@ public with sharing class Activity_AddAccountHelper {
     }
 
     public static Boolean fieldIsAccessible(String sObjectFieldStr) {
-        if (
-            !AccessControlValidator.fieldIsAccessible('Task', sObjectFieldStr)
-        ) {
+        if (!AccessControlValidator.fieldIsAccessible('Task', sObjectFieldStr)) {
             return false;
         }
-        if (
-            !AccessControlValidator.fieldIsAccessible('Event', sObjectFieldStr)
-        ) {
+        if (!AccessControlValidator.fieldIsAccessible('Event', sObjectFieldStr)) {
             return false;
         }
 
@@ -177,9 +130,7 @@ public with sharing class Activity_AddAccountHelper {
         return whatIdMap;
     }
 
-    public static Map<String, String> getMapOfSObjectPrefix(
-        Map<String, Set<Id>> whatIdMap
-    ) {
+    public static Map<String, String> getMapOfSObjectPrefix(Map<String, Set<Id>> whatIdMap) {
         Map<String, String> mapOfSObjectPrefix = new Map<String, String>();
 
         for (String sObjPrefix : whatIdMap.keyset()) {
@@ -190,9 +141,7 @@ public with sharing class Activity_AddAccountHelper {
                 break;
             }
 
-            String parentSObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId(
-                firstWhatId
-            );
+            String parentSObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId(firstWhatId);
             mapOfSObjectPrefix.put(sObjPrefix, parentSObjectType);
         }
 
@@ -228,27 +177,16 @@ public with sharing class Activity_AddAccountHelper {
         List<String> queries = new List<String>();
 
         for (String sObjectName : idsSeparatedBysObject.keySet()) {
-            String sObjectFieldName = activityAccountMapping.get(
-                sObjectName.toLowerCase()
-            );
+            String sObjectFieldName = activityAccountMapping.get(sObjectName.toLowerCase());
             if (sObjectFieldName == null) {
                 continue;
             } // skip iteration
 
             String ids =
                 '(\'' +
-                String.join(
-                    (Iterable<String>) idsSeparatedBysObject.get(sObjectName),
-                    '\', \''
-                ) +
+                String.join((Iterable<String>) idsSeparatedBysObject.get(sObjectName), '\', \'') +
                 '\')';
-            String query =
-                'SELECT ' +
-                sObjectFieldName +
-                ' FROM ' +
-                sObjectName +
-                ' WHERE Id IN ' +
-                ids;
+            String query = 'SELECT ' + sObjectFieldName + ' FROM ' + sObjectName + ' WHERE Id IN ' + ids;
             List<SObject> sObjects = Database.query(query);
             sObjectsSeparatedBySObject.put(sObjectName.toLowerCase(), sObjects);
         }
@@ -265,10 +203,8 @@ public with sharing class Activity_AddAccountHelper {
         Map<Id, Id> mapOfActivityAndAccount = new Map<Id, Id>();
 
         for (SObject activity : activities) {
-            String whatIdPrefix = ((String) activity.get('WhatId'))
-                .substring(0, 3);
-            String parentSObjectType = mapOfSObjectPrefix.get(whatIdPrefix)
-                .toLowerCase();
+            String whatIdPrefix = ((String) activity.get('WhatId')).substring(0, 3);
+            String parentSObjectType = mapOfSObjectPrefix.get(whatIdPrefix).toLowerCase();
 
             if (sObjectsSeparatedBySObject.containsKey(parentSObjectType)) {
                 Map<Id, SObject> parentSObjects = new Map<Id, SObject>(
@@ -278,9 +214,7 @@ public with sharing class Activity_AddAccountHelper {
 
                 if (parentSObjects.containsKey(whatId)) {
                     SObject parentSObj = parentSObjects.get(whatId);
-                    String apiFieldName = activityAccountMapping.get(
-                        parentSObjectType
-                    );
+                    String apiFieldName = activityAccountMapping.get(parentSObjectType);
                     Id accountId = (Id) parentSObj.get(apiFieldName);
                     mapOfActivityAndAccount.put(activity.Id, accountId);
                 }
@@ -298,16 +232,11 @@ public with sharing class Activity_AddAccountHelper {
     ) {
         List<SObject> sObjectsToUpdate = new List<SObject>();
 
-        String type = ActivityTimelineHelper.getSOjectTypeFromRecordId(
-            originalActivities[0].Id
-        );
+        String type = ActivityTimelineHelper.getSOjectTypeFromRecordId(originalActivities[0].Id);
         if (type == 'Task') {
             for (Task t : (List<Task>) originalActivities) {
                 if (isInsert) {
-                    Task newTask = new Task(
-                        Id = t.Id,
-                        RelatedToAccount__c = mapOfActivityAndAccount.get(t.Id)
-                    );
+                    Task newTask = new Task(Id = t.Id, RelatedToAccount__c = mapOfActivityAndAccount.get(t.Id));
                     sObjectsToUpdate.add(newTask);
                 } else {
                     t.RelatedToAccount__c = mapOfActivityAndAccount.get(t.Id);
@@ -316,10 +245,7 @@ public with sharing class Activity_AddAccountHelper {
         } else if (type == 'Event') {
             for (Event e : (List<Event>) originalActivities) {
                 if (isInsert) {
-                    Event newEvent = new Event(
-                        Id = e.Id,
-                        RelatedToAccount__c = mapOfActivityAndAccount.get(e.Id)
-                    );
+                    Event newEvent = new Event(Id = e.Id, RelatedToAccount__c = mapOfActivityAndAccount.get(e.Id));
                     sObjectsToUpdate.add(newEvent);
                 } else {
                     e.RelatedToAccount__c = mapOfActivityAndAccount.get(e.Id);
@@ -341,10 +267,7 @@ public with sharing class Activity_AddAccountHelper {
         ];
         Map<String, String> activityAccountMap = new Map<String, String>();
         for (Activity_Account_Map__mdt mdt : activityAccountMapping) {
-            activityAccountMap.put(
-                mdt.SObject_API_Name__c.toLowerCase(),
-                mdt.SObject_API_Field_Name__c
-            );
+            activityAccountMap.put(mdt.SObject_API_Name__c.toLowerCase(), mdt.SObject_API_Field_Name__c);
         }
 
         return activityAccountMap;

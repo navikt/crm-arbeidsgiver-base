@@ -128,8 +128,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment
-        >Action override updated by Lightning App Builder during activation.</comment>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
         <content>TAG_Opportunity_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -137,8 +136,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment
-        >Action override updated by Lightning App Builder during activation.</comment>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
         <content>TAG_Opportunity_Record_Page</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -171,18 +169,12 @@
     <pluralLabel>Custom Opportunities</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
-        <searchResultsAdditionalFields
-        >Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >TAG_OrganizationNameFromForm__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >InquiryCategory__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >InclusionStage__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >OWNER.FIRST_NAME</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-        >OWNER.LAST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_OrganizationNameFromForm__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>InquiryCategory__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>InclusionStage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.LAST_NAME</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

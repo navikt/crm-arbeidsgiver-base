@@ -2,21 +2,9 @@
 public class TAG_TemporaryLayoffRoutingHandlerTest {
     @TestSetup
     private static void setupTestData() {
-        TestDataFactory.getQueue(
-            'NAV Lister',
-            'queue_1037',
-            'TemporaryLayoff__c'
-        );
-        TestDataFactory.getQueue(
-            'NAV Eidsvoll',
-            'queue_237',
-            'TemporaryLayoff__c'
-        );
-        TestDataFactory.getQueue(
-            'NAV Lerkendal',
-            'queue_5702',
-            'TemporaryLayoff__c'
-        );
+        TestDataFactory.getQueue('NAV Lister', 'queue_1037', 'TemporaryLayoff__c');
+        TestDataFactory.getQueue('NAV Eidsvoll', 'queue_237', 'TemporaryLayoff__c');
+        TestDataFactory.getQueue('NAV Lerkendal', 'queue_5702', 'TemporaryLayoff__c');
     }
 
     @IsTest
@@ -30,19 +18,11 @@ public class TAG_TemporaryLayoffRoutingHandlerTest {
         update account;
 
         Test.startTest();
-        TemporaryLayoff__c temporaryLayoff = TAG_TestDataFactory.getTemporaryLayoffs(
-            1,
-            account,
-            true
-        )[0];
+        TemporaryLayoff__c temporaryLayoff = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
         Test.stopTest();
 
         Group queue = [SELECT Id FROM Group WHERE DeveloperName = 'queue_1037'];
-        TemporaryLayoff__c insertedTemporaryLayoff = [
-            SELECT OwnerId, NAV_Unit__c
-            FROM TemporaryLayoff__c
-            LIMIT 1
-        ];
+        TemporaryLayoff__c insertedTemporaryLayoff = [SELECT OwnerId, NAV_Unit__c FROM TemporaryLayoff__c LIMIT 1];
         System.assertEquals(queue.Id, insertedTemporaryLayoff.OwnerId);
         System.assertEquals(navUnit.Id, insertedTemporaryLayoff.NAV_Unit__c);
     }
@@ -54,18 +34,10 @@ public class TAG_TemporaryLayoffRoutingHandlerTest {
         update account;
 
         Test.startTest();
-        TemporaryLayoff__c temporaryLayoff = TAG_TestDataFactory.getTemporaryLayoffs(
-            1,
-            account,
-            true
-        )[0];
+        TemporaryLayoff__c temporaryLayoff = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
         Test.stopTest();
         Group queue = [SELECT Id FROM Group WHERE DeveloperName = 'queue_237'];
-        TemporaryLayoff__c insertedTemporaryLayoff = [
-            SELECT OwnerId, NAV_Unit__c
-            FROM TemporaryLayoff__c
-            LIMIT 1
-        ];
+        TemporaryLayoff__c insertedTemporaryLayoff = [SELECT OwnerId, NAV_Unit__c FROM TemporaryLayoff__c LIMIT 1];
         System.assertEquals(queue.Id, insertedTemporaryLayoff.OwnerId);
         System.assertEquals(null, insertedTemporaryLayoff.NAV_Unit__c);
     }
@@ -80,11 +52,7 @@ public class TAG_TemporaryLayoffRoutingHandlerTest {
         TAG_TestDataFactory.getTemporaryLayoffs(1, account, true);
         Test.stopTest();
 
-        System.assertEquals(
-            UserInfo.getUserId(),
-            [SELECT OwnerId FROM TemporaryLayoff__c LIMIT 1]
-            .OwnerId
-        );
+        System.assertEquals(UserInfo.getUserId(), [SELECT OwnerId FROM TemporaryLayoff__c LIMIT 1].OwnerId);
     }
 
     @IsTest
@@ -100,19 +68,11 @@ public class TAG_TemporaryLayoffRoutingHandlerTest {
         update account;
 
         Test.startTest();
-        TemporaryLayoff__c temporaryLayoff = TAG_TestDataFactory.getTemporaryLayoffs(
-            1,
-            account,
-            true
-        )[0];
+        TemporaryLayoff__c temporaryLayoff = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
         Test.stopTest();
 
         Group queue = [SELECT Id FROM Group WHERE DeveloperName = 'queue_5702'];
-        TemporaryLayoff__c insertedTemporaryLayoff = [
-            SELECT OwnerId, NAV_Unit__c
-            FROM TemporaryLayoff__c
-            LIMIT 1
-        ];
+        TemporaryLayoff__c insertedTemporaryLayoff = [SELECT OwnerId, NAV_Unit__c FROM TemporaryLayoff__c LIMIT 1];
         System.assertEquals(queue.Id, insertedTemporaryLayoff.OwnerId);
         System.assertEquals(navUnit.Id, insertedTemporaryLayoff.NAV_Unit__c);
     }

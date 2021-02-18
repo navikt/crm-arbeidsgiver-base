@@ -24,18 +24,15 @@
         <name>Employer</name>
     </recordTypes>
     <validationRules>
-        <errorMessage
-        ><!-- Du har ikke tillatelse til å endre navn --></errorMessage>
+        <errorMessage><!-- Du har ikke tillatelse til å endre navn --></errorMessage>
         <name>Name_is_not_editable</name>
     </validationRules>
     <validationRules>
-        <errorMessage
-        ><!-- Du har ikke tillatelse til å endre eier --></errorMessage>
+        <errorMessage><!-- Du har ikke tillatelse til å endre eier --></errorMessage>
         <name>Owner_is_not_editable</name>
     </validationRules>
     <validationRules>
-        <errorMessage
-        ><!-- Du har ikke tillatelse til å endre posttype --></errorMessage>
+        <errorMessage><!-- Du har ikke tillatelse til å endre posttype --></errorMessage>
         <name>Record_Type_is_not_editable</name>
     </validationRules>
 </CustomObjectTranslation>

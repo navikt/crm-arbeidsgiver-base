@@ -95,8 +95,7 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference
-                >myCollection_myRule_12_A1recipientIds</elementReference>
+                <elementReference>myCollection_myRule_12_A1recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -106,8 +105,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference
-            >myCollection_myRule_12_A1recipientIds</assignToReference>
+            <assignToReference>myCollection_myRule_12_A1recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>myVariable_current.OwnerId</elementReference>
@@ -137,12 +135,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference
-                >myVariable_old.Account__c</leftValueReference>
+                <leftValueReference>myVariable_old.Account__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference
-                    >myVariable_current.Account__c</elementReference>
+                    <elementReference>myVariable_current.Account__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -157,8 +153,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference
-            >isChangedDecision3_myRule_1_InclusionStage_c</targetReference>
+            <targetReference>isChangedDecision3_myRule_1_InclusionStage_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -172,17 +167,14 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference
-                >myVariable_old.TAG_CreateContract__c</leftValueReference>
+                <leftValueReference>myVariable_old.TAG_CreateContract__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference
-                    >myVariable_current.TAG_CreateContract__c</elementReference>
+                    <elementReference>myVariable_current.TAG_CreateContract__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference
-                >isChangedDecision3_myRule_1_InclusionStage_c</targetReference>
+                <targetReference>isChangedDecision3_myRule_1_InclusionStage_c</targetReference>
             </connector>
             <label>isChangedRule_2_myRule_1_TAG_CreateContract_c</label>
         </rules>
@@ -193,8 +185,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference
-            >isChangedDecision10_myRule_9_Account_c</targetReference>
+            <targetReference>isChangedDecision10_myRule_9_Account_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -208,17 +199,14 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference
-                >myVariable_old.InclusionStage__c</leftValueReference>
+                <leftValueReference>myVariable_old.InclusionStage__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference
-                    >myVariable_current.InclusionStage__c</elementReference>
+                    <elementReference>myVariable_current.InclusionStage__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference
-                >isChangedDecision10_myRule_9_Account_c</targetReference>
+                <targetReference>isChangedDecision10_myRule_9_Account_c</targetReference>
             </connector>
             <label>isChangedRule_3_myRule_1_InclusionStage_c</label>
         </rules>
@@ -266,8 +254,7 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >myVariable_current.TAG_CreateContract__c</leftValueReference>
+                <leftValueReference>myVariable_current.TAG_CreateContract__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Ja</stringValue>
@@ -298,8 +285,7 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >myVariable_current.InclusionStage__c</leftValueReference>
+                <leftValueReference>myVariable_current.InclusionStage__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Avsluttet</stringValue>
@@ -330,8 +316,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >isChangedRule_2_myRule_1_TAG_CreateContract_c</leftValueReference>
+                <leftValueReference>isChangedRule_2_myRule_1_TAG_CreateContract_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -362,8 +347,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >isChangedRule_3_myRule_1_InclusionStage_c</leftValueReference>
+                <leftValueReference>isChangedRule_3_myRule_1_InclusionStage_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -483,8 +467,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >myVariable_current.Account__c</leftValueReference>
+                <leftValueReference>myVariable_current.Account__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -521,8 +504,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >isChangedRule_10_myRule_9_Account_c</leftValueReference>
+                <leftValueReference>isChangedRule_10_myRule_9_Account_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -559,8 +541,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >myVariable_current.Contact__c</leftValueReference>
+                <leftValueReference>myVariable_current.Contact__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -597,8 +578,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-                >myVariable_current.Contact__r.AccountId</leftValueReference>
+                <leftValueReference>myVariable_current.Contact__r.AccountId</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -666,8 +646,7 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue
-                >( LEFT( [CustomOpportunity__c].OwnerId,3) = &quot;00G&quot; ) &amp;&amp;
+                <stringValue>( LEFT( [CustomOpportunity__c].OwnerId,3) = &quot;00G&quot; ) &amp;&amp;
 
 NOT ( ISPICKVAL( [CustomOpportunity__c].InclusionStage__c, &quot;Ny henvendelse&quot; )) &amp;&amp;
 
@@ -676,8 +655,7 @@ ISCHANGED ( [CustomOpportunity__c].InclusionStage__c )</stringValue>
         </processMetadataValues>
         <name>formula_myRule_6</name>
         <dataType>Boolean</dataType>
-        <expression
-        >( LEFT( {!myVariable_current.OwnerId},3) = &quot;00G&quot; ) &amp;&amp;
+        <expression>( LEFT( {!myVariable_current.OwnerId},3) = &quot;00G&quot; ) &amp;&amp;
 
 NOT ( ISPICKVAL( {!myVariable_current.InclusionStage__c}, &quot;Ny henvendelse&quot; )) &amp;&amp;
 
@@ -748,8 +726,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>Name</field>
             <value>
-                <elementReference
-                >formula_4_myRule_1_A1_3560130641</elementReference>
+                <elementReference>formula_4_myRule_1_A1_3560130641</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -785,8 +762,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>TAG_Account__c</field>
             <value>
-                <elementReference
-                >myVariable_current.Account__c</elementReference>
+                <elementReference>myVariable_current.Account__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -822,8 +798,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>TAG_Contact__c</field>
             <value>
-                <elementReference
-                >myVariable_current.Contact__c</elementReference>
+                <elementReference>myVariable_current.Contact__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1011,8 +986,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference
-                >formula_7_myRule_6_A1_6514784184</elementReference>
+                <elementReference>formula_7_myRule_6_A1_6514784184</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
@@ -1056,8 +1030,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference
-                >myVariable_current.Contact__c</elementReference>
+                <elementReference>myVariable_current.Contact__c</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -1093,14 +1066,12 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>AccountId</field>
             <value>
-                <elementReference
-                >myVariable_current.Account__c</elementReference>
+                <elementReference>myVariable_current.Account__c</elementReference>
             </value>
         </inputAssignments>
         <object>Contact</object>
     </recordUpdates>
-    <startElementReference
-    >isChangedDecision2_myRule_1_TAG_CreateContract_c</startElementReference>
+    <startElementReference>isChangedDecision2_myRule_1_TAG_CreateContract_c</startElementReference>
     <status>Active</status>
     <variables>
         <name>myCollection_myRule_12_A1recipientIds</name>

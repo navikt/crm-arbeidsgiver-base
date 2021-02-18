@@ -3,8 +3,7 @@
     <baseObject>Account</baseObject>
     <category>accounts</category>
     <deployed>true</deployed>
-    <description
-    >Viser kontoer som ikke har en kontaktperson fra NAV</description>
+    <description>Viser kontoer som ikke har en kontaktperson fra NAV</description>
     <join>
         <outerJoin>true</outerJoin>
         <relationship>AccountTeamMembers</relationship>

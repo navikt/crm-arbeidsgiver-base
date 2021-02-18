@@ -27,9 +27,7 @@ global class TAG_TemporaryLayoffRoutingHandler extends MyTriggers {
                 municipality = accountInfo.Municipality;
                 postalCode = accountInfo.PostalCode;
             }
-            wrappers.add(
-                new SobjectWrapper(recordIndex, municipality, null, postalCode)
-            );
+            wrappers.add(new SobjectWrapper(recordIndex, municipality, null, postalCode));
             recordIndex++;
         }
 

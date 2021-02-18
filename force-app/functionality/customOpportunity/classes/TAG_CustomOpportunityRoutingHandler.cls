@@ -5,9 +5,7 @@ global class TAG_CustomOpportunityRoutingHandler extends MyTriggers {
             'CustomOpportunity__c'
         );
         Integer i = 0;
-        for (
-            CustomOpportunity__c opportunity : (List<CustomOpportunity__c>) records
-        ) {
+        for (CustomOpportunity__c opportunity : (List<CustomOpportunity__c>) records) {
             ApexSharingRuleWrapper rule = ruleByByOpportunityId.get(i);
             if (rule == null)
                 continue;
@@ -20,15 +18,9 @@ global class TAG_CustomOpportunityRoutingHandler extends MyTriggers {
     private List<SobjectWrapper> getSobjectWrappers() {
         List<SobjectWrapper> wrappers = new List<SobjectWrapper>();
         Integer recordIndex = 0;
-        for (
-            CustomOpportunity__c opportunity : (List<CustomOpportunity__c>) records
-        ) {
+        for (CustomOpportunity__c opportunity : (List<CustomOpportunity__c>) records) {
             wrappers.add(
-                new SobjectWrapper(
-                    recordIndex,
-                    opportunity.INT_MunicipalityNumber__c,
-                    opportunity.INT_RegionNumber__c
-                )
+                new SobjectWrapper(recordIndex, opportunity.INT_MunicipalityNumber__c, opportunity.INT_RegionNumber__c)
             );
             recordIndex++;
         }

@@ -3,19 +3,13 @@
     <apiVersion>48.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Custom Notification</masterLabel>
-    <description
-    >A component to show a notification with the contents of a record field</description>
+    <description>A component to show a notification with the contents of a record field</description>
     <targets>
         <target>lightning__RecordPage</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property
-                name="title"
-                type="String"
-                label="Title"
-                placeholder="Warning"
-            />
+            <property name="title" type="String" label="Title" placeholder="Warning" />
             <property
                 name="field"
                 type="String"
