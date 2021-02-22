@@ -4,23 +4,18 @@
 
 global class Trigger_SendEmailTmpLayoff extends MyTriggers {
     global override void onAfterInsert() {
-        Set<Id> contactIds = new Set<Id>();
+
+        Id emailTmp = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'tempLayoffReceiptSubsidiary' LIMIT 1].Id;
+
+        List<EmailQueue__c> requests = new List<EmailQueue__c>();
         for (TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records) {
-            contactIds.add(tl.Contact__c);
+            EmailQueue__c request = new EmailQueue__c();
+            request.TemplateId__c = emailTmp;
+			request.TargetObjectId__c = tl.Contact__c;
+			request.WhatId__c = tl.Id;
+			request.SaveAsActivity__c = true;
+			requests.add( request );
         }
-
-        Map<Id, Contact> contacts = new Map<Id, Contact>([SELECT Id, Email FROM Contact WHERE Id IN :contactIds]);
-
-        List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
-        for (TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records) {
-            Process_SendEmail.Request request = new Process_SendEmail.Request();
-            request.emailTemplateName = 'tempLayoffReceiptSubsidiary';
-            request.recipientContact = contacts.containsKey(tl.Contact__c) ? contacts.get(tl.Contact__c) : null;
-            request.useDoNotReply = true;
-            request.relatedToId = tl.Id;
-            requests.add(request);
-        }
-
-        Process_SendEmail.sendEmail(requests);
+        insert requests;
     }
 }
