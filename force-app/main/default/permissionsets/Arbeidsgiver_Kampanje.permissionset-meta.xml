@@ -6,6 +6,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomCampaignMember__c.AccountPhone__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CustomCampaignMember__c.Account__c</field>
         <readable>true</readable>
@@ -13,6 +18,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomCampaignMember__c.CustomCampaign__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomCampaignMember__c.Fulgt_opp__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomCampaignMember__c.Key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomCampaignMember__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

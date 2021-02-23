@@ -106,7 +106,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Account__c</fields>
-        <fields>AccountLastActivity__c</fields>
+        <fields>AccountPhone__c</fields>
+        <fields>Key__c</fields>
+        <fields>Status__c</fields>
+        <fields>Fulgt_opp__c</fields>
         <relatedList>CustomCampaignMember__c.CustomCampaign__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -115,7 +118,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1x000001n1Nc</masterLabel>
+        <masterLabel>00h1j0000023bTh</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
