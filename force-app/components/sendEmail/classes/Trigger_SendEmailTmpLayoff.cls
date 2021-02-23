@@ -13,8 +13,6 @@ global class Trigger_SendEmailTmpLayoff extends MyTriggers {
         sendEmails( tmpLayoffWithContacts );
     }
 
-    //@TestVisible
-    //@Future
     public static void sendEmails(Map<Id, Id> tmpLayoffWithContacts){
 
         Id emailTmp = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'tempLayoffReceiptSubsidiary' LIMIT 1].Id;
