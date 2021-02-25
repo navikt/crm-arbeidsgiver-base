@@ -19,14 +19,15 @@ global class Trigger_SendEmailTmpLayoff extends MyTriggers {
 
         List<EmailQueue__c> requests = new List<EmailQueue__c>();
             for (Id id : tmpLayoffWithContacts.keyset()) {
-                EmailQueue__c request = new EmailQueue__c();
-                request.TemplateName__c = 'tempLayoffReceiptSubsidiary';
-                request.TargetObjectId__c = tmpLayoffWithContacts.get(id);
-                request.WhatId__c = id;
-                request.Status__c = 'Instant';
-                request.SaveAsActivity__c = true;
-                requests.add( request );
-
+                if (tmpLayoffWithContacts.containsKey(id)) {
+                    EmailQueue__c request = new EmailQueue__c();
+                    request.TemplateName__c = 'tempLayoffReceiptSubsidiary';
+                    request.TargetObjectId__c = tmpLayoffWithContacts.get(id);
+                    request.WhatId__c = id;
+                    request.Status__c = 'Instant';
+                    request.SaveAsActivity__c = true;
+                    requests.add( request );
+                }
             }
         insert requests;
 
