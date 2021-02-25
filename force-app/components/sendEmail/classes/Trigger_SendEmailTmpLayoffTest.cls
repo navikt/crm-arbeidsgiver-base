@@ -27,12 +27,6 @@ private without sharing class Trigger_SendEmailTmpLayoffTest {
 
         NavUnit__c nav = [SELECT Id FROM NavUnit__c];
 
-        TemporaryLayoff__c t2 = new TemporaryLayoff__c(
-            Type__c = 'MASSEOPPSIGELSE',
-            NAV_Unit__c = nav.Id
-        );
-        insert t2;
-
         List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
         System.assertEquals(0, emails.size(), 'No emails sent before');
 
@@ -47,6 +41,27 @@ private without sharing class Trigger_SendEmailTmpLayoffTest {
         
         List<EmailMessage> emailsAfter = [SELECT Id FROM EmailMessage];
         System.assertEquals(1, emailsAfter.size(), 'should be one email sent after insert');
+        
+    }
+
+    @isTest
+    private static void Trigger_SendEmailTmpLayoffNoContactTest() {
+
+        List<EmailMessage> emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
+        System.assertEquals(0, emails.size(), 'No emails sent before');
+        
+        NavUnit__c nav = [SELECT Id FROM NavUnit__c];
+
+        Test.StartTest();
+        TemporaryLayoff__c t2 = new TemporaryLayoff__c(
+            Type__c = 'MASSEOPPSIGELSE',
+            NAV_Unit__c = nav.Id
+        );
+        insert t2;
+        Test.StopTest();
+        
+        List<EmailMessage> emailsAfter = [SELECT Id FROM EmailMessage];
+        System.assertEquals(0, emailsAfter.size(), 'No emails sent after because No Contact details');
 
         
     }
