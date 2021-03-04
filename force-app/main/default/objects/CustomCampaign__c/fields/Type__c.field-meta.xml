@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Status__c</fullName>
+    <fullName>Type__c</fullName>
     <externalId>false</externalId>
-    <label>Status</label>
+    <label>Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -11,14 +11,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Åpen</fullName>
+                <fullName>Bedriftsundersøkelse</fullName>
                 <default>false</default>
-                <label>Åpen</label>
-            </value>
-            <value>
-                <fullName>Lukket</fullName>
-                <default>false</default>
-                <label>Lukket</label>
+                <label>Bedriftsundersøkelse</label>
             </value>
         </valueSetDefinition>
     </valueSet>

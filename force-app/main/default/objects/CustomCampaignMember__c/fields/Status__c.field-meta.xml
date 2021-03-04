@@ -11,14 +11,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Åpen</fullName>
-                <default>false</default>
-                <label>Åpen</label>
+                <fullName>Ikke besvart</fullName>
+                <default>true</default>
+                <label>Ikke besvart</label>
             </value>
             <value>
-                <fullName>Lukket</fullName>
+                <fullName>Besvart</fullName>
                 <default>false</default>
-                <label>Lukket</label>
+                <label>Besvart</label>
             </value>
         </valueSetDefinition>
     </valueSet>
