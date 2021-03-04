@@ -9,7 +9,13 @@
 	</targets>
 	<targetConfigs>
 		<targetConfig targets="lightning__RecordPage">
-			<property name="fieldName" type="String" label="Field Name" description="SObject Field API Name containing the Markdown text" placeholder="Field__c" />
+			<property
+                name="fieldName"
+                type="String"
+                label="Field Name"
+                description="SObject Field API Name containing the Markdown text"
+                placeholder="Field__c"
+            />
 			<supportedFormFactors>
 				<supportedFormFactor type="Small" />
 				<supportedFormFactor type="Large" />

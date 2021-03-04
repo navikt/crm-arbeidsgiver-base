@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignments>
         <name>Assign_chosen_Fylke</name>
@@ -217,7 +217,7 @@
             <field>CRM_QueueId__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue/>
+                <stringValue />
             </value>
         </filters>
         <object>NavUnit__c</object>
@@ -239,7 +239,7 @@
             <field>CRM_QueueId__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue/>
+                <stringValue />
             </value>
         </filters>
         <filters>

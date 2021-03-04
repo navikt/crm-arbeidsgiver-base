@@ -1,13 +1,11 @@
 {
-	"LastName": "Integration",
-	"Alias": "integr1",
-	"TimeZoneSidKey": "Europe/Paris",
-	"LocaleSidKey": "NO",
-	"EmailEncodingKey": "UTF-8",
-	"LanguageLocaleKey": "en_US",
-	"profileName": "Standard User",
-	"permsets": [
-		"Integration"
-	],
-	"generatePassword": true
+    "LastName": "Integration",
+    "Alias": "integr1",
+    "TimeZoneSidKey": "Europe/Paris",
+    "LocaleSidKey": "NO",
+    "EmailEncodingKey": "UTF-8",
+    "LanguageLocaleKey": "en_US",
+    "profileName": "Standard User",
+    "permsets": ["Integration"],
+    "generatePassword": true
 }

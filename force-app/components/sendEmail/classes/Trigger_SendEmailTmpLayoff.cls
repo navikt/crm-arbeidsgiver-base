@@ -2,27 +2,34 @@
    Can use either this class in a process or Trigger_SendEmail as a trigger
  */
 
-global  class Trigger_SendEmailTmpLayoff extends MyTriggers {
+global class Trigger_SendEmailTmpLayoff extends MyTriggers {
+    global override void onAfterInsert() {
 
-	global override void onAfterInsert() {
+        Map<Id, Id> tmpLayoffWithContacts = new Map<Id, Id>();
+        for (TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records) {
+            if (tl.Contact__c != null){
+            tmpLayoffWithContacts.put(tl.Id, tl.Contact__c);
+            }
+        }
 
-		Set<Id> contactIds = new Set<Id>();
-		for ( TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records ) {
-			contactIds.add( tl.Contact__c );
-		}
+        sendEmails( tmpLayoffWithContacts );
+    }
 
-		Map<Id, Contact> contacts = new Map<Id, Contact> ( [SELECT Id, Email FROM Contact WHERE Id IN: contactIds] );
+    public static void sendEmails(Map<Id, Id> tmpLayoffWithContacts){
 
-		List<Process_SendEmail.Request> requests = new List<Process_SendEmail.Request>();
-		for ( TemporaryLayoff__c tl : (List<TemporaryLayoff__c>) records ) {
-			Process_SendEmail.Request request = new Process_SendEmail.Request();
-			request.emailTemplateName = 'tempLayoffReceiptSubsidiary';
-			request.recipientContact = contacts.containsKey( tl.Contact__c ) ? contacts.get( tl.Contact__c ) : null;
-			request.useDoNotReply = true;
-			request.relatedToId = tl.Id;
-			requests.add( request );
-		}
+        List<EmailQueue__c> requests = new List<EmailQueue__c>();
+            for (Id id : tmpLayoffWithContacts.keyset()) {
+                if (tmpLayoffWithContacts.containsKey(id)) {
+                    EmailQueue__c request = new EmailQueue__c();
+                    request.TemplateName__c = 'tempLayoffReceiptSubsidiary';
+                    request.TargetObjectId__c = tmpLayoffWithContacts.get(id);
+                    request.WhatId__c = id;
+                    request.Status__c = 'Instant';
+                    request.SaveAsActivity__c = true;
+                    requests.add( request );
+                }
+            }
+        insert requests;
 
-		Process_SendEmail.sendEmail( requests );
-	}
+    }
 }

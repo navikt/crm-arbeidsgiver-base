@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
@@ -27,7 +27,8 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>richTextValue</name>
-                <value>&lt;p&gt;Du skal ikke slå opp i varslene med mindre det er del av dine arbeidsoppgaver å se dem. Du skal heller ikke snakke om disse varslene med andre som ikke har tjenstlig behov.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</value>
+                <value
+                >&lt;p&gt;Du skal ikke slå opp i varslene med mindre det er del av dine arbeidsoppgaver å se dem. Du skal heller ikke snakke om disse varslene med andre som ikke har tjenstlig behov.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</value>
             </componentInstanceProperties>
             <componentName>flexipage:richText</componentName>
         </componentInstances>

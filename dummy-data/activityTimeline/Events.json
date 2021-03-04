@@ -1,79 +1,79 @@
 {
-	"records": [
-		{
-			"attributes": {
-				"type": "Event",
-				"referenceId": "EventRef1"
-			},
-			"ActivityDate": "2020-01-02",
-			"DurationInMinutes": 2880,
-			"EndDateTime": "2020-01-03T00:00:00.000+0000",
-			"EventSubtype": "Event",
-			"IsAllDayEvent": true,
-			"ShowAs": "Busy",
-			"Subject": "Arbeidstrening",
-			"TAG_NoPersonInformation__c": true,
-			"WhatId": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "Event",
-				"referenceId": "EventRef2"
-			},
-			"ActivityDate": "2020-02-27",
-			"DurationInMinutes": 2880,
-			"EndDateTime": "2020-02-28T00:00:00.000+0000",
-			"EventSubtype": "Event",
-			"IsAllDayEvent": true,
-			"ShowAs": "Busy",
-			"Subject": "Jobbmesse",
-			"TAG_NoPersonInformation__c": true,
-			"WhatId": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "Event",
-				"referenceId": "EventRef3"
-			},
-			"ActivityDateTime": "2020-02-06T08:00:00.000+0000",
-			"DurationInMinutes": 60,
-			"ActivityDate": "2020-02-06",
-			"EventSubtype": "Event",
-			"IsAllDayEvent": false,
-			"ShowAs": "Busy",
-			"Subject": "Rekrutteringsbistand",
-			"TAG_NoPersonInformation__c": true,
-			"WhatId": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "Event",
-				"referenceId": "EventRef4"
-			},
-			"ActivityDateTime": "2020-02-02T11:30:00.000+0000",
-			"DurationInMinutes": 60,
-			"ActivityDate": "2020-02-02",
-			"EventSubtype": "Event",
-			"IsAllDayEvent": false,
-			"ShowAs": "Busy",
-			"Subject": "Hvordan håndtere vanskelige ansatte",
-			"TAG_NoPersonInformation__c": true,
-			"WhatId": "@AccountRef1"
-		},
-		{
-			"attributes": {
-				"type": "Event",
-				"referenceId": "EventRef5"
-			},
-			"ActivityDateTime": "2020-01-27T16:00:00.000+0000",
-			"DurationInMinutes": 60,
-			"ActivityDate": "2020-01-27",
-			"EventSubtype": "Event",
-			"IsAllDayEvent": false,
-			"ShowAs": "Busy",
-			"Subject": "Tiltak for å redusere sykefravær",
-			"TAG_NoPersonInformation__c": true,
-			"WhatId": "@AccountRef1"
-		}
-	]
+    "records": [
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef1"
+            },
+            "ActivityDate": "2020-01-02",
+            "DurationInMinutes": 2880,
+            "EndDateTime": "2020-01-03T00:00:00.000+0000",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": true,
+            "ShowAs": "Busy",
+            "Subject": "Arbeidstrening",
+            "TAG_NoPersonInformation__c": true,
+            "WhatId": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef2"
+            },
+            "ActivityDate": "2020-02-27",
+            "DurationInMinutes": 2880,
+            "EndDateTime": "2020-02-28T00:00:00.000+0000",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": true,
+            "ShowAs": "Busy",
+            "Subject": "Jobbmesse",
+            "TAG_NoPersonInformation__c": true,
+            "WhatId": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef3"
+            },
+            "ActivityDateTime": "2020-02-06T08:00:00.000+0000",
+            "DurationInMinutes": 60,
+            "ActivityDate": "2020-02-06",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": false,
+            "ShowAs": "Busy",
+            "Subject": "Rekrutteringsbistand",
+            "TAG_NoPersonInformation__c": true,
+            "WhatId": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef4"
+            },
+            "ActivityDateTime": "2020-02-02T11:30:00.000+0000",
+            "DurationInMinutes": 60,
+            "ActivityDate": "2020-02-02",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": false,
+            "ShowAs": "Busy",
+            "Subject": "Hvordan håndtere vanskelige ansatte",
+            "TAG_NoPersonInformation__c": true,
+            "WhatId": "@AccountRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event",
+                "referenceId": "EventRef5"
+            },
+            "ActivityDateTime": "2020-01-27T16:00:00.000+0000",
+            "DurationInMinutes": 60,
+            "ActivityDate": "2020-01-27",
+            "EventSubtype": "Event",
+            "IsAllDayEvent": false,
+            "ShowAs": "Busy",
+            "Subject": "Tiltak for å redusere sykefravær",
+            "TAG_NoPersonInformation__c": true,
+            "WhatId": "@AccountRef1"
+        }
+    ]
 }

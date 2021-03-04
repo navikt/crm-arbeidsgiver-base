@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_OrganizationNameFromForm__c</fullName>
-    <description>Organisasjonsnavnet fra kontaktskjemaet. Kan brukes for å manuelt mappe virksomhet til konto hvis arbeidsgiver ikke har skrevet inn organisasjonsnummer.</description>
+    <description
+    >Organisasjonsnavnet fra kontaktskjemaet. Kan brukes for å manuelt mappe virksomhet til konto hvis arbeidsgiver ikke har skrevet inn organisasjonsnummer.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Organisasjonsnavnet fra kontaktskjemaet. Kan brukes for å manuelt mappe virksomhet til konto hvis arbeidsgiver ikke har skrevet inn organisasjonsnummer.</inlineHelpText>
+    <inlineHelpText
+    >Organisasjonsnavnet fra kontaktskjemaet. Kan brukes for å manuelt mappe virksomhet til konto hvis arbeidsgiver ikke har skrevet inn organisasjonsnummer.</inlineHelpText>
     <label>Organization Name</label>
     <length>255</length>
     <required>false</required>
