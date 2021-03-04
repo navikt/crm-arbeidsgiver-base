@@ -25,7 +25,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Fulgt_opp__c</field>
+                <field>IsContacted__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -35,14 +35,14 @@
                 <behavior>Readonly</behavior>
                 <field>AccountPhone__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Type__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>CustomCampaign__c</field>
             </layoutItems>
         </layoutColumns>

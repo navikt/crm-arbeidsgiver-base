@@ -8,7 +8,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomCampaignMember__c.AccountPhone__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -17,22 +17,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomCampaignMember__c.CustomCampaign__c</field>
+        <field>CustomCampaignMember__c.IsContacted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomCampaignMember__c.Fulgt_opp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomCampaignMember__c.Key__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomCampaignMember__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomCampaignMember__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -65,6 +65,11 @@
         <field>CustomCampaign__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomCampaign__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Kampanje</label>
     <objectPermissions>
@@ -78,11 +83,19 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
+        <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>CustomCampaign__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <tabSettings>
+        <tab>CustomCampaignMember__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>CustomCampaign__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

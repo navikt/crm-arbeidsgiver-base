@@ -152,15 +152,15 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Custom Campaign Member</label>
     <nameField>
         <displayFormat>CM-{0000}</displayFormat>
-        <label>Custom Campaign Member Name ID</label>
+        <label>Custom Campaign Member</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Custom Campaign Members</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
