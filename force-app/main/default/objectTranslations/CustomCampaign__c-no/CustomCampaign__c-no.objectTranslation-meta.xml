@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
-        <article>None</article>
+        <article>Definite</article>
         <plural>false</plural>
-        <value><!-- Custom Campaign --></value>
+        <value>Bedriftskampanjen</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value><!-- Custom Campaign --></value>
-    </caseValues>
-    <caseValues>
-        <article>Definite</article>
-        <plural>false</plural>
-        <value><!-- Custom Campaign --></value>
+        <value>Bedriftskampanje</value>
     </caseValues>
     <caseValues>
         <article>None</article>
+        <plural>false</plural>
+        <value>Bedriftskampanje</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
         <plural>true</plural>
-        <value><!-- Custom Campaign --></value>
+        <value>Bedriftskampanjene</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value><!-- Custom Campaign --></value>
+        <value>Bedriftskampanjer</value>
     </caseValues>
     <caseValues>
-        <article>Definite</article>
+        <article>None</article>
         <plural>true</plural>
-        <value><!-- Custom Campaign --></value>
+        <value>Bedriftskampanjer</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
+    <gender>Neuter</gender>
     <layouts>
         <layout>Custom Campaign Layout</layout>
         <sections>
