@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>No_person_information_added</fullName>
     <active>true</active>
-    <description
-    >Lagt til E-post: og Email: for å unngå at automatisk e-post utsending trigger valideringen</description>
-    <errorConditionFormula
-    >TAG_NoPersonInformation__c = FALSE &amp;&amp; $Permission.Arbeidsgiver = TRUE &amp;&amp; !ISBLANK( Description ) &amp;&amp; !ISNULL( Description ) &amp;&amp; !BEGINS( Subject, &quot;Email: &quot;) &amp;&amp; !BEGINS( Subject, &quot;E-post: &quot;)</errorConditionFormula>
+    <description>Lagt til E-post: og Email: for å unngå at automatisk e-post utsending trigger valideringen</description>
+    <errorConditionFormula>AND( TAG_NoPersonInformation__c = FALSE, $Permission.Arbeidsgiver = TRUE, !ISBLANK( Description ), !ISNULL( Description ), !BEGINS( Subject, &quot;Email: &quot;), !BEGINS( Subject, &quot;E-post: &quot;), ISBLANK(  RecordTypeId ) )</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
-    <errorMessage
-    >Du må bekrefte at feltet &quot;Kort beskrivelse&quot; ikke inneholder personsensitive opplysninger</errorMessage>
+    <errorMessage>Du må bekrefte at feltet &quot;Kort beskrivelse&quot; ikke inneholder personsensitive opplysninger</errorMessage>
 </ValidationRule>
