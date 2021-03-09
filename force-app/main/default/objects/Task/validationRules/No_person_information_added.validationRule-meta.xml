@@ -3,7 +3,7 @@
     <fullName>No_person_information_added</fullName>
     <active>true</active>
     <description>Lagt til E-post: og Email: for å unngå at automatisk e-post utsending trigger valideringen</description>
-    <errorConditionFormula>AND( TAG_NoPersonInformation__c = FALSE, $Permission.Arbeidsgiver = TRUE, !ISBLANK( Description ), !ISNULL( Description ), !BEGINS( Subject, &quot;Email: &quot;), !BEGINS( Subject, &quot;E-post: &quot;), ISBLANK(  RecordTypeId ) )</errorConditionFormula>
+    <errorConditionFormula>AND( TAG_NoPersonInformation__c = FALSE, $Permission.Arbeidsgiver = TRUE, !ISBLANK( Description ), !ISNULL( Description ), !BEGINS( Subject, &quot;Email: &quot;), !BEGINS( Subject, &quot;E-post: &quot;), OR( ISBLANK( RecordTypeId ),  RecordType.DeveloperName = &apos;ArbeidsgiverTask&apos; ) )</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
     <errorMessage>Du må bekrefte at feltet &quot;Kort beskrivelse&quot; ikke inneholder personsensitive opplysninger</errorMessage>
 </ValidationRule>

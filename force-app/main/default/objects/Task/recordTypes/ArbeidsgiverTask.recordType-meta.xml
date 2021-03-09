@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ArbeidsgiverTask</fullName>
+    <active>true</active>
+    <label>Arbeidsgiver Task</label>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deferred</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Waiting on someone else</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Quote</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_service__c</picklist>
+        <values>
+            <fullName>Forbyggende arbeidsmiljøarbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Helse i arbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IPS Jobbstøtte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IPS Jobbutvikling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Informasjon om NAVs tjenester</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inkluderende rekruttering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbmesser og møteplasser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Masseoppsigelser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Permittering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Redusere sykefravær</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekrutteringsoppdrag</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
