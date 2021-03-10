@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Status</label>
+    <label><!-- Status --></label>
     <name>Status__c</name>
     <picklistValues>
-        <masterLabel>Lukket</masterLabel>
-        <translation><!-- Lukket --></translation>
+        <masterLabel>Besvart</masterLabel>
+        <translation><!-- Besvart --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Åpen</masterLabel>
-        <translation><!-- Åpen --></translation>
+        <masterLabel>Ikke besvart</masterLabel>
+        <translation><!-- Ikke besvart --></translation>
     </picklistValues>
 </CustomFieldTranslation>
