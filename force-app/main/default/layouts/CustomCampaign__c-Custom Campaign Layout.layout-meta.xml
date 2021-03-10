@@ -19,10 +19,6 @@
                 <behavior>Edit</behavior>
                 <field>Status__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Type__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -30,8 +26,8 @@
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>NAVUnit__c</field>
+                <behavior>Edit</behavior>
+                <field>Type__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -45,10 +41,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>StartDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NoEndDate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -122,7 +114,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j0000023bTh</masterLabel>
+        <masterLabel>00h1X0000028xEV</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
