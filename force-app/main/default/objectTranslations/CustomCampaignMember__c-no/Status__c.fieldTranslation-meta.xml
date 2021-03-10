@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Status --></label>
+    <label>
+        <!-- Status -->
+    </label>
     <name>Status__c</name>
     <picklistValues>
-        <masterLabel>Besvart</masterLabel>
-        <translation><!-- Besvart --></translation>
+        <masterLabel>Gjennomført</masterLabel>
+        <translation>
+            <!-- Besvart -->
+        </translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Ikke besvart</masterLabel>
-        <translation><!-- Ikke besvart --></translation>
+        <masterLabel>Ikke gjennomført</masterLabel>
+        <translation>
+            <!-- Ikke besvart -->
+        </translation>
     </picklistValues>
 </CustomFieldTranslation>
