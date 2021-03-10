@@ -7,18 +7,17 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Ikke besvart</fullName>
+                <fullName>Ikke gjennomført</fullName>
                 <default>true</default>
-                <label>Ikke besvart</label>
+                <label>Ikke gjennomført</label>
             </value>
             <value>
-                <fullName>Besvart</fullName>
+                <fullName>Gjennomført</fullName>
                 <default>false</default>
-                <label>Besvart</label>
+                <label>Gjennomført</label>
             </value>
         </valueSetDefinition>
     </valueSet>
