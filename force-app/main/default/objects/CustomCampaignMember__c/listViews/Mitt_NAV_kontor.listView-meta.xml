@@ -7,7 +7,7 @@
     <columns>Status__c</columns>
     <columns>Key__c</columns>
     <columns>IsContacted__c</columns>
-    <filterScope>Mine</filterScope>
+    <filterScope>Everything</filterScope>
     <filters>
         <field>IsMyNavOffice__c</field>
         <operation>equals</operation>
