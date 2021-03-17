@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Mitt_NAV_kontor</fullName>
+    <fullName>Mitt_NAV_kontor_Alle</fullName>
     <columns>NAME</columns>
     <columns>CustomCampaign__c</columns>
     <columns>Account__c</columns>
@@ -13,15 +13,5 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
-    <filters>
-        <field>Status__c</field>
-        <operation>equals</operation>
-        <value>Ikke gjennomført</value>
-    </filters>
-    <filters>
-        <field>IsContacted__c</field>
-        <operation>equals</operation>
-        <value>0</value>
-    </filters>
-    <label>Mitt NAV kontor</label>
+    <label>Mitt NAV kontor (Alle)</label>
 </ListView>
