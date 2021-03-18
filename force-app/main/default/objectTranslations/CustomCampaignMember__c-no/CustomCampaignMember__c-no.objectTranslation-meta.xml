@@ -38,8 +38,8 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Informasjon --></label>
-            <section>Informasjon</section>
+            <label><!-- Oppfølging --></label>
+            <section>Oppfølging</section>
         </sections>
         <sections>
             <label><!-- Relaterte --></label>
@@ -47,4 +47,12 @@
         </sections>
     </layouts>
     <nameFieldLabel>Bedriftskampanjemedlem</nameFieldLabel>
+    <quickActions>
+        <label><!-- Følg opp --></label>
+        <name>FollowUp</name>
+    </quickActions>
+    <webLinks>
+        <label><!-- OpenSurvey --></label>
+        <name>OpenSurvey</name>
+    </webLinks>
 </CustomObjectTranslation>

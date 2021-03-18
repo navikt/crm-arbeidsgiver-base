@@ -3,16 +3,20 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>actionNames</name>
+                <value>[&quot;CustomCampaignMember__c.FollowUp&quot;,&quot;CustomButton.CustomCampaignMember__c.OpenSurvey&quot;]</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>collapsed</name>
                 <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>enableActionsConfiguration</name>
-                <value>false</value>
+                <value>true</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>enableActionsInNative</name>
-                <value>false</value>
+                <value>true</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>hideChatterActions</name>
@@ -29,33 +33,22 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentInstanceProperties>
-                <name>lookupFieldName</name>
-                <value>CustomCampaignMember__c.CustomCampaign__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>updateQuickActionName</name>
-                <value>CustomCampaign__c.UpdateCampaign</value>
-            </componentInstanceProperties>
-            <componentName>console:relatedRecord</componentName>
+            <componentName>force:detailPanel</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
-                <name>lookupFieldName</name>
+                <name>parentFieldApiName</name>
                 <value>CustomCampaignMember__c.Account__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>updateQuickActionName</name>
-                <value>Account.UpdateAccount</value>
+                <name>relatedListApiName</name>
+                <value>Contacts</value>
             </componentInstanceProperties>
-            <componentName>console:relatedRecord</componentName>
-        </componentInstances>
-        <name>sidebar</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>force:detailPanel</componentName>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>GRID</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
         <name>detailTabContent</name>
         <type>Facet</type>
@@ -90,10 +83,49 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>amountOfMonths</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>amountOfMonthsToLoad</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>amountOfRecords</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>amountOfRecordsToLoad</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>configId</name>
+                <value>TAG_NAV_default</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>headerIcon</name>
+                <value>custom:custom18</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>headerTitleEnglish</name>
+                <value>Activities</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>headerTitleNorwegian</name>
+                <value>Aktiviteter</value>
+            </componentInstanceProperties>
+            <componentName>activityTimeline</componentName>
+        </componentInstances>
+        <name>sidebar</name>
+        <type>Region</type>
+    </flexiPageRegions>
     <masterLabel>Custom Campaign Member Record Page</masterLabel>
     <sobjectType>CustomCampaignMember__c</sobjectType>
     <template>
-        <name>flexipage:recordHomeLeftSidebarTemplateDesktop</name>
+        <name>flexipage:recordHomeTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>

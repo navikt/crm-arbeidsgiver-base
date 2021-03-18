@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Er fulgt opp</label>
-    <name>IsContacted__c</name>
+    <label>Eier</label>
+    <name>Owner__c</name>
+    <relationshipLabel>Bedriftskampanjemedlemmer</relationshipLabel>
 </CustomFieldTranslation>
