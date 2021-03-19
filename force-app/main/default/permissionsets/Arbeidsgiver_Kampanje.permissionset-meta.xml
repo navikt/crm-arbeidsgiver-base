@@ -22,6 +22,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CustomCampaignMember__c.IsMyNAVRegion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CustomCampaignMember__c.IsMyNavOffice__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -43,6 +48,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomCampaignMember__c.Owner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomCampaignMember__c.Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
