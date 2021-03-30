@@ -748,6 +748,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.TAG_Ultimate_Parent_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Website</field>
         <readable>true</readable>
     </fieldPermissions>
