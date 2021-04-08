@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Source__c</fullName>
     <description>Legg inn hvor henvendelsen kom fra</description>
     <externalId>false</externalId>
-    <inlineHelpText>Hvor henvendelsen kommer fra. 
-Kontaktskjema: Innkommende henvendelse fra web
-Internt tips: Tips av kollega eller funnet selv
-Kontaktseneteret: Tips via arbeidsgivertelefonen
-Utgående henvendese: Oppsøkende kontakt</inlineHelpText>
+    <inlineHelpText>Hvor muligheten kommer fra. Innkomne henvendelser fra nav.no markeres med &apos;Kontaktskjema&apos;.</inlineHelpText>
     <label>Source</label>
     <required>false</required>
     <trackHistory>true</trackHistory>
