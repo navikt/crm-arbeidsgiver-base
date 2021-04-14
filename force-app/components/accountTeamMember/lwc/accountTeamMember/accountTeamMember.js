@@ -33,6 +33,9 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
     @track amount = 0;
     @track columns = columns;
     @track showData = false;
+    @track isModalOpen = false;
+    @track currentRowId;
+    @track currentRowUserId;
 
     refreshTable;
     error;
@@ -65,10 +68,12 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
     handleRowActions(event) {
         let actionName = event.detail.action.name;
         let row = event.detail.row;
-
+        this.currentRowId = row.Id;
+        this.currentRowUserId = row.UserId;
+        
         switch (actionName) {
             case 'delete':
-                this.deleteRow(row);
+                this.isModalOpen = true;
                 break;
             case 'edit':
                 this.editRow(row);
@@ -78,12 +83,13 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
         }
     }
 
-    deleteRow(currentRow) {
-        deleteTeamMember({ atmId: currentRow.Id })
+    deleteRow() {
+        this.isModalOpen = false;
+        deleteTeamMember({ atmId: this.currentRowId })
             .then((result) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
-                        message: 'Kontaktperson ' + currentRow.UserId + ' slettet ',
+                        message: 'Kontaktperson ' + this.currentRowUserId + ' slettet ',
                         variant: 'success'
                     })
                 );
@@ -132,5 +138,8 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
     }
     refreshData() {
         return refreshApex(this.refreshTable);
+    }
+    closeModal() {
+        this.isModalOpen = false;
     }
 }
