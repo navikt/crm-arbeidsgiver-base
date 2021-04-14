@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Position_in_Rekrutteringsbistand__c</fullName>
-    <description
-    >Field that user manually can add url to postion in rekrutteringsbistand, user needs to add public url</description>
+    <description>Field that user manually can add url to postion in rekrutteringsbistand, user needs to add public url</description>
     <externalId>false</externalId>
-    <inlineHelpText>Her kan du legge inn link til stilling i rekrutteringsbistand</inlineHelpText>
     <label>Position in Rekrutteringsbistand</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
