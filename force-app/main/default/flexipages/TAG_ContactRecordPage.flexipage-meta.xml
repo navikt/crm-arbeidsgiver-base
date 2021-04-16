@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>actionNames</name>
-                <value>[&quot;Delete&quot;,&quot;Edit&quot;,&quot;Clone&quot;,&quot;Global.LogACall&quot;,&quot;Contact.TAG_CreateTask&quot;,&quot;Contact.TAG_NewEvent&quot;]</value>
+                <value
+                >[&quot;Delete&quot;,&quot;Edit&quot;,&quot;Clone&quot;,&quot;Global.LogACall&quot;,&quot;Contact.TAG_CreateTask&quot;,&quot;Contact.TAG_NewEvent&quot;]</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>collapsed</name>
@@ -125,7 +126,7 @@
                 <name>headerTitleNorwegian</name>
                 <value>Aktiviteter</value>
             </componentInstanceProperties>
-            <componentName>activityTimeline</componentName>
+            <componentName>timeline</componentName>
             <visibilityRule>
                 <criteria>
                     <leftValue>{!$Client.formFactor}</leftValue>
