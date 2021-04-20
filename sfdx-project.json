@@ -4,7 +4,7 @@
             "path": "force-app",
             "default": true,
             "package": "crm-arbeidsgiver-base",
-            "versionNumber": "1.109.0.NEXT",
+            "versionNumber": "1.112.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
@@ -13,16 +13,21 @@
                 {
                     "package": "crm-platform-access-control",
                     "versionNumber": "0.56.0.LATEST"
+                },
+                {
+                    "package": "crm-shared-timeline",
+                    "versionNumber": "1.1.0.LATEST"
                 }
             ]
         }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "47.0",
+    "sourceApiVersion": "51.0",
     "packageAliases": {
         "crm-platform-base": "0Ho2o0000008ORmCAM",
         "crm-platform-access-control": "0Ho2o0000008OR3CAM",
+        "crm-shared-timeline": "0Ho2o000000fxXBCAY",
         "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM"
     }
 }

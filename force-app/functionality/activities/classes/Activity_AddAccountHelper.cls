@@ -141,11 +141,17 @@ public with sharing class Activity_AddAccountHelper {
                 break;
             }
 
-            String parentSObjectType = ActivityTimelineHelper.getSOjectTypeFromRecordId(firstWhatId);
+            String parentSObjectType = getSOjectTypeFromRecordId(firstWhatId);
             mapOfSObjectPrefix.put(sObjPrefix, parentSObjectType);
         }
 
         return mapOfSObjectPrefix;
+    }
+
+    public static String getSOjectTypeFromRecordId(String recordId) {
+        Id i = (Id) recordId;
+
+        return String.valueOf(i.getSobjectType());
     }
 
     public static Map<String, Set<Id>> getIdsSeparatedBySObject(
@@ -232,7 +238,7 @@ public with sharing class Activity_AddAccountHelper {
     ) {
         List<SObject> sObjectsToUpdate = new List<SObject>();
 
-        String type = ActivityTimelineHelper.getSOjectTypeFromRecordId(originalActivities[0].Id);
+        String type = getSOjectTypeFromRecordId(originalActivities[0].Id);
         if (type == 'Task') {
             for (Task t : (List<Task>) originalActivities) {
                 if (isInsert) {
