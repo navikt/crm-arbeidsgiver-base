@@ -5,7 +5,31 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
-                    <valueList>[&quot;AccountHierarchy&quot;,&quot;Account.TAG_NewEvent&quot;,&quot;Account.TAG_CreateTask&quot;]</valueList>
+                    <valueList>
+                        <valueListItems>
+                            <value>AccountHierarchy</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.TAG_CreateTask</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!$Client.formFactor}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Small</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.TAG_NewEvent</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!$Client.formFactor}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Small</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                    </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>collapsed</name>
