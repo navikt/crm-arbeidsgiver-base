@@ -44,23 +44,34 @@
         </div>
     </article>
     <template if:true={isModalOpen}>
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-labelledby="modal-heading-01"
+            aria-modal="true"
+            aria-describedby="modal-content-id-1"
+            class="slds-modal slds-fade-in-open"
+        >
             <div class="slds-modal__container">
                 <header class="slds-modal__header">
-                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Lukk" onclick={closeModal}>
-                        <lightning-icon icon-name="utility:close"
+                    <button
+                        class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Lukk"
+                        onclick={closeModal}
+                    >
+                        <lightning-icon
+                            icon-name="utility:close"
                             alternative-text="close"
                             variant="inverse"
-                            size="small" ></lightning-icon>
+                            size="small"
+                        ></lightning-icon>
                         <span class="slds-assistive-text">Lukk</span>
                     </button>
                     <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Fjern Kontaktperson</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <p><b>
-                    </b></p>
-                    <p>Er du sikker på at du vil fjerne NAV kontaktpersonen fra virksomheten? 
-                    </p>
+                    <p><b> </b></p>
+                    <p>Er du sikker på at du vil fjerne NAV kontaktpersonen fra virksomheten?</p>
                 </div>
                 <footer class="slds-modal__footer">
                     <button class="slds-button slds-button_neutral" onclick={closeModal} title="Avbryt">Avbryt</button>

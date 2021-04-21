@@ -70,7 +70,7 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
         let row = event.detail.row;
         this.currentRowId = row.Id;
         this.currentRowUserId = row.UserId;
-        
+
         switch (actionName) {
             case 'delete':
                 this.isModalOpen = true;
