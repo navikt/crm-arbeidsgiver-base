@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_AccountOrgType__c</fullName>
     <externalId>false</externalId>
-    <formula>RelatedToAccount__r.CRM_AccountType__c</formula>
+    <formula>Account.CRM_AccountType__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>TAG_AccountOrgType</label>
     <required>false</required>
