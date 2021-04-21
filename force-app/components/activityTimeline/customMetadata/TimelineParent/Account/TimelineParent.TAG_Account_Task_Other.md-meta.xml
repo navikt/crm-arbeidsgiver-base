@@ -1,18 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<CustomMetadata
-    xmlns="http://soap.sforce.com/2006/04/metadata"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
->
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <label>Account &lt;= Task (Other)</label>
     <protected>false</protected>
     <values>
-        <field>Timeline_Child__c</field>
-        <value xsi:type="xsd:string">TAG_Task_Other</value>
+        <field>AppAPIName__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>ConfigId__c</field>
+        <value xsi:type="xsd:string">TAG_NAV_default</value>
     </values>
     <values>
         <field>CreateableObject_Checkbox__c</field>
         <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>CreateableObject_NoOverride__c</field>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>IsActive__c</field>
@@ -21,14 +25,6 @@
     <values>
         <field>IsMacro__c</field>
         <value xsi:type="xsd:boolean">false</value>
-    </values>
-    <values>
-        <field>ConfigId__c</field>
-        <value xsi:type="xsd:string">TAG_NAV_default</value>
-    </values>
-    <values>
-        <field>CreateableObject_NoOverride__c</field>
-        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>SObjectAssigneeId__c</field>
@@ -41,5 +37,9 @@
     <values>
         <field>SObjectRelationshipField__c</field>
         <value xsi:type="xsd:string">WhatId</value>
+    </values>
+    <values>
+        <field>Timeline_Child__c</field>
+        <value xsi:type="xsd:string">TAG_Task_Other</value>
     </values>
 </CustomMetadata>

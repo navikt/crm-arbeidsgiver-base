@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <layouts>
         <layout>TAG Virksomhet</layout>
@@ -6,7 +6,15 @@
             <label>Adresse</label>
             <section>Address</section>
         </sections>
+        <sections>
+            <label><!-- Informasjon fra Enhetsregisteret --></label>
+            <section>Informasjon fra Enhetsregisteret</section>
+        </sections>
     </layouts>
+    <quickActions>
+        <label><!-- Add Member --></label>
+        <name>Add_Member</name>
+    </quickActions>
     <quickActions>
         <label><!-- New Task --></label>
         <name>TAG_CreateTask</name>
@@ -14,6 +22,10 @@
     <quickActions>
         <label><!-- New Event --></label>
         <name>TAG_NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Account --></label>
+        <name>UpdateAccount</name>
     </quickActions>
     <recordTypes>
         <label><!-- Business Account --></label>
