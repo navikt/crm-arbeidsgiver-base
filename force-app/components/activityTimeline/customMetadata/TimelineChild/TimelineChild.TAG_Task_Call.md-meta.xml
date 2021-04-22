@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<CustomMetadata
-    xmlns="http://soap.sforce.com/2006/04/metadata"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
->
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <label>Task (Call)</label>
     <protected>false</protected>
     <values>
@@ -16,11 +12,11 @@
     </values>
     <values>
         <field>CreateableObject_Field3__c</field>
-        <value xsi:nil="true" />
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_RecordType__c</field>
-        <value xsi:nil="true" />
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_TextEnglish__c</field>
@@ -40,7 +36,7 @@
     </values>
     <values>
         <field>CreateableObject_Value3__c</field>
-        <value xsi:nil="true" />
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SLDS_Dropdown_Icon__c</field>
@@ -100,10 +96,10 @@
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionEng__c</field>
-        <value xsi:nil="true" />
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionNor__c</field>
-        <value xsi:nil="true" />
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>
