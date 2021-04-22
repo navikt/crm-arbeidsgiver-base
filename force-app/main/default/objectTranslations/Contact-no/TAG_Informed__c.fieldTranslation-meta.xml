@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Personen er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning. --></help>
+    <help
+    ><!-- Personen er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning. --></help>
     <label>Kontakt informert</label>
     <name>TAG_Informed__c</name>
 </CustomFieldTranslation>

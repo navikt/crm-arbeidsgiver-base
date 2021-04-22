@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Organisasjonsnavnet fra kontaktskjemaet. I tilfelle arbeidsgiveren ikke skrev inn organisasjonsnummeret kan du finne riktig virksomhet ved å søke opp navnet. --></help>
+    <help
+    ><!-- Organisasjonsnavnet fra kontaktskjemaet. Kan brukes for å manuelt mappe virksomhet til konto hvis arbeidsgiver ikke har skrevet inn organisasjonsnummer. --></help>
     <label>Organisasjon</label>
     <name>TAG_OrganizationNameFromForm__c</name>
 </CustomFieldTranslation>

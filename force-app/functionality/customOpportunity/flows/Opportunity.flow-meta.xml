@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
         <processMetadataValues>
@@ -25,7 +25,6 @@
         <locationY>200</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
             <value>
@@ -47,7 +46,8 @@
         <inputParameters>
             <name>body</name>
             <value>
-                <stringValue>{!myVariable_current.LastModifiedBy.FirstName} {!myVariable_current.LastModifiedBy.LastName} har tildelt deg muligheten: {!myVariable_current.Name} </stringValue>
+                <stringValue
+                >{!myVariable_current.LastModifiedBy.FirstName} {!myVariable_current.LastModifiedBy.LastName} har tildelt deg muligheten: {!myVariable_current.Name} </stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -84,7 +84,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -99,7 +99,6 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <apiVersion>49.0</apiVersion>
     <assignments>
         <name>myAssignment_myRule_12_A1</name>
         <label>myAssignment_myRule_12_A1</label>
@@ -634,12 +633,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(ISCHANGED([CustomOpportunity__c].OwnerId ), [CustomOpportunity__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([CustomOpportunity__c].OwnerId,3) = &apos;005&apos;))</stringValue>
+                <stringValue
+                >AND(ISCHANGED([CustomOpportunity__c].OwnerId ), [CustomOpportunity__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([CustomOpportunity__c].OwnerId,3) = &apos;005&apos;))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_12</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &apos;005&apos;))</expression>
+        <expression
+        >AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &apos;005&apos;))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -714,7 +715,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -894,7 +895,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -939,7 +940,6 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
         <label>Change owner</label>
         <locationX>600</locationX>
         <locationY>200</locationY>
-        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -1020,7 +1020,6 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
         <label>Add Account to Contact</label>
         <locationX>900</locationX>
         <locationY>200</locationY>
-        <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>

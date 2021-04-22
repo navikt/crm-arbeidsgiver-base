@@ -1,17 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Type --></label>
-    <name>Type__c</name>
-    <picklistValues>
-        <masterLabel>Innskrenkning i arbeidstid</masterLabel>
-        <translation><!-- Innskrenkning i arbeidstid --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Masseoppsigelse</masterLabel>
-        <translation><!-- Masseoppsigelse --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Permittering uten lønn</masterLabel>
-        <translation><!-- Permittering uten lønn --></translation>
-    </picklistValues>
+	<label>
+		<!-- Type -->
+	</label>
+	<name>Type__c</name>
+	<picklistValues>
+		<masterLabel>Innskrenkning i arbeidstid</masterLabel>
+		<translation>
+			<!-- Innskrenkning i arbeidstid -->
+		</translation>
+	</picklistValues>
+	<picklistValues>
+		<masterLabel>Masseoppsigelse</masterLabel>
+		<translation>
+			<!-- Masseoppsigelse -->
+		</translation>
+	</picklistValues>
+	<picklistValues>
+		<masterLabel>Permittering uten lønn</masterLabel>
+		<translation>
+			<!-- Permittering uten lønn -->
+		</translation>
+	</picklistValues>
 </CustomFieldTranslation>
