@@ -686,7 +686,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.TAG_Activities_on_sub_accounts__c</field>
+        <field>Account.CRM_Activities_on_sub_accounts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -741,7 +741,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.TAG_Ultimate_Parent_Account__c</field>
+        <field>Account.CRM_Ultimate_Parent_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

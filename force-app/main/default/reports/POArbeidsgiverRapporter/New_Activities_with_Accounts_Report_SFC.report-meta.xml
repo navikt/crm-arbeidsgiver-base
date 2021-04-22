@@ -42,7 +42,7 @@
     </columns>
     <filter>
         <criteriaItems>
-            <column>Account.TAG_Ultimate_Parent_Account__c</column>
+            <column>Account.CRM_Ultimate_Parent_Account__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
