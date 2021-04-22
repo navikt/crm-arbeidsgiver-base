@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
         <fullName>Rekruttere og inkludere</fullName>
@@ -16,16 +16,16 @@
         <label>Nedbemanne</label>
     </customValue>
     <customValue>
-        <fullName>Bedriftsundersøkelse</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Bedriftsundersøkelse</label>
-    </customValue>
-    <customValue>
         <fullName>Generelt markedsarbeid</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Generelt markedsarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Bedriftsundersøkelse</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Bedriftsundersøkelse</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>

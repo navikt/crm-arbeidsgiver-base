@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ContactName__c</fullName>
     <externalId>false</externalId>
-    <formula>Contact__r.FirstName &amp; &#39; &#39; &amp; Contact__r.LastName</formula>
+    <formula>Contact__r.FirstName &amp; &apos; &apos; &amp; Contact__r.LastName</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Contact Name</label>
     <required>false</required>
