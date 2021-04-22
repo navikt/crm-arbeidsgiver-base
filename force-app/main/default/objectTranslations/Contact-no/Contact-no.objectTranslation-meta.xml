@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <layouts>
         <layout>TAG Contact Layout</layout>
@@ -7,9 +7,16 @@
             <section>Samtykke</section>
         </sections>
     </layouts>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>TAG_CreateTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>TAG_NewEvent</name>
+    </quickActions>
     <validationRules>
-        <errorMessage
-        ><!-- For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning. --></errorMessage>
+        <errorMessage><!-- For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning. --></errorMessage>
         <name>Field_Tag_Informed_chekced_before_save</name>
     </validationRules>
     <validationRules>

@@ -1,23 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>Lenke til proff.no er forbedret</masterLabel>
     <promptVersions>
-        <body
-        >Nå har lenken til virksomhten til proff blitt bedre. Dersom det kun er en underenhet vil oppslaget vise hovedenheten (J´en). Merk at det ikke alle underenheter ligger på proff.no, forsøk da lenken på overordnet enhet.</body>
+        <body>Nå har lenken til virksomhten til proff blitt bedre. Dersom det kun er en underenhet vil oppslaget vise hovedenheten (J´en). Merk at det ikke alle underenheter ligger på proff.no, forsøk da lenken på overordnet enhet.</body>
+        <customApplication>TAG_NAV_default</customApplication>
         <delayDays>1</delayDays>
-        <description
-        >Infomrasjon om oppdatering av lenken til proff.no, vises tre ganger og deatkvieres 31.10.2020</description>
+        <description>Infomrasjon om oppdatering av lenken til proff.no, vises tre ganger og deatkvieres 31.10.2020</description>
         <dismissButtonLabel>Skjul tipset</dismissButtonLabel>
         <displayPosition>TopRight</displayPosition>
         <displayType>FloatingPanel</displayType>
         <endDate>2020-10-30</endDate>
         <isPublished>true</isPublished>
         <masterLabel>Lenke til proff.no er forbedret</masterLabel>
-        <publishedDate>2020-10-15</publishedDate>
+        <publishedDate>2021-04-21</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <startDate>2020-10-15</startDate>
-        <targetAppDeveloperName>TAG_NAV_default</targetAppDeveloperName>
         <targetPageKey1>Account</targetPageKey1>
         <targetPageKey2>view</targetPageKey2>
         <targetPageType>standard__recordPage</targetPageType>

@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EditableWebsite__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText
-    >Nettside tilhørende virksomheten. Registreres dersom virksomheten har en annen nettside enn det som ble overført fra Enhetsregisteret</inlineHelpText>
+    <inlineHelpText>Nettside tilhørende virksomheten. Registreres dersom virksomheten har en annen nettside enn det som ble overført fra Enhetsregisteret</inlineHelpText>
     <label>Editable Website</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

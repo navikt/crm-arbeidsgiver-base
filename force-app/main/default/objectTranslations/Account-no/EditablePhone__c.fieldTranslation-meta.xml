@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help
-    ><!-- Telefonnummer til virksomheten. Registreres dersom virksomheten har et annet telefonnummer enn det som ble overført fra Enhetsregisteret --></help>
+    <help><!-- Telefonnummer til virksomheten. Registreres dersom virksomheten har et annet telefonnummer enn det som ble overført fra Enhetsregisteret --></help>
     <label>Telefon</label>
     <name>EditablePhone__c</name>
 </CustomFieldTranslation>
