@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>Endre Eier på oppgaven</masterLabel>
     <promptVersions>
-        <body>&lt;p&gt;Du endrer eieren på oppgaven ved å klikke på «Endre eier» ved siden av feltet «Eier». Da åpnes det et dialogvindu der du kan sette nytt eiernavn. I knappen før feltet kan du velge om du skal sende oppgaven til en person eller en annen NAV-enhet.&amp;nbsp;&lt;/p&gt;&lt;p&gt;Velg:&amp;nbsp;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;«Personer» når du skal velge for å sende oppgaven til en veileder&lt;/li&gt;&lt;li&gt;«Køer» for å sende oppgaven til en NAV-enhet (husk å fjerne avhuking fra Send epost, hvis du sender oppgaven til en annen NAV Enhet).&lt;/li&gt;&lt;/ul&gt;</body>
+        <body
+        >&lt;p&gt;Du endrer eieren på oppgaven ved å klikke på «Endre eier» ved siden av feltet «Eier». Da åpnes det et dialogvindu der du kan sette nytt eiernavn. I knappen før feltet kan du velge om du skal sende oppgaven til en person eller en annen NAV-enhet.&amp;nbsp;&lt;/p&gt;&lt;p&gt;Velg:&amp;nbsp;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;«Personer» når du skal velge for å sende oppgaven til en veileder&lt;/li&gt;&lt;li&gt;«Køer» for å sende oppgaven til en NAV-enhet (husk å fjerne avhuking fra Send epost, hvis du sender oppgaven til en annen NAV Enhet).&lt;/li&gt;&lt;/ul&gt;</body>
         <customApplication>TAG_NAV_default</customApplication>
         <delayDays>1</delayDays>
         <displayType>DockedComposer</displayType>
@@ -10,7 +11,7 @@
         <header>Sende oppgaven til en veileder</header>
         <isPublished>true</isPublished>
         <masterLabel>Endre Eier på oppgaven</masterLabel>
-        <publishedDate>2021-04-21</publishedDate>
+        <publishedDate>2020-11-27</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <startDate>2020-12-01</startDate>

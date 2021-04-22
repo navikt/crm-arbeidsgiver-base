@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>Konto koblet til NAV kontor</masterLabel>
     <promptVersions>
-        <body>Nå er alle arbeidsgivere (kontoer) knyttet mot NAV Kontor. Det betyr at du kan lage lister over arbeidsgivere som hører til ditt NAV kontor. Denne funksjonen er spesielt nyttig dersom NAV kontoret inkluderer flere kommuner eller kommunen er</body>
+        <body
+        >Nå er alle arbeidsgivere (kontoer) knyttet mot NAV Kontor. Det betyr at du kan lage lister over arbeidsgivere som hører til ditt NAV kontor. Denne funksjonen er spesielt nyttig dersom NAV kontoret inkluderer flere kommuner eller kommunen er</body>
         <customApplication>TAG_NAV_default</customApplication>
         <delayDays>1</delayDays>
         <description>Nyhet om at konto er koblet til NAV kontor</description>
@@ -12,7 +13,7 @@
         <endDate>2020-11-19</endDate>
         <isPublished>true</isPublished>
         <masterLabel>Konto koblet til NAV kontor</masterLabel>
-        <publishedDate>2021-04-21</publishedDate>
+        <publishedDate>2020-11-05</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <startDate>2020-11-05</startDate>

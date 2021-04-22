@@ -1,6 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Hvor muligheten kommer fra. Innkomne henvendelser fra nav.no markeres med &apos;Kontaktskjema&apos;. --></help>
+    <help
+    ><!-- Hvor henvendelsen kommer fra. 
+Kontaktskjema: Innkommende henvendelse fra web
+Internt tips: Tips av kollega eller funnet selv
+Kontaktseneteret: Tips via arbeidsgivertelefonen
+Utgående henvendese: Oppsøkende kontakt --></help>
     <label>Kilde</label>
     <name>Source__c</name>
     <picklistValues>

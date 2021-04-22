@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ReasonOther__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText>Dette feltet vil kun være fylt ut, hvis bruker har valgt årsak &quot;Andre årsaker&quot;.</inlineHelpText>
+    <inlineHelpText
+    >Dette feltet vil kun være fylt ut, hvis bruker har valgt årsak &quot;Andre årsaker&quot;.</inlineHelpText>
     <label>Årsaksforklaring</label>
     <length>6000</length>
     <trackTrending>false</trackTrending>

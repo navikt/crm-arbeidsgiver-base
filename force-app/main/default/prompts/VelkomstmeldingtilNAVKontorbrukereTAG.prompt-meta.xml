@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>Velkomst melding til NAV Kontor brukere (TAG)</masterLabel>
     <promptVersions>
         <actionButtonLabel>Til Navet</actionButtonLabel>
-        <actionButtonLink>https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx</actionButtonLink>
-        <body>Du finner brukerveildeninger og informasjonsfilmer på Navet. Vi oppfordrer deg til å ta en titt der før du begynner å bruke løsningen.</body>
-        <customApplication>TAG_NAV_default</customApplication>
+        <actionButtonLink
+        >https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx</actionButtonLink>
+        <body
+        >Du finner brukerveildeninger og informasjonsfilmer på Navet. Vi oppfordrer deg til å ta en titt der før du begynner å bruke løsningen.</body>
         <delayDays>1</delayDays>
         <dismissButtonLabel>Skjul tipset</dismissButtonLabel>
         <displayPosition>TopCenter</displayPosition>
@@ -13,10 +14,11 @@
         <endDate>2020-12-31</endDate>
         <isPublished>true</isPublished>
         <masterLabel>Velkomst melding til NAV Kontor brukere (TAG)</masterLabel>
-        <publishedDate>2021-04-21</publishedDate>
+        <publishedDate>2020-09-14</publishedDate>
         <shouldDisplayActionButton>true</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <startDate>2020-09-14</startDate>
+        <targetAppDeveloperName>TAG_NAV_default</targetAppDeveloperName>
         <targetPageKey1>home</targetPageKey1>
         <targetPageType>standard__namedPage</targetPageType>
         <timesToDisplay>5</timesToDisplay>

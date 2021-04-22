@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
     <masterLabel>Innkomne oppgaver hjemskjermen</masterLabel>
     <promptVersions>
-        <body>&lt;p&gt;Nå kan arbeidsgivertelefonen loggføre samtaler med arbeidsgiver i Salesforce og sende oppgaver til NAV-enheter for videre oppfølging av arbeidsgiver.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Oppgaver fra arbeidsgivertelefonen finner du under &lt;b&gt;«Innkomne oppgaver – Mitt NAV kontor»&lt;/b&gt;. Du må åpne oppgaven og endre «eier» av oppgaven for å sende den videre til en ansatte i din enhet som skal følge opp arbeidsgiver og sluttføre oppgaven.&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Oppgaver som det haster å følge opp vil markeres med en oransje boks under «Haster» kolonne.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du kan også åpne fanen &lt;b&gt;«Innkomne oppgaver»&lt;/b&gt; - der finner du innkomne oppgaver tildelt deg (Mine Innkomne oppgaver) og andre relevante listevisninger.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</body>
+        <body
+        >&lt;p&gt;Nå kan arbeidsgivertelefonen loggføre samtaler med arbeidsgiver i Salesforce og sende oppgaver til NAV-enheter for videre oppfølging av arbeidsgiver.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Oppgaver fra arbeidsgivertelefonen finner du under &lt;b&gt;«Innkomne oppgaver – Mitt NAV kontor»&lt;/b&gt;. Du må åpne oppgaven og endre «eier» av oppgaven for å sende den videre til en ansatte i din enhet som skal følge opp arbeidsgiver og sluttføre oppgaven.&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Oppgaver som det haster å følge opp vil markeres med en oransje boks under «Haster» kolonne.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du kan også åpne fanen &lt;b&gt;«Innkomne oppgaver»&lt;/b&gt; - der finner du innkomne oppgaver tildelt deg (Mine Innkomne oppgaver) og andre relevante listevisninger.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</body>
         <customApplication>TAG_NAV_default</customApplication>
         <delayDays>1</delayDays>
         <displayType>DockedComposer</displayType>
@@ -10,7 +11,7 @@
         <header>Innkomne oppgaver fra AG tlf</header>
         <isPublished>true</isPublished>
         <masterLabel>Innkomne oppgaver hjemskjermen</masterLabel>
-        <publishedDate>2021-04-21</publishedDate>
+        <publishedDate>2020-11-26</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <startDate>2020-12-01</startDate>

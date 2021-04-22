@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>49.0</apiVersion>
     <assignments>
         <name>Assign_chosen_Fylke</name>
         <label>Assign chosen Fylke</label>
@@ -186,7 +185,6 @@
         <connector>
             <targetReference>Loop_Nav_Units_to_update</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3 OR 4) AND 5</filterLogic>
         <filters>
             <field>INT_Region__c</field>
             <operator>EqualTo</operator>
@@ -219,7 +217,7 @@
             <field>CRM_QueueId__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue/>
+                <stringValue />
             </value>
         </filters>
         <object>NavUnit__c</object>
@@ -237,12 +235,11 @@
         <connector>
             <targetReference>Loop_Nav_Units_to_update_0</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
         <filters>
             <field>CRM_QueueId__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue/>
+                <stringValue />
             </value>
         </filters>
         <filters>
@@ -267,7 +264,6 @@
         <connector>
             <targetReference>Update_Queue_Id_field_in_NAV_Unit</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
         <filters>
             <field>Type</field>
             <operator>EqualTo</operator>
@@ -297,7 +293,6 @@
         <connector>
             <targetReference>Update_Queue_Id_field_in_NAV_Unit_0</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
         <filters>
             <field>Type</field>
             <operator>EqualTo</operator>
@@ -326,7 +321,6 @@
         <connector>
             <targetReference>Loop_Nav_Units_to_update</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
         <filters>
             <field>INT_UnitNumber__c</field>
             <operator>EqualTo</operator>
@@ -350,7 +344,6 @@
         <connector>
             <targetReference>Loop_Nav_Units_to_update_0</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
         <filters>
             <field>INT_UnitNumber__c</field>
             <operator>EqualTo</operator>

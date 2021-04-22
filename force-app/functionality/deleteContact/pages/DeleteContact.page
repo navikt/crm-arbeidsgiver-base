@@ -1,15 +1,10 @@
-<apex:page
-    standardController="Contact"
-    extensions="DeleteContactExtension"
-    lightningStyleSheets="true"
-    standardStylesheets="false"
->
+<apex:page standardController="Contact" extensions="deleteContactExtension" lightningStyleSheets="true" standardStylesheets="false">
     <h2>Slett kontakt</h2>
     <apex:form>
         Er du sikker på at du vil slette {!contact.FirstName + ' ' + contact.LastName }?
-        <br />
-        <br />
+        <br/>
+        <br/>
         <apex:commandButton value="Avbryt" action="{!cancelDeletion}" />
-        <apex:commandButton value="Slett" action="{!deleteContact}" style="background-color: #005fb2; color: white" />
+        <apex:commandButton value="Slett" action="{!deleteContact}" style="background-color: #005fb2;color:white" />
     </apex:form>
 </apex:page>
