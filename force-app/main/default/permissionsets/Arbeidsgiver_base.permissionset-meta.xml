@@ -201,14 +201,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CustomNotificationController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CustomNotificationControllerTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>DeleteAccountTeam</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -262,14 +254,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GroupsTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>MarkdownViewerController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>MarkdownViewerControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
