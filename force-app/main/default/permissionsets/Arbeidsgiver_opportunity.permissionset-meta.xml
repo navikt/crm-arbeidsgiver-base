@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Tilgang til muligheter-objektet</description>
     <fieldPermissions>
@@ -8,22 +8,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomOpportunity__c.BasicSkills__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>CustomOpportunity__c.Contact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.EmployerNeeds__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.InquiryCategory__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -44,11 +29,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.OwnerFullName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.PhysicalArrangements__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -74,31 +54,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.TAG_Age__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.TAG_CreateContract__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.TAG_IAClarification__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.TAG_IAService__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.TAG_IA_Objective__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.TAG_IA_Process_Milestones__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -138,11 +93,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CustomOpportunity__c.TAG_Overdue_Sign__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomOpportunity__c.TAG_Resolved_Date_Time__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -154,16 +104,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.TAG_Short_Description__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.WorkEnvironment__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.WorkTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
