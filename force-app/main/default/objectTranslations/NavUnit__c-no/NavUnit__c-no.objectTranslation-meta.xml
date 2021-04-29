@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>NAV-enheten</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>NAV-enhet</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>NAV-enheter</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>NAV-enhetene</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>true</plural>
+        <value>NAV-enheter</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>NAV-enheter</value>
+    </caseValues>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>NAV Unit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- Tilleggsopplysninger --></label>
+            <section>Tilleggsopplysninger</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TAG NAV Unit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Navn</nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- Standardrolle kan ikke ha verdien &apos;Default&apos; --></errorMessage>
+        <name>Default_Role_not_Default</name>
+    </validationRules>
+</CustomObjectTranslation>
