@@ -88,18 +88,18 @@
     </values>
     <values>
         <field>SubtitlePastEnglish__c</field>
-        <value xsi:type="xsd:string">sent an email</value>
+        <value xsi:type="xsd:string">registered an email</value>
     </values>
     <values>
         <field>SubtitlePastNorwegian__c</field>
-        <value xsi:type="xsd:string">sendte en e-post</value>
+        <value xsi:type="xsd:string">registrerte en e-post</value>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionEng__c</field>
-        <value xsi:type="xsd:string">to</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionNor__c</field>
-        <value xsi:type="xsd:string">til</value>
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>
