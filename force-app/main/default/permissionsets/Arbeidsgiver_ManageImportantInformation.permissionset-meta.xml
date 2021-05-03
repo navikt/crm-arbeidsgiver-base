@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Admin-tilgang for å vedlikeholde viktig informasjon</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.ImportantInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <label>Arbeidsgiver - Vedlikeholde Viktig Informasjon</label>
+</PermissionSet>

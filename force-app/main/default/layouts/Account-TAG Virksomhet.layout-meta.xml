@@ -32,6 +32,10 @@
                 <behavior>Edit</behavior>
                 <field>EditableEmail__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ImportantInformation__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
