@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Score_Overall__c</fullName>
+    <externalId>false</externalId>
+    <label>Overordnet vurdering</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dårlig</fullName>
+                <default>false</default>
+                <label>Dårlig</label>
+            </value>
+            <value>
+                <fullName>Passe</fullName>
+                <default>false</default>
+                <label>Passe</label>
+            </value>
+            <value>
+                <fullName>Veldig god</fullName>
+                <default>false</default>
+                <label>Veldig god</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
