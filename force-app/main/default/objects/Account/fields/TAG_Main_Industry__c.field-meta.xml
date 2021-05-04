@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Main_Industry__c</fullName>
-    <description>This field is duplicated with another field, Main Industry, and therefore depreciated.</description>
+    <description>This field is duplicated with another field, Main Industry, and therefore deprecated.</description>
     <externalId>false</externalId>
     <formula>IF((VALUE(INT_IndustryCode__c) &lt;=0.999),&quot;Annet&quot;,
 IF((VALUE(INT_IndustryCode__c) &lt;=3.999),&quot;Jordbruk,skogbruk og fiske&quot;,
@@ -26,7 +26,7 @@ IF((VALUE(INT_IndustryCode__c) &lt;= 96.999),&quot;Annen tjenesteyting&quot;,
 IF((VALUE(INT_IndustryCode__c) &lt;= 97.999),&quot;Lønnet arbeid i private husholdninger&quot;,
 IF((VALUE(INT_IndustryCode__c) &lt;= 99.999),&quot;Internasjonale organisasjoner og organer&quot;,&quot;Annet&quot;))))))))))))))))))))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Main Industry (Depreciated)</label>
+    <label>Main Industry (Deprecated)</label>
     <required>false</required>
     <type>Text</type>
     <unique>false</unique>
