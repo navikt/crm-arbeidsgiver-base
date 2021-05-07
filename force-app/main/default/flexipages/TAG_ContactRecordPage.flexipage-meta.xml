@@ -5,7 +5,14 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
-                    <valueList>[&quot;Delete&quot;,&quot;Edit&quot;,&quot;Clone&quot;,&quot;Global.LogACall&quot;,&quot;Contact.TAG_CreateTask&quot;,&quot;Contact.TAG_NewEvent&quot;]</valueList>
+                    <valueList>
+                        <valueListItems>
+                            <value>Edit</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Delete</value>
+                        </valueListItems>
+                    </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>collapsed</name>

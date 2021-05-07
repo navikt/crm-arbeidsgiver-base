@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
@@ -42,7 +42,8 @@
     </columns>
     <filter>
         <criteriaItems>
-            <column>Account.TAG_Ultimate_Parent_Account__c</column>
+            <column>Account.CRM_Ultimate_Parent_Account__c</column>
+            <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>0011j000014LIP1</value>

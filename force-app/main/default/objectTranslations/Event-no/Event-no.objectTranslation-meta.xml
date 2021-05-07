@@ -34,7 +34,7 @@
     <layouts>
         <layout>Event Layout</layout>
         <sections>
-            <label/>
+            <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
@@ -45,7 +45,7 @@
             <section>Aktører</section>
         </sections>
         <sections>
-            <label/>
+            <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
         <sections>
@@ -57,7 +57,7 @@
             <section>New Section</section>
         </sections>
         <sections>
-            <label/>
+            <label><!-- Tidspunkt --></label>
             <section>Tidspunkt</section>
         </sections>
     </layouts>
@@ -66,7 +66,7 @@
         <name>ArbeidsgiverEvent</name>
     </recordTypes>
     <validationRules>
-        <errorMessage/>
+        <errorMessage><!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger --></errorMessage>
         <name>No_person_information_added</name>
     </validationRules>
 </CustomObjectTranslation>

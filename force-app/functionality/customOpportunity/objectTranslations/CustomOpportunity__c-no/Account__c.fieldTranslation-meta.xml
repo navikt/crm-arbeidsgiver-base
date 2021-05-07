@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help>
-        <!-- Virksomheten muligheten tilhører -->
-    </help>
+    <help><!-- Virksomheten som har muligheten. --></help>
     <label>Konto</label>
     <name>Account__c</name>
     <relationshipLabel>Muligheter</relationshipLabel>

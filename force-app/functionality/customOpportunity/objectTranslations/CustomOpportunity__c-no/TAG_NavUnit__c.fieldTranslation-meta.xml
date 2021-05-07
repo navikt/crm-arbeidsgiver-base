@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- NAV kontoret muligheten tilhører, vanligvis samme kontor som virksomheten tilhører. --></help>
-    <label>NAV Kontor</label>
+    <label>NAV-enhet</label>
     <name>TAG_NavUnit__c</name>
     <relationshipLabel>Muligheter</relationshipLabel>
 </CustomFieldTranslation>

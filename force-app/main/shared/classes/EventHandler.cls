@@ -20,6 +20,9 @@ global class EventHandler extends MyTriggers {
         es.SH_AccountOrgNumber__c = e.CRM_AccountOrgNumber__c;
         es.SH_AccountParentId__c = e.TAG_AccountParentId__c;
         es.SH_AccountParentOrgNumber__c = e.TAG_AccountParentOrgNumber__c;
+        es.SH_AccountOrgType__c = e.TAG_AccountOrgType__c;
+        es.SH_AccountNAVUnit__c = e.TAG_AccountNAVUnit__c;
+        es.SH_UserNAVUnit__c = e.TAG_UserNAVUnit__c;
         es.SH_ActivityDateTime__c = e.ActivityDateTime;
         es.SH_ActivityType__c = e.TAG_ActivityType__c;
         es.SH_CreatedById__c = e.CreatedById;
@@ -32,7 +35,7 @@ global class EventHandler extends MyTriggers {
         es.SH_NoPersonalInformation__c = e.TAG_NoPersonInformation__c;
         es.SH_OwnerId__c = e.OwnerId;
         es.SH_Region__c = e.CRM_Region__c;
-        es.SH_RelatedToAccount__c = e.RelatedToAccount__c;
+        es.SH_RelatedToAccount__c = e.AccountId;
         es.SH_Service__c = e.TAG_service__c;
         es.SH_StartDateTime__c = e.StartDateTime;
         es.SH_Status__c = e.TAG_Status__c;
