@@ -21,25 +21,30 @@
                 >
                 </lightning-button-icon> -->
                 <lightning-button
+                label="Ny"
+                title="Ny"
+                onclick={navigateToNewRecordPage}
+                class=""
+            ></lightning-button>
+             <!--  <lightning-button
                     label="Send e-post"
                     title="Send e-post"
-                    onclick={navigateToNewRecordPage}
+                    onclick={sendEmail}
                     class="slds-m-right_x-small"
-                ></lightning-button>
+                ></lightning-button> -->
             </header>
         </div>
 
         <div class="slds-card__body">
-            <div>
                 <lightning-datatable
                     if:true={showData}
                     key-field="id"
+                    resize-column-disabled
                     data={data}
                     columns={columns}
                     onrowaction={handleRowActions}
                 >
                 </lightning-datatable>
-            </div>
         </div>
     </article>
 </template>
