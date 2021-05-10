@@ -5,13 +5,11 @@
     <excludeButtons>ContactHierarchy</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortal</excludeButtons>
     <excludeButtons>EnableCustomerPortal</excludeButtons>
     <excludeButtons>LoginToNetworkAsUser</excludeButtons>
     <excludeButtons>LoginToPortalAsUser</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
-    <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>StartOutboundConversation</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -184,6 +182,29 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Inquiry_Category_2__c</fields>
+        <fields>InclusionStage__c</fields>
+        <relatedList>CustomOpportunity__c.Contact__c</relatedList>
+        <sortField>InclusionStage__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Type__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>TemporaryLayoff__c.Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>TAG_Account__c</fields>
+        <fields>TAG_Category__c</fields>
+        <fields>TAG_StartDate__c</fields>
+        <relatedList>Contract__c.TAG_Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>Subject</fields>
         <fields>Status</fields>
         <fields>Address</fields>
@@ -199,7 +220,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000002L0RZ</masterLabel>
+        <masterLabel>00h1X000002Qbnm</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
