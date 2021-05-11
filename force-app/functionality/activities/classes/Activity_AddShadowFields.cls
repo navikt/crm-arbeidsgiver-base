@@ -1,4 +1,4 @@
-public with sharing class Activity_AddShadowFields {
+global with sharing class Activity_AddShadowFields extends MyTriggers {
     global override void onBeforeUpdate(Map<Id, SObject> triggerOldMap) {
         shadowPicklistValues((List<Task>) records);
     }
