@@ -6,6 +6,7 @@
     <required>false</required>
     <type>Picklist</type>
     <valueSet>
+        <restricted>true</restricted>
         <controllingField>TAG_ActivityType__c</controllingField>
         <valueSetDefinition>
             <sorted>false</sorted>
