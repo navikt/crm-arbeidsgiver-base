@@ -534,6 +534,11 @@
     </customPermissions>
     <description>Standard tilgang for ansatte som jobber med arbeidsgivere. Gir tilgang til Account, Contact, Activities og Nav Unit</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Account_18_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.Alias__c</field>
         <readable>true</readable>
