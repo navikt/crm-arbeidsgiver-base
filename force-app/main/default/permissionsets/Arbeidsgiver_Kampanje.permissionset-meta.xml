@@ -10,6 +10,11 @@
     </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Add_to_Custom_Campaign__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CustomCampaignMember__c.AccountLastActivity__c</field>
         <readable>true</readable>
     </fieldPermissions>
