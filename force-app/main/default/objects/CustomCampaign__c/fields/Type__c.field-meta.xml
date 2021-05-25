@@ -15,6 +15,16 @@
                 <default>false</default>
                 <label>Bedriftsundersøkelse</label>
             </value>
+            <value>
+                <fullName>Sommerjobbkampanje</fullName>
+                <default>false</default>
+                <label>Sommerjobbkampanje</label>
+            </value>
+            <value>
+                <fullName>Inkluderingskampanje</fullName>
+                <default>false</default>
+                <label>Inkluderingskampanje</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
