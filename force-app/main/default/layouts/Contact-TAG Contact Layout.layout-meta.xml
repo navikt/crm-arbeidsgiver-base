@@ -5,11 +5,13 @@
     <excludeButtons>ContactHierarchy</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortal</excludeButtons>
     <excludeButtons>EnableCustomerPortal</excludeButtons>
     <excludeButtons>LoginToNetworkAsUser</excludeButtons>
     <excludeButtons>LoginToPortalAsUser</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
+    <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>StartOutboundConversation</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -25,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>TAG_Informed__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HasOptedOutOfEmail</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -36,7 +42,7 @@
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Contact Information</label>
         <layoutColumns>
@@ -156,6 +162,13 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>CustomCampaign__c</fields>
+        <fields>Account__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>CustomCampaignMember__c.Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>ACCOUNT.NAME</fields>
         <fields>ACCOUNT.PARENT_NAME</fields>
         <relatedList>RelatedContactAccountRelationList</relatedList>
@@ -220,7 +233,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X000002Qbnm</masterLabel>
+        <masterLabel>00h1X000002VJYq</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
