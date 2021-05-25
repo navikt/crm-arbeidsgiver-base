@@ -25,6 +25,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CustomCampaignMember__c.Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CustomCampaignMember__c.CustomCampaign__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -96,6 +101,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomCampaign__c.NAVUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomCampaign__c.NAV_Unit__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
