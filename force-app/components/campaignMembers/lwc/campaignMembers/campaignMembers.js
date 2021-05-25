@@ -16,6 +16,7 @@ const columns = [
     typeAttributes: { label: { fieldName: "Name" }, target: "_self" }  },
     { label: 'Konto', fieldName: 'accountLink', type: 'url', wrapText: false,
     typeAttributes: { label: { fieldName: "Account" }, target: "_self" }  },
+    { label: 'Status', fieldName: 'Status', type: 'text' },
     {
         type: 'action',
         typeAttributes: { rowActions: actions }
@@ -28,6 +29,7 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
     @track columns = columns;
     @track showData = false;
     @track isModalOpen = false;
+    rowOffset = 0;
 
     @wire(getData, { recordId: '$recordId' })
     member(result) {
@@ -36,7 +38,6 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
             this.data = result.data;
             this.amount = result.data.length;
             this.showData = result.data.length > 0;
-            console.log('yo', result.data);
 
             let dataList = [];
             this.data.forEach((element) => {
@@ -44,6 +45,7 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
                 dataElement.Id = element.Id;
                 dataElement.Name = element.Name;
                 dataElement.Account = element.Account__r.Name;
+                dataElement.Status = element.Status__c;
                 dataElement.recordLink = "/" + element.Id; 
                 dataElement.accountLink = "/" + element.Account__c;
                 dataList.push(dataElement);
@@ -81,7 +83,7 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
             }
         });
     }
-
+    
     deleteRow(currentRow) {
         deleteCampaignMember({ recordId: this.currentRowId })
             .then((result) => {
@@ -108,9 +110,7 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
     navigateToNewRecordPage() {
        const defaultValues = encodeDefaultFieldValues({
             CustomCampaign__c: this.recordId
-           // UserId: this.userId
         }); 
-        console.log('1');
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {
@@ -122,5 +122,9 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
                 defaultFieldValues: defaultValues
             }
         });
+    }
+
+    refreshData() {
+        return refreshApex(this.refreshTable);
     }
 }
