@@ -7,22 +7,11 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <controllingField>IsSurvey__c</controllingField>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Ikke gjennomført</fullName>
-                <default>true</default>
-                <label>Ikke gjennomført</label>
-            </value>
-            <value>
-                <fullName>Gjennomført</fullName>
-                <default>false</default>
-                <label>Gjennomført</label>
-            </value>
-            <value>
                 <fullName>Ny</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Ny</label>
             </value>
             <value>
@@ -46,33 +35,5 @@
                 <label>Ikke aktuell</label>
             </value>
         </valueSetDefinition>
-        <valueSettings>
-            <controllingFieldValue>unchecked</controllingFieldValue>
-            <valueName>Ny</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>unchecked</controllingFieldValue>
-            <valueName>Sendt informasjon</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>unchecked</controllingFieldValue>
-            <valueName>Interessert</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>unchecked</controllingFieldValue>
-            <valueName>Inngått avtale</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>unchecked</controllingFieldValue>
-            <valueName>Ikke aktuell</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>checked</controllingFieldValue>
-            <valueName>Ikke gjennomført</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>checked</controllingFieldValue>
-            <valueName>Gjennomført</valueName>
-        </valueSettings>
     </valueSet>
 </CustomField>
