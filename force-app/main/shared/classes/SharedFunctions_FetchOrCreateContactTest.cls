@@ -1,5 +1,10 @@
 @isTest
 private without sharing class SharedFunctions_FetchOrCreateContactTest {
+    @TestSetup
+    static void makeData() {
+        insert new Account(name = 'Kontakter uten konto', INT_OrganizationNumber__c = 'AG_DEFAULT');
+    }
+
     @isTest
     private static void testGetExistingContacts_empty() {
         List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
@@ -201,5 +206,70 @@ private without sharing class SharedFunctions_FetchOrCreateContactTest {
 
         contacts = [SELECT Id FROM Contact];
         System.assertEquals(1, contacts.size(), 'After, one contact');
+    }
+
+    @isTest
+    private static void testCreateRemainingContacts_emptyOrgNo() {
+        Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+        insert acc;
+        List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+            new SharedFunctions_ContactModel('test', 'etternavn', '90080900', 'test@domain.com', '99999999', 'test')
+        };
+        Map<String, Contact> contactMap = new Map<String, Contact>();
+        Map<String, Account> accountMap = new Map<String, Account>();
+
+        List<Contact> contacts = [SELECT Id FROM Contact];
+        System.assertEquals(0, contacts.size(), 'Before, zero contacts');
+
+        Test.StartTest();
+        SharedFunctions_FetchOrCreateContact.createRemainingContacts(wrapperList, accountMap, contactMap);
+        Test.StopTest();
+
+        contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
+        System.assertEquals(1, contacts.size(), 'After, one contact');
+
+        Id defaultAccountId = SharedFunctions_FetchOrCreateContact.getDefaultAccountId();
+        System.assertEquals(
+            defaultAccountId,
+            contacts[0].Account.INT_OrganizationNumber__c,
+            'Contact should have the default account'
+        );
+    }
+
+    @isTest
+    private static void testCreateRemainingContacts_nullOrgNo() {
+        List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{
+            new SharedFunctions_ContactModel('test', 'etternavn', '90080900', 'test@domain.com', null, 'test')
+        };
+        Map<String, Contact> contactMap = new Map<String, Contact>();
+        Map<String, Account> accountMap = new Map<String, Account>();
+
+        List<Contact> contacts = [SELECT Id FROM Contact];
+        System.assertEquals(0, contacts.size(), 'Before, zero contacts');
+
+        Test.StartTest();
+        SharedFunctions_FetchOrCreateContact.createRemainingContacts(wrapperList, accountMap, contactMap);
+        Test.StopTest();
+
+        contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
+        System.assertEquals(1, contacts.size(), 'After, one contact');
+
+        Id defaultAccountId = SharedFunctions_FetchOrCreateContact.getDefaultAccountId();
+        System.assertEquals(
+            defaultAccountId,
+            contacts[0].Account.INT_OrganizationNumber__c,
+            'Contact should have the default account'
+        );
+    }
+
+    @isTest
+    private static void testGetDefaultAccountId() {
+        Id expectedId = [SELECT Id FROM Account WHERE INT_OrganizationNumber__c = 'AG_DEFAULT' LIMIT 1].Id;
+
+        Test.StartTest();
+        Id defaultAccountId = SharedFunctions_FetchOrCreateContact.getDefaultAccountId();
+        Test.StopTest();
+
+        System.assertEquals(expectedId, defaultAccountId, 'Account exists, thus the ID is returned');
     }
 }
