@@ -79,7 +79,7 @@ private without sharing class SharedFunctionsTest {
         Map<String, Account> accountMap = new Map<String, Account>();
 
         List<Contact> contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
-        System.assertEquals(0, contacts.size(), 'After, one contact');
+        System.assertEquals(0, contacts.size(), 'before, zero contacts');
 
         Test.StartTest();
         Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
@@ -110,7 +110,7 @@ private without sharing class SharedFunctionsTest {
         Map<String, Account> accountMap = new Map<String, Account>();
 
         List<Contact> contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
-        System.assertEquals(0, contacts.size(), 'After, one contact');
+        System.assertEquals(0, contacts.size(), 'before, zero contacts');
 
         Test.StartTest();
         Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
@@ -122,6 +122,84 @@ private without sharing class SharedFunctionsTest {
         Id defaultAccountId = SharedFunctions_FetchOrCreateContact.getDefaultAccountId();
         System.assertEquals(
             defaultAccountId,
+            contacts[0].Account.INT_OrganizationNumber__c,
+            'Contact should have the default account'
+        );
+    }
+
+    @isTest
+    private static void testFetchOrCreateContact_nullOrgNo_existingContact() {
+        Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+        insert acc;
+        Contact con = new Contact(
+            TAG_Informed__c = true,
+            LastName = 'Toråsen',
+            Email = 'test@domain.com',
+            AccountId = acc.Id
+        );
+        insert con;
+
+        SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel(
+            'test',
+            'etternavn',
+            '90080900',
+            'test@domain.com',
+            null,
+            'kurs'
+        );
+        List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
+        Map<String, Account> accountMap = new Map<String, Account>();
+
+        List<Contact> contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
+        System.assertEquals(1, contacts.size(), 'before, one contact');
+
+        Test.StartTest();
+        Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+        Test.StopTest();
+
+        contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
+        System.assertEquals(1, contacts.size(), 'After, one contact');
+        System.assertEquals(
+            acc.Id,
+            contacts[0].Account.INT_OrganizationNumber__c,
+            'Contact should have the default account.'
+        );
+    }
+
+    @isTest
+    private static void testFetchOrCreateContact_emptyOrgNo_existingContact() {
+        Account acc = new Account(Name = 'Test Employer 1', INT_OrganizationNumber__c = '99999999');
+        insert acc;
+        Contact con = new Contact(
+            TAG_Informed__c = true,
+            LastName = 'Toråsen',
+            Email = 'test@domain.com',
+            AccountId = acc.Id
+        );
+        insert con;
+
+        SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel(
+            'test',
+            'etternavn',
+            '90080900',
+            'test@domain.com',
+            '',
+            'kurs'
+        );
+        List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
+        Map<String, Account> accountMap = new Map<String, Account>();
+
+        List<Contact> contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
+        System.assertEquals(1, contacts.size(), 'before, one contact');
+
+        Test.StartTest();
+        Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+        Test.StopTest();
+
+        contacts = [SELECT Id, Account.INT_OrganizationNumber__c FROM Contact];
+        System.assertEquals(1, contacts.size(), 'After, one contact');
+        System.assertEquals(
+            acc.Id,
             contacts[0].Account.INT_OrganizationNumber__c,
             'Contact should have the default account'
         );
