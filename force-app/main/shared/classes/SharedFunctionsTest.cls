@@ -89,11 +89,7 @@ private without sharing class SharedFunctionsTest {
         System.assertEquals(1, contacts.size(), 'After, one contact');
 
         Id defaultAccountId = SharedFunctions_FetchOrCreateContact.getDefaultAccountId();
-        System.assertEquals(
-            defaultAccountId,
-            contacts[0].Account.INT_OrganizationNumber__c,
-            'Contact should have the default account.'
-        );
+        System.assertEquals(defaultAccountId, contacts[0].AccountId, 'Contact should have the default account.');
     }
 
     @isTest
@@ -120,11 +116,7 @@ private without sharing class SharedFunctionsTest {
         System.assertEquals(1, contacts.size(), 'After, one contact');
 
         Id defaultAccountId = SharedFunctions_FetchOrCreateContact.getDefaultAccountId();
-        System.assertEquals(
-            defaultAccountId,
-            contacts[0].Account.INT_OrganizationNumber__c,
-            'Contact should have the default account'
-        );
+        System.assertEquals(defaultAccountId, contacts[0].AccountId, 'Contact should have the default account');
     }
 
     @isTest
