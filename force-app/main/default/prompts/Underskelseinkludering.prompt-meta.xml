@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Undersøkelse inkludering</masterLabel>
+    <promptVersions>
+        <actionButtonLabel>Til undersøkelsen</actionButtonLabel>
+        <actionButtonLink>https://forms.office.com/r/V0xQ27w23y</actionButtonLink>
+        <body>Vi har laget ett spørreskjema med fokus på hvordan løsningen brukes til å finne arbeidsgivere i forbindelse med inkludering. Vi setter pris på om du kan bruke noen minutter på og svare på noen spørsmål.</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <description>Ved å svare på dette spørreskjema bidrar du med nyttig informasjon til teamet som arbeider med å tilpasse CRM-verktøyet Salesforce mot arbeidsgivere. Målet til utviklingsteamet er å tilpasse verktøyet best mulig til behovet i NAV.</description>
+        <dismissButtonLabel>Skjul melding</dismissButtonLabel>
+        <displayPosition>TopCenter</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <endDate>2021-06-09</endDate>
+        <isPublished>true</isPublished>
+        <masterLabel>Undersøkelse inkludering</masterLabel>
+        <publishedDate>2021-06-03</publishedDate>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2021-06-03</startDate>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <timesToDisplay>3</timesToDisplay>
+        <title>Vi trenger din hjelp</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
