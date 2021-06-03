@@ -139,7 +139,10 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
         List<Contact> newContacts = new List<Contact>();
         for (SharedFunctions_ContactModel cw : wrapperList) {
             if (!contactMap.containsKey(cw.email.toLowerCase())) {
-                Id accountId = accountMap.containsKey(cw.companyNumber) ? accountMap.get(cw.companyNumber).Id : null;
+                Id accountId = accountMap.containsKey(cw.companyNumber)
+                    ? accountMap.get(cw.companyNumber).Id
+                    : getDefaultAccountId();
+
                 Contact con = new Contact(
                     FirstName = cw.firstName,
                     LastName = cw.lastName,
@@ -162,5 +165,12 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
         }
 
         insert newContacts;
+    }
+
+    public static Id getDefaultAccountId() {
+        List<Account> defaultAccount = [SELECT Id FROM Account WHERE INT_OrganizationNumber__c = 'AG_DEFAULT' LIMIT 1];
+        Id defaultAccountId = defaultAccount.size() > 0 ? defaultAccount[0].Id : null;
+
+        return defaultAccountId;
     }
 }

@@ -84,7 +84,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -610,10 +610,10 @@
                         <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Contact__r.Account.Name</leftValueReference>
+                <leftValueReference>myVariable_current.Contact__r.Account.INT_OrganizationNumber__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Kontakter uten konto</stringValue>
+                    <stringValue>AG_DEFAULT</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -745,7 +745,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -925,7 +925,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue />
                 </value>
             </processMetadataValues>
             <processMetadataValues>
