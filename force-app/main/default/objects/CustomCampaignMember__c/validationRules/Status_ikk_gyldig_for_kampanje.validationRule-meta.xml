@@ -4,12 +4,13 @@
     <active>true</active>
     <description>Sjekker at det er brukt status som er brukt i kampanjen</description>
     <errorConditionFormula>AND(
-TEXT(CustomCampaign__r.Type__c)=&quot;Sommerjobbkampanje&quot;,
-TEXT(Status__c) = &quot;Ikke Gejnnomført&quot;,
-TEXT(Status__c) = &quot;Gjennomført&quot;,
-TEXT(Status__c) = &quot;Besvart&quot;,
-TEXT(Status__c) = &quot;Ikke Besvart&quot;
-)</errorConditionFormula>
+OR(
+ISPICKVAL(Status__c, &quot;Ikke Gjennomført&quot;),
+ISPICKVAL(Status__c, &quot;Gjennomført&quot;),
+ISPICKVAL(Status__c , &quot;Besvart&quot;),
+ISPICKVAL(Status__c , &quot;Ikke Besvart&quot;)),
+
+ISPICKVAL(CustomCampaign__r.Type__c,&quot;Sommerjobbkampanje&quot;))</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
     <errorMessage>Du har valgt en status som ikke er gyldig for Tilskudd til sommerjobb. Velg en av følgende statuser:
 Ny, Sendt informasjon, Interessert, Ingått avtale, Ikke aktuell</errorMessage>
