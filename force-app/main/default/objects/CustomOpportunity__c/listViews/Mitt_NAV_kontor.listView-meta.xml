@@ -16,10 +16,5 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
-    <filters>
-        <field>InclusionStage__c</field>
-        <operation>equals</operation>
-        <value>Ny henvendelse</value>
-    </filters>
     <label>Mitt NAV-kontor</label>
 </ListView>
