@@ -5,6 +5,7 @@
     <columns>CRM_AccountType__c</columns>
     <columns>INT_OrganizationNumber__c</columns>
     <columns>ACCOUNT.ADDRESS2_CITY</columns>
+    <columns>ACCOUNT.EMPLOYEES</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>IS_PERSON_ACCOUNT</field>
