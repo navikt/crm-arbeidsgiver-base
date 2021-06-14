@@ -16,16 +16,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Account_18_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Add_to_Custom_Campaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.Alias__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -46,11 +36,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.CRM_Activities_on_sub_accounts__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.CRM_IsPilot__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -67,11 +52,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.CRM_RegistrationYear__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.CRM_Ultimate_Parent_Account__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -97,26 +77,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Fax</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.INT_Industry2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.INT_Industry3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.INT_IndustryCode2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.INT_IndustryCode3__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -192,16 +152,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.INT_RegionNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.INT_SectorCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.INT_Sector__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -286,6 +236,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.CRM_Activities_on_sub_accounts__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_DeletedDateFormula__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -357,6 +312,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.TAG_Proff_no__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.CRM_Ultimate_Parent_Account__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -761,16 +721,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CustomCampaignMember__c.Contact__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaignMember__c.CustomCampaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomCampaignMember__c.IsContacted__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -782,11 +732,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomCampaignMember__c.IsMyNavOffice__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaignMember__c.IsSurvey__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -836,17 +781,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CustomCampaign__c.IsMyNavOffice__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomCampaign__c.NAVUnit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaign__c.NAV_Unit__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1201,16 +1136,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Event.TAG_AccountNAVUnit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Event.TAG_AccountOrgType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Event.TAG_AccountParentId__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1242,11 +1167,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.TAG_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Event.TAG_UserNAVUnit__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1391,16 +1311,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Task.TAG_AccountNAVUnit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Task.TAG_AccountOrgType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Task.TAG_AccountParentId__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1432,11 +1342,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Task.TAG_UserNAVUnit__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

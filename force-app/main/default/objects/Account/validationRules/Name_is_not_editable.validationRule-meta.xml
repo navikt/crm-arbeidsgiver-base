@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Name_is_not_editable</fullName>
-    <active>true</active>
-    <description>Only users with custom permission are allowed to edit account name</description>
-    <errorConditionFormula>ISCHANGED(Name) &amp;&amp; NOT($Permission.ManageAccounts)</errorConditionFormula>
-    <errorDisplayField>Name</errorDisplayField>
-    <errorMessage>Du har ikke tillatelse til å endre navn</errorMessage>
-</ValidationRule>

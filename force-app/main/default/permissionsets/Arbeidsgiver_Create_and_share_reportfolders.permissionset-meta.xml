@@ -12,16 +12,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Account_18_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Add_to_Custom_Campaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.Alias__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -757,16 +747,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CustomCampaignMember__c.Contact__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaignMember__c.CustomCampaign__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomCampaignMember__c.IsContacted__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -778,11 +758,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CustomCampaignMember__c.IsMyNavOffice__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaignMember__c.IsSurvey__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -832,17 +807,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CustomCampaign__c.IsMyNavOffice__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomCampaign__c.NAVUnit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaign__c.NAV_Unit__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
