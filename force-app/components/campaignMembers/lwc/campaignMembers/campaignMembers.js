@@ -8,14 +8,24 @@ import deleteCampaignMember from '@salesforce/apex/CampaignMemberController.dele
 
 const actions = [
     { label: 'Rediger', name: 'edit' },
-    { label: 'Slett', name: 'delete' },
+    { label: 'Slett', name: 'delete' }
 ];
 
 const columns = [
-    { label: 'Name', fieldName: 'recordLink', type: 'url', wrapText: false, 
-    typeAttributes: { label: { fieldName: "Name" }, target: "_self" }  },
-    { label: 'Konto', fieldName: 'accountLink', type: 'url', wrapText: false,
-    typeAttributes: { label: { fieldName: "Account" }, target: "_self" }  },
+    {
+        label: 'Name',
+        fieldName: 'recordLink',
+        type: 'url',
+        wrapText: false,
+        typeAttributes: { label: { fieldName: 'Name' }, target: '_self' }
+    },
+    {
+        label: 'Konto',
+        fieldName: 'accountLink',
+        type: 'url',
+        wrapText: false,
+        typeAttributes: { label: { fieldName: 'Account' }, target: '_self' }
+    },
     { label: 'Status', fieldName: 'Status', type: 'text' },
     {
         type: 'action',
@@ -46,8 +56,8 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
                 dataElement.Name = element.Name;
                 dataElement.Account = element.Account__r.Name;
                 dataElement.Status = element.Status__c;
-                dataElement.recordLink = "/" + element.Id; 
-                dataElement.accountLink = "/" + element.Account__c;
+                dataElement.recordLink = '/' + element.Id;
+                dataElement.accountLink = '/' + element.Account__c;
                 dataList.push(dataElement);
             });
 
@@ -60,7 +70,7 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
         let row = event.detail.row;
         this.currentRowId = row.Id;
         this.currentRowUserId = row.UserId;
-        
+
         switch (actionName) {
             case 'delete':
                 this.deleteRow(row);
@@ -83,7 +93,7 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
             }
         });
     }
-    
+
     deleteRow(currentRow) {
         deleteCampaignMember({ recordId: this.currentRowId })
             .then((result) => {
@@ -108,9 +118,9 @@ export default class CampaignMembers extends NavigationMixin(LightningElement) {
     }
 
     navigateToNewRecordPage() {
-       const defaultValues = encodeDefaultFieldValues({
+        const defaultValues = encodeDefaultFieldValues({
             CustomCampaign__c: this.recordId
-        }); 
+        });
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {

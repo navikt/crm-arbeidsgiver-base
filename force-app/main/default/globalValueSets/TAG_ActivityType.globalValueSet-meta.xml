@@ -16,16 +16,16 @@
         <label>Nedbemanne</label>
     </customValue>
     <customValue>
-        <fullName>Generelt markedsarbeid</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Generelt markedsarbeid</label>
-    </customValue>
-    <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Bedriftsundersøkelse</label>
+    </customValue>
+    <customValue>
+        <fullName>Generelt markedsarbeid</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Generelt markedsarbeid</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
