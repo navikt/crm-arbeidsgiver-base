@@ -12,7 +12,7 @@ public with sharing class AccountMessagesController {
         return null;
     }
 
-    @AuraEnabled
+    @AuraEnabled wefefwfe
     public static Account getAccount(Id recordId) {
         Id currentId;
         Account parent = [SELECT ParentId FROM Account WHERE Id = :recordId LIMIT 1];
