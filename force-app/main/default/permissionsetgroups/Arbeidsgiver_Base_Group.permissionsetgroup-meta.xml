@@ -2,6 +2,8 @@
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>For de som jobber med arbeidsgivere</description>
     <label>Arbeidsgiver - Base (Group)</label>
+    <permissionSets>Arbeidsgiver_Create_and_share_reportfolders</permissionSets>
+    <permissionSets>Arbeidsgiver_Kampanje</permissionSets>
     <permissionSets>Arbeidsgiver_NavApp</permissionSets>
     <permissionSets>Arbeidsgiver_NavTask</permissionSets>
     <permissionSets>Arbeidsgiver_arenaActivity</permissionSets>

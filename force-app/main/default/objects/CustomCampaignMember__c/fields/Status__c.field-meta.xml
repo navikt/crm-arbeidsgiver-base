@@ -10,14 +10,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Ikke gjennomført</fullName>
+                <fullName>Ny</fullName>
                 <default>true</default>
-                <label>Ikke gjennomført</label>
+                <label>Ny</label>
             </value>
             <value>
-                <fullName>Gjennomført</fullName>
+                <fullName>Sendt informasjon</fullName>
                 <default>false</default>
-                <label>Gjennomført</label>
+                <label>Sendt informasjon</label>
+            </value>
+            <value>
+                <fullName>Interessert</fullName>
+                <default>false</default>
+                <label>Interessert</label>
+            </value>
+            <value>
+                <fullName>Inngått avtale</fullName>
+                <default>false</default>
+                <label>Inngått avtale</label>
+            </value>
+            <value>
+                <fullName>Ikke aktuell</fullName>
+                <default>false</default>
+                <label>Ikke aktuell</label>
             </value>
         </valueSetDefinition>
     </valueSet>

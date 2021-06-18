@@ -7,13 +7,22 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
                 <fullName>Bedriftsundersøkelse</fullName>
                 <default>false</default>
                 <label>Bedriftsundersøkelse</label>
+            </value>
+            <value>
+                <fullName>Sommerjobbkampanje</fullName>
+                <default>false</default>
+                <label>Sommerjobbkampanje</label>
+            </value>
+            <value>
+                <fullName>Inkluderingskampanje</fullName>
+                <default>false</default>
+                <label>Inkluderingskampanje</label>
             </value>
         </valueSetDefinition>
     </valueSet>

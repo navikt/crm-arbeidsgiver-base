@@ -534,6 +534,11 @@
     </customPermissions>
     <description>Standard tilgang for ansatte som jobber med arbeidsgivere. Gir tilgang til Account, Contact, Activities og Nav Unit</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Account_18_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.Alias__c</field>
         <readable>true</readable>
@@ -561,6 +566,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Score_WellBeing__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.CRM_MainIndustry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -756,6 +766,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Email</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.HasOptedOutOfEmail</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

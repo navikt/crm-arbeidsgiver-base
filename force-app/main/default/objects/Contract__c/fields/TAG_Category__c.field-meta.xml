@@ -8,7 +8,6 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -20,6 +19,11 @@
                 <fullName>IA-avtale</fullName>
                 <default>false</default>
                 <label>IA-avtale</label>
+            </value>
+            <value>
+                <fullName>Inkluderingsavtale (Arbeidsgiver)</fullName>
+                <default>false</default>
+                <label>Inkluderingsavtale (Arbeidsgiver)</label>
             </value>
         </valueSetDefinition>
     </valueSet>
