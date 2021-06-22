@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Tema --></label>
+    <name>Departments__c</name>
+    <picklistValues>
+        <masterLabel>Forebygge og redusere sykefravær og frafall</masterLabel>
+        <translation><!-- Forebygge og redusere sykefravær og frafall --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Generelt markedsarbeid</masterLabel>
+        <translation><!-- Generelt markedsarbeid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nedbemanne</masterLabel>
+        <translation><!-- Nedbemanne --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rekruttering og inkludering</masterLabel>
+        <translation><!-- Rekruttering og inkludering --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

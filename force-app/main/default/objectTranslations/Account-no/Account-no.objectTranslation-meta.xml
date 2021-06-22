@@ -20,8 +20,16 @@
         <name>Legg_til_kampanje</name>
     </quickActions>
     <quickActions>
+        <label><!-- New Event --></label>
+        <name>TAG_CreateEventListview</name>
+    </quickActions>
+    <quickActions>
         <label><!-- New Task --></label>
         <name>TAG_CreateTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>TAG_CreateTaskListview</name>
     </quickActions>
     <quickActions>
         <label><!-- New Event --></label>
