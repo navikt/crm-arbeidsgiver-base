@@ -1,4 +1,4 @@
-public with sharing class SharedFunctions_FetchOrCreateContact {
+public without sharing class SharedFunctions_FetchOrCreateContact {
     // will check both Email and InvalidEmail__c in case the email is Salesforce invalid (but not invalid for Norwegians, e.g., ÆØÅ)
     public static List<Contact> getExistingContacts(List<SharedFunctions_ContactModel> wrapperList) {
         Set<String> emails = new Set<String>();
