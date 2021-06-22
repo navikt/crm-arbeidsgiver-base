@@ -3,56 +3,56 @@
     <caseValues>
         <article>Definite</article>
         <plural>false</plural>
-        <value>Bedriftskampanjemedlemmet</value>
+        <value>Innkomne oppgaven</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value>Bedriftskampanjemedlem</value>
+        <value>Innkommende oppgave</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>false</plural>
-        <value>Bedriftskampanjemedlem</value>
+        <value>Innkommende oppgave</value>
     </caseValues>
     <caseValues>
         <article>Definite</article>
         <plural>true</plural>
-        <value>Bedriftskampanjemedlemmene</value>
+        <value>Innkomne oppgavene</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value>Bedriftskampanjemedlemer</value>
+        <value>Innkomne oppgaver</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>true</plural>
-        <value>Bedriftskampanjemedlemmer</value>
+        <value>Innkomne oppgaver</value>
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-        <layout>Custom Campaign Member Layout</layout>
+        <layout>NAV Task Layout</layout>
+        <sections>
+            <label><!-- Beskrivelse --></label>
+            <section>Beskrivelse</section>
+        </sections>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Oppfølging --></label>
-            <section>Oppfølging</section>
+            <label><!-- Intern oppfølging --></label>
+            <section>Intern oppfølging</section>
         </sections>
         <sections>
-            <label><!-- Relaterte --></label>
-            <section>Relaterte</section>
+            <label><!-- Opplysninger --></label>
+            <section>Opplysninger</section>
         </sections>
     </layouts>
-    <nameFieldLabel>Bedriftskampanjemedlem</nameFieldLabel>
-    <quickActions>
-        <label><!-- Følg opp --></label>
-        <name>FollowUp</name>
-    </quickActions>
-    <webLinks>
-        <label><!-- OpenSurvey --></label>
-        <name>OpenSurvey</name>
-    </webLinks>
+    <nameFieldLabel><!-- Navn --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- Du må bekrefte at feltet &quot;Kommentarer&quot; ikke inneholder personsensitive opplysninger --></errorMessage>
+        <name>No_person_information_added</name>
+    </validationRules>
 </CustomObjectTranslation>

@@ -9,163 +9,213 @@
         <name>TAG_NAV_default</name>
     </customApplications>
     <customLabels>
-        <label><!-- Errors_CannotFindTriggerHandlerClass --></label>
+        <label />
         <name>Errors_CannotFindTriggerHandlerClass</name>
     </customLabels>
     <customLabels>
-        <label><!-- Errors_DuplicateTriggerHandlerClass --></label>
+        <label />
         <name>Errors_DuplicateTriggerHandlerClass</name>
     </customLabels>
     <customLabels>
-        <label><!-- Errors_InvalidSettingConfiguration --></label>
+        <label />
         <name>Errors_InvalidSettingConfiguration</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Activities -->
+        </label>
         <name>Timeline_Activities</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] All Data Loaded -->
+        </label>
         <name>Timeline_AllDataLoaded</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Collapse -->
+        </label>
         <name>Timeline_Collapse</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Empty Group -->
+        </label>
         <name>Timeline_EmptyGroup</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Empty Subtitle -->
+        </label>
         <name>Timeline_EmptySubtitle</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Empty Title -->
+        </label>
         <name>Timeline_EmptyTitle</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Error Title -->
+        </label>
         <name>Timeline_ErrorTitle</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Expand -->
+        </label>
         <name>Timeline_Expand</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Last -->
+        </label>
         <name>Timeline_Last</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Load More -->
+        </label>
         <name>Timeline_LoadMore</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Moment.js Language -->
+        </label>
         <name>Timeline_MomentJsLanguage</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] New -->
+        </label>
         <name>Timeline_New</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Not Configured -->
+        </label>
         <name>Timeline_NotConfugred</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Older -->
+        </label>
         <name>Timeline_Older</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Overdue -->
+        </label>
         <name>Timeline_Overdue</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Previous Month -->
+        </label>
         <name>Timeline_PreviousMonth</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] This Month -->
+        </label>
         <name>Timeline_ThisMonth</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Today -->
+        </label>
         <name>Timeline_Today</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Tomorrow -->
+        </label>
         <name>Timeline_Tomorrow</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Unknown -->
+        </label>
         <name>Timeline_Unknown</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Upcoming -->
+        </label>
         <name>Timeline_Upcoming</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] View All -->
+        </label>
         <name>Timeline_ViewAll</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] View More -->
+        </label>
         <name>Timeline_ViewMore</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] Yesterday -->
+        </label>
         <name>Timeline_Yesterday</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label>
+            <!-- [ActTime] You -->
+        </label>
         <name>Timeline_You</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when selecting a cross-object fieldsset is not allowed and attempted. --></label>
+        <label />
         <name>fflib_QueryFactory_crossobject_fieldsets_not_allowed_error</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when selecting a field set for a different sobject type. --></label>
+        <label />
         <name>fflib_QueryFactory_fieldset_wrong_sobject_error</name>
     </customLabels>
     <customLabels>
-        <label><!-- Presented when attempting to nest subqueries. --></label>
+        <label />
         <name>fflib_QueryFactory_recursive_subquery_error</name>
     </customLabels>
     <customLabels>
-        <label><!-- Presented when attempting to create a subquery from an invalid relationship. --></label>
+        <label />
         <name>fflib_QueryFactory_subquery_invalid_relationship</name>
     </customLabels>
     <customLabels>
-        <label><!-- fflib_security_error_field_not_insertable --></label>
+        <label />
         <name>fflib_security_error_field_not_insertable</name>
     </customLabels>
     <customLabels>
-        <label><!-- fflib_security_error_field_not_readable --></label>
+        <label />
         <name>fflib_security_error_field_not_readable</name>
     </customLabels>
     <customLabels>
-        <label><!-- fflib_security_error_field_not_updateable --></label>
+        <label />
         <name>fflib_security_error_field_not_updateable</name>
     </customLabels>
     <customLabels>
-        <label><!-- fflib_security_error_object_not_deletable --></label>
+        <label />
         <name>fflib_security_error_object_not_deletable</name>
     </customLabels>
     <customLabels>
-        <label><!-- fflib_security_error_object_not_insertable --></label>
+        <label />
         <name>fflib_security_error_object_not_insertable</name>
     </customLabels>
     <customLabels>
-        <label><!-- fflib_security_error_object_not_readable --></label>
+        <label />
         <name>fflib_security_error_object_not_readable</name>
     </customLabels>
     <customLabels>
-        <label><!-- fflib_security_error_object_not_updateable --></label>
+        <label />
         <name>fflib_security_error_object_not_updateable</name>
     </customLabels>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Account_Team_Update</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -180,73 +230,73 @@
         <fullName>Add_campaign_member</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Contract</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Custom_Opportunity_update_Inq_Cat_2</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>NAVTask_Owner_Change</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Opportunity</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>TAG_Update_NavUnit_in_NavTask</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Task</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>Temporary_Layoff_Update</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
             <choices>
-                <name>Agder</name>
-            </choices>
-            <choices>
-                <name>Innlandet</name>
-            </choices>
-            <choices>
-                <name>MoreogRomsdal</name>
-            </choices>
-            <choices>
-                <name>Nordland</name>
-            </choices>
-            <choices>
-                <name>Olso</name>
+                <name>OstViken</name>
             </choices>
             <choices>
                 <name>Oslo</name>
             </choices>
             <choices>
-                <name>OstViken</name>
+                <name>TromsogFinnmark</name>
             </choices>
             <choices>
                 <name>Rogaland</name>
             </choices>
             <choices>
-                <name>TromsogFinnmark</name>
+                <name>MoreogRomsdal</name>
             </choices>
             <choices>
-                <name>Trondelag</name>
+                <name>Innlandet</name>
             </choices>
             <choices>
-                <name>VestfoldogTelemark</name>
+                <name>Olso</name>
+            </choices>
+            <choices>
+                <name>Nordland</name>
+            </choices>
+            <choices>
+                <name>Agder</name>
+            </choices>
+            <choices>
+                <name>VestViken</name>
             </choices>
             <choices>
                 <name>Vestland</name>
             </choices>
             <choices>
-                <name>VestViken</name>
+                <name>VestfoldogTelemark</name>
+            </choices>
+            <choices>
+                <name>Trondelag</name>
             </choices>
             <screens>
                 <fields>
@@ -261,51 +311,9 @@
         <fullName>Update_NAVUnits</fullName>
     </flowDefinitions>
     <prompts>
-        <name>Virksomhetskortet</name>
-        <promptVersions>
-            <name>Virksomhetskortet</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudPipelineInspectionDockedPrompt</name>
-        <promptVersions>
-            <name>Sales Cloud Pipeline Inspection Docked Prompt</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>VelkomstmeldingtilNAVKontorbrukereTAG</name>
-        <promptVersions>
-            <name>Velkomst melding til NAV Kontor brukere (TAG)</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ServiceCloudCoreReportsTab</name>
-        <promptVersions>
-            <name>Service Cloud Core Reports Tab</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>Lenketilproffnoerforbedret</name>
-        <promptVersions>
-            <name>Lenke til proff.no er forbedret</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
         <name>Fullfreoppgaven</name>
         <promptVersions>
             <name>Fullføre oppgaven</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ServiceCloudTrialCasesTab</name>
-        <promptVersions>
-            <name>Service Cloud Trial Cases Tab</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ReleaseReadinessSales</name>
-        <promptVersions>
-            <name>Release Readiness Sales</name>
         </promptVersions>
     </prompts>
     <prompts>
@@ -315,117 +323,15 @@
         </promptVersions>
     </prompts>
     <prompts>
-        <name>ServiceCloudTrialDashboardGuide</name>
+        <name>VelkomstmeldingtilNAVKontorbrukereTAG</name>
         <promptVersions>
-            <name>Service Cloud Trial Dashboard Guide</name>
+            <name>Velkomst melding til NAV Kontor brukere (TAG)</name>
         </promptVersions>
     </prompts>
     <prompts>
-        <name>Innkomneoppgaverhjemskjermen</name>
+        <name>FinnInnkomneoppgaver</name>
         <promptVersions>
-            <name>Innkomne oppgaver hjemskjermen</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudCoreContactsTab</name>
-        <promptVersions>
-            <name>Sales Cloud Core Contacts Tab</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ServiceCloudCoreHomepage</name>
-        <promptVersions>
-            <name>Service Cloud Core Homepage</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudCoreOpportunitiesTab</name>
-        <promptVersions>
-            <name>Sales Cloud Core Opportunities Tab</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ServiceCloudCoreChatter</name>
-        <promptVersions>
-            <name>Service Cloud Core Chatter</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudCoreHomepage</name>
-        <promptVersions>
-            <name>Sales Cloud Core Homepage</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>Underskelseinkludering</name>
-        <promptVersions>
-            <name>Undersøkelse inkludering</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>EndreEierpoppgaven</name>
-        <promptVersions>
-            <name>Endre Eier på oppgaven</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCoreQuoteAdminCpq</name>
-        <promptVersions>
-            <name>Sales Core Quote Admin to CPQ</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ServiceCloudCoreCases</name>
-        <promptVersions>
-            <name>Service Cloud Core Cases</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ReleaseReadiness</name>
-        <promptVersions>
-            <name>Release Readiness</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudCoreChatterTab</name>
-        <promptVersions>
-            <name>Sales Cloud Core Chatter Tab</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudTrialKanbanVideo</name>
-        <promptVersions>
-            <name>Sales Cloud Trial Kanban Video</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudTrialContactsListViewsVideo</name>
-        <promptVersions>
-            <name>Sales Cloud Trial Contacts List Views Video</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>ServiceCloudTrialChatterGuide</name>
-        <promptVersions>
-            <name>Service Cloud Trial Chatter Guide</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudTrialHomePage</name>
-        <promptVersions>
-            <name>Sales Cloud Trial Home Page</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudTrialChatterGuide</name>
-        <promptVersions>
-            <name>Sales Cloud Trial Chatter Guide</name>
-        </promptVersions>
-    </prompts>
-    <prompts>
-        <name>SalesCloudTrailPreconfiguredDashboardsGuide</name>
-        <promptVersions>
-            <name>Sales Cloud Trail Pre-configured Dashboards Guide</name>
+            <name>Finn Innkomne oppgaver</name>
         </promptVersions>
     </prompts>
     <prompts>
@@ -435,15 +341,27 @@
         </promptVersions>
     </prompts>
     <prompts>
-        <name>ServiceCloudTrialHomepageGuide</name>
+        <name>Innkomneoppgaverhjemskjermen</name>
         <promptVersions>
-            <name>Service Cloud Trial Homepage Guide</name>
+            <name>Innkomne oppgaver hjemskjermen</name>
         </promptVersions>
     </prompts>
     <prompts>
-        <name>SalesCloudCoreReportsTab</name>
+        <name>Lenketilproffnoerforbedret</name>
         <promptVersions>
-            <name>Sales Cloud Core Reports Tab</name>
+            <name>Lenke til proff.no er forbedret</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>Virksomhetskortet</name>
+        <promptVersions>
+            <name>Virksomhetskortet</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EndreEierpoppgaven</name>
+        <promptVersions>
+            <name>Endre Eier på oppgaven</name>
         </promptVersions>
     </prompts>
     <prompts>
@@ -452,250 +370,270 @@
             <name>Om ny Proff link</name>
         </promptVersions>
     </prompts>
-    <prompts>
-        <name>FinnInnkomneoppgaver</name>
-        <promptVersions>
-            <name>Finn Innkomne oppgaver</name>
-        </promptVersions>
-    </prompts>
     <quickActions>
-        <label><!-- Log a Call --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>LogACall</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewAccount --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewAccount</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewCase --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewCase</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewContact --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewContact</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewEvent --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewEvent</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewGroup --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewGroup</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewLead --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewLead</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewNote --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewNote</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewOpportunity --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewOpportunity</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewTask --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>NewTask</name>
     </quickActions>
     <quickActions>
-        <label><!-- SendEmail --></label>
+        <aspect>Master</aspect>
+        <label />
         <name>SendEmail</name>
     </quickActions>
     <reportTypes>
-        <description><!-- Admin dashboard Rapport --></description>
-        <label><!-- Admin dashboard Rapport --></label>
+        <description />
+        <label />
         <name>Admin_dashboard_Rapport</name>
         <sections>
-            <label><!-- Dashboard Components --></label>
+            <label />
             <name>Dashboard Components</name>
         </sections>
         <sections>
-            <label><!-- Dashboards --></label>
+            <label />
             <name>Dashboards</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Admin rapport over Rapporter --></description>
-        <label><!-- Admin rapport over Rapporter --></label>
+        <description />
+        <label />
         <name>Admin_rapport_over_Rapporter</name>
         <sections>
-            <label><!-- Dashboard Components --></label>
+            <label />
             <name>Dashboard Components</name>
         </sections>
         <sections>
-            <label><!-- Reports --></label>
+            <label />
             <name>Reports</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Bedriftskampanjemedlemmer med Aktiviteter og Konto --></description>
-        <label><!-- Bedriftskampanjemedlemmer med Aktiviteter og Konto --></label>
-        <name>Bedriftskampanjemedlemmer_med_Konto</name>
-        <sections>
-            <label><!-- Activities --></label>
-            <name>Activities</name>
-        </sections>
-        <sections>
-            <label><!-- Custom Campaign Members --></label>
-            <name>Custom Campaign Members</name>
-        </sections>
-        <sections>
-            <label><!-- Konto --></label>
-            <name>Konto</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description/>
-        <label/>
+        <description>
+            <!-- Kampanje med kontoer -->
+        </description>
+        <label>
+            <!-- Kampanje med kontoer -->
+        </label>
         <name>Kampanjer_med_kontoer_og_kontakter</name>
         <sections>
-            <label/>
+            <label>
+                <!-- Custom Campaign Members -->
+            </label>
             <name>Custom Campaign Members</name>
         </sections>
         <sections>
-            <label/>
+            <label>
+                <!-- Custom Campaigns -->
+            </label>
             <name>Custom Campaigns</name>
         </sections>
         <sections>
-            <label/>
+            <label>
+                <!-- Kontoer -->
+            </label>
             <name>Kontoer</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description/>
-        <label/>
+        <description>
+            <!-- Kontakter i kampanje -->
+        </description>
+        <label>
+            <!-- Kontakter i kampanje -->
+        </label>
         <name>Kontakter_i_kampanje</name>
         <sections>
-            <label/>
+            <label>
+                <!-- Account Relationships -->
+            </label>
             <name>Account Relationships</name>
         </sections>
         <sections>
-            <label/>
+            <label>
+                <!-- Contacts -->
+            </label>
             <name>Contacts</name>
         </sections>
         <sections>
-            <label/>
+            <label>
+                <!-- Custom Campaign Members -->
+            </label>
             <name>Custom Campaign Members</name>
         </sections>
         <sections>
-            <label/>
+            <label>
+                <!-- Felter fra konto -->
+            </label>
             <name>Felter fra konto</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description/>
-        <label/>
+        <description>
+            <!-- Kontakter med Arbeidsgivere som har Arena Aktivite -->
+        </description>
+        <label>
+            <!-- Kontakter med Arbeidsgivere som har Arena Aktivite -->
+        </label>
         <name>Kontakter_med_Arbeidsgivere_som_har_Arena_Aktivite</name>
         <sections>
-            <label/>
+            <label>
+                <!-- Account Relationships -->
+            </label>
             <name>Account Relationships</name>
         </sections>
         <sections>
-            <label/>
+            <label>
+                <!-- Arena Aktiviteter -->
+            </label>
             <name>Arena Aktiviteter</name>
         </sections>
         <sections>
-            <label/>
+            <label>
+                <!-- Contacts -->
+            </label>
             <name>Contacts</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Kontoer med NAV Kontaktperson --></description>
-        <label><!-- Kontoer med NAV Kontaktperson --></label>
+        <description />
+        <label />
         <name>Kontoer_med_NAV_Kontaktperson</name>
         <sections>
-            <label><!-- Account Team --></label>
+            <label />
             <name>Account Team</name>
         </sections>
         <sections>
-            <label><!-- Accounts --></label>
+            <label />
             <name>Accounts</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Kontoer med eller uten kontakter --></description>
-        <label><!-- Kontoer med eller uten kontakter --></label>
+        <description />
+        <label />
         <name>Kontoer_med_eller_uten_kontakter</name>
         <sections>
-            <label><!-- Accounts --></label>
+            <label />
             <name>Accounts</name>
         </sections>
         <sections>
-            <label><!-- Contacts --></label>
+            <label />
             <name>Contacts</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Kontoer med eller uten kontaktpersponer fra NAV --></description>
-        <label><!-- Kontoer med eller uten kontaktpersponer fra NAV --></label>
+        <description />
+        <label />
         <name>Kontoer_med_eller_uten_kontaktpersponer_fra_NAV</name>
         <sections>
-            <label><!-- Account Team --></label>
+            <label />
             <name>Account Team</name>
         </sections>
         <sections>
-            <label><!-- Accounts --></label>
+            <label />
             <name>Accounts</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Kontoer uten kontaktpersponer fra NAV --></description>
-        <label><!-- Kontoer uten kontaktpersponer fra NAV --></label>
+        <description />
+        <label />
         <name>Kontoer_uten_kontaktpersponer_fra_NAV</name>
         <sections>
-            <label><!-- Account Team --></label>
+            <label />
             <name>Account Team</name>
         </sections>
         <sections>
-            <label><!-- Accounts --></label>
+            <label />
             <name>Accounts</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Muligheter med konto og NAV-Kontor --></description>
-        <label><!-- Muligheter med konto og NAV-Kontor --></label>
+        <description />
+        <label />
         <name>Muligheter_med_konto_og_NAV_Kontor</name>
         <sections>
-            <label><!-- Custom Opportunities --></label>
+            <label />
             <name>Custom Opportunities</name>
         </sections>
         <sections>
-            <label><!-- NAV Kontor --></label>
+            <label />
             <name>NAV Kontor</name>
         </sections>
         <sections>
-            <label><!-- Virksomhet --></label>
+            <label />
             <name>Virksomhet</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Permitteringsvarsler med konto og NAV kontor --></description>
-        <label><!-- Permitteringsvarsler med konto og NAV kontor --></label>
+        <description />
+        <label />
         <name>TAG_Permitteringsvarsler_med_konto_og_NAV_kontor</name>
         <sections>
-            <label><!-- Konto --></label>
+            <label />
             <name>Konto</name>
         </sections>
         <sections>
-            <label><!-- NAV Kontor --></label>
+            <label />
             <name>NAV Kontor</name>
         </sections>
         <sections>
-            <label><!-- Temporary Layoffs --></label>
+            <label />
             <name>Temporary Layoffs</name>
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Screen Flows --></description>
-        <label><!-- Screen Flows --></label>
+        <description />
+        <label />
         <name>screen_flows_prebuilt_crt</name>
         <sections>
-            <label><!-- Flow Interview Log Entries --></label>
+            <label />
             <name>Flow Interview Log Entries</name>
         </sections>
         <sections>
-            <label><!-- Flow Interview Logs --></label>
+            <label />
             <name>Flow Interview Logs</name>
         </sections>
     </reportTypes>

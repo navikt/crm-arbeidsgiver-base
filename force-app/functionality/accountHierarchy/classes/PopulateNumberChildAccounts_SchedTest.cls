@@ -61,10 +61,6 @@ private class PopulateNumberChildAccounts_SchedTest {
         String chron = '0 0 23 * * ?';
         System.schedule('Populate child accounts', chron, scheduleClass);
         Test.stopTest();
-        System.assertEquals(
-            1,
-            [SELECT COUNT() FROM CronTrigger WHERE CronJobDetail.Name = 'Populate child accounts'],
-            'A job should be scheduled'
-        );
+        System.assertEquals(1, [SELECT COUNT() FROM CronTrigger WHERE CronJobDetail.Name = 'Populate child accounts'], 'A job should be scheduled');
     }
 }
