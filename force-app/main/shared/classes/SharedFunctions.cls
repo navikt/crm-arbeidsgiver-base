@@ -1,4 +1,4 @@
-public with sharing class SharedFunctions {
+public without sharing class SharedFunctions {
     public static Map<String, Account> fetchAccounts(List<String> organisationNumbers) {
         List<Account> accounts = [
             SELECT Id, INT_OrganizationNumber__c, INT_MunicipalityNumber__c
