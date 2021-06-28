@@ -66,6 +66,39 @@ private without sharing class SharedFunctionsTest {
     }
 
     @isTest
+    private static void testFetchOrCreateContact_existingIsPDL() {
+        SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel(
+            'test',
+            'etternavn',
+            '90080900',
+            'test@test.com',
+            '99999999',
+            'kurs'
+        );
+        List<SharedFunctions_ContactModel> wrapperList = new List<SharedFunctions_ContactModel>{ wrapper };
+        Map<String, Account> accountMap = new Map<String, Account>();
+
+        Id personAccountRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
+            .get('PersonAccount')
+            .getRecordTypeId();
+        Account newPersonAccount = new Account();
+
+        newPersonAccount.FirstName = 'Fred';
+        newPersonAccount.LastName = 'Smith';
+        newPersonAccount.PersonEmail = 'test@test.com';
+        newPersonAccount.RecordTypeId = personAccountRecordTypeId;
+        insert newPersonAccount;
+
+        System.assertEquals(1, [SELECT Id FROM Contact].size(), 'one PDL contact before');
+
+        Test.startTest();
+        Map<String, Contact> result = SharedFunctions.fetchOrCreateContact(wrapperList, accountMap);
+        Test.stopTest();
+
+        System.assertEquals(2, [SELECT Id FROM Contact].size(), 'one PDL contact + one regular contact afterwards');
+    }
+
+    @isTest
     private static void testFetchOrCreateContact_nullOrgNo() {
         SharedFunctions_ContactModel wrapper = new SharedFunctions_ContactModel(
             'test',

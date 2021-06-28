@@ -9,7 +9,12 @@ public without sharing class SharedFunctions_FetchOrCreateContact {
         List<Contact> existingContacts = [
             SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c, Source__c
             FROM Contact
-            WHERE (Email IN :emails AND Email != NULL) OR (InvalidEmail__c IN :emails AND InvalidEmail__c != NULL)
+            WHERE
+                ((Email IN :emails
+                AND Email != NULL)
+                OR (InvalidEmail__c IN :emails
+                AND InvalidEmail__c != NULL))
+                AND IsPersonAccount = FALSE
         ];
 
         return existingContacts;
