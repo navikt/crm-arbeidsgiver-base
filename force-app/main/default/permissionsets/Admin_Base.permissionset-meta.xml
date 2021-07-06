@@ -3,6 +3,11 @@
     <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.TAG_DeletedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_IsDeleted__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -44,6 +49,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.CRM_Unit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>TemporaryLayoff__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
