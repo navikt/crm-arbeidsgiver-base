@@ -685,6 +685,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Shipping_State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_DeletedDateFormula__c</field>
         <readable>true</readable>
     </fieldPermissions>
