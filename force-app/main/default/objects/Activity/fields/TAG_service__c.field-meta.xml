@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_service__c</fullName>
+    <description>HVIS DU SKAL REDIGERE PICKLIST, SØRG FOR AT DET MATCHER DET SOM LIGGER I NAVTask__c.CRM_SubTheme__c (https://github.com/navikt/crm-platform-base/blob/master/force-app/main/default/objects/NavTask__c/fields/CRM_SubTheme__c.field-meta.xml)</description>
     <externalId>false</externalId>
     <label>Service</label>
     <required>false</required>

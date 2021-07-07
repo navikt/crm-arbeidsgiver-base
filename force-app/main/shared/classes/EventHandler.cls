@@ -35,7 +35,7 @@ global class EventHandler extends MyTriggers {
         es.SH_NoPersonalInformation__c = e.TAG_NoPersonInformation__c;
         es.SH_OwnerId__c = e.OwnerId;
         es.SH_Region__c = e.CRM_Region__c;
-        es.SH_RelatedToAccount__c = e.RelatedToAccount__c;
+        es.SH_RelatedToAccount__c = e.AccountId;
         es.SH_Service__c = e.TAG_service__c;
         es.SH_StartDateTime__c = e.StartDateTime;
         es.SH_Status__c = e.TAG_Status__c;

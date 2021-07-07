@@ -1,4 +1,4 @@
-public with sharing class SharedFunctions_FetchOrCreateContact {
+public without sharing class SharedFunctions_FetchOrCreateContact {
     // will check both Email and InvalidEmail__c in case the email is Salesforce invalid (but not invalid for Norwegians, e.g., ÆØÅ)
     public static List<Contact> getExistingContacts(List<SharedFunctions_ContactModel> wrapperList) {
         Set<String> emails = new Set<String>();
@@ -9,7 +9,12 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
         List<Contact> existingContacts = [
             SELECT Id, Email, FirstName, LastName, Account.INT_OrganizationNumber__c, InvalidEmail__c, Source__c
             FROM Contact
-            WHERE (Email IN :emails AND Email != NULL) OR (InvalidEmail__c IN :emails AND InvalidEmail__c != NULL)
+            WHERE
+                ((Email IN :emails
+                AND Email != NULL)
+                OR (InvalidEmail__c IN :emails
+                AND InvalidEmail__c != NULL))
+                AND IsPersonAccount = FALSE
         ];
 
         return existingContacts;
@@ -139,7 +144,10 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
         List<Contact> newContacts = new List<Contact>();
         for (SharedFunctions_ContactModel cw : wrapperList) {
             if (!contactMap.containsKey(cw.email.toLowerCase())) {
-                Id accountId = accountMap.containsKey(cw.companyNumber) ? accountMap.get(cw.companyNumber).Id : null;
+                Id accountId = accountMap.containsKey(cw.companyNumber)
+                    ? accountMap.get(cw.companyNumber).Id
+                    : getDefaultAccountId();
+
                 Contact con = new Contact(
                     FirstName = cw.firstName,
                     LastName = cw.lastName,
@@ -162,5 +170,12 @@ public with sharing class SharedFunctions_FetchOrCreateContact {
         }
 
         insert newContacts;
+    }
+
+    public static Id getDefaultAccountId() {
+        List<Account> defaultAccount = [SELECT Id FROM Account WHERE INT_OrganizationNumber__c = 'AG_DEFAULT' LIMIT 1];
+        Id defaultAccountId = defaultAccount.size() > 0 ? defaultAccount[0].Id : null;
+
+        return defaultAccountId;
     }
 }

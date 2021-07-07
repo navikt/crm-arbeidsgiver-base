@@ -68,6 +68,10 @@
                 <field>ParentId</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Shipping_State__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>INT_MunicipalityNumber__c</field>
             </layoutItems>
@@ -240,8 +244,16 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>CustomCampaign__c</fields>
+        <fields>Contact__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>CustomCampaignMember__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Type__c</fields>
         <fields>NumberOfEmployees__c</fields>
+        <fields>StartDate__c</fields>
         <fields>Status__c</fields>
         <relatedList>TemporaryLayoff__c.Account__c</relatedList>
     </relatedLists>
@@ -294,7 +306,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000002OmSC</masterLabel>
+        <masterLabel>00h7a00000193lT</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

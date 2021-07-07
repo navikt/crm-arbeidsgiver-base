@@ -3,7 +3,6 @@
     <fullName>Tavle</fullName>
     <columns>NAME</columns>
     <columns>Account__c</columns>
-    <columns>InquiryCategory__c</columns>
     <columns>InclusionStage__c</columns>
     <columns>OWNER.ALIAS</columns>
     <filterScope>Everything</filterScope>
@@ -11,6 +10,11 @@
         <field>RECORDTYPE</field>
         <operation>equals</operation>
         <value>CustomOpportunity__c.Inclusion</value>
+    </filters>
+    <filters>
+        <field>Is_My_NAV_Office__c</field>
+        <operation>equals</operation>
+        <value>1</value>
     </filters>
     <label>Muligheter etter steg</label>
 </ListView>
