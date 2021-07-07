@@ -7,6 +7,11 @@ public with sharing class BankAccountHelper {
         Integer statusCode = apiCtrl.getResponse().getStatusCode();
         String bodyString = apiCtrl.getResponse().getBody();
 
+        System.debug('statusCode: ' + statusCode);
+        System.debug('bodyString: ' + bodyString);
+        System.debug('apiCtrl.getRequest(): ' + apiCtrl.getRequest());
+        System.debug('apiCtrl.getResponse(): ' + apiCtrl.getResponse());
+
         BankAccountModel queryResult = new BankAccountModel();
 
         if (validStatusCode(statusCode)) {
