@@ -1,11 +1,11 @@
 @isTest
-private without sharing class BankAccountControllerTest {
+public without sharing class BankAccountControllerTest {
     @isTest
     private static void testGetBankAccountNumber() {
         Account acc = new Account(Name = 'test', INT_OrganizationNumber__c = '99999999');
         insert acc;
 
-        SingleRequestMock mock = new SingleRequestMock(200, 'Success', getMockData(), new Map<String, String>());
+        SingleRequestMock mock = new SingleRequestMock(200, 'Success', getMockData_200(), new Map<String, String>());
         Test.setMock(HttpCalloutMock.class, mock);
 
         Test.StartTest();
@@ -25,7 +25,7 @@ private without sharing class BankAccountControllerTest {
         Account acc = new Account(Name = 'test', INT_OrganizationNumber__c = '99999999');
         insert acc;
 
-        SingleRequestMock mock = new SingleRequestMock(404, 'Success', getErrorMockData(), new Map<String, String>());
+        SingleRequestMock mock = new SingleRequestMock(404, 'Success', getMockData_404(), new Map<String, String>());
         Test.setMock(HttpCalloutMock.class, mock);
 
         Test.StartTest();
@@ -42,7 +42,7 @@ private without sharing class BankAccountControllerTest {
 
     @isTest
     private static void testQueryKontonummer() {
-        SingleRequestMock mock = new SingleRequestMock(200, 'Success', getMockData(), new Map<String, String>());
+        SingleRequestMock mock = new SingleRequestMock(200, 'Success', getMockData_200(), new Map<String, String>());
         Test.setMock(HttpCalloutMock.class, mock);
 
         Test.StartTest();
@@ -56,11 +56,15 @@ private without sharing class BankAccountControllerTest {
         );
     }
 
-    private static String getMockData() {
+    public static String getMockData_200() {
         return '{"mottaker": "990983666","kontonr": "8361347234732292"}';
     }
 
-    private static String getErrorMockData() {
+    public static String getMockData_404() {
         return '{"feilmelding": "Organisasjonsnummer ikke funnet i kontoregister"}';
+    }
+
+    public static String getMockData_400() {
+        return '{"feilmelding": null}';
     }
 }

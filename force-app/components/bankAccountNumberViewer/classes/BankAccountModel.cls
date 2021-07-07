@@ -8,7 +8,10 @@ public with sharing class BankAccountModel {
     @AuraEnabled
     public Boolean isSuccess { get; set; }
 
-    public BankAccountModel parse(String json) {
-        return (BankAccountModel) System.JSON.deserialize(json, BankAccountModel.class);
+    public void parse(String json) {
+        BankAccountModel model = (BankAccountModel) System.JSON.deserialize(json, BankAccountModel.class);
+        mottaker = model.mottaker;
+        kontonr = model.kontonr;
+        feilmelding = model.feilmelding;
     }
 }

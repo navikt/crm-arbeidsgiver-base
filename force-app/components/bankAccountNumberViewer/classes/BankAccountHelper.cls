@@ -1,6 +1,8 @@
 public with sharing class BankAccountHelper {
+    // ------------------------------------------
     private static final string DEFAULT_ERROR_MESSAGE = 'Feil! Vennligst kontakt en administrator.';
 
+    // ------------------------------------------
     public static BankAccountModel saveResults(ApiController apiCtrl) {
         Integer statusCode = apiCtrl.getResponse().getStatusCode();
         String bodyString = apiCtrl.getResponse().getBody();
@@ -19,10 +21,12 @@ public with sharing class BankAccountHelper {
         return queryResult;
     }
 
+    // ------------------------------------------
     public static Boolean validStatusCode(Integer statusCode) {
         return statusCode == 200 || statusCode == 404 || statusCode == 405 || statusCode == 500;
     }
 
+    // ------------------------------------------
     public static String getOrgNo(Id recordId) {
         List<Account> accounts = [SELECT Id, INT_OrganizationNumber__c FROM Account WHERE Id = :recordId LIMIT 1];
 
