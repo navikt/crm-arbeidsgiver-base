@@ -19,12 +19,15 @@
                 <stringValue>reference</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_12_A1</name>
+        <name>myRule_7_A1</name>
         <label>Notify new owner</label>
-        <locationX>1200</locationX>
+        <locationX>700</locationX>
         <locationY>200</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>myDecision8</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -84,7 +87,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue />
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -95,30 +98,30 @@
             </processMetadataValues>
             <name>recipientIds</name>
             <value>
-                <elementReference>myCollection_myRule_12_A1recipientIds</elementReference>
+                <elementReference>myCollection_myRule_7_A1recipientIds</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <apiVersion>49.0</apiVersion>
     <assignments>
-        <name>myAssignment_myRule_12_A1</name>
-        <label>myAssignment_myRule_12_A1</label>
+        <name>myAssignment_myRule_7_A1</name>
+        <label>myAssignment_myRule_7_A1</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myCollection_myRule_12_A1recipientIds</assignToReference>
+            <assignToReference>myCollection_myRule_7_A1recipientIds</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>myVariable_current.OwnerId</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myRule_12_A1</targetReference>
+            <targetReference>myRule_7_A1</targetReference>
         </connector>
     </assignments>
     <decisions>
-        <name>isChangedDecision10_myRule_9_Account_c</name>
-        <label>isChangedDecision10_myRule_9_Account_c</label>
+        <name>isChangedDecision5_myRule_4_Account_c</name>
+        <label>isChangedDecision5_myRule_4_Account_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -126,7 +129,7 @@
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_10_myRule_9_Account_c</name>
+            <name>isChangedRule_5_myRule_4_Account_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -145,71 +148,7 @@
             <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_10_myRule_9_Account_c</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>isChangedDecision2_myRule_1_TAG_CreateContract_c</name>
-        <label>isChangedDecision2_myRule_1_TAG_CreateContract_c</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>isChangedDecision3_myRule_1_InclusionStage_c</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>isChangedRule_2_myRule_1_TAG_CreateContract_c</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>myVariable_old</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>myVariable_old.TAG_CreateContract__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>myVariable_current.TAG_CreateContract__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>isChangedDecision3_myRule_1_InclusionStage_c</targetReference>
-            </connector>
-            <label>isChangedRule_2_myRule_1_TAG_CreateContract_c</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>isChangedDecision3_myRule_1_InclusionStage_c</name>
-        <label>isChangedDecision3_myRule_1_InclusionStage_c</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>isChangedDecision10_myRule_9_Account_c</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>isChangedRule_3_myRule_1_InclusionStage_c</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>myVariable_old</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>myVariable_old.InclusionStage__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>myVariable_current.InclusionStage__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>isChangedDecision10_myRule_9_Account_c</targetReference>
-            </connector>
-            <label>isChangedRule_3_myRule_1_InclusionStage_c</label>
+            <label>isChangedRule_5_myRule_4_Account_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -224,131 +163,14 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision5</targetReference>
+            <targetReference>myDecision3</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.TAG_CreateContract__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Ja</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.InclusionStage__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Avsluttet</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>isChangedRule_2_myRule_1_TAG_CreateContract_c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>isChangedRule_3_myRule_1_InclusionStage_c</leftValueReference>
+                <leftValueReference>formula_myRule_1</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -357,35 +179,7 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Create contract</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>3.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision11</name>
-        <label>myDecision11</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_12</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>formula_myRule_12</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myAssignment_myRule_12_A1</targetReference>
-            </connector>
-            <label>Owner is changed</label>
+            <label>Change owner</label>
         </rules>
     </decisions>
     <decisions>
@@ -395,47 +189,16 @@
                 <numberValue>1.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision5</name>
-        <label>myDecision5</label>
+        <name>myDecision3</name>
+        <label>myDecision3</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision8</targetReference>
+            <targetReference>myDecision6</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_6</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>formula_myRule_6</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_6_A1</targetReference>
-            </connector>
-            <label>Change owner</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>2.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision8</name>
-        <label>myDecision8</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision11</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_9</name>
+            <name>myRule_4</name>
             <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -505,7 +268,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_10_myRule_9_Account_c</leftValueReference>
+                <leftValueReference>isChangedRule_5_myRule_4_Account_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -617,38 +380,80 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_9_A1</targetReference>
+                <targetReference>myRule_4_A1</targetReference>
             </connector>
             <label>Account Added</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision8</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_7</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myAssignment_myRule_7_A1</targetReference>
+            </connector>
+            <label>Owner is changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_9</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_9</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_9_A1</targetReference>
+            </connector>
+            <label>Update resolved</label>
         </rules>
     </decisions>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>LEFT(
-
-&quot;Samarbeidsavtale mellom &quot; +
-
-    IF ( ISBLANK( [CustomOpportunity__c].Account__c.Name ), &quot;[ukjent]&quot;, [CustomOpportunity__c].Account__c.Name )  +
-        &quot; og &quot; + 
-    IF ( ISBLANK( [CustomOpportunity__c].Owner:User.CompanyName ), &quot;[ukjent]&quot;,     [CustomOpportunity__c].Owner:User.CompanyName )
-
-, 80)
-</stringValue>
+                <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_0493972741</name>
-        <dataType>String</dataType>
-        <expression>LEFT(
-
-&quot;Samarbeidsavtale mellom &quot; +
-
-    IF ( ISBLANK( {!myVariable_current.Account__r.Name} ), &quot;[ukjent]&quot;, {!myVariable_current.Account__r.Name} )  +
-        &quot; og &quot; + 
-    IF ( ISBLANK( {!myVariable_current.Owner:User.CompanyName} ), &quot;[ukjent]&quot;,     {!myVariable_current.Owner:User.CompanyName} )
-
-, 80)</expression>
+        <name>formula_10_myRule_9_A1_2594633207</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW()</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -657,20 +462,9 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_6_A1_2137875173</name>
+        <name>formula_2_myRule_1_A1_0326042930</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>AND(ISCHANGED([CustomOpportunity__c].OwnerId ), [CustomOpportunity__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([CustomOpportunity__c].OwnerId,3) = &apos;005&apos;))</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_myRule_12</name>
-        <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &apos;005&apos;))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -683,13 +477,41 @@ NOT ( ISPICKVAL( [CustomOpportunity__c].InclusionStage__c, &quot;Ny henvendelse&
 ISCHANGED ( [CustomOpportunity__c].InclusionStage__c )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_6</name>
+        <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>( LEFT( {!myVariable_current.OwnerId},3) = &quot;00G&quot; ) &amp;&amp;
 
 NOT ( ISPICKVAL( {!myVariable_current.InclusionStage__c}, &quot;Ny henvendelse&quot; )) &amp;&amp;
 
 ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(ISCHANGED([CustomOpportunity__c].OwnerId ), [CustomOpportunity__c].OwnerId  &lt;&gt; CASESAFEID($User.Id), (LEFT([CustomOpportunity__c].OwnerId,3) = &apos;005&apos;))</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_7</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISCHANGED({!myVariable_current.OwnerId} ), {!myVariable_current.OwnerId}  &lt;&gt; CASESAFEID({!$User.Id}), (LEFT({!myVariable_current.OwnerId},3) = &apos;005&apos;))</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+    ISCHANGED([CustomOpportunity__c].InclusionStage__c), 
+    ISPICKVAL(PRIORVALUE([CustomOpportunity__c].InclusionStage__c), &quot;Ny henvendelse&quot;) 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_9</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+    ISCHANGED({!myVariable_current.InclusionStage__c}), 
+    ISPICKVAL(PRIORVALUE({!myVariable_current.InclusionStage__c}), &quot;Ny henvendelse&quot;) 
+)</expression>
     </formulas>
     <interviewLabel>Opportunity-2_InterviewLabel</interviewLabel>
     <label>Opportunity Insert/Update ver4</label>
@@ -718,229 +540,6 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
-    <recordCreates>
-        <name>myRule_1_A1</name>
-        <label>Create Contract</label>
-        <locationX>100</locationX>
-        <locationY>200</locationY>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Contract Name</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue />
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Formula</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Name</field>
-            <value>
-                <elementReference>formula_4_myRule_1_A1_0493972741</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Account</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>Account</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>TAG_Account__c</field>
-            <value>
-                <elementReference>myVariable_current.Account__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Contact</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>Contact</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>TAG_Contact__c</field>
-            <value>
-                <elementReference>myVariable_current.Contact__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Internal Contact</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>User</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>TAG_InternalContact__c</field>
-            <value>
-                <elementReference>myVariable_current.OwnerId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Opportunity</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>CustomOpportunity__c</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>TAG_Opportunity__c</field>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Status</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue />
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>TAG_Status__c</field>
-            <value>
-                <stringValue>Utkast</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Contract__c</object>
-    </recordCreates>
     <recordUpdates>
         <processMetadataValues>
             <name>evaluationType</name>
@@ -966,10 +565,13 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_6_A1</name>
+        <name>myRule_1_A1</name>
         <label>Change owner</label>
-        <locationX>600</locationX>
+        <locationX>100</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision3</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
@@ -1017,7 +619,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_7_myRule_6_A1_2137875173</elementReference>
+                <elementReference>formula_2_myRule_1_A1_0326042930</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
@@ -1047,10 +649,13 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_9_A1</name>
+        <name>myRule_4_A1</name>
         <label>Add Account to Contact</label>
-        <locationX>900</locationX>
+        <locationX>400</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision6</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <processMetadataValues>
@@ -1103,10 +708,91 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
         </inputAssignments>
         <object>Contact</object>
     </recordUpdates>
-    <startElementReference>isChangedDecision2_myRule_1_TAG_CreateContract_c</startElementReference>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[CustomOpportunity__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_9_A1</name>
+        <label>Update resolved field</label>
+        <locationX>900</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>DateTime</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Resolved Date &amp; Time</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>TAG_Resolved_Date_Time__c</field>
+            <value>
+                <elementReference>formula_10_myRule_9_A1_2594633207</elementReference>
+            </value>
+        </inputAssignments>
+        <object>CustomOpportunity__c</object>
+    </recordUpdates>
+    <startElementReference>isChangedDecision5_myRule_4_Account_c</startElementReference>
     <status>Active</status>
     <variables>
-        <name>myCollection_myRule_12_A1recipientIds</name>
+        <name>myCollection_myRule_7_A1recipientIds</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
