@@ -9,28 +9,17 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Rekruttering</fullName>
+                <fullName>Skal ansette</fullName>
                 <default>false</default>
-                <label>Rekruttering</label>
+                <label>Skal ansette</label>
             </value>
             <value>
-                <fullName>Inkludering</fullName>
+                <fullName>Tiltak</fullName>
                 <default>false</default>
-                <label>Inkludering</label>
-            </value>
-            <value>
-                <fullName>Rekruttering med tilrettelegging</fullName>
-                <default>false</default>
-                <label>Rekruttering med tilrettelegging</label>
-            </value>
-            <value>
-                <fullName>Arbeidstrening</fullName>
-                <default>false</default>
-                <label>Arbeidstrening</label>
+                <label>Tiltak</label>
             </value>
             <value>
                 <fullName>Forebygge sykefravær</fullName>

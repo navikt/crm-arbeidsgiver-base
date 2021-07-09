@@ -84,23 +84,15 @@
     <picklistValues>
         <picklist>InquiryCategory__c</picklist>
         <values>
-            <fullName>Arbeidstrening</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Forebygge sykefravær</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Inkludering</fullName>
+            <fullName>Skal ansette</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Rekruttering</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Rekruttering med tilrettelegging</fullName>
+            <fullName>Tiltak</fullName>
             <default>false</default>
         </values>
     </picklistValues>
