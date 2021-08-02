@@ -39,6 +39,10 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>ExpandedFieldsToDisplay__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>SLDS_Dropdown_Icon__c</field>
         <value xsi:type="xsd:string">utility:resource_capacity</value>
     </values>
@@ -76,7 +80,7 @@
     </values>
     <values>
         <field>SObjectTypeValue__c</field>
-        <value xsi:type="xsd:string">Inkludering;Rekruttering;Rekruttering med tilrettelegging;Forebygge sykefravær</value>
+        <value xsi:type="xsd:string">Skal ansette;Tiltak;Forebygge sykefravær</value>
     </values>
     <values>
         <field>SubtitleFutureEnglish__c</field>
