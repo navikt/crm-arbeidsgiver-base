@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Nyhet Sykefravær</masterLabel>
+    <promptVersions>
+        <actionButtonLabel>Se brukerveiledning</actionButtonLabel>
+        <actionButtonLink>https://navno.sharepoint.com/sites/intranett-produktomrader-og-utvikling/SitePages/Brukerveiledning.aspx</actionButtonLink>
+        <body>Viser sykefravær pr. kvartal. Dersom det er 4 ansatte/sykemeldte eller færre vises ikke sykefraværet grunnet personvern.</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <description>Sykefravær for virksomhet er tilgjengelig</description>
+        <dismissButtonLabel>Skjul tipset</dismissButtonLabel>
+        <displayType>Targeted</displayType>
+        <endDate>2021-09-11</endDate>
+        <isPublished>true</isPublished>
+        <masterLabel>Nyhet Sykefravær</masterLabel>
+        <publishedDate>2021-08-10</publishedDate>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2021-08-10</startDate>
+        <targetPageKey1>Account</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <timesToDisplay>3</timesToDisplay>
+        <title>Nyhet: Se virksomhetens sykefravær</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
