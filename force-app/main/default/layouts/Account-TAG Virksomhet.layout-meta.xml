@@ -4,9 +4,6 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -197,7 +194,6 @@
         <fields>CRM_VirksomhetTapteDagsverk__c</fields>
         <fields>CRM_VirksomhetProsent__c</fields>
         <fields>CRM_NaeringProsent__c</fields>
-        <fields>CRM_VirksomhetAntallPersonerFormula__c</fields>
         <fields>CRM_LandProsent__c</fields>
         <relatedList>Absence__c.CRM_Account__c</relatedList>
         <sortField>CRM_YearQuarter__c</sortField>
@@ -320,7 +316,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5E0000015NTJ</masterLabel>
+        <masterLabel>00h3O000000n0oz</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
