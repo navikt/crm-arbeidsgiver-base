@@ -13,11 +13,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Absence__c.CRM_Key__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Absence__c.CRM_LandAntallPersoner__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -129,11 +124,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Absence__c.CRM_Year__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Absence__c.JsonPayload__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
