@@ -13,20 +13,15 @@
                         </p>
                     </h2>
                 </div>
-               <lightning-button-icon
+                <lightning-button-icon
                     icon-name="action:refresh"
                     style="background-color: white"
                     alternative-text="Refresh data"
                     onclick={refreshData}
                 >
                 </lightning-button-icon>
-                <lightning-button
-                label="Ny"
-                title="Ny"
-                onclick={navigateToNewRecordPage}
-                class=""
-            ></lightning-button>
-             <!--  <lightning-button
+                <lightning-button label="Ny" title="Ny" onclick={navigateToNewRecordPage} class=""></lightning-button>
+                <!--  <lightning-button
                     label="Send e-post"
                     title="Send e-post"
                     onclick={sendEmail}
@@ -36,15 +31,15 @@
         </div>
 
         <div class="slds-card__body">
-                <lightning-datatable
-                    if:true={showData}
-                    key-field="id"
-                    resize-column-disabled
-                    data={data}
-                    columns={columns}
-                    onrowaction={handleRowActions}
-                >
-                </lightning-datatable>
+            <lightning-datatable
+                if:true={showData}
+                key-field="id"
+                resize-column-disabled
+                data={data}
+                columns={columns}
+                onrowaction={handleRowActions}
+            >
+            </lightning-datatable>
         </div>
     </article>
 </template>
