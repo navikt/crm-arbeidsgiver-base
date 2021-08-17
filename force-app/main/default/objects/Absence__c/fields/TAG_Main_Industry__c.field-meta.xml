@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Main_Industry__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF((VALUE(CRM_Naering5SifferKode__c) &lt;=0.999),&quot;Annet&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;=3.999),&quot;Jordbruk,skogbruk og fiske&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 9.999),&quot;Bergverksdirft og utvinning&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 33.999),&quot;Industri&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 35.999),&quot;Elektrisitets-, gass-, damp- og varmtvannsforsyning&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 39.999),&quot;Vannforsyning, avløps- og renovasjonsvirksomhet&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 43.999),&quot;Bygge- og anleggsvirksomhet&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 47.999),&quot;Varehandel, reparasjon av motorvogner&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 53.999),&quot;Transport og lagring&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 56.999),&quot;Overnattings- og serveringsvirksomhet&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 63.999),&quot;Informasjon og kommunikasjon&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 66.999),&quot;Finansierings- og forsikringsvirksomhet&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 68.999),&quot;Omsetning og drift av fast eiendom&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 75.999),&quot;Faglig, vitenskapelig og teknisk tjenesteyting&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 82.999),&quot;Forretningsmessig tjenesteyting&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 84.999),&quot;Offentlig administrasjon og forsvar, og trygdeordninger underlagt offentlig forvaltning&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 85.999),&quot;Undervisning&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 88.999),&quot;Helse- og sosialtjenester&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 93.999),&quot;Kulturell virksomhet, underholdning og fritidsaktiviteter&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 96.999),&quot;Annen tjenesteyting&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 97.999),&quot;Lønnet arbeid i private husholdninger&quot;,
+IF((VALUE(CRM_Naering5SifferKode__c) &lt;= 99.999),&quot;Internasjonale organisasjoner og organer&quot;,&quot;Annet&quot;))))))))))))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Absence Main Industry</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
