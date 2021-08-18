@@ -22,10 +22,9 @@ public with sharing class BankAccountController {
         Map<String, String> headers = new Map<String, String>{ 'accept' => 'application/json' };
 
         ApiController apiCtrl = new ApiController();
-        apiCtrl.setSystemContext(); // ! should probably be user context
         apiCtrl.initRequest(API_BASE_CONFIG_NAME, API_SERVICE_CONFIG_NAME, params);
         apiCtrl.addServiceAuthHeader(SERVICE_AUTH_HEADER);
-        apiCtrl.setHeaders(headers); // TODO fix 10:58:46:147 USER_DEBUG [52]|DEBUG|getResponse: System.HttpResponse[Status=Bad Request: malformed Host header, StatusCode=400]
+        apiCtrl.setHeaders(headers);
         apiCtrl.doCallout();
 
         BankAccountModel queryResult = BankAccountHelper.saveResults(apiCtrl);
