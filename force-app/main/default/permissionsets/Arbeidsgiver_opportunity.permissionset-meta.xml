@@ -13,6 +13,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CustomOpportunity__c.InquiryCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CustomOpportunity__c.Inquiry_Category_2__c</field>
         <readable>true</readable>
     </fieldPermissions>

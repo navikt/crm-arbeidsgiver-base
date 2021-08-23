@@ -1,7 +1,41 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description
-    >Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
+    <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Absence__c.CRM_Key__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Absence__c.JsonPayload__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.EmployerDeletedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.IsDeletedEmployer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.TAG_DeletedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.TAG_IsDeleted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.TAG_NavUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>ArenaActivity__c.JsonPayload__c</field>
@@ -43,6 +77,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>TemporaryLayoff__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>TemporaryLayoff__c.JsonPayload__c</field>
         <readable>true</readable>
@@ -54,4 +93,13 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Admin - Base Permissions</label>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Absence__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
 </PermissionSet>

@@ -39,6 +39,10 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>ExpandedFieldsToDisplay__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>SLDS_Dropdown_Icon__c</field>
         <value xsi:type="xsd:string">utility:resource_capacity</value>
     </values>
@@ -68,7 +72,7 @@
     </values>
     <values>
         <field>SObjectTitle__c</field>
-        <value xsi:type="xsd:string">Type__c</value>
+        <value xsi:type="xsd:string">TypeFormula__c</value>
     </values>
     <values>
         <field>SObjectTypeField__c</field>

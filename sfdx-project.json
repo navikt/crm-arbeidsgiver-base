@@ -4,15 +4,15 @@
             "path": "force-app",
             "default": true,
             "package": "crm-arbeidsgiver-base",
-            "versionNumber": "1.120.0.NEXT",
+            "versionNumber": "1.168.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
-                    "versionNumber": "0.81.0.LATEST"
+                    "versionNumber": "0.115.0.LATEST"
                 },
                 {
                     "package": "crm-platform-access-control",
-                    "versionNumber": "0.63.0.LATEST"
+                    "versionNumber": "0.73.0.LATEST"
                 },
                 {
                     "package": "crm-shared-base",
@@ -20,7 +20,11 @@
                 },
                 {
                     "package": "crm-shared-timeline",
-                    "versionNumber": "1.4.0.LATEST"
+                    "versionNumber": "1.6.0.LATEST"
+                },
+                {
+                    "package": "crm-platform-integration",
+                    "versionNumber": "0.34.0.LATEST"
                 }
             ]
         }
@@ -33,6 +37,7 @@
         "crm-platform-access-control": "0Ho2o0000008OR3CAM",
         "crm-shared-timeline": "0Ho2o000000fxXBCAY",
         "crm-shared-base": "0Ho2o000000fxXLCAY",
-        "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM"
+        "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
+        "crm-platform-integration": "0Ho2o0000008ORrCAM"
     }
 }

@@ -1,0 +1,40 @@
+<template>
+    <div class="slds-section slds-is-open" onclick={openClose} style="margin-top: -26px">
+        <h3 class="slds-section__title">
+            <button
+                aria-controls="expando-unique-id"
+                aria-expanded="true"
+                class="slds-button slds-section__title-action"
+            >
+                <lightning-icon
+                    icon-name="utility:chevrondown"
+                    size="x-small"
+                    alternative-text="Åpne/lukke"
+                ></lightning-icon>
+                <span class="slds-truncate slds-m-left_x-small" title="Section Title">Ekstern Data</span>
+            </button>
+        </h3>
+        <div aria-hidden="false" class="slds-section__content slds-p-left_x-small" id="expando-unique-id">
+            <div class="slds-form" role="list">
+                <div class="slds-form__row">
+                    <div class="slds-form__item" role="listitem">
+                        <div
+                            class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent"
+                        >
+                            <lightning-spinner
+                                if:true={isLoading}
+                                alternative-text="Laster"
+                                size="small"
+                            ></lightning-spinner>
+                            <span class="slds-form-element__label">Kontonummer</span>
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__static">{text}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form__item" role="listitem"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

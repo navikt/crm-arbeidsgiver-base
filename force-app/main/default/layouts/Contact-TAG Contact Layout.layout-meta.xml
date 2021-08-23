@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>TAG_Informed__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HasOptedOutOfEmail</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -38,7 +42,7 @@
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Contact Information</label>
         <layoutColumns>
@@ -158,6 +162,13 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>CustomCampaign__c</fields>
+        <fields>Account__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>CustomCampaignMember__c.Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>ACCOUNT.NAME</fields>
         <fields>ACCOUNT.PARENT_NAME</fields>
         <relatedList>RelatedContactAccountRelationList</relatedList>
@@ -184,6 +195,29 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Inquiry_Category_2__c</fields>
+        <fields>InclusionStage__c</fields>
+        <relatedList>CustomOpportunity__c.Contact__c</relatedList>
+        <sortField>InclusionStage__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Type__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>TemporaryLayoff__c.Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>TAG_Account__c</fields>
+        <fields>TAG_Category__c</fields>
+        <fields>TAG_StartDate__c</fields>
+        <relatedList>Contract__c.TAG_Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>Subject</fields>
         <fields>Status</fields>
         <fields>Address</fields>
@@ -199,7 +233,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000002L0RZ</masterLabel>
+        <masterLabel>00h1X000002VJYq</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

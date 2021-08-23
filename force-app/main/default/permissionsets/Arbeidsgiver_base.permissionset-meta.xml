@@ -165,6 +165,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BankAccountController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BaseTestFactory</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -534,6 +538,11 @@
     </customPermissions>
     <description>Standard tilgang for ansatte som jobber med arbeidsgivere. Gir tilgang til Account, Contact, Activities og Nav Unit</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Account_18_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.Alias__c</field>
         <readable>true</readable>
@@ -551,6 +560,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.CRM_Activities_on_sub_accounts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.CRM_MainIndustry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -680,6 +694,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Shipping_State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_DeletedDateFormula__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -746,6 +765,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Email</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.HasOptedOutOfEmail</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

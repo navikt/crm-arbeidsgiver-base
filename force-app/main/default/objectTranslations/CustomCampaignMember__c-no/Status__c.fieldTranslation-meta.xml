@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Status --></label>
+    <label>
+        <!-- Status -->
+    </label>
     <name>Status__c</name>
     <picklistValues>
-        <masterLabel>Gjennomført</masterLabel>
-        <translation><!-- Gjennomført --></translation>
+        <masterLabel>Ikke aktuell</masterLabel>
+        <translation>
+            <!-- Ikke aktuell -->
+        </translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Ikke gjennomført</masterLabel>
-        <translation><!-- Ikke gjennomført --></translation>
+        <masterLabel>Inngått avtale</masterLabel>
+        <translation>
+            <!-- Inngått avtale -->
+        </translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Interessert</masterLabel>
+        <translation>
+            <!-- Interessert -->
+        </translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ny</masterLabel>
+        <translation>
+            <!-- Ny -->
+        </translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sendt informasjon</masterLabel>
+        <translation>
+            <!-- Sendt informasjon -->
+        </translation>
     </picklistValues>
 </CustomFieldTranslation>

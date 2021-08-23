@@ -2,18 +2,17 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_DeletedDateFormula__c</fullName>
     <externalId>false</externalId>
-    <formula>IF((YEAR(TAG_DeletedDate__c) = 2020), &apos;2020&apos;,  
+    <formula>IF((YEAR(EmployerDeletedDate__c) = 2020), &apos;2020&apos;,  
 
 
 
-TEXT(DAY(TAG_DeletedDate__c)) &amp; &quot;.&quot; &amp; TEXT(MONTH(TAG_DeletedDate__c)) &amp; &quot;.&quot; &amp; TEXT(YEAR(TAG_DeletedDate__c))
+TEXT(DAY(EmployerDeletedDate__c)) &amp; &quot;.&quot; &amp; TEXT(MONTH(EmployerDeletedDate__c)) &amp; &quot;.&quot; &amp; TEXT(YEAR(EmployerDeletedDate__c))
 
 
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Deleted Date Formula</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
     <type>Text</type>
     <unique>false</unique>
 </CustomField>

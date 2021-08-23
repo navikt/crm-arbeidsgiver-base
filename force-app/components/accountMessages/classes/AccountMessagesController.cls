@@ -75,7 +75,7 @@ public with sharing class AccountMessagesController {
         Account checkAccount = [
             SELECT Id, TAG_DeletedDateFormula__c
             FROM Account
-            WHERE Id = :recordId AND TAG_IsDeleted__c = TRUE
+            WHERE Id = :recordId AND IsDeletedEmployer__c = TRUE
             LIMIT 1
         ];
 
