@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warning__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Bruk denne avmerkingen til å informere andre ansatte om viktige merknader om virksomheten</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Bruk denne avmerkingen til å informere andre ansatte om viktige merknader om virksomheten</inlineHelpText>
+    <label>Slå på varsel om virksomheten</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

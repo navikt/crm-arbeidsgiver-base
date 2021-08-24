@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WarningFormattedText__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(WarningNote__c) + 
+
+&quot; (&quot; + 
+
+   LPAD(TEXT(DAY(WarningDate__c)),2,&quot;0&quot;)&amp;&quot;.&quot;&amp;LPAD(TEXT(MONTH(WarningDate__c)),2,&quot;0&quot;)&amp;&quot;.&quot;&amp;TEXT(YEAR(WarningDate__c))  +
+
+
+    &quot;, registrert av &quot; + 
+     HYPERLINK(&quot;/&quot; + WarningRegisteredBy__c, WarningRegisteredBy__r.FirstName + &quot; &quot; + WarningRegisteredBy__r.LastName, &quot;_self&quot;) +
+&quot;)&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>WarningFormattedText</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

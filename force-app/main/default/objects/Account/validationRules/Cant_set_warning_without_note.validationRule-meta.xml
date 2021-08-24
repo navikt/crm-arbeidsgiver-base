@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cant_set_warning_without_note</fullName>
+    <active>true</active>
+    <errorConditionFormula>Warning__c &amp;&amp; ISPICKVAL( WarningNote__c, &quot;&quot; )</errorConditionFormula>
+    <errorDisplayField>WarningNote__c</errorDisplayField>
+    <errorMessage>Du må velge en verdi for å kunne slå på varsel</errorMessage>
+</ValidationRule>
