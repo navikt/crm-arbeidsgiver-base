@@ -11,24 +11,24 @@
         <valueSetDefinition>
             <sorted>true</sorted>
             <value>
-                <fullName>Dårlig på inkludering</fullName>
+                <fullName>Manglende oppfølging</fullName>
                 <default>false</default>
-                <label>Dårlig på inkludering</label>
+                <label>Manglende oppfølging</label>
             </value>
             <value>
-                <fullName>Dårlig på opplæring</fullName>
+                <fullName>Fysisk tilrettelegging</fullName>
                 <default>false</default>
-                <label>Dårlig på opplæring</label>
+                <label>Fysisk tilrettelegging</label>
             </value>
             <value>
-                <fullName>Høyt sykefravær</fullName>
+                <fullName>Arbeidsmiljø</fullName>
                 <default>false</default>
-                <label>Høyt sykefravær</label>
+                <label>Arbeidsmiljø</label>
             </value>
             <value>
-                <fullName>Ikke samarbeidsvillige</fullName>
+                <fullName>Arbeidstid</fullName>
                 <default>false</default>
-                <label>Ikke samarbeidsvillige</label>
+                <label>Arbeidstid</label>
             </value>
         </valueSetDefinition>
     </valueSet>
