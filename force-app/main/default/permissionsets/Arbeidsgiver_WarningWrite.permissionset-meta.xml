@@ -26,6 +26,11 @@
         <field>Account.WarningFormattedText__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.WarningRemovalDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Kan sette varsler på virksomheter</label>
 </PermissionSet>
