@@ -1,6 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Notification</name>
+        <label>Send Notification</label>
+        <locationX>50</locationX>
+        <locationY>756</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>Reset_Overdue_Warnings</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>Get_Custom_Notification.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <stringValue>Varsel for virksomhet &quot;{!$Record.Name}&quot; har blitt fjernet, ettersom varselet ble opprettet for 6 måneder siden. Denne meldingen sendes til deg, ettersom det var du som opprettet eller redigerte varselet sist.</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Slettet varsel for &quot;{!$Record.Name}&quot;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>ListOfSingleUser</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <apiVersion>52.0</apiVersion>
+    <assignments>
+        <name>Set_Recipients</name>
+        <label>Set Recipients</label>
+        <locationX>50</locationX>
+        <locationY>636</locationY>
+        <assignmentItems>
+            <assignToReference>ListOfSingleUser</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.WarningRegisteredBy__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Notification</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Removal_Date_is_Overdue</name>
+        <label>Removal Date is Overdue</label>
+        <locationX>336</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Overdue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Flow.CurrentDate</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.WarningRemovalDate__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>User_Is_Set</targetReference>
+            </connector>
+            <label>Is Overdue</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>User_Is_Set</name>
+        <label>User Is Set</label>
+        <locationX>182</locationX>
+        <locationY>396</locationY>
+        <defaultConnector>
+            <targetReference>Reset_Overdue_Warnings</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.WarningRegisteredBy__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Custom_Notification</targetReference>
+            </connector>
+            <label>True</label>
+        </rules>
+    </decisions>
     <interviewLabel>Reset Account Warning After 6 Months {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reset Account Warning After 6 Months</label>
     <processMetadataValues>
@@ -22,19 +127,32 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Custom_Notification</name>
+        <label>Get Custom Notification</label>
+        <locationX>50</locationX>
+        <locationY>516</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Recipients</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Account_Warning_Removed</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Reset_Overdue_Warnings</name>
         <label>Reset Overdue Warnings</label>
-        <locationX>176</locationX>
-        <locationY>276</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>WarningRemovalDate__c</field>
-            <operator>GreaterThanOrEqualTo</operator>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </filters>
+        <locationX>182</locationX>
+        <locationY>972</locationY>
         <inputAssignments>
             <field>WarningNote__c</field>
             <value>
@@ -50,10 +168,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>210</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Reset_Overdue_Warnings</targetReference>
+            <targetReference>Removal_Date_is_Overdue</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -72,4 +190,11 @@
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>ListOfSingleUser</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
