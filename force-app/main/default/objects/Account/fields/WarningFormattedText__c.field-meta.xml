@@ -8,9 +8,6 @@
 
    LPAD(TEXT(DAY(WarningDate__c)),2,&quot;0&quot;)&amp;&quot;.&quot;&amp;LPAD(TEXT(MONTH(WarningDate__c)),2,&quot;0&quot;)&amp;&quot;.&quot;&amp;TEXT(YEAR(WarningDate__c))  +
 
-
-    &quot;, registrert av &quot; + 
-     HYPERLINK(&quot;/&quot; + WarningRegisteredBy__c, WarningRegisteredBy__r.FirstName + &quot; &quot; + WarningRegisteredBy__r.LastName, &quot;_self&quot;) +
 &quot;)&quot;</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>WarningFormattedText</label>
