@@ -63,7 +63,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>field</name>
-                    <value>ImportantInformation__c</value>
+                    <value>WarningNote__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>icon</name>
@@ -82,6 +82,13 @@
                     <value>warning</value>
                 </componentInstanceProperties>
                 <componentName>staticNotification</componentName>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Warning__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>header</name>

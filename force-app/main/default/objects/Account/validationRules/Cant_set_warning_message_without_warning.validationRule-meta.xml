@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cant_set_warning_message_without_warning</fullName>
+    <active>true</active>
+    <errorConditionFormula>!Warning__c &amp;&amp; !ISPICKVAL( WarningNote__c, &quot;&quot; )</errorConditionFormula>
+    <errorDisplayField>Warning__c</errorDisplayField>
+    <errorMessage>Du må slå på varsel for å bekrefte at varselmeldingen skal bli synlig</errorMessage>
+</ValidationRule>
