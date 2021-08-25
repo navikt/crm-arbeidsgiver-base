@@ -11,16 +11,6 @@
         <valueSetDefinition>
             <sorted>true</sorted>
             <value>
-                <fullName>Manglende oppfølging</fullName>
-                <default>false</default>
-                <label>Manglende oppfølging</label>
-            </value>
-            <value>
-                <fullName>Fysisk tilrettelegging</fullName>
-                <default>false</default>
-                <label>Fysisk tilrettelegging</label>
-            </value>
-            <value>
                 <fullName>Arbeidsmiljø</fullName>
                 <default>false</default>
                 <label>Arbeidsmiljø</label>
@@ -29,6 +19,16 @@
                 <fullName>Arbeidstid</fullName>
                 <default>false</default>
                 <label>Arbeidstid</label>
+            </value>
+            <value>
+                <fullName>Fysisk tilrettelegging</fullName>
+                <default>false</default>
+                <label>Fysisk tilrettelegging</label>
+            </value>
+            <value>
+                <fullName>Manglende oppfølging</fullName>
+                <default>false</default>
+                <label>Oppfølging</label>
             </value>
         </valueSetDefinition>
     </valueSet>
