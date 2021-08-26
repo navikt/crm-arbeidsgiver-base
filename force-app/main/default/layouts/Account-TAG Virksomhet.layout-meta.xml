@@ -102,8 +102,8 @@
                 <field>NumberOfEmployees</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>INT_Sector__c</field>
+                <behavior>Readonly</behavior>
+                <field>TAG_Sector__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
