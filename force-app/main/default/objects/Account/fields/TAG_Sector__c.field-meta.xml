@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Sector__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( (INT_SectorCode__c == null &amp;&amp;  INT_OrganizationalStructure__c == &apos;ORGL&apos;)
+ || INT_SectorCode__c == &apos;3900&apos; 
+ || INT_SectorCode__c == &apos;6100&apos; 
+ || INT_SectorCode__c == &apos;6500&apos;, 
+&apos;OFFENTLIG&apos;, 
+&apos;PRIVAT&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sektor</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
