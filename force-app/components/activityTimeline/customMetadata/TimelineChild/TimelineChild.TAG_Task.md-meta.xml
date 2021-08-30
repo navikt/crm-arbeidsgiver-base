@@ -4,19 +4,19 @@
     <protected>false</protected>
     <values>
         <field>CreateableObject_Field1__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Field2__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Field3__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_RecordType__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_TextEnglish__c</field>
@@ -28,15 +28,15 @@
     </values>
     <values>
         <field>CreateableObject_Value1__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Value2__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>CreateableObject_Value3__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true" />
     </values>
     <values>
         <field>SLDS_Dropdown_Icon__c</field>
@@ -101,5 +101,13 @@
     <values>
         <field>SubtitleRelatedUserPrepositionNor__c</field>
         <value xsi:type="xsd:string">med</value>
+    </values>
+    <values>
+        <field>AutomaticRefresh__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>AutomaticRefresh_PushTopicName__c</field>
+        <value xsi:type="xsd:string">TIMELINE_Task</value>
     </values>
 </CustomMetadata>
