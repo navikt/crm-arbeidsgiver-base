@@ -804,4 +804,12 @@
         </columns>
         <masterLabel>NAV Kontor</masterLabel>
     </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Spam__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <masterLabel>Opportunities</masterLabel>
+    </sections>
 </ReportType>
