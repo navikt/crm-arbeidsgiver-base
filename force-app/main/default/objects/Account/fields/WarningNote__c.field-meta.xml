@@ -13,22 +13,40 @@
             <value>
                 <fullName>Arbeidsmiljø</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Arbeidsmiljø</label>
             </value>
             <value>
                 <fullName>Arbeidstid</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Arbeidstid</label>
+            </value>
+            <value>
+                <fullName>Forebygge sykefravær og redusere frafall</fullName>
+                <default>false</default>
+                <label>Forebygge sykefravær og redusere frafall</label>
             </value>
             <value>
                 <fullName>Fysisk tilrettelegging</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Fysisk tilrettelegging</label>
+            </value>
+            <value>
+                <fullName>Nedbemanne</fullName>
+                <default>false</default>
+                <label>Nedbemanne</label>
             </value>
             <value>
                 <fullName>Manglende oppfølging</fullName>
                 <default>false</default>
                 <label>Oppfølging</label>
+            </value>
+            <value>
+                <fullName>Rekruttere og inkludere</fullName>
+                <default>false</default>
+                <label>Rekruttere og inkludere</label>
             </value>
         </valueSetDefinition>
     </valueSet>
