@@ -12,4 +12,12 @@
         <object>CustomCampaign__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>CustomCampaign__c.Lokal</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CustomCampaign__c.Sentral</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
 </PermissionSet>
