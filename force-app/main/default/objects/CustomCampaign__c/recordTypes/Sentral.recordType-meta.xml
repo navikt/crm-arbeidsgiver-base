@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sentral</fullName>
+    <active>true</active>
+    <label>Sentral</label>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Lukket</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Åpen</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Bedriftsundersøkelse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inkluderingskampanje</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sommerjobbkampanje</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
