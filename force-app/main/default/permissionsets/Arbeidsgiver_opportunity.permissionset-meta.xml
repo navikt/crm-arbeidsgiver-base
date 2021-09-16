@@ -17,11 +17,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.Inquiry_Category_2__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.Is_My_NAV_Office__c</field>
         <readable>true</readable>
