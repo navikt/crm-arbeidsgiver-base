@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Used to specify which folders should be checked for reports and where the reports should be relocated to.</description>
+    <label>Report Relocation Map</label>
+    <pluralLabel>Report Relocation Maps</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
