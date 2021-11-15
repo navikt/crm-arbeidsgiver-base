@@ -1,0 +1,138 @@
+<template>
+  <div style="height: 75px">
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="combobox-input">Søk Køer</label>
+      <div class="slds-form-element__control">
+        <div class={containerClass}>
+          <div class={dropdownClass} aria-expanded={selectedItem} aria-haspopup="listbox" role="combobox">
+            <div class={inputClass} role="none">
+              <span
+                class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon"
+                title="kø"
+                if:true={selectedItem}
+              >
+                <lightning-icon
+                  icon-name="standard:orders"
+                  alternative-text="Køer"
+                  title="Køer"
+                  size="small"
+                ></lightning-icon>
+                <span class="slds-assistive-text">Søk Køer</span>
+              </span>
+              <input
+                type="text"
+                class="slds-input slds-combobox__input slds-has-focus slds-combobox__input-value"
+                id="combobox-input"
+                aria-activedescendant="option1"
+                aria-autocomplete="list"
+                aria-controls="listbox-id-4"
+                autocomplete="off"
+                role="textbox"
+                placeholder="Søk Køer..."
+                value={getInputValue}
+                oninput={handleInputChange}
+                onfocus={handleFocus}
+                onblur={handleBlur}
+                onkeydown={handleKeyDown}
+                readonly={selectedItem}
+              />
+              <label for="remove-selection"></label>
+              <button
+                id="remove-selection"
+                class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
+                title="Fjern valgt kø"
+                onclick={removeSelection}
+                if:true={selectedItem}
+              >
+                <lightning-icon
+                  icon-name="utility:close"
+                  alternative-text="Søk"
+                  title="Søk"
+                  size="x-small"
+                ></lightning-icon>
+                <span class="slds-assistive-text">Fjern valgt kø</span>
+              </button>
+              <span
+                class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right"
+                if:false={selectedItem}
+              >
+                <lightning-icon
+                  icon-name="utility:search"
+                  alternative-text="Søk"
+                  title="Søk"
+                  size="x-small"
+                ></lightning-icon>
+              </span>
+            </div>
+
+            <div id="listbox-id-4" class="slds-dropdown slds-dropdown_fluid" role="listbox" if:false={selectedItem}>
+              <ul class="slds-listbox slds-listbox_vertical search-results" role="presentation">
+                <div if:true={loading}>
+                  <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </div>
+                <li role="presentation" class="slds-listbox__item" tabindex="0">
+                  <div
+                    aria-selected="true"
+                    id="option0"
+                    class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term slds-has-focus"
+                    role="option"
+                    if:true={searchTerm}
+                  >
+                    <span class="slds-media__figure slds-listbox__option-icon">
+                      <span class="slds-icon_container slds-icon-utility-search" title="Search for term: ">
+                        <lightning-icon
+                          icon-name="utility:search"
+                          alternative-text="Søk"
+                          title="Søk"
+                          size="x-small"
+                        ></lightning-icon>
+                        <span class="slds-assistive-text">Kønavn</span>
+                      </span>
+                    </span>
+                    <span class="slds-media__body">
+                      <span class="slds-listbox__option-text_entity">{searchTerm}</span>
+                    </span>
+                  </div>
+                </li>
+
+                <template for:each={searchResults} for:item="result">
+                  <li
+                    key={result.id}
+                    role="option"
+                    class="slds-listbox__item"
+                    data-recordid={result.id}
+                    data-id={result.id}
+                    tabindex="-1"
+                    onkeydown={handleKeyDown}
+                    onclick={handleResultClick}
+                  >
+                    <div
+                      class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                      role="option"
+                    >
+                      <span class="slds-media__figure slds-listbox__option-icon">
+                        <span class="slds-icon_container slds-icon-standard-account">
+                          <lightning-icon
+                            icon-name="standard:orders"
+                            alternative-text="Queues"
+                            title="Queues"
+                            size="small"
+                          ></lightning-icon>
+                        </span>
+                      </span>
+                      <span class="slds-media__body">
+                        <span class="slds-listbox__option-text_entity">
+                          <span><mark>{result.title}</mark></span>
+                        </span>
+                      </span>
+                    </div>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
