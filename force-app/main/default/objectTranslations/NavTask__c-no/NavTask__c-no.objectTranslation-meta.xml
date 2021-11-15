@@ -51,6 +51,11 @@
         </sections>
     </layouts>
     <nameFieldLabel><!-- Navn --></nameFieldLabel>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Tildele Kø</label>
+        <name>Assign_to_Queue</name>
+    </quickActions>
     <validationRules>
         <errorMessage><!-- Du må bekrefte at feltet &quot;Kommentarer&quot; ikke inneholder personsensitive opplysninger --></errorMessage>
         <name>No_person_information_added</name>
