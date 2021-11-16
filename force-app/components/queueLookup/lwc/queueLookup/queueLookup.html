@@ -1,7 +1,7 @@
 <template>
   <div style="height: 75px">
     <div class="slds-form-element">
-      <label class="slds-form-element__label" for="combobox-input">Søk Køer</label>
+      <label class="slds-form-element__label" for="combobox-input">NAV Enhet</label>
       <div class="slds-form-element__control">
         <div class={containerClass}>
           <div class={dropdownClass} aria-expanded={selectedItem} aria-haspopup="listbox" role="combobox">
@@ -17,7 +17,7 @@
                   title="Køer"
                   size="small"
                 ></lightning-icon>
-                <span class="slds-assistive-text">Søk Køer</span>
+                <span class="slds-assistive-text">NAV Enhet</span>
               </span>
               <input
                 type="text"
@@ -28,7 +28,7 @@
                 aria-controls="listbox-id-4"
                 autocomplete="off"
                 role="textbox"
-                placeholder="Søk Køer..."
+                placeholder="Søk etter NAV enhet..."
                 value={getInputValue}
                 oninput={handleInputChange}
                 onfocus={handleFocus}
@@ -50,7 +50,7 @@
                   title="Søk"
                   size="x-small"
                 ></lightning-icon>
-                <span class="slds-assistive-text">Fjern valgt kø</span>
+                <span class="slds-assistive-text">Fjern valgt enhet</span>
               </button>
               <span
                 class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right"
@@ -86,7 +86,7 @@
                           title="Søk"
                           size="x-small"
                         ></lightning-icon>
-                        <span class="slds-assistive-text">Kønavn</span>
+                        <span class="slds-assistive-text">Enhetnavn</span>
                       </span>
                     </span>
                     <span class="slds-media__body">
