@@ -6,7 +6,8 @@ public with sharing class QueueLookupController {
     List<List<SObject>> searchResults = [
       FIND :searchTerm
       IN ALL FIELDS
-      RETURNING Group(Id, Name WHERE Type = 'Queue' AND Id IN :getAvailableQueuesForSobject(SObjectType))
+      RETURNING
+        Group(Id, Name WHERE Type = 'Queue' AND Id IN :getAvailableQueuesForSobject(SObjectType) ORDER BY Name ASC)
       LIMIT :MAX_RESULTS
     ];
 
