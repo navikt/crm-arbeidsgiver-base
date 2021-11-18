@@ -237,9 +237,13 @@ public with sharing class Activity_AddAccountHelper {
     List<SObject> sObjectsToUpdate = new List<SObject>();
 
     String type = getSOjectTypeFromRecordId(originalActivities[0].Id);
+    Set<Id> recordTypes = getRecordTypeIds();
+
     if (type == 'Task') {
       for (Task t : (List<Task>) originalActivities) {
-        if (isInsert) {
+        if (!recordTypes.contains(t.RecordTypeId)) {
+          continue;
+        } else if (isInsert) {
           Task newTask = new Task(Id = t.Id, RelatedToAccount__c = mapOfActivityAndAccount.get(t.Id));
           sObjectsToUpdate.add(newTask);
         } else {
@@ -248,7 +252,9 @@ public with sharing class Activity_AddAccountHelper {
       }
     } else if (type == 'Event') {
       for (Event e : (List<Event>) originalActivities) {
-        if (isInsert) {
+        if (!recordTypes.contains(e.RecordTypeId)) {
+          continue;
+        } else if (isInsert) {
           Event newEvent = new Event(Id = e.Id, RelatedToAccount__c = mapOfActivityAndAccount.get(e.Id));
           sObjectsToUpdate.add(newEvent);
         } else {
@@ -279,6 +285,7 @@ public with sharing class Activity_AddAccountHelper {
 
   private static Set<Id> getRecordTypeIds() {
     Set<Id> recordTypeIds = new Set<Id>();
+
     recordTypeIds.add(
       Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName().get('ArbeidsgiverEvent').getRecordTypeId()
     );
