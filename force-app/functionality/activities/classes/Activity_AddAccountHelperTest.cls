@@ -22,18 +22,22 @@ private without sharing class Activity_AddAccountHelperTest {
       Account acc = TAG_TestDataFactory.createAccounts(1)[0];
       Account acc2 = TAG_TestDataFactory.createAccounts(1)[0];
       TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, acc, true)[0];
+      Id agRecordType = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
+        .get('ArbeidsgiverTask')
+        .getRecordTypeId();
       Task t = new Task(
         TAG_NoPersonInformation__c = true,
-        WhatId = tl.Id,
         ActivityDate = Date.today(),
-        Subject = 'test'
+        RecordTypeId = agRecordType,
+        Subject = 'test',
+        WhatId = tl.Id
       );
       insert t;
       tl.Account__c = acc2.Id;
       update tl;
 
       System.assertEquals(null, t.RelatedToAccount__c, 'Null before function');
-      t = [SELECT Id, WhatId, RelatedToAccount__c FROM Task WHERE Id = :t.Id LIMIT 1][0];
+      t = [SELECT Id, RecordTypeId, WhatId, RelatedToAccount__c FROM Task WHERE Id = :t.Id LIMIT 1][0];
       System.assertEquals(acc.Id, t.RelatedToAccount__c, 'old acc after insertion');
 
       Test.StartTest();
@@ -52,21 +56,26 @@ private without sharing class Activity_AddAccountHelperTest {
       Account acc = TAG_TestDataFactory.createAccounts(1)[0];
       Account acc2 = TAG_TestDataFactory.createAccounts(1)[0];
       TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, acc, true)[0];
+      Id agRecordType = Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName()
+        .get('ArbeidsgiverEvent')
+        .getRecordTypeId();
       Event e = new Event(
-        TAG_NoPersonInformation__c = true,
-        WhatId = tl.Id,
-        DurationInMinutes = 1440,
-        IsAllDayEvent = true,
-        ActivityDate = Date.today(),
         TAG_ActivityType__c = 'Nedbemanne',
-        Subject = 'Hele dagen'
+        TAG_NoPersonInformation__c = true,
+        RecordTypeId = agRecordType,
+        ActivityDate = Date.today(),
+        DurationInMinutes = 1440,
+        Subject = 'Hele dagen',
+        IsAllDayEvent = true,
+        WhatId = tl.Id
       );
+
       insert e;
       tl.Account__c = acc2.Id;
       update tl;
 
       System.assertEquals(null, e.RelatedToAccount__c, 'Null before function');
-      e = [SELECT Id, WhatId, RelatedToAccount__c FROM Event WHERE Id = :e.Id LIMIT 1][0];
+      e = [SELECT Id, RecordTypeId, WhatId, RelatedToAccount__c FROM Event WHERE Id = :e.Id LIMIT 1][0];
       System.assertEquals(acc.Id, e.RelatedToAccount__c, 'old acc after insertion');
 
       Test.StartTest();
@@ -390,10 +399,21 @@ private without sharing class Activity_AddAccountHelperTest {
   private static void testAddAccountToActivity() {
     Account account = TAG_TestDataFactory.createAccounts(1)[0];
     TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
-    Task t = new Task(TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test');
-    insert t;
-    List<SObject> activities = new List<SObject>{ t };
+    Id agRecordType = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
+      .get('ArbeidsgiverTask')
+      .getRecordTypeId();
 
+    Task t = new Task(
+      TAG_NoPersonInformation__c = true,
+      RecordTypeId = agRecordType,
+      ActivityDate = Date.today(),
+      Subject = 'test',
+      WhatId = tl.Id
+    );
+
+    insert t;
+
+    List<SObject> activities = new List<SObject>{ t };
     Map<String, Set<Id>> whatIdMap = Activity_AddAccountHelper.getWhatIdMap(activities);
     Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(whatIdMap);
     Map<String, String> activityAccountMapping = Activity_AddAccountHelper.getActivityAccountMapping();
