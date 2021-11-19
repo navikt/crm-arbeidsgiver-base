@@ -3,13 +3,13 @@
     <fullName>Mitt_NAV_kontor</fullName>
     <columns>NAME</columns>
     <columns>Account__c</columns>
-    <columns>Inquiry_Category_2__c</columns>
     <columns>InclusionStage__c</columns>
     <columns>OWNER.FIRST_NAME</columns>
     <columns>OWNER.LAST_NAME</columns>
     <columns>TAG_Overdue_Sign__c</columns>
     <columns>TAG_Resolved_Date_Time__c</columns>
     <columns>TAG_Response_Days__c</columns>
+    <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Is_My_NAV_Office__c</field>

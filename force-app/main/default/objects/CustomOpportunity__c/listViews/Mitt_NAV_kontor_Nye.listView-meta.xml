@@ -3,9 +3,9 @@
     <fullName>Mitt_NAV_kontor_Nye</fullName>
     <columns>NAME</columns>
     <columns>Account__c</columns>
-    <columns>Inquiry_Category_2__c</columns>
     <columns>InclusionStage__c</columns>
     <columns>OwnerFullName__c</columns>
+    <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Is_My_NAV_Office__c</field>

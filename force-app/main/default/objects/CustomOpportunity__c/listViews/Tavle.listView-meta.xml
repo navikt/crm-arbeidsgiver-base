@@ -5,6 +5,7 @@
     <columns>Account__c</columns>
     <columns>InclusionStage__c</columns>
     <columns>OWNER.ALIAS</columns>
+    <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>RECORDTYPE</field>
