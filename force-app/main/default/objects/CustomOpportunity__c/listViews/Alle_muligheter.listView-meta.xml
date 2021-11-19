@@ -6,6 +6,7 @@
     <columns>InquiryCategory__c</columns>
     <columns>InclusionStage__c</columns>
     <columns>OWNER.ALIAS</columns>
+    <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <label>Alle muligheter</label>
 </ListView>
