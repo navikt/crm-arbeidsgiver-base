@@ -88,8 +88,8 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Other Information</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -116,15 +116,21 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <quickActionList>
+        <!--
+        Actions which are not a part of the package.
+
+        TODO: Can these be removed? Why Are there so many duplicates? Is this layout needed?
+
         <quickActionListItems>
             <quickActionName>Task.EditDescription_4</quickActionName>
         </quickActionListItems>
+   
         <quickActionListItems>
             <quickActionName>Task.Defer_4</quickActionName>
         </quickActionListItems>
@@ -133,7 +139,7 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Task.UpdatePriority_4</quickActionName>
-        </quickActionListItems>
+        </quickActionListItems>  
         <quickActionListItems>
             <quickActionName>Task.EditDescription_3</quickActionName>
         </quickActionListItems>
@@ -182,6 +188,7 @@
         <quickActionListItems>
             <quickActionName>Task.UpdatePriority_0</quickActionName>
         </quickActionListItems>
+-->
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
