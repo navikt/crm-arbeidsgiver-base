@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>WarningFormattedText__c</fullName>
     <externalId>false</externalId>
-    <formula>&quot;Varsel gjelder tema: &quot;+ TEXT(WarningNote__c) +&quot; - Aktivert: &quot; +  
+    <formula>&quot;Gjelder tema: &quot;+ TEXT(WarningNote__c) +&quot; - Aktivert: &quot; +  
 
    LPAD(TEXT(DAY(WarningDate__c)),2,&quot;0&quot;)&amp;&quot;.&quot;&amp;LPAD(TEXT(MONTH(WarningDate__c)),2,&quot;0&quot;)&amp;&quot;.&quot;&amp;TEXT(YEAR(WarningDate__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
