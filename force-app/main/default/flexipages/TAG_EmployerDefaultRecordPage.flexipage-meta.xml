@@ -367,6 +367,13 @@
         <itemInstances>
             <componentInstance>
                 <componentName>bankAccountNumberViewer</componentName>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NAV Kontaktsenter (Sanitized)</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>Facet-30ba79a4-429f-4ca9-b271-f750c3fe0663</name>
