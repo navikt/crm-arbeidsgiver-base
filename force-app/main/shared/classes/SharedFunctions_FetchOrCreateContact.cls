@@ -100,7 +100,7 @@ public without sharing class SharedFunctions_FetchOrCreateContact {
 	 */
 
     public static Boolean checkIfValidEmail(String email) {
-        String emailRegex = '^[a-zA-Z0-9._|\\\\%#~`=?&/$^*!}{+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'; // source: <a href="http://www.regular-expressions.info/email.html" target="_blank" rel="nofollow">http://www.regular-expressions.info/email.html</a>
+        String emailRegex = '^[a-zA-Z0-9._|\\\\%#~`=?&/$^*!}{+-]+@((?!-)[a-zA-Z0-9.-]{1,63}(?<!-))+\\.[a-zA-Z]{2,4}$'; // source: <a href="http://www.regular-expressions.info/email.html" target="_blank" rel="nofollow">http://www.regular-expressions.info/email.html</a>
         Pattern MyPattern = Pattern.compile(emailRegex);
         Matcher MyMatcher = MyPattern.matcher(email);
 
