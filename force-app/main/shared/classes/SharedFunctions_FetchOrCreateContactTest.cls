@@ -131,6 +131,7 @@ private without sharing class SharedFunctions_FetchOrCreateContactTest {
         Boolean actual5 = SharedFunctions_FetchOrCreateContact.checkIfValidEmail('test@domain');
         Boolean actual6 = SharedFunctions_FetchOrCreateContact.checkIfValidEmail('test£@domain.com');
         Boolean actual7 = SharedFunctions_FetchOrCreateContact.checkIfValidEmail('test@domain.com');
+        Boolean actual8 = SharedFunctions_FetchOrCreateContact.checkIfValidEmail('test@domain-.com');
         Test.StopTest();
 
         System.assert(!actual1, 'should be false, as "test @domain.com" is wrong');
@@ -140,6 +141,7 @@ private without sharing class SharedFunctions_FetchOrCreateContactTest {
         System.assert(!actual5, 'should be false, as "test@domain" is wrong');
         System.assert(!actual6, 'should be false, as "test£@domain.com" is wrong');
         System.assert(actual7, 'should be true, as "test@domain.com" is correct');
+        System.assert(!actual8, 'should be false, as "test@domain-.com" is wrong');
     }
 
     @isTest
