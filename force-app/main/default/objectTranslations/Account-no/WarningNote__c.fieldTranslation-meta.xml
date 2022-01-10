@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Merknads beskjed</label>
+    <name>WarningNote__c</name>
+    <picklistValues>
+        <masterLabel>Forebygge sykefravær og redusere frafall</masterLabel>
+        <translation><!-- Forebygge sykefravær og redusere frafall --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nedbemanne</masterLabel>
+        <translation><!-- Nedbemanne --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Oppfølging</masterLabel>
+        <translation><!-- Oppfølging --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rekruttere og inkludere</masterLabel>
+        <translation><!-- Rekruttere og inkludere --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
