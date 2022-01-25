@@ -899,11 +899,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CRM_Ultimate_Parent_Account__c</field>
-            <table>Contact.AccountContactRelations</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Website</field>
             <table>Contact.AccountContactRelations</table>
         </columns>
@@ -1501,11 +1496,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account.CRM_AccountType__c</field>
-            <table>Contact</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account.CRM_Ultimate_Parent_Account__c</field>
             <table>Contact</table>
         </columns>
         <columns>
