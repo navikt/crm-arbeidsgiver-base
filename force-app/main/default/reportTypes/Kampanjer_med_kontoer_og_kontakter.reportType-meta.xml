@@ -223,11 +223,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.CRM_Ultimate_Parent_Account__c</field>
-            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.Website</field>
             <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
         </columns>

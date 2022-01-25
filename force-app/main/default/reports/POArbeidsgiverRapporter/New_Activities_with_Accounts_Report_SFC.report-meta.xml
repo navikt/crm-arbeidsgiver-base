@@ -40,16 +40,6 @@
     <columns>
         <field>Activity.TAG_Status__c</field>
     </columns>
-    <filter>
-        <criteriaItems>
-            <column>Account.CRM_Ultimate_Parent_Account__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>0011j000014LIP1</value>
-        </criteriaItems>
-        <language>en_US</language>
-    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
