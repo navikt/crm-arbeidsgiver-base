@@ -38,6 +38,10 @@
             <section>Custom Links</section>
         </sections>
         <sections>
+            <label><!-- Informasjon fra konto --></label>
+            <section>Informasjon fra konto</section>
+        </sections>
+        <sections>
             <label><!-- Oppfølging --></label>
             <section>Oppfølging</section>
         </sections>
@@ -51,6 +55,11 @@
         <label><!-- Følg opp --></label>
         <name>FollowUp</name>
     </quickActions>
+    <validationRules>
+        <errorMessage><!-- Du har valgt en status som ikke er gyldig for Tilskudd til sommerjobb. Velg en av følgende statuser:
+Ny, Sendt informasjon, Interessert, Ingått avtale, Ikke aktuell --></errorMessage>
+        <name>Status_ikk_gyldig_for_kampanje</name>
+    </validationRules>
     <webLinks>
         <label><!-- OpenSurvey --></label>
         <name>OpenSurvey</name>

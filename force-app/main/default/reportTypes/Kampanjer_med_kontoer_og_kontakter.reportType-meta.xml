@@ -188,6 +188,36 @@
             <field>Type__c</field>
             <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Responsible__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Industry__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Industry_Code__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Main_Industry__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Number_of_Employees__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Municipality__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
         <masterLabel>Custom Campaign Members</masterLabel>
     </sections>
     <sections>
