@@ -3,6 +3,18 @@
     <label>Task (Email)</label>
     <protected>false</protected>
     <values>
+        <field>AllowAutoOpen__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>AutomaticRefresh_PushTopicName__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>AutomaticRefresh__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
         <field>CreateableObject_Field1__c</field>
         <value xsi:type="xsd:string">ActivityDate</value>
     </values>
@@ -16,7 +28,7 @@
     </values>
     <values>
         <field>CreateableObject_RecordType__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">ArbeidsgiverTask</value>
     </values>
     <values>
         <field>CreateableObject_TextEnglish__c</field>
@@ -36,6 +48,10 @@
     </values>
     <values>
         <field>CreateableObject_Value3__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>ExpandedFieldsToDisplay__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>
