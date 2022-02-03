@@ -459,8 +459,16 @@
                     <value>3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>buttonIsHidden</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>configId</name>
                     <value>TAG_NAV_default</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filterIsActive</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>headerIcon</name>
@@ -473,6 +481,17 @@
                 <componentInstanceProperties>
                     <name>headerTitleNorwegian</name>
                     <value>Tidslinje</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter1Label</name>
+                    <value>{!$Label.Topic}</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter2Label</name>
+                    <value>{!$Label.Service}</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>timelineParentField</name>
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
                 <visibilityRule>
