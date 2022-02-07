@@ -40,6 +40,16 @@
     <columns>
         <field>Activity.TAG_Status__c</field>
     </columns>
+    <filter>
+        <criteriaItems>
+            <column>Account.CRM_UltimateParentAccount__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value/>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
