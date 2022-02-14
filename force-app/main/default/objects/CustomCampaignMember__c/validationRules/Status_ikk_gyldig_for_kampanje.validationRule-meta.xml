@@ -8,8 +8,7 @@ OR(
 ISPICKVAL(Status__c, &quot;Ny&quot;),
 ISPICKVAL(Status__c, &quot;Sendt informasjon&quot;),
 ISPICKVAL(Status__c , &quot;Interessert&quot;),
-ISPICKVAL(Status__c , &quot;Inngått avtale&quot;),
-ISPICKVAL(Status__c , &quot;Ikke aktuell&quot;)),
+ISPICKVAL(Status__c , &quot;Inngått avtale&quot;)),
 
 ISPICKVAL(CustomCampaign__r.Type__c,&quot;Bedriftsundersøkelse&quot;))</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
