@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JobPostingCompact</fullName>
+    <fields>Title__c</fields>
+    <fields>EngagementType__c</fields>
+    <fields>Extent__c</fields>
+    <fields>Expires__c</fields>
+    <fields>SourceURL__c</fields>
+    <label>Job Posting Compact</label>
+</CompactLayout>
