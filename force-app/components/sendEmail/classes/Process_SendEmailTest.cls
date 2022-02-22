@@ -179,7 +179,7 @@ private without sharing class Process_SendEmailTest {
       Test.StopTest();
 
       emails = [SELECT HtmlBody, ToAddress FROM EmailMessage];
-      //System.assertEquals(1, emails.size(), 'One email after, due to one wrong email');
+      System.assertEquals(1, emails.size(), 'One email after, due to one wrong email');
     }
   }
 
