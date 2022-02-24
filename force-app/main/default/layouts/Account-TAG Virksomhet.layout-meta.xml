@@ -358,7 +358,12 @@
         <relatedList>CustomCampaignMember__c.AccountSentral__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>EngagementType__c</fields>
+        <fields>Extent__c</fields>
+        <fields>Expires__c</fields>
         <relatedList>JobPosting__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
@@ -368,7 +373,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0E000002qIHL</masterLabel>
+        <masterLabel>00h1x000003702p</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
