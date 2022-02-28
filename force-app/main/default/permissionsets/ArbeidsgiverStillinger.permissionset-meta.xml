@@ -33,6 +33,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>JobPosting__c.JobPoster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>JobPosting__c.KafkaHash__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -44,6 +49,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>JobPosting__c.LastUpdated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.Medium__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.ProfessionCategoryCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
