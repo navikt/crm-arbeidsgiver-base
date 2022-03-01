@@ -8,8 +8,7 @@ private without sharing class Activity_AddAccountTest {
         'Arbeidsgiver_arenaActivity',
         'Arbeidsgiver_base',
         'Arbeidsgiver_contract',
-        'Arbeidsgiver_opportunity',
-        'Arbeidsgiver_temporaryLayoffs'
+        'Arbeidsgiver_opportunity'
       }
     );
   }
@@ -110,7 +109,10 @@ private without sharing class Activity_AddAccountTest {
       t = [SELECT Id, RelatedToAccount__c FROM Task WHERE Id = :t.Id LIMIT 1];
 
       Account newAccount = TAG_TestDataFactory.createAccounts(1)[0];
-      TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, newAccount, true)[0];
+      CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+      tl.Account__c = newAccount.id;
+      insert tl;
+
       t.WhatId = tl.Id;
 
       System.assertEquals(
@@ -142,7 +144,10 @@ private without sharing class Activity_AddAccountTest {
       e = [SELECT Id, RelatedToAccount__c FROM Event WHERE Id = :e.Id LIMIT 1];
 
       Account newAccount = TAG_TestDataFactory.createAccounts(1)[0];
-      TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, newAccount, true)[0];
+      CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+      tl.Account__c = newAccount.id;
+      insert tl;
+
       e.WhatId = tl.Id;
 
       System.assertEquals(
@@ -168,7 +173,9 @@ private without sharing class Activity_AddAccountTest {
   // ------------------------------
 
   private static Task createTask(Account account) {
-    TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
+    CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+    tl.Account__c = account.Id;
+    insert tl;
     Id agRecordType = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
       .get('ArbeidsgiverTask')
       .getRecordTypeId();
@@ -185,7 +192,10 @@ private without sharing class Activity_AddAccountTest {
   }
 
   private static Event createEvent(Account account) {
-    TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
+    CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+    tl.Account__c = account.Id;
+    insert tl;
+
     Id agRecordType = Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName()
       .get('ArbeidsgiverEvent')
       .getRecordTypeId();
