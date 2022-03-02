@@ -1,0 +1,124 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "JobPosting__c",
+        "referenceId": "JobPosting__cRef1"
+      },
+      "Account__c": "@AccountRef9",
+      "Title__c": "Ski Kommuneskoge søker ny Salgskonsulent",
+      "LastUpdated__c": "2022-03-02T11:00:00.000+0000",
+      "Created__c": "2022-03-01T11:00:00.000+0000",
+      "Expires__c": "2022-03-16T11:00:00.000+0000",
+      "SourceURL__c": "https://www.finn.no/job/browse.html",
+      "ProfessionCategoryCode__c": "3415120",
+      "WorkplaceCity__c": "SKI",
+      "EmployerReference__c": "1234",
+      "JobPoster__c": "Ski Kommuneskoger",
+      "EngagementType__c": "Fast",
+      "Extent__c": "Heltid",
+      "Status__c": "ACTIVE",
+      "Source__c": "FINN"
+    },
+    {
+      "attributes": {
+        "type": "JobPosting__c",
+        "referenceId": "JobPosting__cRef2"
+      },
+      "Account__c": "@AccountRef11",
+      "Title__c": "SKI KOMMUNE ADMINISTRASJON søker ny Kontormedarbeider",
+      "LastUpdated__c": "2022-02-02T11:00:00.000+0000",
+      "Created__c": "2022-02-01T11:00:00.000+0000",
+      "Expires__c": "2022-02-16T11:00:00.000+0000",
+      "SourceURL__c": "https://www.finn.no/job/browse.html",
+      "ProfessionCategoryCode__c": "411405",
+      "WorkplaceCity__c": "OSLO, SKI, BERGEN",
+      "EmployerReference__c": "1235",
+      "JobPoster__c": "Academic Work",
+      "EngagementType__c": "Fast",
+      "Extent__c": "Deltid",
+      "Status__c": "ACTIVE",
+      "Source__c": "FINN"
+    },
+    {
+      "attributes": {
+        "type": "JobPosting__c",
+        "referenceId": "JobPosting__cRef3"
+      },
+      "Account__c": "@AccountRef11",
+      "Title__c": "SKI KOMMUNE ADMINISTRASJON søker ny Kontormedarbeider",
+      "LastUpdated__c": "2022-02-02T11:00:00.000+0000",
+      "Created__c": "2022-01-01T11:00:00.000+0000",
+      "Expires__c": "2022-03-16T11:00:00.000+0000",
+      "SourceURL__c": "https://www.finn.no/job/browse.html",
+      "ProfessionCategoryCode__c": "411405",
+      "WorkplaceCity__c": "SKI",
+      "EmployerReference__c": "1235",
+      "JobPoster__c": "Academic Work",
+      "EngagementType__c": "Vikariat",
+      "Extent__c": "Heltid",
+      "Status__c": "ACTIVE",
+      "Source__c": "FINN"
+    },
+    {
+      "attributes": {
+        "type": "JobPosting__c",
+        "referenceId": "JobPosting__cRef4"
+      },
+      "Account__c": "@AccountRef11",
+      "Title__c": "SKI KOMMUNE ADMINISTRASJON søker ny Salgskonsulent",
+      "LastUpdated__c": "2022-03-02T11:00:00.000+0000",
+      "Created__c": "2022-03-01T11:00:00.000+0000",
+      "Expires__c": "2022-03-16T11:00:00.000+0000",
+      "SourceURL__c": "https://www.finn.no/job/browse.html",
+      "ProfessionCategoryCode__c": "3415120",
+      "WorkplaceCity__c": "SKI",
+      "EmployerReference__c": "1234",
+      "JobPoster__c": "SKI KOMMUNE ADMINISTRASJON",
+      "EngagementType__c": "Fast",
+      "Extent__c": "Heltid",
+      "Status__c": "ACTIVE",
+      "Source__c": "FINN"
+    },
+    {
+      "attributes": {
+        "type": "JobPosting__c",
+        "referenceId": "JobPosting__cRef5"
+      },
+      "Account__c": "@AccountRef9",
+      "Title__c": "Ski Kommuneskoger søker ny Kontormedarbeider",
+      "LastUpdated__c": "2022-02-02T11:00:00.000+0000",
+      "Created__c": "2022-02-01T11:00:00.000+0000",
+      "Expires__c": "2022-02-16T11:00:00.000+0000",
+      "SourceURL__c": "https://www.finn.no/job/browse.html",
+      "ProfessionCategoryCode__c": "411405",
+      "WorkplaceCity__c": "OSLO, SKI, BERGEN",
+      "EmployerReference__c": "1235",
+      "JobPoster__c": "Academic Work",
+      "EngagementType__c": "Fast",
+      "Extent__c": "Deltid",
+      "Status__c": "ACTIVE",
+      "Source__c": "FINN"
+    },
+    {
+      "attributes": {
+        "type": "JobPosting__c",
+        "referenceId": "JobPosting__cRef6"
+      },
+      "Account__c": "@AccountRef9",
+      "Title__c": "Ski Kommuneskoger søker ny mekaniker",
+      "LastUpdated__c": "2022-02-02T11:00:00.000+0000",
+      "Created__c": "2022-01-01T11:00:00.000+0000",
+      "Expires__c": "2022-03-16T11:00:00.000+0000",
+      "SourceURL__c": "https://www.finn.no/job/browse.html",
+      "ProfessionCategoryCode__c": "7234112",
+      "WorkplaceCity__c": "SKI",
+      "EmployerReference__c": "1235",
+      "JobPoster__c": "Academic Work",
+      "EngagementType__c": "Vikariat",
+      "Extent__c": "Heltid",
+      "Status__c": "ACTIVE",
+      "Source__c": "FINN"
+    }
+  ]
+}
