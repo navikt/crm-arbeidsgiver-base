@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ProfessionCategoryCode__c</fullName>
+    <fullName>Keywords__c</fullName>
     <externalId>false</externalId>
-    <label>Profession Category Code</label>
+    <label>Keywords</label>
     <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>

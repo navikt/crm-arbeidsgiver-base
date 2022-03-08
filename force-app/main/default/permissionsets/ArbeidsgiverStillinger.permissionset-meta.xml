@@ -48,6 +48,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>JobPosting__c.Keywords__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>JobPosting__c.LastUpdated__c</field>
         <readable>true</readable>
     </fieldPermissions>
