@@ -81,6 +81,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NavTask__c.ResolvedDays__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NavTask__c.TAG_Is_My_NAV_Market_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
