@@ -42,7 +42,7 @@
             <targetReference>Update_Campaign_Type</targetReference>
         </connector>
         <object>CustomCampaignMember__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
