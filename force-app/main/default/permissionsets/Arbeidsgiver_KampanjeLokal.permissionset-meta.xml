@@ -6,11 +6,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaignMember__c.Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>CustomCampaign__c.Description__c</field>
         <readable>true</readable>
@@ -41,11 +36,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>CustomCampaign__c.ServicTAG_e__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>CustomCampaign__c.StartDate__c</field>
         <readable>true</readable>
@@ -73,6 +63,10 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <recordType>CustomCampaign__c.Lokal</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CustomCampaign__c.Sentral</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
 </PermissionSet>
