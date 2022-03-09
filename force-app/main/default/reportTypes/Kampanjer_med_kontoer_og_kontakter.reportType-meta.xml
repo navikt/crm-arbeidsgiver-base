@@ -85,6 +85,11 @@
             <field>Type__c</field>
             <table>CustomCampaign__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ServicTAG_e__c</field>
+            <table>CustomCampaign__c</table>
+        </columns>
         <masterLabel>Custom Campaigns</masterLabel>
     </sections>
     <sections>
@@ -216,6 +221,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account_Municipality__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_type__c</field>
             <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
         </columns>
         <masterLabel>Custom Campaign Members</masterLabel>

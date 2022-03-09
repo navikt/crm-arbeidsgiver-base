@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ServicTAG_e__c</fullName>
+    <externalId>false</externalId>
+    <label>Service</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Jobbmesser og møteplass</fullName>
+                <default>false</default>
+                <label>Jobbmesser og møteplass</label>
+            </value>
+            <value>
+                <fullName>Rekruttering (uten virkemidler, inkl. oppfølging)</fullName>
+                <default>false</default>
+                <label>Rekruttering (uten virkemidler, inkl. oppfølging)</label>
+            </value>
+            <value>
+                <fullName>Informasjon og relasjonsbygging</fullName>
+                <default>false</default>
+                <label>Informasjon og relasjonsbygging</label>
+            </value>
+            <value>
+                <fullName>Inkludering (med virkemidler, inkl. oppfølging)</fullName>
+                <default>false</default>
+                <label>Inkludering (med virkemidler, inkl. oppfølging)</label>
+            </value>
+            <value>
+                <fullName>Permittering</fullName>
+                <default>false</default>
+                <label>Permittering</label>
+            </value>
+            <value>
+                <fullName>Oppsigelser</fullName>
+                <default>false</default>
+                <label>Oppsigelser</label>
+            </value>
+            <value>
+                <fullName>Jobbutvikling (Jobbspesialist)</fullName>
+                <default>false</default>
+                <label>Jobbutvikling (Jobbspesialist)</label>
+            </value>
+            <value>
+                <fullName>Jobbstøtte (Jobbspesialist)</fullName>
+                <default>false</default>
+                <label>Jobbstøtte (Jobbspesialist)</label>
+            </value>
+            <value>
+                <fullName>HelseIArbeid</fullName>
+                <default>false</default>
+                <label>HelseIArbeid</label>
+            </value>
+            <value>
+                <fullName>Redusere sykefravær</fullName>
+                <default>false</default>
+                <label>Redusere sykefravær</label>
+            </value>
+            <value>
+                <fullName>Forebyggende arbeidsmiljø</fullName>
+                <default>false</default>
+                <label>Forebyggende arbeidsmiljø</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

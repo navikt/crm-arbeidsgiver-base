@@ -59,6 +59,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomCampaignMember__c.Campaign_type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CustomCampaignMember__c.Contact__c</field>
         <readable>true</readable>
@@ -105,11 +110,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CustomCampaignMember__c.Owner__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CustomCampaignMember__c.Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -152,6 +152,11 @@
         <editable>true</editable>
         <field>CustomCampaign__c.NoEndDate__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomCampaign__c.ServicTAG_e__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

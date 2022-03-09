@@ -4,6 +4,53 @@
     <active>true</active>
     <label>Sentral</label>
     <picklistValues>
+        <picklist>ServicTAG_e__c</picklist>
+        <values>
+            <fullName>Forebyggende arbeidsmiljø</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HelseIArbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Informasjon og relasjonsbygging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inkludering %28med virkemidler%2C inkl%2E oppfølging%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbmesser og møteplass</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbstøtte %28Jobbspesialist%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbutvikling %28Jobbspesialist%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oppsigelser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Permittering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Redusere sykefravær</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekruttering %28uten virkemidler%2C inkl%2E oppfølging%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Status__c</picklist>
         <values>
             <fullName>Lukket</fullName>

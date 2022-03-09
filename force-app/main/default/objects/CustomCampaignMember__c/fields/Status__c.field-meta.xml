@@ -7,6 +7,7 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
+        <controllingField>Campaign_type__c</controllingField>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -39,6 +40,65 @@
                 <default>false</default>
                 <label>Frafalt</label>
             </value>
+            <value>
+                <fullName>Ikke gjennomført</fullName>
+                <default>false</default>
+                <label>Ikke gjennomført</label>
+            </value>
+            <value>
+                <fullName>Gjennomført</fullName>
+                <default>false</default>
+                <label>Gjennomført</label>
+            </value>
+            <value>
+                <fullName>Ikke Besvart</fullName>
+                <default>false</default>
+                <label>Ikke Besvart</label>
+            </value>
+            <value>
+                <fullName>Besvart</fullName>
+                <default>false</default>
+                <label>Besvart</label>
+            </value>
         </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Bedriftsundersøkelse</controllingFieldValue>
+            <controllingFieldValue>Sommerjobbkampanje</controllingFieldValue>
+            <controllingFieldValue>Inkluderingskampanje</controllingFieldValue>
+            <controllingFieldValue>Fylkeskampanje</controllingFieldValue>
+            <valueName>Ikke aktuell</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bedriftsundersøkelse</controllingFieldValue>
+            <valueName>Ikke gjennomført</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bedriftsundersøkelse</controllingFieldValue>
+            <valueName>Gjennomført</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sommerjobbkampanje</controllingFieldValue>
+            <controllingFieldValue>Inkluderingskampanje</controllingFieldValue>
+            <controllingFieldValue>Fylkeskampanje</controllingFieldValue>
+            <valueName>Ny</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sommerjobbkampanje</controllingFieldValue>
+            <controllingFieldValue>Inkluderingskampanje</controllingFieldValue>
+            <controllingFieldValue>Fylkeskampanje</controllingFieldValue>
+            <valueName>Sendt informasjon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sommerjobbkampanje</controllingFieldValue>
+            <controllingFieldValue>Inkluderingskampanje</controllingFieldValue>
+            <controllingFieldValue>Fylkeskampanje</controllingFieldValue>
+            <valueName>Interessert</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sommerjobbkampanje</controllingFieldValue>
+            <controllingFieldValue>Inkluderingskampanje</controllingFieldValue>
+            <controllingFieldValue>Fylkeskampanje</controllingFieldValue>
+            <valueName>Inngått avtale</valueName>
+        </valueSettings>
     </valueSet>
 </CustomField>
