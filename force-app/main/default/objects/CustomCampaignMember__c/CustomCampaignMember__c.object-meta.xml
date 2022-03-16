@@ -167,6 +167,7 @@
     </nameField>
     <pluralLabel>Custom Campaign Members</pluralLabel>
     <searchLayouts>
+        <massQuickActions>Update_Status</massQuickActions>
         <searchResultsAdditionalFields>CustomCampaign__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>

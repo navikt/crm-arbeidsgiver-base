@@ -1,6 +1,6 @@
 @isTest
 public class ReportRelocation_Scheduler_TEST {
-  private static final String CRON_EXP = '0 0 0 15 3 ? 2022';
+  private static final String CRON_EXP = '0 0 0 15 3 ? 2030';
 
   @isTest
   static void scheduleExecution() {
