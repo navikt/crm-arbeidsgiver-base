@@ -8,8 +8,7 @@ private without sharing class Activity_AddAccountHelperTest {
         'Arbeidsgiver_arenaActivity',
         'Arbeidsgiver_base',
         'Arbeidsgiver_contract',
-        'Arbeidsgiver_opportunity',
-        'Arbeidsgiver_temporaryLayoffs'
+        'Arbeidsgiver_opportunity'
       }
     );
   }
@@ -21,7 +20,9 @@ private without sharing class Activity_AddAccountHelperTest {
     System.runAs(u) {
       Account acc = TAG_TestDataFactory.createAccounts(1)[0];
       Account acc2 = TAG_TestDataFactory.createAccounts(1)[0];
-      TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, acc, true)[0];
+      CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+      tl.Account__c = acc.id;
+      insert tl;
       Id agRecordType = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
         .get('ArbeidsgiverTask')
         .getRecordTypeId();
@@ -55,7 +56,9 @@ private without sharing class Activity_AddAccountHelperTest {
     System.runAs(u) {
       Account acc = TAG_TestDataFactory.createAccounts(1)[0];
       Account acc2 = TAG_TestDataFactory.createAccounts(1)[0];
-      TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, acc, true)[0];
+      CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+      tl.Account__c = acc.Id;
+      insert tl;
       Id agRecordType = Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName()
         .get('ArbeidsgiverEvent')
         .getRecordTypeId();
@@ -328,11 +331,9 @@ private without sharing class Activity_AddAccountHelperTest {
   @isTest
   private static void testGetSObjectsSeparatedBySObjectType() {
     Account acc = TAG_TestDataFactory.createAccounts(1)[0];
-    TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, acc, true)[0];
     CustomOpportunity__c opty = TAG_TestDataFactory.getCustomOpportunities(1, true)[0];
 
     Map<String, Set<Id>> whatIdMap = new Map<String, Set<Id>>();
-    whatIdMap.put(((String) tl.Id).substring(0, 3), new Set<Id>{ tl.Id });
     whatIdMap.put(((String) opty.Id).substring(0, 3), new Set<Id>{ opty.Id });
     Map<String, String> mapOfSObjectPrefix = Activity_AddAccountHelper.getMapOfSObjectPrefix(whatIdMap);
 
@@ -349,21 +350,20 @@ private without sharing class Activity_AddAccountHelperTest {
     );
     Test.StopTest();
 
-    System.assertEquals(2, result.size(), 'CustomOpportunity__c and temp layoff should have they\'re own key');
+    System.assertEquals(1, result.size(), 'CustomOpportunity__c own key');
 
     System.assert(result.containsKey('customopportunity__c'), 'CustomOpportunity__c should exist as a key');
     System.assertEquals(1, result.get('customopportunity__c').size(), 'CustomOpportunity__c should have one ID');
     System.assertEquals(opty.Id, result.get('customopportunity__c')[0].Id, 'Id should be the same');
-
-    System.assert(result.containsKey('temporarylayoff__c'), 'TemporaryLayoff__c should exist as a key');
-    System.assertEquals(1, result.get('temporarylayoff__c').size(), 'TemporaryLayoff__c should have one ID');
-    System.assertEquals(tl.Id, result.get('temporarylayoff__c')[0].Id, 'Id should be the same');
   }
 
   @isTest
   private static void testGetMapOfActivityAndAccount() {
     Account account = TAG_TestDataFactory.createAccounts(1)[0];
-    TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
+    CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+    tl.Account__c = account.Id;
+    insert tl;
+
     Task t = new Task(TAG_NoPersonInformation__c = true, WhatId = tl.Id, ActivityDate = Date.today(), Subject = 'test');
     insert t;
     List<SObject> activities = new List<SObject>{ t };
@@ -398,7 +398,9 @@ private without sharing class Activity_AddAccountHelperTest {
   @isTest
   private static void testAddAccountToActivity() {
     Account account = TAG_TestDataFactory.createAccounts(1)[0];
-    TemporaryLayoff__c tl = TAG_TestDataFactory.getTemporaryLayoffs(1, account, true)[0];
+    CustomOpportunity__c tl = TAG_TestDataFactory.getCustomOpportunities(1, false)[0];
+    tl.Account__c = account.Id;
+    insert tl;
     Id agRecordType = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
       .get('ArbeidsgiverTask')
       .getRecordTypeId();

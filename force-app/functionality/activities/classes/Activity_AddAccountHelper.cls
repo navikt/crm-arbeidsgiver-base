@@ -274,6 +274,7 @@ public with sharing class Activity_AddAccountHelper {
     List<Activity_Account_Map__mdt> activityAccountMapping = [
       SELECT Id, SObject_API_Field_Name__c, SObject_API_Name__c
       FROM Activity_Account_Map__mdt
+      WHERE Active__c = TRUE
     ];
     Map<String, String> activityAccountMap = new Map<String, String>();
     for (Activity_Account_Map__mdt mdt : activityAccountMapping) {

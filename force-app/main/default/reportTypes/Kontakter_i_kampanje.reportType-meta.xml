@@ -1035,6 +1035,11 @@
             <field>Account_Municipality__c</field>
             <table>Contact.AccountContactRelations.Custom_Campaign_Members__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_type__c</field>
+            <table>Contact.AccountContactRelations.Custom_Campaign_Members__r</table>
+        </columns>
         <masterLabel>Custom Campaign Members</masterLabel>
     </sections>
     <sections>

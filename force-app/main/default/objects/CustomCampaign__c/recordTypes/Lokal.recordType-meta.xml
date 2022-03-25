@@ -4,36 +4,67 @@
     <active>true</active>
     <label>Lokal</label>
     <picklistValues>
+        <picklist>ServicTAG_e__c</picklist>
+        <values>
+            <fullName>Forebyggende arbeidsmiljø</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HelseIArbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Informasjon og relasjonsbygging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inkludering %28med virkemidler%2C inkl%2E oppfølging%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbmesser og møteplass</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbstøtte %28Jobbspesialist%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbutvikling %28Jobbspesialist%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oppsigelser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Permittering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Redusere sykefravær</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekruttering %28uten virkemidler%2C inkl%2E oppfølging%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Status__c</picklist>
         <values>
-            <fullName>Gjennomført</fullName>
+            <fullName>Lukket</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Ikke Aktuell</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Interessert</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Ny</fullName>
+            <fullName>Åpen</fullName>
             <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
         <picklist>Type__c</picklist>
         <values>
-            <fullName>Bedriftsundersøkelse</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Inkluderingskampanje</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sommerjobbkampanje</fullName>
+            <fullName>Fylkeskampanje</fullName>
             <default>false</default>
         </values>
     </picklistValues>
