@@ -11,5 +11,9 @@
     <columns>SourceURL__c</columns>
     <columns>WorkplaceCity__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account__c</field>
+        <operation>equals</operation>
+    </filters>
     <label>All</label>
 </ListView>

@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>WorkplaceCity__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProfessionCategory__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
