@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Force_Update__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to force update on Account, for system purposes only</description>
+    <externalId>false</externalId>
+    <label>Force Update</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>
