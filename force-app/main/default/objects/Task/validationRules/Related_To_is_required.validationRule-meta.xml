@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Related_To_is_required</fullName>
     <active>true</active>
-    <errorConditionFormula>ISBLANK( WhatId )</errorConditionFormula>
+    <errorConditionFormula>IF( RecordType.Name = &apos;AG Oppgave&apos; &amp;&amp;  ISBLANK( WhatId ) , true, false)</errorConditionFormula>
     <errorMessage>Feltet &quot;Relatert til&quot; må være fylt ut</errorMessage>
 </ValidationRule>
