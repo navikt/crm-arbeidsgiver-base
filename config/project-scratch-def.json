@@ -1,59 +1,64 @@
 {
-    "orgName": "crm-arbeidsgiver-base",
-    "edition": "Enterprise",
-    "release": "Current",
-    "adminEmail": "fakeemail@nav.no.scratchorg",
-    "features": [
-        "Sites",
-        "ForceComPlatform",
-        "Communities",
-        "CustomerCommunity",
-        "CustomerCommunityPlus",
-        "PersonAccounts",
-        "ProcessBuilder",
-        "API",
-        "ServiceCloud",
-        "LiveAgent",
-        "LightningServiceConsole",
-        "ContactsToMultipleAccounts",
-        "FIELDSERVICE:1"
-    ],
-    "country": "NO",
-    "language": "en_US",
-    "settings": {
-        "communitiesSettings": {
-            "enableNetworksEnabled": true
-        },
-        "lightningExperienceSettings": {
-            "enableS1DesktopEnabled": true
-        },
-        "omniChannelSettings": {
-            "enableOmniChannel": true
-        },
-        "liveAgentSettings": {
-            "enableLiveAgent": true
-        },
-        "languageSettings": {
-            "enableTranslationWorkbench": true
-        },
-        "accountSettings": {
-            "enableAccountHistoryTracking": true,
-            "enableAccountTeams": true
-        },
-        "emailAdministrationSettings": {
-            "enableEnhancedEmailEnabled": true
-        },
-        "nameSettings": {
-            "enableMiddleName": true
-        },
-        "fieldServiceSettings": {
-            "fieldServiceOrgPref": true,
-            "doesShareSaParentWoWithAr": false,
-            "doesShareSaWithAr": false,
-            "enableWorkOrders": true,
-            "isGeoCodeSyncEnabled": false,
-            "isLocationHistoryEnabled": false,
-            "fieldServiceNotificationsOrgPref": true
-        }
+  "orgName": "crm-arbeidsgiver-base",
+  "edition": "Enterprise",
+  "release": "Current",
+  "adminEmail": "fakeemail@nav.no.scratchorg",
+  "features": [
+    "Sites",
+    "ForceComPlatform",
+    "Communities",
+    "Knowledge",
+    "CustomerCommunity",
+    "CustomerCommunityPlus",
+    "PersonAccounts",
+    "ProcessBuilder",
+    "API",
+    "ServiceCloud",
+    "LiveAgent",
+    "LightningServiceConsole",
+    "ContactsToMultipleAccounts",
+    "FIELDSERVICE:1"
+  ],
+  "country": "NO",
+  "language": "en_US",
+  "settings": {
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "omniChannelSettings": {
+      "enableOmniChannel": true
+    },
+    "liveAgentSettings": {
+      "enableLiveAgent": true
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    },
+    "accountSettings": {
+      "enableAccountHistoryTracking": true,
+      "enableAccountTeams": true
+    },
+    "emailAdministrationSettings": {
+      "enableEnhancedEmailEnabled": true
+    },
+    "nameSettings": {
+      "enableMiddleName": true
+    },
+    "knowledgeSettings": {
+      "enableKnowledge": true,
+      "enableLightningKnowledge": true
+    },
+    "fieldServiceSettings": {
+      "fieldServiceOrgPref": true,
+      "doesShareSaParentWoWithAr": false,
+      "doesShareSaWithAr": false,
+      "enableWorkOrders": true,
+      "isGeoCodeSyncEnabled": false,
+      "isLocationHistoryEnabled": false,
+      "fieldServiceNotificationsOrgPref": true
     }
+  }
 }
