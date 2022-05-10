@@ -199,15 +199,6 @@
                 <fieldItem>Record.TAG_Contact__c</fieldItem>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_EmployeeRepresentative__c</fieldItem>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-cd04072f-ea78-4497-ad6b-5bf98aef7fa4</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -219,15 +210,6 @@
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_InternalContact__c</fieldItem>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Discussed__c</fieldItem>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c28198dd-49ee-486d-8ae4-45a5b280976b</name>
