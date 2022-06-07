@@ -122,6 +122,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Account_18_ID__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>ShippingState</field>
             <table>Account</table>
         </columns>
@@ -158,6 +163,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Fax</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_UltimateParentAccount__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_MainIndustry__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -202,6 +217,26 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Market_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_NAV_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Add_to_Custom_Campaign__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Description</field>
             <table>Account</table>
         </columns>
@@ -213,6 +248,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Site</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Is_My_NAV_Market_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_NAV_Office__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -506,6 +551,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>PostalCode</field>
+            <table>Account.AccountTeamMembers</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account</field>
             <table>Account.AccountTeamMembers</table>
         </columns>
         <columns>
