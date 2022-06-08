@@ -4,15 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Konto</label>
-    <lookupFilter>
-        <active>true</active>
-        <filterItems>
-            <field>Account.PersonContact.IsPersonAccount</field>
-            <operation>notEqual</operation>
-            <value>True</value>
-        </filterItems>
-        <isOptional>false</isOptional>
-    </lookupFilter>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Aktiviteter</relationshipLabel>
     <relationshipName>Aktiviteter</relationshipName>
