@@ -4,6 +4,15 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Employee Representative</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Contact.IsPersonAccount</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Contracts (Employee Representative)</relationshipLabel>
     <relationshipName>Contracts1</relationshipName>

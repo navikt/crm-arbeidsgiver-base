@@ -440,6 +440,11 @@
             <field>NAV_Market_Region__c</field>
             <table>Account</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Force_Update__c</field>
+            <table>Account</table>
+        </columns>
         <masterLabel>Accounts</masterLabel>
     </sections>
     <sections>

@@ -78,7 +78,7 @@ private without sharing class Activity_AddAccountTest {
       );
     }
   }
-
+  /* //This test is depreciated. WhatId is a required field on Task and Event.
   @isTest
   private static void testInsertTask_noWhatId() {
     User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
@@ -97,7 +97,7 @@ private without sharing class Activity_AddAccountTest {
         'Should NOT have added the account to Event.RelatedToAccount__c'
       );
     }
-  }
+  }*/
 
   @isTest
   private static void testUpdateTask() {

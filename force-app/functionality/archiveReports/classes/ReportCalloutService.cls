@@ -6,7 +6,6 @@ public inherited sharing class ReportCalloutService {
 
     apiCtrl.initRequest(API_CONFIG_NAME, 'PATCH_MOVE_REPORT');
     apiCtrl.setEndpoint(apiCtrl.getRequestEndpoint() + reportId);
-    apiCtrl.addHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
     apiCtrl.addHeader('Content-Type', 'application/json');
     apiCtrl.setBody('{"reportMetadata" : {"folderId":"' + folderId + '"}}');
     apiCtrl.doCallout();
