@@ -1,32 +1,38 @@
 [
-    {
-        "sobject": "Account",
-        "saveRefs": true,
-        "resolveRefs": true,
-        "files": ["Accounts-J.json", "Accounts-O.json", "Accounts-B.json"]
-    },
-    {
-        "sobject": "Contact",
-        "saveRefs": false,
-        "resolveRefs": true,
-        "files": ["Contacts.json"]
-    },
-    {
-        "sobject": "Event",
-        "saveRefs": false,
-        "resolveRefs": true,
-        "files": ["Events.json"]
-    },
-    {
-        "sobject": "Task",
-        "saveRefs": false,
-        "resolveRefs": true,
-        "files": ["Tasks.json"]
-    },
-    {
-        "sobject": "CustomOpportunity__c",
-        "saveRefs": false,
-        "resolveRefs": true,
-        "files": ["CustomOpportunities.json"]
-    }
+  {
+    "sobject": "Account",
+    "saveRefs": true,
+    "resolveRefs": true,
+    "files": ["Accounts-J.json", "Accounts-O.json", "Accounts-B.json"]
+  },
+  {
+    "sobject": "Contact",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["Contacts.json"]
+  },
+  {
+    "sobject": "Event",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["Events.json"]
+  },
+  {
+    "sobject": "Task",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["Tasks.json"]
+  },
+  {
+    "sobject": "CustomOpportunity__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["CustomOpportunities.json"]
+  },
+  {
+    "sobject": "JobPosting__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["JobPostings.json"]
+  }
 ]
