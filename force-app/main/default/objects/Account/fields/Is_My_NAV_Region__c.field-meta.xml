@@ -4,10 +4,9 @@
     <externalId>false</externalId>
     <formula>AND(
 $User.Region__c ==  TAG_NavUnit__r.INT_Region__c,
-RecordType.DeveloperName == &apos;Business_Account&apos;
+RecordType.DeveloperName == &apos;Employer&apos;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My NAV Region</label>
-    <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>

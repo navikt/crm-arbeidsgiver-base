@@ -4,10 +4,9 @@
     <externalId>false</externalId>
     <formula>AND(
 $User.Department ==  TAG_NavUnit__r.INT_UnitNumber__c,
-RecordType.DeveloperName == &apos;Business_Account&apos;
+RecordType.DeveloperName == &apos;Employer&apos;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My NAV Office</label>
-    <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>
