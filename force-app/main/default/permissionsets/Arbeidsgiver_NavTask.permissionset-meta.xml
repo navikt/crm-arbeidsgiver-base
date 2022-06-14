@@ -115,6 +115,10 @@
         <object>NavTask__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>NavTask__c.Employer</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <tabSettings>
         <tab>NavTask__c</tab>
         <visibility>Visible</visibility>

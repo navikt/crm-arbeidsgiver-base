@@ -9,9 +9,9 @@
     <columns>CRM_Urgent__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>CRM_IsMyNavUnit__c</field>
+        <field>RECORDTYPE</field>
         <operation>equals</operation>
-        <value>1</value>
+        <value>NavTask__c.Employer</value>
     </filters>
     <filters>
         <field>CRM_Status__c</field>
@@ -22,6 +22,11 @@
         <field>CRM_DueDate__c</field>
         <operation>lessThan</operation>
         <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>CRM_IsMyNavUnit__c</field>
+        <operation>equals</operation>
+        <value>1</value>
     </filters>
     <label>Mitt NAV-kontor (Forfalt) -Arbeidsgivere</label>
 </ListView>

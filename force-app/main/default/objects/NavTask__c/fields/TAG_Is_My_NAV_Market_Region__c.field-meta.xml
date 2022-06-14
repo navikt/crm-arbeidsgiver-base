@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>AND(
 $User.CRM_MarketRegion__c == CRM_NavUnit__r.MarketRegion__c,
-ISBLANK(RecordTypeId)
+ RecordType.DeveloperName =&quot;Employer&quot;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My NAV Market Region</label>
