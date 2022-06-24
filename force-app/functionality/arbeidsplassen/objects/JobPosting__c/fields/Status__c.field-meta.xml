@@ -14,6 +14,26 @@
                 <default>false</default>
                 <label>ACTIVE</label>
             </value>
+            <value>
+                <fullName>DELETED</fullName>
+                <default>false</default>
+                <label>DELETED</label>
+            </value>
+            <value>
+                <fullName>INACTIVE</fullName>
+                <default>false</default>
+                <label>INACTIVE</label>
+            </value>
+            <value>
+                <fullName>REJECTED</fullName>
+                <default>false</default>
+                <label>REJECTED</label>
+            </value>
+            <value>
+                <fullName>STOPPED</fullName>
+                <default>false</default>
+                <label>STOPPED</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
