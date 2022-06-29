@@ -12,7 +12,8 @@
     "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "postinstall": "node bin/check-version.js",
-    "mac:build": "bash bin/install-scratch.sh"
+    "mac:build": "bash bin/install-scratch.sh",
+    "build": "C:bin/install-scratch.bat"
   },
   "engines": {
     "node": ">= 10.13.0",
