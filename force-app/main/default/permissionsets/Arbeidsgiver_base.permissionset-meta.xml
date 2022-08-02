@@ -285,10 +285,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ObjectPermissionFromPermissionSetTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PermissionSetAssignmentService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -665,16 +661,6 @@
         <editable>false</editable>
         <field>Account.Is_My_NAV_Region__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.JSONPayload__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.KafkaHash__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
