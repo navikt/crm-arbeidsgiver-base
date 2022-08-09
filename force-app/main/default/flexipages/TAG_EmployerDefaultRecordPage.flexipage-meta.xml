@@ -320,6 +320,13 @@
                     <value>Default</value>
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$User.CompanyName}</leftValue>
+                        <operator>CONTAINS</operator>
+                        <rightValue>IT-AVDELINGEN</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -391,6 +398,13 @@
                     <value>Default</value>
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$User.CompanyName}</leftValue>
+                        <operator>CONTAINS</operator>
+                        <rightValue>IT-AVDELINGEN</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
