@@ -290,16 +290,19 @@
                             <value>Title__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>JobPoster__c</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>ProfessionCategory__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>SourceURL__c</value>
+                            <value>Extent__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Published__c</value>
+                            <value>EngagementType__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>JobPoster__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Expire_Date__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -368,16 +371,19 @@
                             <value>Title__c</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>Extent__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>EngagementType__c</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>JobPoster__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Medium__c</value>
+                            <value>Expire_Date__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>SourceURL__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Published__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
