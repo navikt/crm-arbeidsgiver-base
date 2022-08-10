@@ -23,6 +23,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>JobPosting__c.Expire_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>JobPosting__c.Expires__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -74,6 +79,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>JobPosting__c.ProfessionCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.Published_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
