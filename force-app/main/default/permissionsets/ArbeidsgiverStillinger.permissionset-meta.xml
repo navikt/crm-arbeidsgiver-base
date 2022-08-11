@@ -3,6 +3,21 @@
     <description>Gir tilgang til å se stillinger</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>JobPosting__c.Account_NAV_Unit_Market_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.Account_NAV_Unit_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.Account_NAV_unit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>JobPosting__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -34,6 +49,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>JobPosting__c.Extent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.Is_My_Market_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.Is_My_NAV_Unit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.Is_My_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -156,6 +156,36 @@
             <field>WorkplaceCity__c</field>
             <table>JobPosting__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_NAV_unit__c</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_NAV_Unit_Region__c</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_NAV_Unit_Market_Region__c</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_NAV_Unit__c</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_Market_Region__c</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_Region__c</field>
+            <table>JobPosting__c</table>
+        </columns>
         <masterLabel>Job Postings</masterLabel>
     </sections>
     <sections>
