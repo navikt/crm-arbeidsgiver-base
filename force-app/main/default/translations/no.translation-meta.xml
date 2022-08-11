@@ -85,7 +85,7 @@
         <name>Timeline_Overdue</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label><!-- [ActTime] Previous Month --></label>
         <name>Timeline_PreviousMonth</name>
     </customLabels>
     <customLabels>
@@ -97,7 +97,7 @@
         <name>Timeline_Save</name>
     </customLabels>
     <customLabels>
-        <label/>
+        <label><!-- [ActTime] This Month --></label>
         <name>Timeline_ThisMonth</name>
     </customLabels>
     <customLabels>
@@ -209,6 +209,10 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
+        <fullName>Campaign_Member_update</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
         <fullName>Contract</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -221,7 +225,15 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
+        <fullName>Flow_Create_Application_Log</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
         <fullName>Gjelder_insert_before_save</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>NAVTASK_Set_resolved_date</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
@@ -279,12 +291,36 @@
         <fullName>Opportunity</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>Error_message</name>
+                </fields>
+                <fields>
+                    <name>PersonIdent</name>
+                </fields>
+                <name>Select_Person_Ident</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Sharing_ok</name>
+                </fields>
+                <name>Tilgangene_er_rekalkulert</name>
+            </screens>
+        </flows>
+        <fullName>Recalculate_sharing_for_person</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows/>
         <fullName>Reset_Account_Warning_After_6_Months</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
         <fullName>SetUltimateParentAccount</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Set_Validation_Bypass_To_False</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
@@ -378,6 +414,347 @@
         </flows>
         <fullName>Update_NAVUnits</fullName>
     </flowDefinitions>
+    <prompts>
+        <name>Virksomhetskortet</name>
+        <promptVersions>
+            <name>Virksomhetskortet</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialContactsListViewsVideo</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Contacts List Views Video</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialKanbanVideo</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Kanban Video</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SetupUsers</name>
+        <promptVersions>
+            <name>Setup Users</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>FinnInnkomneoppgaver</name>
+        <promptVersions>
+            <name>Finn Innkomne oppgaver</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadinessSandboxSales</name>
+        <promptVersions>
+            <name>Release Readiness Sandbox Sales</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesHVSDialer</name>
+        <promptVersions>
+            <name>Sales HVS Dialer</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudTrialDashboardGuide</name>
+        <promptVersions>
+            <name>Service Cloud Trial Dashboard Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufacturingUserAccess</name>
+        <promptVersions>
+            <name>Manufacturing User Access</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>NPSPLicenseDay25</name>
+        <promptVersions>
+            <name>NPSP License Day 25</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>GmailIntegrationandSync</name>
+        <promptVersions>
+            <name>Gmail Integration and Sync</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>NPSPLicenseDay1</name>
+        <promptVersions>
+            <name>NPSP License Day 1</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudTrialChatterGuide</name>
+        <promptVersions>
+            <name>Service Cloud Trial Chatter Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreCases</name>
+        <promptVersions>
+            <name>Service Cloud Core Cases</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreContactsTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Contacts Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreHomepage</name>
+        <promptVersions>
+            <name>Service Cloud Core Homepage</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EndreEierpoppgaven</name>
+        <promptVersions>
+            <name>Endre Eier på oppgaven</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreChatterTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Chatter Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufacturingRebateManagement</name>
+        <promptVersions>
+            <name>Manufacturing Rebate Management</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreReportsTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Reports Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>Underskelseinkludering</name>
+        <promptVersions>
+            <name>Undersøkelse inkludering</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>VelkomstmeldingtilNAVKontorbrukereTAG</name>
+        <promptVersions>
+            <name>Velkomst melding til NAV Kontor brukere (TAG)</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreHomepage</name>
+        <promptVersions>
+            <name>Sales Cloud Core Homepage</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialChatterGuide</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Chatter Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudTrialCasesTab</name>
+        <promptVersions>
+            <name>Service Cloud Trial Cases Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufacturePermissionSets</name>
+        <promptVersions>
+            <name>Manufacture Permission Sets</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>Innkomneoppgaverhjemskjermen</name>
+        <promptVersions>
+            <name>Innkomne oppgaver hjemskjermen</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreChatter</name>
+        <promptVersions>
+            <name>Service Cloud Core Chatter</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadinessSales</name>
+        <promptVersions>
+            <name>Release Readiness Sales</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreReportsTab</name>
+        <promptVersions>
+            <name>Service Cloud Core Reports Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadiness</name>
+        <promptVersions>
+            <name>Release Readiness</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>CDPOnboardingInAppGuidance</name>
+        <promptVersions>
+            <name>CDP Onboarding InApp Guidance</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufactureAccountForecast</name>
+        <promptVersions>
+            <name>Manufacture Account Forecast</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>NPSPLicenseDay20</name>
+        <promptVersions>
+            <name>NPSP License Day 20</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufacturingAdvancedForecasting</name>
+        <promptVersions>
+            <name>Manufacturing Advanced Forecasting</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufacturingAssignUsersRebates</name>
+        <promptVersions>
+            <name>Manufacturing Assign Users Rebates</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>KontokoblettilNAVkontor</name>
+        <promptVersions>
+            <name>Konto koblet til NAV kontor</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>IAGFeatureAdoption</name>
+        <promptVersions>
+            <name>IAG Feature Adoption Step 2</name>
+            <stepNumber>2</stepNumber>
+        </promptVersions>
+        <promptVersions>
+            <name>IAG Feature Adoption Step 1</name>
+            <stepNumber>1</stepNumber>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCoreQuoteAdminCpq</name>
+        <promptVersions>
+            <name>Sales Core Quote Admin to CPQ</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SupportEmailToCase</name>
+        <promptVersions>
+            <name>Support Email To Case</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrailPreconfiguredDashboardsGuide</name>
+        <promptVersions>
+            <name>Sales Cloud Trail Pre-configured Dashboards Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufactureCreateRebateProgram</name>
+        <promptVersions>
+            <name>Manufacture Create Rebate Program</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>OmProfflink</name>
+        <promptVersions>
+            <name>Om ny Proff link</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreOpportunitiesTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Opportunities Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufacturingTemplates</name>
+        <promptVersions>
+            <name>Manufacturing Templates</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>Lenketilproffnoerforbedret</name>
+        <promptVersions>
+            <name>Lenke til proff.no er forbedret</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>VelkomstmeldingtilNAVKontorbrukereTAGmedpersmissionsetarbeidsgiver</name>
+        <promptVersions>
+            <name>Velkomst melding til NAV Kontor brukere (TAG) med persmission set arbeidsgiver</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialHomePage</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Home Page</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EinsteinPredictionBuilderSetupPagePrompt</name>
+        <promptVersions>
+            <name>Einstein Prediction Builder Setup Page Prompt</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>tabletFullWidthGA</name>
+        <promptVersions>
+            <name>TabletFullWidthGA</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadinessServiceSandbox</name>
+        <promptVersions>
+            <name>Release Readiness Service Sandbox</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudTrialHomepageGuide</name>
+        <promptVersions>
+            <name>Service Cloud Trial Homepage Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>FieldServiceHolidayManagement</name>
+        <promptVersions>
+            <name>Schedule Holiday Hours</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>Fullfreoppgaven</name>
+        <promptVersions>
+            <name>Fullføre oppgaven</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SelfSupportDataImportWizard</name>
+        <promptVersions>
+            <name>Self Support Data Import Wizard</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ManufacturingSalesAgreements</name>
+        <promptVersions>
+            <name>Manufacturing Sales Agreements</name>
+        </promptVersions>
+    </prompts>
     <quickActions>
         <label><!-- Log a Call --></label>
         <name>LogACall</name>
@@ -463,6 +840,15 @@
         <sections>
             <label><!-- Konto --></label>
             <name>Konto</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chat Transcript --></description>
+        <label><!-- Chat Transcript --></label>
+        <name>Chat_Transcript</name>
+        <sections>
+            <label><!-- Chat Transcripts --></label>
+            <name>Chat Transcripts</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -591,6 +977,28 @@
         <sections>
             <label><!-- Virksomhet --></label>
             <name>Virksomhet</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agent Work --></description>
+        <label><!-- Agent Work --></label>
+        <name>NKS_Agent_Work</name>
+        <sections>
+            <label><!-- Agent Work --></label>
+            <name>Agent Work</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Stillinger med arbeidsgiver --></description>
+        <label><!-- Stillinger med arbeidsgiver --></label>
+        <name>Stillinger_med_arbeidsgiver</name>
+        <sections>
+            <label><!-- Arbeidsgiver --></label>
+            <name>Arbeidsgiver</name>
+        </sections>
+        <sections>
+            <label><!-- Job Postings --></label>
+            <name>Job Postings</name>
         </sections>
     </reportTypes>
     <reportTypes>
