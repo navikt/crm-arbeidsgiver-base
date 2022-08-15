@@ -215,9 +215,9 @@
                 <componentName>lst:dynamicRelatedList</componentName>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!$User.CompanyName}</leftValue>
-                        <operator>CONTAINS</operator>
-                        <rightValue>IT-AVDELINGEN NAV DRAMMEN, NAV NES I AKERSHUS,NAV LINDESNES, NAV VOSSS</rightValue>
+                        <leftValue>{!$Permission.CustomPermission.POAG_Pilot}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -296,9 +296,9 @@
                 <componentName>lst:dynamicRelatedList</componentName>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!$User.CompanyName}</leftValue>
-                        <operator>CONTAINS</operator>
-                        <rightValue>IT-AVDELINGEN NAV DRAMMEN, NAV NES I AKERSHUS,NAV LINDESNES, NAV VOSSS</rightValue>
+                        <leftValue>{!$Permission.CustomPermission.POAG_Pilot}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
