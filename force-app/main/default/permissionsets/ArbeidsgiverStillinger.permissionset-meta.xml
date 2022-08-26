@@ -102,6 +102,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>JobPosting__c.Linkt_to_Rekrutteringsbistand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>JobPosting__c.Medium__c</field>
         <readable>true</readable>
     </fieldPermissions>

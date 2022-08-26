@@ -186,6 +186,11 @@
             <field>Is_My_Region__c</field>
             <table>JobPosting__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Linkt_to_Rekrutteringsbistand__c</field>
+            <table>JobPosting__c</table>
+        </columns>
         <masterLabel>Job Postings</masterLabel>
     </sections>
     <sections>
