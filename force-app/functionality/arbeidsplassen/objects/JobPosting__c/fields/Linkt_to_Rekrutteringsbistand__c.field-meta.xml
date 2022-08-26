@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linkt_to_Rekrutteringsbistand__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Medium__c =&quot;DIR&quot;,&quot;https://rekrutteringsbistand.intern.nav.no/stillinger/stilling/&quot;+UUID__c,&quot;https://arbeidsplassen.nav.no/stillinger/stilling/&quot;+ UUID__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Linkt to Rekrutteringsbistand</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
