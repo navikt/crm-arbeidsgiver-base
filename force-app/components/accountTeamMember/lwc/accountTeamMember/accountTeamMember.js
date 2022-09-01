@@ -1,14 +1,12 @@
 import { LightningElement, api, wire, track } from 'lwc';
-
-import { NavigationMixin } from 'lightning/navigation';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
-
-import getData from '@salesforce/apex/accountTeamMemberController.getData';
-import deleteTeamMember from '@salesforce/apex/accountTeamMemberController.deleteTeamMember';
-import { refreshApex } from '@salesforce/apex';
-
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { NavigationMixin } from 'lightning/navigation';
+import { refreshApex } from '@salesforce/apex';
+import FORM_FACTOR from '@salesforce/client/formFactor';
 import Id from '@salesforce/user/Id';
+import deleteTeamMember from '@salesforce/apex/accountTeamMemberController.deleteTeamMember';
+import getData from '@salesforce/apex/accountTeamMemberController.getData';
 
 const actions = [
   { label: 'Rediger', name: 'edit' },
@@ -141,5 +139,9 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
   }
   closeModal() {
     this.isModalOpen = false;
+  }
+
+  get isDesktop() {
+    return FORM_FACTOR === 'Large' ? true : false;
   }
 }
