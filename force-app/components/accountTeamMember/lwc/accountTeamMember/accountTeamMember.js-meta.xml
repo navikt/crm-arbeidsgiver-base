@@ -7,4 +7,12 @@
     </targets>
     <masterLabel>Account Team Custom</masterLabel>
     <description>A custom component to add and delete account team members</description>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>
