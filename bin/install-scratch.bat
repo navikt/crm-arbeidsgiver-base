@@ -20,16 +20,29 @@ call :checkForError
 
 echo Installing dependencies...
 for /f "tokens=1,2 delims=:{} " %%A in (env.json) do set secret=%%~A
-set x[0]=crm-platform-base:%secret%
-set x[1]=crm-platform-access-control:%secret%
-set x[2]=crm-shared-base:%secret%
-set x[3]=crm-shared-timeline:%secret%
-set x[4]=crm-platform-integration:%secret%
-for /L %%p in (0,1,5) do cmd.exe /c sfdx sfpowerkit:package:dependencies:install -u %ORG_ALIAS% -r -a -k %%x[%%p]%%
-call :checkForError
+
+echo "Installing crm-platform-base ver. 0.168"
+call sfdx force:package:install --package 04t7U000000Tq8fQAC -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-platform-integration ver. 0.82"
+call sfdx force:package:install --package 04t7U000000Tq94QAC -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-platform-access-control ver. 0.102"
+call sfdx force:package:install --package 04t7U000000Tq8LQAS -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-shared-base ver. 1.1"
+call sfdx force:package:install --package 04t2o000000ySqpAAE -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-shared-timeline ver. 1.15"
+call sfdx force:package:install --package 04t7U000000TpOcQAK -r -k %secret% --wait 10 --publishwait 10
 
 echo Pushing metadata...
 cmd.exe /c sfdx force:source:push
+call :checkForError
+@echo:
+
+echo Pushing unpackaged data...
+cmd.exe /c sfdx force:source:deploy -p ./unpackagable
 call :checkForError
 @echo:
 
@@ -47,6 +60,12 @@ cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_contract
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_opportunity
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_temporaryLayoffs
 cmd.exe /c sfdx force:user:permset:assign -n CRM_LoginFlow
+call :checkForError
+@echo:
+
+echo Inserting test data...
+cmd.exe /c sfdx force:data:tree:import -p  dummy-data/activityTimeline/plan.json
+cmd.exe /c sfdx force:data:tree:import -p  dummy-data/tag/plan.json
 call :checkForError
 @echo:
 
