@@ -160,6 +160,26 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Job Postings</pluralLabel>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Title__c</fields>
+        <fields>ProfessionCategory__c</fields>
+        <fields>EngagementType__c</fields>
+        <fields>Extent__c</fields>
+        <fields>Expires__c</fields>
+        <profileName>NAV Kontor</profileName>
+    </profileSearchLayouts>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Title__c</fields>
+        <fields>ProfessionCategory__c</fields>
+        <fields>EngagementType__c</fields>
+        <fields>Extent__c</fields>
+        <fields>Expires__c</fields>
+        <profileName>NAV Kontor No IP Range</profileName>
+    </profileSearchLayouts>
     <searchLayouts>
         <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
