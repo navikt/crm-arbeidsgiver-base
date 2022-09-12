@@ -160,14 +160,24 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Job Postings</pluralLabel>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>Title__c</fields>
+        <fields>ProfessionCategory__c</fields>
+        <fields>EngagementType__c</fields>
+        <fields>Extent__c</fields>
+        <fields>Published_Date__c</fields>
+        <profileName>NAV Kontor</profileName>
+    </profileSearchLayouts>
     <searchLayouts>
         <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
-        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
+        <excludedStandardButtons>Import</excludedStandardButtons>
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
-        <excludedStandardButtons>Import</excludedStandardButtons>
+        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Title__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ProfessionCategory__c</searchResultsAdditionalFields>
