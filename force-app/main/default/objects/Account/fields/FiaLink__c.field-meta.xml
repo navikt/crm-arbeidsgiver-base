@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>IF(  ISBLANK(TAG_FiaCaseNr__c), Null, HYPERLINK(&quot;https://fia.intern.nav.no/virksomhet/&quot;&amp; INT_OrganizationNumber__c , &quot;Se Fia sak&quot;))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Du må ha tilgang til saken i Fia, og være innenfor nav sikker sone (citrix/remote desktop/naisdevice), for å komme videre inn på saken i Fia fra denne lenken</inlineHelpText>
+    <inlineHelpText>Du må ha tilgang til saken i Fia, og være innenfor nav sikker sone (citrix), for å komme videre inn på saken i Fia fra denne lenken</inlineHelpText>
     <label>Fia link</label>
     <required>false</required>
     <type>Text</type>
