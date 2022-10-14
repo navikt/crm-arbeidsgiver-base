@@ -18,9 +18,15 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
+      # setup node
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       # Install SFDX
       - name: Install SFDX
-        uses: sfdx-actions/setup-sfdx@v1
+        run: npm install --global sfdx-cli@7.170.0
 
       # Authenticate prod
       - name: Authenticate prod
@@ -40,7 +46,7 @@ jobs:
       - name: Create package version
         id: package-version-create
         run: |
-          sfdx force:package:beta:version:create -f config/project-scratch-def.json -p $(cat sfdx-project.json | jq '.packageDirectories | map(select(.package != null))[0].package' -r) -k ${{ secrets.PACKAGE_KEY }} -w 90 -c --json | tee output
+          sfdx force:package:version:create -f config/project-scratch-def.json -p $(cat sfdx-project.json | jq '.packageDirectories | map(select(.package != null))[0].package' -r) -k ${{ secrets.PACKAGE_KEY }} -w 90 -c --json | tee output
 
           # ! manually cancel the process if the package failed to be created
           if [ $(cat output |jq '.status') == "1" ]; then
