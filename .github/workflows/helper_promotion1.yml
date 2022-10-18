@@ -57,9 +57,9 @@ jobs:
       # Authenticate preprod
       - name: Authenticate preprod
         run: |
-          echo ${{ secrets.PREPROD_SFDX_URL}} > ./PREPROD_SFDX_URL.txt
-          sfdx auth:sfdxurl:store -f ./PREPROD_SFDX_URL.txt -a preprod -s
-          rm -f ./PREPROD_SFDX_URL.txt
+          echo ${{ secrets.CRM_PREPROD_SFDX_URL}} > ./CRM_PREPROD_SFDX_URL.txt
+          sfdx auth:sfdxurl:store -f ./CRM_PREPROD_SFDX_URL.txt -a preprod -s
+          rm -f ./CRM_PREPROD_SFDX_URL.txt
 
       # Install package version to preprod
       - name: Install package version to preprod
