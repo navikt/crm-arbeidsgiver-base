@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Description</fullName>
-    <inlineHelpText
-    >Notatfelt skal ikke inneholde opplysninger som kan knyttes til en enkeltperson/bruker, informasjonen kan bli synlig både for arbeidsgiver og alle nav-ansatte</inlineHelpText>
+    <inlineHelpText>Ikke registrer sensitiv informasjon, eller opplysninger som kan knyttes til personbruker, i kommentarfeltet</inlineHelpText>
 </CustomField>
