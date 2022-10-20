@@ -33,11 +33,11 @@ call sfdx force:package:install --package 04t7U000000TqXkQAK -r -k %secret% --wa
 echo "Installing crm-shared-base ver. 1.1"
 call sfdx force:package:install --package 04t2o000000ySqpAAE -r -k %secret% --wait 10 --publishwait 10
 
-echo "Installing crm-shared-timeline ver. 1.18"
-call sfdx force:package:install --package 04t7U000000TqbDQAS -r -k %secret% --wait 10 --publishwait 10
-
 echo "Installing crm-thread-view ver. 0.1"
 call sfdx force:package:install --package 04t7U000000TqVFQA0 -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-shared-timeline ver. 1.18"
+call sfdx force:package:install --package 04t7U000000TqbDQAS -r -k %secret% --wait 10 --publishwait 10
 
 echo Pushing metadata...
 cmd.exe /c sfdx force:source:push
