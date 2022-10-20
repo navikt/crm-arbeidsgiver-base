@@ -62,6 +62,8 @@ cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_base
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_contract
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_opportunity
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_temporaryLayoffs
+cmd.exe /c sfdx force:user:permset:assign -n ArbeidsgiverFia
+cmd.exe /c sfdx force:user:permset:assign -n ArbeidsgiverStillinger
 cmd.exe /c sfdx force:user:permset:assign -n CRM_LoginFlow
 call :checkForError
 @echo:

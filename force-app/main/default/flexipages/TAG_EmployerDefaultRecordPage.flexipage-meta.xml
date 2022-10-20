@@ -96,6 +96,90 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_FiaCaseNr__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_FiaCaseOwnerName__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_FiaLastModifiedDate__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-664d4396-05c8-4b1d-a930-24bf294dfccd</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_FiaCaseStatus__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_FiaCaseOwner__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.FiaLink__c</fieldItem>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-3ce9124a-5bff-4360-b7d2-1847343b654d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-664d4396-05c8-4b1d-a930-24bf294dfccd</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-3ce9124a-5bff-4360-b7d2-1847343b654d</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-6591e059-ff4b-46ec-8fc6-27231eb6f200</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
@@ -127,6 +211,32 @@
                     <value>GRID</value>
                 </componentInstanceProperties>
                 <componentName>force:relatedListSingleContainer</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-6591e059-ff4b-46ec-8fc6-27231eb6f200</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Ia-prosess (Fia)</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/intranett-produktomrader-og-utvikling/SitePages/FIA-brukerveiledning.aspx#tilgjengelige-statuser-for-virksomheten&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer om statuser fra Fia - klikk her&lt;/a&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -375,19 +485,6 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:detailPanel</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/intranett-produktomrader-og-utvikling/SitePages/FIA-brukerveiledning.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Les mer om statuser fra Fia - klikk her&lt;/a&gt;&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
