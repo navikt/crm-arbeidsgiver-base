@@ -25,6 +25,13 @@
     "communitiesSettings": {
       "enableNetworksEnabled": true
     },
+    "securitySettings": {
+        "sessionSettings": {
+            "forceRelogin": false,
+            "lockerServiceNext": false
+        },
+        "enableAdminLoginAsAnyUser": true
+    },
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
     },
