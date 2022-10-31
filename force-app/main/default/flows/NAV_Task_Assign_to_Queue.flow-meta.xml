@@ -101,6 +101,7 @@
                 <fieldType>Region</fieldType>
                 <inputParameters>
                     <name>width</name>
+                    <regionContainerType>SectionWithoutHeader</regionContainerType>
                     <value>
                         <stringValue>12</stringValue>
                     </value>
