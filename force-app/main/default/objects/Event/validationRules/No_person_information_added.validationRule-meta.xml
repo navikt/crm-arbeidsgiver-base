@@ -4,5 +4,5 @@
     <active>true</active>
     <errorConditionFormula>AND(TAG_NoPersonInformation__c = FALSE, $Permission.Arbeidsgiver = TRUE, RecordType.DeveloperName = &apos;ArbeidsgiverEvent&apos;)</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
-    <errorMessage>Du må bekrefte at notatet ikke inneholder personsensitive opplysninger</errorMessage>
+    <errorMessage>Vennligst bekreft at det Ikke er registrert sensitiv informasjon, eller opplysninger som kan knyttes til personbruker</errorMessage>
 </ValidationRule>

@@ -18,9 +18,15 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
+      # setup node
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       # Install SFDX
       - name: Install SFDX
-        uses: sfdx-actions/setup-sfdx@v1
+        run: npm install --global sfdx-cli@7.170.0
 
       # Authenticate prod
       - name: Authenticate prod
@@ -86,9 +92,9 @@ jobs:
       # Authenticate integration-sandbox
       - name: Authenticate integration-sandbox
         run: |
-          echo ${{ secrets.INTEGRATION_SANDBOX_SFDX_URL}} > ./INTEGRATION_SANDBOX_SFDX_URL.txt
-          sfdx auth:sfdxurl:store -f ./INTEGRATION_SANDBOX_SFDX_URL.txt -a integration-sandbox -s
-          rm -f ./INTEGRATION_SANDBOX_SFDX_URL.txt
+          echo ${{ secrets.CRM_SIT_SFDX_URL}} > ./CRM_SIT_SFDX_URL.txt
+          sfdx auth:sfdxurl:store -f ./CRM_SIT_SFDX_URL.txt -a integration-sandbox -s
+          rm -f ./CRM_SIT_SFDX_URL.txt
 
       # Install new package version into integration org
       - name: Install new package version into integration org
@@ -186,9 +192,9 @@ jobs:
       - name: Authenticate UAT sandbox
         if: ${{ needs.check-deployment-secrets.outputs.deployToUAT == 'true' }}
         run: |
-          echo ${{ secrets.UAT_SFDX_URL}} > ./UAT_SFDX_URL.txt
-          sfdx auth:sfdxurl:store -f ./UAT_SFDX_URL.txt -a uat -s
-          rm -f ./UAT_SFDX_URL.txt
+          echo ${{ secrets.CRM_UAT_SFDX_URL}} > ./CRM_UAT_SFDX_URL.txt
+          sfdx auth:sfdxurl:store -f ./CRM_UAT_SFDX_URL.txt -a uat -s
+          rm -f ./CRM_UAT_SFDX_URL.txt
 
       # Install sfpowerkit plugin used to install multiple packages only by version number
       - name: Install sfpowerkit plugin

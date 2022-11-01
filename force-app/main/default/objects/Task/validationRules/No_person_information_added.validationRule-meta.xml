@@ -5,5 +5,5 @@
     <description>Lagt til E-post: og Email: for å unngå at automatisk e-post utsending trigger valideringen</description>
     <errorConditionFormula>TAG_NoPersonInformation__c = FALSE &amp;&amp; $Permission.Arbeidsgiver = TRUE &amp;&amp; !ISBLANK( Description ) &amp;&amp; !ISNULL( Description ) &amp;&amp; !BEGINS( Subject, &quot;Email: &quot;) &amp;&amp; !BEGINS( Subject, &quot;E-post: &quot;) &amp;&amp; RecordType.DeveloperName = &apos;ArbeidsgiverTask&apos;</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
-    <errorMessage>Du må bekrefte at feltet &quot;Kort beskrivelse&quot; ikke inneholder personsensitive opplysninger</errorMessage>
+    <errorMessage>Vennligst bekreft at det Ikke er registrert sensitiv informasjon, eller opplysninger som kan knyttes til personbruker</errorMessage>
 </ValidationRule>

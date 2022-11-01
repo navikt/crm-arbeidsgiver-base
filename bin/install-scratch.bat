@@ -20,16 +20,32 @@ call :checkForError
 
 echo Installing dependencies...
 for /f "tokens=1,2 delims=:{} " %%A in (env.json) do set secret=%%~A
-set x[0]=crm-platform-base:%secret%
-set x[1]=crm-platform-access-control:%secret%
-set x[2]=crm-shared-base:%secret%
-set x[3]=crm-shared-timeline:%secret%
-set x[4]=crm-platform-integration:%secret%
-for /L %%p in (0,1,5) do cmd.exe /c sfdx sfpowerkit:package:dependencies:install -u %ORG_ALIAS% -r -a -k %%x[%%p]%%
-call :checkForError
+
+echo "Installing crm-platform-base ver. 0.175"
+call sfdx force:package:install --package 04t7U000000TqrpQAC -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-platform-integration ver. 0.86"
+call sfdx force:package:install --package 04t7U000000TqfjQAC -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-platform-access-control ver. 0.104"
+call sfdx force:package:install --package 04t7U000000TqXkQAK -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-shared-base ver. 1.1"
+call sfdx force:package:install --package 04t2o000000ySqpAAE -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-thread-view ver. 0.1"
+call sfdx force:package:install --package 04t7U000000TqVFQA0 -r -k %secret% --wait 10 --publishwait 10
+
+echo "Installing crm-shared-timeline ver. 1.18"
+call sfdx force:package:install --package 04t7U000000TqbDQAS -r -k %secret% --wait 10 --publishwait 10
 
 echo Pushing metadata...
 cmd.exe /c sfdx force:source:push
+call :checkForError
+@echo:
+
+echo Pushing unpackaged data...
+cmd.exe /c sfdx force:source:deploy -p ./unpackagable
 call :checkForError
 @echo:
 
@@ -46,12 +62,20 @@ cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_base
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_contract
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_opportunity
 cmd.exe /c sfdx force:user:permset:assign -n Arbeidsgiver_temporaryLayoffs
+cmd.exe /c sfdx force:user:permset:assign -n ArbeidsgiverFia
+cmd.exe /c sfdx force:user:permset:assign -n ArbeidsgiverStillinger
 cmd.exe /c sfdx force:user:permset:assign -n CRM_LoginFlow
 call :checkForError
 @echo:
 
+echo Inserting test data...
+cmd.exe /c sfdx force:data:tree:import -p  dummy-data/activityTimeline/plan.json
+cmd.exe /c sfdx force:data:tree:import -p  dummy-data/tag/plan.json
+call :checkForError
+@echo:
+
 echo Opening org...
-cmd.exe /c sfdx force:org:open
+cmd.exe /c sfdx force:org:open --path "lightning/app/c__TAG_NAV_default"
 @echo:
 
 rem Report install success if no error

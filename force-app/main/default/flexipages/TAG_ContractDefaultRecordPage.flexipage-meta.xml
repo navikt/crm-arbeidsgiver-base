@@ -20,6 +20,7 @@
                     <value>3</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
+                <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -34,6 +35,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Status__c</fieldItem>
+                <identifier>RecordTAG_Status__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -43,6 +45,7 @@
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Category__c</fieldItem>
+                <identifier>RecordTAG_Category__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -52,6 +55,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Region__c</fieldItem>
+                <identifier>RecordRegion__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -61,6 +65,7 @@
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.NAV_Office__c</fieldItem>
+                <identifier>RecordNAV_Office__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -70,6 +75,7 @@
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.NAV_Market_Region__c</fieldItem>
+                <identifier>RecordNAV_Market_Region__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -79,6 +85,7 @@
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.NAV_Region__c</fieldItem>
+                <identifier>RecordNAV_Region__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-883cf007-0ec1-45cf-ac50-1f2f4eb3959b</name>
@@ -92,6 +99,7 @@
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Account__c</fieldItem>
+                <identifier>RecordTAG_Account__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -101,6 +109,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_ExternalURL__c</fieldItem>
+                <identifier>RecordTAG_ExternalURL__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -110,6 +119,7 @@
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_StartDate__c</fieldItem>
+                <identifier>RecordTAG_StartDate__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -119,6 +129,7 @@
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_EndDate__c</fieldItem>
+                <identifier>RecordTAG_EndDate__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-f430d357-88c2-49f7-94ba-79afaf4226c3</name>
@@ -132,6 +143,7 @@
                     <value>Facet-883cf007-0ec1-45cf-ac50-1f2f4eb3959b</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -141,6 +153,7 @@
                     <value>Facet-f430d357-88c2-49f7-94ba-79afaf4226c3</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column2</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-b81c9ae2-fb84-4af5-b591-087e4093e233</name>
@@ -158,6 +171,7 @@
                     <value>Informasjon</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-c3f27ba7-9f48-445b-8ae1-98f3b9a3e8ea</name>
@@ -171,6 +185,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Description__c</fieldItem>
+                <identifier>RecordTAG_Description__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-193fe411-aede-45b6-b1e1-710e364c9659</name>
@@ -184,6 +199,7 @@
                     <value>Facet-193fe411-aede-45b6-b1e1-710e364c9659</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column3</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-93c8d2e1-d7d3-4f50-bae9-e7e014f19dd5</name>
@@ -197,6 +213,7 @@
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Contact__c</fieldItem>
+                <identifier>RecordTAG_Contact__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-cd04072f-ea78-4497-ad6b-5bf98aef7fa4</name>
@@ -210,6 +227,7 @@
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_InternalContact__c</fieldItem>
+                <identifier>RecordTAG_InternalContact__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c28198dd-49ee-486d-8ae4-45a5b280976b</name>
@@ -223,6 +241,7 @@
                     <value>Facet-cd04072f-ea78-4497-ad6b-5bf98aef7fa4</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column4</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -232,6 +251,7 @@
                     <value>Facet-c28198dd-49ee-486d-8ae4-45a5b280976b</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column5</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-44723b79-8436-4153-b700-e3935237ba81</name>
@@ -245,6 +265,7 @@
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Name</fieldItem>
+                <identifier>RecordNameField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-a8ca20a9-ead9-438c-96e9-07b9b5516b19</name>
@@ -258,6 +279,7 @@
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.CreatedById</fieldItem>
+                <identifier>RecordCreatedByIdField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -267,6 +289,7 @@
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.LastModifiedById</fieldItem>
+                <identifier>RecordLastModifiedByIdField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-f229d666-5b1e-4097-b1f0-ed958604b8b7</name>
@@ -280,6 +303,7 @@
                     <value>Facet-a8ca20a9-ead9-438c-96e9-07b9b5516b19</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column6</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -289,6 +313,7 @@
                     <value>Facet-f229d666-5b1e-4097-b1f0-ed958604b8b7</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column7</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-cdc81031-3063-4925-a0cc-fe48fbef17d2</name>
@@ -306,6 +331,7 @@
                     <value>Beskrivesle</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection2</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -319,6 +345,7 @@
                     <value>Kontaktpersoner</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -332,6 +359,7 @@
                     <value>SystemInformasjon</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection4</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-4a053398-9cf5-42a7-b323-4ab5f42d6f05</name>
@@ -353,6 +381,7 @@
                     <value>accordionSection1</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:accordionSection</componentName>
+                <identifier>customSection</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -370,6 +399,7 @@
                     <value>accordionSection2</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:accordionSection</componentName>
+                <identifier>customSection2</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-8889f635-e891-4ef4-8d2c-1a14f1886d5d</name>
@@ -387,11 +417,13 @@
                     <value>accordionSection1</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:accordion</componentName>
+                <identifier>flexipage_accordion</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>force:recordDetailPanelMobile</componentName>
+                <identifier>force_recordDetailPanelMobile</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -414,6 +446,7 @@
                     <value>Om avtalen</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
+                <identifier>customTab</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -428,6 +461,7 @@
                     <value>maintabs</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tabset</componentName>
+                <identifier>flexipage_tabset</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -446,6 +480,7 @@
                     <value>&lt;p&gt;Her registreres avtaler NAV har med ulike arbeidsgivere om rekruttering og inkludering eller Inkluderende Arbeidsliv(IA). &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Det skal ikke registreres avtaler om spesifikke stillinger/tiltak.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Registreres som:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Lokale&lt;/b&gt;&amp;nbsp;- avtale gjort mellom lokalt NAV kontor og arbeidsgiver tilknyttet dette kontoret&lt;/li&gt;&lt;li&gt;&lt;b&gt;Regionale&lt;/b&gt;&amp;nbsp;- avtale som går på tvers av lokalkontorer eller hele fylket og kan også inkludere flere virksomheter.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Nasjonale&lt;/b&gt;&amp;nbsp;- avtale som dekker hele landet og er gjort sentralt.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;NB! I beskrivelse legges det inn en kort oppsummering om hva avtalen gjelder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Lenke til avtalen&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Avtalen lastes ikke opp som kopi, men lenkes til ved å lime inn kopi av url i feltet Ekstern URL.&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -491,6 +526,7 @@
                     <value>Aktiviteter</value>
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
+                <identifier>timeline</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

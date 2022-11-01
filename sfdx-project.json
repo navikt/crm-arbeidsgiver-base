@@ -4,40 +4,45 @@
             "path": "force-app",
             "default": true,
             "package": "crm-arbeidsgiver-base",
-            "versionNumber": "1.246.0.NEXT",
+            "versionNumber": "1.271.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
-                    "versionNumber": "0.157.0.LATEST"
+                    "versionNumber": "0.175.0.LATEST"
                 },
                 {
                     "package": "crm-platform-access-control",
-                    "versionNumber": "0.95.0.LATEST"
+                    "versionNumber": "0.104.0.LATEST"
                 },
                 {
                     "package": "crm-shared-base",
                     "versionNumber": "1.1.0.LATEST"
                 },
                 {
+                    "package": "crm-thread-view",
+                    "versionNumber": "0.1.0.LATEST"
+                },
+                {
                     "package": "crm-shared-timeline",
-                    "versionNumber": "1.13.0.LATEST"
+                    "versionNumber": "1.18.0.LATEST"
                 },
                 {
                     "package": "crm-platform-integration",
-                    "versionNumber": "0.74.0.LATEST"
+                    "versionNumber": "0.86.0.LATEST"
                 }
             ]
         }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "52.0",
+    "sourceApiVersion": "56.0",
     "packageAliases": {
         "crm-platform-base": "0Ho2o0000008ORmCAM",
         "crm-platform-access-control": "0Ho2o0000008OR3CAM",
         "crm-shared-timeline": "0Ho2o000000fxXBCAY",
         "crm-shared-base": "0Ho2o000000fxXLCAY",
         "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
-        "crm-platform-integration": "0Ho2o0000008ORrCAM"
+        "crm-platform-integration": "0Ho2o0000008ORrCAM",
+        "crm-thread-view": "0Ho7U000000000zSAA"
     }
 }

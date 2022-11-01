@@ -3,7 +3,7 @@
     <fullName>Notes__c</fullName>
     <description>Notater</description>
     <externalId>false</externalId>
-    <inlineHelpText>Legg inn en kort kommentar for å beskrive muligheten. Merk at ingen brukersensitiv eller annen personsensitiv informasjon skal registreres her.</inlineHelpText>
+    <inlineHelpText>Legg inn en kort kommentar for å beskrive muligheten. Ikke registrer sensitiv informasjon, eller opplysninger som kan knyttes til personbruker</inlineHelpText>
     <label>Notes</label>
     <length>32768</length>
     <trackHistory>true</trackHistory>
