@@ -20,6 +20,7 @@
                     <value>3</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
+                <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -33,6 +34,7 @@
                     <value>&lt;p&gt;Du skal ikke slå opp i varslene med mindre det er del av dine arbeidsoppgaver å se dem. Du skal heller ikke snakke om disse varslene med andre som ikke har tjenstlig behov.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -43,6 +45,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:detailPanel</componentName>
+                <identifier>force_detailPanel</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -85,6 +88,7 @@
                     <value>Aktiviteter</value>
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
+                <identifier>timeline</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

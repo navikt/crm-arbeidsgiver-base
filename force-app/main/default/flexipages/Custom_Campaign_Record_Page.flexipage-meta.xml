@@ -24,6 +24,7 @@
                     <value>3</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
+                <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <name>header</name>
@@ -33,6 +34,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>campaignMembers</componentName>
+                <identifier>campaignMembers</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
@@ -42,6 +44,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:detailPanel</componentName>
+                <identifier>force_detailPanel</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -79,6 +82,7 @@
                     <value>Aktiviteter</value>
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
+                <identifier>timeline</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>
