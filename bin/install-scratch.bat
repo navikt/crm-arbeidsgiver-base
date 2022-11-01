@@ -75,7 +75,7 @@ call :checkForError
 @echo:
 
 echo Opening org...
-cmd.exe /c sfdx force:org:open
+cmd.exe /c sfdx force:org:open --path "lightning/app/c__TAG_NAV_default"
 @echo:
 
 rem Report install success if no error
