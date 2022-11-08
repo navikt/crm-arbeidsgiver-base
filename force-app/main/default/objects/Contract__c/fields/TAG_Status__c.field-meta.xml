@@ -21,6 +21,11 @@
                 <default>false</default>
                 <label>Godkjent</label>
             </value>
+            <value>
+                <fullName>Avsluttet</fullName>
+                <default>false</default>
+                <label>Avsluttet</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
