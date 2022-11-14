@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>Inkluderingsavtale (Arbeidsgiver)</label>
             </value>
+            <value>
+                <fullName>Midlertidig_Lonnstilskudd</fullName>
+                <default>false</default>
+                <label>Midlertidig lønnstilskudd</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
