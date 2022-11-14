@@ -26,6 +26,36 @@
                 <default>false</default>
                 <label>Avsluttet</label>
             </value>
+            <value>
+                <fullName>Annulert</fullName>
+                <default>false</default>
+                <label>Annulert</label>
+            </value>
+            <value>
+                <fullName>Avbrutt</fullName>
+                <default>false</default>
+                <label>Avbrutt</label>
+            </value>
+            <value>
+                <fullName>Påbegynt</fullName>
+                <default>false</default>
+                <label>Påbegynt</label>
+            </value>
+            <value>
+                <fullName>Mangler_godkjenning</fullName>
+                <default>false</default>
+                <label>Mangler godkjenning</label>
+            </value>
+            <value>
+                <fullName>Klar_for_oppstart</fullName>
+                <default>false</default>
+                <label>Klar for oppstart</label>
+            </value>
+            <value>
+                <fullName>Gjennomføres</fullName>
+                <default>false</default>
+                <label>Gjennomføres</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
