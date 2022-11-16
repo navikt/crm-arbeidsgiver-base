@@ -50,8 +50,8 @@
                 <field>TAG_Category__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>NAV_Office__c</field>
+                <behavior>Edit</behavior>
+                <field>TAG_NAVUnit__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
