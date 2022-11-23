@@ -3,8 +3,8 @@
     <fullName>Overdue__c</fullName>
     <externalId>false</externalId>
     <formula>IF(
- CRM_DueDate__c &lt; TODAY(),
-IMAGE(&quot;/resource/Redflag&quot;,&quot;&quot;,15,15),&quot;&quot;)</formula>
+ ISPICKVAL(CRM_Status__c,&quot;Ny&quot;) &amp;&amp; CRM_DueDate__c &lt; TODAY(),
+ IMAGE(&quot;/resource/Redflag&quot;,&quot;&quot;,15,15),&quot;&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Overdue</label>
     <required>false</required>
