@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Access to create dashboards and dashboardsfolders, inluding sharing of dashboard folder</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>Arbeidsgiver - Create and share reportfolders</label>
+    <label>Arbeidsgiver - Create and share Dashboards</label>
     <userPermissions>
         <enabled>true</enabled>
-        <name>CreateCustomizeReports</name>
+        <name>CanUseNewDashboardBuilder</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>CreateReportFolders</name>
+        <name>ChangeDashboardColors</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>EditMyReports</name>
+        <name>CreateCustomizeDashboards</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>RunReports</name>
+        <name>CreateDashboardFolders</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EditMyDashboards</name>
     </userPermissions>
 </PermissionSet>
