@@ -101,7 +101,7 @@
             <field>RecordTypeId</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>0121x000005MTfBAAW</stringValue>
+                <stringValue>0122o000000RC7PAAW</stringValue>
             </value>
         </filters>
         <filters>
@@ -122,5 +122,5 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>
