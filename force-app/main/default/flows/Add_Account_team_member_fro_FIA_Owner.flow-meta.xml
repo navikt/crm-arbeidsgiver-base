@@ -91,7 +91,7 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>TAG_FiaCaseOwner__c</field>
+            <field>TAG_FiaCaseStatus__c</field>
             <operator>IsChanged</operator>
             <value>
                 <booleanValue>true</booleanValue>
