@@ -3,11 +3,6 @@
     <description>Tilgang til kontrakt-objektet</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contract__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Contract__c.Is_My_NAV_Market_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -37,11 +32,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.NavIdent__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Contract__c.Region__c</field>
         <readable>true</readable>
@@ -67,11 +57,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.TAG_EmployerContact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Contract__c.TAG_EndDate__c</field>
         <readable>true</readable>
@@ -84,16 +69,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contract__c.TAG_InternalContact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.TAG_MeasureParticipant__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract__c.TAG_Mentor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
