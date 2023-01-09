@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_UserNAVUnitF__c</fullName>
+    <description>Account NAV Unit where values are set by flow UpdateTaskFields. The field is used in the integration with datavarehus</description>
+    <externalId>false</externalId>
+    <label>User NAV Unit</label>
+    <length>8</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
