@@ -22,38 +22,58 @@
     <picklistValues>
         <picklist>TAG_Category__c</picklist>
         <values>
-            <fullName>Midlertidig_Lonnstilskudd</fullName>
+            <fullName>ARBEIDSTRENING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INKLUDERINGSTILSKUDD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MENTOR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MIDLERTIDIG_LONNSTILSKUDD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOMMERJOBB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VARIG_LONNSTILSKUDD</fullName>
             <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
         <picklist>TAG_Status__c</picklist>
         <values>
-            <fullName>Annulert</fullName>
+            <fullName>ANNULLERT</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Avbrutt</fullName>
+            <fullName>AVBRUTT</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Avsluttet</fullName>
+            <fullName>AVSLUTTET</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Gjennomføres</fullName>
+            <fullName>GJENNOMFØRES</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Klar_for_oppstart</fullName>
+            <fullName>KLAR_FOR_OPPSTART</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Mangler_godkjenning</fullName>
+            <fullName>MANGLER_GODKJENNING</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Påbegynt</fullName>
+            <fullName>PÅBEGYNT</fullName>
             <default>false</default>
         </values>
     </picklistValues>
