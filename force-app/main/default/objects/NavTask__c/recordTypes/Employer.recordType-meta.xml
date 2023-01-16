@@ -80,19 +80,11 @@
             <fullName>Rekrutteringsoppdrag</fullName>
             <default>false</default>
         </values>
-        <values>
-            <fullName>Tiltaksøkonomi</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>CRM_Theme__c</picklist>
         <values>
             <fullName>Forebygge sykefravær og redusere frafall</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Nedbemanne</fullName>
             <default>false</default>
         </values>
         <values>
