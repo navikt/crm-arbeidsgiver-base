@@ -73,26 +73,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ArenaActivity__c.Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.JsonPayload__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.KafkaHash__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.KafkaId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ArenaActivity__c.NAVIdent__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -103,8 +83,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ArenaActivity__c.NAVenhet__c</field>
-        <readable>false</readable>
+        <field>ArenaActivity__c.OriginSystem__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -115,11 +95,6 @@
         <editable>false</editable>
         <field>ArenaActivity__c.RegisteredBy__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.TilfelleStartdato__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Arena Aktiviteter</label>
