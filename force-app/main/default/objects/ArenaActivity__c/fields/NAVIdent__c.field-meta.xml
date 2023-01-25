@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NAVIdent__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Dersom registreringen er gjort i Modia, vil NAV Identen til brukeren, som har registrert aktiviteten, vises i dette feltet.</inlineHelpText>
     <label>NAV Ident</label>
     <length>8</length>
     <required>false</required>

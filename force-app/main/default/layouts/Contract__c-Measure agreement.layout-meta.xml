@@ -62,8 +62,8 @@
                 <field>TAG_MeasureParticipant__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>TAG_ExternalURLFormula__c</field>
+                <behavior>Edit</behavior>
+                <field>TAG_ExternalURL__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -84,7 +84,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1x000005Y13z</masterLabel>
+        <masterLabel>00h1X000005fxTl</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
