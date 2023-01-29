@@ -33,6 +33,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>TAG_EmployerContactPhone__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>TAG_Mentor__c</field>
             </layoutItems>
         </layoutColumns>
