@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>IF($Organization.Id = &quot;00D0E000000DttS&quot;,  HYPERLINK(&quot;https://tiltaksgjennomforing.dev.nav.no/tiltaksgjennomføring/avtale/&quot;&amp;KafkaId__c + &quot;?bedrift=&quot;&amp;TAG_Account__r.INT_OrganizationNumber__c, &quot;Tiltaksgjennomforing&quot;, &quot;_self&quot;) ,  HYPERLINK(&quot;https://arbeidsgiver.nav.no/tiltaksgjennomforing/avtale/&quot;&amp;KafkaId__c + &quot;?bedrift=&quot;&amp;TAG_Account__r.INT_OrganizationNumber__c , &quot;Tiltaksgjennomføring&quot;, &quot;_self&quot;) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Lenke til kontrakten i Tiltaksløsningen</inlineHelpText>
     <label>Source URL</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
