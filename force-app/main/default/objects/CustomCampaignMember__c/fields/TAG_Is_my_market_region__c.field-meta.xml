@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Is_my_market_region__c</fullName>
+    <externalId>false</externalId>
+    <formula>NAV_Unit__r.MarketRegion__c != null &amp;&amp; NAV_Unit__r.MarketRegion__c = $User.CRM_MarketRegion__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is my market region</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
