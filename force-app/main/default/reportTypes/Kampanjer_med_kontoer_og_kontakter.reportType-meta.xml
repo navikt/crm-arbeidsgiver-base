@@ -228,6 +228,16 @@
             <field>Campaign_type__c</field>
             <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Market_Region__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Is_my_market_region__c</field>
+            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
+        </columns>
         <masterLabel>Custom Campaign Members</masterLabel>
     </sections>
     <sections>
