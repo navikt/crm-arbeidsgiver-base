@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_AccountOrgType2__c</fullName>
+    <description>This field is used with TaskHandler trigger to copy the data from formula field TAG_AccountOrgType__c</description>
+    <externalId>false</externalId>
+    <label>TAG_AccountOrgType2</label>
+    <length>8</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
