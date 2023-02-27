@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>GosysURL__c</fullName>
     <externalId>false</externalId>
-    <formula>IF($Organization.Id = &quot;00D0E000000DttS&quot;, HYPERLINK(&quot;https://gosys-q1.dev.intern.nav.no/gosys/arbeidsgiver/organisasjonoversikt.jsf&quot;, &quot;GoSys&quot;, &quot;_self&quot;), HYPERLINK(&quot;https://gosys.intern.nav.no/gosys/arbeidsgiver/organisasjonoversikt.jsf&quot; , &quot;GoSys&quot;, &quot;_self&quot;))</formula>
+    <formula>IF($Organization.Id = &quot;00D5t0000004b4L&quot;, HYPERLINK(&quot;https://gosys-q1.dev.intern.nav.no/gosys/arbeidsgiver/organisasjonoversikt.jsf&quot;, &quot;GoSys&quot;, &quot;_self&quot;), HYPERLINK(&quot;https://gosys.intern.nav.no/gosys/arbeidsgiver/organisasjonoversikt.jsf&quot; , &quot;GoSys&quot;, &quot;_self&quot;))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Gosys URL</label>
     <required>false</required>
