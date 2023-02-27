@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TiltaksgjennomforingURL__c</fullName>
     <externalId>false</externalId>
-    <formula>IF($Organization.Id = &quot;00D0E000000DttS&quot;, HYPERLINK(&quot;https://tiltaksgjennomforing.dev.intern.nav.no/tiltaksgjennomforing?bedriftNr=&quot; &amp;INT_OrganizationNumber__c, &quot;Tiltaksgjennomføring&quot;, &quot;_self&quot;) , HYPERLINK(&quot;https://tiltaksgjennomforing.intern.nav.no/tiltaksgjennomforing?bedriftNr=&quot; &amp;INT_OrganizationNumber__c, &quot;Tiltaksgjennomføring&quot;, &quot;_self&quot;) )</formula>
+    <formula>IF($Organization.Id = &quot;00D5t0000004b4L&quot;, HYPERLINK(&quot;https://tiltaksgjennomforing.dev.intern.nav.no/tiltaksgjennomforing?bedriftNr=&quot; &amp;INT_OrganizationNumber__c, &quot;Tiltaksgjennomføring&quot;, &quot;_self&quot;) , HYPERLINK(&quot;https://tiltaksgjennomforing.intern.nav.no/tiltaksgjennomforing?bedriftNr=&quot; &amp;INT_OrganizationNumber__c, &quot;Tiltaksgjennomføring&quot;, &quot;_self&quot;) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Tiltaksgjennomforing URL</label>
     <required>false</required>
