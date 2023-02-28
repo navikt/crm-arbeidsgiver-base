@@ -167,6 +167,6 @@
         <searchResultsAdditionalFields>TAG_StartDate__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TAG_EndDate__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
