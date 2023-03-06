@@ -23,6 +23,7 @@ public with sharing class BankAccountController {
 
         ApiController apiCtrl = new ApiController();
         apiCtrl.initRequest(API_BASE_CONFIG_NAME, API_SERVICE_CONFIG_NAME, params);
+        apiCtrl.setSystemContext();
         apiCtrl.addServiceAuthHeader(SERVICE_AUTH_HEADER);
         apiCtrl.setHeaders(headers);
         apiCtrl.doCallout();
