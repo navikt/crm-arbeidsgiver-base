@@ -160,7 +160,9 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Arena Aktiviteter</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <listViewButtons>Se_alle_i_alle_enheter</listViewButtons>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
