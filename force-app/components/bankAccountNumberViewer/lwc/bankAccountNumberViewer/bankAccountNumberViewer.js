@@ -1,9 +1,9 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire, api,track } from 'lwc';
 import getBankAccountNumber from '@salesforce/apex/BankAccountController.getBankAccountNumber';
 
 export default class BankAccountNumberViewer extends LightningElement {
     @api recordId;
-
+    @track iconname = 'utility:chevrondown';
     isClosed = false;
     isLoading = true;
     style = '';
@@ -40,5 +40,16 @@ export default class BankAccountNumberViewer extends LightningElement {
         document.body.removeChild(hiddenInput);
     }
 
+    openClose() {
+        if (this.isClosed) {
+            this.template.querySelector('.slds-section').classList.add('slds-is-open');
+            this.isClosed = false;
+            this.iconname = 'utility:chevrondown';
+        } else {
+            this.template.querySelector('.slds-section').classList.remove('slds-is-open');
+            this.isClosed = true;
+            this.iconname = 'utility:chevronright';
+        }
+    }
 
 }
