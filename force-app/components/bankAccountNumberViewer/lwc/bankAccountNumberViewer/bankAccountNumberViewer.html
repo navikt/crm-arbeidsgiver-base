@@ -29,7 +29,16 @@
                             <span class="slds-form-element__label">Kontonummer</span>
                             <div class="slds-form-element__control">
                                 <div class="slds-form-element__static">{text}</div>
-                            </div>
+                            <lightning-button-icon
+                            value={text}
+                            class="copy-icon"
+                            icon-name="utility:copy"
+                            variant="bare"
+                            onclick={handleCopy}
+                            alternative-text="Kopier kontonummer"
+                            title="Kopier kontonummer"
+                        ></lightning-button-icon>
+                    </div>
                         </div>
                     </div>
                     <div class="slds-form__item" role="listitem"></div>

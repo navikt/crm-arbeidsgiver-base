@@ -23,6 +23,22 @@ export default class BankAccountNumberViewer extends LightningElement {
             this.isLoading = false;
         }
     }
+    handleCopy(event) {
+        const hiddenInput = document.createElement('input');
+        const eventValue = event.currentTarget.value;
+        hiddenInput.value = eventValue;
+        document.body.appendChild(hiddenInput);
+        hiddenInput.focus();
+        hiddenInput.select();
+        try {
+            const successful = document.execCommand('copy');
+            if (!successful) this.showCopyToast('error');
+        } catch (error) {
+            this.showCopyToast('error');
+        }
+
+        document.body.removeChild(hiddenInput);
+    }
 
 
 }
