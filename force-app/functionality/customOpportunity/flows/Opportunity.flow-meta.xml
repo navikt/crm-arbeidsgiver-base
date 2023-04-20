@@ -87,7 +87,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -773,7 +773,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue></stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -790,7 +790,7 @@ ISCHANGED ( {!myVariable_current.InclusionStage__c} )</expression>
         <object>CustomOpportunity__c</object>
     </recordUpdates>
     <startElementReference>isChangedDecision5_myRule_4_Account_c</startElementReference>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>myCollection_myRule_7_A1recipientIds</name>
         <dataType>String</dataType>

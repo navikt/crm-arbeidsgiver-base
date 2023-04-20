@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Notify_new_owner_action</name>
+        <label>Notify new owner action</label>
+        <locationX>50</locationX>
+        <locationY>1247</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>myRule_9</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <stringValue>Notify_new_owner</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>Notify_new_owner_body</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>En ny mulighet er tildelt deg</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>Assign_owner_to_notification</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Add_Owner_to_notification</name>
+        <label>Add Owner to notification</label>
+        <locationX>50</locationX>
+        <locationY>1127</locationY>
+        <assignmentItems>
+            <assignToReference>Assign_owner_to_notification</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Notification_OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Notify_new_owner_action</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Change_owner</name>
+        <label>Change owner</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference>myRule_4</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Change owner False</defaultConnectorLabel>
+        <rules>
+            <name>ChangeOwnerTrue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ChangeOwnerFormula</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Change owner True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_4</name>
+        <label>Account Added</label>
+        <locationX>182</locationX>
+        <locationY>671</locationY>
+        <defaultConnector>
+            <targetReference>Owner_is_changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Account Added False</defaultConnectorLabel>
+        <rules>
+            <name>Account_Added_True</name>
+            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contact__r.AccountId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contact__r.Account.INT_OrganizationNumber__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>AG_DEFAULT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_4_A1</targetReference>
+            </connector>
+            <label>Account Added True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_9</name>
+        <label>Update resolved</label>
+        <locationX>182</locationX>
+        <locationY>1463</locationY>
+        <defaultConnectorLabel>Update resolved false</defaultConnectorLabel>
+        <rules>
+            <name>Update_resolved_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>owner_is_changed_formula</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_9_A1</targetReference>
+            </connector>
+            <label>Update resolved True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Owner_is_changed</name>
+        <label>Owner is changed</label>
+        <locationX>182</locationX>
+        <locationY>1007</locationY>
+        <defaultConnector>
+            <targetReference>myRule_9</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>notChanged</defaultConnectorLabel>
+        <rules>
+            <name>isChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsOwnerChangedFormula</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Owner_to_notification</targetReference>
+            </connector>
+            <label>isChanged</label>
+        </rules>
+    </decisions>
+    <description>Migrated from the Opportunity Insert/Update ver4 process using multiple criteria.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>ChangeOwnerFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>( LEFT( {!$Record.OwnerId},3) = &quot;00G&quot; ) &amp;&amp;
+
+NOT ( ISPICKVAL( {!$Record.InclusionStage__c}, &quot;Ny henvendelse&quot; )) &amp;&amp;
+
+ISCHANGED ( {!$Record.InclusionStage__c })</expression>
+    </formulas>
+    <formulas>
+        <name>IsOwnerChangedFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISCHANGED( {!$Record.OwnerId} ), {!$Record.OwnerId}  &lt;&gt; CASESAFEID($User.Id), (LEFT({!$Record.OwnerId},3) = &quot;005&quot;))</expression>
+    </formulas>
+    <formulas>
+        <name>owner_is_changed_formula</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+    ISCHANGED({!$Record.InclusionStage__c}), 
+    ISPICKVAL(PRIORVALUE({!$Record.InclusionStage__c}), &quot;Ny henvendelse&quot;) 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>Todays_date</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW()</expression>
+    </formulas>
+    <formulas>
+        <name>userID</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <interviewLabel>Opportunity Insert/Update flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Insert/Update flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>myRule_1_A1</name>
+        <label>Change owner</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <connector>
+            <targetReference>myRule_4</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>userID</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>myRule_4_A1</name>
+        <label>Add Account to Contact</label>
+        <locationX>50</locationX>
+        <locationY>791</locationY>
+        <connector>
+            <targetReference>Owner_is_changed</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>$Record.Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Account__r.Contacts</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>myRule_9_A1</name>
+        <label>Update resolved field</label>
+        <locationX>50</locationX>
+        <locationY>1583</locationY>
+        <inputAssignments>
+            <field>TAG_Resolved_Date_Time__c</field>
+            <value>
+                <elementReference>Todays_date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Change_owner</targetReference>
+        </connector>
+        <object>CustomOpportunity__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <textTemplates>
+        <name>Notification_recepient</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!$Record.OwnerId}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Notify_new_owner_body</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!$Record.LastModifiedBy.FirstName} {!$Record.LastModifiedBy.LastName} har tildelt deg muligheten: {!$Record.Name}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>test</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!isChanged}&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>Assign_owner_to_notification</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Notification_OwnerId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Record.OwnerId</elementReference>
+        </value>
+    </variables>
+</Flow>
