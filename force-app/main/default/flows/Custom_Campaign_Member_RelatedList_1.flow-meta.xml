@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <description>Migrated from the Custom Campaign Member RelatedList process using Check Campaign Record Type criteria.</description>
+    <label>Custom Campaign Member RelatedList_1</label>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>myRule_1_A1</name>
+        <label>Set Account Id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>AccountSentral__c</field>
+            <value>
+                <elementReference>$Record.Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>myRule_1_A1</targetReference>
+        </connector>
+        <filterFormula>OR( 
+AND(
+ISNEW(), {!$Record.CustomCampaign__r.RecordType.Name} = &quot;Sentral&quot;),
+AND(ISCHANGED({!$Record.CustomCampaign__c}),
+{!$Record.CustomCampaign__r.RecordType.Name} = &quot;Sentral&quot;))</filterFormula>
+        <object>CustomCampaignMember__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
