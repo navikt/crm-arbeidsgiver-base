@@ -4,7 +4,7 @@
         <name>Notify_new_owner_action</name>
         <label>Notify new owner action</label>
         <locationX>50</locationX>
-        <locationY>1247</locationY>
+        <locationY>1367</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -14,7 +14,7 @@
         <inputParameters>
             <name>customNotifTypeId</name>
             <value>
-                <stringValue>Notify_new_owner</stringValue>
+                <elementReference>Get_Custom_Notification_Record_ID.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -35,6 +35,12 @@
                 <elementReference>Assign_owner_to_notification</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
     <assignments>
@@ -50,7 +56,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Notify_new_owner_action</targetReference>
+            <targetReference>Get_Custom_Notification_Record_ID</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -135,7 +141,7 @@
         <name>myRule_9</name>
         <label>Update resolved</label>
         <locationX>182</locationX>
-        <locationY>1463</locationY>
+        <locationY>1583</locationY>
         <defaultConnectorLabel>Update resolved false</defaultConnectorLabel>
         <rules>
             <name>Update_resolved_True</name>
@@ -185,22 +191,22 @@
         <dataType>Boolean</dataType>
         <expression>( LEFT( {!$Record.OwnerId},3) = &quot;00G&quot; ) &amp;&amp;
 
-NOT ( ISPICKVAL( {!$Record.InclusionStage__c}, &quot;Ny henvendelse&quot; )) &amp;&amp;
-
-ISCHANGED ( {!$Record.InclusionStage__c })</expression>
+            NOT ( ISPICKVAL( {!$Record.InclusionStage__c}, &quot;Ny henvendelse&quot; )) &amp;&amp;
+            ISCHANGED ( {!$Record.InclusionStage__c })</expression>
     </formulas>
     <formulas>
         <name>IsOwnerChangedFormula</name>
         <dataType>Boolean</dataType>
-        <expression>AND(ISCHANGED( {!$Record.OwnerId} ), {!$Record.OwnerId}  &lt;&gt; CASESAFEID($User.Id), (LEFT({!$Record.OwnerId},3) = &quot;005&quot;))</expression>
+        <expression>AND(ISCHANGED( {!$Record.OwnerId} ), {!$Record.OwnerId} &lt;&gt;
+            CASESAFEID($User.Id), (LEFT({!$Record.OwnerId},3) = &quot;005&quot;))</expression>
     </formulas>
     <formulas>
         <name>owner_is_changed_formula</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-    ISCHANGED({!$Record.InclusionStage__c}), 
-    ISPICKVAL(PRIORVALUE({!$Record.InclusionStage__c}), &quot;Ny henvendelse&quot;) 
-)</expression>
+            ISCHANGED({!$Record.InclusionStage__c}),
+            ISPICKVAL(PRIORVALUE({!$Record.InclusionStage__c}), &quot;Ny henvendelse&quot;)
+            )</expression>
     </formulas>
     <formulas>
         <name>Todays_date</name>
@@ -227,6 +233,27 @@ ISCHANGED ( {!$Record.InclusionStage__c })</expression>
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Custom_Notification_Record_ID</name>
+        <label>Get Custom Notification Record ID</label>
+        <locationX>50</locationX>
+        <locationY>1247</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Notify_new_owner_action</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>CustomNotificationTypeName</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>myRule_1_A1</name>
         <label>Change owner</label>
@@ -263,7 +290,7 @@ ISCHANGED ( {!$Record.InclusionStage__c })</expression>
         <name>myRule_9_A1</name>
         <label>Update resolved field</label>
         <locationX>50</locationX>
-        <locationY>1583</locationY>
+        <locationY>1703</locationY>
         <inputAssignments>
             <field>TAG_Resolved_Date_Time__c</field>
             <value>
@@ -282,7 +309,7 @@ ISCHANGED ( {!$Record.InclusionStage__c })</expression>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>Notification_recepient</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
@@ -291,7 +318,8 @@ ISCHANGED ( {!$Record.InclusionStage__c })</expression>
     <textTemplates>
         <name>Notify_new_owner_body</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Record.LastModifiedBy.FirstName} {!$Record.LastModifiedBy.LastName} har tildelt deg muligheten: {!$Record.Name}&lt;/p&gt;</text>
+        <text>&lt;p&gt;{!$Record.LastModifiedBy.FirstName} {!$Record.LastModifiedBy.LastName} har
+            tildelt deg muligheten: {!$Record.Name}&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>test</name>
