@@ -247,7 +247,7 @@
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>CustomNotificationTypeName</stringValue>
+                <stringValue>Notify_new_owner</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
