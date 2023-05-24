@@ -38,13 +38,38 @@
             <section>Contacts</section>
         </sections>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- New Section --></label>
+            <label></label>
             <section>New Section</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Measure agreement</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Tiltaksavtale</section>
+        </sections>
+    </layouts>
     <nameFieldLabel>Tittel</nameFieldLabel>
+    <recordTypes>
+        <description></description>
+        <label></label>
+        <name>EmployerAgreement</name>
+    </recordTypes>
+    <recordTypes>
+        <description></description>
+        <label></label>
+        <name>MeasureAgreement</name>
+    </recordTypes>
+    <webLinks>
+        <label>Ny</label>
+        <name>New_Employer_Agreement</name>
+    </webLinks>
 </CustomObjectTranslation>
