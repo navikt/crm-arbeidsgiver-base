@@ -869,6 +869,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.CreatedByEmail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1000,6 +1005,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.CRM_Unit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.CreatedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
