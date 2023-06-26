@@ -50,6 +50,10 @@
                 <behavior>Edit</behavior>
                 <field>KafkaId__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FiaSak__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
