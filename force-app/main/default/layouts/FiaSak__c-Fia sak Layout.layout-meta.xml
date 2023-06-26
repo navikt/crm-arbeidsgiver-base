@@ -12,11 +12,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FiaCaseNr__c</field>
+                <field>CaseNr__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>FiaCaseOwner__c</field>
+                <field>CaseOwner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -24,19 +24,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FiaCaseOwnerName__c</field>
+                <field>CaseOwnerName__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FiaCaseStatus__c</field>
+                <field>CaseStatus__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FiaLastModifiedDate__c</field>
+                <field>LastModifiedDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FiaStartDate__c</field>
+                <field>StartDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
