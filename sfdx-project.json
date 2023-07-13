@@ -4,7 +4,7 @@
             "path": "force-app",
             "default": true,
             "package": "crm-arbeidsgiver-base",
-            "versionNumber": "1.314.0.NEXT",
+            "versionNumber": "1.315.0.NEXT",
             "dependencies": [
                 {
                     "package": "crm-platform-base",
@@ -30,19 +30,19 @@
                     "package": "crm-platform-integration",
                     "versionNumber": "0.86.0.LATEST"
                 },
-				{
+                {
                     "package": "crm-platform-base",
                     "versionNumber": " 0.196.0.LATEST"
                 },
-				{
+                {
                     "package": "crm-shared-flowComponents",
                     "versionNumber": "0.4.0.LATEST"
-				},
+                },
                 {
                     "package": "crm-journal-utilities",
                     "versionNumber": "0.26.0.LATEST"
-                },				
-				{
+                },
+                {
                     "package": "crm-platform-oppgave",
                     "versionNumber": "0.49.0.LATEST"
                 }
@@ -59,10 +59,9 @@
         "crm-shared-base": "0Ho2o000000fxXLCAY",
         "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
         "crm-platform-integration": "0Ho2o0000008ORrCAM",
-	"crm-platform-base": "0Ho2o0000008ORmCAM",
         "crm-shared-flowComponents": "0Ho2o000000fxYJCAY",
-	"crm-journal-utilities": "0Ho2o000000fxXkCAI",
-	"crm-thread-view": "0Ho7U000000000zSAA",
-	"crm-platform-oppgave": "0Ho2o000000fxXzCAI"
+        "crm-journal-utilities": "0Ho2o000000fxXkCAI",
+        "crm-thread-view": "0Ho7U000000000zSAA",
+        "crm-platform-oppgave": "0Ho2o000000fxXzCAI"
     }
 }
