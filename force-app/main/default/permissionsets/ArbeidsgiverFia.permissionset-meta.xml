@@ -43,97 +43,97 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.CaseNr__c</field>
+        <field>FiaCase__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.CompletedDate__c</field>
+        <field>FiaCase__c.CaseNr__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.FiaSak__c</field>
+        <field>FiaCase__c.CaseOwnerName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.IATjeneste__c</field>
+        <field>FiaCase__c.CaseStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.LastModifiedDate__c</field>
+        <field>FiaCase__c.JSONPayload__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.Modul__c</field>
+        <field>FiaCase__c.KafkaHash__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.Status__c</field>
+        <field>FiaCase__c.KafkaId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.UnitName__c</field>
+        <field>FiaCase__c.LastModifiedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.Account__c</field>
+        <field>FiaCase__c.Link__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.CaseNr__c</field>
+        <field>FiaCase__c.NAV_Unit__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.CaseOwnerName__c</field>
+        <field>FiaCase__c.StartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.CaseStatus__c</field>
+        <field>FiaDelivery__c.CaseNr__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.JSONPayload__c</field>
+        <field>FiaDelivery__c.CompletedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.KafkaHash__c</field>
+        <field>FiaDelivery__c.FiaCase__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.KafkaId__c</field>
+        <field>FiaDelivery__c.IAService__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.LastModifiedDate__c</field>
+        <field>FiaDelivery__c.LastModifiedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.Link__c</field>
+        <field>FiaDelivery__c.Modul__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.NAV_Unit__c</field>
+        <field>FiaDelivery__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.StartDate__c</field>
+        <field>FiaDelivery__c.UnitName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
@@ -162,7 +162,7 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>FiaLeveranse__c</object>
+        <object>FiaCase__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -171,7 +171,7 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>FiaSak__c</object>
+        <object>FiaDelivery__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>

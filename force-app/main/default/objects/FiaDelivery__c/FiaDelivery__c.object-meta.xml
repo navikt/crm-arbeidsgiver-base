@@ -153,12 +153,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Fia sak</label>
+    <label>Fia Delivery</label>
     <nameField>
-        <label>Name</label>
+        <label>Delivery Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Fia Saker</pluralLabel>
+    <pluralLabel>Fia Deliveries</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

@@ -153,12 +153,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Fia Leveranse</label>
+    <label>Fia Case</label>
     <nameField>
-        <label>Leveranse Name</label>
+        <label>Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Fia Leveranse</pluralLabel>
+    <pluralLabel>Fia Cases</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
