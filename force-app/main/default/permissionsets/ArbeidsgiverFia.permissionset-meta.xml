@@ -53,11 +53,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaLeveranse__c.FiaSak__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FiaLeveranse__c.IATjeneste__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -79,11 +74,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FiaLeveranse__c.UnitName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FiaSak__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -113,22 +103,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FiaSak__c.KafkaId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FiaSak__c.LastModifiedDate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FiaSak__c.Link__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FiaSak__c.NAV_Unit__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
