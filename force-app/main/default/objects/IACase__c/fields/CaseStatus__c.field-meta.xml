@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseStatus__c</fullName>
+    <externalId>false</externalId>
+    <label>Case Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NY</fullName>
+                <default>false</default>
+                <label>NY</label>
+            </value>
+            <value>
+                <fullName>IKKE_AKTIV</fullName>
+                <default>false</default>
+                <label>IKKE AKTIV</label>
+            </value>
+            <value>
+                <fullName>VURDERES</fullName>
+                <default>false</default>
+                <label>VURDERES</label>
+            </value>
+            <value>
+                <fullName>KONTAKTES</fullName>
+                <default>false</default>
+                <label>KONTAKTES</label>
+            </value>
+            <value>
+                <fullName>KARTLEGGES</fullName>
+                <default>false</default>
+                <label>KARTLEGGES</label>
+            </value>
+            <value>
+                <fullName>VI_BISTÅR</fullName>
+                <default>false</default>
+                <label>VI BISTÅR</label>
+            </value>
+            <value>
+                <fullName>IKKE_AKTUELL</fullName>
+                <default>false</default>
+                <label>IKKE AKTUELL</label>
+            </value>
+            <value>
+                <fullName>FULLFØRT</fullName>
+                <default>false</default>
+                <label>FULLFØRT</label>
+            </value>
+            <value>
+                <fullName>SLETTET</fullName>
+                <default>false</default>
+                <label>SLETTET</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
