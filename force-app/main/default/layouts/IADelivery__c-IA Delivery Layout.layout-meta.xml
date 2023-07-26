@@ -38,6 +38,10 @@
                 <behavior>Edit</behavior>
                 <field>Deadline__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DeliveryCreatedByUser__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

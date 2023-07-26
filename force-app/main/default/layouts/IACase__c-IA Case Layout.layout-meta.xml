@@ -16,7 +16,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CaseOwner__c</field>
+                <field>CaseOwnerNavIdent__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -37,6 +37,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IALastModifiedDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CaseOwner__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
