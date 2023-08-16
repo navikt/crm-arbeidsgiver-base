@@ -132,6 +132,16 @@
                 <identifier>RecordTAG_EndDate__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Type_avtale__c</fieldItem>
+                <identifier>RecordType_avtale_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-f430d357-88c2-49f7-94ba-79afaf4226c3</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -165,6 +175,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-b81c9ae2-fb84-4af5-b591-087e4093e233</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -327,6 +341,10 @@
                     <value>Facet-93c8d2e1-d7d3-4f50-bae9-e7e014f19dd5</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Beskrivesle</value>
                 </componentInstanceProperties>
@@ -341,6 +359,10 @@
                     <value>Facet-44723b79-8436-4153-b700-e3935237ba81</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Kontaktpersoner</value>
                 </componentInstanceProperties>
@@ -353,6 +375,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-cdc81031-3063-4925-a0cc-fe48fbef17d2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

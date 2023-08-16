@@ -49,4 +49,23 @@
             <default>true</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>Type_avtale__c</picklist>
+        <values>
+            <fullName>Avtale om bistand ved omstilling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IA-prioritet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Strategisk partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utvidet partner</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
