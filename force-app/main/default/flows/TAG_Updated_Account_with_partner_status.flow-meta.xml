@@ -71,7 +71,7 @@
         <connector>
             <targetReference>Get_related_Account</targetReference>
         </connector>
-        <filterLogic>or</filterLogic>
+        <filterLogic>(1 OR 2 ) AND 3</filterLogic>
         <filters>
             <field>Type_avtale__c</field>
             <operator>EqualTo</operator>
@@ -84,6 +84,13 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Utvidet partner</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Godkjent</stringValue>
             </value>
         </filters>
         <object>Contract__c</object>

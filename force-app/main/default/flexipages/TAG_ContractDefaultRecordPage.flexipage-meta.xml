@@ -54,6 +54,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Type_avtale__c</fieldItem>
+                <identifier>RecordType_avtale_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Region__c</fieldItem>
                 <identifier>RecordRegion__cField</identifier>
             </fieldInstance>
@@ -130,16 +140,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_EndDate__c</fieldItem>
                 <identifier>RecordTAG_EndDate__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Type_avtale__c</fieldItem>
-                <identifier>RecordType_avtale_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-f430d357-88c2-49f7-94ba-79afaf4226c3</name>
