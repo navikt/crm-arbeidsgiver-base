@@ -115,6 +115,9 @@
                             <value>Type_avtale__c</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>TAG_Contact__c</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>TAG_Category__c</value>
                         </valueListItems>
                         <valueListItems>
@@ -127,7 +130,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListLabel</name>
-                    <value>Contract</value>
+                    <value>Avtaler</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
