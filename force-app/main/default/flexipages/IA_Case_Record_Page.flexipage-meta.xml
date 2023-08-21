@@ -4,16 +4,19 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsConfiguration</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsInNative</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>hideChatterActions</name>
@@ -32,16 +35,6 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>required</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Name</fieldItem>
-                <identifier>RecordNameField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -78,8 +71,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.OwnerId</fieldItem>
-                <identifier>RecordOwnerIdField</identifier>
+                <fieldItem>Record.IACreatedDate__c</fieldItem>
+                <identifier>RecordIACreatedDate_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-4c4565d8-427c-42bc-af06-5b75ac2763ad</name>
@@ -114,16 +107,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.NAVUnit__c</fieldItem>
                 <identifier>RecordNAVUnit_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.IACreatedDate__c</fieldItem>
-                <identifier>RecordIACreatedDate_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -250,6 +233,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>æ</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -285,22 +275,19 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>NAME</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>IAService__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Module__c</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>Deadline__c</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Status__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CREATED_DATE</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Deadline__c</value>
+                            <value>CompletedDate__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -381,7 +368,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;Link til FIA here:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://fia.intern.dev.nav.no/?kommuner=3005Er&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;https://fia.intern.dev.nav.no/?kommuner=3005Er&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Obs denne funker ikke nå.&lt;/p&gt;</value>
+                    <value>&lt;p&gt;Ha noe her?&lt;/p&gt;&lt;p&gt;Kanskje noe statistikk over hvor mange av leveransene som er under behandling vs hvor mange er fullført?&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Evt så har FIA statistikk vi kunne hentet over&lt;/p&gt;&lt;p&gt;Sykefravær, dagverk, tapte dagsverk etc. &lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText</identifier>
