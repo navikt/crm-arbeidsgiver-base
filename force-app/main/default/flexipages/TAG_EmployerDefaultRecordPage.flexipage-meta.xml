@@ -830,14 +830,6 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>MassChangeOwner</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>New</value>
-                        </valueListItems>
-                    </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>maxRecordsToDisplay</name>
@@ -864,11 +856,17 @@
                         <valueListItems>
                             <value>CaseStatus__c</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>IACreatedDate__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Link__c</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListLabel</name>
-                    <value>IA Cases</value>
+                    <value>Fiasaker</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
