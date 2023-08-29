@@ -161,7 +161,10 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Contracts</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <listViewButtons>New_Employer_Agreement</listViewButtons>
         <searchResultsAdditionalFields>TAG_Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TAG_Category__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TAG_StartDate__c</searchResultsAdditionalFields>
