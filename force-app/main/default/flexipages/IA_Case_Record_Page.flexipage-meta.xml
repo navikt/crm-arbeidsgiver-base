@@ -246,18 +246,18 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>MassChangeOwner</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>New</value>
+                            <value>IAService__c|EQUALS|[&quot;Redusere sykefravær&quot;]</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>maxRecordsToDisplay</name>
-                    <value>10</value>
+                    <value>5</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
@@ -275,8 +275,71 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>IAService__c</value>
+                            <value>Module__c</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Deadline__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CompletedDate__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Redusere Sykefravær</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>IAService__c|EQUALS|[&quot;Forebyggende arbeidsmiljøarbeid&quot;]</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>5</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>IACase__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>IA_Deliveries__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
                         <valueListItems>
                             <value>Module__c</value>
                         </valueListItems>
@@ -293,7 +356,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListLabel</name>
-                    <value>IA Deliveries</value>
+                    <value>Forebyggende arbeidsmiljøarbeid</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
@@ -308,7 +371,73 @@
                     <value>Default</value>
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList</identifier>
+                <identifier>lst_dynamicRelatedList2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>IAService__c|EQUALS|[&quot;HelseIArbeid&quot;]</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>5</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>IACase__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>IA_Deliveries__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Module__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Deadline__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CompletedDate__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>HelseIArbeid</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -363,15 +492,59 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
+                    <name>amountOfMonths</name>
+                    <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;Ha noe her?&lt;/p&gt;&lt;p&gt;Kanskje noe statistikk over hvor mange av leveransene som er under behandling vs hvor mange er fullført?&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Evt så har FIA statistikk vi kunne hentet over&lt;/p&gt;&lt;p&gt;Sykefravær, dagverk, tapte dagsverk etc. &lt;/p&gt;</value>
+                    <name>amountOfMonthsToLoad</name>
+                    <value>4</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText</identifier>
+                <componentInstanceProperties>
+                    <name>amountOfRecordsToLoad</name>
+                    <value>3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>amountOfRecordsToOpen</name>
+                    <value>3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>buttonIsHidden</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>configId</name>
+                    <value>TAG_NAV_default</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>customEmptySubtitle</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filterIsActive</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>headerIcon</name>
+                    <value>custom:custom18</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>headerTitleEnglish</name>
+                    <value>Activities</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>headerTitleNorwegian</name>
+                    <value>Aktiviteter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter1Label</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter2Label</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>timelineParentField</name>
+                </componentInstanceProperties>
+                <componentName>timeline</componentName>
+                <identifier>c_timeline</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

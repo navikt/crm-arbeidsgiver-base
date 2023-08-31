@@ -72,7 +72,7 @@ assignPermission() {
     --name Arbeidsgiver_contract \
     --name Arbeidsgiver_opportunity \
     --name Arbeidsgiver_temporaryLayoffs \
-    --name ArbeidsgiverFia \
+    --name Arbeidsgiver_IA \
     --name ArbeidsgiverStillinger \
     --name CRM_LoginFlow \
     || { error $? '"sf org assign permset" command failed.'; }

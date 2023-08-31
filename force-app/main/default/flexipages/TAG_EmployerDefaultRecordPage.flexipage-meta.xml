@@ -864,6 +864,12 @@
                         <valueListItems>
                             <value>CaseStatus__c</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>CaseOwner__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>IACreatedDate__c</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -876,11 +882,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortFieldAlias</name>
-                    <value>__DEFAULT__</value>
+                    <value>IACreatedDate__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortFieldOrder</name>
-                    <value>Default</value>
+                    <value>Descending</value>
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList7</identifier>
@@ -898,12 +904,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText4</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_FiaCaseStatus__c}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
