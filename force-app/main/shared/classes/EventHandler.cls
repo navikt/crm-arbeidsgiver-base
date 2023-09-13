@@ -6,7 +6,7 @@ global class EventHandler extends MyTriggers {
     global override void onAfterUpdate(Map<Id, SObject> triggerOldMap) {
         upsertEventShadow((List<Event>) records);
     }
-
+    //Test
     global override void onAfterDelete() {
         deleteEventShadow((List<Event>) records);
     }
