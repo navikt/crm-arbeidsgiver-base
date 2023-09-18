@@ -457,7 +457,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>filterIsActive</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>headerIcon</name>
@@ -470,6 +470,14 @@
                 <componentInstanceProperties>
                     <name>headerTitleNorwegian</name>
                     <value>Aktiviteter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideMyActivitiesFilter</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>includeAmountInTitle</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>picklistFilter1Label</name>
