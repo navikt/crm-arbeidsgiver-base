@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Left_Company__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Dato for når ansatt ble markert som sluttet.</inlineHelpText>
+    <label>Left Company</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>
