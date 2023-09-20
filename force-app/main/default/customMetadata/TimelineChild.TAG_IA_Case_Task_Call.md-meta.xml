@@ -20,7 +20,7 @@
     </values>
     <values>
         <field>CreateableObject_Field2__c</field>
-        <value xsi:type="xsd:string">Status</value>
+        <value xsi:type="xsd:string">TAG_IsIAPriority__c</value>
     </values>
     <values>
         <field>CreateableObject_Field3__c</field>
@@ -44,7 +44,7 @@
     </values>
     <values>
         <field>CreateableObject_Value2__c</field>
-        <value xsi:type="xsd:string">Completed</value>
+        <value xsi:type="xsd:string">true</value>
     </values>
     <values>
         <field>CreateableObject_Value3__c</field>
