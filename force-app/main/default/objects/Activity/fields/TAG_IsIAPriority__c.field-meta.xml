@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_IsIAPriority__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If true, it confirms that the activity record is made from the IA Case object Timeline. The field is set in Custom Metdata children fro IA Case.</description>
+    <externalId>false</externalId>
+    <label>IA Priority</label>
+    <type>Checkbox</type>
+</CustomField>
