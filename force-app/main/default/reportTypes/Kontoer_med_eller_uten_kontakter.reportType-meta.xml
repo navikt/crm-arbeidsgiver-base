@@ -783,6 +783,11 @@
             <field>TAG_Former_Employee__c</field>
             <table>Account.Contacts</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Left_Company__c</field>
+            <table>Account.Contacts</table>
+        </columns>
         <masterLabel>Contacts</masterLabel>
     </sections>
 </ReportType>
