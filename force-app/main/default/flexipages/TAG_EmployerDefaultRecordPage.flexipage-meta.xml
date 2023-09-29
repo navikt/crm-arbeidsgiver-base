@@ -83,7 +83,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>maxRecordsToDisplay</name>
-                    <value>10</value>
+                    <value>6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
@@ -102,6 +102,15 @@
                     <valueList>
                         <valueListItems>
                             <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Source__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>InclusionStage__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>InquiryCategory__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
