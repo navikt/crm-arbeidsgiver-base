@@ -5,6 +5,7 @@
     <columns>CRM_AccountType__c</columns>
     <columns>ACCOUNT.ADDRESS2_CITY</columns>
     <columns>INT_OrganizationNumber__c</columns>
+    <columns>TAG_Last_completed_activity_date__c</columns>
     <filterScope>Team</filterScope>
     <label>Mine kontoer</label>
 </ListView>
