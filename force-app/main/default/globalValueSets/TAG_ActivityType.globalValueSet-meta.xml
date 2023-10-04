@@ -11,21 +11,26 @@
         <label>Forebygge sykefravær og redusere frafall</label>
     </customValue>
     <customValue>
+        <fullName>Prioritert IA (Fia)</fullName>
+        <default>false</default>
+        <label>Prioritert IA (Fia)</label>
+    </customValue>
+    <customValue>
         <fullName>Nedbemanne</fullName>
         <default>false</default>
         <label>Nedbemanne</label>
-    </customValue>
-    <customValue>
-        <fullName>Generelt markedsarbeid</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Generelt markedsarbeid</label>
     </customValue>
     <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Bedriftsundersøkelse</label>
+    </customValue>
+    <customValue>
+        <fullName>Generelt markedsarbeid</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Generelt markedsarbeid</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
