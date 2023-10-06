@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>CustomOpportunity__c.Account__c</field>
+    </columns>
+    <columns>
+        <field>CustomOpportunity__c.InclusionStage__c</field>
+    </columns>
+    <columns>
+        <field>CustomOpportunity__c.InquiryCategory__c</field>
+    </columns>
+    <columns>
+        <field>CustomOpportunity__c.TAG_Short_Description__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>CustomOpportunity__c.InclusionStage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Nye muligheter</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$CustomOpportunity__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CustomOpportunity__c.TAG_Resolved_Date_Time__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

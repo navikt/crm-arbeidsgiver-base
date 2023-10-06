@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <choices>
+        <name>TAG_Choice_Accounts</name>
+        <choiceText>Over antall ansatte</choiceText>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </choices>
+    <choices>
+        <name>TAG_Choice_Employees</name>
+        <choiceText>Finne arbeidsgiver</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>NumberEmployees</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>TAG_Choice_NAVUnit</name>
+        <choiceText>NAV Enhet</choiceText>
+        <dataType>String</dataType>
+        <userInput>
+            <isRequired>false</isRequired>
+            <promptText>NAV Enhet</promptText>
+        </userInput>
+        <value>
+            <stringValue>NAV Enhet</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Hvilken_rapport_ble_valgt</name>
+        <label>Hvilken rapport ble valgt</label>
+        <locationX>488</locationX>
+        <locationY>415</locationY>
+        <defaultConnector>
+            <targetReference>Rapport</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Ansatte</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Velg_rapporten_du_vil_starte</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>TAG_Choice_Employees</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Start_rapport</targetReference>
+            </connector>
+            <label>Ansatte</label>
+        </rules>
+        <rules>
+            <name>TAG_choice_NAV_Enhet</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Velg_rapporten_du_vil_starte</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>TAG_Choice_NAVUnit</elementReference>
+                </rightValue>
+            </conditions>
+            <label>NAV Enhet</label>
+        </rules>
+    </decisions>
+    <description>Screen flow to create report based on number of employees</description>
+    <environments>Default</environments>
+    <interviewLabel>TAG_Reportaccounts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG_Reportaccounts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Rapport</name>
+        <label>Rapport</label>
+        <locationX>655</locationX>
+        <locationY>488</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Display_Report</name>
+            <fieldText>&lt;p&gt;&lt;a href=&quot;https://saas-platform-7268.scratch.lightning.force.com/lightning/r/Report/00O7Y000001vVpCUAU/view? fv0={!Ansatte}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Rapport&lt;/a&gt;&lt;img src=&quot;https://saas-platform-7268.scratch.file.force.com/sfc/servlet.shepherd/version/download/0687Y000004uI5T?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;Screenshot 2023-10-06 at 09.52.32.png&quot; title=&quot;Rapport&quot;&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Start_rapport</name>
+        <label>Start rapport</label>
+        <locationX>550</locationX>
+        <locationY>216</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>TAG_Selectreportscreen</name>
+            <fieldText>&lt;p&gt;Velg rapport&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Velg_rapporten_du_vil_starte</name>
+            <choiceReferences>TAG_Choice_NAVUnit</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Hva vil du basere rapporten på</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>NAV_Enhet</name>
+            <choiceReferences>TAG_Choice_Employees</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Ansatte</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Start rapport</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>410</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Start_rapport</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+</Flow>
