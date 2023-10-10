@@ -32,8 +32,11 @@
     <decisions>
         <name>Which_Report_Was_Selected</name>
         <label>Which Report Was Selected</label>
-        <locationX>470</locationX>
-        <locationY>367</locationY>
+        <locationX>471</locationX>
+        <locationY>368</locationY>
+        <defaultConnector>
+            <targetReference>Opportunitiesscreen_0</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Opportunities</name>
@@ -50,6 +53,18 @@
             </connector>
             <label>Opportunities</label>
         </rules>
+        <rules>
+            <name>Select_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Select_Your_Report</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>ChoiceReportAccount</elementReference>
+                </rightValue>
+            </conditions>
+            <label>Select Account</label>
+        </rules>
     </decisions>
     <dynamicChoiceSets>
         <name>ChoiceOpportunityStage</name>
@@ -61,7 +76,7 @@
     </dynamicChoiceSets>
     <environments>Default</environments>
     <interviewLabel>TAG Opportunties Report {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Opportunties Report</label>
+    <label>Rapportveileder</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -100,6 +115,24 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Opportunitiesscreen_0</name>
+        <label>Opportunities</label>
+        <locationX>253</locationX>
+        <locationY>369</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <backButtonLabel>Tilbake</backButtonLabel>
+        <fields>
+            <name>display_report_icon_0</name>
+            <fieldText>&lt;p&gt;&lt;a href=&quot;https://saas-platform-7268.scratch.lightning.force.com/lightning/r/Report/00O7Y000001vWYZUA2/view?fv0={!ChoiceOpportunityStage}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://saas-platform-7268.scratch.file.force.com/sfc/servlet.shepherd/version/download/0687Y000004uILR?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;Rapportknapp.png&quot;&gt;Se Rapport&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Avslutt</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Select_Report_Opportunity</name>
         <label>Select Report Opportunity</label>
         <locationX>501</locationX>
@@ -111,16 +144,11 @@
             <targetReference>Which_Report_Was_Selected</targetReference>
         </connector>
         <fields>
-            <name>SelectionTitle</name>
-            <fieldText>&lt;p&gt;Select Your Report&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
             <name>Select_Your_Report</name>
             <choiceReferences>ChoiceReportOpportunity</choiceReferences>
             <choiceReferences>ChoiceReportAccount</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>*</fieldText>
+            <fieldText>Velg rapport</fieldText>
             <fieldType>RadioButtons</fieldType>
             <isRequired>true</isRequired>
         </fields>
@@ -128,7 +156,7 @@
             <name>Stage</name>
             <choiceReferences>ChoiceOpportunityStage</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Stage</fieldText>
+            <fieldText>Velg steg for mulighetene du vil se</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>false</isRequired>
             <visibilityRule>
@@ -173,8 +201,8 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>363</locationX>
-        <locationY>48</locationY>
+        <locationX>364</locationX>
+        <locationY>47</locationY>
         <connector>
             <targetReference>Select_Report_Opportunity</targetReference>
         </connector>
