@@ -27,6 +27,25 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>TAG_ActivityType__c</picklist>
+        <values>
+            <fullName>Forebygge sykefravær og redusere frafall</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nedbemanne</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prioritert IA %28Fia%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekruttere og inkludere</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>TAG_service__c</picklist>
         <values>
             <fullName>Forbyggende arbeidsmiljøarbeid</fullName>
