@@ -865,7 +865,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: &amp;quot;Segoe UI&amp;quot;, sans-serif; color: rgb(116, 116, 116);&quot;&gt;Funksjonen er under utprøving og det kan være stillinger knyttet til arbeidsgiver som ikke fremkommer her. Dette gjelder både aktive og inaktive. Om det står kilde &quot;DIR&quot;, betyr det at dette har vært en dirketemeldt stilling. &lt;/span&gt;&lt;span style=&quot;font-size: 13.3333px; font-family: &amp;quot;Segoe UI&amp;quot;, sans-serif; color: rgb(116, 116, 116);&quot;&gt;Stillingshistorikk er tilgjengelig fra 11.11.2022. &lt;/span&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: &amp;quot;Segoe UI&amp;quot;, sans-serif; color: rgb(116, 116, 116);&quot;&gt;Funksjonen er under utprøving og det kan være stillinger knyttet til arbeidsgiver som ikke fremkommer her. Dette gjelder både aktive og inaktive. Om det står kilde &quot;DIR&quot;, betyr det at dette har vært en direktemeldt stilling. &lt;/span&gt;&lt;span style=&quot;font-size: 13.3333px; font-family: &amp;quot;Segoe UI&amp;quot;, sans-serif; color: rgb(116, 116, 116);&quot;&gt;Stillingshistorikk er tilgjengelig fra 11.11.2022. &lt;/span&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText3</identifier>
@@ -1126,13 +1126,6 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList7</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!$User.Profile.Name}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>System Administrator</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1147,12 +1140,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText4</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_FiaCaseNr__c}</leftValue>
-                        <operator>NE</operator>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
