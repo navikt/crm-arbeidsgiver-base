@@ -53,3 +53,4 @@ Ved å bruke VS Code som IDE, er det lagt inn konfigurasjon som automatisk pushe
 ## Annet
 
 For spørsmål om denne applikasjonen, bruk #arbeidsgiver-crm på Slack.
+
