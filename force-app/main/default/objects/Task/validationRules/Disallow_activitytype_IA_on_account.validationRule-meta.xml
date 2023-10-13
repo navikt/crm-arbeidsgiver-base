@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Disallow_activitytype_IA_on_account</fullName>
-    <active>false</active>
+    <active>true</active>
     <description>Du kan kun registrere &quot;Prioritert IA (fia)&quot; inne på en IA-sak.</description>
     <errorConditionFormula>AND(TAG_IsIAPriority__c = false, (ISPICKVAL(TAG_ActivityType__c, &apos;Prioritert IA (Fia)&apos;)))</errorConditionFormula>
     <errorMessage>Du kan kun registrere &quot;Prioritert IA (fia)&quot; inne på en IA-sak.</errorMessage>
