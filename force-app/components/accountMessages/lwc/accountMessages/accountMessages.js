@@ -3,6 +3,7 @@ import getData from '@salesforce/apex/AccountMessagesController.getData';
 import getDeletedDate from '@salesforce/apex/AccountMessagesController.getDeletedDate';
 import { NavigationMixin } from 'lightning/navigation';
 
+
 export default class AccountMessages extends NavigationMixin(LightningElement) {
     @api recordId;
     @track display = false;
