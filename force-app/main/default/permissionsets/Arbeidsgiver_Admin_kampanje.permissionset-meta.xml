@@ -10,6 +10,11 @@
         <field>Account.TAG_Force_Update__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract__c.Sent_Welcome_Message__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Admin kampanje</label>
     <objectPermissions>
