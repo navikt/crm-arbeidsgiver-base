@@ -127,6 +127,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contract__c.Sent_Welcome_Message__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contract__c.TAG_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
