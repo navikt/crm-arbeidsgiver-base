@@ -955,6 +955,34 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Abesence_in_Hiearchy__c</fieldItem>
+                <identifier>RecordTAG_Abesence_in_Hiearchy_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-cbcd2eac-1977-4283-9f12-b2531eaf447a</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-cbcd2eac-1977-4283-9f12-b2531eaf447a</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-3275bd39-2f86-4dad-ab04-20e5f736edd7</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
@@ -1010,6 +1038,31 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList7</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-3275bd39-2f86-4dad-ab04-20e5f736edd7</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Sykefravær organisasjonshierarki</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.CRM_AccountType__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>J</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
