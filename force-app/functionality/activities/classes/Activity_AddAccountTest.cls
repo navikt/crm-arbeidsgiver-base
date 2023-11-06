@@ -8,7 +8,8 @@ private without sharing class Activity_AddAccountTest {
         'Arbeidsgiver_arenaActivity',
         'Arbeidsgiver_base',
         'Arbeidsgiver_contract',
-        'Arbeidsgiver_opportunity'
+        'Arbeidsgiver_opportunity',
+        'Arbeidsgiver_IA'
       }
     );
   }
