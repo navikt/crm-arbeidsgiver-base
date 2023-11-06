@@ -3,6 +3,11 @@
     <description>Tilgang til aktiviteter hentet fra Arena</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.TAG_Accommodations_related_to_org_hir__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ArenaActivity__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -58,38 +63,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ArenaActivity__c.DateTimeFrom__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.DateTimeRegistered__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ArenaActivity__c.DateTo__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.JsonPayload__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.KafkaHash__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.KafkaId__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -100,11 +75,6 @@
         <editable>false</editable>
         <field>ArenaActivity__c.NAV_Kontor__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.NAVenhet__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -120,11 +90,6 @@
         <editable>false</editable>
         <field>ArenaActivity__c.TAG_Source__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ArenaActivity__c.TilfelleStartdato__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Arena Aktiviteter</label>
