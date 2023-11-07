@@ -30,6 +30,10 @@
                 <behavior>Readonly</behavior>
                 <field>NAV_Region__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Type_avtale__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
