@@ -78,6 +78,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>LastActivityDate</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedBy</field>
             <table>JobPosting__c</table>
         </columns>
@@ -386,11 +391,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.LastActivityDate</field>
-            <table>JobPosting__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.INT_Industry2__c</field>
             <table>JobPosting__c</table>
         </columns>
@@ -452,6 +452,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account__c.Website</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.LastActivityDate</field>
             <table>JobPosting__c</table>
         </columns>
         <columns>
