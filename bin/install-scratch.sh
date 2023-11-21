@@ -74,6 +74,7 @@ assignPermission() {
     --name Arbeidsgiver_temporaryLayoffs \
     --name Arbeidsgiver_IA \
     --name ArbeidsgiverStillinger \
+    --name Admin_Base \
     --name CRM_LoginFlow \
     || { error $? '"sf org assign permset" command failed.'; }
 }
