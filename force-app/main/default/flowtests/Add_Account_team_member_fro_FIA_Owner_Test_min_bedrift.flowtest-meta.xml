@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowApiName>Add_Account_team_member_fro_FIA_Owner</flowApiName>
+    <label>Test min bedrift</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;Alias__c&quot;:&quot;123&quot;,&quot;Bypass_Validation__c&quot;:false,&quot;CRM_IsPilot__c&quot;:false,&quot;CRM_UltimateParentAccount__c&quot;:&quot;0011x00001iLaqEAAS&quot;,&quot;FirstName&quot;:{},&quot;INT_IndustryCode__c&quot;:&quot;02.200&quot;,&quot;INT_Industry__c&quot;:&quot;Avvirkning&quot;,&quot;INT_IsBankrupt__c&quot;:false,&quot;INT_IsHasTombstone__c&quot;:false,&quot;INT_IsInForcedSettlementOrResolution__c&quot;:false,&quot;INT_IsInLiquidation__c&quot;:false,&quot;INT_OrganizationNumber__c&quot;:&quot;960507878&quot;,&quot;InvalidEmail__pc&quot;:{},&quot;IsDeletedEmployer__c&quot;:false,&quot;LastName&quot;:{},&quot;MiddleName&quot;:{},&quot;Name&quot;:&quot;Min bedrift&quot;,&quot;OwnerId&quot;:&quot;0051x00000CRT85AAH&quot;,&quot;PersonDoNotCall&quot;:false,&quot;PersonEmail&quot;:{},&quot;PersonHasOptedOutOfEmail&quot;:false,&quot;PersonHasOptedOutOfFax&quot;:false,&quot;PersonLeadSource&quot;:{},&quot;PersonMailingCity&quot;:{},&quot;PersonMailingCountry&quot;:{},&quot;PersonMailingLatitude&quot;:{},&quot;PersonMailingLongitude&quot;:{},&quot;PersonMailingPostalCode&quot;:{},&quot;PersonMailingState&quot;:{},&quot;PersonMailingStreet&quot;:{},&quot;PersonMobilePhone&quot;:{},&quot;PersonTitle&quot;:{},&quot;RecordTypeId&quot;:&quot;0121x000005MTfBAAW&quot;,&quot;Salutation&quot;:{},&quot;Source__pc&quot;:{},&quot;TAG_FiaCaseOwnerName__c&quot;:&quot;&quot;,&quot;TAG_FiaCaseOwner__c&quot;:&quot;&quot;,&quot;TAG_Force_Update__c&quot;:false,&quot;TAG_IAOwner__pc&quot;:{},&quot;TAG_InclusionOwner__pc&quot;:{},&quot;TAG_Informed__pc&quot;:false,&quot;TAG_IsDeleted__c&quot;:false,&quot;TAG_Theme__pc&quot;:{},&quot;Warning__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordUpdated</type>
+            <value>
+                <sobjectValue>{&quot;Bypass_Validation__c&quot;:false,&quot;CRM_IsPilot__c&quot;:false,&quot;CRM_UltimateParentAccount__c&quot;:&quot;0011x00001iLaqEAAS&quot;,&quot;FirstName&quot;:{},&quot;INT_IndustryCode__c&quot;:&quot;02.200&quot;,&quot;INT_Industry__c&quot;:&quot;Avvirkning&quot;,&quot;INT_IsBankrupt__c&quot;:false,&quot;INT_IsHasTombstone__c&quot;:false,&quot;INT_IsInForcedSettlementOrResolution__c&quot;:false,&quot;INT_IsInLiquidation__c&quot;:false,&quot;INT_OrganizationNumber__c&quot;:&quot;960507878&quot;,&quot;InvalidEmail__pc&quot;:{},&quot;IsDeletedEmployer__c&quot;:false,&quot;LastName&quot;:{},&quot;MiddleName&quot;:{},&quot;Name&quot;:&quot;Min bedrift&quot;,&quot;OwnerId&quot;:&quot;0051x00000CRT85AAH&quot;,&quot;PersonDoNotCall&quot;:false,&quot;PersonEmail&quot;:{},&quot;PersonHasOptedOutOfEmail&quot;:false,&quot;PersonHasOptedOutOfFax&quot;:false,&quot;PersonLeadSource&quot;:{},&quot;PersonMailingCity&quot;:{},&quot;PersonMailingCountry&quot;:{},&quot;PersonMailingLatitude&quot;:{},&quot;PersonMailingLongitude&quot;:{},&quot;PersonMailingPostalCode&quot;:{},&quot;PersonMailingState&quot;:{},&quot;PersonMailingStreet&quot;:{},&quot;PersonMobilePhone&quot;:{},&quot;PersonTitle&quot;:{},&quot;RecordTypeId&quot;:&quot;0121x000005MTfBAAW&quot;,&quot;Salutation&quot;:{},&quot;Source__pc&quot;:{},&quot;TAG_FiaCaseOwnerName__c&quot;:&quot;&quot;,&quot;TAG_FiaCaseOwner__c&quot;:&quot;&quot;,&quot;TAG_Force_Update__c&quot;:false,&quot;TAG_IAOwner__pc&quot;:{},&quot;TAG_InclusionOwner__pc&quot;:{},&quot;TAG_Informed__pc&quot;:false,&quot;TAG_IsDeleted__c&quot;:false,&quot;TAG_Theme__pc&quot;:{},&quot;Warning__c&quot;:false}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>Get_User_Record</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <errorMessage>Finner ikke NAV ansatt</errorMessage>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>
