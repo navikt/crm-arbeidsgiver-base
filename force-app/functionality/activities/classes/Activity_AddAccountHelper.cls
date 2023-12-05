@@ -293,6 +293,9 @@ public with sharing class Activity_AddAccountHelper {
     recordTypeIds.add(
       Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName().get('ArbeidsgiverTask').getRecordTypeId()
     );
+    recordTypeIds.add(
+        Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName().get('IPS_UO_Arbeidsgiver').getRecordTypeId()
+      );
 
     return recordTypeIds;
   }

@@ -9,7 +9,8 @@ private without sharing class Activity_AddAccountTest {
         'Arbeidsgiver_base',
         'Arbeidsgiver_contract',
         'Arbeidsgiver_opportunity',
-        'Arbeidsgiver_IA'
+        'Arbeidsgiver_IA',
+        'Arbeidsgiver_IPS_UO_arbeidsgivermote'
       }
     );
   }
