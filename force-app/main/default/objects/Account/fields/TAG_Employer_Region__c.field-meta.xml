@@ -3,16 +3,21 @@
     <fullName>TAG_Employer_Region__c</fullName>
     <externalId>false</externalId>
     <formula>IF(BEGINS(INT_MunicipalityNumber__c , &quot;30&quot;),&quot;Viken&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;03&quot;),&quot;Oslo&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;34&quot;),&quot;Innlandet&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;38&quot;),&quot;Vestfold og Telemark&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;46&quot;),&quot;Vestland&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;50&quot;),&quot;Trøndelag&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;54&quot;),&quot;Troms og Finmark&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;11&quot;),&quot;Rogaland&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;15&quot;),&quot;Møre og Romsdal&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c  , &quot;18&quot;),&quot;Nordland&quot;,
-IF(BEGINS(INT_MunicipalityNumber__c , &quot;42&quot;),&quot;Agder&quot;,&quot;&quot;)))))))))))</formula>
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;03&quot;),&quot;Oslo&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;34&quot;),&quot;Innlandet&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;40&quot;),&quot;Telemark&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;39&quot;),&quot;Vestfold&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;46&quot;),&quot;Vestland&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;50&quot;),&quot;Trøndelag&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;55&quot;),&quot;Troms&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;56&quot;),&quot;Finmark&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;11&quot;),&quot;Rogaland&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;15&quot;),&quot;Møre og Romsdal&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;31&quot;),&quot;Østfold&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;32&quot;),&quot;Akershus&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c , &quot;33&quot;),&quot;Buskerud&quot;,
+        IF(BEGINS(INT_MunicipalityNumber__c ,
+        &quot;42&quot;),&quot;Agder&quot;,&quot;&quot;)))))))))))))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Employer Region</label>
     <required>false</required>

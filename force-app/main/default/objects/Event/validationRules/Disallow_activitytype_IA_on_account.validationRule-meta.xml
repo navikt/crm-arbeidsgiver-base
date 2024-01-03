@@ -6,5 +6,6 @@
         &quot; Prioritert IA (Fia)&quot;.</description>
     <errorConditionFormula>AND(TAG_IsIAPriority__c = false, (ISPICKVAL(TAG_ActivityType__c,
         &apos;Prioritert IA (Fia)&apos;)))</errorConditionFormula>
-    <errorMessage>Du kan kun registrere &quot;Prioritert IA (fia)&quot; inne på en IA-sak.</errorMessage>
+    <errorMessage>Du kan kun registrere &quot;Prioritert IA (fia)&quot; inne på en IA-sak så lenge
+        IA-saken har status &quot;vi bistår&quot;.</errorMessage>
 </ValidationRule>
