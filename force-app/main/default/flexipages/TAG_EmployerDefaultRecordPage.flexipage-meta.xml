@@ -1156,7 +1156,7 @@
                     <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>CRM_AbsenceCategory__c|NOT_EQUAL|[&quot;VIRKSOMHET&quot;]</value>
+                            <value>CRM_AbsenceCategory__c|EQUALS|[&quot;VIRKSOMHET&quot;]</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -1183,19 +1183,19 @@
                             <value>CRM_YearQuarter__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CRM_VirksomhetTapteDagsverk__c</value>
+                            <value>CRM_LostDaysWork__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CRM_VirksomhetProsent__c</value>
+                            <value>CRM_Percent__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_Account_Industry__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CRM_NaeringProsent__c</value>
+                            <value>CRM_IndustryCodePercent__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CRM_LandProsent__c</value>
+                            <value>CRM_CountryPercent__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
