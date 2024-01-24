@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
-    <aggregates>
-        <calculatedFormula>((Absence__c.CRM_VirksomhetProsent__c:SUM+ PREVGROUPVAL(Absence__c.CRM_VirksomhetProsent__c:SUM, Absence__c.CRM_YearQuarter__c,1) + PREVGROUPVAL(Absence__c.CRM_VirksomhetProsent__c:SUM, Absence__c.CRM_YearQuarter__c,2)+PREVGROUPVAL(Absence__c.CRM_VirksomhetProsent__c:SUM, Absence__c.CRM_YearQuarter__c,3)+PREVGROUPVAL(Absence__c.CRM_VirksomhetProsent__c:SUM, Absence__c.CRM_YearQuarter__c,4))/4)/100</calculatedFormula>
-        <datatype>percent</datatype>
-        <developerName>FORMULA1</developerName>
-        <downGroupingContext>Absence__c.CRM_YearQuarter__c</downGroupingContext>
-        <isActive>true</isActive>
-        <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Snitt siste 4 kvartal</masterLabel>
-        <scale>2</scale>
-    </aggregates>
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
         <backgroundColor2>#FFFFFF</backgroundColor2>
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
+            <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>FORMULA1</column>
+            <column>Absence__c.CRM_Last4QuartersPercent__c</column>
         </chartSummaries>
         <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>Absence__c.CRM_NaeringProsent__c</column>
+            <column>Absence__c.CRM_IndustryCodePercent__c</column>
         </chartSummaries>
         <chartType>Line</chartType>
         <enableHoverLabels>false</enableHoverLabels>
@@ -45,28 +36,42 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Absence__c.CRM_VirksomhetProsent__c</field>
+        <field>Absence__c.CRM_Percent__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Absence__c.CRM_NaeringProsent__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Absence__c.CRM_LandProsent__c</field>
+        <field>Absence__c.CRM_IndustryCodePercent__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>CDF1</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Absence__c.CRM_CountryPercent__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Absence__c.CRM_Last4QuartersPercent__c</field>
+    </columns>
     <customDetailFormulas>
-        <calculatedFormula>(Absence__c.CRM_NaeringProsent__c-Absence__c.CRM_VirksomhetProsent__c)*100</calculatedFormula>
+        <calculatedFormula>(Absence__c.CRM_IndustryCodePercent__c-Absence__c.CRM_Percent__c)*100</calculatedFormula>
         <dataType>Double</dataType>
         <description>Næringens fravær minus virksomhetens fravær</description>
         <developerName>CDF1</developerName>
         <label>Sett mot Næring</label>
-        <scale>2</scale>
+        <scale>1</scale>
     </customDetailFormulas>
+    <filter>
+        <criteriaItems>
+            <column>Absence__c.CRM_AbsenceCategory__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>VIRKSOMHET</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
