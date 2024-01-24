@@ -11,11 +11,11 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Absence__c.CRM_VirksomhetProsent__c</field>
+        <field>Absence__c.CRM_Percent__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Absence__c.CRM_VirksomhetTapteDagsverk__c</field>
+        <field>Absence__c.CRM_LostDaysWork__c</field>
     </columns>
     <description>Viser sykefravær til virksomheter knyttet til samme organisasjonshierarki, tar med alle organisasjonsledd (J, O og B)</description>
     <filter>
