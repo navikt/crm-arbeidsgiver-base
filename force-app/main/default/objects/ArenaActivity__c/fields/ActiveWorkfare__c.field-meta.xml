@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ActiveWorkfare__c</fullName>
     <externalId>false</externalId>
-    <formula>IF( AND( DateFrom__c &lt;= TODAY(), DateTo__c &gt;= TODAY(), OR( AktivitetStatuskode__c = &apos;GJENN&apos;, AktivitetStatuskode__c = &apos;Gjennomføres&apos; ) ) , true, false)</formula>
+    <formula>IF( AND( DateFrom__c &lt;= TODAY(), DateTo__c &gt;= TODAY(), Aktivitetsgruppekode__c = &apos;TLTAK&apos;, OR( AktivitetStatuskode__c = &apos;GJENN&apos;, AktivitetStatuskode__c = &apos;Gjennomføres&apos; ) ) , true, false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Active Workfare</label>
     <trackTrending>false</trackTrending>
