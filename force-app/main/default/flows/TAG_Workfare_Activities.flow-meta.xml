@@ -25,18 +25,18 @@
         <defaultConnector>
             <targetReference>Get_account</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>No account</defaultConnectorLabel>
+        <defaultConnectorLabel>Has account</defaultConnectorLabel>
         <rules>
-            <name>Has_account</name>
+            <name>No_account</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Account__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <label>Has account</label>
+            <label>No account</label>
         </rules>
     </decisions>
     <decisions>
