@@ -4,8 +4,8 @@
     <assignments>
         <name>Count_amount_of_active_workfare_records</name>
         <label>Count amount of active workfare records</label>
-        <locationX>176</locationX>
-        <locationY>539</locationY>
+        <locationX>242</locationX>
+        <locationY>755</locationY>
         <assignmentItems>
             <assignToReference>Get_account.NumberOfWorkfare__c</assignToReference>
             <operator>AssignCount</operator>
@@ -17,6 +17,50 @@
             <targetReference>Update_account_with_number_of_active_workfares</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Connected_to_account</name>
+        <label>Connected to account?</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Get_account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No account</defaultConnectorLabel>
+        <rules>
+            <name>Has_account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Has account</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Found_active_workfares</name>
+        <label>Found active workfares?</label>
+        <locationX>374</locationX>
+        <locationY>647</locationY>
+        <defaultConnectorLabel>No active workfares</defaultConnectorLabel>
+        <rules>
+            <name>Have_active_workfares</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ActiveWorkfareCollection</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Count_amount_of_active_workfare_records</targetReference>
+            </connector>
+            <label>Have active workfares</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Workfare Activities {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Workfare Activities</label>
@@ -42,8 +86,8 @@
     <recordLookups>
         <name>Get_account</name>
         <label>Get account</label>
-        <locationX>176</locationX>
-        <locationY>323</locationY>
+        <locationX>374</locationX>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_active_workfares</targetReference>
@@ -63,11 +107,11 @@
     <recordLookups>
         <name>Get_active_workfares</name>
         <label>Get active workfares</label>
-        <locationX>176</locationX>
-        <locationY>431</locationY>
+        <locationX>374</locationX>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Count_amount_of_active_workfare_records</targetReference>
+            <targetReference>Found_active_workfares</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -91,15 +135,15 @@
     <recordUpdates>
         <name>Update_account_with_number_of_active_workfares</name>
         <label>Update account with number of active workfares</label>
-        <locationX>176</locationX>
-        <locationY>647</locationY>
+        <locationX>242</locationX>
+        <locationY>863</locationY>
         <inputReference>Get_account</inputReference>
     </recordUpdates>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_account</targetReference>
+            <targetReference>Connected_to_account</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
