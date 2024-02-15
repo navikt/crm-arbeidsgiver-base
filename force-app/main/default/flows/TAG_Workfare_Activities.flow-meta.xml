@@ -17,6 +17,22 @@
             <targetReference>Update_account_with_number_of_active_workfares</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Set_number_of_workfares_to_null</name>
+        <label>Set number of workfares to null</label>
+        <locationX>506</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>Get_account.NumberOfWorkfare__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_account_with_null_workfares</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Connected_to_account</name>
         <label>Connected to account?</label>
@@ -44,6 +60,9 @@
         <label>Found active workfares?</label>
         <locationX>374</locationX>
         <locationY>647</locationY>
+        <defaultConnector>
+            <targetReference>Set_number_of_workfares_to_null</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No active workfares</defaultConnectorLabel>
         <rules>
             <name>Have_active_workfares</name>
@@ -132,6 +151,13 @@
         <outputReference>ActiveWorkfareCollection</outputReference>
         <queriedFields>Id</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_account_with_null_workfares</name>
+        <label>Update account with null workfares</label>
+        <locationX>506</locationX>
+        <locationY>863</locationY>
+        <inputReference>Get_account</inputReference>
+    </recordUpdates>
     <recordUpdates>
         <name>Update_account_with_number_of_active_workfares</name>
         <label>Update account with number of active workfares</label>
