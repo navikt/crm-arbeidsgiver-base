@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
+    <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller
+        skriverettigheter til det vanlige brukere ikke har tilgang til</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Absence__c.CRM_Key__c</field>
@@ -354,6 +355,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_UserNAVUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.ips_Subcategory_Type_IPS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.IPS_Subcategory_Type_UO__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
