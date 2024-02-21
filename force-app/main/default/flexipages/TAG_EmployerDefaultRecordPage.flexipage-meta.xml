@@ -203,56 +203,6 @@
                 <identifier>accountTeamMember</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>brukerIdentField</name>
-                    <value>INT_OrganizationNumber__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>brukerIdentType</name>
-                    <value>ORGNR</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>logDomain</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>logException</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>logRequests</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>numberOfjournals</name>
-                    <value>150</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>themeGroupField</name>
-                </componentInstanceProperties>
-                <componentName>safDocumentByUser</componentName>
-                <identifier>c_safDocumentByUser</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3</booleanFilter>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>ann-kristin.venner@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>andre.colle@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>CONTAINS</operator>
-                        <rightValue>gisle.stenseng@nav.no</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
         <name>Facet-8a12c5ef-b1b3-4d1c-a97b-a71ab4438a53</name>
         <type>Facet</type>
     </flexiPageRegions>
