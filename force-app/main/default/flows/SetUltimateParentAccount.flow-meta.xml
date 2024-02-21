@@ -417,7 +417,7 @@
         <connector>
             <targetReference>Check_for_1st_parent_account</targetReference>
         </connector>
-        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filterLogic>((1 OR 2) AND 3) OR 4</filterLogic>
         <filters>
             <field>ParentId</field>
             <operator>IsChanged</operator>
@@ -437,6 +437,13 @@
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Force_Update__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <object>Account</object>
