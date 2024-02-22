@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_NumberOfWorkfareLink__c</fullName>
+    <description>This field shows the same as the field NumberOfWorkfare. But this field is really a clickable link to a report that shows the user a list of active workfares</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;/lightning/r/Report/00O3O000001XUUeUAO/view?fv0=&quot;&amp; Id,  TEXT( NumberOfWorkfare__c ) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Number of Workfare Link</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
