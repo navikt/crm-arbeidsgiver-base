@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>NumberOfWorkfare__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TAG_NumberOfWorkfareLink__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
