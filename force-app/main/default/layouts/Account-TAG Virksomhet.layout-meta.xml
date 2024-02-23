@@ -36,10 +36,6 @@
                 <field>EditableEmail__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NumberOfWorkfare__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>TAG_NumberOfWorkfareLink__c</field>
             </layoutItems>
@@ -333,7 +329,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h7Y000003VuDU</masterLabel>
+        <masterLabel>00h5t000002syiR</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

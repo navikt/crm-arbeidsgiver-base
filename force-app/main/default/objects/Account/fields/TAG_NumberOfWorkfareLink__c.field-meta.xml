@@ -3,7 +3,7 @@
     <fullName>TAG_NumberOfWorkfareLink__c</fullName>
     <description>This field shows the same as the field NumberOfWorkfare. But this field is really a clickable link to a report that shows the user a list of active workfares</description>
     <externalId>false</externalId>
-    <formula>HYPERLINK(&quot;/lightning/r/Report/00O3O000001bYOZUA2/view?fv0=&quot;&amp; Id,  TEXT( NumberOfWorkfare__c ) )</formula>
+    <formula>HYPERLINK(&quot;/lightning/r/Report/00O7U000000zL7cUAE/view?fv0=&quot;&amp; Id,  TEXT( NumberOfWorkfare__c ) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Antall aktive tiltak som virksomheten har for øyeblikket, innen følgende tiltakskategorier: Arbeidstrening, Varig lønnstilskudd, Midlertidig lønnstilskudd, Mentor, Inkluderingstilskudd, Ekspertbistand, Varig tilrettelagt arbeid i ordinær virksomhet, Sommerjobb</inlineHelpText>
     <label>Number of Workfare Link</label>
