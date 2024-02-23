@@ -21,6 +21,9 @@
     <columns>
         <field>ArenaActivity__c.Aktivitetsgruppekode__c</field>
     </columns>
+    <columns>
+        <field>ArenaActivity__c.TAG_Source__c</field>
+    </columns>
     <description>Tiltak hentet fra Tiltaksgjennomføring-applikasjon: Sommerjobb, Arbeidstrening, Varig lønnstilskudd, Midlertidig lønnstilskudd, Mentor, Inkluderingstilskudd. Tiltak hentet fra Arena: Ekspertbistand, Varig tilrettelagt arbeid i ordinær virksomhet.</description>
     <filter>
         <criteriaItems>
