@@ -19,7 +19,7 @@
             </conditions>
             <conditions>
                 <leftValueReference>$Record.CaseOwnerNavIdent__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
@@ -192,7 +192,7 @@
         <filterLogic>and</filterLogic>
         <filters>
             <field>CaseStatus__c</field>
-            <operator>NotEqualTo</operator>
+            <operator>IsNull</operator>
             <value>
                 <booleanValue>false</booleanValue>
             </value>
