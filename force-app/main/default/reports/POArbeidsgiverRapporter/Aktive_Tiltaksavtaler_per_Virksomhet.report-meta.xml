@@ -10,10 +10,10 @@
         <field>ArenaActivity__c.Aktivitetstype__c</field>
     </columns>
     <columns>
-        <field>ArenaActivity__c.DateTo__c</field>
+        <field>ArenaActivity__c.DateFrom__c</field>
     </columns>
     <columns>
-        <field>ArenaActivity__c.DateFrom__c</field>
+        <field>ArenaActivity__c.DateTo__c</field>
     </columns>
     <columns>
         <field>ArenaActivity__c.AktivitetStatuskode__c</field>
