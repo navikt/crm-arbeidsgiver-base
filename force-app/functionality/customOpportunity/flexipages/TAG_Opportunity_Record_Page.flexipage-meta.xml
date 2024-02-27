@@ -155,8 +155,16 @@
                     <value>3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>buttonIsHidden</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>configId</name>
                     <value>TAG_NAV_default</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filterIsActive</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>headerIcon</name>
@@ -169,6 +177,14 @@
                 <componentInstanceProperties>
                     <name>headerTitleNorwegian</name>
                     <value>Aktiviteter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideMyActivitiesFilter</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>includeAmountInTitle</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
                 <identifier>timeline</identifier>
