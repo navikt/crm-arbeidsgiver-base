@@ -10,10 +10,10 @@
         <field>ArenaActivity__c.Aktivitetstype__c</field>
     </columns>
     <columns>
-        <field>ArenaActivity__c.DateTo__c</field>
+        <field>ArenaActivity__c.DateFrom__c</field>
     </columns>
     <columns>
-        <field>ArenaActivity__c.DateFrom__c</field>
+        <field>ArenaActivity__c.DateTo__c</field>
     </columns>
     <columns>
         <field>ArenaActivity__c.AktivitetStatuskode__c</field>
@@ -21,13 +21,17 @@
     <columns>
         <field>ArenaActivity__c.Aktivitetsgruppekode__c</field>
     </columns>
+    <columns>
+        <field>ArenaActivity__c.TAG_Source__c</field>
+    </columns>
+    <description>Tiltak hentet fra Tiltaksgjennomføring-applikasjon: Sommerjobb, Arbeidstrening, Varig lønnstilskudd, Midlertidig lønnstilskudd, Mentor, Inkluderingstilskudd. Tiltak hentet fra Arena: Ekspertbistand, Varig tilrettelagt arbeid i ordinær virksomhet.</description>
     <filter>
         <criteriaItems>
             <column>FK_ACC_ID</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>0013O00001P7BEF</value>
+            <value>0013O00001PFkhY</value>
         </criteriaItems>
         <criteriaItems>
             <column>ArenaActivity__c.ActiveWorkfare__c</column>
