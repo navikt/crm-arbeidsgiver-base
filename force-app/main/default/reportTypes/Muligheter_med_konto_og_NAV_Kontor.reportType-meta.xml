@@ -341,6 +341,11 @@
             <field>Account__c.NAV_Market_Region__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Link__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
         <masterLabel>Custom Opportunities</masterLabel>
     </sections>
     <sections>
