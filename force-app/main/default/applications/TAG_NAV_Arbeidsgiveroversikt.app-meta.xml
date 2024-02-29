@@ -48,10 +48,12 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>NAV Arbeidsgiveroversikt</label>
     <navType>Standard</navType>
     <tabs>standard-Account</tabs>
     <tabs>CustomOpportunity__c</tabs>
+    <tabs>Knowledge__kav</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>NAV_Arbeidsgiveroversikt_UtilityBar</utilityBar>
 </CustomApplication>
