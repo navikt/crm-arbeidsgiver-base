@@ -7,7 +7,7 @@
         <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>Absence__c.CRM_Last4QuartersPercent__c</column>
+            <column>Absence__c.CRM_Percent__c</column>
         </chartSummaries>
         <chartSummaries>
             <aggregate>Sum</aggregate>
