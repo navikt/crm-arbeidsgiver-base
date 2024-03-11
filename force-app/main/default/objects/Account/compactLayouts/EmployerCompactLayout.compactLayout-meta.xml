@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EmployerCompactLayout</fullName>
+    <fields>Name</fields>
+    <fields>OrganizationNumberFormula__c</fields>
+    <fields>ParentId</fields>
+    <fields>CRM_MainIndustry__c</fields>
+    <fields>NumberOfEmployees</fields>
+    <fields>CRM_RegistrationYear__c</fields>
+    <fields>Partner_Status__c</fields>
+    <fields>CRM_Activities_on_sub_accounts__c</fields>
+    <label>Employer Compact Layout (Custom)</label>
+</CompactLayout>
