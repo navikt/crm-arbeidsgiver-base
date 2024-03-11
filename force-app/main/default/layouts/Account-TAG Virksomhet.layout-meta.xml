@@ -4,6 +4,9 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -31,6 +34,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>EditableEmail__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TAG_NumberOfWorkfareLink__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -186,13 +193,6 @@
             <sortOrder>3</sortOrder>
         </platformActionListItems>
     </platformActionList>
-    <relatedContent>
-        <relatedContentItems>
-            <layoutItem>
-                <component>runtime_sales_social:socialPanel</component>
-            </layoutItem>
-        </relatedContentItems>
-    </relatedContent>
     <relatedLists>
         <fields>CRM_YearQuarter__c</fields>
         <fields>CRM_VirksomhetTapteDagsverk__c</fields>
@@ -230,6 +230,13 @@
         <relatedList>Activity.RelatedToAccount__c</relatedList>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>CaseStatus__c</fields>
+        <fields>CaseOwner__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>IACase__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
@@ -329,7 +336,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5E000002tE5h</masterLabel>
+        <masterLabel>00h1w000001YGTW</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

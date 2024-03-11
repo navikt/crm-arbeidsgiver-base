@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Public_Sector__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+    OR(
+        INT_OrganizationalStructureDesc__c = &apos;Kommune&apos;,
+    Parent.INT_OrganizationalStructureDesc__c = &apos;Kommune&apos;,
+Parent.INT_OrganizationalStructure__c  = &apos;ORGL&apos;),
+  
+    &apos;Kommune&apos;,
+    IF(
+        INT_SectorCode__c = &apos;6100&apos;, 
+        &quot;Stat&quot;,
+        &quot;Privat&quot;
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Public Sector</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

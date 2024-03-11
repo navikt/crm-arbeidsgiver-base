@@ -413,14 +413,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TAG_CustomOpportunityRoutingHandler</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TAG_CustomOpportunityRoutingHandlerTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TAG_TemporaryLayoffRoutingHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -689,6 +681,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.NumberOfWorkfare__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.OrganizationNumberFormula__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -754,6 +751,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.TAG_NumberOfWorkfareLink__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_Power_of_one__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -764,7 +766,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.TAG_Public_Sector__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_Sector__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.TAG_Ultimate_Sector_Code_from_parent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.TAG_Ultimate_Sector_from_parent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

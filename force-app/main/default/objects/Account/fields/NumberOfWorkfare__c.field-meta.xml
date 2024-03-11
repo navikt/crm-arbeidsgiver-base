@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NumberOfWorkfare__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Antall aktive tiltak som virksomheten har for øyeblikket, innen følgende tiltakskategorier: Arbeidstrening, Varig lønnstilskudd, Midlertidig lønnstilskudd, Mentor, Inkluderingstilskudd, Ekspertbistand, Varig tilrettelagt arbeid i ordinær virksomhet, Sommerjobb</inlineHelpText>
+    <label>Number of Workfare</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

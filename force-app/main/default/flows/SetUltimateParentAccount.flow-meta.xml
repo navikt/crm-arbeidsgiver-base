@@ -199,6 +199,7 @@
             <label>No 9th parent account</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <interviewLabel>Set ultimate parent account {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Set ultimate parent account</label>
     <processMetadataValues>
@@ -231,6 +232,18 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.INT_SectorCode__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_from_parent__c</field>
+            <value>
+                <elementReference>$Record.INT_Sector__c</elementReference>
+            </value>
+        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
@@ -242,6 +255,12 @@
             <field>CRM_UltimateParentAccount__c</field>
             <value>
                 <elementReference>$Record.ParentId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.INT_SectorCode__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -257,6 +276,12 @@
                 <elementReference>$Record.Parent.ParentId</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.Parent.INT_SectorCode__c</elementReference>
+            </value>
+        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
@@ -268,6 +293,12 @@
             <field>CRM_UltimateParentAccount__c</field>
             <value>
                 <elementReference>$Record.Parent.Parent.ParentId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.Parent.Parent.INT_SectorCode__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -283,6 +314,12 @@
                 <elementReference>$Record.Parent.Parent.Parent.ParentId</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.Parent.Parent.Parent.INT_SectorCode__c</elementReference>
+            </value>
+        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
@@ -294,6 +331,12 @@
             <field>CRM_UltimateParentAccount__c</field>
             <value>
                 <elementReference>$Record.Parent.Parent.Parent.Parent.ParentId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.Parent.Parent.Parent.Parent.INT_SectorCode__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -309,6 +352,12 @@
                 <elementReference>$Record.Parent.Parent.Parent.Parent.Parent.ParentId</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.Parent.Parent.Parent.Parent.Parent.INT_SectorCode__c</elementReference>
+            </value>
+        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
@@ -322,6 +371,12 @@
                 <elementReference>$Record.Parent.Parent.Parent.Parent.Parent.Parent.ParentId</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.Parent.Parent.Parent.Parent.Parent.Parent.INT_SectorCode__c</elementReference>
+            </value>
+        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
@@ -333,6 +388,12 @@
             <field>CRM_UltimateParentAccount__c</field>
             <value>
                 <elementReference>$Record.Parent.Parent.Parent.Parent.Parent.Parent.Parent.ParentId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <value>
+                <elementReference>$Record.Parent.Parent.Parent.Parent.Parent.Parent.Parent.INT_SectorCode__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -356,7 +417,7 @@
         <connector>
             <targetReference>Check_for_1st_parent_account</targetReference>
         </connector>
-        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filterLogic>((1 OR 2) AND 3) OR 4</filterLogic>
         <filters>
             <field>ParentId</field>
             <operator>IsChanged</operator>
@@ -376,6 +437,13 @@
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Force_Update__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <object>Account</object>

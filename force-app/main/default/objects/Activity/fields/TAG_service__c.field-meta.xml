@@ -65,6 +65,11 @@
                 <default>false</default>
                 <label>Jobbstøtte (Jobbspesialist)</label>
             </value>
+            <value>
+                <fullName>Utvikle partssamarbeid</fullName>
+                <default>false</default>
+                <label>Utvikle partssamarbeid</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
@@ -93,14 +98,6 @@
             <valueName>IPS Jobbstøtte</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Nedbemanne</controllingFieldValue>
-            <valueName>Permittering</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Nedbemanne</controllingFieldValue>
-            <valueName>Masseoppsigelser</valueName>
-        </valueSettings>
-        <valueSettings>
             <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
             <valueName>Helse i arbeid</valueName>
         </valueSettings>
@@ -111,6 +108,18 @@
         <valueSettings>
             <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
             <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
+            <valueName>Utvikle partssamarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Nedbemanne</controllingFieldValue>
+            <valueName>Permittering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Nedbemanne</controllingFieldValue>
+            <valueName>Masseoppsigelser</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
