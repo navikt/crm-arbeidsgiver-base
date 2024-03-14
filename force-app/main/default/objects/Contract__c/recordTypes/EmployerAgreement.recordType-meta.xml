@@ -49,4 +49,19 @@
             <default>true</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>TAG_Type_Partner__c</picklist>
+        <values>
+            <fullName>Samarbeidspartner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Selvbetjente tjenester</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Strategisk Partner</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
