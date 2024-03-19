@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Arbeidsgiver_admin</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#E4CB12</headerColor>
         <logo>vectoradmin</logo>
@@ -13,9 +21,9 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Arbeidsgiver admin</label>
     <navType>Standard</navType>
-    <tabs>standard-Dashboard</tabs>
-    <tabs>standard-report</tabs>
-    <tabs>standard-WaveHomeLightning</tabs>
+    <tabs>Monitorering_PO_Arbeidsgiver_2</tabs>
+    <tabs>M_ling_team_Salesforce_Arbeidsgiver</tabs>
+    <tabs>Team_Salesforce_Arbeidsgiver_Dialog</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Arbeidsgiver_admin_UtilityBar</utilityBar>
 </CustomApplication>
