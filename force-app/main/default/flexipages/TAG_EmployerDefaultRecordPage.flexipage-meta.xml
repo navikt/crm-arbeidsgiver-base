@@ -69,6 +69,90 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>TAG_Type_Partner__c|EQUALS|[&quot;Strategisk Partner&quot;,&quot;Samarbeidspartner&quot;,&quot;Selvbetjente tjenester&quot;]</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Account.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Contracts1__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Type_Partner__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>TAG_InternalContact__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Partnerstatus</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList13</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Strategisk Partner</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Samarbeidspartner</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Partner_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Selvbetjente tjenester</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
                     <valueList>
                         <valueListItems>
                             <value>CustomOpportunity__c.MarkAsSpam</value>
