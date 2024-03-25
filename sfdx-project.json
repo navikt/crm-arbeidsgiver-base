@@ -27,6 +27,10 @@
                     "versionNumber": "1.21.0.LATEST"
                 },
                 {
+                    "package": "crm-henvendelse-base",
+                    "versionNumber": "0.16.0.LATEST"
+                },
+                {
                     "package": "crm-platform-integration",
                     "versionNumber": "0.86.0.LATEST"
                 },
@@ -41,6 +45,10 @@
                 {
                     "package": "crm-platform-oppgave",
                     "versionNumber": "0.49.0.LATEST"
+                },
+                {
+                    "package": "crm-sf-saf",
+                    "versionNumber": "0.20.0.LATEST"
                 }
             ]
         }
@@ -54,10 +62,12 @@
         "crm-shared-timeline": "0Ho2o000000fxXBCAY",
         "crm-shared-base": "0Ho2o000000fxXLCAY",
         "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
+        "crm-henvendelse-base": "0Ho7U000000000kSAA",
         "crm-platform-integration": "0Ho2o0000008ORrCAM",
         "crm-shared-flowComponents": "0Ho2o000000fxYJCAY",
         "crm-journal-utilities": "0Ho2o000000fxXkCAI",
         "crm-thread-view": "0Ho7U000000000zSAA",
-        "crm-platform-oppgave": "0Ho2o000000fxXzCAI"
+        "crm-platform-oppgave": "0Ho2o000000fxXzCAI",
+        "crm-sf-saf": "0Ho7U0000000001SAA"
     }
 }
