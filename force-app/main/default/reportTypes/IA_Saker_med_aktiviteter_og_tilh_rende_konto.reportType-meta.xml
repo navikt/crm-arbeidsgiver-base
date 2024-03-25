@@ -5,7 +5,7 @@
     <deployed>true</deployed>
     <description>Viser IA saker og aktiviteter med informasjon fra tilhørende konto.</description>
     <join>
-        <outerJoin>true</outerJoin>
+        <outerJoin>false</outerJoin>
         <relationship>Activities</relationship>
     </join>
     <label>IA Saker med aktiviteter og tilhørende konto</label>
