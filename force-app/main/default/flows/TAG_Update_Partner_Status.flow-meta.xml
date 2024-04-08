@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
+    <assignments>
+        <name>Assign_Partner_Type_to_Variable</name>
+        <label>Assign Partner Type to Variable</label>
+        <locationX>314</locationX>
+        <locationY>323</locationY>
+        <assignmentItems>
+            <assignToReference>NewPartnerType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.TAG_Type_Partner__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decision_1</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Decision_1</name>
         <label>Decision 1</label>
         <locationX>314</locationX>
-        <locationY>323</locationY>
+        <locationY>431</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>UpdateAccountwithStrategiskPartner</name>
+            <name>Is_updated_to_Partner</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.TAG_Type_Partner__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue>Strategisk Partner</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -27,10 +43,10 @@
             <connector>
                 <targetReference>Update_Account_Partner_Status</targetReference>
             </connector>
-            <label>Is updated to Strategisk Partner</label>
+            <label>Is updated to Partner</label>
         </rules>
         <rules>
-            <name>Is_Updated_to_not_Stragtisk_Partner</name>
+            <name>Is_Updated_to_not_Partner</name>
             <conditionLogic>(1 AND 2) AND (3 OR 4)</conditionLogic>
             <conditions>
                 <leftValueReference>$Record__Prior.TAG_Status__c</leftValueReference>
@@ -41,16 +57,16 @@
             </conditions>
             <conditions>
                 <leftValueReference>$Record__Prior.TAG_Type_Partner__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue>Strategisk Partner</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
                 <leftValueReference>$Record.TAG_Type_Partner__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue>Strategisk Partner</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -63,7 +79,7 @@
             <connector>
                 <targetReference>Remove_Partner_Status_Account</targetReference>
             </connector>
-            <label>Is Updated to not Stragtisk Partner</label>
+            <label>Is Updated to not Partner</label>
         </rules>
     </decisions>
     <description>Updates partner status on account</description>
@@ -93,7 +109,7 @@
         <name>Remove_Partner_Status_Account</name>
         <label>Remove Partner Status Account</label>
         <locationX>314</locationX>
-        <locationY>431</locationY>
+        <locationY>539</locationY>
         <inputAssignments>
             <field>TAG_Partner_Status__c</field>
         </inputAssignments>
@@ -103,11 +119,11 @@
         <name>Update_Account_Partner_Status</name>
         <label>Update Account Partner Status</label>
         <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationY>539</locationY>
         <inputAssignments>
             <field>TAG_Partner_Status__c</field>
             <value>
-                <stringValue>Strategisk Partner</stringValue>
+                <elementReference>NewPartnerType</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record.TAG_Account__r</inputReference>
@@ -116,7 +132,7 @@
         <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Decision_1</targetReference>
+            <targetReference>Assign_Partner_Type_to_Variable</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
@@ -145,4 +161,11 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>NewPartnerType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
