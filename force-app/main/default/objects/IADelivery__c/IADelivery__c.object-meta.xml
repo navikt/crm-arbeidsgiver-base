@@ -146,7 +146,7 @@
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>false</enableHistory>
+    <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>false</enableSearch>
@@ -156,6 +156,7 @@
     <label>IA Delivery</label>
     <nameField>
         <label>Delivery Nr</label>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>IA Deliveries</pluralLabel>
