@@ -293,6 +293,12 @@
                 <identifier>accountTeamMember</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktAccountOversikt</componentName>
+                <identifier>c_amplitudeAgOversiktAccountOversikt</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-8a12c5ef-b1b3-4d1c-a97b-a71ab4438a53</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -560,6 +566,12 @@
                 <identifier>lst_dynamicRelatedList8</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktAccountHendelser</componentName>
+                <identifier>c_amplitudeAgOversiktAccountHendelser</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-0ed7db69-f9c9-45df-ab57-9d5ded462959</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -744,6 +756,12 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList12</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktAccountDetaljer</componentName>
+                <identifier>c_amplitudeAgOversiktAccountDetaljer</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-30ba79a4-429f-4ca9-b271-f750c3fe0663</name>
@@ -1083,6 +1101,12 @@
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktAccountRekruttering</componentName>
+                <identifier>c_amplitudeAgOversiktAccountRekruttering</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-ddb8fcd5-a2e5-4cbd-b4de-441d6e37dc98</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1356,6 +1380,12 @@
                 <identifier>flexipage_richText5</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktAccountRedusereFravaer</componentName>
+                <identifier>c_amplitudeAgOversiktAccountRedusereFravaer</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-817e317e-6e20-4c54-a802-a7bcca2c7c95</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1479,6 +1509,9 @@
                     <value>TAG_NAV_default</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>customEmptySubtitle</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>filterIsActive</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -1501,6 +1534,10 @@
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
                     <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>logEvent</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>picklistFilter1Label</name>

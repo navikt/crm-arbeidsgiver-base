@@ -38,6 +38,12 @@
                 <identifier>force_detailPanel</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktIADeliveryDetaljer</componentName>
+                <identifier>c_amplitudeAgOversiktIADeliveryDetaljer</identifier>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>detailTabContent</name>
         <type>Facet</type>
