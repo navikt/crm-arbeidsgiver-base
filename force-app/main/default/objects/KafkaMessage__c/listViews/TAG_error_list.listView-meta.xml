@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_error_list</fullName>
+    <booleanFilter>(1 OR 2 OR 3 OR 4) AND 5</booleanFilter>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CRM_Topic__c</field>
+        <operation>equals</operation>
+        <value>teampam.stilling-ekstern-1 OR  teamarenanais.aapen-arena-arbeidsgiveraktivitetendret-v1 OR arbeidsgiver.tiltak-avtale-hendelse OR public-ereg-cache-org-json OR  pia.ia-sak-v1</value>
+    </filters>
+    <filters>
+        <field>CRM_Topic__c</field>
+        <operation>equals</operation>
+        <value>pia.ia-sak-leveranse-v1 OR  arbeidsgiver.sykefravarsstatistikk-bransje-v1 OR  arbeidsgiver.sykefravarsstatistikk-land-v1 OR  arbeidsgiver.sykefravarsstatistikk-virksomhet-v1 OR  arbeidsgiver.sykefravarsstatistikk-naring-v1</value>
+    </filters>
+    <filters>
+        <field>CRM_Topic__c</field>
+        <operation>equals</operation>
+        <value>arbeidsgiver.sykefravarsstatistikk-naringskode-v1 OR  arbeidsgiver.sykefravarsstatistikk-metadata-virksomhet-v1 OR  arbeidsgiver.sykefravarsstatistikk-sektor-v1 OR  public-ereg-cache-org-tombstones</value>
+    </filters>
+    <filters>
+        <field>CRM_Topic__c</field>
+        <operation>equals</operation>
+        <value>teamsykefravr.isdialogmote-dialogmote-statusendring</value>
+    </filters>
+    <filters>
+        <field>CRM_Status__c</field>
+        <operation>equals</operation>
+        <value>Error</value>
+    </filters>
+    <label>TAG error list</label>
+</ListView>
