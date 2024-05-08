@@ -5,7 +5,7 @@
         <name>counts_kafka_messages</name>
         <label>counts kafka messages</label>
         <locationX>264</locationX>
-        <locationY>566</locationY>
+        <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>counter</assignToReference>
             <operator>Add</operator>
@@ -21,7 +21,7 @@
         <name>Setter_status_til_pending</name>
         <label>Setter status til pending</label>
         <locationX>264</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>Endrer_status_fra_error_til_pending.CRM_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -30,9 +30,34 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>counts_kafka_messages</targetReference>
+            <targetReference>Oppdaterer_record_med_ny_status</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Is_createdBy_PO_Arbeidsgiver_Integrasjonsbruker</name>
+        <label>Is createdBy PO Arbeidsgiver Integrasjonsbruker ?</label>
+        <locationX>396</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Endrer_status_fra_error_til_pending.CreatedBy.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>PO Arbeidsgiver Integrasjonsbruker</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Setter_status_til_pending</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Rerun Kafka Messages</label>
@@ -44,10 +69,10 @@
         <collectionReference>Kafka_meldinger_med_status_error</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Setter_status_til_pending</targetReference>
+            <targetReference>Is_createdBy_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Oppdaterer_meldingen_med_ny_status</targetReference>
+            <targetReference>display_message_after_run_kafka_messages</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -79,7 +104,7 @@
         <connector>
             <targetReference>Endrer_status_fra_error_til_pending</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16)</filterLogic>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>CRM_Status__c</field>
             <operator>EqualTo</operator>
@@ -87,130 +112,25 @@
                 <stringValue>Error</stringValue>
             </value>
         </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>pia.ia-sak-leveranse-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>pia.ia-sak-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>teampam.stilling-ekstern-1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>teamarenanais.aapen-arena-arbeidsgiveraktivitetendret-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.tiltak-avtale-hendelse</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>public-ereg-cache-org-json</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.sykefravarsstatistikk-bransje</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.sykefravarsstatistikk-land-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.sykefravarsstatistikk-virksomhet-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.sykefravarsstatistikk-naring-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.sykefravarsstatistikk-naringskode-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.sykefravarsstatistikk-metadata-virksomhet-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>arbeidsgiver.sykefravarsstatistikk-sektor-v1</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>public-ereg-cache-org-tombstones</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_Topic__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>teamsykefravr.isdialogmote-dialogmote-statusendring</stringValue>
-            </value>
-        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>KafkaMessage__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Oppdaterer_meldingen_med_ny_status</name>
-        <label>Oppdaterer meldingene med ny status</label>
-        <locationX>176</locationX>
-        <locationY>758</locationY>
+        <name>Oppdaterer_record_med_ny_status</name>
+        <label>Oppdaterer record med ny status</label>
+        <locationX>264</locationX>
+        <locationY>674</locationY>
         <connector>
-            <targetReference>display_message_after_run_kafka_messages</targetReference>
+            <targetReference>counts_kafka_messages</targetReference>
         </connector>
-        <inputReference>Kafka_meldinger_med_status_error</inputReference>
+        <inputReference>Endrer_status_fra_error_til_pending</inputReference>
     </recordUpdates>
     <screens>
         <name>display_message_after_run_kafka_messages</name>
         <label>display message after run kafka messages</label>
         <locationX>176</locationX>
-        <locationY>866</locationY>
+        <locationY>1058</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
