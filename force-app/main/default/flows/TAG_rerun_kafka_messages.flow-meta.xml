@@ -5,7 +5,7 @@
         <name>counts_kafka_messages</name>
         <label>counts kafka messages</label>
         <locationX>264</locationX>
-        <locationY>782</locationY>
+        <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>counter</assignToReference>
             <operator>Add</operator>
@@ -21,7 +21,7 @@
         <name>Setter_status_til_pending</name>
         <label>Setter status til pending</label>
         <locationX>264</locationX>
-        <locationY>566</locationY>
+        <locationY>674</locationY>
         <assignmentItems>
             <assignToReference>Endrer_status_fra_error_til_pending.CRM_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -37,7 +37,7 @@
         <name>Is_createdBy_PO_Arbeidsgiver_Integrasjonsbruker</name>
         <label>Is createdBy PO Arbeidsgiver Integrasjonsbruker ?</label>
         <locationX>396</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <defaultConnector>
             <targetReference>Endrer_status_fra_error_til_pending</targetReference>
         </defaultConnector>
@@ -46,7 +46,7 @@
             <name>Yes</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Endrer_status_fra_error_til_pending.CreatedBy.Name</leftValueReference>
+                <leftValueReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker.Name</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>PO Arbeidsgiver Integrasjonsbruker</stringValue>
@@ -65,7 +65,7 @@
         <name>Endrer_status_fra_error_til_pending</name>
         <label>Endrer status fra error til pending</label>
         <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <collectionReference>Kafka_meldinger_med_status_error</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -102,7 +102,7 @@
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
+            <targetReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -116,11 +116,32 @@
         <object>KafkaMessage__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</name>
+        <label>User record med Name PO Arbeidsgiver Integrasjonsbruker</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>PO Arbeidsgiver Integrasjonsbruker</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Oppdaterer_record_med_ny_status</name>
         <label>Oppdaterer record med ny status</label>
         <locationX>264</locationX>
-        <locationY>674</locationY>
+        <locationY>782</locationY>
         <connector>
             <targetReference>counts_kafka_messages</targetReference>
         </connector>
@@ -130,7 +151,7 @@
         <name>display_message_after_run_kafka_messages</name>
         <label>display message after run kafka messages</label>
         <locationX>176</locationX>
-        <locationY>1058</locationY>
+        <locationY>1166</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
