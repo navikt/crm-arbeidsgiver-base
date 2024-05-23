@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_error_list</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CRM_Status__c</field>
+        <operation>equals</operation>
+        <value>Error</value>
+    </filters>
+    <filters>
+        <field>CREATEDBY_USER</field>
+        <operation>equals</operation>
+        <value>po arbeidsgiver integrasjonsbruker</value>
+    </filters>
+    <label>TAG error list</label>
+</ListView>
