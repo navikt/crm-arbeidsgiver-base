@@ -439,6 +439,12 @@
                 <identifier>force_recordDetailPanelMobile</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktIACaseDetaljer</componentName>
+                <identifier>c_amplitudeAgOversiktIACaseDetaljer</identifier>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>detailTabContent</name>
         <type>Facet</type>
@@ -534,6 +540,10 @@
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
                     <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>logEvent</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>picklistFilter1Label</name>

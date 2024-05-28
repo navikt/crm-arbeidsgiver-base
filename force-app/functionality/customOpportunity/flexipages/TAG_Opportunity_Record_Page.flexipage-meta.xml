@@ -54,6 +54,12 @@
                 <identifier>force_relatedListSingleContainer</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktOpportunityRelatert</componentName>
+                <identifier>c_amplitudeAgOversiktOpportunityRelatert</identifier>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>relatedTabContent</name>
         <type>Facet</type>
@@ -63,6 +69,12 @@
             <componentInstance>
                 <componentName>force:detailPanel</componentName>
                 <identifier>force_detailPanel</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>amplitudeAgOversiktOpportunityDetaljer</componentName>
+                <identifier>c_amplitudeAgOversiktOpportunityDetaljer</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -163,6 +175,9 @@
                     <value>TAG_NAV_default</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>customEmptySubtitle</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>filterIsActive</name>
                     <value>false</value>
                 </componentInstanceProperties>
@@ -185,6 +200,19 @@
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
                     <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>logEvent</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter1Label</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter2Label</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>timelineParentField</name>
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
                 <identifier>timeline</identifier>
