@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 
-export default class Textarea extends LightningElement {
+export default class TAGTextarea extends LightningElement {
 
     handleChange(event) {
         this.myVal = event.target.value;
