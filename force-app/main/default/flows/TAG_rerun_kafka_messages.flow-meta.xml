@@ -174,9 +174,14 @@
         <connector>
             <targetReference>Kafka_meldinger_med_status_error</targetReference>
         </connector>
+        <fields>
+            <name>display</name>
+            <fieldText>&lt;p&gt;Hvis det ligger noe i listen over, så har en eller flere  meldinger ikke gått gjennom riktig.  Trykk på knappen for å kjøre de på nytt&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <nextOrFinishButtonLabel>Kjør</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
     </screens>
     <start>
         <locationX>50</locationX>

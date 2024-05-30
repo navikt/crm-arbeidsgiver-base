@@ -72,6 +72,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Admin_app__c.Tavle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ArenaActivity__c.AktivitetStatuskode__c</field>
         <readable>true</readable>
     </fieldPermissions>
