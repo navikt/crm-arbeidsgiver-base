@@ -273,7 +273,6 @@ devHubAlias=$(sf config get target-dev-hub --json | jq -r '.result[0].value')
     
 echo "Current scratch org alias is: $org_alias"
 echo "Current devhub alias is: $devHubAlias"
-echo "The passwords are: $keys"
 
 operations=(
     #cleaningPreviousScratchOrg
