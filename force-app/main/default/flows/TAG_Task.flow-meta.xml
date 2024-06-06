@@ -2,10 +2,42 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>59.0</apiVersion>
     <decisions>
+        <name>Is_IA_priority</name>
+        <label>Is IA priority?</label>
+        <locationX>182</locationX>
+        <locationY>1031</locationY>
+        <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
+        <rules>
+            <name>Yes_IA_priority</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_ActivityType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Prioritert IA (Fia)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ActivityDate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_latest_IA_priority_task</targetReference>
+            </connector>
+            <label>Yes IA priority</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Related_to_Account</name>
         <label>Is Related to Account?</label>
         <locationX>182</locationX>
         <locationY>623</locationY>
+        <defaultConnector>
+            <targetReference>Is_IA_priority</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -102,6 +134,29 @@
         <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_latest_IA_priority_task</name>
+        <label>Get latest IA priority task</label>
+        <locationX>50</locationX>
+        <locationY>1139</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TAG_ActivityType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Prioritert IA (Fia)</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Task</object>
+        <sortField>ActivityDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
@@ -119,10 +174,34 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Update_account</name>
+        <label>Update account</label>
+        <locationX>50</locationX>
+        <locationY>1247</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>TAG_LastTaskDate__c</field>
+            <value>
+                <elementReference>Get_latest_IA_priority_task.ActivityDate</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_AccountOrgType2_field</name>
         <label>Update AccountOrgType2 field</label>
         <locationX>50</locationX>
         <locationY>839</locationY>
+        <connector>
+            <targetReference>Is_IA_priority</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>AccountId</field>
