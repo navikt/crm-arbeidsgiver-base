@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_LastTaskDate__c</fullName>
+    <description>This field is set by the TAG Task flow. It shows which task, with Activity Type: &quot;Prioritert IA&quot;, that is the latest. It is then used by the formula field TAG_Last_completed_activity_date__c</description>
+    <externalId>false</externalId>
+    <label>Last task date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>

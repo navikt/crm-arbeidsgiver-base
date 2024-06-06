@@ -2,10 +2,18 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Last_completed_activity_date__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(LastActivityDate&gt;Today()&amp;&amp;  NOT( ISBLANK(LastActivityDate)),today(), LastActivityDate)</formula>
+    <formula>IF( OR(LastActivityDate &gt; Today() &amp;&amp;  NOT(ISBLANK(LastActivityDate)), 
+       TAG_LastTaskDate__c &gt; Today() &amp;&amp;  NOT(ISBLANK(TAG_LastTaskDate__c)),
+				   TAG_LastEventDate__c &gt; Today() &amp;&amp;  NOT(ISBLANK(TAG_LastEventDate__c))),
+			        today(),
+			 IF(
+        LastActivityDate &gt; TAG_LastTaskDate__c &amp;&amp; LastActivityDate &gt; TAG_LastEventDate__c,
+        LastActivityDate,
+    IF(
+        TAG_LastTaskDate__c &gt; TAG_LastEventDate__c, TAG_LastTaskDate__c, TAG_LastEventDate__c
+       )))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Last completed activity date</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
     <type>Date</type>
 </CustomField>
