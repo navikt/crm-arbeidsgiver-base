@@ -45,6 +45,13 @@
                 <stringValue>Prioritert IA (Fia)</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
         <object>Event</object>
         <outputAssignments>
             <assignToReference>StartDateTimeVariable</assignToReference>
