@@ -183,7 +183,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Account.Id</elementReference>
+                <elementReference>$Record.RelatedToAccount__r.Id</elementReference>
             </value>
         </filters>
         <inputAssignments>
