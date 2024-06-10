@@ -158,6 +158,13 @@
                 <elementReference>$Record.WhatId</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Task</object>
         <sortField>ActivityDate</sortField>
