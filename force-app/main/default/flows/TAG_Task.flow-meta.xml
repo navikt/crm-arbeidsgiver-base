@@ -84,7 +84,7 @@
     <formulas>
         <name>isActivityDateNull</name>
         <dataType>Boolean</dataType>
-        <expression>ISNULL ( {!$Record.ActivityDate} ) &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!$Record.Status} ) &amp;&amp; ISPICKVAL({!$Record.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}</expression>
+        <expression>ISNULL ( {!$Record.ActivityDate} ) &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!$Record.Status} ) &amp;&amp; ISPICKVAL({!$Record.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}  &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY())</expression>
     </formulas>
     <formulas>
         <name>TodaysDate</name>
@@ -156,6 +156,13 @@
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
