@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
+    <decisions>
+        <name>Is_IA_Case_Number_blank</name>
+        <label>Is IA Case Number blank?</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnectorLabel>Not blank</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_IACaseNumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_IACaseNumber__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_IA_Case</targetReference>
+            </connector>
+            <label>Yes is blank</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>GetDateValueOfStartDateTime</name>
@@ -29,9 +58,30 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <name>Get_IA_Case</name>
+        <label>Get IA Case</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_IA_Case_Number</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>IACase__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -61,10 +111,26 @@
         <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordUpdates>
+        <name>Set_IA_Case_Number</name>
+        <label>Set IA Case Number</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <inputAssignments>
+            <field>TAG_IACaseNumber__c</field>
+            <value>
+                <elementReference>Get_IA_Case.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>431</locationY>
+        <connector>
+            <targetReference>Is_IA_Case_Number_blank</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -82,7 +148,7 @@
         <object>Account</object>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_latest_IA_priority_event</targetReference>
