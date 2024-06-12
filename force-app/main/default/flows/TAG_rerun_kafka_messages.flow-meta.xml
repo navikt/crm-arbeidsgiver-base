@@ -174,9 +174,14 @@
         <connector>
             <targetReference>Kafka_meldinger_med_status_error</targetReference>
         </connector>
+        <fields>
+            <name>tag_failed_msg_text</name>
+            <fieldText>&lt;p&gt;Hvis kafkameldinger mislykkes, vil de dukke oppe i listen over. Prøv å kjør de på nytt.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <nextOrFinishButtonLabel>Kjør</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
     </screens>
     <start>
         <locationX>50</locationX>
