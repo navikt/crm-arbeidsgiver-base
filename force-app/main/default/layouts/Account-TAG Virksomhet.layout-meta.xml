@@ -4,9 +4,6 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
@@ -195,11 +192,11 @@
     </platformActionList>
     <relatedLists>
         <fields>CRM_YearQuarter__c</fields>
-        <fields>CRM_VirksomhetTapteDagsverk__c</fields>
-        <fields>CRM_VirksomhetProsent__c</fields>
+        <fields>CRM_LostDaysWork__c</fields>
+        <fields>CRM_Percent__c</fields>
         <fields>TAG_Account_Industry__c</fields>
-        <fields>CRM_NaeringProsent__c</fields>
-        <fields>CRM_LandProsent__c</fields>
+        <fields>CRM_IndustryCodePercent__c</fields>
+        <fields>CRM_CountryPercent__c</fields>
         <relatedList>Absence__c.CRM_Account__c</relatedList>
         <sortField>CRM_YearQuarter__c</sortField>
         <sortOrder>Desc</sortOrder>
@@ -336,7 +333,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1w000001YGTW</masterLabel>
+        <masterLabel>00h7Y000004qMco</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

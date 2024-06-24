@@ -2,10 +2,71 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>59.0</apiVersion>
     <decisions>
+        <name>Is_IA_Case_Number_blank</name>
+        <label>Is IA Case Number blank?</label>
+        <locationX>182</locationX>
+        <locationY>1355</locationY>
+        <defaultConnectorLabel>Not blank</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_blank</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_IACaseNumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_IACaseNumber__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_IA_case</targetReference>
+            </connector>
+            <label>Yes is blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_IA_priority</name>
+        <label>Is IA priority?</label>
+        <locationX>380</locationX>
+        <locationY>1031</locationY>
+        <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
+        <rules>
+            <name>Yes_IA_priority</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_ActivityType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Prioritert IA (Fia)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ActivityDate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_latest_IA_priority_task</targetReference>
+            </connector>
+            <label>Yes IA priority</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Related_to_Account</name>
         <label>Is Related to Account?</label>
-        <locationX>182</locationX>
+        <locationX>380</locationX>
         <locationY>623</locationY>
+        <defaultConnector>
+            <targetReference>Is_IA_priority</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -26,7 +87,7 @@
     <decisions>
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
-        <locationX>182</locationX>
+        <locationX>380</locationX>
         <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -52,7 +113,7 @@
     <formulas>
         <name>isActivityDateNull</name>
         <dataType>Boolean</dataType>
-        <expression>ISNULL ( {!$Record.ActivityDate} ) &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!$Record.Status} ) &amp;&amp; ISPICKVAL({!$Record.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}</expression>
+        <expression>ISNULL ( {!$Record.ActivityDate} ) &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!$Record.Status} ) &amp;&amp; ISPICKVAL({!$Record.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}  &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY())</expression>
     </formulas>
     <formulas>
         <name>TodaysDate</name>
@@ -83,7 +144,7 @@
     <recordLookups>
         <name>Get_dummy_account_Id</name>
         <label>Get dummy account Id</label>
-        <locationX>50</locationX>
+        <locationX>248</locationX>
         <locationY>731</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -102,10 +163,68 @@
         <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_IA_case</name>
+        <label>Get IA case</label>
+        <locationX>50</locationX>
+        <locationY>1463</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_IA_Case_Number</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>IACase__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_latest_IA_priority_task</name>
+        <label>Get latest IA priority task</label>
+        <locationX>182</locationX>
+        <locationY>1139</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TAG_ActivityType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Prioritert IA (Fia)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Task</object>
+        <sortField>ActivityDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
-        <locationX>50</locationX>
+        <locationX>248</locationX>
         <locationY>431</locationY>
         <connector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -119,10 +238,50 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Set_IA_Case_Number</name>
+        <label>Set IA Case Number</label>
+        <locationX>50</locationX>
+        <locationY>1571</locationY>
+        <inputAssignments>
+            <field>TAG_IACaseNumber__c</field>
+            <value>
+                <elementReference>Get_IA_case.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_account</name>
+        <label>Update account</label>
+        <locationX>182</locationX>
+        <locationY>1247</locationY>
+        <connector>
+            <targetReference>Is_IA_Case_Number_blank</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>TAG_LastTaskDate__c</field>
+            <value>
+                <elementReference>Get_latest_IA_priority_task.ActivityDate</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_AccountOrgType2_field</name>
         <label>Update AccountOrgType2 field</label>
-        <locationX>50</locationX>
+        <locationX>248</locationX>
         <locationY>839</locationY>
+        <connector>
+            <targetReference>Is_IA_priority</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>AccountId</field>
@@ -140,7 +299,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>254</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>

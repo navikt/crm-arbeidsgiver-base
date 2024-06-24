@@ -22,39 +22,76 @@ error() {
     fi
 }
 
-cleaningPreviousScratchOrg() {
-    sf org delete scratch --no-prompt --target-org $org_alias &> /dev/null
+isPackageAliasInstalled() {
+    local package_alias="$1"
+    installed_aliases=$(sf package installed list --target-org "$org_alias" --json | jq -r '.result[] | .SubscriberPackageName')
+
+    if [[ $installed_aliases == *"$package_alias"* ]]; then
+        echo "Package alias $package_alias is already installed."
+        return 0
+    else
+        return 1
+    fi
 }
 
-creatingScratchOrg () {
-    echo ""
-    echo "Org Alias: $org_alias"
-    echo ""
 
-    if [[ -n $npm_config_org_duration ]]; then
-        days=$npm_config_org_duration
-    else
-        days=7
+getLatestPackageVersionId() {
+    local package_id="$1"
+    package_versions=$(sf package version list --packages "$package_id" --concise --json)
+    latest_version_id=$(echo "$package_versions" | jq -r '.result | sort_by(.MajorVersion, .MinorVersion, .PatchVersion, .BuildNumber) | last | .SubscriberPackageVersionId')
+
+    if [[ -z "$latest_version_id" || "$latest_version_id" == "null" ]]; then
+        echo "Error: Unable to find latest package version for package ID: $package_id."
+        exit 1
     fi
 
-    echo "Scratch org duration: $days days"
-    sf org create scratch --set-default --definition-file config/project-scratch-def.json --duration-days "$days" --alias $org_alias || { error $? '"sf org create scratch" command failed.'; }
+    # Extract the version ID starting with 04t
+    latest_version_id=$(echo "$latest_version_id" | grep -oE '04t[a-zA-Z0-9]{15}')
+    
+    echo "$latest_version_id"
 }
 
+# Function to install dependencies
 installDependencies() {
-    keys=""
-    for p in $(jq '.packageAliases | keys[]' sfdx-project.json -r);
-    do
-        keys+=$p":"$secret" ";
+    # Check if packageAliases is present in sfdx-project.json
+    if ! jq -e '.packageAliases' sfdx-project.json > /dev/null; then
+        echo "No packageAliases found in sfdx-project.json. Skipping dependency installation."
+        return
+    fi
+
+    for package_alias in $(jq -r '.packageAliases | keys[]' sfdx-project.json); do
+        echo "Checking package alias: $package_alias"
+        if isPackageAliasInstalled "$package_alias"; then
+            continue
+        fi
+        
+        package_id=$(jq -r --arg alias "$package_alias" '.packageAliases[$alias]' sfdx-project.json)
+        echo "Package ID for $package_alias: $package_id"
+
+        if [ -z "$package_id" ]; then
+            echo "Warning: Package alias $package_alias not found in sfdx-project.json. Skipping..."
+            continue
+        fi
+
+        package_version_id=$(getLatestPackageVersionId "$package_id")
+        echo "Latest package version ID for $package_alias: $package_version_id"
+
+        echo "Installing package: $package_alias (version ID: $package_version_id)"
+        
+        sf package install --package "$package_version_id" --installation-key "$secret" --target-org "$org_alias" --wait 10 --publish-wait 10 --noprompt || {
+            echo "Error: Failed to install package $package_alias (version ID: $package_version_id)"
+            exit 1
+        }
     done
-    sf dependency install --installationkeys "${keys}" --targetusername "$org_alias" --targetdevhubusername "$devHubAlias" || { error $? '"sf dependency install" command failed.'; }
+
+    echo "All dependencies have been installed successfully."
 }
 
 deployingMetadata() {
     if [[ $npm_config_without_deploy ]]; then
         echo "Skipping..."
     else
-        sf project deploy start || { error $? '"sf project deploy start" command failed.'; }
+        sf project deploy start -r --ignore-errors || { error $? '"sf project deploy start" command failed.'; }
     fi
 }
 
@@ -77,7 +114,6 @@ assignPermission() {
     --name Admin_Base \
     --name CRM_LoginFlow \
     --name TAG_Arbeidsgiver_Veillederapp \
-    --name Admin_Base \
     || { error $? '"sf org assign permset" command failed.'; }
 }
 
@@ -170,20 +206,6 @@ insertingTestData() {
     echo ""
 }
 
-#runPostInstallScripts() {
-#    sf apex run --file ./scripts/apex/activateMock.cls || { error $? '"sf apex run" command failed for Apex class: "activateMock".'; }
-#    sf apex run --file ./scripts/apex/createPortalUser.cls || { error $? '"sf apex run" command failed for Apex class: "createPortalUser".'; }
-#    sf apex run --file ./scripts/apex/createTestData.cls || { error $? '"sf apex run" command failed for Apex class: "createTestData".'; }
-#}
-
-#publishCommunity() {
-#    if [[ $npm_config_without_publish ]]; then
-#        echo "Skipping..."
-#    else
-#        sf community publish --name "arbeidsgiver-dialog" || { error $? '"sf community publish" command failed for community: "arbeidsgiver-dialog".'; }
-#    fi
-#}
-
 openOrg() {
     if [[ -n $npm_config_open_in ]]; then
         sf org open --browser "$npm_config_open_in" --path "lightning/app/c__TAG_NAV_default" || { error $? '"sf org open" command failed.'; }
@@ -246,22 +268,16 @@ command -v jq >/dev/null 2>&1 || {
     exit 1
 }
 
-ORG_ALIAS="arbeidsgiver-base"
+org_alias=$(sf org:display --verbose --json | jq -r '.result.alias')
 secret=$npm_config_package_key
 devHubAlias=$(sf config get target-dev-hub --json | jq -r '.result[0].value')
-
-if [[ -n $npm_config_org_alias ]]; then
-    org_alias=$npm_config_org_alias
-else
-    org_alias=$ORG_ALIAS
-fi
-
-echo "Installing crm-arbeidsgiver-base scratch org ($org_alias)"
-echo ""
+    
+echo "Current scratch org alias is: $org_alias"
+echo "Current devhub alias is: $devHubAlias"
 
 operations=(
-    cleaningPreviousScratchOrg
-    creatingScratchOrg
+    #cleaningPreviousScratchOrg
+    #creatingScratchOrg
     installDependencies
     deployingMetadata
     assignPermission
@@ -272,8 +288,8 @@ operations=(
 )
 
 operationNames=(
-    "Cleaning previous scratch org"
-    "Creating scratch org"
+    #"Cleaning previous scratch org"
+    #"Creating scratch org"
     "Installing dependencies"
     "Deploying/Pushing metadata"
     "Assigning permissions"
