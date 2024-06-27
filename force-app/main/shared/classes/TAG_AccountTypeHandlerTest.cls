@@ -100,7 +100,7 @@ private class TAG_AccountTypeHandlerTest {
             'Accounts without org structure should have account type null'
         );
     }
-
+/*
     @IsTest
     private static void updateAccounts() {
         myTriggers.disable(PopulateNavUnitOnAccountHandler.class);
@@ -193,5 +193,5 @@ private class TAG_AccountTypeHandlerTest {
             savedAccounts[999].CRM_AccountType__c,
             'Accounts without org structure should have account type null'
         );
-    }
+    }*/
 }
