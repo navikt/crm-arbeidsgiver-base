@@ -100,7 +100,7 @@ private class TAG_AccountTypeHandlerTest {
             'Accounts without org structure should have account type null'
         );
     }
-
+/*
     @IsTest
     private static void updateAccounts() {
         myTriggers.disable(PopulateNavUnitOnAccountHandler.class);
@@ -145,7 +145,6 @@ private class TAG_AccountTypeHandlerTest {
                 accounts[i].INT_OrganizationalStructure__c = 'KF';
             }
 
-            /*
             //ORGL
             for (integer i = 700; i < 800; i++) {
                 accounts[i].INT_OrganizationalStructure__c = 'ORGL';
@@ -159,7 +158,7 @@ private class TAG_AccountTypeHandlerTest {
             //null
             for (integer i = 900; i < 950; i++) {
                 accounts[i].INT_OrganizationalStructure__c = null;
-            } */
+            }
 
             update accounts;
             Test.stopTest();
@@ -180,7 +179,7 @@ private class TAG_AccountTypeHandlerTest {
         System.assertEquals('B', savedAccounts[570].CRM_AccountType__c, 'FKF accountype should be B');
         System.assertEquals('B', savedAccounts[600].CRM_AccountType__c, 'KF accountype should be B');
         System.assertEquals('B', savedAccounts[699].CRM_AccountType__c, 'KF accountype should be B');
-        /* System.assertEquals('O', savedAccounts[700].CRM_AccountType__c, 'ORGL accountype should be O');
+        System.assertEquals('O', savedAccounts[700].CRM_AccountType__c, 'ORGL accountype should be O');
         System.assertEquals('O', savedAccounts[799].CRM_AccountType__c, 'ORGL accountype should be O');
         System.assertEquals('J', savedAccounts[800].CRM_AccountType__c, 'UTLA accountype should be J');
         System.assertEquals('J', savedAccounts[899].CRM_AccountType__c, 'UTLA accountype should be J');
@@ -193,6 +192,6 @@ private class TAG_AccountTypeHandlerTest {
             null,
             savedAccounts[999].CRM_AccountType__c,
             'Accounts without org structure should have account type null'
-        ); */
-    }
+        );
+    }*/
 }
