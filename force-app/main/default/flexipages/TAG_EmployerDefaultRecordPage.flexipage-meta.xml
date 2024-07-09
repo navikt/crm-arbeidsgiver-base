@@ -1489,10 +1489,6 @@
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>logEvent</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>picklistFilter1Label</name>
                     <value>{!$Label.Topic}</value>
                 </componentInstanceProperties>
