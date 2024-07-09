@@ -1171,7 +1171,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListComponentOverride</name>
-                    <value>NONE</value>
+                    <value>GRID</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>rowsToDisplay</name>
@@ -1486,6 +1486,10 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>logEvent</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
