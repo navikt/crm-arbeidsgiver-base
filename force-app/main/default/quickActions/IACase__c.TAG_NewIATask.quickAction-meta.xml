@@ -44,6 +44,8 @@
                 <field>TAG_ActivityType__c</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>Subject</field>
