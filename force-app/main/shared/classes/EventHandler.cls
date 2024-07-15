@@ -48,6 +48,7 @@ global class EventHandler extends MyTriggers {
         es.SH_EventId__c = e.Id;
         es.SH_LastModifiedDate__c = e.LastModifiedDate;
         es.SH_CreatedDate__c = e.CreatedDate;
+        es.SH_IACaseNumber__c = e.TAG_IACaseNumber__c;
 
         return es;
     }

@@ -5,6 +5,28 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>IACase__c.TAG_NewIATask</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!$Client.formFactor}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Small</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>IACase__c.TAG_NewIAEvent</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!$Client.formFactor}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Small</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                    </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>collapsed</name>
