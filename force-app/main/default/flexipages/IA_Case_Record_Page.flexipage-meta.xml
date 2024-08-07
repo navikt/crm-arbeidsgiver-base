@@ -568,6 +568,13 @@
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
                 <identifier>c_timeline</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$Client.formFactor}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Small</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
