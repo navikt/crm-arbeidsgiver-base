@@ -337,6 +337,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IADelivery__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Task.CRM_AccountOrgNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
