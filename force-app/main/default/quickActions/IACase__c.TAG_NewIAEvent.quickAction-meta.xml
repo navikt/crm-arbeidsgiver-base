@@ -5,6 +5,10 @@
         <literalValue>Prioritert IA (Fia)</literalValue>
     </fieldOverrides>
     <fieldOverrides>
+        <field>TAG_IsIAPriority__c</field>
+        <formula>true</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>Type</field>
         <literalValue>Meeting</literalValue>
     </fieldOverrides>
