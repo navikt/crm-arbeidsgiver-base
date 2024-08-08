@@ -8,6 +8,10 @@
         <field>TAG_ActivityType__c</field>
         <literalValue>Prioritert IA (Fia)</literalValue>
     </fieldOverrides>
+    <fieldOverrides>
+        <field>TAG_IsIAPriority__c</field>
+        <formula>true</formula>
+    </fieldOverrides>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
