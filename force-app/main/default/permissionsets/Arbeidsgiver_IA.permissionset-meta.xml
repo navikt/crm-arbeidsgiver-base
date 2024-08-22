@@ -112,6 +112,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IADelivery__c.FiaLink__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IADelivery__c.IACase__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -133,6 +138,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IADelivery__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IADelivery__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
