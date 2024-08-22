@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Result_must_be_set</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR( ISPICKVAL( InclusionStage__c, &quot;Ferdig Avklart&quot;),
+ISPICKVAL( InclusionStage__c ,&quot;Avsluttet&quot; ))
+&amp;&amp;
+ISBLANK(TEXT( Result__c ))</errorConditionFormula>
+    <errorDisplayField>Result__c</errorDisplayField>
+    <errorMessage>Du må legge in resultat</errorMessage>
+</ValidationRule>
