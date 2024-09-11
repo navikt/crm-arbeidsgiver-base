@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FiaLink__c</fullName>
+    <externalId>false</externalId>
+    <formula>/* https://fia.(&lt;ansatt.dev.&gt;)nav.no/virksomhet/&lt;orgnr&gt;/?fane=kartlegging&amp;kartleggingId=&lt;behovsvurderingId&gt; */
+HYPERLINK(&quot;https://fia.nav.no/virksomhet/&quot; &amp; IACase__r.Account__r.INT_OrganizationNumber__c &amp; &quot;/?fane=kartlegging&amp;kartleggingId=&quot; &amp; Name, &quot;Se behovsvurdering i Fia&quot;)</formula>
+    <label>Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
