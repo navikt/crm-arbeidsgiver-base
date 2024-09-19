@@ -111,6 +111,13 @@
     <picklistValues>
         <picklist>TAG_ActivityType__c</picklist>
         <values>
+            <fullName>Prioritert IA %28Fia%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TAG_service__c</picklist>
+        <values>
             <fullName>Arbeidsmiljø</fullName>
             <default>false</default>
         </values>
@@ -120,57 +127,6 @@
         </values>
         <values>
             <fullName>Sykefraværsarbeid</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>TAG_service__c</picklist>
-        <values>
-            <fullName>Forbyggende arbeidsmiljøarbeid</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Helse i arbeid</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>IPS Jobbstøtte</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>IPS Jobbutvikling</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Informasjon om NAVs tjenester</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Inkluderende rekruttering</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Jobbmesser og møteplasser</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Masseoppsigelser</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Permittering</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Redusere sykefravær</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Rekrutteringsoppdrag</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Utvikle partssamarbeid</fullName>
             <default>false</default>
         </values>
     </picklistValues>

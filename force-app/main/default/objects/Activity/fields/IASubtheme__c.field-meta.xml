@@ -6,7 +6,7 @@
     <required>false</required>
     <type>MultiselectPicklist</type>
     <valueSet>
-        <controllingField>TAG_ActivityType__c</controllingField>
+        <controllingField>TAG_service__c</controllingField>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -65,50 +65,6 @@
                 <label>HelseIArbeid</label>
             </value>
         </valueSetDefinition>
-        <valueSettings>
-            <controllingFieldValue>Partssamarbeid</controllingFieldValue>
-            <valueName>Utvikle partssamarbeidet</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
-            <valueName>Sykefraværsrutiner</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
-            <valueName>Oppfølgingssamtaler</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
-            <valueName>Tilretteleggings- og medvirkningsplikt</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
-            <valueName>Sykefravær - enkeltsaker</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
-            <valueName>Utvikle arbeidsmiljøet</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
-            <valueName>Endring og omstilling</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
-            <valueName>Oppfølging av arbeidsmiljøundersøkelser</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
-            <valueName>Livsfaseorientert personalpolitikk</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
-            <valueName>Psykisk helse</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
-            <valueName>HelseIArbeid</valueName>
-        </valueSettings>
     </valueSet>
     <visibleLines>5</visibleLines>
 </CustomField>
