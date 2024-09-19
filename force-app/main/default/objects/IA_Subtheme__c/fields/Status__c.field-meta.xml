@@ -15,6 +15,21 @@
                 <default>false</default>
                 <label>PLANLAGT</label>
             </value>
+            <value>
+                <fullName>PÅGÅR</fullName>
+                <default>false</default>
+                <label>PÅGÅR</label>
+            </value>
+            <value>
+                <fullName>FULLFØRT</fullName>
+                <default>false</default>
+                <label>FULLFØRT</label>
+            </value>
+            <value>
+                <fullName>AVBRUTT</fullName>
+                <default>false</default>
+                <label>AVBRUTT</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
