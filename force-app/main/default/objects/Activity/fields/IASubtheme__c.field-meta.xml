@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IASubtheme__c</fullName>
+    <externalId>false</externalId>
+    <label>IA Subtheme</label>
+    <required>false</required>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>TAG_ActivityType__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Utvikle partssamarbeidet</fullName>
+                <default>false</default>
+                <label>Utvikle partssamarbeidet</label>
+            </value>
+            <value>
+                <fullName>Sykefraværsrutiner</fullName>
+                <default>false</default>
+                <label>Sykefraværsrutiner</label>
+            </value>
+            <value>
+                <fullName>Oppfølgingssamtaler</fullName>
+                <default>false</default>
+                <label>Oppfølgingssamtaler</label>
+            </value>
+            <value>
+                <fullName>Tilretteleggings- og medvirkningsplikt</fullName>
+                <default>false</default>
+                <label>Tilretteleggings- og medvirkningsplikt</label>
+            </value>
+            <value>
+                <fullName>Sykefravær - enkeltsaker</fullName>
+                <default>false</default>
+                <label>Sykefravær - enkeltsaker</label>
+            </value>
+            <value>
+                <fullName>Utvikle arbeidsmiljøet</fullName>
+                <default>false</default>
+                <label>Utvikle arbeidsmiljøet</label>
+            </value>
+            <value>
+                <fullName>Endring og omstilling</fullName>
+                <default>false</default>
+                <label>Endring og omstilling</label>
+            </value>
+            <value>
+                <fullName>Oppfølging av arbeidsmiljøundersøkelser</fullName>
+                <default>false</default>
+                <label>Oppfølging av arbeidsmiljøundersøkelser</label>
+            </value>
+            <value>
+                <fullName>Livsfaseorientert personalpolitikk</fullName>
+                <default>false</default>
+                <label>Livsfaseorientert personalpolitikk</label>
+            </value>
+            <value>
+                <fullName>Psykisk helse</fullName>
+                <default>false</default>
+                <label>Psykisk helse</label>
+            </value>
+            <value>
+                <fullName>HelseIArbeid</fullName>
+                <default>false</default>
+                <label>HelseIArbeid</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Partssamarbeid</controllingFieldValue>
+            <valueName>Utvikle partssamarbeidet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
+            <valueName>Sykefraværsrutiner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
+            <valueName>Oppfølgingssamtaler</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
+            <valueName>Tilretteleggings- og medvirkningsplikt</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sykefraværsarbeid</controllingFieldValue>
+            <valueName>Sykefravær - enkeltsaker</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
+            <valueName>Utvikle arbeidsmiljøet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
+            <valueName>Endring og omstilling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
+            <valueName>Oppfølging av arbeidsmiljøundersøkelser</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
+            <valueName>Livsfaseorientert personalpolitikk</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
+            <valueName>Psykisk helse</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Arbeidsmiljø</controllingFieldValue>
+            <valueName>HelseIArbeid</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

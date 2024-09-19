@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ArbeidsgiverEvent</fullName>
+    <fullName>IA_event</fullName>
     <active>true</active>
-    <label>AG Møte</label>
+    <description>Used for events related to employer IA cases</description>
+    <label>IA event</label>
     <picklistValues>
         <picklist>IASubtheme__c</picklist>
         <values>
@@ -76,19 +77,15 @@
     <picklistValues>
         <picklist>TAG_ActivityType__c</picklist>
         <values>
-            <fullName>Forebygge sykefravær og redusere frafall</fullName>
+            <fullName>Arbeidsmiljø</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Nedbemanne</fullName>
+            <fullName>Partssamarbeid</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Prioritert IA %28Fia%29</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Rekruttere og inkludere</fullName>
+            <fullName>Sykefraværsarbeid</fullName>
             <default>false</default>
         </values>
     </picklistValues>

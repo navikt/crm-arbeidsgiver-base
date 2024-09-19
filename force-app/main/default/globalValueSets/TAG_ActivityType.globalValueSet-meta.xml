@@ -21,16 +21,31 @@
         <label>Nedbemanne</label>
     </customValue>
     <customValue>
-        <fullName>Bedriftsundersøkelse</fullName>
+        <fullName>Partssamarbeid</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Bedriftsundersøkelse</label>
+        <label>Partssamarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Sykefraværsarbeid</fullName>
+        <default>false</default>
+        <label>Sykefraværsarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Arbeidsmiljø</fullName>
+        <default>false</default>
+        <label>Arbeidsmiljø</label>
     </customValue>
     <customValue>
         <fullName>Generelt markedsarbeid</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Generelt markedsarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Bedriftsundersøkelse</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Bedriftsundersøkelse</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>

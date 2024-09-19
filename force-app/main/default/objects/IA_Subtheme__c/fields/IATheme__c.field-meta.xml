@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IATheme__c</fullName>
+    <externalId>false</externalId>
+    <label>IA Theme</label>
+    <referenceTo>IATheme__c</referenceTo>
+    <relationshipLabel>IA Subthemes</relationshipLabel>
+    <relationshipName>IA_Subthemes</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
