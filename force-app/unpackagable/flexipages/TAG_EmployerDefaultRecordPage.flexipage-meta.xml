@@ -657,7 +657,7 @@
                     <name>adminFilters</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Former_Employee__c|NOT_EQUAL|true</value>
+                            <value>Contact.TAG_Former_Employee__c|NOT_EQUAL|true</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -671,7 +671,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListApiName</name>
-                    <value>Contacts</value>
+                    <value>AccountContactRelations</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListDisplayType</name>
@@ -681,22 +681,28 @@
                     <name>relatedListFieldAliases</name>
                     <valueList>
                         <valueListItems>
-                            <value>FULL_NAME</value>
+                            <value>CONTACT.FULL_NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CONTACT.ACCOUNT_NAME</value>
                         </valueListItems>
                         <valueListItems>
                             <value>CONTACT.TITLE</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Theme__c</value>
+                            <value>CONTACT.EMAIL</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_MobileEmail__c</value>
+                            <value>CONTACT.PHONE1</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ACCCONRELATION.ROLES</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListLabel</name>
-                    <value>Contacts</value>
+                    <value>Related Contacts</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
@@ -726,7 +732,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListComponentOverride</name>
-                    <value>NONE</value>
+                    <value>GRID</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>rowsToDisplay</name>
