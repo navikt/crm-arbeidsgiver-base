@@ -5,6 +5,7 @@
     <deployed>true</deployed>
     <description>Viser IA saker og aktiviteter med informasjon fra tilhørende konto.</description>
     <join>
+        <outerJoin>false</outerJoin>
         <relationship>Activities</relationship>
     </join>
     <label>IA Saker med aktiviteter og tilhørende konto</label>
@@ -122,6 +123,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
+            <table>IACase__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IALink__c</field>
             <table>IACase__c</table>
         </columns>
         <masterLabel>IA Cases</masterLabel>
