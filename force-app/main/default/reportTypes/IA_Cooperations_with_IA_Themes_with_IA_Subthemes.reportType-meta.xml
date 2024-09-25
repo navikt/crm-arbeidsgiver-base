@@ -130,6 +130,16 @@
             <field>LastModifiedBy</field>
             <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IA_CooperationTheme__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IA_ThemeName__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
         <masterLabel>IA Subthemes</masterLabel>
     </sections>
 </ReportType>
