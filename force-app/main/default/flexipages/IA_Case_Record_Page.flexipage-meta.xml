@@ -97,6 +97,12 @@
                 <identifier>RecordIACreatedDate_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.IALink__c</fieldItem>
+                <identifier>RecordIALink__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-4c4565d8-427c-42bc-af06-5b75ac2763ad</name>
         <type>Facet</type>
     </flexiPageRegions>
