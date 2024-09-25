@@ -19,6 +19,7 @@ private class PopulateNavUnitForAllAccounts_BatchTest {
         PopulateNavUnitForAllAccounts_Batch btch = new PopulateNavUnitForAllAccounts_Batch();
         Database.executeBatch(btch, 2000);
         Test.stopTest();
+
         System.assertEquals(
             50,
             [SELECT COUNT() FROM Account WHERE TAG_NAvUnit__c = :units[0].Id],
