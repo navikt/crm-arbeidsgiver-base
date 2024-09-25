@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_Link__c</fullName>
-    <deprecated>false</deprecated>
+    <fullName>IALink__c</fullName>
+    <description>Lenke som sender til IA-saken, med et mer beskrivende lenkenavn</description>
     <externalId>false</externalId>
-    <formula>HYPERLINK(&quot;/lightning/r/CustomOpportunity__c/&quot; + Id + &quot;/view&quot;, &quot;Se muligheten&quot;)</formula>
+    <formula>HYPERLINK(&quot;/lightning/r/IACase__c/&quot; + Id + &quot;/view&quot;, &quot;Se IA-saken&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Link</label>
+    <label>IALink</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

@@ -42,6 +42,10 @@
                 <behavior>Edit</behavior>
                 <field>CaseOwner__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IALink__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
