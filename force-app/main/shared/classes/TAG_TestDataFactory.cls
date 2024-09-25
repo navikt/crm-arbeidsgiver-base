@@ -37,7 +37,7 @@ public without sharing class TAG_TestDataFactory {
             Account acc = new Account();
             acc.Name = 'test';
             acc.INT_OrganizationNumber__c = '9000000000';
-            acc.INT_MunicipalityNumber__c = '3005';
+            acc.INT_MunicipalityNumber__c = '3301';
 
             accounts.add(acc);
         }
