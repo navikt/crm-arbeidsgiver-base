@@ -125,6 +125,11 @@
             <field>Owner</field>
             <table>IACase__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IALink__c</field>
+            <table>IACase__c</table>
+        </columns>
         <masterLabel>IA Cases</masterLabel>
     </sections>
     <sections>
