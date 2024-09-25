@@ -33,8 +33,8 @@ private class PopulateNavUnitOnAccountHandlerTest {
     List<Account> testAccounts = TAG_TestDataFactory.createAccounts(50);
 
     Test.startTest();
-    testAccounts[0].INT_MunicipalityNumber__c = '3025';
-    testAccounts[1].INT_MunicipalityNumber__c = '3025';
+    testAccounts[0].INT_MunicipalityNumber__c = '3203';
+    testAccounts[1].INT_MunicipalityNumber__c = '3203';
     update testAccounts;
     Test.stopTest();
 
@@ -60,8 +60,8 @@ private class PopulateNavUnitOnAccountHandlerTest {
     myTriggers.disable(TAG_AccountTypeHandler.class);
     List<Account> testAccounts = TAG_TestDataFactory.createAccounts(50);
 
-    testAccounts[0].INT_MunicipalityNumber__c = '3025';
-    testAccounts[1].INT_MunicipalityNumber__c = '3025';
+    testAccounts[0].INT_MunicipalityNumber__c = '3203';
+    testAccounts[1].INT_MunicipalityNumber__c = '3203';
     myTriggers.disable(PopulateNavUnitOnAccountHandler.class);
     update testAccounts;
 
