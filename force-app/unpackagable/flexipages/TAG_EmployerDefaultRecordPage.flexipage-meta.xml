@@ -1325,7 +1325,7 @@
                     <value>Descending</value>
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList11</identifier>
+                <identifier>lst_dynamicRelatedList16</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1655,10 +1655,6 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>logEvent</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
