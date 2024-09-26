@@ -87,7 +87,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IACooperation__c.CooperationName__c</field>
+        <field>IACooperation__c.CooperationId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -192,6 +192,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IATheme__c.ThemeId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IATheme__c.ThemeName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -227,7 +232,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IA_Subtheme__c.SubthemeName__c</field>
+        <field>IA_Subtheme__c.SubthemeId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

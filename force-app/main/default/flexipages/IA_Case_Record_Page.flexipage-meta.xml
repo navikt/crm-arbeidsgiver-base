@@ -99,6 +99,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.IALink__c</fieldItem>
                 <identifier>RecordIALink__cField</identifier>
             </fieldInstance>
@@ -214,9 +218,6 @@
                     <valueList>
                         <valueListItems>
                             <value>NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CooperationName__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>

@@ -1031,11 +1031,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IACooperation__c.CooperationName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IACooperation__c.IACase__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1057,11 +1052,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IA_Subtheme__c.Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IA_Subtheme__c.SubthemeName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
