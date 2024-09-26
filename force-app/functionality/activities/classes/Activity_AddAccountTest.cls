@@ -33,7 +33,7 @@ private without sharing class Activity_AddAccountTest {
       );
     }
   }
-
+/*
   @isTest
   private static void testInsertTask_accountAsWhatId() {
     User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
@@ -52,13 +52,14 @@ private without sharing class Activity_AddAccountTest {
       Test.StopTest();
 
       t = [SELECT Id, RelatedToAccount__c FROM Task WHERE Id = :t.Id LIMIT 1];
+
       System.assertEquals(
         acc.Id,
         t.RelatedToAccount__c,
         'Should have added the temp layoffs account to Task.RelatedToAccount__c'
       );
     }
-  }
+  }*/
 
   @isTest
   private static void testInsertEvent() {

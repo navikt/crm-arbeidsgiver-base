@@ -921,6 +921,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.IASubtheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.IsAllDayEvent</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -957,6 +962,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Event.TAG_ActivityType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.TAG_IACaseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1016,6 +1026,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IACooperation__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IACooperation__c.IACase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IA_Subtheme__c.Goal__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IA_Subtheme__c.IA_CooperationTheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IA_Subtheme__c.IA_ThemeName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IA_Subtheme__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NavUnit__c.MarketRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1061,6 +1101,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Task.IASubtheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Task.RelatedToAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1087,6 +1132,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.TAG_ActivityType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.TAG_IACaseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1183,6 +1233,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Task.ArbeidsgiverTask</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Task.IA_task</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>

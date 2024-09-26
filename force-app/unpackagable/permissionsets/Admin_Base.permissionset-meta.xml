@@ -132,6 +132,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.IAThemeServiceName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.TAG_AccountNAVUnit__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -306,8 +311,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>IACase__c.IALink__c</field>
+        <editable>true</editable>
+        <field>IACase__c.IsNewIACase__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -352,6 +357,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IA_Subtheme__c.IA_CooperationTheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IA_Subtheme__c.IA_ThemeName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Task.CRM_AccountOrgNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -363,6 +378,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.CRM_Unit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.IAThemeServiceName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
