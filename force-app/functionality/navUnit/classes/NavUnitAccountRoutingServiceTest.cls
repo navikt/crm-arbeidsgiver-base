@@ -14,9 +14,9 @@ private class NavUnitAccountRoutingServiceTest {
         for (Integer i = 0; i < 20; i++) {
             Account acc = testAccounts[i];
             if (i > 7) {
-                acc.INT_MunicipalityNumber__c = '3005';
+                acc.INT_MunicipalityNumber__c = '3301';
             } else {
-                acc.INT_MunicipalityNumber__c = '3025';
+                acc.INT_MunicipalityNumber__c = '3203';
             }
         }
         update testAccounts;
@@ -27,10 +27,11 @@ private class NavUnitAccountRoutingServiceTest {
         insert units;
 
         List<Account> accounts = [
-            SELECT INT_MunicipalityNumber__c, ShippingPostalCode, TAG_NavUnit__c
+            SELECT INT_MunicipalityNumber__c, ShippingPostalCode, TAG_NavUnit__c, TAG_NavUnit__r.Name
             FROM Account
-            ORDER BY INT_MunicipalityNumber__c
+            ORDER BY INT_MunicipalityNumber__c DESC
         ];
+
         Test.startTest();
         List<Account> accountsWithUnits = NavUnitAccountRoutingService.getNavUnits(accounts);
         Test.stopTest();
