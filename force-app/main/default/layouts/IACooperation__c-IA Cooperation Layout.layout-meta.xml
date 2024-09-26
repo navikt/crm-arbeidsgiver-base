@@ -8,8 +8,16 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CooperationName__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Status__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
