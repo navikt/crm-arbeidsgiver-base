@@ -33,18 +33,24 @@ private without sharing class Activity_AddAccountTest {
       );
     }
   }
-/*
+
   @isTest
   private static void testInsertTask_accountAsWhatId() {
     User u = [SELECT Id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+    RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType = 'Task' AND DeveloperName = 'ArbeidsgiverTask' LIMIT 1];
 
     System.runAs(u) {
       Account acc = TAG_TestDataFactory.createAccounts(1)[0];
       Task t = new Task(
         TAG_NoPersonInformation__c = true,
         WhatId = acc.Id,
+        TAG_ActivityType__c = 'Rekruttere og inkludere',
+        TAG_service__c = 'Jobbmesser og møteplass',
         ActivityDate = Date.today(),
-        Subject = 'test'
+        Subject = 'test',
+        Status = 'Completed',
+        Priority = 'High',
+        RecordTypeId = rt.id
       );
 
       Test.StartTest();
@@ -59,7 +65,7 @@ private without sharing class Activity_AddAccountTest {
         'Should have added the temp layoffs account to Task.RelatedToAccount__c'
       );
     }
-  }*/
+  }
 
   @isTest
   private static void testInsertEvent() {
