@@ -39,4 +39,12 @@
         </sections>
     </layouts>
     <nameFieldLabel>Saksnummer</nameFieldLabel>
+    <quickActions>
+        <label></label>
+        <name>TAG_NewIAEvent</name>
+    </quickActions>
+    <quickActions>
+        <label></label>
+        <name>TAG_NewIATask</name>
+    </quickActions>
 </CustomObjectTranslation>
