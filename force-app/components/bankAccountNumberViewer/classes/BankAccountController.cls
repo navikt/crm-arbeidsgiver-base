@@ -19,7 +19,7 @@ public with sharing class BankAccountController {
 
     public static BankAccountModel queryKontonummer(String orgNo) {
         Map<String, String> params = new Map<String, String>{ 'orgnr' => orgNo };
-        Map<String, String> headers = new Map<String, String>{ 'Content-Type' => 'application/json' };
+        Map<String, String> headers = new Map<String, String>{ 'accept' => 'application/json' };
 
         ApiController apiCtrl = new ApiController();
         apiCtrl.initRequest(API_BASE_CONFIG_NAME, API_SERVICE_CONFIG_NAME, params);
