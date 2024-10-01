@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IATheme__c</fullName>
+    <description>Field that stores copied values from TAG_service__c for IA Themes- workaround for Button Link URLFOR that doesn&apos;t work with dependent picklist</description>
+    <label>IA Theme</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Partssamarbeid</fullName>
+                <default>false</default>
+                <label>Partssamarbeid</label>
+            </value>
+            <value>
+                <fullName>Sykefraværsarbeid</fullName>
+                <default>false</default>
+                <label>Sykefraværsarbeid</label>
+            </value>
+            <value>
+                <fullName>Arbeidsmiljø</fullName>
+                <default>false</default>
+                <label>Arbeidsmiljø</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
