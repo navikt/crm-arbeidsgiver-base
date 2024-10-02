@@ -46,7 +46,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>TAG_service__c</field>
+                <field>IATheme__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -56,7 +56,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>IASubtheme__c</field>
+                <field>IASubthemes__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

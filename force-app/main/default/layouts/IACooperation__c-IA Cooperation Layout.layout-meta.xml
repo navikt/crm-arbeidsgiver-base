@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -79,10 +80,18 @@
     <relatedLists>
         <customButtons>TAG_NewTaskOnCooperation</customButtons>
         <customButtons>TAG_NewMeetingPartssamarbeid</customButtons>
+        <customButtons>TAG_NewTaskSykefravaersarbeid</customButtons>
+        <customButtons>TAG_NewTaskArbeidsmiljo</customButtons>
+        <customButtons>TAG_NewMeetingSykefraersarbeid</customButtons>
+        <customButtons>TAG_NewMeetingArbeidsmiljo</customButtons>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <relatedList>IA_Subtheme__c.IA_CooperationTheme__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>IADelivery__c.IA_Cooperation__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
