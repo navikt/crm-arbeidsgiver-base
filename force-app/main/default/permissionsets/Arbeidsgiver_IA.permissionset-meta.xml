@@ -67,6 +67,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IACase__c.IsNewIACase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IACase__c.Is_my_NAV_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
