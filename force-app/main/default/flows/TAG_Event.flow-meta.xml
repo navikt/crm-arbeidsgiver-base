@@ -33,7 +33,7 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
-        <locationX>402</locationX>
+        <locationX>446</locationX>
         <locationY>539</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -160,7 +160,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>402</locationX>
+        <locationX>446</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -213,6 +213,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_IACooperationId__c</field>
+            <value>
+                <elementReference>Get_IA_Cooperation.CooperationId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_service__c</field>
             <value>
                 <elementReference>$Record.IATheme__c</elementReference>
@@ -242,7 +248,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>402</locationX>
+        <locationX>446</locationX>
         <locationY>431</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -264,7 +270,7 @@
         <object>Account</object>
     </recordUpdates>
     <start>
-        <locationX>276</locationX>
+        <locationX>320</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_latest_IA_priority_event</targetReference>
