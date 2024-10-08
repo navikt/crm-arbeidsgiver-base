@@ -33,7 +33,7 @@
     <decisions>
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
-        <locationX>666</locationX>
+        <locationX>776</locationX>
         <locationY>1031</locationY>
         <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
         <rules>
@@ -62,7 +62,7 @@
     <decisions>
         <name>Is_Related_to_Account</name>
         <label>Is Related to Account?</label>
-        <locationX>666</locationX>
+        <locationX>776</locationX>
         <locationY>623</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
@@ -87,7 +87,7 @@
     <decisions>
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
-        <locationX>666</locationX>
+        <locationX>776</locationX>
         <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -112,7 +112,7 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type</label>
-        <locationX>402</locationX>
+        <locationX>446</locationX>
         <locationY>1355</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -181,7 +181,7 @@
     <recordLookups>
         <name>Get_dummy_account_Id</name>
         <label>Get dummy account Id</label>
-        <locationX>534</locationX>
+        <locationX>644</locationX>
         <locationY>731</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -266,7 +266,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
-        <locationX>402</locationX>
+        <locationX>446</locationX>
         <locationY>1139</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -303,7 +303,7 @@
     <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
-        <locationX>534</locationX>
+        <locationX>644</locationX>
         <locationY>431</locationY>
         <connector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -340,6 +340,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_IACooperationId__c</field>
+            <value>
+                <elementReference>Get_IA_Cooperation.CooperationId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_service__c</field>
             <value>
                 <elementReference>$Record.IATheme__c</elementReference>
@@ -369,7 +375,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>402</locationX>
+        <locationX>446</locationX>
         <locationY>1247</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -393,7 +399,7 @@
     <recordUpdates>
         <name>Update_AccountOrgType2_field</name>
         <label>Update AccountOrgType2 field</label>
-        <locationX>534</locationX>
+        <locationX>644</locationX>
         <locationY>839</locationY>
         <connector>
             <targetReference>Is_IA_priority</targetReference>
@@ -415,7 +421,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>540</locationX>
+        <locationX>650</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>
