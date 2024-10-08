@@ -4,12 +4,12 @@
     <decisions>
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
-        <locationX>182</locationX>
-        <locationY>539</locationY>
+        <locationX>446</locationX>
+        <locationY>647</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.TAG_IACaseNumber__c</leftValueReference>
                 <operator>IsNull</operator>
@@ -28,6 +28,43 @@
                 <targetReference>Get_IA_Case</targetReference>
             </connector>
             <label>Yes is blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Record_Type</name>
+        <label>Which Record Type?</label>
+        <locationX>402</locationX>
+        <locationY>539</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>IA_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>IA_event</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_IA_Cooperation</targetReference>
+            </connector>
+            <label>IA Event</label>
+        </rules>
+        <rules>
+            <name>AG_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>ArbeidsgiverEvent</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_IA_Case_Number_blank</targetReference>
+            </connector>
+            <label>AG Event</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -60,8 +97,8 @@
     <recordLookups>
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
-        <locationX>50</locationX>
-        <locationY>647</locationY>
+        <locationX>314</locationX>
+        <locationY>755</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_IA_Case_Number</targetReference>
@@ -79,9 +116,51 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_IA_Case_via_Cooperation</name>
+        <label>Get IA Case via Cooperation</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_IA_Cooperation.IACase__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>IACase__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_IA_Cooperation</name>
+        <label>Get IA Cooperation</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_IA_Case_via_Cooperation</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>IACooperation__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>182</locationX>
+        <locationX>402</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -111,10 +190,47 @@
         <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordUpdates>
+        <name>Set_Case_Number_ID_Theme_Subtheme</name>
+        <label>Set Case Number, ID, Theme, Subtheme</label>
+        <locationX>50</locationX>
+        <locationY>863</locationY>
+        <inputAssignments>
+            <field>IACase__c</field>
+            <value>
+                <elementReference>Get_IA_Case_via_Cooperation.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IASubtheme__c</field>
+            <value>
+                <elementReference>$Record.IASubthemes__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_IACaseNumber__c</field>
+            <value>
+                <elementReference>Get_IA_Case_via_Cooperation.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_service__c</field>
+            <value>
+                <elementReference>$Record.IATheme__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
-        <locationX>50</locationX>
-        <locationY>755</locationY>
+        <locationX>314</locationX>
+        <locationY>863</locationY>
+        <inputAssignments>
+            <field>IACase__c</field>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>TAG_IACaseNumber__c</field>
             <value>
@@ -126,10 +242,10 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>182</locationX>
+        <locationX>402</locationX>
         <locationY>431</locationY>
         <connector>
-            <targetReference>Is_IA_Case_Number_blank</targetReference>
+            <targetReference>Which_Record_Type</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -148,7 +264,7 @@
         <object>Account</object>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>276</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_latest_IA_priority_event</targetReference>

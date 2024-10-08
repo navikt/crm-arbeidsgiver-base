@@ -288,11 +288,17 @@ public with sharing class Activity_AddAccountHelper {
     Set<Id> recordTypeIds = new Set<Id>();
 
     recordTypeIds.add(
-      Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName().get('ArbeidsgiverEvent').getRecordTypeId()
+        Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName().get('ArbeidsgiverEvent').getRecordTypeId()
     );
     recordTypeIds.add(
-      Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName().get('ArbeidsgiverTask').getRecordTypeId()
+        Schema.SObjectType.Event.getRecordTypeInfosByDeveloperName().get('IA_event').getRecordTypeId()
+      );
+    recordTypeIds.add(
+        Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName().get('ArbeidsgiverTask').getRecordTypeId()
     );
+     recordTypeIds.add(
+        Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName().get('IA_task').getRecordTypeId()
+      );
 
     return recordTypeIds;
   }

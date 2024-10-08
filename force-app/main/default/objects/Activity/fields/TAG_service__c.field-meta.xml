@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_service__c</fullName>
+    <deprecated>false</deprecated>
     <description>HVIS DU SKAL REDIGERE PICKLIST, SØRG FOR AT DET MATCHER DET SOM LIGGER I NAVTask__c.CRM_SubTheme__c (https://github.com/navikt/crm-platform-base/blob/master/force-app/main/default/objects/NavTask__c/fields/CRM_SubTheme__c.field-meta.xml)</description>
-    <externalId>false</externalId>
     <label>Service</label>
     <required>false</required>
     <type>Picklist</type>
@@ -70,6 +70,21 @@
                 <default>false</default>
                 <label>Utvikle partssamarbeid</label>
             </value>
+            <value>
+                <fullName>Partssamarbeid</fullName>
+                <default>false</default>
+                <label>Partssamarbeid</label>
+            </value>
+            <value>
+                <fullName>Sykefraværsarbeid</fullName>
+                <default>false</default>
+                <label>Sykefraværsarbeid</label>
+            </value>
+            <value>
+                <fullName>Arbeidsmiljø</fullName>
+                <default>false</default>
+                <label>Arbeidsmiljø</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
@@ -112,6 +127,18 @@
         <valueSettings>
             <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
             <valueName>Utvikle partssamarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
+            <valueName>Partssamarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
+            <valueName>Sykefraværsarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
+            <valueName>Arbeidsmiljø</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Nedbemanne</controllingFieldValue>

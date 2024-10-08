@@ -5,6 +5,21 @@
         <visible>true</visible>
     </applicationVisibilities>
     <description>Tilgang til NAV App</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.IASubthemeNames__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IACooperation__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.IASubthemeNames__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - NAV App</label>
 </PermissionSet>

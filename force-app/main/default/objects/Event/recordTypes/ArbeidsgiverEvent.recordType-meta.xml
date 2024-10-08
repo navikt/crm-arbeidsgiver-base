@@ -4,6 +4,115 @@
     <active>true</active>
     <label>AG Møte</label>
     <picklistValues>
+        <picklist>IASubtheme__c</picklist>
+        <values>
+            <fullName>Endring og omstilling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HelseIArbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Livsfaseorientert personalpolitikk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oppfølging av arbeidsmiljøundersøkelser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oppfølgingssamtaler</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Psykisk helse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sykefravær - enkeltsaker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sykefraværsrutiner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tilretteleggings- og medvirkningsplikt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utvikle arbeidsmiljøet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utvikle partssamarbeidet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>IASubthemes__c</picklist>
+        <values>
+            <fullName>Endring og omstilling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HelseIArbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Livsfaseorientert personalpolitikk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oppfølging av arbeidsmiljøundersøkelser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oppfølgingssamtaler</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Psykisk helse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sykefravær - enkeltsaker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sykefraværsrutiner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tilretteleggings- og medvirkningsplikt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utvikle arbeidsmiljøet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utvikle partssamarbeidet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>IATheme__c</picklist>
+        <values>
+            <fullName>Arbeidsmiljø</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partssamarbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sykefraværsarbeid</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Subject</picklist>
         <values>
             <fullName>Call</fullName>
