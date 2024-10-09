@@ -50,7 +50,7 @@ global class EventHandler extends MyTriggers {
         es.SH_CreatedDate__c = e.CreatedDate;
         es.SH_IACaseNumber__c = e.TAG_IACaseNumber__c;
         es.SH_IACooperationId__c = e.TAG_IACooperationId__c;
-        es.SH_IASubtheme__c = e.TAG_IASubtheme__c;
+        es.SH_IASubtheme__c = e.IASubtheme__c;
 
         return es;
     }
