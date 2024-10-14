@@ -28,7 +28,7 @@
         <label>Aktører</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>WhatId</field>
             </layoutItems>
         </layoutColumns>
@@ -47,7 +47,7 @@
         <label>Detaljer</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>IATheme__c</field>
             </layoutItems>
             <layoutItems>
@@ -154,7 +154,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hKF0000041OE8</masterLabel>
+        <masterLabel>00hKH000000zSOg</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
