@@ -23,8 +23,12 @@
                     "versionNumber": "0.2.0.LATEST"
                 },
                 {
+                    "package": "crm-platform-reporting",
+                    "versionNumber": "0.35.0.LATEST"
+                },
+                {
                     "package": "crm-shared-timeline",
-                    "versionNumber": "1.21.0.LATEST"
+                    "versionNumber": "1.23.0.LATEST"
                 },
                 {
                     "package": "crm-henvendelse-base",
@@ -55,6 +59,7 @@
     "packageAliases": {
         "crm-platform-base": "0Ho2o0000008ORmCAM",
         "crm-platform-access-control": "0Ho2o0000008OR3CAM",
+        "crm-platform-reporting": "0Ho2o0000008OSfCAM",
         "crm-shared-timeline": "0Ho2o000000fxXBCAY",
         "crm-shared-base": "0Ho2o000000fxXLCAY",
         "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
@@ -64,5 +69,6 @@
         "crm-thread-view": "0Ho7U000000000zSAA",
         "crm-platform-oppgave": "0Ho2o000000fxXzCAI",
         "crm-henvendelse-base": "0Ho7U000000000kSAA"
+       
     }
 }
