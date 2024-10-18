@@ -64,6 +64,16 @@
             <field>Status__c</field>
             <table>IACooperation__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>StartDate__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EndDate__c</field>
+            <table>IACooperation__c</table>
+        </columns>
         <masterLabel>IA Cooperations</masterLabel>
     </sections>
     <sections>
