@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
-        <application>Arbeidsgiver_admin</application>
-        <visible>true</visible>
-    </applicationVisibilities>
     <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
     <fieldPermissions>
         <editable>false</editable>
@@ -610,18 +606,6 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>ArenaActivity__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>M_ling_team_Salesforce_Arbeidsgiver</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Monitorering_PO_Arbeidsgiver_2</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Team_Salesforce_Arbeidsgiver_Dialog</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
