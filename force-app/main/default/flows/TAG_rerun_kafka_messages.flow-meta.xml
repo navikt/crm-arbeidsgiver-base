@@ -4,77 +4,22 @@
     <assignments>
         <name>counts_kafka_messages</name>
         <label>counts kafka messages</label>
-        <locationX>264</locationX>
-        <locationY>890</locationY>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>counter</assignToReference>
-            <operator>Add</operator>
+            <operator>AssignCount</operator>
             <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Setter_status_til_pending</name>
-        <label>Setter status til pending</label>
-        <locationX>264</locationX>
-        <locationY>674</locationY>
-        <assignmentItems>
-            <assignToReference>Endrer_status_fra_error_til_pending.CRM_Status__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Pending</stringValue>
+                <elementReference>Kafka_meldinger_med_status_error</elementReference>
             </value>
         </assignmentItems>
         <connector>
             <targetReference>Oppdaterer_record_med_ny_status</targetReference>
         </connector>
     </assignments>
-    <decisions>
-        <name>Is_createdBy_PO_Arbeidsgiver_Integrasjonsbruker</name>
-        <label>Is createdBy PO Arbeidsgiver Integrasjonsbruker ?</label>
-        <locationX>396</locationX>
-        <locationY>566</locationY>
-        <defaultConnector>
-            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker.Name</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>PO Arbeidsgiver Integrasjonsbruker</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Setter_status_til_pending</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Rerun Kafka Messages</label>
-    <loops>
-        <name>Endrer_status_fra_error_til_pending</name>
-        <label>Endrer status fra error til pending</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
-        <collectionReference>Kafka_meldinger_med_status_error</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Is_createdBy_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>display_message_after_run_kafka_messages</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -99,10 +44,10 @@
         <name>Kafka_meldinger_med_status_error</name>
         <label>Kafka meldinger med status error</label>
         <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
+            <targetReference>counts_kafka_messages</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -110,6 +55,13 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Error</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedById</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -120,10 +72,10 @@
         <name>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</name>
         <label>User record med Name PO Arbeidsgiver Integrasjonsbruker</label>
         <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
+            <targetReference>Kafka_meldinger_med_status_error</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -140,18 +92,39 @@
     <recordUpdates>
         <name>Oppdaterer_record_med_ny_status</name>
         <label>Oppdaterer record med ny status</label>
-        <locationX>264</locationX>
-        <locationY>782</locationY>
+        <locationX>176</locationX>
+        <locationY>566</locationY>
         <connector>
-            <targetReference>counts_kafka_messages</targetReference>
+            <targetReference>display_message_after_run_kafka_messages</targetReference>
         </connector>
-        <inputReference>Endrer_status_fra_error_til_pending</inputReference>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CRM_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedById</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CRM_Status__c</field>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </inputAssignments>
+        <object>KafkaMessage__c</object>
     </recordUpdates>
     <screens>
         <name>display_message_after_run_kafka_messages</name>
         <label>display message after run kafka messages</label>
         <locationX>176</locationX>
-        <locationY>1166</locationY>
+        <locationY>674</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -172,7 +145,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Kafka_meldinger_med_status_error</targetReference>
+            <targetReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
         </connector>
         <fields>
             <name>tag_failed_msg_text</name>
@@ -190,7 +163,7 @@
             <targetReference>kjor_feilede_Kafka_meldinger</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <description>teller antall ganger loopen har kjørt  -&gt; antall kafkameldinger</description>
         <name>counter</name>
