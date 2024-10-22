@@ -5,7 +5,7 @@
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
         <locationX>446</locationX>
-        <locationY>647</locationY>
+        <locationY>863</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -31,10 +31,32 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_IA_event</name>
+        <label>Is IA event?</label>
+        <locationX>776</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_IA_event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_IsIAPriority__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_latest_IA_priority_event</targetReference>
+            </connector>
+            <label>Yes is IA event</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
         <locationX>446</locationX>
-        <locationY>539</locationY>
+        <locationY>755</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Event</name>
@@ -98,7 +120,7 @@
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
         <locationX>314</locationX>
-        <locationY>755</locationY>
+        <locationY>971</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_IA_Case_Number</targetReference>
@@ -119,7 +141,7 @@
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
         <locationX>50</locationX>
-        <locationY>755</locationY>
+        <locationY>971</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -140,7 +162,7 @@
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
         <locationX>50</locationX>
-        <locationY>647</locationY>
+        <locationY>863</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -161,7 +183,7 @@
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
         <locationX>446</locationX>
-        <locationY>323</locationY>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -193,7 +215,7 @@
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
-        <locationY>863</locationY>
+        <locationY>1079</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -230,7 +252,7 @@
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
-        <locationY>863</locationY>
+        <locationY>1079</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -249,7 +271,7 @@
         <name>Update_account</name>
         <label>Update account</label>
         <locationX>446</locationX>
-        <locationY>431</locationY>
+        <locationY>647</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
         </connector>
@@ -269,18 +291,90 @@
         </inputAssignments>
         <object>Account</object>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_fields</name>
+        <label>Update fields</label>
+        <locationX>776</locationX>
+        <locationY>323</locationY>
+        <connector>
+            <targetReference>Is_IA_event</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>INT_AccountNAVUnitNr__c</field>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.TAG_NavUnit__r.INT_UnitNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>INT_AccountOrgNumber__c</field>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.INT_OrganizationNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>INT_AccountOrgType__c</field>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.CRM_AccountType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>INT_AccountParentId__c</field>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.ParentId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>INT_AccountParentOrgNumber__c</field>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.Parent.INT_ParentOrganizationNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>INT_UserNAVUnitName__c</field>
+            <value>
+                <elementReference>$Record.Owner:User.CompanyName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>INT_UserNAVUnitNr__c</field>
+            <value>
+                <elementReference>$Record.Owner:User.Department</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>INT_UserRegion__c</field>
+            <value>
+                <elementReference>$Record.Owner:User.Region__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <start>
-        <locationX>320</locationX>
+        <locationX>650</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_latest_IA_priority_event</targetReference>
+            <targetReference>Update_fields</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>or</filterLogic>
         <filters>
-            <field>TAG_ActivityType__c</field>
+            <field>RecordTypeName__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Prioritert IA (Fia)</stringValue>
+                <stringValue>Arbeidsgivermøte</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeName__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>AG Møte</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeName__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>IA event</stringValue>
             </value>
         </filters>
         <object>Event</object>

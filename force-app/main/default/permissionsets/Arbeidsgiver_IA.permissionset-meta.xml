@@ -142,7 +142,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IACooperation__c.EndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IACooperation__c.IACase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IACooperation__c.IncludedArbeidsmiljo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IACooperation__c.IncludedPartssamarbeid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IACooperation__c.IncludedSykefravaersarbeid__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -158,6 +178,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IACooperation__c.PlanLastPublished__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IACooperation__c.StartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

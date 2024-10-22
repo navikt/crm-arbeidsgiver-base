@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
-        <article>None</article>
+        <article>Definite</article>
         <plural>false</plural>
-        <value></value>
+        <value>IA-Undertemaet</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value></value>
-    </caseValues>
-    <caseValues>
-        <article>Definite</article>
-        <plural>false</plural>
-        <value></value>
+        <value>IA-Undertema</value>
     </caseValues>
     <caseValues>
         <article>None</article>
+        <plural>false</plural>
+        <value>IA-Undertema</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
         <plural>true</plural>
-        <value></value>
+        <value>IA-Undertemaene</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value></value>
+        <value>IA-Undertemaer</value>
     </caseValues>
     <caseValues>
-        <article>Definite</article>
+        <article>None</article>
         <plural>true</plural>
-        <value></value>
+        <value>IA-Undertemaer</value>
     </caseValues>
-    <gender></gender>
+    <gender>Neuter</gender>
     <layouts>
         <layout>IA Subtheme Layout</layout>
         <sections>
@@ -38,5 +38,29 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel></nameFieldLabel>
+    <nameFieldLabel>Undertema</nameFieldLabel>
+    <webLinks>
+        <label></label>
+        <name>TAG_NewMeetingArbeidsmiljo</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>TAG_NewMeetingPartssamarbeid</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>TAG_NewMeetingSykefraersarbeid</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>TAG_NewTaskArbeidsmiljo</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>TAG_NewTaskOnCooperation</name>
+    </webLinks>
+    <webLinks>
+        <label></label>
+        <name>TAG_NewTaskSykefravaersarbeid</name>
+    </webLinks>
 </CustomObjectTranslation>
