@@ -4,29 +4,13 @@
     <assignments>
         <name>counts_kafka_messages</name>
         <label>counts kafka messages</label>
-        <locationX>264</locationX>
-        <locationY>890</locationY>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>counter</assignToReference>
-            <operator>Add</operator>
+            <operator>AssignCount</operator>
             <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Setter_status_til_pending</name>
-        <label>Setter status til pending</label>
-        <locationX>264</locationX>
-        <locationY>674</locationY>
-        <assignmentItems>
-            <assignToReference>Endrer_status_fra_error_til_pending.CRM_Status__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Pending</stringValue>
+                <elementReference>Kafka_meldinger_med_status_error</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -34,47 +18,33 @@
         </connector>
     </assignments>
     <decisions>
-        <name>Is_createdBy_PO_Arbeidsgiver_Integrasjonsbruker</name>
-        <label>Is createdBy PO Arbeidsgiver Integrasjonsbruker ?</label>
-        <locationX>396</locationX>
-        <locationY>566</locationY>
+        <name>Verify_PO_Arbeidsgiver_User_was_found</name>
+        <label>Verify PO Arbeidsgiver User was found</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
         <defaultConnector>
-            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
+            <targetReference>Display_error</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Yes</name>
+            <name>Found_user</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker.Name</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue>PO Arbeidsgiver Integrasjonsbruker</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Setter_status_til_pending</targetReference>
+                <targetReference>Kafka_meldinger_med_status_error</targetReference>
             </connector>
-            <label>Yes</label>
+            <label>Found user</label>
         </rules>
     </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Rerun Kafka Messages</label>
-    <loops>
-        <name>Endrer_status_fra_error_til_pending</name>
-        <label>Endrer status fra error til pending</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
-        <collectionReference>Kafka_meldinger_med_status_error</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Is_createdBy_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>display_message_after_run_kafka_messages</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -98,11 +68,11 @@
         <description>Sjekker om kafkameldingen har status &apos;error&apos; og om enten topic er ia-leveranse eller ia-sak</description>
         <name>Kafka_meldinger_med_status_error</name>
         <label>Kafka meldinger med status error</label>
-        <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
+            <targetReference>counts_kafka_messages</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -112,6 +82,13 @@
                 <stringValue>Error</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>CreatedById</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker.Id</elementReference>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>KafkaMessage__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -119,11 +96,11 @@
     <recordLookups>
         <name>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</name>
         <label>User record med Name PO Arbeidsgiver Integrasjonsbruker</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationX>314</locationX>
+        <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Endrer_status_fra_error_til_pending</targetReference>
+            <targetReference>Verify_PO_Arbeidsgiver_User_was_found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -140,18 +117,74 @@
     <recordUpdates>
         <name>Oppdaterer_record_med_ny_status</name>
         <label>Oppdaterer record med ny status</label>
-        <locationX>264</locationX>
-        <locationY>782</locationY>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
         <connector>
-            <targetReference>counts_kafka_messages</targetReference>
+            <targetReference>display_message_after_run_kafka_messages</targetReference>
         </connector>
-        <inputReference>Endrer_status_fra_error_til_pending</inputReference>
+        <faultConnector>
+            <targetReference>Display_fault_path_message</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CRM_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedById</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CRM_Status__c</field>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </inputAssignments>
+        <object>KafkaMessage__c</object>
     </recordUpdates>
+    <screens>
+        <name>Display_error</name>
+        <label>Display error</label>
+        <locationX>578</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_user_not_found</name>
+            <fieldText>&lt;p&gt;Fant ikke bruker for PO Arbeidsgiver&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Display_fault_path_message</name>
+        <label>Display fault path message</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Error_text</name>
+            <fieldText>&lt;p&gt;Feil ved oppdatering av Kafka Messages: {!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <screens>
         <name>display_message_after_run_kafka_messages</name>
         <label>display message after run kafka messages</label>
-        <locationX>176</locationX>
-        <locationY>1166</locationY>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -166,13 +199,13 @@
     <screens>
         <name>kjor_feilede_Kafka_meldinger</name>
         <label>Kjør feilede Kafka-meldinger</label>
-        <locationX>176</locationX>
+        <locationX>314</locationX>
         <locationY>134</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Kafka_meldinger_med_status_error</targetReference>
+            <targetReference>User_record_med_Name_PO_Arbeidsgiver_Integrasjonsbruker</targetReference>
         </connector>
         <fields>
             <name>tag_failed_msg_text</name>
@@ -184,7 +217,7 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>kjor_feilede_Kafka_meldinger</targetReference>
