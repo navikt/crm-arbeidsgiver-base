@@ -17,7 +17,8 @@
     "LiveAgent",
     "LightningServiceConsole",
     "ContactsToMultipleAccounts",
-    "FIELDSERVICE:1"
+    "FIELDSERVICE:1",
+    "LiveMessage"
   ],
   "country": "NO",
   "language": "en_US",
@@ -66,6 +67,9 @@
       "isGeoCodeSyncEnabled": false,
       "isLocationHistoryEnabled": false,
       "fieldServiceNotificationsOrgPref": true
+    },
+    "liveMessageSettings": {
+        "enableLiveMessage": true
     }
   }
 }
