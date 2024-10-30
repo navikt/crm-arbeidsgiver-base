@@ -74,6 +74,46 @@
             <field>EndDate__c</field>
             <table>IACooperation__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IACase__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IncludedArbeidsmiljo__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IncludedSykefravaersarbeid__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CooperationId__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IncludedPartssamarbeid__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PlanId__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PlanLastModified__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PlanLastPublished__c</field>
+            <table>IACooperation__c</table>
+        </columns>
         <masterLabel>IA Cooperations</masterLabel>
     </sections>
     <sections>
@@ -110,6 +150,31 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastActivityDate</field>
+            <table>IACooperation__c.IA_Themes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ThemeId__c</field>
+            <table>IACooperation__c.IA_Themes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IACooperation__c</field>
+            <table>IACooperation__c.IA_Themes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsPlanned__c</field>
+            <table>IACooperation__c.IA_Themes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Order__c</field>
+            <table>IACooperation__c.IA_Themes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ThemeName__c</field>
             <table>IACooperation__c.IA_Themes__r</table>
         </columns>
         <masterLabel>IA Themes</masterLabel>
@@ -153,6 +218,51 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IA_ThemeName__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>StartDate__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EndDate__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IATheme__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsPlanned__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastActivityDate</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Goal__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Order__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Status__c</field>
+            <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>SubthemeId__c</field>
             <table>IACooperation__c.IA_Themes__r.IA_Subthemes__r</table>
         </columns>
         <masterLabel>IA Subthemes</masterLabel>
