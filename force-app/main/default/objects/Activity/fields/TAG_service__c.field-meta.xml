@@ -85,6 +85,11 @@
                 <default>false</default>
                 <label>Arbeidsmiljø</label>
             </value>
+            <value>
+                <fullName>IA-Sak</fullName>
+                <default>false</default>
+                <label>IA-Sak</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
@@ -114,22 +119,6 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
-            <valueName>Helse i arbeid</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
-            <valueName>Redusere sykefravær</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
-            <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
-            <valueName>Utvikle partssamarbeid</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
             <valueName>Partssamarbeid</valueName>
         </valueSettings>
         <valueSettings>
@@ -139,6 +128,10 @@
         <valueSettings>
             <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
             <valueName>Arbeidsmiljø</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
+            <valueName>IA-Sak</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Nedbemanne</controllingFieldValue>
