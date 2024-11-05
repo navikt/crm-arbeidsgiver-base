@@ -75,7 +75,7 @@
                 <field>Type</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -102,7 +102,7 @@
                 <field>ActivityDate</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -148,9 +148,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <quickActionList>
@@ -159,6 +159,9 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Task.Defer</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Task.Change_owner</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Task.UpdateStatus</quickActionName>
