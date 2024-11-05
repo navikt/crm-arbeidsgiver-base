@@ -160,6 +160,9 @@
             <quickActionName>Task.Defer</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
+            <quickActionName>Task.Change_owner</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
             <quickActionName>Task.UpdateStatus</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -186,7 +189,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0E000000Ty02</masterLabel>
+        <masterLabel>00hKF0000040q8N</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
