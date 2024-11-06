@@ -63,6 +63,11 @@
                 <default>false</default>
                 <label>HelseIArbeid</label>
             </value>
+            <value>
+                <fullName>IA-Samarbeid</fullName>
+                <default>false</default>
+                <label>IA-Samarbeid</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Partssamarbeid</controllingFieldValue>
