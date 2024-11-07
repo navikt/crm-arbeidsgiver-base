@@ -54,6 +54,9 @@
                         <valueListItems>
                             <value>IA_ThemeName__c|EQUALS|Partssamarbeid</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Status__c|NOT_EQUAL|[]</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -135,6 +138,9 @@
                         <valueListItems>
                             <value>IA_ThemeName__c|EQUALS|Sykefraværsarbeid</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Status__c|NOT_EQUAL|[]</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -215,6 +221,9 @@
                     <valueList>
                         <valueListItems>
                             <value>IA_ThemeName__c|EQUALS|Arbeidsmiljø</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Status__c|NOT_EQUAL|[]</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
