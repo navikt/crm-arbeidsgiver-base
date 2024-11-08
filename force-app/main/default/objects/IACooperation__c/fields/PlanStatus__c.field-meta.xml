@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Status__c</fullName>
+    <fullName>PlanStatus__c</fullName>
     <externalId>false</externalId>
-    <label>Status</label>
+    <label>Plan Status</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -11,24 +11,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>PLANLAGT</fullName>
+                <fullName>AKTIV</fullName>
                 <default>false</default>
-                <label>PLANLAGT</label>
-            </value>
-            <value>
-                <fullName>PÅGÅR</fullName>
-                <default>false</default>
-                <label>PÅGÅR</label>
-            </value>
-            <value>
-                <fullName>FULLFØRT</fullName>
-                <default>false</default>
-                <label>FULLFØRT</label>
-            </value>
-            <value>
-                <fullName>AVBRUTT</fullName>
-                <default>false</default>
-                <label>AVBRUTT</label>
+                <label>AKTIV</label>
             </value>
             <value>
                 <fullName>SLETTET</fullName>
