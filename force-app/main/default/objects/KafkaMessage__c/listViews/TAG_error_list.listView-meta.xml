@@ -3,6 +3,8 @@
     <fullName>TAG_error_list</fullName>
     <booleanFilter>1 AND 2</booleanFilter>
     <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CRM_Topic__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>CRM_Status__c</field>

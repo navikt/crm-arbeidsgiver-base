@@ -6,7 +6,6 @@
     <required>false</required>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -23,6 +22,11 @@
                 <fullName>Arbeidsmiljø</fullName>
                 <default>false</default>
                 <label>Arbeidsmiljø</label>
+            </value>
+            <value>
+                <fullName>IA-Samarbeid</fullName>
+                <default>false</default>
+                <label>IA-Samarbeid</label>
             </value>
         </valueSetDefinition>
     </valueSet>

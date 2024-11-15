@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>IA Cooperation Event</label>
+    <label>Event IPS AG</label>
     <protected>false</protected>
     <values>
         <field>AllowAutoOpen__c</field>
@@ -16,15 +16,15 @@
     </values>
     <values>
         <field>CreateableObject_Field1__c</field>
-        <value xsi:type="xsd:string">TAG_ActivityType__c</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Field2__c</field>
-        <value xsi:type="xsd:string">TAG_IsIAPriority__c</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Field3__c</field>
-        <value xsi:type="xsd:string">IATheme__c</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Field4__c</field>
@@ -36,7 +36,7 @@
     </values>
     <values>
         <field>CreateableObject_RecordType__c</field>
-        <value xsi:type="xsd:string">IA_event</value>
+        <value xsi:type="xsd:string">IPS_UO_Arbeidsgiver</value>
     </values>
     <values>
         <field>CreateableObject_TextEnglish__c</field>
@@ -48,15 +48,15 @@
     </values>
     <values>
         <field>CreateableObject_Value1__c</field>
-        <value xsi:type="xsd:string">Prioritert IA (Fia)</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Value2__c</field>
-        <value xsi:type="xsd:string">true</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Value3__c</field>
-        <value xsi:type="xsd:string">IA-Samarbeid</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Value4__c</field>
@@ -76,15 +76,15 @@
     </values>
     <values>
         <field>FilterableCheckbox__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Type</value>
     </values>
     <values>
         <field>FilterablePicklist1__c</field>
-        <value xsi:type="xsd:string">TAG_service__c</value>
+        <value xsi:type="xsd:string">TAG_ActivityType__c</value>
     </values>
     <values>
         <field>FilterablePicklist2__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">TAG_service__c</value>
     </values>
     <values>
         <field>SLDS_Dropdown_Icon__c</field>
@@ -120,7 +120,7 @@
     </values>
     <values>
         <field>SObjectTitle__c</field>
-        <value xsi:type="xsd:string">IAThemeServiceName__c</value>
+        <value xsi:type="xsd:string">Subject</value>
     </values>
     <values>
         <field>SObjectTypeField__c</field>
@@ -132,7 +132,7 @@
     </values>
     <values>
         <field>SubtitleFutureEnglish__c</field>
-        <value xsi:type="xsd:string">will have this meeting</value>
+        <value xsi:type="xsd:string">will have a meeting</value>
     </values>
     <values>
         <field>SubtitleFutureNorwegian__c</field>
