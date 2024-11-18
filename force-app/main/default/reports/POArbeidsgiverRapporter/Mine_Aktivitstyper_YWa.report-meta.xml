@@ -31,7 +31,7 @@
         <field>SUBJECT</field>
     </columns>
     <columns>
-        <field>Activity.RelatedToAccount__c</field>
+        <field>ACCOUNT.NAME</field>
     </columns>
     <description>Rapport som viser dine aktiviteter, gruppert etter uke og aktivitetstype</description>
     <filter>
