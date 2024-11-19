@@ -735,13 +735,11 @@
             <field>TAG_Public_Sector__c</field>
             <table>Account</table>
         </columns>
-
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
             <table>Account</table>
         </columns>
-
         <masterLabel>Accounts</masterLabel>
     </sections>
     <sections>
@@ -1048,6 +1046,51 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>TAG_service__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_NAV_Region__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_NAV_MarketRegion__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Ultimate_Sector_Code__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Industry_Code__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Industry__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Fia_Status__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Number_of_Employees__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_number_measure_participants__c</field>
+            <table>Account.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Partner_Status__c</field>
             <table>Account.Activities</table>
         </columns>
         <masterLabel>Activities</masterLabel>
