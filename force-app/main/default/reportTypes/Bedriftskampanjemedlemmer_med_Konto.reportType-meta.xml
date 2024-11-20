@@ -453,6 +453,51 @@
             <field>IASubtheme__c</field>
             <table>CustomCampaignMember__c.Activities</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_NAV_Region__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_NAV_MarketRegion__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Ultimate_Sector_Code__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Industry_Code__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Industry__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Fia_Status__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Number_of_Employees__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_number_measure_participants__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Account_Partner_Status__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
     <sections>
