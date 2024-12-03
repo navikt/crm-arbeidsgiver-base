@@ -169,6 +169,7 @@
     <pluralLabel>Custom Opportunities</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
+        <searchResultsAdditionalFields>TAG_Link__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TAG_OrganizationNameFromForm__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>InquiryCategory__c</searchResultsAdditionalFields>

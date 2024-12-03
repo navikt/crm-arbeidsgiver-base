@@ -2,9 +2,31 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
     <decisions>
+        <name>Is_Event_related_to_IACase</name>
+        <label>Is Event related to IACase?</label>
+        <locationX>446</locationX>
+        <locationY>1079</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_IA_Case</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_IA_Case_Number</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
-        <locationX>446</locationX>
+        <locationX>600</locationX>
         <locationY>863</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
@@ -33,7 +55,7 @@
     <decisions>
         <name>Is_IA_event</name>
         <label>Is IA event?</label>
-        <locationX>776</locationX>
+        <locationX>908</locationX>
         <locationY>431</locationY>
         <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
         <rules>
@@ -55,7 +77,7 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
-        <locationX>446</locationX>
+        <locationX>534</locationX>
         <locationY>755</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -119,11 +141,11 @@
     <recordLookups>
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>971</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Set_IA_Case_Number</targetReference>
+            <targetReference>Is_Event_related_to_IACase</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -182,7 +204,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>446</locationX>
+        <locationX>534</locationX>
         <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -252,7 +274,7 @@
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
-        <locationY>1079</locationY>
+        <locationY>1187</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -270,7 +292,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>446</locationX>
+        <locationX>534</locationX>
         <locationY>647</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -294,7 +316,7 @@
     <recordUpdates>
         <name>Update_fields</name>
         <label>Update fields</label>
-        <locationX>776</locationX>
+        <locationX>908</locationX>
         <locationY>323</locationY>
         <connector>
             <targetReference>Is_IA_event</targetReference>
@@ -350,7 +372,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>650</locationX>
+        <locationX>782</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_fields</targetReference>
