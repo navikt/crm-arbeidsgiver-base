@@ -131,6 +131,16 @@
             <field>Owner</field>
             <table>IACase__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_NAV_Market_Region__c</field>
+            <table>IACase__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Account_Sector_Code_Ultimate_Parent__c</field>
+            <table>IACase__c</table>
+        </columns>
         <masterLabel>IA Cases</masterLabel>
     </sections>
 </ReportType>
