@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Runs a screen flow that displays buttons to register activities</description>
     <flowDefinition>TAG_New_Activity</flowDefinition>
     <label>New Activity</label>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
