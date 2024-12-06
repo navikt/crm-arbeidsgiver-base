@@ -6,6 +6,9 @@
         <label>Is Event related to IACase?</label>
         <locationX>446</locationX>
         <locationY>1079</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -28,6 +31,9 @@
         <label>Is IA Case Number blank?</label>
         <locationX>600</locationX>
         <locationY>863</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -55,8 +61,11 @@
     <decisions>
         <name>Is_IA_event</name>
         <label>Is IA event?</label>
-        <locationX>908</locationX>
+        <locationX>798</locationX>
         <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
         <rules>
             <name>Yes_is_IA_event</name>
@@ -75,10 +84,38 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_updated_or_created</name>
+        <label>Is updated or created?</label>
+        <locationX>798</locationX>
+        <locationY>1631</locationY>
+        <defaultConnector>
+            <targetReference>PubSub_Event_Record_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Updated</defaultConnectorLabel>
+        <rules>
+            <name>Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>PubSub_Event_Record_Created</targetReference>
+            </connector>
+            <label>Created</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
-        <locationX>534</locationX>
+        <locationX>490</locationX>
         <locationY>755</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Event</name>
@@ -113,9 +150,39 @@
     </decisions>
     <environments>Default</environments>
     <formulas>
+        <name>endret_dato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.LastModifiedDate})</expression>
+    </formulas>
+    <formulas>
         <name>GetDateValueOfStartDateTime</name>
         <dataType>Date</dataType>
         <expression>DATEVALUE({!StartDateTimeVariable})</expression>
+    </formulas>
+    <formulas>
+        <name>moete_dato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.ActivityDate})</expression>
+    </formulas>
+    <formulas>
+        <name>opprettet_dato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.CreatedDate})</expression>
+    </formulas>
+    <formulas>
+        <name>paaminnelse_dato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.ReminderDateTime})</expression>
+    </formulas>
+    <formulas>
+        <name>slutt_tid_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.EndDateTime})</expression>
+    </formulas>
+    <formulas>
+        <name>start_tid_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.StartDateTime})</expression>
     </formulas>
     <interviewLabel>TAG Event {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Event</label>
@@ -138,6 +205,58 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>PubSub_Event_Record_Created</name>
+        <label>PubSub Event Record Created</label>
+        <locationX>666</locationX>
+        <locationY>1739</locationY>
+        <inputAssignments>
+            <field>EventMessage__c</field>
+            <value>
+                <elementReference>StoreEventValuesForPubSub</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventObject__c</field>
+            <value>
+                <stringValue>Event</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventType__c</field>
+            <value>
+                <stringValue>Created</stringValue>
+            </value>
+        </inputAssignments>
+        <object>PubSub_Event__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>PubSub_Event_Record_Updated</name>
+        <label>PubSub Event Record Updated</label>
+        <locationX>930</locationX>
+        <locationY>1739</locationY>
+        <inputAssignments>
+            <field>EventMessage__c</field>
+            <value>
+                <elementReference>StoreEventValuesForPubSub</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventObject__c</field>
+            <value>
+                <stringValue>Event</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventType__c</field>
+            <value>
+                <stringValue>Updated</stringValue>
+            </value>
+        </inputAssignments>
+        <object>PubSub_Event__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
@@ -204,7 +323,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>534</locationX>
+        <locationX>490</locationX>
         <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -238,6 +357,9 @@
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
         <locationY>1079</locationY>
+        <connector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </connector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -275,6 +397,9 @@
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
         <locationY>1187</locationY>
+        <connector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </connector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -292,7 +417,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>534</locationX>
+        <locationX>490</locationX>
         <locationY>647</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -316,7 +441,7 @@
     <recordUpdates>
         <name>Update_fields</name>
         <label>Update fields</label>
-        <locationX>908</locationX>
+        <locationX>798</locationX>
         <locationY>323</locationY>
         <connector>
             <targetReference>Is_IA_event</targetReference>
@@ -372,7 +497,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>782</locationX>
+        <locationX>672</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_fields</targetReference>
@@ -404,6 +529,11 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>StoreEventValuesForPubSub</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;{!$Record.EventSubtype}&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
+    </textTemplates>
     <variables>
         <name>StartDateTimeVariable</name>
         <dataType>DateTime</dataType>
