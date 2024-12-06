@@ -35,7 +35,7 @@ export default class GenericLogActivities extends NavigationMixin(LightningEleme
 
     createRecord(event) {
         const row = this.sObjects[event.target.dataset.index];
-        const override = this.sObjects[event.target.dataset.index].CreateableObject_NoOverride__c == false ? '0' : '1'; // == false to fallback to true if null
+        const override = this.sObjects[event.target.dataset.index].CreateableObject_NoOverride__c === false ? '0' : '1'; // == false to fallback to true if null
 
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
