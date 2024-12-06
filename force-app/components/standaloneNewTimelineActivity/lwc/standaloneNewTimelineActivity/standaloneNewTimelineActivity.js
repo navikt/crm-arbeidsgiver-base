@@ -11,11 +11,9 @@ export default class GenericLogActivities extends NavigationMixin(LightningEleme
     @track sObjects;
 
     @api get recordId() {
-        console.log('recordIdProperty: ' + this.recordIdProperty);
         return this.recordIdProperty;
     }
     @api get configId() {
-        console.log('configIdProperty: ' + this.configIdProperty);
         return this.configIdProperty;
     }
 

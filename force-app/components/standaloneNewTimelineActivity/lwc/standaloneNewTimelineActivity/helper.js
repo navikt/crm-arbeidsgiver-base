@@ -1,4 +1,23 @@
-export { getFieldValues };
+const isInvalid = (input) => {
+    let checkNull = input === null;
+    let checkUndefined = input === undefined;
+    let checkStringNull = input === 'null';
+    let checkListInvalid = false;
+
+    if (!(checkNull || checkUndefined || checkStringNull)) {
+        checkListInvalid = input.includes(';');
+    }
+    return checkNull || checkUndefined || checkStringNull || checkListInvalid;
+};
+
+const getKeyAndValueIfValid = (key, value) => {
+    let keyInvalid = isInvalid(key);
+    let valueInvalid = isInvalid(value);
+    if (!(keyInvalid || valueInvalid)) {
+        return key + '=' + value;
+    }
+    return null;
+};
 
 const getFieldValues = (row, recordId) => {
     let fields = new Array();
@@ -62,29 +81,8 @@ const getFieldValues = (row, recordId) => {
         fieldsCombined += fields[i] + ',';
     }
 
-    var d = new Date();
+    const d = new Date();
     fieldsCombined = fieldsCombined.replace('{today}', d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate());
     return fieldsCombined.substring(0, fieldsCombined.length - 1);
 };
-
-const getKeyAndValueIfValid = (key, value) => {
-    let keyInvalid = isInvalid(key);
-    let valueInvalid = isInvalid(value);
-    if (!(keyInvalid || valueInvalid)) {
-        return key + '=' + value;
-    } else {
-        return null;
-    }
-};
-
-const isInvalid = (input) => {
-    let checkNull = input === null;
-    let checkUndefined = input === undefined;
-    let checkStringNull = input === 'null';
-    let checkListInvalid = false;
-
-    if (!(checkNull || checkUndefined || checkStringNull)) {
-        checkListInvalid = input.includes(';');
-    }
-    return checkNull || checkUndefined || checkStringNull || checkListInvalid;
-};
+export { getFieldValues };
