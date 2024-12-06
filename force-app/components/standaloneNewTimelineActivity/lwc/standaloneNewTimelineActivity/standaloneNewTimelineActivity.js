@@ -1,9 +1,7 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import formFactorPropertyName from '@salesforce/client/formFactor';
 import * as helper from './helper';
 import getTimelineObjects from '@salesforce/apex/Timeline_Controller.getTimelineObjects';
-import newObj from '@salesforce/label/c.Timeline_New';
 export default class GenericLogActivities extends NavigationMixin(LightningElement) {
     @api configIdProperty;
     showCreateRecords = true;
@@ -34,7 +32,6 @@ export default class GenericLogActivities extends NavigationMixin(LightningEleme
             }
         } else if (result.error) {
             console.log('error: ' + JSON.stringify(result.error));
-            //this.error = true;
         }
     }
 
