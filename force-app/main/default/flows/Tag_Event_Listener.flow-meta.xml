@@ -72,7 +72,7 @@
     <status>Obsolete</status>
     <textTemplates>
         <name>FetchValues</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>&lt;p&gt;{&quot;Uuid&quot;:&quot;{!$Record.EventUuid}&quot;,&amp;nbsp;&quot;ReplayId&quot;:&quot;{!$Record.ReplayId}&quot;, &quot;Date&quot;:&quot;{!$Record.CreatedDate}&quot;, &quot;EventType&quot;:&quot;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Record.EventType__c}&lt;/span&gt;&quot;, &quot;EventMessage&quot;:&quot;{!$Record.EventMessage__c}&quot;}&lt;/p&gt;</text>
     </textTemplates>
     <variables>

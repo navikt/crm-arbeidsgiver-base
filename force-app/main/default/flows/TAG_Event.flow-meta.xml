@@ -4,11 +4,8 @@
     <decisions>
         <name>Is_Event_related_to_IACase</name>
         <label>Is Event related to IACase?</label>
-        <locationX>446</locationX>
-        <locationY>1079</locationY>
-        <defaultConnector>
-            <targetReference>Is_updated_or_created</targetReference>
-        </defaultConnector>
+        <locationX>974</locationX>
+        <locationY>1187</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -29,11 +26,8 @@
     <decisions>
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
-        <locationX>600</locationX>
-        <locationY>863</locationY>
-        <defaultConnector>
-            <targetReference>Is_updated_or_created</targetReference>
-        </defaultConnector>
+        <locationX>1128</locationX>
+        <locationY>971</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -61,11 +55,8 @@
     <decisions>
         <name>Is_IA_event</name>
         <label>Is IA event?</label>
-        <locationX>798</locationX>
-        <locationY>431</locationY>
-        <defaultConnector>
-            <targetReference>Is_updated_or_created</targetReference>
-        </defaultConnector>
+        <locationX>1326</locationX>
+        <locationY>539</locationY>
         <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
         <rules>
             <name>Yes_is_IA_event</name>
@@ -86,8 +77,8 @@
     <decisions>
         <name>Is_updated_or_created</name>
         <label>Is updated or created?</label>
-        <locationX>798</locationX>
-        <locationY>1631</locationY>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
         <defaultConnector>
             <targetReference>PubSub_Event_Record_Updated</targetReference>
         </defaultConnector>
@@ -109,13 +100,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Subject_equals_pubsub</name>
+        <label>Subject equals pubsub?</label>
+        <locationX>754</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Update_fields</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not pubsub</defaultConnectorLabel>
+        <rules>
+            <name>Yes_pubsub</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subject</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>pubsub test</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_updated_or_created</targetReference>
+            </connector>
+            <label>Yes pubsub</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
-        <locationX>490</locationX>
-        <locationY>755</locationY>
-        <defaultConnector>
-            <targetReference>Is_updated_or_created</targetReference>
-        </defaultConnector>
+        <locationX>1018</locationX>
+        <locationY>863</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Event</name>
@@ -208,8 +221,8 @@
     <recordCreates>
         <name>PubSub_Event_Record_Created</name>
         <label>PubSub Event Record Created</label>
-        <locationX>666</locationX>
-        <locationY>1739</locationY>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
         <inputAssignments>
             <field>EventMessage__c</field>
             <value>
@@ -234,8 +247,8 @@
     <recordCreates>
         <name>PubSub_Event_Record_Updated</name>
         <label>PubSub Event Record Updated</label>
-        <locationX>930</locationX>
-        <locationY>1739</locationY>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
         <inputAssignments>
             <field>EventMessage__c</field>
             <value>
@@ -260,8 +273,8 @@
     <recordLookups>
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
-        <locationX>446</locationX>
-        <locationY>971</locationY>
+        <locationX>974</locationX>
+        <locationY>1079</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Event_related_to_IACase</targetReference>
@@ -281,8 +294,8 @@
     <recordLookups>
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
-        <locationX>50</locationX>
-        <locationY>971</locationY>
+        <locationX>578</locationX>
+        <locationY>1079</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -302,8 +315,8 @@
     <recordLookups>
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
-        <locationX>50</locationX>
-        <locationY>863</locationY>
+        <locationX>578</locationX>
+        <locationY>971</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -323,8 +336,8 @@
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>490</locationX>
-        <locationY>539</locationY>
+        <locationX>1018</locationX>
+        <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -355,11 +368,8 @@
     <recordUpdates>
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
-        <locationX>50</locationX>
-        <locationY>1079</locationY>
-        <connector>
-            <targetReference>Is_updated_or_created</targetReference>
-        </connector>
+        <locationX>578</locationX>
+        <locationY>1187</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -395,11 +405,8 @@
     <recordUpdates>
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
-        <locationX>314</locationX>
-        <locationY>1187</locationY>
-        <connector>
-            <targetReference>Is_updated_or_created</targetReference>
-        </connector>
+        <locationX>842</locationX>
+        <locationY>1295</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -417,8 +424,8 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>490</locationX>
-        <locationY>647</locationY>
+        <locationX>1018</locationX>
+        <locationY>755</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
         </connector>
@@ -441,8 +448,8 @@
     <recordUpdates>
         <name>Update_fields</name>
         <label>Update fields</label>
-        <locationX>798</locationX>
-        <locationY>323</locationY>
+        <locationX>1326</locationX>
+        <locationY>431</locationY>
         <connector>
             <targetReference>Is_IA_event</targetReference>
         </connector>
@@ -497,10 +504,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>672</locationX>
+        <locationX>628</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_fields</targetReference>
+            <targetReference>Subject_equals_pubsub</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
