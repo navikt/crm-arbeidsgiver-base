@@ -6,6 +6,9 @@
         <label>Is IA Case Number blank?</label>
         <locationX>446</locationX>
         <locationY>1571</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -33,8 +36,11 @@
     <decisions>
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
-        <locationX>776</locationX>
+        <locationX>666</locationX>
         <locationY>1139</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
         <rules>
             <name>Yes_IA_priority</name>
@@ -62,7 +68,7 @@
     <decisions>
         <name>Is_Related_to_Account</name>
         <label>Is Related to Account?</label>
-        <locationX>776</locationX>
+        <locationX>666</locationX>
         <locationY>731</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
@@ -85,9 +91,34 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_updated_or_created</name>
+        <label>Is updated or created?</label>
+        <locationX>666</locationX>
+        <locationY>2147</locationY>
+        <defaultConnector>
+            <targetReference>PubSub_Event_Record_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Updated</defaultConnectorLabel>
+        <rules>
+            <name>Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>PubSub_Event_Record_Created</targetReference>
+            </connector>
+            <label>Created</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
-        <locationX>776</locationX>
+        <locationX>666</locationX>
         <locationY>431</locationY>
         <defaultConnector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -112,8 +143,11 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type</label>
-        <locationX>446</locationX>
+        <locationX>402</locationX>
         <locationY>1463</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Task</name>
@@ -148,9 +182,29 @@
     </decisions>
     <environments>Default</environments>
     <formulas>
+        <name>endret_dato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.LastModifiedDate})</expression>
+    </formulas>
+    <formulas>
+        <name>forfallsdato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.ActivityDate})</expression>
+    </formulas>
+    <formulas>
         <name>isActivityDateNull</name>
         <dataType>Boolean</dataType>
         <expression>ISNULL ( {!$Record.ActivityDate} ) &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!$Record.Status} ) &amp;&amp; ISPICKVAL({!$Record.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}  &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY())</expression>
+    </formulas>
+    <formulas>
+        <name>opprettet_dato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.CreatedDate})</expression>
+    </formulas>
+    <formulas>
+        <name>paaminnelse_dato_text</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.ReminderDateTime})</expression>
     </formulas>
     <formulas>
         <name>TodaysDate</name>
@@ -178,10 +232,62 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>PubSub_Event_Record_Created</name>
+        <label>PubSub Event Record Created</label>
+        <locationX>534</locationX>
+        <locationY>2255</locationY>
+        <inputAssignments>
+            <field>EventMessage__c</field>
+            <value>
+                <elementReference>StoreTaskValuesForPubSub</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventObject__c</field>
+            <value>
+                <stringValue>Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventType__c</field>
+            <value>
+                <stringValue>Created</stringValue>
+            </value>
+        </inputAssignments>
+        <object>PubSub_Event__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>PubSub_Event_Record_Updated</name>
+        <label>PubSub Event Record Updated</label>
+        <locationX>798</locationX>
+        <locationY>2255</locationY>
+        <inputAssignments>
+            <field>EventMessage__c</field>
+            <value>
+                <elementReference>StoreTaskValuesForPubSub</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventObject__c</field>
+            <value>
+                <stringValue>Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EventType__c</field>
+            <value>
+                <stringValue>Updated</stringValue>
+            </value>
+        </inputAssignments>
+        <object>PubSub_Event__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <name>Get_dummy_account_Id</name>
         <label>Get dummy account Id</label>
-        <locationX>644</locationX>
+        <locationX>534</locationX>
         <locationY>839</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -266,7 +372,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
-        <locationX>446</locationX>
+        <locationX>402</locationX>
         <locationY>1247</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -303,7 +409,7 @@
     <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
-        <locationX>644</locationX>
+        <locationX>534</locationX>
         <locationY>539</locationY>
         <connector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -321,6 +427,9 @@
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
         <locationY>1787</locationY>
+        <connector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </connector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -358,6 +467,9 @@
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
         <locationY>1787</locationY>
+        <connector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </connector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -375,7 +487,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>446</locationX>
+        <locationX>402</locationX>
         <locationY>1355</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -399,7 +511,7 @@
     <recordUpdates>
         <name>Update_AccountOrgType2_field</name>
         <label>Update AccountOrgType2 field</label>
-        <locationX>644</locationX>
+        <locationX>534</locationX>
         <locationY>947</locationY>
         <connector>
             <targetReference>Is_IA_priority</targetReference>
@@ -423,7 +535,7 @@
     <recordUpdates>
         <name>Update_fields</name>
         <label>Update fields</label>
-        <locationX>776</locationX>
+        <locationX>666</locationX>
         <locationY>323</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>
@@ -479,19 +591,12 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>650</locationX>
+        <locationX>540</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_fields</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Arbeidsgivermøte</stringValue>
-            </value>
-        </filters>
         <filters>
             <field>RecordTypeName__c</field>
             <operator>EqualTo</operator>
@@ -511,4 +616,9 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>StoreTaskValuesForPubSub</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;forfallsdato&quot;:&quot;{!forfallsdato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;prioritet&quot;:&quot;{!$Record.Priority}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;oppgaveundertype&quot;:&quot;{!$Record.TaskSubtype}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
+    </textTemplates>
 </Flow>
