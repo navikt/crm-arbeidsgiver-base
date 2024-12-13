@@ -114,6 +114,11 @@
             <field>PlanLastPublished__c</field>
             <table>IACooperation__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Type_IA_Cooperation__c</field>
+            <table>IACooperation__c</table>
+        </columns>
         <masterLabel>IA Cooperations</masterLabel>
     </sections>
     <sections>
