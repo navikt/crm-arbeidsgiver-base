@@ -67,6 +67,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IACase__c.Account_NAV_Market_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IACase__c.Account_NAV_Unit__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -128,6 +133,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IACase__c.NAVUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IACase__c.NAV_Account_Sector_Code_Ultimate_Parent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
