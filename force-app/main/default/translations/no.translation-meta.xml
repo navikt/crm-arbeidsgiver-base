@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowDefinitions>
+        <flows>
+            <label>Opprett aktivitet</label>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Konto</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value />
+                    </inputParameters>
+                    <name>AccountLookup</name>
+                </fields>
+                <fields>
+                    <fieldText>&lt;p&gt;Velg kontoen der aktiviteten skal registreres for å
+                        fortsette.&lt;/p&gt;</fieldText>
+                    <name>SelectAccountToContinue</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>recordIdProperty</name>
+                        <value />
+                    </inputParameters>
+                    <name>SelectActivity</name>
+                </fields>
+                <name>Select_Account_and_Activity_Type</name>
+            </screens>
+        </flows>
+        <fullName>TAG_New_Activity</fullName>
+    </flowDefinitions>
+</Translations>
