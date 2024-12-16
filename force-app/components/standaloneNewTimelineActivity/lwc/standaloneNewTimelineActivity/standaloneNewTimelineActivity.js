@@ -2,7 +2,7 @@ import { LightningElement, api, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import * as helper from './helper';
 import getTimelineObjects from '@salesforce/apex/Timeline_Controller.getTimelineObjects';
-export default class GenericLogActivities extends NavigationMixin(LightningElement) {
+export default class StandaloneNewTimelineActivity extends NavigationMixin(LightningElement) {
     @api configIdProperty;
     showCreateRecords = true;
     isGrouped = false;
@@ -46,7 +46,7 @@ export default class GenericLogActivities extends NavigationMixin(LightningEleme
             state: {
                 nooverride: override,
                 recordTypeId: row.Timeline_Child__r.CreateableObject_RecordType__c,
-                navigationLocation: 'RECORD_DETAIL',
+                navigationLocation: 'RELATED_LIST',
                 useRecordTypeCheck: 1,
                 defaultFieldValues: helper.getFieldValues(row, this.recordId),
                 backgroundContext: '/lightning/r/' + this.recordId + '/view'
