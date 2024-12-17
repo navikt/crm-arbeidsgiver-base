@@ -1,0 +1,27 @@
+<template>
+    <template for:each={sObjects} for:item="row" for:index="index">
+        <lightning-button
+            key={row.Id}
+            data-index={index}
+            if:false={row.IsMacro__c}
+            value={row.Timeline_Child__r.CreateableObject_TextEnglish__c}
+            label={row.Timeline_Child__r.CreateableObject_TextEnglish__c}
+            onclick={createRecord}
+            icon-name={row.Timeline_Child__r.SLDS_Dropdown_Icon__c}
+        >
+        </lightning-button>
+    </template>
+
+    <template if:true={containsMacros} for:each={sObjects} for:item="row" for:index="index">
+        <lightning-button
+            key={row.Id}
+            data-index={index}
+            if:true={row.IsMacro__c}
+            value={row.Timeline_Child__r.CreateableObject_TextEnglish__c}
+            label={row.Timeline_Child__r.CreateableObject_TextEnglish__c}
+            onclick={createRecord}
+            icon-name={row.Timeline_Child__r.SLDS_Dropdown_Icon__c}
+        >
+        </lightning-button>
+    </template>
+</template>

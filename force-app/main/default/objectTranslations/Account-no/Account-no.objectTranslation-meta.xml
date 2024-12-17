@@ -28,7 +28,13 @@
         <name>TAG_NewEvent</name>
     </quickActions>
     <quickActions>
-        <label><!-- Update Account --></label>
+        <aspect>Master</aspect>
+        <label>Ny aktivitet</label>
+        <name>TAG_New_Activity_Flow</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Account -->
+        </label>
         <name>UpdateAccount</name>
     </quickActions>
     <recordTypes>
