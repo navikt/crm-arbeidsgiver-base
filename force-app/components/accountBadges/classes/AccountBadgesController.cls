@@ -4,7 +4,7 @@ public with sharing class AccountBadgesController {
     public static List<Badge> createBadges(Id accountId) {
         List<Badge> accountBadges = new List<Badge>();
         try {
-            Account account = [SELECT TAG_Partner_Status__c, badgeTest1__c FROM Account WHERE Id = :accountId];
+            Account account = [SELECT TAG_Partner_Status__c FROM Account WHERE Id = :accountId];
             addParterStatusBadge(accountBadges, account);
         } catch (Exception e) {
             logger.logMessage(
