@@ -3,10 +3,12 @@
     <fullName>TAG_Proff_no__c</fullName>
     <externalId>false</externalId>
     <formula>if(
-CRM_AccountType__c!=&apos;J&apos; &amp;&amp;  Parent.TAG_NumberOfChildAccounts__c=1, 
-HYPERLINK(&quot;https://www.proff.no/bransjes%C3%B8k?q=&quot;+ INT_ParentOrganizationNumber__c ,&quot;Klikk for å se virksomheten på proff.no&quot;),
-HYPERLINK(&quot;https://www.proff.no/bransjes%C3%B8k?q=&quot;+ INT_OrganizationNumber__c ,&quot;Klikk for å se virksomheten på proff.no&quot;)
-)</formula>
+        CRM_AccountType__c!=&apos;J&apos; &amp;&amp; Parent.TAG_NumberOfChildAccounts__c=1,
+        HYPERLINK(&quot;https://www.proff.no/bransjes%C3%B8k?q=&quot;+
+        INT_ParentOrganizationNumber__c ,&quot;Se virksomheten&quot;),
+        HYPERLINK(&quot;https://www.proff.no/bransjes%C3%B8k?q=&quot;+ INT_OrganizationNumber__c
+        ,&quot;Se virksomheten&quot;)
+        )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Proff.no</label>
     <required>false</required>
