@@ -40,9 +40,53 @@ private class AccountBadgesControllerTest {
             );
             insert testAccounts;
 
-            TAG_TestDataFactory.createUserWithPermset('ARBEIDSGIVER USER', 'Arbeidsgiver_base');
-
-            TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
+            TAG_TestDataFactory.createUserWithPermset(
+                'ARBEIDSGIVER USER',
+                new List<String>{
+                    'Arbeidsgiver_arenaActivity',
+                    'Arbeidsgiver_base',
+                    'Arbeidsgiver_contract',
+                    'Arbeidsgiver_opportunity',
+                    'Arbeidsgiver_IA'
+                }
+            );
+            User user1 = [SELECT id FROM User WHERE LastName = 'Arbeidsgiver USER' LIMIT 1];
+            User user2 = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
+            //Create account share records
+            insert new List<AccountShare>{
+                (new AccountShare(
+                    AccountId = testAccounts[0].Id,
+                    UserOrGroupId = user1.id,
+                    AccountAccessLevel = 'Read',
+                    OpportunityAccessLevel = 'None',
+                    CaseAccessLevel = 'None',
+                    RowCause = Schema.AccountShare.RowCause.Manual
+                )),
+                (new AccountShare(
+                    AccountId = testAccounts[1].Id,
+                    UserOrGroupId = user1.id,
+                    AccountAccessLevel = 'Read',
+                    OpportunityAccessLevel = 'None',
+                    CaseAccessLevel = 'None',
+                    RowCause = Schema.AccountShare.RowCause.Manual
+                )),
+                (new AccountShare(
+                    AccountId = testAccounts[0].Id,
+                    UserOrGroupId = user2.id,
+                    AccountAccessLevel = 'Read',
+                    OpportunityAccessLevel = 'None',
+                    CaseAccessLevel = 'None',
+                    RowCause = Schema.AccountShare.RowCause.Manual
+                )),
+                (new AccountShare(
+                    AccountId = testAccounts[1].Id,
+                    UserOrGroupId = user2.id,
+                    AccountAccessLevel = 'Read',
+                    OpportunityAccessLevel = 'None',
+                    CaseAccessLevel = 'None',
+                    RowCause = Schema.AccountShare.RowCause.Manual
+                ))
+            };
         }
 
     }
