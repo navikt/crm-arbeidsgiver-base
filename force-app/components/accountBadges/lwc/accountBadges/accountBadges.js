@@ -4,7 +4,6 @@ import createBadges from '@salesforce/apex/AccountBadgesController.createBadges'
 export default class AccountBadges extends LightningElement {
     @api recordId; // Automatically populated in record context
     badges = [];
-    error;
     renderBadges = false; // Should be true if badges are returned, false if not
 
     // Wire service to fetch badges
@@ -18,11 +17,9 @@ export default class AccountBadges extends LightningElement {
         if (data) {
             this.badges = data;
             this.renderBadges = this.badges.length > 0; // Check if badges array is empty
-            this.error = null;
             console.log('Badges:', JSON.stringify(this.badges));
         } else if (error) {
             this.badges = [];
-            this.error = error;
             this.renderBadges = false; // No badges to render
             console.error('Error fetching badges:', error);
         }
