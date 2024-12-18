@@ -27,7 +27,7 @@ private class AccountBadgesControllerTest {
                 new Account(
                     Name = 'TestAccount0',
                     INT_OrganizationNumber__c = '9000000001',
-                    TAG_Partner_Status__c = 'Strategisk partner'
+                    TAG_Partner_Status__c = 'Strategisk Partner'
                 )
             );
             testAccounts.add(
@@ -39,7 +39,6 @@ private class AccountBadgesControllerTest {
             );
             insert testAccounts;
 
-            TAG_TestDataFactory.createUserWithPermset('ARBEIDSGIVER USER', 'Arbeidsgiver_base');
             TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
         }
 
@@ -50,16 +49,16 @@ private class AccountBadgesControllerTest {
         Account testAccount = [
             SELECT Id, TAG_Partner_Status__c
             FROM Account
-            WHERE TAG_Partner_Status__c = 'Strategisk partner'
+            WHERE TAG_Partner_Status__c = 'Strategisk Partner'
             LIMIT 1
         ];
-        User user = [SELECT id FROM User WHERE LastName = 'Arbeidsgiver USER' LIMIT 1];
+
         List<AccountBadgesController.Badge> accountBadges;
-        System.runAs(user) {
-            Test.startTest();
-            accountBadges = AccountBadgesController.createBadges(testAccount.Id);
-            Test.stopTest();
-        }
+
+        Test.startTest();
+        accountBadges = AccountBadgesController.createBadges(testAccount.Id);
+        Test.stopTest();
+
         Assert.isNotNull(accountBadges, 'Badges should be returned');
         Assert.isTrue(accountBadges.size() == 1, 'Badges should be returned');
         Assert.areEqual(
@@ -77,13 +76,13 @@ private class AccountBadgesControllerTest {
             WHERE TAG_Partner_Status__c = NULL
             LIMIT 1
         ];
-        User user = [SELECT id FROM User WHERE LastName = 'Arbeidsgiver USER' LIMIT 1];
+
         List<AccountBadgesController.Badge> accountBadges;
-        System.runAs(user) {
-            Test.startTest();
-            accountBadges = AccountBadgesController.createBadges(testAccount.Id);
-            Test.stopTest();
-        }
+
+        Test.startTest();
+        accountBadges = AccountBadgesController.createBadges(testAccount.Id);
+        Test.stopTest();
+
         Assert.isNotNull(accountBadges, 'Badges should be returned');
         Assert.isTrue(accountBadges.size() == 0, 'Badges should not have any items');
     }
@@ -93,7 +92,7 @@ private class AccountBadgesControllerTest {
         Account testAccount = [
             SELECT Id, TAG_Partner_Status__c
             FROM Account
-            WHERE TAG_Partner_Status__c = 'Strategisk partner'
+            WHERE TAG_Partner_Status__c = 'Strategisk Partner'
             LIMIT 1
         ];
         User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
