@@ -25,7 +25,7 @@ public with sharing class AccountBadgesController {
     private static void addParterStatusBadge(List<Badge> accountBadges, Account account) {
         if (AccessControlValidator.fieldIsAccessible('Account', 'TAG_Partner_Status__c')) {
             if (
-                account.TAG_Partner_Status__c == 'Strategisk partner' ||
+                account.TAG_Partner_Status__c == 'Strategisk Partner' ||
                 account.TAG_Partner_Status__c == 'Samarbeidspartner'
             ) {
                 accountBadges.add(new Badge(account.TAG_Partner_Status__c, 'Partner status'));
