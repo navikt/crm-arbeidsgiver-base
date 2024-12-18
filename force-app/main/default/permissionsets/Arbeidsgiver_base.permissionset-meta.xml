@@ -596,6 +596,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.INT_HasEmployees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.INT_IndustryCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
