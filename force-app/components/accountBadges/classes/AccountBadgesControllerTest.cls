@@ -20,6 +20,7 @@ private class AccountBadgesControllerTest {
             EmailEncodingKey = 'UTF-8',
             ProfileId = profile.Id
         );
+        insert thisUser;
 
         System.runAs(thisUser) {
             List<Account> testAccounts = new List<Account>();
