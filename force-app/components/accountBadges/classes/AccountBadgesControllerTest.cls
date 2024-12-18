@@ -2,7 +2,25 @@
 private class AccountBadgesControllerTest {
     @testSetup
     private static void setup() {
-        User thisUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
+        Profile profile = [
+            SELECT Id
+            FROM Profile
+            WHERE Name = 'System Administrator'
+            LIMIT 1
+        ];
+
+        User thisUser = new User(
+            LastName = 'user',
+            Email = 'user@nav.apextest',
+            Username = 'user@nav.apextest',
+            Alias = 'usr',
+            LanguageLocaleKey = 'no',
+            LocaleSidKey = 'no_NO',
+            TimeZoneSidKey = 'Europe/Paris',
+            EmailEncodingKey = 'UTF-8',
+            ProfileId = profile.Id
+        );
+
         System.runAs(thisUser) {
             List<Account> testAccounts = new List<Account>();
             testAccounts.add(
