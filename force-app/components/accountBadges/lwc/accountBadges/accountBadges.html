@@ -1,0 +1,16 @@
+<template>
+    <template if:true={renderBadges}>
+        <lightning-card>
+            <div class="account_badges_container slds-card__body slds-card__body_inner">
+                <template for:each={badges} for:item="badge">
+                    <div key={badge.label} class="slds-var-m-right_x-small slds-var-m-bottom_x-small account_badge">
+                        <lightning-badge label={badge.label} class="badge-item slds-text-title_bold"></lightning-badge>
+                        <lightning-helptext content={badge.helpText}></lightning-helptext>
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </template>
+
+    <template if:false={renderBadges}> </template>
+</template>
