@@ -33,7 +33,7 @@
     <decisions>
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
-        <locationX>1194</locationX>
+        <locationX>1304</locationX>
         <locationY>1247</locationY>
         <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
         <rules>
@@ -62,7 +62,7 @@
     <decisions>
         <name>Is_Related_to_Account</name>
         <label>Is Related to Account?</label>
-        <locationX>1194</locationX>
+        <locationX>1304</locationX>
         <locationY>839</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
@@ -112,7 +112,7 @@
     <decisions>
         <name>Subject_equals_pubsub</name>
         <label>Subject equals pubsub?</label>
-        <locationX>688</locationX>
+        <locationX>743</locationX>
         <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Update_fields</targetReference>
@@ -137,7 +137,7 @@
     <decisions>
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
-        <locationX>1194</locationX>
+        <locationX>1304</locationX>
         <locationY>539</locationY>
         <defaultConnector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -162,7 +162,7 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type</label>
-        <locationX>930</locationX>
+        <locationX>974</locationX>
         <locationY>1571</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -256,7 +256,7 @@
         <inputAssignments>
             <field>EventMessage__c</field>
             <value>
-                <elementReference>StoreTaskValuesForPubSub</elementReference>
+                <elementReference>StoreTaskValues</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -271,7 +271,7 @@
                 <stringValue>Created</stringValue>
             </value>
         </inputAssignments>
-        <object>PubSub_Event__e</object>
+        <object>EmployerActivityEvent__e</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
@@ -282,7 +282,7 @@
         <inputAssignments>
             <field>EventMessage__c</field>
             <value>
-                <elementReference>StoreTaskValuesForPubSub</elementReference>
+                <elementReference>StoreTaskValues</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -297,13 +297,13 @@
                 <stringValue>Updated</stringValue>
             </value>
         </inputAssignments>
-        <object>PubSub_Event__e</object>
+        <object>EmployerActivityEvent__e</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
         <name>Get_dummy_account_Id</name>
         <label>Get dummy account Id</label>
-        <locationX>1062</locationX>
+        <locationX>1172</locationX>
         <locationY>947</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -388,7 +388,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
-        <locationX>930</locationX>
+        <locationX>974</locationX>
         <locationY>1355</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -425,7 +425,7 @@
     <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
-        <locationX>1062</locationX>
+        <locationX>1172</locationX>
         <locationY>647</locationY>
         <connector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -497,7 +497,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>930</locationX>
+        <locationX>974</locationX>
         <locationY>1463</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -521,7 +521,7 @@
     <recordUpdates>
         <name>Update_AccountOrgType2_field</name>
         <label>Update AccountOrgType2 field</label>
-        <locationX>1062</locationX>
+        <locationX>1172</locationX>
         <locationY>1055</locationY>
         <connector>
             <targetReference>Is_IA_priority</targetReference>
@@ -545,7 +545,7 @@
     <recordUpdates>
         <name>Update_fields</name>
         <label>Update fields</label>
-        <locationX>1194</locationX>
+        <locationX>1304</locationX>
         <locationY>431</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>
@@ -601,7 +601,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>562</locationX>
+        <locationX>617</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Subject_equals_pubsub</targetReference>
@@ -626,6 +626,11 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>StoreTaskValues</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;forfallsdato&quot;:&quot;{!forfallsdato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;prioritet&quot;:&quot;{!$Record.Priority}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;oppgaveundertype&quot;:&quot;{!$Record.TaskSubtype}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
+    </textTemplates>
     <textTemplates>
         <name>StoreTaskValuesForPubSub</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>

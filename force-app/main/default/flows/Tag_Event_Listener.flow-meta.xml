@@ -66,14 +66,14 @@
         <connector>
             <targetReference>Create_Application_Log_Action_1</targetReference>
         </connector>
-        <object>PubSub_Event__e</object>
+        <object>EmployerActivityEvent__e</object>
         <triggerType>PlatformEvent</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Draft</status>
     <textTemplates>
         <name>FetchValues</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>&lt;p&gt;{&quot;Uuid&quot;:&quot;{!$Record.EventUuid}&quot;,&amp;nbsp;&quot;ReplayId&quot;:&quot;{!$Record.ReplayId}&quot;, &quot;Date&quot;:&quot;{!$Record.CreatedDate}&quot;, &quot;EventType&quot;:&quot;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Record.EventType__c}&lt;/span&gt;&quot;, &quot;EventMessage&quot;:&quot;{!$Record.EventMessage__c}&quot;}&lt;/p&gt;</text>
+        <text>{&quot;Uuid&quot;:&quot;{!$Record.EventUuid}&quot;, &quot;ReplayId&quot;:&quot;{!$Record.ReplayId}&quot;, &quot;Date&quot;:&quot;{!$Record.CreatedDate}&quot;, &quot;EventType&quot;:&quot;{!$Record.EventType__c}&quot;, &quot;EventObject&quot;:&quot;{!$Record.EventObject__c}&quot;, &quot;EventMessage&quot;:&quot;{!$Record.EventMessage__c}&quot;}</text>
     </textTemplates>
     <variables>
         <name>GetFields</name>
