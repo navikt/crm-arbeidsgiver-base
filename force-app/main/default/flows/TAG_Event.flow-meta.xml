@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
+    <assignments>
+        <name>Store_event_date</name>
+        <label>Store event date</label>
+        <locationX>1898</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>StartDateTimeVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.StartDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_latest_event_date_on_account</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Is_Event_related_to_IACase</name>
         <label>Is Event related to IACase?</label>
@@ -26,7 +42,7 @@
     <decisions>
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
-        <locationX>1128</locationX>
+        <locationX>1172</locationX>
         <locationY>971</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
@@ -55,7 +71,7 @@
     <decisions>
         <name>Is_IA_event</name>
         <label>Is IA event?</label>
-        <locationX>1326</locationX>
+        <locationX>1634</locationX>
         <locationY>539</locationY>
         <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
         <rules>
@@ -72,6 +88,28 @@
                 <targetReference>Get_latest_IA_priority_event</targetReference>
             </connector>
             <label>Yes is IA event</label>
+        </rules>
+        <rules>
+            <name>Is_IPS_event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Arbeidsgivermøte</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StartDateTime</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>$Record.Account.TAG_LastEventDate__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_event_date</targetReference>
+            </connector>
+            <label>Is IPS event</label>
         </rules>
     </decisions>
     <decisions>
@@ -102,7 +140,7 @@
     <decisions>
         <name>Subject_equals_pubsub</name>
         <label>Subject equals pubsub?</label>
-        <locationX>754</locationX>
+        <locationX>908</locationX>
         <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Update_fields</targetReference>
@@ -127,7 +165,7 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
-        <locationX>1018</locationX>
+        <locationX>1106</locationX>
         <locationY>863</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -226,7 +264,7 @@
         <inputAssignments>
             <field>EventMessage__c</field>
             <value>
-                <elementReference>StoreEventValuesForPubSub</elementReference>
+                <elementReference>StoreEventValues</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -241,7 +279,7 @@
                 <stringValue>Created</stringValue>
             </value>
         </inputAssignments>
-        <object>PubSub_Event__e</object>
+        <object>EmployerActivityEvent__e</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
@@ -252,7 +290,7 @@
         <inputAssignments>
             <field>EventMessage__c</field>
             <value>
-                <elementReference>StoreEventValuesForPubSub</elementReference>
+                <elementReference>StoreEventValues</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -267,7 +305,7 @@
                 <stringValue>Updated</stringValue>
             </value>
         </inputAssignments>
-        <object>PubSub_Event__e</object>
+        <object>EmployerActivityEvent__e</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
@@ -336,7 +374,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>1018</locationX>
+        <locationX>1106</locationX>
         <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -424,7 +462,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>1018</locationX>
+        <locationX>1106</locationX>
         <locationY>755</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -448,7 +486,7 @@
     <recordUpdates>
         <name>Update_fields</name>
         <label>Update fields</label>
-        <locationX>1326</locationX>
+        <locationX>1634</locationX>
         <locationY>431</locationY>
         <connector>
             <targetReference>Is_IA_event</targetReference>
@@ -503,8 +541,29 @@
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_latest_event_date_on_account</name>
+        <label>Update latest event date on account</label>
+        <locationX>1898</locationX>
+        <locationY>755</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.RelatedToAccount__r.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>TAG_LastEventDate__c</field>
+            <value>
+                <elementReference>StartDateTimeVariable</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
     <start>
-        <locationX>628</locationX>
+        <locationX>782</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Subject_equals_pubsub</targetReference>
@@ -536,6 +595,11 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>StoreEventValues</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;, &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;{!$Record.EventSubtype}&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
+    </textTemplates>
     <textTemplates>
         <name>StoreEventValuesForPubSub</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
