@@ -6,9 +6,11 @@
        TAG_LastTaskDate__c &gt; Today() &amp;&amp;  NOT(ISBLANK(TAG_LastTaskDate__c)),
 				   TAG_LastEventDate__c &gt; Today() &amp;&amp;  NOT(ISBLANK(TAG_LastEventDate__c))),
 			        today(),
-			 IF(
-        LastActivityDate &gt; TAG_LastTaskDate__c &amp;&amp; LastActivityDate &gt; TAG_LastEventDate__c,
-        LastActivityDate,
+			 IF( OR(LastActivityDate &gt; TAG_LastTaskDate__c &amp;&amp; LastActivityDate &gt; TAG_LastEventDate__c,
+								   ISNULL(TAG_LastTaskDate__c) &amp;&amp; ISNULL(TAG_LastEventDate__c),
+							    LastActivityDate &gt; TAG_LastTaskDate__c &amp;&amp; ISNULL(TAG_LastEventDate__c),
+											LastActivityDate &gt; TAG_LastEventDate__c &amp;&amp; ISNULL(TAG_LastTaskDate__c)),
+             LastActivityDate,
     IF(
         TAG_LastTaskDate__c &gt; TAG_LastEventDate__c, TAG_LastTaskDate__c, TAG_LastEventDate__c
        )))</formula>
