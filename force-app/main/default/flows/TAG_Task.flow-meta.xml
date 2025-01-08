@@ -424,12 +424,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TaskSubtype__c</field>
-            <value>
-                <elementReference>$Record.TaskSubtype</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Type__c</field>
             <value>
                 <elementReference>$Record.Type</elementReference>
