@@ -2,6 +2,38 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
     <assignments>
+        <name>Event_Type_Created</name>
+        <label>Event Type Created</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>EventType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Created</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Employer_Activity_Event</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Event_Type_Updated</name>
+        <label>Event Type Updated</label>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>EventType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Updated</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Employer_Activity_Event</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Store_event_date</name>
         <label>Store event date</label>
         <locationX>1898</locationX>
@@ -118,7 +150,7 @@
         <locationX>182</locationX>
         <locationY>431</locationY>
         <defaultConnector>
-            <targetReference>PubSub_Event_Record_Updated</targetReference>
+            <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Updated</defaultConnectorLabel>
         <rules>
@@ -132,7 +164,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>PubSub_Event_Record_Created</targetReference>
+                <targetReference>Event_Type_Created</targetReference>
             </connector>
             <label>Created</label>
         </rules>
@@ -257,14 +289,62 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>PubSub_Event_Record_Created</name>
-        <label>PubSub Event Record Created</label>
-        <locationX>50</locationX>
-        <locationY>539</locationY>
+        <name>Create_Employer_Activity_Event</name>
+        <label>Create Employer Activity Event</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
         <inputAssignments>
-            <field>EventMessage__c</field>
+            <field>AccountNavUnit__c</field>
             <value>
-                <elementReference>StoreEventValues</elementReference>
+                <elementReference>$Record.TAG_AccountNAVUnit__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>AccountOrgNumber__c</field>
+            <value>
+                <elementReference>$Record.CRM_AccountOrgNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>AccountOrgType__c</field>
+            <value>
+                <elementReference>$Record.TAG_AccountOrgType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>AccountParentId__c</field>
+            <value>
+                <elementReference>$Record.TAG_AccountParentId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>AccountParentOrgNumber__c</field>
+            <value>
+                <elementReference>$Record.TAG_AccountParentOrgNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ActivityDate__c</field>
+            <value>
+                <elementReference>$Record.ActivityDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ActivityType__c</field>
+            <value>
+                <elementReference>$Record.TAG_ActivityType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>DurationInMinutes__c</field>
+            <value>
+                <elementReference>$Record.DurationInMinutes</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EndDateTime__c</field>
+            <value>
+                <elementReference>$Record.EndDateTime</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -276,33 +356,121 @@
         <inputAssignments>
             <field>EventType__c</field>
             <value>
-                <stringValue>Created</stringValue>
-            </value>
-        </inputAssignments>
-        <object>EmployerActivityEvent__e</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-    <recordCreates>
-        <name>PubSub_Event_Record_Updated</name>
-        <label>PubSub Event Record Updated</label>
-        <locationX>314</locationX>
-        <locationY>539</locationY>
-        <inputAssignments>
-            <field>EventMessage__c</field>
-            <value>
-                <elementReference>StoreEventValues</elementReference>
+                <elementReference>EventType</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>EventObject__c</field>
+            <field>IACaseNumber__c</field>
             <value>
-                <stringValue>Event</stringValue>
+                <elementReference>$Record.TAG_IACaseNumber__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>EventType__c</field>
+            <field>IACooperationId__c</field>
             <value>
-                <stringValue>Updated</stringValue>
+                <elementReference>$Record.TAG_IACooperationId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IASubtheme__c</field>
+            <value>
+                <elementReference>$Record.IASubtheme__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Id__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastModifiedDate__c</field>
+            <value>
+                <elementReference>$Record.LastModifiedDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId__c</field>
+            <value>
+                <elementReference>$Record.RecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeName__c</field>
+            <value>
+                <elementReference>$Record.RecordType.DeveloperName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Region__c</field>
+            <value>
+                <elementReference>$Record.CRM_Region__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ReminderDateTime__c</field>
+            <value>
+                <elementReference>$Record.ReminderDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Service__c</field>
+            <value>
+                <elementReference>$Record.TAG_service__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StartDateTime__c</field>
+            <value>
+                <elementReference>$Record.StartDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <elementReference>$Record.TAG_Status__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject__c</field>
+            <value>
+                <elementReference>$Record.Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TaskEvent__c</field>
+            <value>
+                <elementReference>$Record.TaskEvent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <elementReference>$Record.Type</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Unit__c</field>
+            <value>
+                <elementReference>$Record.CRM_Unit__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UserNavUnit__c</field>
+            <value>
+                <elementReference>$Record.TAG_UserNAVUnit__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId__c</field>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhoId__c</field>
+            <value>
+                <elementReference>$Record.WhoId</elementReference>
             </value>
         </inputAssignments>
         <object>EmployerActivityEvent__e</object>
@@ -605,6 +773,13 @@
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;{!$Record.EventSubtype}&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
     </textTemplates>
+    <variables>
+        <name>EventType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>StartDateTimeVariable</name>
         <dataType>DateTime</dataType>
