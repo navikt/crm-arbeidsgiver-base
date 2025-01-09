@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>No_person_information_added</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(TAG_NoPersonInformation__c = FALSE, $Permission.Arbeidsgiver = TRUE, RecordType.DeveloperName = &apos;ArbeidsgiverEvent&apos;)</errorConditionFormula>
+    <errorConditionFormula>AND(TAG_NoPersonInformation__c = FALSE, $Permission.Arbeidsgiver = TRUE, OR( RecordType.DeveloperName = &apos;ArbeidsgiverEvent&apos;, RecordType.DeveloperName = &apos;IA_event&apos; ) )</errorConditionFormula>
     <errorDisplayField>TAG_NoPersonInformation__c</errorDisplayField>
     <errorMessage>Vennligst bekreft at det Ikke er registrert sensitiv informasjon, eller opplysninger som kan knyttes til personbruker</errorMessage>
 </ValidationRule>
