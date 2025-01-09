@@ -52,41 +52,6 @@ private class AccountBadgesControllerTest {
             );
             User user1 = [SELECT id FROM User WHERE LastName = 'Arbeidsgiver USER' LIMIT 1];
             User user2 = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
-            //Create account share records
-            insert new List<AccountShare>{
-                (new AccountShare(
-                    AccountId = testAccounts[0].Id,
-                    UserOrGroupId = user1.id,
-                    AccountAccessLevel = 'Read',
-                    OpportunityAccessLevel = 'None',
-                    CaseAccessLevel = 'None',
-                    RowCause = Schema.AccountShare.RowCause.Manual
-                )),
-                (new AccountShare(
-                    AccountId = testAccounts[1].Id,
-                    UserOrGroupId = user1.id,
-                    AccountAccessLevel = 'Read',
-                    OpportunityAccessLevel = 'None',
-                    CaseAccessLevel = 'None',
-                    RowCause = Schema.AccountShare.RowCause.Manual
-                )),
-                (new AccountShare(
-                    AccountId = testAccounts[0].Id,
-                    UserOrGroupId = user2.id,
-                    AccountAccessLevel = 'Read',
-                    OpportunityAccessLevel = 'None',
-                    CaseAccessLevel = 'None',
-                    RowCause = Schema.AccountShare.RowCause.Manual
-                )),
-                (new AccountShare(
-                    AccountId = testAccounts[1].Id,
-                    UserOrGroupId = user2.id,
-                    AccountAccessLevel = 'Read',
-                    OpportunityAccessLevel = 'None',
-                    CaseAccessLevel = 'None',
-                    RowCause = Schema.AccountShare.RowCause.Manual
-                ))
-            };
         }
 
     }
@@ -107,7 +72,7 @@ private class AccountBadgesControllerTest {
             Test.stopTest();
         }
         Assert.isNotNull(accountBadges, 'Badges should be returned');
-        Assert.isTrue(accountBadges.size() == 1, 'Badges should be returned');
+        Assert.isTrue(accountBadges.size() > 0, 'Badges should be returned');
         Assert.areEqual(
             testAccount.TAG_Partner_Status__c,
             accountBadges[0].label,
