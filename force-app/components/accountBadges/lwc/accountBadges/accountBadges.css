@@ -11,8 +11,8 @@
 .account_badge {
     color: var(--slds-c-badge-text-color, #23262a);
     border-radius: var(--slds-c-badge-radius-border, 15rem);
-    background-color: var(--slds-c-badge-color-background, #fff);
-    border: 1px solid #7f8900;
+    background-color: var(--slds-c-badge-color-background, #ffd000);
+    border: 1px solid #cea904;
 }
 
 /*
@@ -52,5 +52,12 @@ border: Limegreen 700 #7F8900
     border: 1px solid #7f8900;
 }
 
+GUL #ffd000, Mørkegul border #cea904
+.style5 {
+    color: var(--slds-c-badge-text-color, #23262a);
+    border-radius: var(--slds-c-badge-radius-border, 15rem);
+    background-color: var(--slds-c-badge-color-background, #ffd000);
+    border: 1px solid #cea904;
+}
 
   */
