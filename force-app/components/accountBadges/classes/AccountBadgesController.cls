@@ -6,9 +6,6 @@ public with sharing class AccountBadgesController {
         List<Badge> accountBadges = new List<Badge>();
         try {
             Account account = fetchAccount(accountId);
-            if (account == null) {
-                return new List<Badge>();
-            }
             addAccountBadges(accountBadges, account);
             addOpportunityBadges(accountBadges, account);
         } catch (Exception e) {
@@ -42,8 +39,7 @@ public with sharing class AccountBadgesController {
             'TAG_Partner_Status__c',
             account.TAG_Partner_Status__c,
             'Partner status',
-            account.TAG_Partner_Status__c == 'Strategisk Partner' ||
-                account.TAG_Partner_Status__c == 'Samarbeidspartner'
+            !String.isBlank(account.TAG_Partner_Status__c)
         );
 
         addBadgeIfAccessible(
@@ -79,9 +75,9 @@ public with sharing class AccountBadgesController {
             accountBadges,
             'CustomOpportunity__c',
             'InclusionStage__c',
-            newOpportunitiesCount + ' nye muligheter',
+            newOpportunitiesCount + ' nye henvendelser',
             '',
-            true
+            opportunities.size() > 0
         );
 
         addBadgeIfAccessible(
@@ -90,7 +86,7 @@ public with sharing class AccountBadgesController {
             'InclusionStage__c',
             'Åpen for kandidater!',
             '',
-            openForCanidatesCount > 0
+            opportunities.size() > 0 && openForCanidatesCount > 0
         );
     }
 
