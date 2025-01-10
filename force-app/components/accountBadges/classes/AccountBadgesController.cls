@@ -54,9 +54,9 @@ public with sharing class AccountBadgesController {
             accountBadges,
             'Account',
             'NumberOfWorkfare__c',
-            account.NumberOfWorkfare__c + ' aktive tiltak',
+            'Aktive Tiltak: ' + account.NumberOfWorkfare__c,
             '',
-            true
+            account.NumberOfWorkfare__c != null
         );
     }
 
@@ -69,15 +69,15 @@ public with sharing class AccountBadgesController {
         Integer newOpportunitiesCount = countOpportunities(opportunities, 'Ny henvendelse');
         Integer openForCanidatesCount = countOpportunities(opportunities, 'Åpen for kandidater');
 
-        addBadge(accountBadges, opportunities.size() + ' åpne muligheter', '');
+        addBadge(accountBadges, 'Åpne Muligheter: ' + opportunities.size(), '');
 
         addBadgeIfAccessible(
             accountBadges,
             'CustomOpportunity__c',
             'InclusionStage__c',
-            newOpportunitiesCount + ' nye henvendelser',
-            '',
-            opportunities.size() > 0
+            'Ny Henvendelse!',
+            'Har minst én mulighet som venter på behandling',
+            opportunities.size() > 0 && newOpportunitiesCount > 0
         );
 
         addBadgeIfAccessible(

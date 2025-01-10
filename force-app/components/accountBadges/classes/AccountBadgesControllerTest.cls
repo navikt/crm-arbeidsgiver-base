@@ -112,13 +112,13 @@ private class AccountBadgesControllerTest {
         );
 
         Assert.areEqual(
-            testAccount.NumberOfWorkfare__c + ' aktive tiltak',
+            'Aktive Tiltak: ' + testAccount.NumberOfWorkfare__c,
             accountBadges[2].label,
             'Label should be same as account number of workfare'
         );
 
         Assert.areEqual(
-            '0 åpne muligheter',
+            'Åpne Muligheter: 0',
             accountBadges[3].label,
             'Badge should display 0 open opportunities when there are none'
         );
@@ -144,17 +144,17 @@ private class AccountBadgesControllerTest {
         Assert.isNotNull(accountBadges, 'Badges should be returned');
 
         Assert.areEqual(
-            testAccount.NumberOfWorkfare__c + ' aktive tiltak',
+            'Aktive Tiltak: ' + testAccount.NumberOfWorkfare__c,
             accountBadges[0].label,
             'Label should be same as account number of workfare'
         );
         Assert.areEqual(
-            '150 åpne muligheter',
+            'Åpne Muligheter: 150',
             accountBadges[1].label,
             'Label should be same as number of open opportunities'
         );
         Assert.areEqual(
-            '50 nye henvendelser',
+            'Ny Henvendelse!',
             accountBadges[2].label,
             'Label should be same as number of new opportunities'
         );
