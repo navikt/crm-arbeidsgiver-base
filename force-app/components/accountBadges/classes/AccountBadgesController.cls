@@ -84,7 +84,7 @@ public with sharing class AccountBadgesController {
         }
         Integer activeOpportunitiesCount = account.Inkluderingsmuligheter__r.size();
         Integer newOpportunitiesCount = countOpportunities(account.Inkluderingsmuligheter__r, 'Ny henvendelse');
-        Integer openForCanidatesCount = countOpportunities(account.Inkluderingsmuligheter__r, 'Åpen for kandidater');
+        Integer openForCanidatesCount = countOpportunities(account.Inkluderingsmuligheter__r, 'Ferdig Avklart');
 
         //create badges related to Opportunities
         Badge activeOpportunitiesBadge = new Badge('Åpne Muligheter: ' + activeOpportunitiesCount, '');
