@@ -2,44 +2,17 @@
 private class AccountBadgesControllerTest {
     @testSetup
     private static void setup() {
-        User arbeidsgiverUser = new User();
-        arbeidsgiverUser.FirstName = 'test';
-        arbeidsgiverUser.LastName = 'ARBEIDSGIVER USER';
-        arbeidsgiverUser.Email = 'DXQH3TJIjC@nav.no';
-        arbeidsgiverUser.UserName = 'DXQH3TJIjC@nav.no';
-        arbeidsgiverUser.ProfileId = [
-            SELECT Id
-            FROM Profile
-            WHERE Name = 'Standard User' OR Name = 'Standardbruker'
-            LIMIT 1
-        ]
-        .Id;
-        arbeidsgiverUser.CRM_Nav_Ident__c = 'Ari5VO';
-        arbeidsgiverUser.Alias = 'arb';
-        arbeidsgiverUser.TimeZoneSidKey = 'Europe/Paris';
-        arbeidsgiverUser.LocaleSidKey = 'no_NO';
-        arbeidsgiverUser.EmailEncodingKey = 'ISO-8859-1';
-        arbeidsgiverUser.LanguageLocaleKey = 'no';
-        insert arbeidsgiverUser;
-
-        List<PermissionSet> permsets = [
-            SELECT Id
-            FROM PermissionSet
-            WHERE
-                Name IN (
-                    'Arbeidsgiver_arenaActivity',
-                    'Arbeidsgiver_base',
-                    'Arbeidsgiver_contract',
-                    'Arbeidsgiver_opportunity',
-                    'Arbeidsgiver_IA'
-                )
-        ];
-        List<PermissionSetAssignment> assignemnts = new List<PermissionSetAssignment>();
-        for (PermissionSet ps : permsets) {
-            assignemnts.add(new PermissionSetAssignment(AssigneeId = arbeidsgiverUser.id, PermissionSetId = ps.Id));
-        }
-        insert assignemnts;
-
+        TAG_TestDataFactory.createUserWithPermset(
+            'ARBEIDSGIVER USER',
+            new List<String>{
+                'Arbeidsgiver_arenaActivity',
+                'Arbeidsgiver_base',
+                'Arbeidsgiver_contract',
+                'Arbeidsgiver_opportunity',
+                'Arbeidsgiver_IA'
+            }
+        );
+        User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         System.runAs(arbeidsgiverUser) {
             List<Account> arbeidsgiverUserAccounts = new List<Account>();
             arbeidsgiverUserAccounts.add(
