@@ -2,50 +2,122 @@
 private class AccountBadgesControllerTest {
     @testSetup
     private static void setup() {
-        List<Account> testAccounts = new List<Account>();
-        testAccounts.add(
-            new Account(
-                Name = 'TestAccount0',
-                INT_OrganizationNumber__c = '9000000001',
-                INT_MunicipalityNumber__c = '3301',
-                TAG_Partner_Status__c = 'Strategisk Partner',
-                TAG_FiaCaseStatus__c = 'VI_BISTÅR',
-                NumberOfWorkfare__c = 5
-            )
-        );
-        testAccounts.add(
-            new Account(
-                Name = 'TestAccount1',
-                INT_OrganizationNumber__c = '9000000002',
-                INT_MunicipalityNumber__c = '3301',
-                TAG_Partner_Status__c = null,
-                TAG_FiaCaseStatus__c = null,
-                NumberOfWorkfare__c = 0
-            )
-        );
-        insert testAccounts;
+        User arbeidsgiverUser = new User();
+        arbeidsgiverUser.FirstName = 'test';
+        arbeidsgiverUser.LastName = 'ARBEIDSGIVER USER';
+        arbeidsgiverUser.Email = 'DXQH3TJIjC@nav.no';
+        arbeidsgiverUser.UserName = 'DXQH3TJIjC@nav.no';
+        arbeidsgiverUser.ProfileId = [
+            SELECT Id
+            FROM Profile
+            WHERE Name = 'Standard User' OR Name = 'Standardbruker'
+            LIMIT 1
+        ]
+        .Id;
+        arbeidsgiverUser.CRM_Nav_Ident__c = 'Ari5VO';
+        arbeidsgiverUser.Alias = 'arb';
+        arbeidsgiverUser.TimeZoneSidKey = 'Europe/Paris';
+        arbeidsgiverUser.LocaleSidKey = 'no_NO';
+        arbeidsgiverUser.EmailEncodingKey = 'ISO-8859-1';
+        arbeidsgiverUser.LanguageLocaleKey = 'no';
+        insert arbeidsgiverUser;
 
-        List<CustomOpportunity__c> testOpportunities = TAG_TestDataFactory.getCustomOpportunities(200, false);
-        Integer i = 0;
-        for (CustomOpportunity__c opp : testOpportunities) {
-            opp.Account__c = testAccounts[1].Id;
-            if (i < 50) {
-                opp.InclusionStage__c = 'Ny henvendelse';
-                opp.InquiryCategory__c = 'Skal ansette';
-            } else if (i < 100) {
-                opp.InclusionStage__c = 'Utforskes';
-                opp.InquiryCategory__c = 'Forebygge sykefravær';
-            } else if (i < 150) {
-                opp.InclusionStage__c = 'Åpen for kandidater';
-                opp.InquiryCategory__c = 'Skal ansette';
-            } else {
-                opp.InclusionStage__c = 'Avsluttet';
-                opp.InquiryCategory__c = 'Tiltak';
-                opp.Result__c = 'Arbeidstrening';
-            }
-            i++;
+        List<PermissionSet> permsets = [
+            SELECT Id
+            FROM PermissionSet
+            WHERE
+                Name IN (
+                    'Arbeidsgiver_arenaActivity',
+                    'Arbeidsgiver_base',
+                    'Arbeidsgiver_contract',
+                    'Arbeidsgiver_opportunity',
+                    'Arbeidsgiver_IA'
+                )
+        ];
+        List<PermissionSetAssignment> assignemnts = new List<PermissionSetAssignment>();
+        for (PermissionSet ps : permsets) {
+            assignemnts.add(new PermissionSetAssignment(AssigneeId = arbeidsgiverUser.id, PermissionSetId = ps.Id));
         }
-        insert testOpportunities;
+        insert assignemnts;
+
+        System.runAs(arbeidsgiverUser) {
+            List<Account> arbeidsgiverUserAccounts = new List<Account>();
+            arbeidsgiverUserAccounts.add(
+                new Account(
+                    Name = 'TestAccount0',
+                    INT_OrganizationNumber__c = '9000000001',
+                    INT_MunicipalityNumber__c = '3301',
+                    TAG_Partner_Status__c = 'Strategisk Partner',
+                    TAG_FiaCaseStatus__c = 'VI_BISTÅR',
+                    NumberOfWorkfare__c = 5,
+                    OwnerId = arbeidsgiverUser.id
+                )
+            );
+            arbeidsgiverUserAccounts.add(
+                new Account(
+                    Name = 'TestAccount1',
+                    INT_OrganizationNumber__c = '9000000002',
+                    INT_MunicipalityNumber__c = '3301',
+                    TAG_Partner_Status__c = null,
+                    TAG_FiaCaseStatus__c = null,
+                    NumberOfWorkfare__c = 0,
+                    OwnerId = arbeidsgiverUser.id
+                )
+            );
+            insert arbeidsgiverUserAccounts;
+
+            List<CustomOpportunity__c> arbeidsgiverUserOpportunities = TAG_TestDataFactory.getCustomOpportunities(
+                200,
+                false
+            );
+            Integer i = 0;
+            for (CustomOpportunity__c opp : arbeidsgiverUserOpportunities) {
+                opp.Account__c = arbeidsgiverUserAccounts[1].Id;
+                opp.OwnerId = arbeidsgiverUser.id;
+                if (i < 50) {
+                    opp.InclusionStage__c = 'Ny henvendelse';
+                    opp.InquiryCategory__c = 'Skal ansette';
+                } else if (i < 100) {
+                    opp.InclusionStage__c = 'Utforskes';
+                    opp.InquiryCategory__c = 'Forebygge sykefravær';
+                } else if (i < 150) {
+                    opp.InclusionStage__c = 'Åpen for kandidater';
+                    opp.InquiryCategory__c = 'Skal ansette';
+                } else {
+                    opp.InclusionStage__c = 'Avsluttet';
+                    opp.InquiryCategory__c = 'Tiltak';
+                    opp.Result__c = 'Arbeidstrening';
+                }
+                i++;
+            }
+            insert arbeidsgiverUserOpportunities;
+        }
+
+        User negativeAccessUser = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
+        System.runAs(negativeAccessUser) {
+            List<Account> negativeAccessUserAccounts = new List<Account>();
+            negativeAccessUserAccounts.add(
+                new Account(
+                    Name = 'TestAccount2',
+                    INT_OrganizationNumber__c = '9000000003',
+                    INT_MunicipalityNumber__c = '3301',
+                    TAG_Partner_Status__c = 'Strategisk Partner',
+                    TAG_FiaCaseStatus__c = 'VI_BISTÅR',
+                    NumberOfWorkfare__c = 1,
+                    OwnerId = negativeAccessUser.id
+                )
+            );
+            insert negativeAccessUserAccounts;
+
+            List<CustomOpportunity__c> negativeAccessUserOpportunities = TAG_TestDataFactory.getCustomOpportunities(
+                1,
+                false
+            );
+            negativeAccessUserOpportunities[0].Account__c = negativeAccessUserAccounts[0].Id;
+            negativeAccessUserOpportunities[0].OwnerId = negativeAccessUser.id;
+            negativeAccessUserOpportunities[0].InquiryCategory__c = 'Skal ansette';
+            insert negativeAccessUserOpportunities;
+        }
     }
 
     @isTest
@@ -56,16 +128,6 @@ private class AccountBadgesControllerTest {
             WHERE Name = 'TestAccount0'
             LIMIT 1
         ];
-        TAG_TestDataFactory.createUserWithPermset(
-            'ARBEIDSGIVER USER',
-            new List<String>{
-                'Arbeidsgiver_arenaActivity',
-                'Arbeidsgiver_base',
-                'Arbeidsgiver_contract',
-                'Arbeidsgiver_opportunity',
-                'Arbeidsgiver_IA'
-            }
-        );
 
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         List<AccountBadgesController.Badge> accountBadges;
@@ -111,16 +173,7 @@ private class AccountBadgesControllerTest {
             WHERE Name = 'TestAccount1'
             LIMIT 1
         ];
-        TAG_TestDataFactory.createUserWithPermset(
-            'ARBEIDSGIVER USER',
-            new List<String>{
-                'Arbeidsgiver_arenaActivity',
-                'Arbeidsgiver_base',
-                'Arbeidsgiver_contract',
-                'Arbeidsgiver_opportunity',
-                'Arbeidsgiver_IA'
-            }
-        );
+
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         List<AccountBadgesController.Badge> accountBadges;
         System.runAs(user) {
@@ -159,11 +212,11 @@ private class AccountBadgesControllerTest {
         Account testAccount = [
             SELECT Id
             FROM Account
-            WHERE Name = 'TestAccount0'
+            WHERE Name = 'TestAccount2'
             LIMIT 1
         ];
-        User user = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
 
+        User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
         List<AccountBadgesController.Badge> accountBadges;
         System.runAs(user) {
             Assert.isTrue(AccessControlValidator.sObjectIsAccessible('Account'));
@@ -181,11 +234,11 @@ private class AccountBadgesControllerTest {
         Account testAccount = [
             SELECT Id
             FROM Account
-            WHERE Name = 'TestAccount1'
+            WHERE Name = 'TestAccount2'
             LIMIT 1
         ];
 
-        User user = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
+        User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
         List<AccountBadgesController.Badge> accountBadges;
         System.runAs(user) {
             Assert.isTrue(AccessControlValidator.sObjectIsAccessible('Account'));
