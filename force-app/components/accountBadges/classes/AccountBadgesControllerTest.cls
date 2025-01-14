@@ -54,8 +54,9 @@ private class AccountBadgesControllerTest {
                     opp.InclusionStage__c = 'Utforskes';
                     opp.InquiryCategory__c = 'Forebygge sykefravær';
                 } else if (i < 150) {
-                    opp.InclusionStage__c = 'Åpen for kandidater';
+                    opp.InclusionStage__c = 'Ferdig Avklart';
                     opp.InquiryCategory__c = 'Skal ansette';
+                    opp.Result__c = 'Arbeidstrening';
                 } else {
                     opp.InclusionStage__c = 'Avsluttet';
                     opp.InquiryCategory__c = 'Tiltak';
