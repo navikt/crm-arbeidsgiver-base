@@ -69,11 +69,11 @@
         <object>EmployerActivityEvent__e</object>
         <triggerType>PlatformEvent</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Obsolete</status>
     <textTemplates>
         <name>FetchValues</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{&quot;Uuid&quot;:&quot;{!$Record.EventUuid}&quot;, &quot;ReplayId&quot;:&quot;{!$Record.ReplayId}&quot;, &quot;Date&quot;:&quot;{!$Record.CreatedDate}&quot;, &quot;EventType&quot;:&quot;{!$Record.EventType__c}&quot;, &quot;EventObject&quot;:&quot;{!$Record.EventObject__c}&quot;, &quot;EventMessage&quot;:&quot;{!$Record.EventMessage__c}&quot;, &quot;CreatedById&quot;:&quot;{!$Record.CreatedBy.Id}&quot;, &quot;ActivityType&quot;:&quot;{!$Record.ActivityType__c}&quot;, &quot;LastModifiedDate&quot;:&quot;{!$Record.LastModifiedDate__c}&quot;}</text>
+        <text>{&quot;Uuid&quot;:&quot;{!$Record.EventUuid}&quot;, &quot;ReplayId&quot;:&quot;{!$Record.ReplayId}&quot;, &quot;Date&quot;:&quot;{!$Record.CreatedDate}&quot;, &quot;EventType&quot;:&quot;{!$Record.EventType__c}&quot;, &quot;EventObject&quot;:&quot;{!$Record.EventObject__c}&quot;, &quot;CreatedById&quot;:&quot;{!$Record.CreatedBy.Id}&quot;, &quot;ActivityType&quot;:&quot;{!$Record.ActivityType__c}&quot;, &quot;LastModifiedDate&quot;:&quot;{!$Record.LastModifiedDate__c}&quot;}</text>
     </textTemplates>
     <variables>
         <name>GetFields</name>

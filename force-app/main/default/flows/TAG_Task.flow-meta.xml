@@ -18,25 +18,9 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Event_Type_Undeleted</name>
-        <label>Event Type Undeleted</label>
-        <locationX>314</locationX>
-        <locationY>539</locationY>
-        <assignmentItems>
-            <assignToReference>EventType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Undeleted</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Create_Employer_Activity_Event</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>578</locationX>
+        <locationX>314</locationX>
         <locationY>539</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
@@ -52,7 +36,7 @@
     <decisions>
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
-        <locationX>1238</locationX>
+        <locationX>974</locationX>
         <locationY>1679</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
@@ -81,7 +65,7 @@
     <decisions>
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
-        <locationX>1568</locationX>
+        <locationX>1304</locationX>
         <locationY>1247</locationY>
         <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
         <rules>
@@ -110,7 +94,7 @@
     <decisions>
         <name>Is_Related_to_Account</name>
         <label>Is Related to Account?</label>
-        <locationX>1568</locationX>
+        <locationX>1304</locationX>
         <locationY>839</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
@@ -135,7 +119,7 @@
     <decisions>
         <name>Subject_equals_pubsub</name>
         <label>Subject equals pubsub?</label>
-        <locationX>941</locationX>
+        <locationX>743</locationX>
         <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Update_fields</targetReference>
@@ -160,7 +144,7 @@
     <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
-        <locationX>314</locationX>
+        <locationX>182</locationX>
         <locationY>431</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
@@ -181,33 +165,11 @@
             </connector>
             <label>Created</label>
         </rules>
-        <rules>
-            <name>Undeleted</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.IsDeleted</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.IsDeleted</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Event_Type_Undeleted</targetReference>
-            </connector>
-            <label>Undeleted</label>
-        </rules>
     </decisions>
     <decisions>
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
-        <locationX>1568</locationX>
+        <locationX>1304</locationX>
         <locationY>539</locationY>
         <defaultConnector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -232,7 +194,7 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type</label>
-        <locationX>1238</locationX>
+        <locationX>974</locationX>
         <locationY>1571</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -321,7 +283,7 @@
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>314</locationX>
+        <locationX>182</locationX>
         <locationY>731</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
@@ -351,6 +313,12 @@
             <field>AccountParentOrgNumber__c</field>
             <value>
                 <elementReference>$Record.TAG_AccountParentOrgNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ActivityCreatedDate__c</field>
+            <value>
+                <elementReference>$Record.CreatedDate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -497,7 +465,7 @@
     <recordLookups>
         <name>Get_dummy_account_Id</name>
         <label>Get dummy account Id</label>
-        <locationX>1436</locationX>
+        <locationX>1172</locationX>
         <locationY>947</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -519,7 +487,7 @@
     <recordLookups>
         <name>Get_IA_case</name>
         <label>Get IA case</label>
-        <locationX>1106</locationX>
+        <locationX>842</locationX>
         <locationY>1787</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -540,7 +508,7 @@
     <recordLookups>
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
-        <locationX>842</locationX>
+        <locationX>578</locationX>
         <locationY>1787</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -561,7 +529,7 @@
     <recordLookups>
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
-        <locationX>842</locationX>
+        <locationX>578</locationX>
         <locationY>1679</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -582,7 +550,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
-        <locationX>1238</locationX>
+        <locationX>974</locationX>
         <locationY>1355</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -619,7 +587,7 @@
     <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
-        <locationX>1436</locationX>
+        <locationX>1172</locationX>
         <locationY>647</locationY>
         <connector>
             <targetReference>Is_Related_to_Account</targetReference>
@@ -635,7 +603,7 @@
     <recordUpdates>
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
-        <locationX>842</locationX>
+        <locationX>578</locationX>
         <locationY>1895</locationY>
         <inputAssignments>
             <field>IACase__c</field>
@@ -672,7 +640,7 @@
     <recordUpdates>
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
-        <locationX>1106</locationX>
+        <locationX>842</locationX>
         <locationY>1895</locationY>
         <inputAssignments>
             <field>IACase__c</field>
@@ -691,7 +659,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>1238</locationX>
+        <locationX>974</locationX>
         <locationY>1463</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -715,7 +683,7 @@
     <recordUpdates>
         <name>Update_AccountOrgType2_field</name>
         <label>Update AccountOrgType2 field</label>
-        <locationX>1436</locationX>
+        <locationX>1172</locationX>
         <locationY>1055</locationY>
         <connector>
             <targetReference>Is_IA_priority</targetReference>
@@ -739,7 +707,7 @@
     <recordUpdates>
         <name>Update_fields</name>
         <label>Update fields</label>
-        <locationX>1568</locationX>
+        <locationX>1304</locationX>
         <locationY>431</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>
@@ -795,7 +763,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>815</locationX>
+        <locationX>617</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Subject_equals_pubsub</targetReference>
