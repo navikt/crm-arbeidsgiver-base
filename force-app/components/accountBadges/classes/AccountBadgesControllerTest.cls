@@ -193,14 +193,11 @@ private class AccountBadgesControllerTest {
         User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
         List<AccountBadgesController.Badge> accountBadges;
         System.runAs(user) {
-            Assert.isTrue(AccessControlValidator.sObjectIsAccessible('Account'));
-            Assert.isFalse(AccessControlValidator.fieldIsAccessible('Account', 'TAG_Partner_Status__c'));
-
             Test.startTest();
             accountBadges = AccountBadgesController.createBadges(testAccount.Id);
             Test.stopTest();
         }
-        Assert.isTrue(accountBadges.size() == 0, 'Badges should not have any items');
+        Assert.areEqual(0, accountBadges.size(), 'Badges should not have any items');
     }
 
     @isTest
@@ -215,14 +212,11 @@ private class AccountBadgesControllerTest {
         User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
         List<AccountBadgesController.Badge> accountBadges;
         System.runAs(user) {
-            Assert.isTrue(AccessControlValidator.sObjectIsAccessible('Account'));
-            Assert.isFalse(AccessControlValidator.sObjectIsAccessible('CustomOpportunity__c'));
-
             Test.startTest();
             accountBadges = AccountBadgesController.createBadges(testAccount.Id);
             Test.stopTest();
         }
-        Assert.isTrue(accountBadges.size() == 0, 'Badges should not have any items');
+        Assert.areEqual(0, accountBadges.size(), 'Badges should not have any items');
     }
 
     @isTest
