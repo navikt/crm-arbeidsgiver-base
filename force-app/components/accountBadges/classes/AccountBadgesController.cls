@@ -57,7 +57,7 @@ public with sharing class AccountBadgesController {
                     LIMIT 1000
                 )
             FROM Account
-            WHERE Id = :accountId
+            WHERE Id = :accountId AND IsPersonAccount = FALSE
         ];
     }
 
