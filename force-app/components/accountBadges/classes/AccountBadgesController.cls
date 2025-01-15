@@ -1,11 +1,25 @@
 public with sharing class AccountBadgesController {
-    private static final LoggerUtility logger = new LoggerUtility();
-
-    // Top-level fields
     private static Map<String, Schema.SObjectField> accountFields = Schema.SObjectType.Account.fields.getMap();
 
-    // Child relationship fields
-    private static Map<String, Schema.SObjectField> customOpportunityFields = Schema.SObjectType.CustomOpportunity__c.fields.getMap();
+    private static final LoggerUtility logger = new LoggerUtility();
+
+    //Badge labels and help texts
+    @testVisible
+    private static String PartnerStatusBadgeLabel = '{0}';
+    @testVisible
+    private static String PartnerStatusBadgeHelpText = 'Denne bedriftens partnerstatus';
+
+    @testVisible
+    private static String NumberOfWorkfareBadgeLabel = 'Aktive Tiltak({0})';
+    @testVisible
+    private static String NumberOfWorkfareBadgeHelpText = accountFields.get('NumberOfWorkfare__c')
+        .getDescribe()
+        .getInlineHelpText();
+
+    @testVisible
+    private static String ActiveOpportunitiesBadgeLabel = 'Muligheter({0})';
+    @testVisible
+    private static String ActiveOpportunitiesBadgeHelpText = 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".';
 
     @AuraEnabled(cacheable=true)
     public static List<Badge> createBadges(Id accountId) {
@@ -13,7 +27,7 @@ public with sharing class AccountBadgesController {
         try {
             Account account = fetchAccount(accountId);
             addAccountBadges(accountBadges, account);
-            addOpportunityBadges(accountBadges, account);
+            addOpportunityBadges(accountBadges, account.Inkluderingsmuligheter__r);
         } catch (Exception e) {
             logError(accountId, e);
             return new List<Badge>();
@@ -26,7 +40,6 @@ public with sharing class AccountBadgesController {
             SELECT
                 TAG_Partner_Status__c,
                 NumberOfWorkfare__c,
-                TAG_FiaCaseStatus__c,
                 (
                     SELECT Id, InquiryCategory__c, InclusionStage__c
                     FROM Inkluderingsmuligheter__r
@@ -39,102 +52,43 @@ public with sharing class AccountBadgesController {
     }
 
     private static void addAccountBadges(List<Badge> accountBadges, Account account) {
-        //create badges for account
-        Badge partnerStatusBadge = new Badge(
-            account.TAG_Partner_Status__c,
-            accountFields.get('TAG_Partner_Status__c').getDescribe().getInlineHelpText()
-        );
-        Badge fiaCaseStatusBadge = new Badge(
-            account.TAG_FiaCaseStatus__c,
-            accountFields.get('TAG_FiaCaseStatus__c').getDescribe().getInlineHelpText()
-        );
-
-        Badge numberOfWorkfareBadge = new Badge(
-            'Aktive Tiltak: ' + account.NumberOfWorkfare__c,
-            accountFields.get('NumberOfWorkfare__c').getDescribe().getInlineHelpText()
-        );
-
         //add badges to accountBadges list if they are accessible and the condition is met
-        addBadgeIfAccessible(
-            accountBadges,
-            'Account',
-            'TAG_Partner_Status__c',
-            partnerStatusBadge,
+        if (
+            AccessControlValidator.fieldIsAccessible('Account', 'TAG_Partner_Status__c') &&
             !String.isBlank(account.TAG_Partner_Status__c)
-        );
-        addBadgeIfAccessible(
-            accountBadges,
-            'Account',
-            'TAG_FiaCaseStatus__c',
-            fiaCaseStatusBadge,
-            account.TAG_FiaCaseStatus__c != null
-        );
-        addBadgeIfAccessible(
-            accountBadges,
-            'Account',
-            'NumberOfWorkfare__c',
-            numberOfWorkfareBadge,
-            account.NumberOfWorkfare__c != null
-        );
-    }
-
-    private static void addOpportunityBadges(List<Badge> accountBadges, Account account) {
-        if (!AccessControlValidator.sObjectIsAccessible('CustomOpportunity__c')) {
-            return; // If the user does not have access to the CustomOpportunity__c object, do not add any opportunity badges
+        ) {
+            Badge partnerStatusBadge = new Badge(
+                String.format(PartnerStatusBadgeLabel, new List<Object>{ account.TAG_Partner_Status__c }),
+                PartnerStatusBadgeHelpText
+            );
+            accountBadges.add(partnerStatusBadge);
         }
-        Integer activeOpportunitiesCount = account.Inkluderingsmuligheter__r.size();
-        Integer newOpportunitiesCount = countOpportunities(account.Inkluderingsmuligheter__r, 'Ny henvendelse');
-        Integer openForCanidatesCount = countOpportunities(account.Inkluderingsmuligheter__r, 'Ferdig Avklart');
 
-        //create badges related to Opportunities
-        Badge activeOpportunitiesBadge = new Badge('Åpne Muligheter: ' + activeOpportunitiesCount, '');
-        Badge newOpportunitiesBadge = new Badge('Ny Henvendelse!', 'Har minst én mulighet som venter på behandling');
-        Badge openForCanidatesBadge = new Badge('Åpen for kandidater!', '');
-
-        //add badges to accountBadges list if they are accessible and the condition is met
-        addBadge(accountBadges, activeOpportunitiesBadge, true);
-        addBadgeIfAccessible(
-            accountBadges,
-            'CustomOpportunity__c',
-            'InclusionStage__c',
-            newOpportunitiesBadge,
-            activeOpportunitiesCount > 0 && newOpportunitiesCount > 0
-        );
-        addBadgeIfAccessible(
-            accountBadges,
-            'CustomOpportunity__c',
-            'InclusionStage__c',
-            openForCanidatesBadge,
-            activeOpportunitiesCount > 0 && openForCanidatesCount > 0
-        );
+        if (
+            AccessControlValidator.fieldIsAccessible('Account', 'NumberOfWorkfare__c') &&
+            account.NumberOfWorkfare__c >= 1
+        ) {
+            Badge numberOfWorkfareBadge = new Badge(
+                String.format(NumberOfWorkfareBadgeLabel, new List<Object>{ account.NumberOfWorkfare__c }),
+                NumberOfWorkfareBadgeHelpText
+            );
+            accountBadges.add(numberOfWorkfareBadge);
+        }
     }
 
-    private static void addBadgeIfAccessible(
+    private static void addOpportunityBadges(
         List<Badge> accountBadges,
-        String sObjectType,
-        String fieldName,
-        Badge badge,
-        Boolean condition
+        List<CustomOpportunity__c> activeOpportunities
     ) {
-        if (AccessControlValidator.fieldIsAccessible(sObjectType, fieldName) && condition) {
-            accountBadges.add(badge);
+        //add badges to list if they are accessible and the condition is met
+        Integer activeOpportunitiesCount = activeOpportunities.size();
+        if (activeOpportunitiesCount >= 1) {
+            Badge activeOpportunitiesBadge = new Badge(
+                String.format(ActiveOpportunitiesBadgeLabel, new List<Object>{ activeOpportunitiesCount }),
+                ActiveOpportunitiesBadgeHelpText
+            );
+            accountBadges.add(activeOpportunitiesBadge);
         }
-    }
-
-    private static void addBadge(List<Badge> accountBadges, Badge badge, Boolean condition) {
-        if (condition) {
-            accountBadges.add(badge);
-        }
-    }
-
-    private static Integer countOpportunities(List<CustomOpportunity__c> opportunities, String stage) {
-        Integer count = 0;
-        for (CustomOpportunity__c opp : opportunities) {
-            if (opp.InclusionStage__c == stage) {
-                count++;
-            }
-        }
-        return count;
     }
 
     private static void logError(Id accountId, Exception e) {

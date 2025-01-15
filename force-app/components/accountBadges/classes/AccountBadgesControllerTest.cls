@@ -40,20 +40,20 @@ private class AccountBadgesControllerTest {
             insert arbeidsgiverUserAccounts;
 
             List<CustomOpportunity__c> arbeidsgiverUserOpportunities = TAG_TestDataFactory.getCustomOpportunities(
-                200,
+                20,
                 false
             );
             Integer i = 0;
             for (CustomOpportunity__c opp : arbeidsgiverUserOpportunities) {
-                opp.Account__c = arbeidsgiverUserAccounts[1].Id;
+                opp.Account__c = arbeidsgiverUserAccounts[0].Id;
                 opp.OwnerId = arbeidsgiverUser.id;
-                if (i < 50) {
+                if (i < 5) {
                     opp.InclusionStage__c = 'Ny henvendelse';
                     opp.InquiryCategory__c = 'Skal ansette';
-                } else if (i < 100) {
+                } else if (i < 10) {
                     opp.InclusionStage__c = 'Utforskes';
                     opp.InquiryCategory__c = 'Forebygge sykefravær';
-                } else if (i < 150) {
+                } else if (i < 15) {
                     opp.InclusionStage__c = 'Ferdig Avklart';
                     opp.InquiryCategory__c = 'Skal ansette';
                     opp.Result__c = 'Arbeidstrening';
@@ -82,22 +82,13 @@ private class AccountBadgesControllerTest {
                 )
             );
             insert negativeAccessUserAccounts;
-
-            List<CustomOpportunity__c> negativeAccessUserOpportunities = TAG_TestDataFactory.getCustomOpportunities(
-                1,
-                false
-            );
-            negativeAccessUserOpportunities[0].Account__c = negativeAccessUserAccounts[0].Id;
-            negativeAccessUserOpportunities[0].OwnerId = negativeAccessUser.id;
-            negativeAccessUserOpportunities[0].InquiryCategory__c = 'Skal ansette';
-            insert negativeAccessUserOpportunities;
         }
     }
 
     @isTest
     static void badges_Should_Be_Created_When_Account_Match_Criteria() {
         Account testAccount = [
-            SELECT Id, TAG_Partner_Status__c, TAG_FiaCaseStatus__c, NumberOfWorkfare__c
+            SELECT Id, TAG_Partner_Status__c, NumberOfWorkfare__c
             FROM Account
             WHERE Name = 'TestAccount0'
             LIMIT 1
@@ -113,36 +104,35 @@ private class AccountBadgesControllerTest {
         Assert.isNotNull(accountBadges, 'Badges should be returned');
 
         Assert.areEqual(
-            testAccount.TAG_Partner_Status__c,
+            String.format(
+                AccountBadgesController.PartnerStatusBadgeLabel,
+                new List<Object>{ testAccount.TAG_Partner_Status__c }
+            ),
             accountBadges[0].label,
             'Label should be same as account partner status'
         );
 
         Assert.areEqual(
-            testAccount.TAG_FiaCaseStatus__c,
+            String.format(
+                AccountBadgesController.NumberOfWorkfareBadgeLabel,
+                new List<Object>{ testAccount.NumberOfWorkfare__c }
+            ),
             accountBadges[1].label,
-            'Label should be same as account fia case status'
-        );
-
-        Assert.areEqual(
-            'Aktive Tiltak: ' + testAccount.NumberOfWorkfare__c,
-            accountBadges[2].label,
             'Label should be same as account number of workfare'
         );
 
         Assert.areEqual(
-            'Åpne Muligheter: 0',
-            accountBadges[3].label,
-            'Badge should display 0 open opportunities when there are none'
+            String.format(AccountBadgesController.ActiveOpportunitiesBadgeLabel, new List<Object>{ 15 }),
+            accountBadges[2].label,
+            'Label should be same as number of open opportunities'
         );
-
-        Assert.areEqual(4, accountBadges.size(), 'Should not return more than expected number of badges');
+        Assert.areEqual(3, accountBadges.size(), 'Should not return more than expected number of badges');
     }
 
     @isTest
-    static void badges_Should_Be_Created_When_Account_Has_Opportunities() {
+    static void badges_Should_Not_Be_Created_When_No_Useful_Data() {
         Account testAccount = [
-            SELECT Id, NumberOfWorkfare__c
+            SELECT Id
             FROM Account
             WHERE Name = 'TestAccount1'
             LIMIT 1
@@ -155,30 +145,7 @@ private class AccountBadgesControllerTest {
             accountBadges = AccountBadgesController.createBadges(testAccount.Id);
             Test.stopTest();
         }
-        Assert.isNotNull(accountBadges, 'Badges should be returned');
-
-        Assert.areEqual(
-            'Aktive Tiltak: ' + testAccount.NumberOfWorkfare__c,
-            accountBadges[0].label,
-            'Label should be same as account number of workfare'
-        );
-        Assert.areEqual(
-            'Åpne Muligheter: 150',
-            accountBadges[1].label,
-            'Label should be same as number of open opportunities'
-        );
-        Assert.areEqual(
-            'Ny Henvendelse!',
-            accountBadges[2].label,
-            'Label should be same as number of new opportunities'
-        );
-        Assert.areEqual(
-            'Åpen for kandidater!',
-            accountBadges[3].label,
-            'Label should state that account is open for candidates'
-        );
-
-        Assert.areEqual(4, accountBadges.size(), 'Should not return more than expected number of badges');
+        Assert.areEqual(0, accountBadges.size(), 'Should return empty list of badges');
     }
 
     @isTest
@@ -197,26 +164,7 @@ private class AccountBadgesControllerTest {
             accountBadges = AccountBadgesController.createBadges(testAccount.Id);
             Test.stopTest();
         }
-        Assert.areEqual(0, accountBadges.size(), 'Badges should not have any items');
-    }
-
-    @isTest
-    static void badge_Should_Not_Be_Created_For_Non_Accessible_Opportunity_Fields() {
-        Account testAccount = [
-            SELECT Id
-            FROM Account
-            WHERE Name = 'TestAccount2'
-            LIMIT 1
-        ];
-
-        User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
-        List<AccountBadgesController.Badge> accountBadges;
-        System.runAs(user) {
-            Test.startTest();
-            accountBadges = AccountBadgesController.createBadges(testAccount.Id);
-            Test.stopTest();
-        }
-        Assert.areEqual(0, accountBadges.size(), 'Badges should not have any items');
+        Assert.areEqual(0, accountBadges.size(), 'Should return empty list of badges');
     }
 
     @isTest
