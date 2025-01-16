@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Active__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>ClassNamespacePrefix__c</field>
@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Class__c</field>
-        <value xsi:type="xsd:string">TAG_ActivityTriggerPlatformEvent</value>
+        <value xsi:type="xsd:string">TAG_ActivityTrigger</value>
     </values>
     <values>
         <field>Description__c</field>
