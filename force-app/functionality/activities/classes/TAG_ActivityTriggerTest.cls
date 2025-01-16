@@ -180,66 +180,29 @@ public class TAG_ActivityTriggerTest {
 
     @isTest
     static void testOnAfterInsert() {
-        List<Task> tasks = [SELECT Id,
-            TAG_ActivityType__c,
-            TAG_AccountNAVUnit__c,
-            CRM_AccountOrgNumber__c,
-            TAG_AccountOrgType__c,
-            TAG_AccountParentId__c,
-            TAG_AccountParentOrgNumber__c,
+        List<Task> tasks = [SELECT
             ActivityDate,
-            CreatedDate,
-            TAG_IACaseNumber__c,
-            TAG_IACooperationId__c,
-            IASubtheme__c,
-            LastModifiedDate,
             Priority,
             RecordTypeId,
-            RecordTypeName__c,
-            CRM_Region__c,
             RelatedToAccount__c,
             ReminderDateTime,
-            TAG_service__c,
-            TAG_Status__c,
             Subject,
             TaskEvent__c,
             Type,
-            CRM_Unit__c,
-            TAG_UserNAVUnit__c,
-            WhatId, 
-            WhoId
+            WhatId
             FROM Task LIMIT 1];
 
-        List<Event> events = [SELECT Id, 
-            TAG_ActivityType__c,
-            TAG_AccountNAVUnit__c,
-            CRM_AccountOrgNumber__c,
-            TAG_AccountOrgType__c,
-            TAG_AccountParentId__c,
-            TAG_AccountParentOrgNumber__c,
+        List<Event> events = [SELECT
             ActivityDate,
-            CreatedDate,
-            DurationInMinutes,
             EndDateTime,
-            TAG_IACaseNumber__c,
-            TAG_IACooperationId__c,
-            IASubtheme__c,
-            LastModifiedDate,
             RecordTypeId,
-            RecordTypeName__c,
-            CRM_Region__c,
             RelatedToAccount__c,
             ReminderDateTime,
-            TAG_service__c,
-            TAG_Status__c,
             StartDateTime,
             Subject,
             TaskEvent__c,
             Type,
-            CRM_Unit__c,
-            TAG_UserNAVUnit__c,
-            WhatId, 
-            WhoId 
+            WhatId
             FROM Event LIMIT 1];
 
         List<EmployerActivityEvent__e> taskEmployerActivityList = new List<EmployerActivityEvent__e>();
