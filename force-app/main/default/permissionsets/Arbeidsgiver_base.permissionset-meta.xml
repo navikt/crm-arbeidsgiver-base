@@ -157,10 +157,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AzureAccessTokenController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>AzureAccessTokenService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
