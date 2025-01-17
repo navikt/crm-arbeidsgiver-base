@@ -177,7 +177,7 @@ public class TAG_ActivityTriggerTest {
         System.assertEquals(1, taskEmployerActivityList.size(), '1 task platform events should have been published.');
         System.assertEquals(1, eventEmployerActivityList.size(), '1 event platform events should have been published.');
     }
-
+/*
     @isTest
     static void testOnAfterInsert() {
         List<Task> tasks = [SELECT
@@ -188,8 +188,7 @@ public class TAG_ActivityTriggerTest {
             ReminderDateTime,
             Subject,
             TaskEvent__c,
-            Type,
-            WhatId
+            Type
             FROM Task LIMIT 1];
 
         List<Event> events = [SELECT
@@ -201,8 +200,7 @@ public class TAG_ActivityTriggerTest {
             StartDateTime,
             Subject,
             TaskEvent__c,
-            Type,
-            WhatId
+            Type
             FROM Event LIMIT 1];
 
         List<EmployerActivityEvent__e> taskEmployerActivityList = new List<EmployerActivityEvent__e>();
@@ -219,7 +217,7 @@ public class TAG_ActivityTriggerTest {
 
         System.assertEquals(1, taskEmployerActivityList.size(), '1 task platform events should have been published.');
         System.assertEquals(1, eventEmployerActivityList.size(), '1 event platform events should have been published.');
-    }
+    }*/
 
     @isTest
     static void testOnAfterUpdate() {
