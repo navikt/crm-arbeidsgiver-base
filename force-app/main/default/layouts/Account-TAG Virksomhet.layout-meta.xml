@@ -106,8 +106,8 @@
                 <field>INT_Industry__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>NumberOfEmployees</field>
+                <behavior>Readonly</behavior>
+                <field>CRM_NumberOfEmployeesFormula__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -337,7 +337,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hKG000000lwrS</masterLabel>
+        <masterLabel>00hKO000001jXc5</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
