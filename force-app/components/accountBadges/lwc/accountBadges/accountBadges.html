@@ -1,34 +1,18 @@
 <template>
-    <!-- 
-    <div class="slds-theme_default slds-box slds-box_x-small">
-        <div class="slds-grid slds-wrap account_badges_container">
-            <div class="slds-var-m-around_xxx-small account_badge">
-                <lightning-badge label="5 aktive tiltak" class="badge-item slds-text-title_bold"></lightning-badge>
-                <lightning-helptext content="Dette er en test"></lightning-helptext>
-            </div>
-            <div class="slds-var-m-around_xxx-small account_badge">
-                <lightning-badge label="10 åpne muligheter" class="badge-item slds-text-title_bold"></lightning-badge>
-                <lightning-helptext content="Dette er en test"></lightning-helptext>
-            </div>
-            <div class="slds-var-m-around_xxx-small account_badge">
-                <lightning-badge label="2 nye henvendelser" class="badge-item slds-text-title_bold"></lightning-badge>
-                <lightning-helptext content="Dette er en test"></lightning-helptext>
-            </div>
-            <div class="slds-var-m-around_xxx-small account_badge">
-                <lightning-badge label="Åpen for kandidater!" class="badge-item slds-text-title_bold"></lightning-badge>
-                <lightning-helptext content=""></lightning-helptext>
-            </div>
-        </div>
-    </div>
--->
     <template if:true={renderBadges}>
         <div class="slds-theme_default slds-box slds-box_x-small">
-            <div class="account_badges_container slds-grid slds-wrap">
+            <div class="slds-grid slds-wrap">
                 <template for:each={badges} for:item="badge">
-                    <div key={badge.label} class="slds-var-m-around_xxx-small account_badge">
-                        <lightning-badge label={badge.label} class="badge-item slds-text-title_bold"></lightning-badge>
+                    <div
+                        key={badge.label}
+                        class="slds-badge slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-m-around_xxx-small badge-neutral"
+                    >
+                        <span class="">{badge.label}</span>
                         <template if:true={badge.helpText}>
-                            <lightning-helptext content={badge.helpText}></lightning-helptext>
+                            <lightning-helptext
+                                class="slds-var-m-left_xx-small"
+                                content={badge.helpText}
+                            ></lightning-helptext>
                         </template>
                     </div>
                 </template>

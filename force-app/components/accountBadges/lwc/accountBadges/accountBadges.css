@@ -1,62 +1,7 @@
-/* Set background for the container */
-.account_badges_container {
-    display: inline-flex;
-    flex-wrap: wrap;
+/* Badge Styling */
+.badge-neutral {
+    background-color: var(--slds-g-color-palette-yellow-90);
+    border-color: var(--slds-g-color-palette-yellow-80);
+    color: var(--lwc-colorTextDefault);
+    font-weight: bold;
 }
-
-.badge-item {
-    background-color: var(--slds-c-badge-color-background, transparent);
-}
-.account_badge {
-    color: var(--slds-c-badge-text-color, #23262a);
-    border-radius: var(--slds-c-badge-radius-border, 15rem);
-    background-color: var(--slds-c-badge-color-background, #ffd000);
-    border: 1px solid #cea904;
-}
-
-/*
-text: Gray 900 #23262A
-
-border: Limegreen 400 #C1CB33
-surface: Limegreen 100 #F9FCCC
-.style1 {
-    color: var(--slds-c-badge-text-color, #23262a);
-    border-radius: var(--slds-c-badge-radius-border, 15rem);
-    background-color: var(--slds-c-badge-color-background, #f9fccc);
-    border: 1px solid #c1cb33;
-}
-
-border: Deepblue 500 #005B82
-surface: Deepblue 100 #CCE2F0
-.style2 {
-    color: var(--slds-c-badge-text-color, #23262a);
-    border-radius: var(--slds-c-badge-radius-border, 15rem);
-    background-color: var(--slds-c-badge-color-background, #cce2f0);
-    border: 1px solid #005b82;
-}
-
-border: Deepblue 500 #003453
-.style3 {
-    color: var(--slds-c-badge-text-color, #23262a);
-    border-radius: var(--slds-c-badge-radius-border, 15rem);
-    background-color: var(--slds-c-badge-color-background, #fff);
-    border: 1px solid #003453;
-}
-
-border: Limegreen 700 #7F8900
-.style4 {
-    color: var(--slds-c-badge-text-color, #23262a);
-    border-radius: var(--slds-c-badge-radius-border, 15rem);
-    background-color: var(--slds-c-badge-color-background, #fff);
-    border: 1px solid #7f8900;
-}
-
-GUL #ffd000, Mørkegul border #cea904
-.style5 {
-    color: var(--slds-c-badge-text-color, #23262a);
-    border-radius: var(--slds-c-badge-radius-border, 15rem);
-    background-color: var(--slds-c-badge-color-background, #ffd000);
-    border: 1px solid #cea904;
-}
-
-  */
