@@ -58,7 +58,7 @@ global class TAG_ActivityTrigger extends MyTriggers {
      * 
      * @param records List of SObject with the triggered records
      */
-    global override void onAfterInsert() {
+   /* global override void onAfterInsert() {
         List<EmployerActivityEvent__e> taskEmployerActivityList = new List<EmployerActivityEvent__e>();
         List<EmployerActivityEvent__e> eventEmployerActivityList = new List<EmployerActivityEvent__e>();
 
@@ -86,7 +86,7 @@ global class TAG_ActivityTrigger extends MyTriggers {
         if (!eventEmployerActivityList.isEmpty()) {
             EventBus.publish(eventEmployerActivityList);
         }
-    }
+    } */
 
     /**
      * @description Method tiggered by after update of activities
@@ -96,7 +96,7 @@ global class TAG_ActivityTrigger extends MyTriggers {
      * 
      * @param records List of SObject with the triggered records
      */
-    global override void onAfterUpdate(Map<Id, sObject> triggerOldMap) {
+    /*global override void onAfterUpdate(Map<Id, sObject> triggerOldMap) {
         List<EmployerActivityEvent__e> taskEmployerActivityList = new List<EmployerActivityEvent__e>();
         List<EmployerActivityEvent__e> eventEmployerActivityList = new List<EmployerActivityEvent__e>();
 
@@ -125,7 +125,7 @@ global class TAG_ActivityTrigger extends MyTriggers {
         if (!eventEmployerActivityList.isEmpty()) {
             EventBus.publish(eventEmployerActivityList);
         } 
-    }
+    }*/
 
     /**
      * @description Method tiggered by after undeletion of activities
