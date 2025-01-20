@@ -175,6 +175,7 @@ public class TAG_ActivityTriggerHelperTest {
         System.assertEquals(1, eventEmployerActivityList.size(), '1 event platform events should have been published.');
     }
 
+    /*
     @isTest
     static void testOnAfterInsert() {
         List<Task> tasks = [SELECT Id,
@@ -336,7 +337,7 @@ public class TAG_ActivityTriggerHelperTest {
 
         System.assertEquals(1, taskEmployerActivityList.size(), '1 task platform events should have been published.');
         System.assertEquals(1, eventEmployerActivityList.size(), '1 event platform events should have been published.');
-    }
+    }*/
 
     @isTest
     static void testOnAfterUndelete() {

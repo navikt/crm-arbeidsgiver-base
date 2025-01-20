@@ -34,8 +34,6 @@ public with sharing class TAG_ActivityTriggerHelper {
             taskEmpActEv.ActivityDate__c = task.ActivityDate;
             taskEmpActEv.ActivityType__c = task.TAG_ActivityType__c;
             taskEmpActEv.ActivityCreatedDate__c = task.CreatedDate;
-            //taskEmpActEv.DurationInMinutes__c = task.DurationInMinutes;
-            //taskEmpActEv.EndDateTime__c = task.EndDateTime;
             taskEmpActEv.IACaseNumber__c = task.TAG_IACaseNumber__c;
             taskEmpActEv.IACooperationId__c = task.TAG_IACooperationId__c;
             taskEmpActEv.IASubtheme__c = task.IASubtheme__c;
@@ -47,7 +45,6 @@ public with sharing class TAG_ActivityTriggerHelper {
             taskEmpActEv.Region__c = task.CRM_Region__c;
             taskEmpActEv.ReminderDateTime__c = task.ReminderDateTime;
             taskEmpActEv.Service__c = task.TAG_service__c;
-            //taskEmpActEv.StartDateTime__c = task.StartDateTime;
             taskEmpActEv.Status__c = task.TAG_Status__c;
             taskEmpActEv.Subject__c = task.Subject;
             taskEmpActEv.TaskEvent__c = task.TaskEvent__c;
@@ -97,7 +94,6 @@ public with sharing class TAG_ActivityTriggerHelper {
             eventEmpActEv.IASubtheme__c = event.IASubtheme__c;
             eventEmpActEv.Id__c = event.Id;
             eventEmpActEv.LastModifiedDate__c = event.LastModifiedDate;
-            //eventEmpActEv.Priority__c = event.Priority;
             eventEmpActEv.RecordTypeId__c = event.RecordTypeId;
             eventEmpActEv.RecordTypeName__c = event.RecordTypeName__c;
             eventEmpActEv.Region__c = event.CRM_Region__c;
