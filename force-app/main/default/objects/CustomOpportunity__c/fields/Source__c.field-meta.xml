@@ -14,6 +14,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Bedriftsundersøkelsen</fullName>
+                <default>false</default>
+                <label>Bedriftsundersøkelsen</label>
+            </value>
+            <value>
                 <fullName>Internt tips</fullName>
                 <default>false</default>
                 <label>Internt tips</label>
