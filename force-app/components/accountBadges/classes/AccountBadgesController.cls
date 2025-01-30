@@ -152,7 +152,7 @@ public with sharing class AccountBadgesController {
 
     private static List<Badge> createAgreementBadges(List<Contract__c> employerAgreements) {
         String labelTemplate = '{0} {1}';
-        String helpText = 'TBD';
+        String helpText = 'Bedriften har aktiv samarbeidsavtale innen angitt region og kategori.';
         Map<String, Badge> badges = new Map<String, Badge>();
         for (Contract__c employerAgreement : employerAgreements) {
             if (!String.isBlank(employerAgreement.Region__c) && !String.isBlank(employerAgreement.TAG_Category__c)) {
@@ -185,7 +185,7 @@ public with sharing class AccountBadgesController {
         @AuraEnabled
         public String helpText;
         public Badge(String label, String helpText) {
-            this.label = label;
+            this.label = label.toLowerCase().capitalize();
             this.helpText = helpText;
         }
     }
