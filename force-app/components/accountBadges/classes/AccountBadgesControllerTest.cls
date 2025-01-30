@@ -20,7 +20,6 @@ private class AccountBadgesControllerTest {
                     Name = 'TestAccount0',
                     INT_OrganizationNumber__c = '9000000001',
                     INT_MunicipalityNumber__c = '3301',
-                    TAG_Partner_Status__c = 'Strategisk Partner',
                     TAG_FiaCaseStatus__c = 'VI_BISTÅR',
                     NumberOfWorkfare__c = 5,
                     OwnerId = arbeidsgiverUser.id
@@ -65,6 +64,25 @@ private class AccountBadgesControllerTest {
                 i++;
             }
             insert arbeidsgiverUserOpportunities;
+
+            // Create employer agreements
+            List<Contract__c> employerAgreements = new List<Contract__c>();
+            employerAgreements.add(
+                new Contract__c(
+                    TAG_Account__c = arbeidsgiverUserAccounts[0].Id,
+                    TAG_Category__c = 'Inkluderingsavtale (Arbeidsgiver)',
+                    TAG_StartDate__c = Date.today(),
+                    TAG_EndDate__c = Date.today().addDays(30),
+                    TAG_Status__c = 'Godkjent',
+                    Region__c = 'Regional',
+                    TAG_Type_Partner__c = 'Strategisk Partner',
+                    RecordTypeId = Schema.SObjectType.Contract__c.getRecordTypeInfosByDeveloperName()
+                        .get('EmployerAgreement')
+                        .getRecordTypeId()
+                )
+            );
+
+            insert employerAgreements;
         }
 
         User negativeAccessUser = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
@@ -75,7 +93,6 @@ private class AccountBadgesControllerTest {
                     Name = 'TestAccount2',
                     INT_OrganizationNumber__c = '9000000003',
                     INT_MunicipalityNumber__c = '3301',
-                    TAG_Partner_Status__c = 'Strategisk Partner',
                     TAG_FiaCaseStatus__c = 'VI_BISTÅR',
                     NumberOfWorkfare__c = 1,
                     OwnerId = negativeAccessUser.id
@@ -101,36 +118,24 @@ private class AccountBadgesControllerTest {
             accountBadges = AccountBadgesController.createBadges(testAccount.Id);
             Test.stopTest();
         }
-        Assert.isNotNull(accountBadges, 'Badges should be returned');
 
-        Assert.areEqual(
-            String.format(
-                AccountBadgesController.PartnerStatusBadgeLabel,
-                new List<Object>{ testAccount.TAG_Partner_Status__c }
-            ),
-            accountBadges[0].label,
-            'Label should be same as account partner status'
+        // Assertions
+        Assert.areEqual(4, accountBadges.size(), 'Expected 4 badges to be created');
+        Map<String, AccountBadgesController.Badge> badgeMap = new Map<String, AccountBadgesController.Badge>();
+        for (AccountBadgesController.Badge badge : accountBadges) {
+            badgeMap.put(badge.label, badge);
+        }
+        Assert.isTrue(
+            badgeMap.containsKey('Regional Inkluderingsavtale'),
+            'Should contain badge for agreement region+category'
         );
-
-        Assert.areEqual(
-            String.format(
-                AccountBadgesController.NumberOfWorkfareBadgeLabel,
-                new List<Object>{ testAccount.NumberOfWorkfare__c }
-            ),
-            accountBadges[1].label,
-            'Label should be same as account number of workfare'
-        );
-
-        Assert.areEqual(
-            String.format(AccountBadgesController.ActiveOpportunitiesBadgeLabel, new List<Object>{ 15 }),
-            accountBadges[2].label,
-            'Label should be same as number of open opportunities'
-        );
-        Assert.areEqual(3, accountBadges.size(), 'Should not return more than expected number of badges');
+        Assert.isTrue(badgeMap.containsKey('Strategisk Partner'), 'Should contain badge for partner type');
+        Assert.isTrue(badgeMap.containsKey('Aktive Tiltak(5)'), 'Should contain badge for number of workfare');
+        Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
     }
 
     @isTest
-    static void badges_Should_Not_Be_Created_When_No_Useful_Data() {
+    static void badges_Should_Not_Be_Created_When_No_Data() {
         Account testAccount = [
             SELECT Id
             FROM Account
