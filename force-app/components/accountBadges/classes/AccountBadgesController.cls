@@ -65,12 +65,22 @@ public with sharing class AccountBadgesController {
         ];
     }
 
+    /**
+     * @description Adds badges to the accountBadges list based on the Account fields.
+     * @param accountBadges The list of badges to add to.
+     * @param account The Account record to evaluate.
+     */
     private static void addAccountBadges(List<Badge> accountBadges, Account account) {
         if (AccessControlValidator.fieldIsAccessible('Account', 'NumberOfWorkfare__c')) {
             accountBadges.addAll(createNumberOfWorkfareBadge(account));
         }
     }
 
+    /**
+     * @description Adds badges to the accountBadges list based on the related CustomOpportunity__c records.
+     * @param accountBadges The list of badges to add to.
+     * @param opportunities The related CustomOpportunity__c records to evaluate.
+     */
     private static void addOpportunityBadges(
         List<Badge> accountBadges,
         List<CustomOpportunity__c> activeOpportunities
@@ -78,6 +88,11 @@ public with sharing class AccountBadgesController {
         accountBadges.addAll(createOpportunityCountBadge(activeOpportunities));
     }
 
+    /**
+     * @description Adds badges to the accountBadges list based on the related Contract__c records.
+     * @param accountBadges The list of badges to add to.
+     * @param employerAgreements The related Contract__c records to evaluate.
+     */
     private static void addContractBadges(List<Badge> accountBadges, List<Contract__c> employerAgreements) {
         if (
             AccessControlValidator.fieldIsAccessible('Contract__c', 'Region__c') &&
@@ -91,6 +106,11 @@ public with sharing class AccountBadgesController {
         }
     }
 
+    /**
+     * @description Logs an error for a given account.
+     * @param accountId The Id of the Account for which to log the error.
+     * @param e The exception to log.
+     */
     private static void logError(Id accountId, Exception e) {
         logger.logMessage(
             LoggerUtility.LogLevel.Error,
