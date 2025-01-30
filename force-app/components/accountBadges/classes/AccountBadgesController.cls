@@ -185,7 +185,7 @@ public with sharing class AccountBadgesController {
         @AuraEnabled
         public String helpText;
         public Badge(String label, String helpText) {
-            this.label = label;
+            this.label = label.toLowerCase().capitalize();
             this.helpText = helpText;
         }
     }

@@ -126,11 +126,11 @@ private class AccountBadgesControllerTest {
             badgeMap.put(badge.label, badge);
         }
         Assert.isTrue(
-            badgeMap.containsKey('Regional Inkluderingsavtale'),
+            badgeMap.containsKey('Regional inkluderingsavtale'),
             'Should contain badge for agreement region+category'
         );
-        Assert.isTrue(badgeMap.containsKey('Strategisk Partner'), 'Should contain badge for partner type');
-        Assert.isTrue(badgeMap.containsKey('Aktive Tiltak(5)'), 'Should contain badge for number of workfare');
+        Assert.isTrue(badgeMap.containsKey('Strategisk partner'), 'Should contain badge for partner type');
+        Assert.isTrue(badgeMap.containsKey('Aktive tiltak(5)'), 'Should contain badge for number of workfare');
         Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
     }
 
