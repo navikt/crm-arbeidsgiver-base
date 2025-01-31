@@ -127,7 +127,7 @@ public with sharing class AccountBadgesController {
     // Static methods to create specific badges
 
     private static List<Badge> createNumberOfWorkfareBadge(Account account) {
-        String labelTemplate = 'Aktive Tiltak({0})';
+        String labelTemplate = 'Aktive tiltak({0})';
         String helpText = accountFields.get('NumberOfWorkfare__c').getDescribe().getInlineHelpText();
         Map<String, Badge> badges = new Map<String, Badge>();
         if (account.NumberOfWorkfare__c >= 1) {
@@ -157,7 +157,9 @@ public with sharing class AccountBadgesController {
         for (Contract__c employerAgreement : employerAgreements) {
             if (!String.isBlank(employerAgreement.Region__c) && !String.isBlank(employerAgreement.TAG_Category__c)) {
                 String category = employerAgreement.TAG_Category__c.replaceAll('\\(.*\\)', '').trim();
+                category = category.startsWith('IA') ? category : category.toLowerCase();
                 String label = String.format(labelTemplate, new List<Object>{ employerAgreement.Region__c, category });
+
                 Badge badge = new Badge(label, helpText);
                 badges.put(label, badge);
             }
@@ -172,6 +174,7 @@ public with sharing class AccountBadgesController {
         for (Contract__c employerAgreement : employerAgreements) {
             if (!String.isBlank(employerAgreement.TAG_Type_Partner__c)) {
                 String label = String.format(labelTemplate, new List<Object>{ employerAgreement.TAG_Type_Partner__c });
+                label = label.toLowerCase().capitalize();
                 Badge badge = new Badge(label, helpText);
                 badges.put(label, badge);
             }
@@ -185,7 +188,7 @@ public with sharing class AccountBadgesController {
         @AuraEnabled
         public String helpText;
         public Badge(String label, String helpText) {
-            this.label = label.toLowerCase().capitalize();
+            this.label = label;
             this.helpText = helpText;
         }
     }
