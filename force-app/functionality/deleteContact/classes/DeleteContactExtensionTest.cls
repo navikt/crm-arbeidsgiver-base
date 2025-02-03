@@ -29,7 +29,7 @@ private class DeleteContactExtensionTest {
             DurationInMinutes = 1440,
             IsAllDayEvent = true,
             ActivityDate = Date.today(),
-            TAG_ActivityType__c = 'Nedbemanne',
+            TAG_ActivityType__c = 'Rekruttere og inkludere',
             Subject = 'Hele dagen',
             WhoId = contacts[0].Id
         );
@@ -41,7 +41,7 @@ private class DeleteContactExtensionTest {
             DurationInMinutes = 1440,
             IsAllDayEvent = true,
             ActivityDate = Date.today(),
-            TAG_ActivityType__c = 'Nedbemanne',
+            TAG_ActivityType__c = 'Rekruttere og inkludere',
             Subject = 'Hele dagen',
             WhoId = contacts[1].Id
         );

@@ -46,8 +46,8 @@
       "WhoId": "@ContactRef4",
       "TaskSubtype": "Task",
       "TAG_NoPersonInformation__c": true,
-      "TAG_service__c": "Permittering",
-      "TAG_ActivityType__c": "Nedbemanne",
+      "TAG_service__c": "Jobbmesser og møteplass",
+      "TAG_ActivityType__c": "Rekruttere og inkludere",
       "WhatId": "@AccountRef1"
     },
     {
@@ -62,8 +62,8 @@
       "WhoId": "@ContactRef4",
       "TaskSubtype": "Task",
       "TAG_NoPersonInformation__c": true,
-      "TAG_service__c": "Masseoppsigelser",
-      "TAG_ActivityType__c": "Nedbemanne",
+      "TAG_service__c": "Jobbmesser og møteplass",
+      "TAG_ActivityType__c": "Rekruttere og inkludere",
       "WhatId": "@AccountRef1"
     },
     {
@@ -164,7 +164,7 @@
       "TaskSubtype": "Call",
       "TAG_NoPersonInformation__c": true,
       "TAG_service__c": "Informasjon om NAVs tjenester",
-      "TAG_ActivityType__c": "Nedbemanne",
+      "TAG_ActivityType__c": "Rekruttere og inkludere",
       "WhatId": "@AccountRef1"
     },
     {
@@ -298,7 +298,7 @@
       "TaskSubtype": "Call",
       "TAG_NoPersonInformation__c": true,
       "TAG_service__c": "Informasjon om NAVs tjenester",
-      "TAG_ActivityType__c": "Nedbemanne",
+      "TAG_ActivityType__c": "Rekruttere og inkludere",
       "WhatId": "@AccountRef1"
     },
     {
@@ -313,7 +313,7 @@
       "Subject": "Send a selfie",
       "Type": "SMS",
       "TAG_NoPersonInformation__c": true,
-      "TAG_ActivityType__c": "Nedbemanne",
+      "TAG_ActivityType__c": "Rekruttere og inkludere",
       "TAG_service__c": "Permittering",
       "WhatId": "@AccountRef1"
     },
@@ -347,8 +347,8 @@
       "Type": "Email",
       "TaskSubtype": "Call",
       "TAG_NoPersonInformation__c": true,
-      "TAG_ActivityType__c": "Nedbemanne",
-      "TAG_service__c": "Permittering",
+      "TAG_ActivityType__c": "Rekruttere og inkludere",
+      "TAG_service__c": "Jobbmesser og møteplass",
       "WhatId": "@AccountRef1"
     },
     {
@@ -364,8 +364,8 @@
       "Type": "Email",
       "TaskSubtype": "Call",
       "TAG_NoPersonInformation__c": true,
-      "TAG_service__c": "Masseoppsigelser",
-      "TAG_ActivityType__c": "Nedbemanne",
+      "TAG_service__c": "Jobbmesser og møteplass",
+      "TAG_ActivityType__c": "Rekruttere og inkludere",
       "WhatId": "@AccountRef1"
     }
   ]
