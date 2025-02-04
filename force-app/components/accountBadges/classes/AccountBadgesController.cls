@@ -221,37 +221,40 @@ public with sharing class AccountBadgesController {
         if (reportIdMap != null && !String.isEmpty(reportIdMap.get(reportDeveloperName))) {
             return reportIdMap.get(reportDeveloperName);
         }
-        // Update static map from custom metadata and return from static map if exist
+        // If prod environment, set map from custom metadata and return value or null
         reportIdMap = new Map<String, String>();
-        for (TAG_BadgeConfiguration__mdt rc : [
-            SELECT DeveloperName, MasterLabel, Value__c
-            FROM TAG_BadgeConfiguration__mdt
-        ]) {
-            reportIdMap.put(rc.DeveloperName, rc.Value__c);
+        if (UserInfo.getOrganizationName() == 'NAV') {
+            for (TAG_BadgeConfiguration__mdt rc : [
+                SELECT DeveloperName, MasterLabel, Value__c
+                FROM TAG_BadgeConfiguration__mdt
+            ]) {
+                reportIdMap.put(rc.DeveloperName, rc.Value__c);
+            }
+            if (!String.isEmpty(reportIdMap.get(reportDeveloperName))) {
+                return reportIdMap.get(reportDeveloperName);
+            } else {
+                return null;
+            }
+        } else {
+            // If any other environment, set map by quering report records and return value or null
+            List<String> developerNames = new List<String>{
+                'Muligheter_4WR',
+                'Aktive_Tiltaksavtaler_per_Virksomhet',
+                'Avtaler_Zsu'
+            };
+            for (Report r : [
+                SELECT Id, DeveloperName
+                FROM Report
+                WHERE DeveloperName IN :developerNames
+            ]) {
+                reportIdMap.put(r.DeveloperName, r.Id);
+            }
+            if (!String.isEmpty(reportIdMap.get(reportDeveloperName))) {
+                return reportIdMap.get(reportDeveloperName);
+            } else {
+                return null;
+            }
         }
-        if (!String.isEmpty(reportIdMap.get(reportDeveloperName))) {
-            return reportIdMap.get(reportDeveloperName);
-        }
-
-        // Update map by quering report records, and return from static map if exist
-        List<String> developerNames = new List<String>{
-            'Muligheter_4WR',
-            'Aktive_Tiltaksavtaler_per_Virksomhet',
-            'Avtaler_Zsu'
-        };
-
-        for (Report r : [
-            SELECT Id, DeveloperName
-            FROM Report
-            WHERE DeveloperName IN :developerNames
-        ]) {
-            reportIdMap.put(r.DeveloperName, r.Id);
-        }
-        if (!String.isEmpty(reportIdMap.get(reportDeveloperName))) {
-            return reportIdMap.get(reportDeveloperName);
-        }
-        // If not, return null
-        return null;
     }
 
     public class Badge {
