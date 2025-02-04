@@ -5,6 +5,7 @@ public with sharing class AccountBadgesController {
     private static Map<String, Schema.SObjectField> accountFields = Schema.SObjectType.Account.fields.getMap();
     private static final LoggerUtility logger = new LoggerUtility();
     private static Id recordId;
+    private static Map<String, String> reportIdMap;
 
     /**
      * @description Creates badges for a given account based on its fields and related records.
@@ -136,7 +137,7 @@ public with sharing class AccountBadgesController {
         Map<String, Badge> badges = new Map<String, Badge>();
         if (account.NumberOfWorkfare__c >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ account.NumberOfWorkfare__c });
-            String url = getReportUrl('Aktive_Tiltaksavtaler_per_Virksomhet');
+            String url = getReportUrl('Aktive_Tiltaksavtaler_per_Virksomhet', '');
             Badge badge = new Badge(label, helpText, url);
             badges.put(label, badge);
         }
@@ -153,8 +154,7 @@ public with sharing class AccountBadgesController {
         Map<String, Badge> badges = new Map<String, Badge>();
         if (activeOpportunities.size() >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ activeOpportunities.size() });
-            String url = getReportUrl('Muligheter_4WR');
-            url += '&fv2=';
+            String url = getReportUrl('Muligheter_4WR', '&fv2=');
             Badge badge = new Badge(label, helpText, url);
             badges.put(label, badge);
         }
@@ -174,8 +174,10 @@ public with sharing class AccountBadgesController {
                 String category = employerAgreement.TAG_Category__c.replaceAll('\\(.*\\)', '').trim();
                 category = category.startsWith('IA') ? category : category.toLowerCase();
                 String label = String.format(labelTemplate, new List<Object>{ employerAgreement.Region__c, category });
-                String url = getReportUrl('Avtaler_Zsu');
-                url += '&fv2=' + employerAgreement.TAG_Category__c + '&fv3=' + employerAgreement.Region__c + '&fv4=';
+                String url = getReportUrl(
+                    'Avtaler_Zsu',
+                    '&fv2=' + employerAgreement.TAG_Category__c + '&fv3=' + employerAgreement.Region__c + '&fv4='
+                );
                 Badge badge = new Badge(label, helpText, url);
                 badges.put(label, badge);
             }
@@ -195,8 +197,10 @@ public with sharing class AccountBadgesController {
             if (!String.isBlank(employerAgreement.TAG_Type_Partner__c)) {
                 String label = String.format(labelTemplate, new List<Object>{ employerAgreement.TAG_Type_Partner__c });
                 label = label.toLowerCase().capitalize();
-                String url = getReportUrl('Avtaler_Zsu');
-                url += '&fv2=' + '&fv3=' + '&fv4=' + employerAgreement.TAG_Type_Partner__c;
+                String url = getReportUrl(
+                    'Avtaler_Zsu',
+                    '&fv2=' + '&fv3=' + '&fv4=' + employerAgreement.TAG_Type_Partner__c
+                );
                 Badge badge = new Badge(label, helpText, url);
                 badges.put(label, badge);
             }
@@ -204,16 +208,12 @@ public with sharing class AccountBadgesController {
         return badges.values();
     }
 
-    // SELECT Id, DeveloperName from Report where DeveloperName in ('Muligheter_4WR', 'Aktive_Tiltaksavtaler_per_Virksomhet', 'Avtaler_Zsu')
-
-    private static Map<String, String> reportIdMap;
-
-    public static string getReportUrl(String reportDeveloperName) {
+    private static string getReportUrl(String reportDeveloperName, String filters) {
         String reportId = getReportId(reportDeveloperName);
         if (String.isEmpty(reportId)) {
             return null; // report not found
         }
-        return '/lightning/r/Report/' + reportId + '/view?fv0=' + recordId;
+        return '/lightning/r/Report/' + reportId + '/view?fv0=' + recordId + filters;
     }
 
     private static string getReportId(String reportDeveloperName) {
@@ -225,7 +225,7 @@ public with sharing class AccountBadgesController {
         reportIdMap = new Map<String, String>();
         if (UserInfo.getOrganizationName() == 'NAV') {
             for (TAG_BadgeConfiguration__mdt rc : [
-                SELECT DeveloperName, MasterLabel, Value__c
+                SELECT DeveloperName, Value__c
                 FROM TAG_BadgeConfiguration__mdt
             ]) {
                 reportIdMap.put(rc.DeveloperName, rc.Value__c);
@@ -267,10 +267,6 @@ public with sharing class AccountBadgesController {
         @AuraEnabled
         public String urlTooltip = 'Se mer informasjon';
 
-        public Badge(String label, String helpText) {
-            this.label = label;
-            this.helpText = helpText;
-        }
         public Badge(String label, String helpText, String url) {
             this.label = label;
             this.helpText = helpText;
