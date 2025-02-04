@@ -706,6 +706,11 @@
         <field>TemporaryLayoff__c.KafkaId__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.CRM_UserProfileName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Admin - Base Permissions</label>
     <objectPermissions>
