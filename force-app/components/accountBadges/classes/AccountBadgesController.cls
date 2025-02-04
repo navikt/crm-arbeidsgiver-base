@@ -82,7 +82,7 @@ public with sharing class AccountBadgesController {
     /**
      * @description Adds badges to the accountBadges list based on the related CustomOpportunity__c records.
      * @param accountBadges The list of badges to add to.
-     * @param opportunities The related CustomOpportunity__c records to evaluate.
+     * @param activeOpportunities The related CustomOpportunity__c records to evaluate.
      */
     private static void addOpportunityBadges(
         List<Badge> accountBadges,
@@ -128,9 +128,7 @@ public with sharing class AccountBadgesController {
     }
 
     // Static methods to create specific badges
-    /**
-     * Creates badge for Aktive tiltak.
-     */
+    // Creates badge for Aktive tiltak.
     private static List<Badge> createNumberOfWorkfareBadge(Account account) {
         String labelTemplate = 'Aktive tiltak({0})';
         String helpText = accountFields.get('NumberOfWorkfare__c').getDescribe().getInlineHelpText();
@@ -144,10 +142,8 @@ public with sharing class AccountBadgesController {
         return badges.values();
     }
 
-    /**
-     * Creates badge for Muligheter. Counts open opportunities.
-     * Links to report Muligheter_4WR with filter order: AccountId (fv0), InquiryCategory__c(fv1)
-     */
+    // Creates badge for Muligheter. Counts open opportunities.
+    // Links to report Muligheter_4WR with filter order: AccountId (fv0), InquiryCategory__c(fv1)
     private static List<Badge> createOpportunityCountBadge(List<CustomOpportunity__c> activeOpportunities) {
         String labelTemplate = 'Muligheter({0})';
         String helpText = 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".';
@@ -161,10 +157,8 @@ public with sharing class AccountBadgesController {
         return badges.values();
     }
 
-    /**
-     * Creates badge for Avtaler. Display badge for each region-category combo.
-     * Links to report Avtaler_Zsu with filter order: AccountId (fv0), Recordtype(fv1), TAG_Category__c(fv2), Region__c(fv3), TAG_Type_Partner__c(fv4)
-     */
+    // Creates badge for Avtaler. Display badge for each region-category combo.
+    // Links to report Avtaler_Zsu with filter order: AccountId (fv0), Recordtype(fv1), TAG_Category__c(fv2), Region__c(fv3), TAG_Type_Partner__c(fv4)
     private static List<Badge> createAgreementBadges(List<Contract__c> employerAgreements) {
         String labelTemplate = '{0} {1}';
         String helpText = 'Bedriften har aktiv samarbeidsavtale innen angitt region og kategori.';
@@ -184,10 +178,9 @@ public with sharing class AccountBadgesController {
         }
         return badges.values();
     }
-    /**
-     * Creates badge for partner status. Display badge for each partner type.
-     * Links to report Avtaler_Zsu with filter order: AccountId (fv0), Recordtype(fv1), TAG_Category__c(fv2), Region__c(fv3), TAG_Type_Partner__c(fv4)
-     */
+
+    // Creates badge for partner status. Display badge for each partner type.
+    // Links to report Avtaler_Zsu with filter order: AccountId (fv0), Recordtype(fv1), TAG_Category__c(fv2), Region__c(fv3), TAG_Type_Partner__c(fv4)
     private static List<Badge> createPartnerTypeBadge(List<Contract__c> employerAgreements) {
         String labelTemplate = '{0}';
         String helpText = 'Denne bedriftens partnerstatus basert på aktive avtaler.';
