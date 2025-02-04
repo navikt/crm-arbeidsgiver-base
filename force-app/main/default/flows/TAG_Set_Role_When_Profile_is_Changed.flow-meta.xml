@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
-    <decisions>
-        <name>Is_profileId_changed</name>
-        <label>Is profileId changed</label>
-        <locationX>182</locationX>
-        <locationY>323</locationY>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record__Prior.CRM_UserProfileName__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>NAV IPS Jobbspesialist</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_role_name</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
+    <description>This flow is triggered when a users profile is changed to Nav Kontor. It then sets the users role to PO Arbeidsgiver</description>
     <environments>Default</environments>
     <interviewLabel>TAG Set Role When Profile is Changed {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Set Role When Profile is Changed</label>
@@ -48,8 +27,8 @@
     <recordLookups>
         <name>Get_role_name</name>
         <label>Get role name</label>
-        <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_role_on_user</targetReference>
@@ -69,8 +48,8 @@
     <recordUpdates>
         <name>Update_role_on_user</name>
         <label>Update role on user</label>
-        <locationX>50</locationX>
-        <locationY>539</locationY>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
         <inputAssignments>
             <field>UserRoleId</field>
             <value>
@@ -80,10 +59,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_profileId_changed</targetReference>
+            <targetReference>Get_role_name</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
