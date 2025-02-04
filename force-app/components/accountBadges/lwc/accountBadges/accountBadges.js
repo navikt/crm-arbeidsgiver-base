@@ -17,7 +17,7 @@ export default class AccountBadges extends LightningElement {
         if (data) {
             this.badges = data;
             this.renderBadges = this.badges.length > 0; // Check if badges array is empty
-            console.log('Badges:', JSON.stringify(this.badges));
+            //console.log('Badges:', JSON.stringify(this.badges));
         } else if (error) {
             this.badges = [];
             this.renderBadges = false; // No badges to render
