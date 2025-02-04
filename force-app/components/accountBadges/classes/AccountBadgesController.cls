@@ -73,7 +73,7 @@ public with sharing class AccountBadgesController {
      * @param account The Account record to evaluate.
      */
     private static void addAccountBadges(List<Badge> accountBadges, Account account) {
-        if (AccessControlValidator.fieldIsAccessible('Account', 'NumberOfWorkfare__c')) {
+        if (Schema.sObjectType.Account.fields.NumberOfWorkfare__c.isAccessible()) {
             accountBadges.addAll(createNumberOfWorkfareBadge(account));
         }
     }
@@ -97,13 +97,13 @@ public with sharing class AccountBadgesController {
      */
     private static void addContractBadges(List<Badge> accountBadges, List<Contract__c> employerAgreements) {
         if (
-            AccessControlValidator.fieldIsAccessible('Contract__c', 'Region__c') &&
-            AccessControlValidator.fieldIsAccessible('Contract__c', 'TAG_Category__c')
+            Schema.sObjectType.Contract__c.fields.Region__c.isAccessible() &&
+            Schema.sObjectType.Contract__c.fields.TAG_Category__c.isAccessible()
         ) {
             accountBadges.addAll(createAgreementBadges(employerAgreements));
         }
 
-        if (AccessControlValidator.fieldIsAccessible('Contract__c', 'TAG_Type_Partner__c')) {
+        if (Schema.sObjectType.Contract__c.fields.TAG_Type_Partner__c.isAccessible()) {
             accountBadges.addAll(createPartnerTypeBadge(employerAgreements));
         }
     }
