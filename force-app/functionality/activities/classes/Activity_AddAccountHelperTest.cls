@@ -64,7 +64,7 @@ private without sharing class Activity_AddAccountHelperTest {
         .get('ArbeidsgiverEvent')
         .getRecordTypeId();
       Event e = new Event(
-        TAG_ActivityType__c = 'Nedbemanne',
+        TAG_ActivityType__c = 'Rekruttere og inkludere',
         TAG_NoPersonInformation__c = true,
         RecordTypeId = agRecordType,
         ActivityDate = Date.today(),
@@ -100,7 +100,7 @@ private without sharing class Activity_AddAccountHelperTest {
       DurationInMinutes = 1440,
       IsAllDayEvent = true,
       ActivityDate = Date.today(),
-      TAG_ActivityType__c = 'Nedbemanne',
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
       Subject = 'Hele dagen'
     );
     Event e_old = new Event(
@@ -109,7 +109,7 @@ private without sharing class Activity_AddAccountHelperTest {
       DurationInMinutes = 1440,
       IsAllDayEvent = true,
       ActivityDate = Date.today(),
-      TAG_ActivityType__c = 'Nedbemanne',
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
       Subject = 'Hele dagen'
     );
     insert e_new;
@@ -141,7 +141,7 @@ private without sharing class Activity_AddAccountHelperTest {
       DurationInMinutes = 1440,
       IsAllDayEvent = true,
       ActivityDate = Date.today(),
-      TAG_ActivityType__c = 'Nedbemanne',
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
       Subject = 'Hele dagen',
       RecordTypeId = agRecordType
     );
@@ -151,7 +151,7 @@ private without sharing class Activity_AddAccountHelperTest {
       DurationInMinutes = 1440,
       IsAllDayEvent = true,
       ActivityDate = Date.today(),
-      TAG_ActivityType__c = 'Nedbemanne',
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
       Subject = 'Hele dagen',
       RecordTypeId = agRecordType
     );
