@@ -17,12 +17,15 @@ public with sharing class AccountBadgesController {
         recordId = accountId;
         List<Badge> accountBadges = new List<Badge>();
         try {
-            List<Contract__c> employerAgreements = fetchEmployerAgreements(accountId);
-            addContractBadges(accountBadges, employerAgreements);
-
             Account account = fetchAccount(accountId);
+            if (account == null) {
+                return new List<Badge>();
+            }
+            List<Contract__c> employerAgreements = fetchEmployerAgreements(accountId);
+            List<CustomOpportunity__c> employerOpportunities = fetchOpportunities(accountId);
+            addContractBadges(accountBadges, employerAgreements);
             addAccountBadges(accountBadges, account);
-            addOpportunityBadges(accountBadges, account.Inkluderingsmuligheter__r);
+            addOpportunityBadges(accountBadges, employerOpportunities);
         } catch (Exception e) {
             logError(accountId, e);
             return new List<Badge>();
@@ -31,41 +34,75 @@ public with sharing class AccountBadgesController {
     }
 
     /**
-     * @description Fetches an Account record along with related CustomOpportunity__c records.
+     * @description Fetches an Account record.
      * @param accountId The Id of the Account to fetch.
-     * @return The Account record with related CustomOpportunity__c records.
+     * @return The Account record.
      */
     private static Account fetchAccount(Id accountId) {
-        return [
-            SELECT
-                TAG_Partner_Status__c,
-                NumberOfWorkfare__c,
-                (
-                    SELECT Id, InquiryCategory__c, InclusionStage__c
-                    FROM Inkluderingsmuligheter__r
-                    WHERE InclusionStage__c != 'Avsluttet'
-                    LIMIT 1000
-                )
-            FROM Account
-            WHERE Id = :accountId AND IsPersonAccount = FALSE
-        ];
+        if (!Schema.sObjectType.Account.isAccessible()) {
+            return null;
+        }
+        String query = 'SELECT Id';
+        if (Schema.sObjectType.Account.fields.NumberOfWorkfare__c.isAccessible()) {
+            query += ',NumberOfWorkfare__c';
+        }
+        query += ' FROM Account WHERE Id = :accountId AND IsPersonAccount = FALSE';
+        List<Account> accounts = Database.query(query);
+        if (accounts.isEmpty()) {
+            return null;
+        } else {
+            return accounts[0];
+        }
     }
+    /**
+     * @description Fetches CustomOpportunity__c records.
+     * @param accountId The Id of the Account to fetch contracts for.
+     * @return List of CustomOpportunity__c records.
+     */
+    private static List<CustomOpportunity__c> fetchOpportunities(Id accountId) {
+        if (!Schema.sObjectType.CustomOpportunity__c.isAccessible()) {
+            return new List<CustomOpportunity__c>();
+        }
+        String query = 'SELECT Id';
+        if (Schema.sObjectType.CustomOpportunity__c.fields.InquiryCategory__c.isAccessible()) {
+            query += ',InquiryCategory__c';
+        }
+        if (Schema.sObjectType.CustomOpportunity__c.fields.InclusionStage__c.isAccessible()) {
+            query += ',InclusionStage__c';
+        }
+        query += ' FROM CustomOpportunity__c WHERE InclusionStage__c != \'Avsluttet\' AND Account__c = :accountId';
+        List<CustomOpportunity__c> opportunities = Database.query(query);
+        return opportunities;
+    }
+
     /**
      * @description Fetches Contract records.
      * @param accountId The Id of the Account to fetch contracts for.
      * @return List of Contract__c records.
      */
     private static List<Contract__c> fetchEmployerAgreements(Id accountId) {
-        return [
-            SELECT Region__c, TAG_Category__c, TAG_Type_Partner__c
-            FROM Contract__c
-            WHERE
-                RecordType.DeveloperName = 'EmployerAgreement'
-                AND TAG_Status__c = 'Godkjent'
-                AND TAG_EndDate__c > TODAY
-                AND TAG_StartDate__c <= TODAY
-                AND TAG_Account__c = :accountId
-        ];
+        if (!Schema.sObjectType.Contract__c.isAccessible()) {
+            return new List<Contract__c>();
+        }
+        String query = 'SELECT Id';
+        if (Schema.sObjectType.Contract__c.fields.Region__c.isAccessible()) {
+            query += ',Region__c';
+        }
+        if (Schema.sObjectType.Contract__c.fields.TAG_Category__c.isAccessible()) {
+            query += ',TAG_Category__c';
+        }
+        if (Schema.sObjectType.Contract__c.fields.TAG_Type_Partner__c.isAccessible()) {
+            query += ',TAG_Type_Partner__c';
+        }
+        query += ' FROM Contract__c WHERE';
+        query += ' RecordType.DeveloperName = \'EmployerAgreement\'';
+        query += ' AND TAG_Status__c = \'Godkjent\'';
+        query += ' AND TAG_EndDate__c > TODAY';
+        query += ' AND TAG_StartDate__c <= TODAY';
+        query += ' AND TAG_Account__c = :accountId';
+
+        List<Contract__c> contracts = Database.query(query);
+        return contracts;
     }
 
     /**
@@ -74,9 +111,7 @@ public with sharing class AccountBadgesController {
      * @param account The Account record to evaluate.
      */
     private static void addAccountBadges(List<Badge> accountBadges, Account account) {
-        if (Schema.sObjectType.Account.fields.NumberOfWorkfare__c.isAccessible()) {
-            accountBadges.addAll(createNumberOfWorkfareBadge(account));
-        }
+        accountBadges.addAll(createNumberOfWorkfareBadge(account));
     }
 
     /**
@@ -97,16 +132,8 @@ public with sharing class AccountBadgesController {
      * @param employerAgreements The related Contract__c records to evaluate.
      */
     private static void addContractBadges(List<Badge> accountBadges, List<Contract__c> employerAgreements) {
-        if (
-            Schema.sObjectType.Contract__c.fields.Region__c.isAccessible() &&
-            Schema.sObjectType.Contract__c.fields.TAG_Category__c.isAccessible()
-        ) {
-            accountBadges.addAll(createAgreementBadges(employerAgreements));
-        }
-
-        if (Schema.sObjectType.Contract__c.fields.TAG_Type_Partner__c.isAccessible()) {
-            accountBadges.addAll(createPartnerTypeBadge(employerAgreements));
-        }
+        accountBadges.addAll(createAgreementBadges(employerAgreements));
+        accountBadges.addAll(createPartnerTypeBadge(employerAgreements));
     }
 
     /**
