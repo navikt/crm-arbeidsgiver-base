@@ -7,14 +7,17 @@
                         key={badge.label}
                         class="slds-badge slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-m-around_xxx-small badge-neutral"
                     >
-                        <span
-                            ><lightning-formatted-url
-                                value={badge.url}
-                                tooltip={badge.urlTooltip}
-                                label={badge.label}
-                                target="_blank"
-                            ></lightning-formatted-url
-                        ></span>
+                        <span>
+                            <template if:true={badge.url}>
+                                <lightning-formatted-url
+                                    value={badge.url}
+                                    tooltip={badge.urlTooltip}
+                                    label={badge.label}
+                                    target="_blank"
+                                ></lightning-formatted-url>
+                            </template>
+                            <template if:false={badge.url}>{badge.label}</template>
+                        </span>
                         <template if:true={badge.helpText}>
                             <lightning-helptext
                                 class="slds-var-m-left_xx-small"
