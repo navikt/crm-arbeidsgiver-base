@@ -3,7 +3,7 @@
  */
 public with sharing class AccountBadgesController {
     private static Map<String, Schema.SObjectField> accountFields = Schema.SObjectType.Account.fields.getMap();
-    private static final LoggerUtility logger = new LoggerUtility();
+    private static final LoggerUtility LOGGER = new LoggerUtility();
     private static Id recordId;
     private static Map<String, String> reportIdMap;
 
@@ -115,7 +115,7 @@ public with sharing class AccountBadgesController {
      * @param e The exception to log.
      */
     private static void logError(Id accountId, Exception e) {
-        logger.logMessage(
+        LOGGER.logMessage(
             LoggerUtility.LogLevel.Error,
             '',
             accountId,
@@ -124,7 +124,7 @@ public with sharing class AccountBadgesController {
             null,
             CRM_ApplicationDomain.Domain.POAB
         );
-        logger.publish();
+        LOGGER.publish();
     }
 
     // Static methods to create specific badges
