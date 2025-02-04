@@ -1,4 +1,4 @@
-@isTest
+/*@isTest
 private without sharing class EventHandlerTest {
     @testSetup
     private static void setup() {
@@ -127,4 +127,4 @@ private without sharing class EventHandlerTest {
 
         System.assertEquals(1, EventShadowCountUnd);
     }
-}
+}*/

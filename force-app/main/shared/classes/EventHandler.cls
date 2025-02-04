@@ -1,4 +1,4 @@
-global class EventHandler extends MyTriggers {
+/*global class EventHandler extends MyTriggers {
     global override void onAfterInsert() {
         upsertEventShadow((List<Event>) records);
     }
@@ -71,4 +71,4 @@ global class EventHandler extends MyTriggers {
         }
         upsert eventShadows SH_EventId__c;
     }
-}
+}*/
