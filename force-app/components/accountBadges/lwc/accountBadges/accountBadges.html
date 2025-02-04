@@ -7,7 +7,14 @@
                         key={badge.label}
                         class="slds-badge slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-m-around_xxx-small badge-neutral"
                     >
-                        <span class="">{badge.label}</span>
+                        <span
+                            ><lightning-formatted-url
+                                value={badge.url}
+                                tooltip={badge.urlTooltip}
+                                label={badge.label}
+                                target="_blank"
+                            ></lightning-formatted-url
+                        ></span>
                         <template if:true={badge.helpText}>
                             <lightning-helptext
                                 class="slds-var-m-left_xx-small"
