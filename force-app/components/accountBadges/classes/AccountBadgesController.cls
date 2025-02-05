@@ -243,7 +243,7 @@ public with sharing class AccountBadgesController {
         }
         // If prod environment, set map from custom metadata and return value or null
         reportIdMap = new Map<String, String>();
-        if (UserInfo.getOrganizationName() == 'NAV') {
+        if (UserInfo.getOrganizationId() == '00D2o000000aANVEA2') {
             for (TAG_BadgeConfiguration__mdt rc : [
                 SELECT DeveloperName, Value__c
                 FROM TAG_BadgeConfiguration__mdt
