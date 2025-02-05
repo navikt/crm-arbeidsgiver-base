@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_registration_on_dummy_account</fullName>
+    <active>true</active>
+    <errorConditionFormula>RelatedToAccount__r.Name = &apos;Kontakter uten konto&apos;</errorConditionFormula>
+    <errorMessage>Det går ikke å registrere aktiviteter på denne kontoen</errorMessage>
+</ValidationRule>
