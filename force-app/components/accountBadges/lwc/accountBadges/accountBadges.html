@@ -5,9 +5,19 @@
                 <template for:each={badges} for:item="badge">
                     <div
                         key={badge.label}
-                        class="slds-badge slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-m-around_xxx-small badge-neutral"
+                        class="slds-text-color_default slds-badge slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-m-around_xxx-small badge-neutral"
                     >
-                        <span class="">{badge.label}</span>
+                        <span>
+                            <template if:true={badge.url}>
+                                <lightning-formatted-url
+                                    value={badge.url}
+                                    tooltip={badge.urlTooltip}
+                                    label={badge.label}
+                                    target="_blank"
+                                ></lightning-formatted-url>
+                            </template>
+                            <template if:false={badge.url}>{badge.label}</template>
+                        </span>
                         <template if:true={badge.helpText}>
                             <lightning-helptext
                                 class="slds-var-m-left_xx-small"
