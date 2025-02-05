@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>59.0</apiVersion>
     <assignments>
+        <name>Assign_AccountId</name>
+        <label>Assign AccountId</label>
+        <locationX>644</locationX>
+        <locationY>839</locationY>
+        <assignmentItems>
+            <assignToReference>accountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_RelatedToAccount</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
         <locationX>644</locationX>
@@ -37,7 +53,7 @@
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
         <locationX>446</locationX>
-        <locationY>1463</locationY>
+        <locationY>1871</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -66,7 +82,7 @@
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
         <locationX>776</locationX>
-        <locationY>1031</locationY>
+        <locationY>1439</locationY>
         <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
         <rules>
             <name>Yes_IA_priority</name>
@@ -89,6 +105,39 @@
                 <targetReference>Get_latest_IA_priority_task</targetReference>
             </connector>
             <label>Yes IA priority</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_RelatedToAccount_null</name>
+        <label>Is RelatedToAccount null?</label>
+        <locationX>776</locationX>
+        <locationY>731</locationY>
+        <defaultConnector>
+            <targetReference>Update_Activity_Date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>RelatedToAccount not null</defaultConnectorLabel>
+        <rules>
+            <name>RelatedToAccount_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RelatedToAccount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_AccountId</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>RelatedToAccount null</label>
         </rules>
     </decisions>
     <decisions>
@@ -120,7 +169,7 @@
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
         <locationX>776</locationX>
-        <locationY>731</locationY>
+        <locationY>1139</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
         </defaultConnector>
@@ -145,7 +194,7 @@
         <name>Which_Record_Type</name>
         <label>Which Record Type</label>
         <locationX>446</locationX>
-        <locationY>1355</locationY>
+        <locationY>1763</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Task</name>
@@ -236,7 +285,7 @@
         <locationX>776</locationX>
         <locationY>623</locationY>
         <connector>
-            <targetReference>Update_Activity_Date</targetReference>
+            <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
@@ -419,7 +468,7 @@
         <name>Get_IA_case</name>
         <label>Get IA case</label>
         <locationX>314</locationX>
-        <locationY>1571</locationY>
+        <locationY>1979</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_IA_Case_Number</targetReference>
@@ -440,7 +489,7 @@
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1571</locationY>
+        <locationY>1979</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -461,7 +510,7 @@
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1463</locationY>
+        <locationY>1871</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -482,7 +531,7 @@
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
         <locationX>446</locationX>
-        <locationY>1139</locationY>
+        <locationY>1547</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -519,7 +568,7 @@
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
         <locationX>644</locationX>
-        <locationY>839</locationY>
+        <locationY>1247</locationY>
         <connector>
             <targetReference>Is_IA_priority</targetReference>
         </connector>
@@ -535,7 +584,7 @@
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
-        <locationY>1679</locationY>
+        <locationY>2087</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -572,7 +621,7 @@
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
-        <locationY>1679</locationY>
+        <locationY>2087</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -591,7 +640,7 @@
         <name>Update_account</name>
         <label>Update account</label>
         <locationX>446</locationX>
-        <locationY>1247</locationY>
+        <locationY>1655</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
         </connector>
@@ -610,6 +659,22 @@
             </value>
         </inputAssignments>
         <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_RelatedToAccount</name>
+        <label>Update RelatedToAccount</label>
+        <locationX>644</locationX>
+        <locationY>947</locationY>
+        <connector>
+            <targetReference>Update_Activity_Date</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RelatedToAccount__c</field>
+            <value>
+                <elementReference>accountId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
         <locationX>650</locationX>
@@ -647,6 +712,13 @@
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;forfallsdato&quot;:&quot;{!forfallsdato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;prioritet&quot;:&quot;{!$Record.Priority}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;oppgaveundertype&quot;:&quot;{!$Record.TaskSubtype}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
     </textTemplates>
+    <variables>
+        <name>accountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>EventType</name>
         <dataType>String</dataType>
