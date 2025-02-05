@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
     <assignments>
+        <name>Assign_AccountId</name>
+        <label>Assign AccountId</label>
+        <locationX>974</locationX>
+        <locationY>839</locationY>
+        <assignmentItems>
+            <assignToReference>accountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_RelatedToAccount</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
         <locationX>974</locationX>
@@ -37,7 +53,7 @@
         <name>Store_event_date</name>
         <label>Store event date</label>
         <locationX>1370</locationX>
-        <locationY>839</locationY>
+        <locationY>1247</locationY>
         <assignmentItems>
             <assignToReference>StartDateTimeVariable</assignToReference>
             <operator>Assign</operator>
@@ -53,7 +69,7 @@
         <name>Is_Event_related_to_IACase</name>
         <label>Is Event related to IACase?</label>
         <locationX>446</locationX>
-        <locationY>1379</locationY>
+        <locationY>1787</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -75,7 +91,7 @@
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
         <locationX>644</locationX>
-        <locationY>1163</locationY>
+        <locationY>1571</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -104,7 +120,7 @@
         <name>Is_IA_event</name>
         <label>Is IA event?</label>
         <locationX>1106</locationX>
-        <locationY>731</locationY>
+        <locationY>1139</locationY>
         <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
         <rules>
             <name>Yes_is_IA_event</name>
@@ -145,6 +161,38 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_RelatedToAccount_null</name>
+        <label>Is RelatedToAccount null?</label>
+        <locationX>1106</locationX>
+        <locationY>731</locationY>
+        <defaultConnector>
+            <targetReference>Is_IA_event</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>RelatedToAccount not null</defaultConnectorLabel>
+        <rules>
+            <name>RelatedToAccount_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RelatedToAccount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_AccountId</targetReference>
+            </connector>
+            <label>RelatedToAccount null</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
         <locationX>1106</locationX>
@@ -173,7 +221,7 @@
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
         <locationX>578</locationX>
-        <locationY>1055</locationY>
+        <locationY>1463</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Event</name>
@@ -269,7 +317,7 @@
         <locationX>1106</locationX>
         <locationY>623</locationY>
         <connector>
-            <targetReference>Is_IA_event</targetReference>
+            <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
@@ -464,7 +512,7 @@
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
         <locationX>446</locationX>
-        <locationY>1271</locationY>
+        <locationY>1679</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Event_related_to_IACase</targetReference>
@@ -485,7 +533,7 @@
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1271</locationY>
+        <locationY>1679</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -506,7 +554,7 @@
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1163</locationY>
+        <locationY>1571</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -527,7 +575,7 @@
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
         <locationX>578</locationX>
-        <locationY>839</locationY>
+        <locationY>1247</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -559,7 +607,7 @@
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
-        <locationY>1379</locationY>
+        <locationY>1787</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -596,7 +644,7 @@
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
-        <locationY>1487</locationY>
+        <locationY>1895</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -615,7 +663,7 @@
         <name>Update_account</name>
         <label>Update account</label>
         <locationX>578</locationX>
-        <locationY>947</locationY>
+        <locationY>1355</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
         </connector>
@@ -639,7 +687,7 @@
         <name>Update_latest_event_date_on_account</name>
         <label>Update latest event date on account</label>
         <locationX>1370</locationX>
-        <locationY>947</locationY>
+        <locationY>1355</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -655,6 +703,22 @@
             </value>
         </inputAssignments>
         <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_RelatedToAccount</name>
+        <label>Update RelatedToAccount</label>
+        <locationX>974</locationX>
+        <locationY>947</locationY>
+        <connector>
+            <targetReference>Is_IA_event</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RelatedToAccount__c</field>
+            <value>
+                <elementReference>accountId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
         <locationX>980</locationX>
@@ -688,7 +752,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>StoreEventValues</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
@@ -699,6 +763,13 @@
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;{!$Record.EventSubtype}&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
     </textTemplates>
+    <variables>
+        <name>accountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>EventType</name>
         <dataType>String</dataType>
