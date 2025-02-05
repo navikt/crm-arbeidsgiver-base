@@ -17,11 +17,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Event.INT_AccountNAVUnitNr__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Event.TAG_AccountNAVUnit__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -83,11 +78,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.TAG_Market_Region__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Task.INT_AccountNAVUnitNr__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

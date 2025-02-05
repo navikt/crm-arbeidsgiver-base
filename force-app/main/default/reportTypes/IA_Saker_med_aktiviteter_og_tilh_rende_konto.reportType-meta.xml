@@ -180,21 +180,6 @@
             <field>What</field>
             <table>IACase__c.Activities</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_UserNAVUnitName__c</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_UserRegion__c</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_UserNAVUnitNr__c</field>
-            <table>IACase__c.Activities</table>
-        </columns>
         <masterLabel>IA Cases</masterLabel>
     </sections>
     <sections>
@@ -211,11 +196,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>TAG_AccountParentId__c</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountParentId__c</field>
             <table>IACase__c.Activities</table>
         </columns>
         <columns>
@@ -240,27 +220,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountOrgType__c</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Ansvarlig__c</field>
             <table>IACase__c.Activities</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountOrgNumber__c</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountParentOrgNumber__c</field>
             <table>IACase__c.Activities</table>
         </columns>
         <columns>
@@ -311,11 +276,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedDate</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountNAVUnitNr__c</field>
             <table>IACase__c.Activities</table>
         </columns>
         <columns>
