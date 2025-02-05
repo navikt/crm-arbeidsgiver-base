@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_AccountParentOrgNumber__c</fullName>
     <externalId>false</externalId>
-    <formula>Account.INT_ParentOrganizationNumber__c</formula>
+    <formula>RelatedToAccount__r.INT_ParentOrganizationNumber__c</formula>
     <label>Account Parent Org Number</label>
     <required>false</required>
     <type>Text</type>
