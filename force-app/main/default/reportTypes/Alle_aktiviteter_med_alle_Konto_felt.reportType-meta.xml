@@ -38,11 +38,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountNAVUnitNr__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_Account_Number_of_Employees__c</field>
             <table>Activity</table>
         </columns>
@@ -58,32 +53,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountOrgNumber__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountOrgType__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_AccountParentId__c</field>
             <table>Activity</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountParentId__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_AccountParentOrgNumber__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_AccountParentOrgNumber__c</field>
             <table>Activity</table>
         </columns>
         <columns>
@@ -429,21 +404,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CRM_Unit__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_UserNAVUnitName__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_UserNAVUnitNr__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>INT_UserRegion__c</field>
             <table>Activity</table>
         </columns>
         <columns>

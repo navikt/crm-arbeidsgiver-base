@@ -37,7 +37,7 @@
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
         <locationX>446</locationX>
-        <locationY>1871</locationY>
+        <locationY>1463</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -66,7 +66,7 @@
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
         <locationX>776</locationX>
-        <locationY>1439</locationY>
+        <locationY>1031</locationY>
         <defaultConnectorLabel>Not IA priority</defaultConnectorLabel>
         <rules>
             <name>Yes_IA_priority</name>
@@ -89,31 +89,6 @@
                 <targetReference>Get_latest_IA_priority_task</targetReference>
             </connector>
             <label>Yes IA priority</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Related_to_Account</name>
-        <label>Is Related to Account?</label>
-        <locationX>776</locationX>
-        <locationY>1031</locationY>
-        <defaultConnector>
-            <targetReference>Is_IA_priority</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Account.Id</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_dummy_account_Id</targetReference>
-            </connector>
-            <label>Yes</label>
         </rules>
     </decisions>
     <decisions>
@@ -147,7 +122,7 @@
         <locationX>776</locationX>
         <locationY>731</locationY>
         <defaultConnector>
-            <targetReference>Is_Related_to_Account</targetReference>
+            <targetReference>Is_IA_priority</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Activity Date is not null</defaultConnectorLabel>
         <rules>
@@ -170,7 +145,7 @@
         <name>Which_Record_Type</name>
         <label>Which Record Type</label>
         <locationX>446</locationX>
-        <locationY>1763</locationY>
+        <locationY>1355</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Task</name>
@@ -441,32 +416,10 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <name>Get_dummy_account_Id</name>
-        <label>Get dummy account Id</label>
-        <locationX>644</locationX>
-        <locationY>1139</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Update_AccountOrgType2_field</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Kontakter uten konto</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Account</object>
-        <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_IA_case</name>
         <label>Get IA case</label>
         <locationX>314</locationX>
-        <locationY>1979</locationY>
+        <locationY>1571</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_IA_Case_Number</targetReference>
@@ -487,7 +440,7 @@
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1979</locationY>
+        <locationY>1571</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -508,7 +461,7 @@
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1871</locationY>
+        <locationY>1463</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -529,7 +482,7 @@
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
         <locationX>446</locationX>
-        <locationY>1547</locationY>
+        <locationY>1139</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -568,7 +521,7 @@
         <locationX>644</locationX>
         <locationY>839</locationY>
         <connector>
-            <targetReference>Is_Related_to_Account</targetReference>
+            <targetReference>Is_IA_priority</targetReference>
         </connector>
         <inputAssignments>
             <field>ActivityDate</field>
@@ -582,7 +535,7 @@
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
-        <locationY>2087</locationY>
+        <locationY>1679</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -619,7 +572,7 @@
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
-        <locationY>2087</locationY>
+        <locationY>1679</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -638,7 +591,7 @@
         <name>Update_account</name>
         <label>Update account</label>
         <locationX>446</locationX>
-        <locationY>1655</locationY>
+        <locationY>1247</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
         </connector>
@@ -657,30 +610,6 @@
             </value>
         </inputAssignments>
         <object>Account</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_AccountOrgType2_field</name>
-        <label>Update AccountOrgType2 field</label>
-        <locationX>644</locationX>
-        <locationY>1247</locationY>
-        <connector>
-            <targetReference>Is_IA_priority</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>AccountId</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <elementReference>Get_dummy_account_Id.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>TAG_AccountOrgType2__c</field>
-            <value>
-                <elementReference>$Record.Account.CRM_AccountType__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
         <locationX>650</locationX>
