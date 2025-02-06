@@ -992,11 +992,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Event.TAG_AccountOrgType2__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Event.TAG_AccountOrgType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1243,11 +1238,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_AccountNAVUnit__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Task.TAG_AccountOrgType2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

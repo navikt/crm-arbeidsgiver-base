@@ -970,11 +970,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_AccountOrgType2__c</field>
-            <table>Account.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_AccountOrgType__c</field>
             <table>Account.Activities</table>
         </columns>
