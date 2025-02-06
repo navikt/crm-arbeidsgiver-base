@@ -33,6 +33,13 @@
             <operator>equals</operator>
             <value>Skal ansette,Tiltak,Forebygge sykefravær</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>CustomOpportunity__c.InclusionStage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Avsluttet</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>

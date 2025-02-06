@@ -44,14 +44,14 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>IA-avtale</value>
+            <value>Rekrutteringsavtale,IA-avtale,Inkluderingsavtale (Arbeidsgiver),MIDLERTIDIG_LONNSTILSKUDD,VARIG_LONNSTILSKUDD,ARBEIDSTRENING,MENTOR,INKLUDERINGSTILSKUDD,SOMMERJOBB</value>
         </criteriaItems>
         <criteriaItems>
             <column>Contract__c.Region__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Regional</value>
+            <value>Lokal,Regional,Nasjonal</value>
         </criteriaItems>
         <criteriaItems>
             <column>Contract__c.TAG_Type_Partner__c</column>
