@@ -61,9 +61,10 @@ public with sharing class AccountMessagesController {
         }
     }
 
-    // om parent ikke er null - sjekk parent felt
-    // om parent er null - sjekk account felt
-    // Underselskap oppløses ikke uten at hovedselskapet også oppløses
+    // Bankrupcy and forced settlement are only applicable to Enteties and not Sub-entities.
+    // Therefore we need to check if the account is a Sub-entity or an Entity and check fields accordingly.
+    // If account has parent it means it is a Sub-entity and we must check fields on parent account.
+    // If no parent then it is an Entity and we must check fields on account.
     private static boolean isBusinessInsolvent(Account account) {
         if (account.ParentId != null) {
             return (account.Parent.INT_IsBankrupt__c == true || account.Parent.INT_IsInForcedSettlementOrResolution__c);
@@ -79,12 +80,10 @@ public with sharing class AccountMessagesController {
         String relatedAccountId;
         if (account.INT_IsBankrupt__c == true) {
             relatedAccount = findRelatedAccount(account.Id, ' KONKURSBO');
-            //relatedAccountId = relatedAccount.id;
             value = value + 'konkurs';
         }
         if (account.INT_IsInForcedSettlementOrResolution__c) {
             relatedAccount = findRelatedAccount(account.Id, ' TVANGSAVVIKLINGSBO');
-            // relatedAccountId = relatedAccount.id;
             value = value + 'under tvangsavvikling';
         }
         return new AccountMessagesWrapper(relatedAccount?.id, value);
