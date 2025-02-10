@@ -1,5 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import createBadges from '@salesforce/apex/AccountBadgesController.createBadges';
+import { publishToAmplitude } from 'c/amplitude';
 
 export default class AccountBadges extends LightningElement {
     @api recordId; // Automatically populated in record context
@@ -18,10 +19,27 @@ export default class AccountBadges extends LightningElement {
             this.badges = data;
             this.renderBadges = this.badges.length > 0; // Check if badges array is empty
             //console.log('Badges:', JSON.stringify(this.badges));
+            this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
+            this.handleBadgeDisplay();
         } else if (error) {
             this.badges = [];
             this.renderBadges = false; // No badges to render
             console.error('Error fetching badges:', error);
         }
+    }
+
+    handleBadgeDisplay() {
+        this.badges.forEach(badge => {
+            //console.log(`Badge Displayed: ${badge.label}`);
+            if (badge.label.includes('Aktive tiltak')) {
+                publishToAmplitude(this.appName, { type: 'Badge View - Tiltak' });
+            } else if (badge.label.includes('Muligheter')) {
+                publishToAmplitude(this.appName, { type: 'Badge View - Muligheter' });
+            } else if (badge.helpText.includes('partnerstatus')) {
+                publishToAmplitude(this.appName, { type: 'Badge View - Partnerstatus' });
+            } else if (badge.helpText.includes('samarbeidsavtale')) {
+                publishToAmplitude(this.appName, { type: 'Badge View - Samarbeidsavtale' });
+            }
+        });
     }
 }
