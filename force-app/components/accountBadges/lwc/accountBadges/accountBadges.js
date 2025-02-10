@@ -30,7 +30,6 @@ export default class AccountBadges extends LightningElement {
 
     handleBadgeDisplay() {
         this.badges.forEach(badge => {
-            //console.log(`Badge Displayed: ${badge.label}`);
             if (badge.label.includes('Aktive tiltak')) {
                 publishToAmplitude(this.appName, { type: 'Badge View - Tiltak' });
             } else if (badge.label.includes('Muligheter')) {
@@ -41,5 +40,20 @@ export default class AccountBadges extends LightningElement {
                 publishToAmplitude(this.appName, { type: 'Badge View - Samarbeidsavtale' });
             }
         });
+    }
+
+    handleBadgeClick(event) {
+        const label = event.currentTarget.dataset.label;
+        const helpText = event.currentTarget.dataset.helptext;
+
+        if (label.includes('Aktive tiltak')) {
+            publishToAmplitude(this.appName, { type: 'Badge Click - Tiltak' });
+        } else if (label.includes('Muligheter')) {
+            publishToAmplitude(this.appName, { type: 'Badge Click - Muligheter' });
+        } else if (helpText.includes('partnerstatus')) {
+            publishToAmplitude(this.appName, { type: 'Badge Click - Partnerstatus' });
+        } else if (helpText.includes('samarbeidsavtale')) {
+            publishToAmplitude(this.appName, { type: 'Badge Click - Samarbeidsavtale' });
+        }
     }
 }
