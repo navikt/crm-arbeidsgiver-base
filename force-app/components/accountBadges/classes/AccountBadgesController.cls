@@ -158,6 +158,7 @@ public with sharing class AccountBadgesController {
     // Creates badge for Aktive tiltak.
     private static List<Badge> createNumberOfWorkfareBadge(Account account) {
         String labelTemplate = 'Aktive tiltak({0})';
+        //Dont change label without modifying Amplitude logic in accountBadges.js
         String helpText = accountFields.get('NumberOfWorkfare__c').getDescribe().getInlineHelpText();
         Map<String, Badge> badges = new Map<String, Badge>();
         if (account.NumberOfWorkfare__c >= 1) {
@@ -173,6 +174,7 @@ public with sharing class AccountBadgesController {
     // Links to report Muligheter_4WR with filter order: AccountId (fv0), InquiryCategory__c(fv1)
     private static List<Badge> createOpportunityCountBadge(List<CustomOpportunity__c> activeOpportunities) {
         String labelTemplate = 'Muligheter({0})';
+        //Dont change label without modifying Amplitude logic in accountBadges.js
         String helpText = 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".';
         Map<String, Badge> badges = new Map<String, Badge>();
         if (activeOpportunities.size() >= 1) {
@@ -189,6 +191,7 @@ public with sharing class AccountBadgesController {
     private static List<Badge> createAgreementBadges(List<Contract__c> employerAgreements) {
         String labelTemplate = '{0} {1}';
         String helpText = 'Bedriften har aktiv samarbeidsavtale innen angitt region og kategori.';
+        //Dont change helpText without modifying Amplitude logic in accountBadges.js
         Map<String, Badge> badges = new Map<String, Badge>();
         for (Contract__c employerAgreement : employerAgreements) {
             if (!String.isBlank(employerAgreement.Region__c) && !String.isBlank(employerAgreement.TAG_Category__c)) {
@@ -211,6 +214,7 @@ public with sharing class AccountBadgesController {
     private static List<Badge> createPartnerTypeBadge(List<Contract__c> employerAgreements) {
         String labelTemplate = '{0}';
         String helpText = 'Denne bedriftens partnerstatus basert på aktive avtaler.';
+        //Dont change helpText without modifying Amplitude logic in accountBadges.js
 
         Map<String, Badge> badges = new Map<String, Badge>();
         for (Contract__c employerAgreement : employerAgreements) {

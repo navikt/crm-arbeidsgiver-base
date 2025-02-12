@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>No_registration_on_dummy_account</fullName>
     <active>true</active>
-    <errorConditionFormula>RelatedToAccount__r.Name = &apos;Kontakter uten konto&apos;</errorConditionFormula>
+    <errorConditionFormula>AND(RelatedToAccount__r.Name = &apos;Kontakter uten konto&apos;, OR(RecordTypeName__c = &apos;ArbeidsgiverTask&apos;, RecordTypeName__c = &apos;IA_task&apos;))</errorConditionFormula>
     <errorMessage>Det går ikke å registrere aktiviteter på denne kontoen</errorMessage>
 </ValidationRule>
