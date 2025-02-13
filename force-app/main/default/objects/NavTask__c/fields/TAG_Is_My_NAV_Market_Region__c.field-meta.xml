@@ -3,7 +3,7 @@
     <fullName>TAG_Is_My_NAV_Market_Region__c</fullName>
     <externalId>false</externalId>
     <formula>AND(
-$User.CRM_MarketRegion__c == CRM_NavUnit__r.MarketRegion__c,
+LOWER($User.CRM_MarketRegion__c) = LOWER(CRM_NavUnit__r.MarketRegion__c),
  RecordType.DeveloperName =&quot;Employer&quot;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
