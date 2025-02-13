@@ -95,7 +95,7 @@ public with sharing class AccountMessagesController {
 
     private static String createDeletedMessage(Account account) {
         String deletedMessage = 'Denne virksomheten er avsluttet';
-        if (account.EmployerDeletedDate__c == null) {
+        if (account.EmployerDeletedDate__c != null) {
             deletedMessage = 'Denne virksomheten er avsluttet(' + account.TAG_DeletedDateFormula__c + ')';
         }
         return deletedMessage;
