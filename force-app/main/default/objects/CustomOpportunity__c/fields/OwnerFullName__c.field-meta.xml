@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OwnerFullName__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(CONTAINS( Owner:Queue.QueueName, &quot;NAV&quot;), Owner:Queue.QueueName ,Owner:User.FirstName+&quot; &quot;+ Owner:User.LastName)</formula>
+    <formula>IF(CONTAINS( UPPER(Owner:Queue.QueueName), &quot;NAV&quot;), Owner:Queue.QueueName ,Owner:User.FirstName+&quot; &quot;+ Owner:User.LastName)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>OwnerFullName</label>
     <required>false</required>
