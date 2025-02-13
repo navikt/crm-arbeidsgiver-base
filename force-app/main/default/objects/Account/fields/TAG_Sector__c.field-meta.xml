@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Sector__c</fullName>
+    <description>Formula to show public or private sector based on ereg Organization structure type (e.g., AS, ENK) and Institutional sector code.</description>
     <externalId>false</externalId>
-    <formula>IF( (INT_SectorCode__c == null &amp;&amp;  INT_OrganizationalStructure__c == &apos;ORGL&apos; || 
-INT_SectorCode__c == null &amp;&amp;   Parent.INT_OrganizationalStructure__c == &apos;ORGL&apos;)
- || INT_SectorCode__c == &apos;3900&apos; 
- || INT_SectorCode__c == &apos;6100&apos; 
- || INT_SectorCode__c == &apos;6500&apos;, 
+    <formula>IF( (INT_SectorCode__c = null &amp;&amp; UPPER(INT_OrganizationalStructure__c) = &apos;ORGL&apos; || 
+INT_SectorCode__c = null &amp;&amp; UPPER(Parent.INT_OrganizationalStructure__c) = &apos;ORGL&apos;)
+ || INT_SectorCode__c = &apos;3900&apos; 
+ || INT_SectorCode__c = &apos;6100&apos; 
+ || INT_SectorCode__c = &apos;6500&apos;, 
 &apos;OFFENTLIG&apos;, 
 &apos;PRIVAT&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

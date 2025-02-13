@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Abesence_in_Hiearchy__c</fullName>
+    <description>Displays link &quot;Se rapport over sykefravær hele organisasjonen&quot; to a a dynamic report filtered on ultimate parent account.</description>
     <externalId>false</externalId>
     <formula>HYPERLINK(&quot;/lightning/r/Report/00O7U000000zEmiUAE/view?fv0=&quot;&amp; CRM_UltimateParentAccount__c , &quot;Se rapport over sykefravær hele organisasjonen&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

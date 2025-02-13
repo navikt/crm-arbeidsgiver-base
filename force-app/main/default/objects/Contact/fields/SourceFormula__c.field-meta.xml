@@ -3,10 +3,10 @@
     <fullName>SourceFormula__c</fullName>
     <externalId>false</externalId>
     <formula>IF(
-CreatedBy.LastName = &apos;Permitteringsvarsler&apos;, &apos;Varsel til NAV&apos;,
+LOWER(CreatedBy.LastName) = LOWER(&apos;Permitteringsvarsler&apos;), &apos;Varsel til NAV&apos;,
 
 IF(
-CreatedBy.LastName = &apos;Kontaktskjema&apos;, &apos;Kontaktskjema&apos;, &apos;Opprettet i Salesforce&apos;
+LOWER(CreatedBy.LastName) = LOWER(&apos;Kontaktskjema&apos;), &apos;Kontaktskjema&apos;, &apos;Opprettet i Salesforce&apos;
 ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Source</label>
