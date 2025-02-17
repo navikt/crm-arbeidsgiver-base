@@ -5,7 +5,7 @@
         <name>Assign_AccountId</name>
         <label>Assign AccountId</label>
         <locationX>974</locationX>
-        <locationY>839</locationY>
+        <locationY>1055</locationY>
         <assignmentItems>
             <assignToReference>accountId</assignToReference>
             <operator>Assign</operator>
@@ -21,7 +21,7 @@
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
         <locationX>974</locationX>
-        <locationY>431</locationY>
+        <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -37,7 +37,7 @@
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
         <locationX>1238</locationX>
-        <locationY>431</locationY>
+        <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -53,7 +53,7 @@
         <name>Store_event_date</name>
         <label>Store event date</label>
         <locationX>1370</locationX>
-        <locationY>1247</locationY>
+        <locationY>1463</locationY>
         <assignmentItems>
             <assignToReference>StartDateTimeVariable</assignToReference>
             <operator>Assign</operator>
@@ -69,7 +69,7 @@
         <name>Is_Event_related_to_IACase</name>
         <label>Is Event related to IACase?</label>
         <locationX>446</locationX>
-        <locationY>1787</locationY>
+        <locationY>2003</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -91,7 +91,7 @@
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
         <locationX>644</locationX>
-        <locationY>1571</locationY>
+        <locationY>1787</locationY>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -120,7 +120,7 @@
         <name>Is_IA_event</name>
         <label>Is IA event?</label>
         <locationX>1106</locationX>
-        <locationY>1139</locationY>
+        <locationY>1355</locationY>
         <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
         <rules>
             <name>Yes_is_IA_event</name>
@@ -161,10 +161,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_person_account</name>
+        <label>Is person account?</label>
+        <locationX>1502</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Can_not_register_on_person_account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Yes is person account</defaultConnectorLabel>
+        <rules>
+            <name>Not_person_account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_AccountId_value.IsPersonAccount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Trigger_type</targetReference>
+            </connector>
+            <label>Not person account</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_RelatedToAccount_null</name>
         <label>Is RelatedToAccount null?</label>
         <locationX>1106</locationX>
-        <locationY>731</locationY>
+        <locationY>947</locationY>
         <defaultConnector>
             <targetReference>Is_IA_event</targetReference>
         </defaultConnector>
@@ -196,7 +221,7 @@
         <name>Trigger_type</name>
         <label>Trigger type</label>
         <locationX>1106</locationX>
-        <locationY>323</locationY>
+        <locationY>539</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
@@ -221,7 +246,7 @@
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
         <locationX>578</locationX>
-        <locationY>1463</locationY>
+        <locationY>1679</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Event</name>
@@ -315,7 +340,7 @@
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
         <locationX>1106</locationX>
-        <locationY>623</locationY>
+        <locationY>839</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -509,10 +534,31 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_AccountId_value</name>
+        <label>Get AccountId value</label>
+        <locationX>1502</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_person_account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
         <locationX>446</locationX>
-        <locationY>1679</locationY>
+        <locationY>1895</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Event_related_to_IACase</targetReference>
@@ -533,7 +579,7 @@
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1679</locationY>
+        <locationY>1895</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -554,7 +600,7 @@
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
         <locationX>50</locationX>
-        <locationY>1571</locationY>
+        <locationY>1787</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -575,7 +621,7 @@
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
         <locationX>578</locationX>
-        <locationY>1247</locationY>
+        <locationY>1463</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -607,7 +653,7 @@
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
-        <locationY>1787</locationY>
+        <locationY>2003</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -644,7 +690,7 @@
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
-        <locationY>1895</locationY>
+        <locationY>2111</locationY>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -663,7 +709,7 @@
         <name>Update_account</name>
         <label>Update account</label>
         <locationX>578</locationX>
-        <locationY>1355</locationY>
+        <locationY>1571</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
         </connector>
@@ -687,7 +733,7 @@
         <name>Update_latest_event_date_on_account</name>
         <label>Update latest event date on account</label>
         <locationX>1370</locationX>
-        <locationY>1355</locationY>
+        <locationY>1571</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -708,7 +754,7 @@
         <name>Update_RelatedToAccount</name>
         <label>Update RelatedToAccount</label>
         <locationX>974</locationX>
-        <locationY>947</locationY>
+        <locationY>1163</locationY>
         <connector>
             <targetReference>Is_IA_event</targetReference>
         </connector>
@@ -721,10 +767,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>980</locationX>
+        <locationX>1376</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Trigger_type</targetReference>
+            <targetReference>Get_AccountId_value</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
