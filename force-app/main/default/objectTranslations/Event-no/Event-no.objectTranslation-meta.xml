@@ -34,39 +34,91 @@
     <layouts>
         <layout>Event Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
     <layouts>
         <layout>TAG Event Layout</layout>
         <sections>
-            <label><!-- Aktører --></label>
+            <label></label>
             <section>Aktører</section>
         </sections>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Detaljer --></label>
+            <label></label>
             <section>Detaljer</section>
         </sections>
         <sections>
-            <label><!-- New Section --></label>
+            <label></label>
             <section>New Section</section>
         </sections>
         <sections>
-            <label><!-- Tidspunkt --></label>
+            <label></label>
             <section>Tidspunkt</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>TAG IA Event Layout</layout>
+        <sections>
+            <label></label>
+            <section>Aktører</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Detaljer</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Tidspunkt</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label></label>
+        <name>Change_Owner</name>
+    </quickActions>
     <recordTypes>
         <label>Møte</label>
         <name>ArbeidsgiverEvent</name>
     </recordTypes>
+    <recordTypes>
+        <description></description>
+        <label>IA-samarbeid</label>
+        <name>IA_event</name>
+    </recordTypes>
     <validationRules>
-        <errorMessage><!-- Du må bekrefte at notatet ikke inneholder personsensitive opplysninger --></errorMessage>
+        <errorMessage></errorMessage>
+        <name>Disallow_ActivityType_values</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Disallow_activitytype_IA_on_account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Disallow_values_for_IA_activities</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
         <name>No_person_information_added</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>No_registration_on_dummy_account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage></errorMessage>
+        <name>Related_To_is_required</name>
     </validationRules>
 </CustomObjectTranslation>
