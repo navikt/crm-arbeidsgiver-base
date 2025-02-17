@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Public_Sector__c</fullName>
+    <description>Display a sector category based on fields from Ereg.
+Formula checks description of the organization structure, organization structure type for parent account and sector code.
+Outputs &quot;Kommune&quot; if organization structure is described as such or parent account is &quot;ORGL&quot;.
+Outputs &quot;Stat&quot; if sector code is &quot;6100&quot;.
+Outputs &quot;Privat&quot; if none of the above matches.</description>
     <externalId>false</externalId>
     <formula>IF(
     OR(
-        INT_OrganizationalStructureDesc__c = &apos;Kommune&apos;,
-    Parent.INT_OrganizationalStructureDesc__c = &apos;Kommune&apos;,
-Parent.INT_OrganizationalStructure__c  = &apos;ORGL&apos;),
-  
+        LOWER(INT_OrganizationalStructureDesc__c) = &apos;kommune&apos;,
+        LOWER(Parent.INT_OrganizationalStructureDesc__c) = &apos;kommune&apos;,
+        UPPER(Parent.INT_OrganizationalStructure__c) = &apos;ORGL&apos;
+    ),
     &apos;Kommune&apos;,
     IF(
         INT_SectorCode__c = &apos;6100&apos;, 
-        &quot;Stat&quot;,
-        &quot;Privat&quot;
+        &apos;Stat&apos;,
+        &apos;Privat&apos;
     )
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

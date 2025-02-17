@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Running_User_Region__c</fullName>
     <externalId>false</externalId>
-    <formula>CreatedBy.Region__c = $User.Region__c</formula>
+    <formula>LOWER(CreatedBy.Region__c) = LOWER($User.Region__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Running User Region</label>
     <type>Checkbox</type>

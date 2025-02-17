@@ -3,8 +3,8 @@
     <fullName>Is_My_NAV_Region__c</fullName>
     <externalId>false</externalId>
     <formula>AND(
-$User.Region__c ==  TAG_NavUnit__r.INT_Region__c,
-RecordType.DeveloperName == &apos;Employer&apos;
+LOWER($User.Region__c) = LOWER(TAG_NavUnit__r.INT_Region__c),
+RecordType.DeveloperName = &apos;Employer&apos;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My NAV Region</label>
