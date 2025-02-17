@@ -17,7 +17,7 @@ const columns = [
   { label: 'Navn', fieldName: 'UserId', initialWidth: 200 },
   { label: 'Rolle', fieldName: 'TeamMemberRole', initialWidth: 200 },
   { label: 'Tema', fieldName: 'Departments' },
-  { label: 'NAV-Kontor', fieldName: 'CompanyName', initialWidth: 200 },
+  { label: 'Nav-kontor', fieldName: 'CompanyName', initialWidth: 200 },
   { label: 'Telefon', fieldName: 'MobilePhone', initialWidth: 150 },
   {
     type: 'action',
