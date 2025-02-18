@@ -47,7 +47,7 @@
         <label>Detaljer</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>IATheme__c</field>
             </layoutItems>
             <layoutItems>
@@ -163,7 +163,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hKI000000iUmq</masterLabel>
+        <masterLabel>00hKM0000010WDf</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
