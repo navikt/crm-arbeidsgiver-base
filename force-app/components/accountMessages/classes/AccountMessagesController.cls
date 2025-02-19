@@ -4,18 +4,39 @@ public with sharing class AccountMessagesController {
     @AuraEnabled(cacheable=true)
     public static AccountMessagesWrapper getData(String recordId) {
         AccountMessagesWrapper wrapper = new AccountMessagesWrapper();
-        Account account = getAccount(recordId);
-        if (account == null) {
+        Account account;
+
+        // Try to get account from database. Return null if no account was found. If an exception is thrown, log it and return null.
+        try {
+            account = getAccount(recordId);
+            if (account == null) {
+                return null;
+            }
+        } catch (Exception e) {
+            logError(recordId, e);
+            LOGGER.publish();
             return null;
         }
-        if (isBusinessInsolvent(account)) {
-            wrapper = convertAccountHistoryToWrapper(account.ParentId == null ? account : account.Parent);
+        // Try-catch for insolvent message. If an exception is thrown it is logged, but the method continues.
+        try {
+            if (isBusinessInsolvent(account)) {
+                wrapper = convertAccountHistoryToWrapper(account.ParentId == null ? account : account.Parent);
+            }
+        } catch (Exception e) {
+            logError(recordId, e);
+            LOGGER.publish();
         }
 
-        if (isBusinessDeleted(account)) {
-            wrapper.deletedMessage = createDeletedMessage(account);
+        // Try-catch for deleted message. If an exception is thrown it is logged, but the method continues.
+        try {
+            if (isBusinessDeleted(account)) {
+                wrapper.deletedMessage = createDeletedMessage(account);
+            }
+        } catch (Exception e) {
+            logError(recordId, e);
+            LOGGER.publish();
         }
-
+        // Check if there are any messages to display. If not, return null.
         if (wrapper.field == null && wrapper.deletedMessage == null) {
             return null;
         } else {
@@ -25,7 +46,7 @@ public with sharing class AccountMessagesController {
 
     @TestVisible
     private static Account getAccount(Id recordId) {
-        Account currentAccount = [
+        List<Account> currentAccount = [
             SELECT
                 Id,
                 ParentId,
@@ -37,27 +58,29 @@ public with sharing class AccountMessagesController {
                 EmployerDeletedDate__c,
                 TAG_DeletedDateFormula__c
             FROM Account
-            WHERE Id = :recordId
+            WHERE Id = :recordId AND IsPersonAccount = FALSE
             LIMIT 1
         ];
-        return currentAccount;
+        if (currentAccount.isEmpty()) {
+            return null;
+        } else {
+            return currentAccount[0];
+        }
     }
 
     @TestVisible
     private static Account findRelatedAccount(Id accountId, String value) {
-        try {
-            Account currentAccount = [SELECT Name FROM Account WHERE Id = :accountId LIMIT 1][0];
-            String newAccountName = currentAccount.Name + value;
-            Account newAccount = [
-                SELECT Id, Name
-                FROM Account
-                WHERE Name = :newAccountName AND INT_OrganizationalStructure__c = 'AAFY'
-            ];
-
-            return newAccount;
-        } catch (Exception e) {
-            logError(accountId, e);
+        Account currentAccount = [SELECT Name FROM Account WHERE Id = :accountId LIMIT 1][0];
+        String newAccountName = currentAccount.Name + value;
+        List<Account> newAccount = [
+            SELECT Id, Name
+            FROM Account
+            WHERE Name = :newAccountName AND INT_OrganizationalStructure__c = 'AAFY'
+        ];
+        if (newAccount.isEmpty()) {
             return null;
+        } else {
+            return newAccount[0];
         }
     }
 
@@ -101,7 +124,7 @@ public with sharing class AccountMessagesController {
         return deletedMessage;
     }
 
-    private static void logError(Id accountId, Exception e) {
+    private static void logError(String accountId, Exception e) {
         LOGGER.logMessage(
             LoggerUtility.LogLevel.Error,
             '',
@@ -111,6 +134,5 @@ public with sharing class AccountMessagesController {
             null,
             CRM_ApplicationDomain.Domain.POAB
         );
-        LOGGER.publish();
     }
 }
