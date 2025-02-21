@@ -4,7 +4,7 @@
     <assignments>
         <name>Assign_AccountId</name>
         <label>Assign AccountId</label>
-        <locationX>974</locationX>
+        <locationX>798</locationX>
         <locationY>839</locationY>
         <assignmentItems>
             <assignToReference>accountId</assignToReference>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
-        <locationX>974</locationX>
-        <locationY>431</locationY>
+        <locationX>798</locationX>
+        <locationY>2447</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -36,8 +36,8 @@
     <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>1238</locationX>
-        <locationY>431</locationY>
+        <locationX>1062</locationX>
+        <locationY>2447</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -52,7 +52,7 @@
     <assignments>
         <name>Store_event_date</name>
         <label>Store event date</label>
-        <locationX>1370</locationX>
+        <locationX>1106</locationX>
         <locationY>1247</locationY>
         <assignmentItems>
             <assignToReference>StartDateTimeVariable</assignToReference>
@@ -70,6 +70,9 @@
         <label>Is Event related to IACase?</label>
         <locationX>446</locationX>
         <locationY>1787</locationY>
+        <defaultConnector>
+            <targetReference>Trigger_type</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -90,8 +93,11 @@
     <decisions>
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
-        <locationX>644</locationX>
+        <locationX>600</locationX>
         <locationY>1571</locationY>
+        <defaultConnector>
+            <targetReference>Trigger_type</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Not blank</defaultConnectorLabel>
         <rules>
             <name>Yes_is_blank</name>
@@ -119,8 +125,11 @@
     <decisions>
         <name>Is_IA_event</name>
         <label>Is IA event?</label>
-        <locationX>1106</locationX>
+        <locationX>930</locationX>
         <locationY>1139</locationY>
+        <defaultConnector>
+            <targetReference>Trigger_type</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No not IA event</defaultConnectorLabel>
         <rules>
             <name>Yes_is_IA_event</name>
@@ -163,7 +172,7 @@
     <decisions>
         <name>Is_RelatedToAccount_null</name>
         <label>Is RelatedToAccount null?</label>
-        <locationX>1106</locationX>
+        <locationX>930</locationX>
         <locationY>731</locationY>
         <defaultConnector>
             <targetReference>Is_IA_event</targetReference>
@@ -193,10 +202,64 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Related_to_What_Object</name>
+        <label>Related to What Object?</label>
+        <locationX>930</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Is_RelatedToAccount_null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Annet</defaultConnectorLabel>
+        <rules>
+            <name>Kampanjemedlem</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_RelatedToObject__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Kampanjemedlem</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RelatedToAccount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Custom_Campaign_Member</targetReference>
+            </connector>
+            <label>Kampanjemedlem</label>
+        </rules>
+        <rules>
+            <name>Mulighet</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_RelatedToObject__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Mulighet</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RelatedToAccount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Custom_Opportunity</targetReference>
+            </connector>
+            <label>Mulighet</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
-        <locationX>1106</locationX>
-        <locationY>323</locationY>
+        <locationX>930</locationX>
+        <locationY>2339</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
@@ -220,8 +283,11 @@
     <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type?</label>
-        <locationX>578</locationX>
+        <locationX>490</locationX>
         <locationY>1463</locationY>
+        <defaultConnector>
+            <targetReference>Trigger_type</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>IA_Event</name>
@@ -314,11 +380,8 @@
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>1106</locationX>
-        <locationY>623</locationY>
-        <connector>
-            <targetReference>Is_RelatedToAccount_null</targetReference>
-        </connector>
+        <locationX>930</locationX>
+        <locationY>2639</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
             <value>
@@ -416,9 +479,21 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>LastModifiedById__c</field>
+            <value>
+                <elementReference>$Record.LastModifiedById</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>LastModifiedDate__c</field>
             <value>
                 <elementReference>$Record.LastModifiedDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId__c</field>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -509,6 +584,48 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_Custom_Campaign_Member</name>
+        <label>Get Custom Campaign Member</label>
+        <locationX>666</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Account_Value_for_CCM</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomCampaignMember__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Custom_Opportunity</name>
+        <label>Get Custom Opportunity</label>
+        <locationX>930</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Account_Value_for_CO</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomOpportunity__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_IA_Case</name>
         <label>Get IA Case</label>
         <locationX>446</locationX>
@@ -574,7 +691,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>578</locationX>
+        <locationX>490</locationX>
         <locationY>1247</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -608,6 +725,9 @@
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
         <locationY>1787</locationY>
+        <connector>
+            <targetReference>Trigger_type</targetReference>
+        </connector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -645,6 +765,9 @@
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
         <locationY>1895</locationY>
+        <connector>
+            <targetReference>Trigger_type</targetReference>
+        </connector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -662,7 +785,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>578</locationX>
+        <locationX>490</locationX>
         <locationY>1355</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
@@ -684,10 +807,45 @@
         <object>Account</object>
     </recordUpdates>
     <recordUpdates>
+        <name>Update_Account_Value_for_CCM</name>
+        <label>Update Account Value for CCM</label>
+        <locationX>666</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Is_RelatedToAccount_null</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RelatedToAccount__c</field>
+            <value>
+                <elementReference>Get_Custom_Campaign_Member.Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Account_Value_for_CO</name>
+        <label>Update Account Value for CO</label>
+        <locationX>930</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Is_RelatedToAccount_null</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RelatedToAccount__c</field>
+            <value>
+                <elementReference>Get_Custom_Opportunity.Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_latest_event_date_on_account</name>
         <label>Update latest event date on account</label>
-        <locationX>1370</locationX>
+        <locationX>1106</locationX>
         <locationY>1355</locationY>
+        <connector>
+            <targetReference>Trigger_type</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -707,7 +865,7 @@
     <recordUpdates>
         <name>Update_RelatedToAccount</name>
         <label>Update RelatedToAccount</label>
-        <locationX>974</locationX>
+        <locationX>798</locationX>
         <locationY>947</locationY>
         <connector>
             <targetReference>Is_IA_event</targetReference>
@@ -721,10 +879,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>980</locationX>
+        <locationX>804</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Trigger_type</targetReference>
+            <targetReference>Related_to_What_Object</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
