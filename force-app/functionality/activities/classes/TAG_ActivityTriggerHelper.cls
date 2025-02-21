@@ -34,11 +34,14 @@ public with sharing class TAG_ActivityTriggerHelper {
             taskEmpActEv.ActivityDate__c = task.ActivityDate;
             taskEmpActEv.ActivityType__c = task.TAG_ActivityType__c;
             taskEmpActEv.ActivityCreatedDate__c = task.CreatedDate;
+            taskEmpActEv.CompletedDate__c = task.TAG_CompletedDate__c;
             taskEmpActEv.IACaseNumber__c = task.TAG_IACaseNumber__c;
             taskEmpActEv.IACooperationId__c = task.TAG_IACooperationId__c;
             taskEmpActEv.IASubtheme__c = task.IASubtheme__c;
             taskEmpActEv.Id__c = task.Id;
+            taskEmpActEv.LastModifiedById__c = task.LastModifiedById;
             taskEmpActEv.LastModifiedDate__c = task.LastModifiedDate;
+            taskEmpActEv.OwnerId__c = task.OwnerId;
             taskEmpActEv.Priority__c = task.Priority;
             taskEmpActEv.RecordTypeId__c = task.RecordTypeId;
             taskEmpActEv.RecordTypeName__c = task.RecordTypeName__c;
@@ -53,6 +56,10 @@ public with sharing class TAG_ActivityTriggerHelper {
             taskEmpActEv.UserNavUnit__c = task.TAG_UserNAVUnit__c;
             taskEmpActEv.WhatId__c = task.WhatId;
             taskEmpActEv.WhoId__c = task.WhoId;
+
+            if (EventType == 'Deleted'){
+                taskEmpActEv.DeletedDate__c = task.LastModifiedDate;
+            }
 
             taskEmployerActivityList.add(taskEmpActEv);
         }
@@ -93,7 +100,9 @@ public with sharing class TAG_ActivityTriggerHelper {
             eventEmpActEv.IACooperationId__c = event.TAG_IACooperationId__c;
             eventEmpActEv.IASubtheme__c = event.IASubtheme__c;
             eventEmpActEv.Id__c = event.Id;
+            eventEmpActEv.LastModifiedById__c = event.LastModifiedById;
             eventEmpActEv.LastModifiedDate__c = event.LastModifiedDate;
+            eventEmpActEv.OwnerId__c = event.OwnerId;
             eventEmpActEv.RecordTypeId__c = event.RecordTypeId;
             eventEmpActEv.RecordTypeName__c = event.RecordTypeName__c;
             eventEmpActEv.Region__c = event.CRM_Region__c;
@@ -108,6 +117,10 @@ public with sharing class TAG_ActivityTriggerHelper {
             eventEmpActEv.UserNavUnit__c = event.TAG_UserNAVUnit__c;
             eventEmpActEv.WhatId__c = event.WhatId;
             eventEmpActEv.WhoId__c = event.WhoId;
+
+            if (EventType == 'Deleted'){
+                eventEmpActEv.DeletedDate__c = event.LastModifiedDate;
+            }
 
             eventEmployerActivityList.add(eventEmpActEv);
         }
