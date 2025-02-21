@@ -181,14 +181,14 @@
             <name>Uncompleted</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record__Prior.Status</leftValueReference>
+                <leftValueReference>$Record__Prior.TAG_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Fullført</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
+                <leftValueReference>$Record.TAG_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Åpen</stringValue>
@@ -345,6 +345,11 @@
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>DateTimeNull</name>
+        <dataType>DateTime</dataType>
+        <expression>Null</expression>
+    </formulas>
     <formulas>
         <name>endret_dato_text</name>
         <dataType>String</dataType>
@@ -825,6 +830,9 @@
         </connector>
         <inputAssignments>
             <field>TAG_CompletedDate__c</field>
+            <value>
+                <elementReference>DateTimeNull</elementReference>
+            </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
