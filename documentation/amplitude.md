@@ -59,23 +59,6 @@ export default class AmplitudeKontoOversikt extends LightningElement {
 import { LightningElement } from 'lwc';
 import { publishToAmplitude } from 'c/amplitude';
 
-export default class AmplitudeKontoOversikt extends LightningElement {
-
-    renderedCallback() {
-        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
-        publishToAmplitude(this.appName, { type: 'Konto - Oversikt' });    
-    }
-}
-```
-
-- **UtilityApp-komponent**  
-  Lagrer i nettleserens localStorage navnet på Salesforce-appen (for eksempel «Arbeidsgiver»). Dette sendes via `publishToAmplitude` til Amplitude som eventType. Komponenten bør plasseres i UtilityBar slik at det alltid er lagret korrekt app-navn når brukeren bytter til en annen SF-app.
-
-
-```javascript
-import { LightningElement } from 'lwc';
-import { publishToAmplitude } from 'c/amplitude';
-
 export default class AmplitudeDeviceReader extends LightningElement {
 
     appName;
@@ -95,6 +78,25 @@ export default class AmplitudeDeviceReader extends LightningElement {
     renderedCallback() {
         this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
         publishToAmplitude(this.appName, { type: this.getDeviceType() });    
+    }
+}
+```
+
+- **UtilityApp-komponent**  
+  Lagrer i nettleserens localStorage navnet på Salesforce-appen (for eksempel «Arbeidsgiver»). Dette sendes via `publishToAmplitude` til Amplitude som eventType. Komponenten bør plasseres i UtilityBar slik at det alltid er lagret korrekt app-navn når brukeren bytter til en annen SF-app.
+
+
+```javascript
+import { LightningElement, api } from 'lwc';
+
+export default class AmplitudeUtilityApp extends LightningElement {
+    @api appName; // App name passed from App Builder
+
+    connectedCallback() {
+        if (this.appName) {
+            // Save the app name in localStorage
+            localStorage.setItem('currentAppName', this.appName);
+        }
     }
 }
 ```
@@ -129,7 +131,12 @@ Før du kan ta i bruk komponentene, må noen felles oppsett være på plass:
    For eksempel, i Arbeidsgiverkortet, lag en ny LWC-komponent, importer `publishToAmplitude` og send custom events i `renderedCallback` via `publishToAmplitude`-metoden.  
    [Se eksempel: amplitudeKontoOversikt](https://github.com/navikt/crm-arbeidsgiver-base/blob/main/force-app/functionality/amplitude/lwc/amplitudeKontoOversikt/amplitudeKontoOversikt.js)
 
-
+    ```javascript
+    renderedCallback() {
+        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
+        publishToAmplitude(this.appName, { type: 'Konto - Oversikt' });    
+    }
+    ```
 
 7. **Custom Komponenter (f.eks. Badges)**  
    Importer `publishToAmplitude`-metoden og send events til Amplitude basert på logikk (for eksempel ved klikk eller visning).  
