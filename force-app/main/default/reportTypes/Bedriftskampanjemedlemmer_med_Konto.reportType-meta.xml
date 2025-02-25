@@ -175,6 +175,11 @@
             <field>TAG_Is_my_market_region__c</field>
             <table>CustomCampaignMember__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Link__c</field>
+            <table>CustomCampaignMember__c</table>
+        </columns>
         <masterLabel>Custom Campaign Members</masterLabel>
     </sections>
     <sections>
