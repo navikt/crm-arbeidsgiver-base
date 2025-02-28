@@ -562,37 +562,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_FiaCaseNr__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_FiaCaseOwnerName__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_FiaCaseOwner__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_FiaCaseStatus__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_FiaKafkaId__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_FiaLastModifiedDate__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_FiaStartDate__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -673,11 +643,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Warning__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FiaLink__c</field>
             <table>Account</table>
         </columns>
         <columns>
