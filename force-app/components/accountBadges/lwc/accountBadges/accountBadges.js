@@ -30,30 +30,37 @@ export default class AccountBadges extends LightningElement {
 
     handleBadgeDisplay() {
         this.badges.forEach(badge => {
-            if (badge.label.includes('Aktive tiltak')) {
+            if (badge.badgeType === 'Tiltak') {
                 publishToAmplitude(this.appName, { type: 'Badge View - Tiltak' });
-            } else if (badge.label.includes('Muligheter')) {
+            } else if (badge.badgeType === 'Muligheter') {
                 publishToAmplitude(this.appName, { type: 'Badge View - Muligheter' });
-            } else if (badge.helpText.includes('partnerstatus')) {
+            } else if (badge.badgeType === 'Partnerstatus') {
                 publishToAmplitude(this.appName, { type: 'Badge View - Partnerstatus' });
-            } else if (badge.helpText.includes('samarbeidsavtale')) {
+            } else if (badge.badgeType === 'Samarbeidsavtale') {
                 publishToAmplitude(this.appName, { type: 'Badge View - Samarbeidsavtale' });
+            } else if (badge.badgeType === 'Stillinger') {
+                publishToAmplitude(this.appName, { type: 'Badge View - Stillinger' });
+            } else if (badge.badgeType === 'IA-samarbeid') {
+                publishToAmplitude(this.appName, { type: 'Badge View - IA-samarbeid' });
             }
         });
     }
 
     handleBadgeClick(event) {
-        const label = event.currentTarget.dataset.label;
-        const helpText = event.currentTarget.dataset.helptext;
+        const badgetype = event.currentTarget.dataset.badgetype;
 
-        if (label.includes('Aktive tiltak')) {
+        if (badgetype === 'Tiltak') {
             publishToAmplitude(this.appName, { type: 'Badge Click - Tiltak' });
-        } else if (label.includes('Muligheter')) {
+        } else if (badgetype === 'Muligheter') {
             publishToAmplitude(this.appName, { type: 'Badge Click - Muligheter' });
-        } else if (helpText.includes('partnerstatus')) {
+        } else if (badgetype === 'Partnerstatus') {
             publishToAmplitude(this.appName, { type: 'Badge Click - Partnerstatus' });
-        } else if (helpText.includes('samarbeidsavtale')) {
+        } else if (badgetype === 'Samarbeidsavtale') {
             publishToAmplitude(this.appName, { type: 'Badge Click - Samarbeidsavtale' });
+        } else if (badgetype === 'Stillinger') {
+            publishToAmplitude(this.appName, { type: 'Badge Click - Stillinger' });
+        } else if (badgetype === 'IA-samarbeid') {
+            publishToAmplitude(this.appName, { type: 'Badge Click - IA-samarbeid' });
         }
     }
 }

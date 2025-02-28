@@ -23,9 +23,13 @@ public with sharing class AccountBadgesController {
             }
             List<Contract__c> employerAgreements = fetchEmployerAgreements(accountId);
             List<CustomOpportunity__c> employerOpportunities = fetchOpportunities(accountId);
+            List<JobPosting__c> employerJobPostings = fetchJobPostings(accountId);
+            List<IACooperation__c> employerIACooperations = fetchIACooperations(accountId);
             addContractBadges(accountBadges, employerAgreements);
             addAccountBadges(accountBadges, account);
             addOpportunityBadges(accountBadges, employerOpportunities);
+            addJobPostingBadges(accountBadges, employerJobPostings);
+            addIACooperationBadges(accountBadges, employerIACooperations);
         } catch (Exception e) {
             logError(accountId, e);
             return new List<Badge>();
@@ -56,7 +60,7 @@ public with sharing class AccountBadgesController {
     }
     /**
      * @description Fetches CustomOpportunity__c records.
-     * @param accountId The Id of the Account to fetch contracts for.
+     * @param accountId The Id of the Account to fetch opportunities for.
      * @return List of CustomOpportunity__c records.
      */
     private static List<CustomOpportunity__c> fetchOpportunities(Id accountId) {
@@ -105,6 +109,45 @@ public with sharing class AccountBadgesController {
         return contracts;
     }
 
+     /**
+     * @description Fetches JobPosting__c records.
+     * @param accountId The Id of the Account to fetch jobpostings for.
+     * @return List of JobPosting__c records.
+     */
+    private static List<JobPosting__c> fetchJobPostings(Id accountId) {
+        if (!Schema.sObjectType.JobPosting__c.isAccessible()) {
+            return new List<JobPosting__c>();
+        }
+        String query = 'SELECT Id';
+        if (Schema.sObjectType.JobPosting__c.fields.Status__c.isAccessible()) {
+            query += ',Status__c';
+        }
+        query += ' FROM JobPosting__c WHERE Status__c = \'ACTIVE\' AND Account__c = :accountId';
+        List<JobPosting__c> jobPostings = Database.query(query);
+        return jobPostings;
+    }
+
+    /**
+     * @description Fetches IACooperation__c records.
+     * @param accountId The Id of the Account to fetch IA cooperations for.
+     * @return List of IACooperation__c records.
+     */
+    private static List<IACooperation__c> fetchIACooperations(Id accountId) {
+        if (!Schema.sObjectType.IACooperation__c.isAccessible()) {
+            return new List<IACooperation__c>();
+        }
+        String query = 'SELECT Id';
+        if (Schema.sObjectType.IACooperation__c.fields.Status__c.isAccessible()) {
+            query += ',Status__c';
+        }
+        if (Schema.sObjectType.IACooperation__c.fields.IACase__c.isAccessible()) {
+            query += ',IACase__c';
+        }
+        query += ' FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND Account__c = :accountId';
+        List<IACooperation__c> iaCooperations = Database.query(query);
+        return iaCooperations;
+    }
+
     /**
      * @description Adds badges to the accountBadges list based on the Account fields.
      * @param accountBadges The list of badges to add to.
@@ -137,6 +180,30 @@ public with sharing class AccountBadgesController {
     }
 
     /**
+     * @description Adds badges to the accountBadges list based on the related JobPosting__c records.
+     * @param accountBadges The list of badges to add to.
+     * @param jobPostings The related JobPosting__c records to evaluate.
+     */
+    private static void addJobPostingBadges(
+        List<Badge> accountBadges,
+        List<JobPosting__c> jobPostings
+    ) {
+        accountBadges.addAll(createJobPostingBadge(jobPostings));
+    }
+
+    /**
+     * @description Adds badges to the accountBadges list based on the related IACooperation__c records.
+     * @param accountBadges The list of badges to add to.
+     * @param iaCooperations The related IACooperation__c records to evaluate.
+     */
+    private static void addIACooperationBadges(
+        List<Badge> accountBadges,
+        List<IACooperation__c> iaCooperations
+    ) {
+        accountBadges.addAll(createIACooperationBadge(iaCooperations));
+    }
+
+    /**
      * @description Logs an error for a given account.
      * @param accountId The Id of the Account for which to log the error.
      * @param e The exception to log.
@@ -158,13 +225,13 @@ public with sharing class AccountBadgesController {
     // Creates badge for Aktive tiltak.
     private static List<Badge> createNumberOfWorkfareBadge(Account account) {
         String labelTemplate = 'Aktive tiltak({0})';
-        //Dont change label without modifying Amplitude logic in accountBadges.js
         String helpText = accountFields.get('NumberOfWorkfare__c').getDescribe().getInlineHelpText();
         Map<String, Badge> badges = new Map<String, Badge>();
         if (account.NumberOfWorkfare__c >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ account.NumberOfWorkfare__c });
             String url = getReportUrl('Aktive_Tiltaksavtaler_per_Virksomhet', '');
-            Badge badge = new Badge(label, helpText, url);
+            String badgeType = 'Tiltak';
+            Badge badge = new Badge(label, helpText, url, badgeType);
             badges.put(label, badge);
         }
         return badges.values();
@@ -174,13 +241,13 @@ public with sharing class AccountBadgesController {
     // Links to report Muligheter_4WR with filter order: AccountId (fv0), InquiryCategory__c(fv1)
     private static List<Badge> createOpportunityCountBadge(List<CustomOpportunity__c> activeOpportunities) {
         String labelTemplate = 'Muligheter({0})';
-        //Dont change label without modifying Amplitude logic in accountBadges.js
         String helpText = 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".';
         Map<String, Badge> badges = new Map<String, Badge>();
         if (activeOpportunities.size() >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ activeOpportunities.size() });
             String url = getReportUrl('Muligheter_4WR', '&fv2=');
-            Badge badge = new Badge(label, helpText, url);
+            String badgeType = 'Muligheter';
+            Badge badge = new Badge(label, helpText, url, badgeType);
             badges.put(label, badge);
         }
         return badges.values();
@@ -191,7 +258,6 @@ public with sharing class AccountBadgesController {
     private static List<Badge> createAgreementBadges(List<Contract__c> employerAgreements) {
         String labelTemplate = '{0} {1}';
         String helpText = 'Bedriften har aktiv samarbeidsavtale innen angitt region og kategori.';
-        //Dont change helpText without modifying Amplitude logic in accountBadges.js
         Map<String, Badge> badges = new Map<String, Badge>();
         for (Contract__c employerAgreement : employerAgreements) {
             if (!String.isBlank(employerAgreement.Region__c) && !String.isBlank(employerAgreement.TAG_Category__c)) {
@@ -202,7 +268,8 @@ public with sharing class AccountBadgesController {
                     'Avtaler_Zsu',
                     '&fv2=' + employerAgreement.TAG_Category__c + '&fv3=' + employerAgreement.Region__c + '&fv4='
                 );
-                Badge badge = new Badge(label, helpText, url);
+                String badgeType = 'Samarbeidsavtale';
+                Badge badge = new Badge(label, helpText, url, badgeType);
                 badges.put(label, badge);
             }
         }
@@ -214,8 +281,6 @@ public with sharing class AccountBadgesController {
     private static List<Badge> createPartnerTypeBadge(List<Contract__c> employerAgreements) {
         String labelTemplate = '{0}';
         String helpText = 'Denne bedriftens partnerstatus basert på aktive avtaler.';
-        //Dont change helpText without modifying Amplitude logic in accountBadges.js
-
         Map<String, Badge> badges = new Map<String, Badge>();
         for (Contract__c employerAgreement : employerAgreements) {
             if (!String.isBlank(employerAgreement.TAG_Type_Partner__c)) {
@@ -225,9 +290,42 @@ public with sharing class AccountBadgesController {
                     'Avtaler_Zsu',
                     '&fv2=' + '&fv3=' + '&fv4=' + employerAgreement.TAG_Type_Partner__c
                 );
-                Badge badge = new Badge(label, helpText, url);
+                String badgeType = 'Partnerstatus';
+                Badge badge = new Badge(label, helpText, url, badgeType);
                 badges.put(label, badge);
             }
+        }
+        return badges.values();
+    }
+
+    // Creates badge for job postings at employer.
+    // Links to report Stillinger_adu with filter order: AccountId (fv0)
+    private static List<Badge> createJobPostingBadge(List<Jobposting__c> jobPostings) {
+        String labelTemplate = 'Stillinger({0})';
+        String helpText = 'Antall aktive direktemeldte og utlyste stillinger.';
+        Map<String, Badge> badges = new Map<String, Badge>();
+        if (jobPostings.size() >= 1) {
+            String label = String.format(labelTemplate, new List<Object>{ jobPostings.size() });
+            String url = getReportUrl('Stillinger_adu', '&fv2=');
+            String badgeType = 'Stillinger';
+            Badge badge = new Badge(label, helpText, url, badgeType);
+            badges.put(label, badge);
+        }
+        return badges.values();
+    }
+
+    // Creates badge for IA cooperations at employer.
+    // Links to IA Case lightning page 
+    private static List<Badge> createIACooperationBadge(List<IACooperation__c> iaCooperations) {
+        String labelTemplate = 'IA-samarbeid({0})';
+        String helpText = 'Antall aktive IA-samarbeid for denne bedriften.';
+        Map<String, Badge> badges = new Map<String, Badge>();
+        if (iaCooperations.size() >= 1) {
+            String label = String.format(labelTemplate, new List<Object>{ iaCooperations.size() });
+            String url = '/lightning/r/IACase__c/' + iaCooperations[0].IACase__c + '/view';
+            String badgeType = 'IA-samarbeid';
+            Badge badge = new Badge(label, helpText, url, badgeType);
+            badges.put(label, badge);
         }
         return badges.values();
     }
@@ -264,7 +362,8 @@ public with sharing class AccountBadgesController {
             List<String> developerNames = new List<String>{
                 'Muligheter_4WR',
                 'Aktive_Tiltaksavtaler_per_Virksomhet',
-                'Avtaler_Zsu'
+                'Avtaler_Zsu',
+                'Stillinger_adu'
             };
             for (Report r : [
                 SELECT Id, DeveloperName
@@ -290,11 +389,14 @@ public with sharing class AccountBadgesController {
         public String url;
         @AuraEnabled
         public String urlTooltip = 'Se mer informasjon';
+        @AuraEnabled
+        public String badgeType;
 
-        public Badge(String label, String helpText, String url) {
+        public Badge(String label, String helpText, String url, String badgeType) {
             this.label = label;
             this.helpText = helpText;
             this.url = url;
+            this.badgeType = badgeType;
         }
     }
 }
