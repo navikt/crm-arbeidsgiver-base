@@ -753,42 +753,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_FiaCaseNr__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_FiaCaseOwner__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_FiaCaseOwnerName__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.TAG_FiaCaseStatus__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_FiaKafkaId__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_FiaLastModifiedDate__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.FiaLink__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_FiaStartDate__c</field>
             <table>IACase__c</table>
         </columns>
         <columns>
