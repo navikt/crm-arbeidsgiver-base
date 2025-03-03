@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <formula>IF((VALUE(INT_IndustryCode__c) &lt;=0.999),&quot;Annet&quot;,
 IF((VALUE(INT_IndustryCode__c) &lt;=3.999),&quot;Jordbruk,skogbruk og fiske&quot;,
-IF((VALUE(INT_IndustryCode__c) &lt;= 9.999),&quot;Bergverksdirft og utvinning&quot;,
+IF((VALUE(INT_IndustryCode__c) &lt;= 9.999),&quot;Bergverksdrift og utvinning&quot;,
 IF((VALUE(INT_IndustryCode__c) &lt;= 33.999),&quot;Industri&quot;,
 IF((VALUE(INT_IndustryCode__c) &lt;= 35.999),&quot;Elektrisitets-, gass-, damp- og varmtvannsforsyning&quot;,
 IF((VALUE(INT_IndustryCode__c) &lt;= 39.999),&quot;Vannforsyning, avløps- og renovasjonsvirksomhet&quot;,
