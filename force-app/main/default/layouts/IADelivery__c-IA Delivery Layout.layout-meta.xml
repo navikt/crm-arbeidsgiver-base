@@ -42,10 +42,6 @@
                 <behavior>Edit</behavior>
                 <field>DeliveryCreatedByUser__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FiaLink__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
