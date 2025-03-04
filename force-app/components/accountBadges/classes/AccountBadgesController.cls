@@ -302,7 +302,7 @@ public with sharing class AccountBadgesController {
     // Links to report Stillinger_adu with filter order: AccountId (fv0)
     private static List<Badge> createJobPostingBadge(List<JobPosting__c> jobPostings) {
         String labelTemplate = 'Stillinger({0})';
-        String helpText = 'Antall aktive direktemeldte og utlyste stillinger.';
+        String helpText = 'Antall aktive offentlige utlyste- og direktemeldte stillinger.';
         Map<String, Badge> badges = new Map<String, Badge>();
         if (jobPostings.size() >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ jobPostings.size() });
