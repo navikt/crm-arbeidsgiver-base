@@ -300,7 +300,7 @@ public with sharing class AccountBadgesController {
 
     // Creates badge for job postings at employer.
     // Links to report Stillinger_adu with filter order: AccountId (fv0)
-    private static List<Badge> createJobPostingBadge(List<Jobposting__c> jobPostings) {
+    private static List<Badge> createJobPostingBadge(List<JobPosting__c> jobPostings) {
         String labelTemplate = 'Stillinger({0})';
         String helpText = 'Antall aktive direktemeldte og utlyste stillinger.';
         Map<String, Badge> badges = new Map<String, Badge>();

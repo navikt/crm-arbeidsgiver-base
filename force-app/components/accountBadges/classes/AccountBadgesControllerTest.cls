@@ -9,7 +9,8 @@ private class AccountBadgesControllerTest {
                 'Arbeidsgiver_base',
                 'Arbeidsgiver_contract',
                 'Arbeidsgiver_opportunity',
-                'Arbeidsgiver_IA'
+                'Arbeidsgiver_IA',
+                'ArbeidsgiverStillinger'
             }
         );
         User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
@@ -83,6 +84,43 @@ private class AccountBadgesControllerTest {
             );
 
             insert employerAgreements;
+
+            // Create IA-samarbeid record
+            List<IACooperation__c> iaCooperations = new List<IACooperation__c>();
+            iaCooperations.add(
+                new IACooperation__c(
+                    Account__c = arbeidsgiverUserAccounts[0].Id,
+                    CooperationId__c = '1234',
+                    StartDate__c = Date.today(),
+                    EndDate__c = Date.today().addDays(30),
+                    Status__c = 'AKTIV'
+                )
+            );
+
+            insert iaCooperations;
+
+            // Create Job postings record
+            List<JobPosting__c> jobPostings = new List<JobPosting__c>();
+            jobPostings.add(
+                new JobPosting__c(
+                    Account__c = arbeidsgiverUserAccounts[0].Id,
+                    Published__c = Date.today(),
+                    Expires__c = Date.today().addDays(30),
+                    Status__c = 'ACTIVE',
+                    Title__c = 'Test 1'
+                )
+            );
+            jobPostings.add(
+                new JobPosting__c(
+                    Account__c = arbeidsgiverUserAccounts[0].Id,
+                    Published__c = Date.today(),
+                    Expires__c = Date.today().addDays(30),
+                    Status__c = 'ACTIVE',
+                    Title__c = 'Test 2'
+                )
+            );
+
+            insert jobPostings;
         }
 
         User negativeAccessUser = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
@@ -120,7 +158,7 @@ private class AccountBadgesControllerTest {
         }
 
         // Assertions
-        Assert.areEqual(4, accountBadges.size(), 'Expected 4 badges to be created');
+        Assert.areEqual(6, accountBadges.size(), 'Expected 6 badges to be created');
         Map<String, AccountBadgesController.Badge> badgeMap = new Map<String, AccountBadgesController.Badge>();
         for (AccountBadgesController.Badge badge : accountBadges) {
             badgeMap.put(badge.label, badge);
@@ -132,6 +170,8 @@ private class AccountBadgesControllerTest {
         Assert.isTrue(badgeMap.containsKey('Strategisk partner'), 'Should contain badge for partner type');
         Assert.isTrue(badgeMap.containsKey('Aktive tiltak(5)'), 'Should contain badge for number of workfare');
         Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
+        Assert.isTrue(badgeMap.containsKey('IA-samarbeid(1)'), 'Should contain badge for number of ia-cooperations');
+        Assert.isTrue(badgeMap.containsKey('Stillinger(2)'), 'Should contain badge for number of job postings');
     }
 
     @isTest
