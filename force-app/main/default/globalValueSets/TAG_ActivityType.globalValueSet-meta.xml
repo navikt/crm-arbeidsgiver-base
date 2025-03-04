@@ -16,15 +16,16 @@
         <label>Prioritert IA (Fia)</label>
     </customValue>
     <customValue>
-        <fullName>Nedbemanne</fullName>
-        <default>false</default>
-        <label>Nedbemanne</label>
-    </customValue>
-    <customValue>
         <fullName>Bedriftsundersøkelse</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Bedriftsundersøkelse</label>
+    </customValue>
+    <customValue>
+        <fullName>Nedbemanne</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Nedbemanne</label>
     </customValue>
     <customValue>
         <fullName>Generelt markedsarbeid</fullName>
