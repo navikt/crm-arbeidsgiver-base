@@ -56,6 +56,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.TAG_IAPlanId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Event.TAG_IsIAPriority__c</field>
         <readable>true</readable>
@@ -383,6 +388,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.TAG_IACooperationId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.TAG_IAPlanId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -4,8 +4,8 @@
     <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>50</locationX>
-        <locationY>360</locationY>
+        <locationX>176</locationX>
+        <locationY>252</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -17,28 +17,6 @@
             <targetReference>Create_Employer_Activity_Event</targetReference>
         </connector>
     </assignments>
-    <decisions>
-        <name>Subject_equals_pubsub</name>
-        <label>Subject equals pubsub?</label>
-        <locationX>182</locationX>
-        <locationY>252</locationY>
-        <defaultConnectorLabel>Not pubsub</defaultConnectorLabel>
-        <rules>
-            <name>Yes_pubsub</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Subject</leftValueReference>
-                <operator>StartsWith</operator>
-                <rightValue>
-                    <stringValue>pubsub test</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Event_Type_Updated</targetReference>
-            </connector>
-            <label>Yes pubsub</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Task Rerun Scheduled {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Task Rerun Scheduled</label>
@@ -64,8 +42,8 @@
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>50</locationX>
-        <locationY>468</locationY>
+        <locationX>176</locationX>
+        <locationY>360</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
             <value>
@@ -115,6 +93,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>CompletedDate__c</field>
+            <value>
+                <elementReference>$Record.TAG_CompletedDate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EventObject__c</field>
             <value>
                 <stringValue>Task</stringValue>
@@ -139,6 +123,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>IAPlanId__c</field>
+            <value>
+                <elementReference>$Record.TAG_IAPlanId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>IASubtheme__c</field>
             <value>
                 <elementReference>$Record.IASubtheme__c</elementReference>
@@ -151,9 +141,21 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>LastModifiedById__c</field>
+            <value>
+                <elementReference>$Record.LastModifiedById</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>LastModifiedDate__c</field>
             <value>
                 <elementReference>$Record.LastModifiedDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId__c</field>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -244,10 +246,10 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <start>
-        <locationX>56</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Subject_equals_pubsub</targetReference>
+            <targetReference>Event_Type_Updated</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -268,25 +270,25 @@
             <field>CreatedDate</field>
             <operator>GreaterThan</operator>
             <value>
-                <dateTimeValue>2025-01-18T13:34:00.000Z</dateTimeValue>
+                <dateTimeValue>2025-01-31T23:10:00.000Z</dateTimeValue>
             </value>
         </filters>
         <filters>
             <field>CreatedDate</field>
             <operator>LessThan</operator>
             <value>
-                <dateTimeValue>2025-01-20T13:34:00.000Z</dateTimeValue>
+                <dateTimeValue>2025-02-28T22:55:00.000Z</dateTimeValue>
             </value>
         </filters>
         <object>Task</object>
         <schedule>
             <frequency>Once</frequency>
-            <startDate>2025-01-21</startDate>
-            <startTime>11:00:00.000Z</startTime>
+            <startDate>2025-03-05</startDate>
+            <startTime>20:30:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>EventType</name>
         <dataType>String</dataType>

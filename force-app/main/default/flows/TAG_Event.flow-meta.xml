@@ -467,6 +467,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>IAPlanId__c</field>
+            <value>
+                <elementReference>$Record.TAG_IAPlanId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>IASubtheme__c</field>
             <value>
                 <elementReference>$Record.IASubtheme__c</elementReference>
@@ -750,6 +756,12 @@
             <field>TAG_IACooperationId__c</field>
             <value>
                 <elementReference>Get_IA_Cooperation.CooperationId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_IAPlanId__c</field>
+            <value>
+                <elementReference>Get_IA_Cooperation.PlanId__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
