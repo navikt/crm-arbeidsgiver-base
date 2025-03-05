@@ -1053,6 +1053,11 @@
             <field>TAG_Account_Partner_Status__c</field>
             <table>Account.Activities</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_IAPlanId__c</field>
+            <table>Account.Activities</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
 </ReportType>
