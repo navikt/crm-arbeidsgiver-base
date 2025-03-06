@@ -259,27 +259,6 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Arbeidsgivermøte</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>AG Møte</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>IA event</stringValue>
-            </value>
-        </filters>
-        <filters>
             <field>CreatedDate</field>
             <operator>GreaterThan</operator>
             <value>
@@ -290,14 +269,21 @@
             <field>CreatedDate</field>
             <operator>LessThan</operator>
             <value>
-                <dateTimeValue>2025-02-28T22:55:00.000Z</dateTimeValue>
+                <dateTimeValue>2025-03-05T22:55:00.000Z</dateTimeValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_ActivityType__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <object>Event</object>
         <schedule>
             <frequency>Once</frequency>
-            <startDate>2025-03-05</startDate>
-            <startTime>20:30:00.000Z</startTime>
+            <startDate>2025-03-06</startDate>
+            <startTime>20:45:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>

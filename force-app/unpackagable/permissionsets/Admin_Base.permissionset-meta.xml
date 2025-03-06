@@ -162,6 +162,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.RecordTypeName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Event.RelatedToAccount__c</field>
         <readable>true</readable>
@@ -549,6 +554,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.IATheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.RecordTypeName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
