@@ -5,7 +5,7 @@
         <name>Assign_AccountId</name>
         <label>Assign AccountId</label>
         <locationX>534</locationX>
-        <locationY>1139</locationY>
+        <locationY>1247</locationY>
         <assignmentItems>
             <assignToReference>accountId</assignToReference>
             <operator>Assign</operator>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
-        <locationX>534</locationX>
-        <locationY>2855</locationY>
+        <locationX>754</locationX>
+        <locationY>3047</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -36,8 +36,8 @@
     <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>798</locationX>
-        <locationY>2855</locationY>
+        <locationX>1018</locationX>
+        <locationY>3047</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -53,7 +53,7 @@
         <name>Is_IA_Case_Number_blank</name>
         <label>Is IA Case Number blank?</label>
         <locationX>446</locationX>
-        <locationY>2171</locationY>
+        <locationY>2279</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
         </defaultConnector>
@@ -85,7 +85,7 @@
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
         <locationX>666</locationX>
-        <locationY>1739</locationY>
+        <locationY>1847</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
         </defaultConnector>
@@ -117,7 +117,7 @@
         <name>Is_RelatedToAccount_null</name>
         <label>Is RelatedToAccount null?</label>
         <locationX>666</locationX>
-        <locationY>1031</locationY>
+        <locationY>1139</locationY>
         <defaultConnector>
             <targetReference>Update_Activity_Date</targetReference>
         </defaultConnector>
@@ -150,7 +150,7 @@
         <name>Is_Task_set_to_Completed</name>
         <label>Is Task set to Completed?</label>
         <locationX>666</locationX>
-        <locationY>323</locationY>
+        <locationY>431</locationY>
         <defaultConnector>
             <targetReference>Related_to_What_Object</targetReference>
         </defaultConnector>
@@ -204,7 +204,7 @@
         <name>Related_to_What_Object</name>
         <label>Related to What Object?</label>
         <locationX>666</locationX>
-        <locationY>623</locationY>
+        <locationY>731</locationY>
         <defaultConnector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </defaultConnector>
@@ -257,8 +257,8 @@
     <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
-        <locationX>666</locationX>
-        <locationY>2747</locationY>
+        <locationX>886</locationX>
+        <locationY>2939</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
@@ -283,7 +283,7 @@
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
         <locationX>666</locationX>
-        <locationY>1439</locationY>
+        <locationY>1547</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
         </defaultConnector>
@@ -305,10 +305,42 @@
         </rules>
     </decisions>
     <decisions>
+        <name>What_record_type</name>
+        <label>What record type?</label>
+        <locationX>886</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Trigger_type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <rules>
+            <name>AG_Oppgave_or_IA_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>AG Oppgave</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>IA task</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_Task_set_to_Completed</targetReference>
+            </connector>
+            <label>AG Oppgave or IA Event</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Which_Record_Type</name>
         <label>Which Record Type</label>
         <locationX>402</locationX>
-        <locationY>2063</locationY>
+        <locationY>2171</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
         </defaultConnector>
@@ -409,8 +441,8 @@
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>666</locationX>
-        <locationY>3047</locationY>
+        <locationX>886</locationX>
+        <locationY>3239</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
             <value>
@@ -616,7 +648,7 @@
         <name>Get_Custom_Campaign_Member</name>
         <label>Get Custom Campaign Member</label>
         <locationX>402</locationX>
-        <locationY>731</locationY>
+        <locationY>839</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_CCM</targetReference>
@@ -637,7 +669,7 @@
         <name>Get_Custom_Opportunity</name>
         <label>Get Custom Opportunity</label>
         <locationX>666</locationX>
-        <locationY>731</locationY>
+        <locationY>839</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_CO</targetReference>
@@ -658,7 +690,7 @@
         <name>Get_IA_case</name>
         <label>Get IA case</label>
         <locationX>314</locationX>
-        <locationY>2279</locationY>
+        <locationY>2387</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_IA_Case_Number</targetReference>
@@ -679,7 +711,7 @@
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
         <locationX>50</locationX>
-        <locationY>2279</locationY>
+        <locationY>2387</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -700,7 +732,7 @@
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
         <locationX>50</locationX>
-        <locationY>2171</locationY>
+        <locationY>2279</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -721,7 +753,7 @@
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
         <locationX>402</locationX>
-        <locationY>1847</locationY>
+        <locationY>1955</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -758,7 +790,7 @@
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
         <locationX>534</locationX>
-        <locationY>1547</locationY>
+        <locationY>1655</locationY>
         <connector>
             <targetReference>Is_IA_priority</targetReference>
         </connector>
@@ -774,7 +806,7 @@
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
         <locationX>50</locationX>
-        <locationY>2387</locationY>
+        <locationY>2495</locationY>
         <connector>
             <targetReference>Trigger_type</targetReference>
         </connector>
@@ -820,7 +852,7 @@
         <name>Set_Completed_Date</name>
         <label>Set Completed Date</label>
         <locationX>402</locationX>
-        <locationY>431</locationY>
+        <locationY>539</locationY>
         <connector>
             <targetReference>Related_to_What_Object</targetReference>
         </connector>
@@ -836,7 +868,7 @@
         <name>Set_Completed_Date_to_Null</name>
         <label>Set Completed Date to Null</label>
         <locationX>666</locationX>
-        <locationY>431</locationY>
+        <locationY>539</locationY>
         <connector>
             <targetReference>Related_to_What_Object</targetReference>
         </connector>
@@ -852,7 +884,7 @@
         <name>Set_IA_Case_Number</name>
         <label>Set IA Case Number</label>
         <locationX>314</locationX>
-        <locationY>2387</locationY>
+        <locationY>2495</locationY>
         <connector>
             <targetReference>Trigger_type</targetReference>
         </connector>
@@ -874,7 +906,7 @@
         <name>Update_account</name>
         <label>Update account</label>
         <locationX>402</locationX>
-        <locationY>1955</locationY>
+        <locationY>2063</locationY>
         <connector>
             <targetReference>Which_Record_Type</targetReference>
         </connector>
@@ -898,7 +930,7 @@
         <name>Update_Account_Value_for_CCM</name>
         <label>Update Account Value for CCM</label>
         <locationX>402</locationX>
-        <locationY>839</locationY>
+        <locationY>947</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -914,7 +946,7 @@
         <name>Update_Account_Value_for_CO</name>
         <label>Update Account Value for CO</label>
         <locationX>666</locationX>
-        <locationY>839</locationY>
+        <locationY>947</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -930,7 +962,7 @@
         <name>Update_RelatedToAccount</name>
         <label>Update RelatedToAccount</label>
         <locationX>534</locationX>
-        <locationY>1247</locationY>
+        <locationY>1355</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>
         </connector>
@@ -943,24 +975,17 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>540</locationX>
+        <locationX>760</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Task_set_to_Completed</targetReference>
+            <targetReference>What_record_type</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
+            <field>TAG_ActivityType__c</field>
+            <operator>IsNull</operator>
             <value>
-                <stringValue>AG Oppgave</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>IA task</stringValue>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <object>Task</object>
