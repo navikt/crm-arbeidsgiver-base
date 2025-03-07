@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_UpdateTrigger__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field is used to trigger update on records that have failed to be processed to kafka or nada</description>
+    <externalId>false</externalId>
+    <label>Update Trigger</label>
+    <type>Checkbox</type>
+</CustomField>
