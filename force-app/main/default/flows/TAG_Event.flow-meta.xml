@@ -291,7 +291,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>arb_agmote_iaEvent</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
                 <operator>EqualTo</operator>

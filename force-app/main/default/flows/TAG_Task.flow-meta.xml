@@ -314,8 +314,8 @@
         </defaultConnector>
         <defaultConnectorLabel>Other</defaultConnectorLabel>
         <rules>
-            <name>AG_Oppgave_or_IA_Event</name>
-            <conditionLogic>and</conditionLogic>
+            <name>AG_Oppgave_or_IA_Task</name>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -333,7 +333,7 @@
             <connector>
                 <targetReference>Is_Task_set_to_Completed</targetReference>
             </connector>
-            <label>AG Oppgave or IA Event</label>
+            <label>AG Oppgave or IA Task</label>
         </rules>
     </decisions>
     <decisions>

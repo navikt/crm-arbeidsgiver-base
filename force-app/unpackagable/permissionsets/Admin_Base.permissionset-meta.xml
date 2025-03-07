@@ -262,6 +262,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.TAG_UpdateTrigger__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Event.TAG_UserNAVUnit__c</field>
         <readable>true</readable>
@@ -654,6 +659,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_RelatedToObject__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.TAG_UpdateTrigger__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
