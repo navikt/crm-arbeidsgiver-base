@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ANNULLERT</fullName>
+                <default>false</default>
+                <label>Annullert</label>
+            </value>
+            <value>
+                <fullName>AVBRUTT</fullName>
+                <default>false</default>
+                <label>Avbrutt</label>
+            </value>
+            <value>
+                <fullName>PÅBEGYNT</fullName>
+                <default>false</default>
+                <label>Påbegynt</label>
+            </value>
+            <value>
+                <fullName>MANGLER_GODKJENNING</fullName>
+                <default>false</default>
+                <label>Mangler godkjenning</label>
+            </value>
+            <value>
+                <fullName>KLAR_FOR_OPPSTART</fullName>
+                <default>false</default>
+                <label>Klar for oppstart</label>
+            </value>
+            <value>
+                <fullName>GJENNOMFØRES</fullName>
+                <default>false</default>
+                <label>Gjennomføres</label>
+            </value>
+            <value>
+                <fullName>AVSLUTTET</fullName>
+                <default>false</default>
+                <label>Avsluttet</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
