@@ -162,11 +162,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IASubthemeNames__c</field>
-            <table>IACase__c.Activities</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>IATheme__c</field>
             <table>IACase__c.Activities</table>
         </columns>
