@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Statusendring</label>
-    <name>Status__c</name>
+    <label>Type</label>
+    <name>Type__c</name>
     <picklistValues>
-        <masterLabel>Avlyst</masterLabel>
+        <masterLabel>Arbeidstrening</masterLabel>
         <translation></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Ferdigstilt</masterLabel>
+        <masterLabel>Inkluderingstilskudd</masterLabel>
         <translation></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Innkalt</masterLabel>
+        <masterLabel>Mentor</masterLabel>
         <translation></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Lukket</masterLabel>
+        <masterLabel>Midlertidig lønnstilskudd</masterLabel>
         <translation></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Nytt tid sted</masterLabel>
+        <masterLabel>Sommerjobb</masterLabel>
+        <translation></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Varig lønnstilskudd</masterLabel>
         <translation></translation>
     </picklistValues>
 </CustomFieldTranslation>
