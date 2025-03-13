@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Status__c</fullName>
+    <fullName>Type__c</fullName>
     <externalId>false</externalId>
-    <label>Status</label>
+    <label>Type</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
@@ -12,29 +12,34 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>INNKALT</fullName>
+                <fullName>ARBEIDSTRENING</fullName>
                 <default>false</default>
-                <label>Innkalt</label>
+                <label>Arbeidstrening</label>
             </value>
             <value>
-                <fullName>AVLYST</fullName>
+                <fullName>MIDLERTIDIG_LONNSTILSKUDD</fullName>
                 <default>false</default>
-                <label>Avlyst</label>
+                <label>Midlertidig lønnstilskudd</label>
             </value>
             <value>
-                <fullName>FERDIGSTILT</fullName>
+                <fullName>VARIG_LONNSTILSKUDD</fullName>
                 <default>false</default>
-                <label>Ferdigstilt</label>
+                <label>Varig lønnstilskudd</label>
             </value>
             <value>
-                <fullName>NYTT_TID_STED</fullName>
+                <fullName>MENTOR</fullName>
                 <default>false</default>
-                <label>Nytt tid sted</label>
+                <label>Mentor</label>
             </value>
             <value>
-                <fullName>LUKKET</fullName>
+                <fullName>INKLUDERINGSTILSKUDD</fullName>
                 <default>false</default>
-                <label>Lukket</label>
+                <label>Inkluderingstilskudd</label>
+            </value>
+            <value>
+                <fullName>SOMMERJOBB</fullName>
+                <default>false</default>
+                <label>Sommerjobb</label>
             </value>
         </valueSetDefinition>
     </valueSet>
