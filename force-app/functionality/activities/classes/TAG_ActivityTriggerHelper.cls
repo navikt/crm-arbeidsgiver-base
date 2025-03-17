@@ -37,6 +37,7 @@ public with sharing class TAG_ActivityTriggerHelper {
             taskEmpActEv.CompletedDate__c = task.TAG_CompletedDate__c;
             taskEmpActEv.IACaseNumber__c = task.TAG_IACaseNumber__c;
             taskEmpActEv.IACooperationId__c = task.TAG_IACooperationId__c;
+            taskEmpActEv.IAPlanId__c = task.TAG_IAPlanId__c;
             taskEmpActEv.IASubtheme__c = task.IASubtheme__c;
             taskEmpActEv.Id__c = task.Id;
             taskEmpActEv.LastModifiedById__c = task.LastModifiedById;
@@ -98,6 +99,7 @@ public with sharing class TAG_ActivityTriggerHelper {
             eventEmpActEv.EndDateTime__c = event.EndDateTime;
             eventEmpActEv.IACaseNumber__c = event.TAG_IACaseNumber__c;
             eventEmpActEv.IACooperationId__c = event.TAG_IACooperationId__c;
+            eventEmpActEv.IAPlanId__c = event.TAG_IAPlanId__c;
             eventEmpActEv.IASubtheme__c = event.IASubtheme__c;
             eventEmpActEv.Id__c = event.Id;
             eventEmpActEv.LastModifiedById__c = event.LastModifiedById;

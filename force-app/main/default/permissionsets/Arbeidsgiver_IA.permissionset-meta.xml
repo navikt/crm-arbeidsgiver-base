@@ -16,11 +16,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Event.IASubthemeNames__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Event.IASubtheme__c</field>
         <readable>true</readable>
@@ -348,11 +343,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.IACase__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Task.IASubthemeNames__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

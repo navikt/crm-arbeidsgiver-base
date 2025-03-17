@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>INNKALT</fullName>
+                <default>false</default>
+                <label>Innkalt</label>
+            </value>
+            <value>
+                <fullName>AVLYST</fullName>
+                <default>false</default>
+                <label>Avlyst</label>
+            </value>
+            <value>
+                <fullName>FERDIGSTILT</fullName>
+                <default>false</default>
+                <label>Ferdigstilt</label>
+            </value>
+            <value>
+                <fullName>NYTT_TID_STED</fullName>
+                <default>false</default>
+                <label>Nytt tid sted</label>
+            </value>
+            <value>
+                <fullName>LUKKET</fullName>
+                <default>false</default>
+                <label>Lukket</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

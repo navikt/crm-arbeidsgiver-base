@@ -1,0 +1,31 @@
+<template>
+    <div class="slds-card slds-theme_default">
+        <div class="slds-card__body slds-card__body_inner">
+            <div class={sectionClass}>
+                <h3 class="slds-section__title slds-truncate slds-p-around_xx-small slds-theme_shade">
+                    <button class="slds-button slds-section__title-action" onclick={handleClick} label={label}>
+                        <lightning-icon
+                            icon-name="utility:switch"
+                            alternative-text="button icon"
+                            size="x-small"
+                            class="slds-section__title-action-icon slds-button__icon_left"
+                        ></lightning-icon>
+                        <span class="slds-truncate" title={label}>{label}</span>
+                    </button>
+                </h3>
+                <div class="slds-section__content">
+                    <template if:true={fields}>
+                        <lightning-record-form
+                            object-api-name={objectApiName}
+                            record-id={recordId}
+                            fields={fieldArray}
+                            columns={columns}
+                            mode={mode}
+                        >
+                        </lightning-record-form>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

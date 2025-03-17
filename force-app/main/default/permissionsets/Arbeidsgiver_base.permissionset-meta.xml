@@ -714,11 +714,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.NumberOfEmployees</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.NumberOfWorkfare__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -779,17 +774,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.TAG_Main_Industry__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.TAG_NavUnit__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.TAG_NumberOfWorkfareLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -820,11 +805,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.TAG_Ultimate_Sector_Code_from_parent__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.TAG_Ultimate_Sector_from_parent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
