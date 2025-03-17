@@ -1,0 +1,82 @@
+<template>
+    <article class="slds-card">
+       <!-- HEADER WITH TOGGLE AND "NEW RECORD" BUTTON -->
+        <div class="headerContainer" style={headerBackground}>
+            <!-- Left Group: Icon, Title, Toggle Icon -->
+            <div class="headerLeft" onclick={toggleAccordion}>
+                <template if:true={icon}>
+                    <lightning-icon icon-name={icon} size="small" class="headerIcon slds-m-right_x-small"></lightning-icon>
+                </template>
+                <h1 class="headerTitle slds-text-heading_small">{cardTitle}</h1>
+                <span class="headerToggle">{toggleIcon}</span>
+            </div>
+            <!-- Right Group: New Record Button -->
+            <template if:true={showNewRecordButton}>
+                <lightning-button 
+                    label={newRecordButtonLabel} 
+                    variant="brand" 
+                    onclick={handleNewRecord}
+                    class="newRecordButton slds-m-left_small">
+                </lightning-button>
+            </template>
+        </div>
+        
+        <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
+        <template if:true={showRecords}>
+            <div style="overflow:auto; max-height: {maxHeight}em;">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" style="table-layout: auto;">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <template for:each={fieldLabels} for:item="label">
+                                    <th key={label.value} scope="col" style={label.headerStyle}>
+                                        <div style="display: flex; align-items: center; height: 100%; font-size: 0.75rem; white-space: nowrap;" title={label.value}>
+                                            {label.value}
+                                        </div>
+                                    </th>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
+                                <!-- For clickable rows, added mouse event handlers for popover -->
+                                <template if:true={clickableRows}>
+                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class="slds-hint-parent" onclick={handleRowClick} style="cursor: pointer"
+                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
+                                        <template for:each={record.recordFields} for:item="field">
+                                            <td key={field.label}>
+                                                <div class="slds-truncate slds-cell-wrap">{field.value}</div>
+                                            </td>
+                                        </template>
+                                    </tr>
+                                </template>
+                                <!-- For non-clickable rows, also added mouse event handlers for popover -->
+                                <template if:false={clickableRows}>
+                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class="slds-hint-parent"
+                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
+                                        <template for:each={record.recordFields} for:item="field">
+                                            <td key={field.label}>
+                                                <div class="slds-truncate slds-cell-wrap">{field.value}</div>
+                                            </td>
+                                        </template>
+                                    </tr>
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
+            </div>          
+        </template>
+
+        <!-- Popover Template for additional record details -->
+        <template if:true={showPopover}>
+            <div class="slds-popover slds-nubbin_top" style={popoverStyle} onmouseleave={handleMouseLeave}>
+                <div class="slds-popover__body">
+                    <template for:each={popoverFieldValues} for:item="fieldObj">
+                        <p key={fieldObj.apiName}>
+                            <strong>{fieldObj.apiName}:</strong> {fieldObj.value}
+                        </p>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </article>
+</template>
