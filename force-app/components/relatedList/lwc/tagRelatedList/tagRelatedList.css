@@ -1,0 +1,33 @@
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 0.5rem;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.headerIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.headerTitle {
+    margin: 0 0.5rem;
+    line-height: 1.5rem;
+}
+
+.headerToggle {
+    margin-left: 0.5rem;
+    line-height: 1.5rem;
+}
+
+.newRecordButton {
+    align-self: center;
+    height: 2rem;
+    padding: 0 0.5rem;
+}

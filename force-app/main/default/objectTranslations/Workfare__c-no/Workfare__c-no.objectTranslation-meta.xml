@@ -3,40 +3,40 @@
     <caseValues>
         <article>Definite</article>
         <plural>false</plural>
-        <value>Dialogmøtet</value>
+        <value>Tiltaket</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value>Dialogmøte</value>
+        <value>Tiltak</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>false</plural>
-        <value>Dialogmøte</value>
+        <value>Tiltak</value>
     </caseValues>
     <caseValues>
         <article>Definite</article>
         <plural>true</plural>
-        <value>Dialogmøtene</value>
+        <value>Tiltakene</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value>Dialogmøter</value>
+        <value>Tiltak</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>true</plural>
-        <value>Dialogmøter</value>
+        <value>Tiltak</value>
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-        <layout>Dialogue Meeting Layout</layout>
+        <layout>Workfare Layout</layout>
         <sections>
             <label></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel>Dialogmøte id</nameFieldLabel>
+    <nameFieldLabel>Avtale nummer</nameFieldLabel>
 </CustomObjectTranslation>
