@@ -18,6 +18,7 @@
                 description="If checked, the section is open on page refresh. Closed if unchecked." />
             <property name="twoColumns" type="Boolean" default="true"
                 description="If checked, the fields will display in two columns. One columns if unchecked." />
+            <property name="readOnly" type="Boolean" default="true" />
             <supportedFormFactors>
                 <supportedFormFactor type="Large" />
                 <supportedFormFactor type="Small" />
