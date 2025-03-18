@@ -6,6 +6,7 @@ export default class TagRecordForm extends LightningElement {
     @api fields;
     @api twoColumns;
     @api isDefaultOpen;
+    @api readOnly;
 
     @track fieldArray = [];
     @track open;
