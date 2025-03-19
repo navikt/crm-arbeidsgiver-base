@@ -7,8 +7,12 @@
                 <template if:true={icon}>
                     <lightning-icon icon-name={icon} size="small" class="headerIcon slds-m-right_x-small"></lightning-icon>
                 </template>
+                <lightning-icon 
+                icon-name={chevronIcon} 
+                size="x-small" 
+                class="chevronIcon slds-m-right_xx-small">
+                </lightning-icon>
                 <h1 class="headerTitle slds-text-heading_small">{cardTitle}</h1>
-                <span class="headerToggle">{toggleIcon}</span>
             </div>
             <!-- Right Group: New Record Button -->
             <template if:true={showNewRecordButton}>

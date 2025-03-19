@@ -5,6 +5,11 @@
     padding: 0.25rem 0.5rem;
 }
 
+.chevronIcon {
+    /* fill: #706e6b;  Salesforce grey */
+    align-self: center;
+}
+
 .headerLeft {
     display: flex;
     align-items: center;
@@ -17,7 +22,7 @@
 }
 
 .headerTitle {
-    margin: 0 0.5rem;
+    /* margin: 0 0.5rem; */
     line-height: 1.5rem;
 }
 

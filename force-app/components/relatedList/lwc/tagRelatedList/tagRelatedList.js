@@ -76,6 +76,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         this.isExpanded = !this.isExpanded;
     }
 
+    get chevronIcon() {
+        return this.isExpanded ? 'utility:chevrondown' : 'utility:chevronright';
+    }
+
     // Handle row click event if clickableRows is enabled
     handleRowClick(event) {
         let recordIndex = event.currentTarget.dataset.value;
