@@ -5,6 +5,7 @@ export default class TagRecordForm extends LightningElement {
     @api label;
     @api fields;
     @api twoColumns;
+    @api isDefaultOpen;
     @api readOnly;
 
     @track fieldArray = [];
@@ -20,7 +21,7 @@ export default class TagRecordForm extends LightningElement {
             }
 
             if (typeof this.open === 'undefined') {
-                this.open = true;
+                this.open = this.isDefaultOpen;
             }
         } catch (error) {
             console.error('Error in connectedCallback: ' + error.message);
@@ -31,7 +32,10 @@ export default class TagRecordForm extends LightningElement {
         return this.open ? 'slds-section slds-is-open' : 'slds-section';
     }
     get mode() {
-        return this.readOnly ? 'readonly' : 'view';
+        return 'readonly';
+    }
+    get density() {
+        return 'Comfy';
     }
     get columns() {
         return this.twoColumns ? '2' : '1';
