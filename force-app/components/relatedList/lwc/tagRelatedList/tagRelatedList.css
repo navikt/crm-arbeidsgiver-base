@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 1rem;
 }
 
 .chevronIcon {
@@ -35,4 +35,28 @@
     align-self: center;
     height: 2rem;
     padding: 0 0.5rem;
+}
+
+/* Inactive row styling: light grey background and grey text */
+.inactiveRow {
+    background-color: #f4f6f9 !important;
+    color: #7e7e7e !important;
+}
+
+/* Also force text inside inactive rows to appear grey */
+.inactiveRow .slds-truncate {
+    color: #7e7e7e;
+}
+
+.slds-table thead tr > th:first-child,
+.slds-table tbody tr > td:first-child {
+    padding-left: 1rem !important;
+}
+
+.slds-popover_medium .slds-popover__header {
+    background-color: #f3f2f2; /* Slight grey for the header */
+    border-bottom: 1px solid #dddbda;
+}
+.slds-popover_medium .slds-popover__body {
+    padding: 1rem;
 }
