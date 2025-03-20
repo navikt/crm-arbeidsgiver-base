@@ -247,6 +247,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 let filterField = match[1].trim();
                 if (!combined.includes(filterField)) {
                     combined.push(filterField);
+                }
+            }
+        }
         return combined;
     }
 
