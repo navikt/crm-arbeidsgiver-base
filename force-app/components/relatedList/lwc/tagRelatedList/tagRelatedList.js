@@ -5,6 +5,10 @@ import { getRecord } from 'lightning/uiRecordApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
+    
+    hoverTimer;
+    hideTimer;
+    
     @api recordId;
     @api objectApiName;
     @api listTitle; // Title of the list.
@@ -24,14 +28,13 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api popoverFields; //Popover additional fields (comma separated)
     @api showNewRecordButton;
     @api newRecordButtonLabel; // Button label for New Record button
-
+    @api inactiveRecordFilter; // Example: "Active__c = false"
 
     @track relatedRecords;
     @track isExpanded = false; // Accordion state
 
     @track popoverRecordData; // Holds the record data for the hovered row
     @track showPopover = false; // Flag to conditionally display popover
-    hoverTimer; // Timer for delayed popover display
     @track popoverPosition = { top: 0, left: 0 };
 
     connectedCallback() {
@@ -48,7 +51,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         if (data && this.dynamicUpdate === true) {
             this.getList();
         } else if (error) {
-            // Handle error accordingly
         }
     }
 
@@ -126,6 +128,15 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     get listRecords() {
         let returnRecords = [];
         if (this.relatedRecords) {
+            // Parse the inactive filter if provided
+            let filterField = null;
+            let filterValue = null;
+            if (this.inactiveRecordFilter && this.inactiveRecordFilter.includes('=')) {
+                let parts = this.inactiveRecordFilter.split('=');
+                filterField = parts[0].trim();
+                filterValue = parts[1].trim().toLowerCase();
+            }
+            
             this.relatedRecords.forEach((dataRecord) => {
                 let recordFields = [];
                 this.displayedFieldList.forEach((key) => {
@@ -136,11 +147,34 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                         });
                     }
                 });
-                returnRecords.push({ recordFields: recordFields, Id: dataRecord.Id });
+                
+                // Determine if the record is inactive
+                let isInactive = false;
+                if (filterField && filterValue !== null) {
+                    let fieldVal = this.resolve(filterField, dataRecord);
+                    // Convert the field value to string (if boolean, true/false will be 'true'/'false')
+                    if (fieldVal !== null && String(fieldVal).toLowerCase() === filterValue) {
+                        isInactive = true;
+                    }
+                }
+                
+                // Set rowClass based on whether the record is inactive.
+                let rowClass = 'slds-hint-parent';
+                if (isInactive) {
+                    rowClass += ' inactiveRow';
+                }
+                
+                returnRecords.push({
+                    recordFields: recordFields,
+                    Id: dataRecord.Id,
+                    isInactive: isInactive,
+                    rowClass: rowClass
+                });
             });
         }
         return returnRecords;
     }
+    
 
     // Build the card title with record count
     get cardTitle() {
@@ -170,11 +204,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         return labels.map((label, index, arr) => {
              // Base style for every header cell.
              let style = 'vertical-align: middle; text-align: left; padding: 4px 8px;';
-             // Remove extra left padding for the first cell.
+             // Padding for the first cell.
              if (index === 0) {
-                 style += 'padding-left: 5px;';
+                 style += 'padding-left: 1rem;';
              }
-             // Remove extra right padding for the last cell.
              if (index === arr.length - 1) {
                  style += 'padding-right: 0px;';
              }
@@ -185,14 +218,19 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         });
     }    
 
-    // Parse and combine the displayed fields and popoverFields strings into an array
     get apexFieldList() {
-        // Get displayedFields (if any)
+        // Get fields from displayedFields and popoverFields
         let displayed = this.displayedFields ? this.displayedFields.replace(/\s/g, '').split(',') : [];
-        // Get popoverFields (if any)
         let popover = this.popoverFields ? this.popoverFields.replace(/\s/g, '').split(',') : [];
-        // Combine them and remove duplicates
         let combined = Array.from(new Set([...displayed, ...popover]));
+        
+        // extract the field name and add it to the list if not already present.
+        if (this.inactiveRecordFilter && this.inactiveRecordFilter.includes('=')) {
+            let filterField = this.inactiveRecordFilter.split('=')[0].trim();
+            if (!combined.includes(filterField)) {
+                combined.push(filterField);
+            }
+        }
         return combined;
     }
 
@@ -218,25 +256,29 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         }, obj || {});
     }
 
-    // Event handler for mouse enter on a record row
     handleMouseEnter(event) {
         const recordId = event.currentTarget.dataset.recordId;
         const rect = event.currentTarget.getBoundingClientRect();
-        // Adjusting the position slightly (you can fine‑tune the offsets)
         this.popoverPosition = {
-            top: rect.top + 10,
-            left: rect.left + 10
+            top: rect.top + 2,
+            left: rect.left + 2
         };
         this.hoverTimer = window.setTimeout(() => {
             this.popoverRecordData = this.relatedRecords.find(rec => rec.Id === recordId);
             this.showPopover = true;
-        }, 1500);
+        }, 1000);
     }
 
-    // Event handler for mouse leave from a record row (or popover)
     handleMouseLeave() {
         window.clearTimeout(this.hoverTimer);
-        this.showPopover = false;
+        this.hideTimer = window.setTimeout(() => {
+            this.showPopover = false;
+        }, 200); // Delay closing popover to allow mouse movement
+    }
+
+    handlePopoverEnter() {
+        // Prevent hiding when entering the popover
+        window.clearTimeout(this.hideTimer);
     }
 
     // Getter to combine displayedFields with additional popoverFields
@@ -246,7 +288,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     // Getter to prepare an array of objects with localized field labels and values from the hovered record
     get popoverFieldValues() {
-        // Ensure we have the record data and the object metadata
         if (!this.popoverRecordData || !this.objectInfo.data) {
             return [];
         }
@@ -275,7 +316,17 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                     top: ${relativeTop + 20}px; 
                     left: ${relativeLeft}px; 
                     z-index: 1000; 
-                    transform: translate(-50%, 0);`;
+                    transform: translate(0, 0);`;
+        }
+        return '';
+    }
+
+    get popoverTitle() {
+        if (this.popoverRecordData && this.displayedFieldList && this.displayedFieldList.length > 0 && this.objectInfo.data) {
+            // Get the first field's API name from the displayedFields array
+            let firstFieldApiName = this.displayedFieldList[0];
+            let fieldValue = this.resolve(firstFieldApiName, this.popoverRecordData);
+            return `${fieldValue}`;
         }
         return '';
     }

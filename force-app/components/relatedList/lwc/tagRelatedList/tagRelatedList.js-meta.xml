@@ -106,6 +106,14 @@
                 type="String"
                 default=""
             />
+        <property
+                name="inactiveRecordFilter"
+                label="Inactive Record Filter"
+                description="Enter a SOQL condition (e.g., Active__c = false). Records meeting this condition will be styled as inactive."
+                type="String"
+                default=""
+            />
+
       </targetConfig>
   </targetConfigs>
 </LightningComponentBundle>
