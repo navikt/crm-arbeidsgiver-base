@@ -28,12 +28,12 @@
         <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
         <template if:true={showRecords}>
             <div style="overflow:auto; max-height: {maxHeight}em;">
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" style="table-layout: auto;">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="slds-line-height_reset">
                                 <template for:each={fieldLabels} for:item="label">
                                     <th key={label.value} scope="col" style={label.headerStyle}>
-                                        <div style="display: flex; align-items: center; height: 100%; font-size: 0.75rem; white-space: nowrap;" title={label.value}>
+                                        <div style="display: flex; align-items: center; height: 100%; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title={label.value}>
                                             {label.value}
                                         </div>
                                     </th>
@@ -47,8 +47,8 @@
                                     <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class="slds-hint-parent" onclick={handleRowClick} style="cursor: pointer"
                                         onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
                                         <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label}>
-                                                <div class="slds-truncate slds-cell-wrap">{field.value}</div>
+                                            <td key={field.label} style="max-width: 33%">
+                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
                                             </td>
                                         </template>
                                     </tr>
@@ -58,8 +58,8 @@
                                     <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class="slds-hint-parent"
                                         onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
                                         <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label}>
-                                                <div class="slds-truncate slds-cell-wrap">{field.value}</div>
+                                            <td key={field.label} style="max-width: 33%">
+                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
                                             </td>
                                         </template>
                                     </tr>
