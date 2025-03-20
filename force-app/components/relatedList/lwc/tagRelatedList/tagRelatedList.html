@@ -42,9 +42,8 @@
                         </thead>
                         <tbody>
                             <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
-                                <!-- For clickable rows, added mouse event handlers for popover -->
                                 <template if:true={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class="slds-hint-parent" onclick={handleRowClick} style="cursor: pointer"
+                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class={record.rowClass} onclick={handleRowClick} style="cursor: pointer"
                                         onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
                                         <template for:each={record.recordFields} for:item="field">
                                             <td key={field.label}>
@@ -53,9 +52,8 @@
                                         </template>
                                     </tr>
                                 </template>
-                                <!-- For non-clickable rows, also added mouse event handlers for popover -->
                                 <template if:false={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class="slds-hint-parent"
+                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class={record.rowClass}
                                         onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
                                         <template for:each={record.recordFields} for:item="field">
                                             <td key={field.label}>
@@ -70,12 +68,32 @@
             </div>          
         </template>
 
-        <!-- Popover Template for additional record details -->
         <template if:true={showPopover}>
-            <div class="slds-popover slds-nubbin_top" style={popoverStyle} onmouseleave={handleMouseLeave}>
+            <div 
+                class="slds-popover slds-nubbin_top slds-popover_medium" 
+                style={popoverStyle} 
+                role="dialog" 
+                onmouseenter={handlePopoverEnter} 
+                onmouseleave={handleMouseLeave}
+            >
+                <!-- Popover Header -->
+                <div class="slds-popover__header">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name={icon} size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 id="popover-heading" class="slds-text-heading_small slds-hyphenate">
+                                {popoverTitle}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popover Body -->
                 <div class="slds-popover__body">
                     <template for:each={popoverFieldValues} for:item="fieldObj">
-                        <p key={fieldObj.apiName}>
+                        <p key={fieldObj.apiName} class="slds-truncate">
                             <strong>{fieldObj.apiName}:</strong> {fieldObj.value}
                         </p>
                     </template>
