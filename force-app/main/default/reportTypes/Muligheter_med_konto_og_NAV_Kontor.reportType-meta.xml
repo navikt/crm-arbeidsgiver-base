@@ -734,6 +734,11 @@
             <field>Account__c.Website</field>
             <table>CustomOpportunity__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c.CRM_MainIndustry__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
         <masterLabel>Virksomhet</masterLabel>
     </sections>
     <sections>
