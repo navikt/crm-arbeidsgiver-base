@@ -215,6 +215,7 @@ private without sharing class Activity_AddAccountTest {
       IsAllDayEvent = true,
       ActivityDate = Date.today(),
       TAG_ActivityType__c = 'Rekruttere og inkludere',
+      TAG_service__c = 'Jobbmesser og møteplass',
       Subject = 'Hele dagen',
       RecordTypeId = agRecordType
     );
