@@ -256,7 +256,7 @@
             <field>TAG_ActivityType__c</field>
             <operator>IsNull</operator>
             <value>
-                <booleanValue>false</booleanValue>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <filters>

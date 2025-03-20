@@ -52,6 +52,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>DialogueMeeting__c.TimelineText__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>DialogueMeeting__c.UserNavIdent__c</field>
         <readable>true</readable>
     </fieldPermissions>
