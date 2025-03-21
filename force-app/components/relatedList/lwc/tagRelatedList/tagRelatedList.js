@@ -3,6 +3,7 @@ import getRelatedList from '@salesforce/apex/TAG_RelatedListController.getRelate
 import { NavigationMixin } from 'lightning/navigation';
 import { getRecord } from 'lightning/uiRecordApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
     
@@ -102,12 +103,19 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handleNewRecord(event) {
         // Prevent the header's onclick from firing
         event.stopPropagation();
+
+        const defaultValues = encodeDefaultFieldValues({
+            [this.relationField]: this.recordId
+        });
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {
                 objectApiName: this.relatedObjectApiName,
                 actionName: 'new'
-            }
+            },
+            state: {
+                defaultFieldValues: defaultValues
+        }
         });
     }
 
@@ -130,11 +138,16 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         if (this.relatedRecords) {
             // Parse the inactive filter if provided
             let filterField = null;
+            let filterOperator = null;
             let filterValue = null;
-            if (this.inactiveRecordFilter && this.inactiveRecordFilter.includes('=')) {
-                let parts = this.inactiveRecordFilter.split('=');
-                filterField = parts[0].trim();
-                filterValue = parts[1].trim().toLowerCase();
+            if (this.inactiveRecordFilter) {
+                let regex = /^([^!<>=]+)\s*(=|!=)\s*(.*)$/;
+                let match = this.inactiveRecordFilter.match(regex);
+                if (match) {
+                    filterField = match[1].trim();
+                    filterOperator = match[2].trim();
+                    filterValue = match[3].trim().toLowerCase();
+                }
             }
             
             this.relatedRecords.forEach((dataRecord) => {
@@ -148,17 +161,18 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                     }
                 });
                 
-                // Determine if the record is inactive
                 let isInactive = false;
-                if (filterField && filterValue !== null) {
+                if (filterField) {
                     let fieldVal = this.resolve(filterField, dataRecord);
-                    // Convert the field value to string (if boolean, true/false will be 'true'/'false')
-                    if (fieldVal !== null && String(fieldVal).toLowerCase() === filterValue) {
-                        isInactive = true;
+                    let recordValue = fieldVal !== null ? String(fieldVal).toLowerCase() : null;
+    
+                    if (filterOperator === "=") {
+                        isInactive = (recordValue === filterValue);
+                    } else if (filterOperator === "!=") {
+                        isInactive = (recordValue !== filterValue && recordValue !== null);
                     }
                 }
                 
-                // Set rowClass based on whether the record is inactive.
                 let rowClass = 'slds-hint-parent';
                 if (isInactive) {
                     rowClass += ' inactiveRow';
@@ -203,7 +217,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             : [];
         return labels.map((label, index, arr) => {
              // Base style for every header cell.
-             let style = 'vertical-align: middle; text-align: left; padding: 4px 8px;';
+             let style = 'vertical-align: middle; text-align: left; padding: 4px 8px; max-width: 33%';
              // Padding for the first cell.
              if (index === 0) {
                  style += 'padding-left: 1rem;';
@@ -225,10 +239,14 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         let combined = Array.from(new Set([...displayed, ...popover]));
         
         // extract the field name and add it to the list if not already present.
-        if (this.inactiveRecordFilter && this.inactiveRecordFilter.includes('=')) {
-            let filterField = this.inactiveRecordFilter.split('=')[0].trim();
-            if (!combined.includes(filterField)) {
-                combined.push(filterField);
+        if (this.inactiveRecordFilter) {
+            let regex = /^([^!<>=]+)\s*(=|!=)\s*(.*)$/;
+            let match = this.inactiveRecordFilter.match(regex);
+            if (match) {
+                let filterField = match[1].trim();
+                if (!combined.includes(filterField)) {
+                    combined.push(filterField);
+                }
             }
         }
         return combined;
