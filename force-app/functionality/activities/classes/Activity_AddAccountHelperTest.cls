@@ -31,6 +31,8 @@ private without sharing class Activity_AddAccountHelperTest {
         TAG_NoPersonInformation__c = true,
         ActivityDate = Date.today(),
         RecordTypeId = agRecordType,
+        TAG_ActivityType__c = 'Rekruttere og inkludere',
+        TAG_service__c = 'Jobbmesser og møteplass',
         Subject = 'test',
         WhatId = tl.Id
       );
@@ -213,6 +215,8 @@ private without sharing class Activity_AddAccountHelperTest {
       TAG_NoPersonInformation__c = true,
       WhatId = acc.Id,
       ActivityDate = Date.today(),
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
+      TAG_service__c = 'Jobbmesser og møteplass',
       Subject = 'test'
     );
     insert t;
@@ -221,6 +225,8 @@ private without sharing class Activity_AddAccountHelperTest {
       TAG_NoPersonInformation__c = true,
       WhatId = tl.Id,
       ActivityDate = Date.today(),
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
+      TAG_service__c = 'Jobbmesser og møteplass',
       Subject = 'test'
     );
     insert t2;
@@ -244,6 +250,8 @@ private without sharing class Activity_AddAccountHelperTest {
       TAG_NoPersonInformation__c = true,
       WhatId = acc.Id,
       ActivityDate = Date.today(),
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
+      TAG_service__c = 'Jobbmesser og møteplass',
       Subject = 'test'
     );
     insert t;
@@ -252,6 +260,8 @@ private without sharing class Activity_AddAccountHelperTest {
       TAG_NoPersonInformation__c = true,
       WhatId = tl.Id,
       ActivityDate = Date.today(),
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
+      TAG_service__c = 'Jobbmesser og møteplass',
       Subject = 'test'
     );
     insert t2;
@@ -416,6 +426,8 @@ private without sharing class Activity_AddAccountHelperTest {
       RecordTypeId = agRecordType,
       ActivityDate = Date.today(),
       Subject = 'test',
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
+      TAG_service__c = 'Jobbmesser og møteplass',
       WhatId = tl.Id
     );
 
