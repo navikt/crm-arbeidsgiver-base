@@ -192,6 +192,8 @@ private without sharing class Activity_AddAccountTest {
       WhatId = tl.Id,
       ActivityDate = Date.today(),
       Subject = 'test',
+      TAG_ActivityType__c = 'Rekruttere og inkludere',
+      TAG_service__c = 'Jobbmesser og møteplass',
       RecordTypeId = agRecordType
     );
     insert ta;
