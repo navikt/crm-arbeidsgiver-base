@@ -32,7 +32,7 @@ export default class TagRecordForm extends LightningElement {
         return this.open ? 'slds-section slds-is-open' : 'slds-section';
     }
     get mode() {
-        return 'readonly';
+        return this.readOnly ? 'readonly' : 'view';
     }
     get density() {
         return 'Comfy';
