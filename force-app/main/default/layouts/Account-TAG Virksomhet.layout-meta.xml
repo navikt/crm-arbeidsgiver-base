@@ -195,15 +195,12 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <fields>CRM_YearQuarter__c</fields>
-        <fields>CRM_LostDaysWork__c</fields>
-        <fields>CRM_Percent__c</fields>
-        <fields>TAG_Account_Industry__c</fields>
-        <fields>CRM_IndustryCodePercent__c</fields>
-        <fields>CRM_CountryPercent__c</fields>
-        <relatedList>Absence__c.CRM_Account__c</relatedList>
-        <sortField>CRM_YearQuarter__c</sortField>
-        <sortOrder>Desc</sortOrder>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>EngagementType__c</fields>
+        <fields>Extent__c</fields>
+        <fields>Expires__c</fields>
+        <relatedList>JobPosting__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Se_alle_i_alle_enheter</customButtons>
@@ -215,6 +212,68 @@
         <fields>AktivitetStatuskode__c</fields>
         <relatedList>ArenaActivity__c.Account__c</relatedList>
         <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Inquiry_Category_2__c</fields>
+        <fields>Source__c</fields>
+        <fields>InclusionStage__c</fields>
+        <fields>OWNER.ALIAS</fields>
+        <fields>TAG_Age__c</fields>
+        <relatedList>CustomOpportunity__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>StartDate__c</fields>
+        <fields>EndDate__c</fields>
+        <fields>IACase__c</fields>
+        <relatedList>IACooperation__c.Account__c</relatedList>
+        <sortField>EndDate__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>CRM_YearQuarter__c</fields>
+        <fields>CRM_LostDaysWork__c</fields>
+        <fields>CRM_Percent__c</fields>
+        <fields>TAG_Account_Industry__c</fields>
+        <fields>CRM_IndustryCodePercent__c</fields>
+        <fields>CRM_CountryPercent__c</fields>
+        <relatedList>Absence__c.CRM_Account__c</relatedList>
+        <sortField>CRM_YearQuarter__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>TAG_Status__c</fields>
+        <fields>TAG_StartDate__c</fields>
+        <fields>TAG_EndDate__c</fields>
+        <fields>TAG_Category__c</fields>
+        <fields>Region__c</fields>
+        <relatedList>Contract__c.TAG_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>CustomCampaign__c</fields>
+        <fields>Contact__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>CustomCampaignMember__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MeetingTime__c</fields>
+        <fields>Status__c</fields>
+        <fields>UserNavIdent__c</fields>
+        <relatedList>DialogueMeeting__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>CRM_SubTheme__c</fields>
+        <fields>CRM_Status__c</fields>
+        <fields>CRM_NavUnit__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>NavTask__c.CRM_AccountRelated__c</relatedList>
+        <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
@@ -233,13 +292,6 @@
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>CaseStatus__c</fields>
-        <fields>CaseOwner__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>IACase__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
@@ -248,6 +300,13 @@
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>CaseStatus__c</fields>
+        <fields>CaseOwner__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>IACase__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>FULL_NAME</fields>
@@ -267,33 +326,10 @@
         <relatedList>RelatedAccountContactRelationList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>CustomCampaign__c</fields>
-        <fields>Contact__c</fields>
-        <fields>Status__c</fields>
-        <relatedList>CustomCampaignMember__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>MEMBER_NAME</fields>
         <fields>TEAM_MEMBER_ROLE</fields>
         <fields>TAG_Active__c</fields>
         <relatedList>RelatedAccountSalesTeam</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>TAG_Status__c</fields>
-        <fields>TAG_StartDate__c</fields>
-        <fields>TAG_EndDate__c</fields>
-        <relatedList>Contract__c.TAG_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Inquiry_Category_2__c</fields>
-        <fields>Source__c</fields>
-        <fields>InclusionStage__c</fields>
-        <fields>OWNER.ALIAS</fields>
-        <fields>TAG_Age__c</fields>
-        <relatedList>CustomOpportunity__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -307,35 +343,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>CRM_SubTheme__c</fields>
-        <fields>CRM_Status__c</fields>
-        <fields>CRM_NavUnit__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>NavTask__c.CRM_AccountRelated__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>CustomCampaign__c</fields>
         <fields>Contact__c</fields>
         <fields>Status__c</fields>
         <relatedList>CustomCampaignMember__c.AccountSentral__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>NAME</fields>
-        <fields>EngagementType__c</fields>
-        <fields>Extent__c</fields>
-        <fields>Expires__c</fields>
-        <relatedList>JobPosting__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>MeetingTime__c</fields>
-        <fields>Status__c</fields>
-        <fields>UserNavIdent__c</fields>
-        <relatedList>DialogueMeeting__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
