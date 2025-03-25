@@ -3,6 +3,7 @@ import getRelatedList from '@salesforce/apex/TAG_RelatedListController.getRelate
 import { NavigationMixin } from 'lightning/navigation';
 import { getRecord } from 'lightning/uiRecordApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
@@ -41,6 +42,31 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     connectedCallback() {
         this.wireFields = [this.objectApiName + '.Id'];
         this.getList();
+    }
+
+    get relatedObjectNames() {
+        if (!this.displayedFields) return [];
+        const fields = this.displayedFields.replace(/\s/g, '').split(',');
+        const related = new Set();
+        fields.forEach(field => {
+            if (field.includes('.')) {
+                let relationship = field.split('.')[0];
+                related.add(relationship);
+            }
+        });
+        return Array.from(related);
+    }
+    
+    @wire(getObjectInfos, { objectApiNames: '$relatedObjectNames' })
+    wiredRelatedObjectInfos({ data, error }) {
+        if (data) {
+            this.relatedObjectMetadata = data.results.reduce((acc, item) => {
+                acc[item.result.apiName] = item.result.fields;
+                return acc;
+            }, {});
+        } else if (error) {
+            console.error('Error fetching related object metadata:', error);
+        }
     }
 
     @wire(getObjectInfo, { objectApiName: '$relatedObjectApiName' })
@@ -309,18 +335,29 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         if (!this.popoverRecordData || !this.objectInfo.data) {
             return [];
         }
+    
         return this.combinedPopoverFields.map(fieldApiName => {
-            // Look up the localized label (if available); if not, fallback to field API name
-            let fieldLabel = this.objectInfo.data.fields[fieldApiName] ? 
-                                this.objectInfo.data.fields[fieldApiName].label : 
-                                fieldApiName;
+            let fieldLabel;
+            
+            if (fieldApiName.includes('.')) {
+                let [relationship, childField] = fieldApiName.split('.');
+                
+                if (this.relatedObjectMetadata[relationship] && this.relatedObjectMetadata[relationship][childField]) {
+                    fieldLabel = this.relatedObjectMetadata[relationship][childField].label;
+                } else {
+                    fieldLabel = childField;
+                }
+            } else {
+                fieldLabel = this.objectInfo.data.fields[fieldApiName]?.label || fieldApiName;
+            }
+    
             return {
-                apiName: fieldLabel, // Using the localized label here instead of the API name
+                apiName: fieldLabel,
                 value: this.resolve(fieldApiName, this.popoverRecordData)
             };
         });
-    }    
-
+    }
+    
     // Getter for popover style
     get popoverStyle() {
         if (this.popoverPosition) {
