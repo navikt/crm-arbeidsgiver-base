@@ -1073,11 +1073,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>RelatedToAccount__c.TAG_Ultimate_Sector_from_parent__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>RelatedToAccount__c.WarningNote__c</field>
             <table>Activity</table>
         </columns>
@@ -1784,11 +1779,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account.TAG_Ultimate_Sector_Code_from_parent__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account.TAG_Ultimate_Sector_from_parent__c</field>
             <table>Activity</table>
         </columns>
         <columns>
