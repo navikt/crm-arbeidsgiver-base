@@ -12,13 +12,16 @@
             <objects>
                 <object>Account</object>
             </objects>
-            <property name="label" type="String" description="Section header." />
-            <property name="fields" type="String" description="API names seprated by comma." />
-            <property name="isDefaultOpen" type="Boolean" default="true"
+            <property name="label" type="String" label="Header"
+                description="Text to display as section header." />
+            <property name="fields" type="String" label="Fields"
+                description="API names seprated by comma." />
+            <property name="isDefaultOpen" type="Boolean" default="true" label="Default open"
                 description="If checked, the section is open on page refresh. Closed if unchecked." />
-            <property name="twoColumns" type="Boolean" default="true"
+            <property name="twoColumns" type="Boolean" default="true" label="Display as two columns"
                 description="If checked, the fields will display in two columns. One columns if unchecked." />
-            <property name="readOnly" type="Boolean" default="true" />
+            <property name="readOnly" type="Boolean" default="true" label="Read only"
+                description="If checked, fields won't be editable. If unchecked, the pencil icon will display for editable fields." />
             <supportedFormFactors>
                 <supportedFormFactor type="Large" />
                 <supportedFormFactor type="Small" />
