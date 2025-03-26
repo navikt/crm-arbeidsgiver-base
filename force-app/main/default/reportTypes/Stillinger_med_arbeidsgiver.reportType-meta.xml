@@ -476,11 +476,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_Main_Industry__c</field>
-            <table>JobPosting__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.MiddleName</field>
             <table>JobPosting__c</table>
         </columns>

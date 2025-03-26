@@ -548,11 +548,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_Main_Industry__c</field>
-            <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.MiddleName</field>
             <table>CustomCampaign__c.Custom_Campaign_Members__r</table>
         </columns>

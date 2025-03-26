@@ -4,7 +4,7 @@
     <decisions>
         <name>Check_for_1st_parent_account</name>
         <label>Check for 1st parent account</label>
-        <locationX>160</locationX>
+        <locationX>161</locationX>
         <locationY>439</locationY>
         <defaultConnector>
             <targetReference>Check_for_2nd_parent_account</targetReference>
@@ -238,12 +238,6 @@
                 <elementReference>$Record.INT_SectorCode__c</elementReference>
             </value>
         </inputAssignments>
-        <inputAssignments>
-            <field>TAG_Ultimate_Sector_from_parent__c</field>
-            <value>
-                <elementReference>$Record.INT_Sector__c</elementReference>
-            </value>
-        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
@@ -306,8 +300,8 @@
     <recordUpdates>
         <name>Update_ultimate_parent_account_4th</name>
         <label>Update ultimate parent account 4th</label>
-        <locationX>1243</locationX>
-        <locationY>651</locationY>
+        <locationX>1244</locationX>
+        <locationY>650</locationY>
         <inputAssignments>
             <field>CRM_UltimateParentAccount__c</field>
             <value>
@@ -364,7 +358,7 @@
         <name>Update_ultimate_parent_account_7th</name>
         <label>Update ultimate parent account 7th</label>
         <locationX>2005</locationX>
-        <locationY>667</locationY>
+        <locationY>666</locationY>
         <inputAssignments>
             <field>CRM_UltimateParentAccount__c</field>
             <value>

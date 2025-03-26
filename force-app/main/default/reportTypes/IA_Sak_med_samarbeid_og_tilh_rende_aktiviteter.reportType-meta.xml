@@ -1050,11 +1050,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_Main_Industry__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.MiddleName</field>
             <table>IACase__c</table>
         </columns>
@@ -1101,11 +1096,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account__c.NumberOfWorkfare__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_NumberOfWorkfareLink__c</field>
             <table>IACase__c</table>
         </columns>
         <columns>

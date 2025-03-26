@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Main_Industry__c</fullName>
     <externalId>false</externalId>
-    <formula>Account__r.TAG_Main_Industry__c</formula>
+    <formula>Account__r.CRM_MainIndustry__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Main Industry</label>
     <required>false</required>
