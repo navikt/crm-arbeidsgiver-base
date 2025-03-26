@@ -576,11 +576,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_Main_Industry__c</field>
-            <table>CustomOpportunity__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.INT_MunicipalityNumber__c</field>
             <table>CustomOpportunity__c</table>
         </columns>

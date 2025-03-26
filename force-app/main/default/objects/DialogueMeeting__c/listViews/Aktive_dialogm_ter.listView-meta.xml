@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Aktive_dialogm_ter</fullName>
+    <columns>NAME</columns>
+    <columns>MeetingTime__c</columns>
+    <columns>Status__c</columns>
+    <columns>Account__c</columns>
+    <columns>NavUnit__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>AVLYST</value>
+    </filters>
+    <label>Mine aktive dialogmøter</label>
+</ListView>

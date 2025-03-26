@@ -689,11 +689,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Main_Industry__c</field>
-            <table>Contact.AccountContactRelations</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>MiddleName</field>
             <table>Contact.AccountContactRelations</table>
         </columns>
@@ -1341,11 +1336,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account.CRM_MainIndustry__c</field>
-            <table>Contact</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account.TAG_Main_Industry__c</field>
             <table>Contact</table>
         </columns>
         <columns>

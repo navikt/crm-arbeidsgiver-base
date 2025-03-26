@@ -813,11 +813,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_Main_Industry__c</field>
-            <table>CustomCampaignMember__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.MiddleName</field>
             <table>CustomCampaignMember__c</table>
         </columns>
