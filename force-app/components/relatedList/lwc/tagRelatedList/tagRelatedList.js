@@ -31,6 +31,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api showNewRecordButton;
     @api newRecordButtonLabel; // Button label for New Record button
     @api inactiveRecordFilter; // Example: "Active__c = false"
+    @api iconNamePopover;
 
     @track relatedRecords;
     @track isExpanded = false; // Accordion state
@@ -212,9 +213,15 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 });
             });
         }
+        //Sorting records, inactive comes last
+        returnRecords.sort((a, b) => {
+            if (a.isInactive === b.isInactive) {
+                return 0;
+            }
+            return a.isInactive ? 1 : -1;
+        });
         return returnRecords;
     }
-    
 
     // Build the card title with record count
     get cardTitle() {
@@ -385,6 +392,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         }
         return '';
     }
+
+    get iconToUse() {
+        return (this.iconName && this.iconName.trim() !== '') 
+               ? this.iconName 
+               : this.iconNamePopover;
+    }    
 
     convertBoolean(val) {
         if (val === true || String(val).toLowerCase() === "true") {
