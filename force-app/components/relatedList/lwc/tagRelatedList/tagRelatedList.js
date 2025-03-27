@@ -212,9 +212,15 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 });
             });
         }
+        //Sorting records, inactive comes last
+        returnRecords.sort((a, b) => {
+            if (a.isInactive === b.isInactive) {
+                return 0;
+            }
+            return a.isInactive ? 1 : -1;
+        });
         return returnRecords;
     }
-    
 
     // Build the card title with record count
     get cardTitle() {
