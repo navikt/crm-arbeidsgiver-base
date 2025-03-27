@@ -182,8 +182,8 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                     if (key !== 'Id') {
                         recordFields.push({
                             label: key,
-                            value: this.resolve(key, dataRecord)
-                        });
+                            value: this.convertBoolean(this.resolve(key, dataRecord))
+                        });                        
                     }
                 });
                 
@@ -353,8 +353,8 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     
             return {
                 apiName: fieldLabel,
-                value: this.resolve(fieldApiName, this.popoverRecordData)
-            };
+                value: this.convertBoolean(this.resolve(fieldApiName, this.popoverRecordData))
+            };            
         });
     }
     
@@ -384,5 +384,14 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             return `${fieldValue}`;
         }
         return '';
+    }
+
+    convertBoolean(val) {
+        if (val === true || String(val).toLowerCase() === "true") {
+            return "Ja";
+        } else if (val === false || String(val).toLowerCase() === "false") {
+            return "Nei";
+        }
+        return val;
     }
 }
