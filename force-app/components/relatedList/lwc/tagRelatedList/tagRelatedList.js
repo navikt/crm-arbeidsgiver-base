@@ -31,6 +31,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api showNewRecordButton;
     @api newRecordButtonLabel; // Button label for New Record button
     @api inactiveRecordFilter; // Example: "Active__c = false"
+    @api iconNamePopover;
 
     @track relatedRecords;
     @track isExpanded = false; // Accordion state
@@ -391,6 +392,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         }
         return '';
     }
+
+    get iconToUse() {
+        return (this.iconName && this.iconName.trim() !== '') 
+               ? this.iconName 
+               : this.iconNamePopover;
+    }    
 
     convertBoolean(val) {
         if (val === true || String(val).toLowerCase() === "true") {

@@ -15,7 +15,7 @@
                 label="Icon name"
                 description="On the format category:iconName. See available icons: https://lightningdesignsystem.com/icons/"
                 type="String"
-                default="Title"
+                default=""
             />
         <property
                 name="headerColor"
@@ -103,6 +103,13 @@
                 name="popoverFields"
                 label="Popover Fields"
                 description="Additional fields (comma separated) to show in the popover"
+                type="String"
+                default=""
+            />
+        <property
+                name="iconNamePopover"
+                label="Icon name Popover"
+                description="If main iconName not set, use this for icon in popover window. Format category:iconName. See available icons: https://lightningdesignsystem.com/icons/"
                 type="String"
                 default=""
             />
