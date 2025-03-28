@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UiFormatSpecificationSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <field>IACooperation__c.Status__c</field>
+    <formatType>ICON</formatType>
+    <masterLabel>StatusCompleted</masterLabel>
+    <sobjectType>IACooperation__c</sobjectType>
+    <uiFormatSpecifications>
+        <formatProperties>{&quot;icon&quot;:&quot;circle_with_check&quot;,&quot;iconColor&quot;:&quot;green&quot;}</formatProperties>
+        <formatType>ICON</formatType>
+        <order>1</order>
+        <visibilityRule>
+            <criteria>
+                <leftValue>{!Record.Status__c}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>FULLFØRT</rightValue>
+            </criteria>
+        </visibilityRule>
+    </uiFormatSpecifications>
+</UiFormatSpecificationSet>
