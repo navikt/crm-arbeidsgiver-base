@@ -2,6 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Related_to_is_required_ia_event</fullName>
     <active>true</active>
-    <errorConditionFormula>IF( RecordType.Name = &apos;IA event&apos; &amp;&amp; ISCHANGED(IATheme__c) &amp;&amp; OR(ISBLANK( WhatId ),ISBLANK( TEXT(TAG_ActivityType__c) ),ISBLANK( TEXT(TAG_service__c) )), true, false)</errorConditionFormula>
-    <errorMessage>Feltene &quot;Relatert til&quot;, &quot;Tema&quot; og &quot;Tjeneste&quot; må være fylt ut</errorMessage>
+    <errorConditionFormula>IF( RecordType.Name = &apos;IA event&apos; &amp;&amp; 
+			OR(ISBLANK( WhatId ),
+    ISBLANK( TEXT(TAG_ActivityType__c) )), true, false)</errorConditionFormula>
+    <errorMessage>Feltene &quot;Relatert til&quot; og &quot;Tema&quot; må være fylt ut</errorMessage>
 </ValidationRule>
