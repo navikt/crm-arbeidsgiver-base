@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>TAG Account Badges Intro</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;Arbeidsgiverkortet viser nå tre merkelapper som gir deg rask oversikt over kontoen: &lt;em&gt;partnerstatus&lt;/em&gt;, &lt;em&gt;aktive tiltak &lt;/em&gt;og &lt;em&gt;åpne muligheter.&lt;/em&gt;&lt;/p&gt;&lt;p&gt;Hvis ingen merkelapper vises, betyr det at kontoen ikke har registrerte aktiviteter i noen av kategoriene.&lt;/p&gt;</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <description>Viser info om nytt komponent på account siden</description>
+        <dismissButtonLabel>Dismiss</dismissButtonLabel>
+        <displayPosition>TopRight</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <endDate>2025-02-23</endDate>
+        <experience>Lightning</experience>
+        <isPublished>true</isPublished>
+        <masterLabel>TAG Account Badges Intro</masterLabel>
+        <publishedDate>2025-01-20</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2025-01-20</startDate>
+        <targetPageKey1>Account</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <timesToDisplay>1</timesToDisplay>
+        <title>Merkelapper på arbeidsgiverkortet</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
