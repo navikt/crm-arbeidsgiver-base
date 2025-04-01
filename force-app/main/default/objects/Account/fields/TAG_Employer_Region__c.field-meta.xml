@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Employer_Region__c</fullName>
-    <description>Displays regions based on municipality number from Ereg.</description>
+    <description>Virksomhetens region settes fra første to siffer i kommunenummer. Fra standard "Fylkesinndeling 2024", https://www.ssb.no/klass/klassifikasjoner/104/koder</description>
     <externalId>false</externalId>
     <formula>IF(BEGINS(INT_MunicipalityNumber__c , &quot;30&quot;),&quot;Viken&quot;,
         IF(BEGINS(INT_MunicipalityNumber__c , &quot;03&quot;),&quot;Oslo&quot;,
@@ -21,6 +21,7 @@
         IF(BEGINS(INT_MunicipalityNumber__c ,
         &quot;42&quot;),&quot;Agder&quot;,&quot;&quot;))))))))))))))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Virksomhetens region basert på kommunenummer</inlineHelpText>
     <label>Employer Region</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
