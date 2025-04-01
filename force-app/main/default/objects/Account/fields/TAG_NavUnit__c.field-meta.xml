@@ -4,6 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Nav unit related to company based on Temporary Layoff routing in access control</description>
     <externalId>false</externalId>
+    <inlineHelpText>Viser hvilket lokalkontor virksomheten er tilknyttet (basert på forretningsadresse)</inlineHelpText>
     <label>NAV Unit</label>
     <referenceTo>NavUnit__c</referenceTo>
     <relationshipLabel>Virksomheter</relationshipLabel>
