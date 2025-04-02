@@ -60,3 +60,6 @@
 .slds-popover_medium .slds-popover__body {
     padding: 1rem;
 }
+.slds-table tbody tr:hover td:first-child .slds-truncate {
+    text-decoration: underline;
+}
