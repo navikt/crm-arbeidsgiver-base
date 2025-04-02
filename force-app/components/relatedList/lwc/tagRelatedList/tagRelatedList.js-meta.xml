@@ -120,6 +120,13 @@
                 type="String"
                 default=""
             />
+        <property
+                name="inactivePrefix"
+                label="Inactive Record Prefix"
+                description="Enter prefix to show before String-value in first column for inactive records(e.g. Sluttet:)."
+                type="String"
+                default=""
+            />
 
       </targetConfig>
   </targetConfigs>
