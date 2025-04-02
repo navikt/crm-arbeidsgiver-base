@@ -5,6 +5,8 @@ import { getRecord } from 'lightning/uiRecordApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
+import TEAM_MEMBER_ROLE_FIELD from '@salesforce/schema/AccountTeamMember.TeamMemberRole';
+import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
     
@@ -35,10 +37,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     @track relatedRecords;
     @track isExpanded = false; // Accordion state
-
     @track popoverRecordData; // Holds the record data for the hovered row
     @track showPopover = false; // Flag to conditionally display popover
     @track popoverPosition = { top: 0, left: 0 };
+    @track teamMemberRoleMapping;
 
     connectedCallback() {
         this.wireFields = [this.objectApiName + '.Id'];
@@ -79,6 +81,24 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         if (data && this.dynamicUpdate === true) {
             this.getList();
         } else if (error) {
+        }
+    }
+
+    @wire(getObjectInfo, { objectApiName: 'AccountTeamMember' })
+    accountTeamMemberInfo;
+
+    @wire(getPicklistValues, { 
+        recordTypeId: "012000000000000AAA", 
+        fieldApiName: TEAM_MEMBER_ROLE_FIELD 
+    })
+    wiredTeamMemberRolePicklist({ data, error }) {
+        if (data) {
+            this.teamMemberRoleMapping = data.values.reduce((acc, entry) => {
+                acc[entry.value] = entry.label;
+                return acc;
+            }, {});
+        } else if (error) {
+            console.error('Error fetching picklist values for TeamMemberRole:', error);
         }
     }
 
@@ -181,10 +201,14 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 let recordFields = [];
                 this.displayedFieldList.forEach((key) => {
                     if (key !== 'Id') {
+                        let rawValue = this.resolve(key, dataRecord);
+                        if (key === 'TeamMemberRole' && this.teamMemberRoleMapping && this.teamMemberRoleMapping[rawValue]) {
+                            rawValue = this.teamMemberRoleMapping[rawValue];
+                        }
                         recordFields.push({
                             label: key,
-                            value: this.convertBoolean(this.resolve(key, dataRecord))
-                        });                        
+                            value: this.convertBoolean(rawValue)
+                        });                       
                     }
                 });
                 
@@ -357,11 +381,16 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             } else {
                 fieldLabel = this.objectInfo.data.fields[fieldApiName]?.label || fieldApiName;
             }
-    
+
+            let rawValue = this.resolve(fieldApiName, this.popoverRecordData);
+            if (fieldApiName === 'TeamMemberRole' && this.teamMemberRoleMapping && this.teamMemberRoleMapping[rawValue]) {
+                rawValue = this.teamMemberRoleMapping[rawValue];
+            }
+        
             return {
                 apiName: fieldLabel,
-                value: this.convertBoolean(this.resolve(fieldApiName, this.popoverRecordData))
-            };            
+                value: this.convertBoolean(rawValue)
+            };          
         });
     }
     
