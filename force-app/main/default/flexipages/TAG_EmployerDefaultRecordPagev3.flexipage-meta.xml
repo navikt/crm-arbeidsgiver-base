@@ -248,6 +248,10 @@
                     <value>standard:queue</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>inactivePrefix</name>
+                    <value>Sluttet:</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>inactiveRecordFilter</name>
                     <value>TAG_Former_Employee__c = true</value>
                 </componentInstanceProperties>
