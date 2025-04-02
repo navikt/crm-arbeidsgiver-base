@@ -85,9 +85,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         }
     }
 
-    @wire(getObjectInfo, { objectApiName: 'AccountTeamMember' })
-    accountTeamMemberInfo;
-
     @wire(getPicklistValues, { 
         recordTypeId: "012000000000000AAA", 
         fieldApiName: TEAM_MEMBER_ROLE_FIELD 
