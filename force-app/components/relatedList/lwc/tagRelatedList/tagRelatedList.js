@@ -34,6 +34,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api newRecordButtonLabel; // Button label for New Record button
     @api inactiveRecordFilter; // Example: "Active__c = false"
     @api iconNamePopover;
+    @api inactivePrefix;
 
     @track relatedRecords;
     @track isExpanded = false; // Accordion state
@@ -198,20 +199,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             }
             
             this.relatedRecords.forEach((dataRecord) => {
-                let recordFields = [];
-                this.displayedFieldList.forEach((key) => {
-                    if (key !== 'Id') {
-                        let rawValue = this.resolve(key, dataRecord);
-                        if (key === 'TeamMemberRole' && this.teamMemberRoleMapping && this.teamMemberRoleMapping[rawValue]) {
-                            rawValue = this.teamMemberRoleMapping[rawValue];
-                        }
-                        recordFields.push({
-                            label: key,
-                            value: this.convertBoolean(rawValue)
-                        });                       
-                    }
-                });
-                
                 let isInactive = false;
                 if (filterField) {
                     let fieldVal = this.resolve(filterField, dataRecord);
@@ -223,6 +210,23 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                         isInactive = (recordValue !== filterValue && recordValue !== null);
                     }
                 }
+
+                let recordFields = [];
+                this.displayedFieldList.forEach((key, index) => {
+                    if (key !== 'Id') {
+                        let rawValue = this.resolve(key, dataRecord);
+                        if (key === 'TeamMemberRole' && this.teamMemberRoleMapping && this.teamMemberRoleMapping[rawValue]) {
+                            rawValue = this.teamMemberRoleMapping[rawValue];
+                        }
+                        if (index === 0 && isInactive && this.inactivePrefix) {
+                            rawValue = this.inactivePrefix + ' ' + rawValue;
+                        }
+                        recordFields.push({
+                            label: key,
+                            value: this.convertBoolean(rawValue)
+                        });                       
+                    }
+                });
                 
                 let rowClass = 'slds-hint-parent';
                 if (isInactive) {
