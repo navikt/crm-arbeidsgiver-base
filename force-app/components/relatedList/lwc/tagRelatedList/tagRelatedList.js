@@ -7,6 +7,7 @@ import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import TEAM_MEMBER_ROLE_FIELD from '@salesforce/schema/AccountTeamMember.TeamMemberRole';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
+import { publishToAmplitude } from 'c/amplitude';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
     
@@ -46,6 +47,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     connectedCallback() {
         this.wireFields = [this.objectApiName + '.Id'];
         this.getList();
+        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
     }
 
     get relatedObjectNames() {
@@ -122,6 +124,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     // Toggle the accordion state
     toggleAccordion() {
         this.isExpanded = !this.isExpanded;
+        if (this.isExpanded) {
+            publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" opened'});
+        } else {
+        }
     }
 
     get chevronIcon() {
@@ -132,6 +138,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handleRowClick(event) {
         let recordIndex = event.currentTarget.dataset.value;
         this.navigateToRecord(this.relatedRecords[recordIndex].Id);
+        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked on record'});
     }
 
     navigateToRecord(recordId) {
@@ -148,6 +155,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handleNewRecord(event) {
         // Prevent the header's onclick from firing
         event.stopPropagation();
+        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked "New" button'});
 
         const defaultValues = encodeDefaultFieldValues({
             [this.relationField]: this.recordId
