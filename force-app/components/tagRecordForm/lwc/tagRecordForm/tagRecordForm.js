@@ -1,4 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
+import { publishToAmplitude } from 'c/amplitude';
 export default class TagRecordForm extends LightningElement {
     @api recordId;
     @api objectApiName;
@@ -42,6 +43,17 @@ export default class TagRecordForm extends LightningElement {
     }
 
     handleClick() {
+        // Toggle open status
         this.open = !this.open;
+        // Log that form was opened by user
+        if(this.open && !this.isDefaultOpen){
+            this.logToAmplitude();
+        }
+    }
+
+    logToAmplitude(){
+        const amplitudeType = 'Field section "'+this.label+'" opened';
+        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
+        publishToAmplitude(this.appName, { type: amplitudeType});      
     }
 }
