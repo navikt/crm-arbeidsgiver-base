@@ -143,7 +143,12 @@ public with sharing class AccountBadgesController {
         if (Schema.sObjectType.IACooperation__c.fields.IACase__c.isAccessible()) {
             query += ',IACase__c';
         }
-        query += ' FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND Account__c = :accountId';
+        // Temporary filter on IA Case since implementation of cooperation status is incomplete
+        String activeIaCaseFilter = '(IACase__r.CaseStatus__c =\'NY\' OR IACase__r.CaseStatus__c =\'VURDERES\' OR IACase__r.CaseStatus__c =\'KONTAKTES\' OR IACase__r.CaseStatus__c =\'KARTLEGGES\' OR IACase__r.CaseStatus__c =\'VI_BISTÅR\')';
+        query +=
+            ' FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND ' +
+            activeIaCaseFilter +
+            ' AND Account__c = :accountId';
         List<IACooperation__c> iaCooperations = Database.query(query);
         return iaCooperations;
     }
