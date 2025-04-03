@@ -301,51 +301,15 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>CaseStatus__c</fields>
-        <fields>CaseOwner__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>IACase__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>FULL_NAME</fields>
-        <fields>CONTACT.TITLE</fields>
-        <fields>CONTACT.PHONE3</fields>
-        <fields>CONTACT.EMAIL</fields>
-        <relatedList>RelatedContactList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>AddRelation</excludeButtons>
         <excludeButtons>MassAddToCampaign</excludeButtons>
         <excludeButtons>Merge</excludeButtons>
         <fields>CONTACT.FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>
-        <fields>TAG_Theme__c</fields>
-        <fields>TAG_MobileEmail__c</fields>
+        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.PHONE3</fields>
+        <fields>CONTACT.ACCOUNT_NAME</fields>
+        <fields>TAG_Former_Employee__c</fields>
         <relatedList>RelatedAccountContactRelationList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>MEMBER_NAME</fields>
-        <fields>TEAM_MEMBER_ROLE</fields>
-        <fields>TAG_Active__c</fields>
-        <relatedList>RelatedAccountSalesTeam</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>CRM_SubTheme__c</fields>
-        <fields>CRM_Status__c</fields>
-        <fields>CRM_NavUnit__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>NavTask__c.CRM_Account__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>CustomCampaign__c</fields>
-        <fields>Contact__c</fields>
-        <fields>Status__c</fields>
-        <relatedList>CustomCampaignMember__c.AccountSentral__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
