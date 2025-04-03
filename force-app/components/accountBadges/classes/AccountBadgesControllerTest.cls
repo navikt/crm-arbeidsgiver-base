@@ -21,7 +21,6 @@ private class AccountBadgesControllerTest {
                     Name = 'TestAccount0',
                     INT_OrganizationNumber__c = '9000000001',
                     INT_MunicipalityNumber__c = '3301',
-                    TAG_FiaCaseStatus__c = 'VI_BISTÅR',
                     NumberOfWorkfare__c = 5,
                     OwnerId = arbeidsgiverUser.id
                 )
@@ -32,7 +31,6 @@ private class AccountBadgesControllerTest {
                     INT_OrganizationNumber__c = '9000000002',
                     INT_MunicipalityNumber__c = '3301',
                     TAG_Partner_Status__c = null,
-                    TAG_FiaCaseStatus__c = null,
                     NumberOfWorkfare__c = 0,
                     OwnerId = arbeidsgiverUser.id
                 )
@@ -85,6 +83,9 @@ private class AccountBadgesControllerTest {
 
             insert employerAgreements;
 
+            // Create IA-sak record
+            IACase__c iaCase = new IACase__c(Name = 'ABCDEFGHT', CaseStatus__c = 'VI_BISTÅR');
+            insert iaCase;
             // Create IA-samarbeid record
             List<IACooperation__c> iaCooperations = new List<IACooperation__c>();
             iaCooperations.add(
@@ -93,7 +94,8 @@ private class AccountBadgesControllerTest {
                     CooperationId__c = '1234',
                     StartDate__c = Date.today(),
                     EndDate__c = Date.today().addDays(30),
-                    Status__c = 'AKTIV'
+                    Status__c = 'AKTIV',
+                    IACase__c = iaCase.id
                 )
             );
 
@@ -131,7 +133,6 @@ private class AccountBadgesControllerTest {
                     Name = 'TestAccount2',
                     INT_OrganizationNumber__c = '9000000003',
                     INT_MunicipalityNumber__c = '3301',
-                    TAG_FiaCaseStatus__c = 'VI_BISTÅR',
                     NumberOfWorkfare__c = 1,
                     OwnerId = negativeAccessUser.id
                 )
@@ -158,7 +159,6 @@ private class AccountBadgesControllerTest {
         }
 
         // Assertions
-        Assert.areEqual(6, accountBadges.size(), 'Expected 6 badges to be created');
         Map<String, AccountBadgesController.Badge> badgeMap = new Map<String, AccountBadgesController.Badge>();
         for (AccountBadgesController.Badge badge : accountBadges) {
             badgeMap.put(badge.label, badge);
@@ -172,6 +172,7 @@ private class AccountBadgesControllerTest {
         Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
         Assert.isTrue(badgeMap.containsKey('IA-samarbeid(1)'), 'Should contain badge for number of ia-cooperations');
         Assert.isTrue(badgeMap.containsKey('Stillinger(2)'), 'Should contain badge for number of job postings');
+        Assert.areEqual(6, accountBadges.size(), 'Expected 6 badges to be created');
     }
 
     @isTest
