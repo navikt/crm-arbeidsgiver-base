@@ -46,14 +46,14 @@ export default class TagRecordForm extends LightningElement {
         // Toggle open status
         this.open = !this.open;
         // Log that form was opened by user
-        if(this.open && !this.isDefaultOpen){
+        if (this.open && !this.isDefaultOpen) {
             this.logToAmplitude();
         }
     }
 
-    logToAmplitude(){
-        const amplitudeType = 'Field section "'+this.label+'" opened';
+    logToAmplitude() {
+        const amplitudeType = 'Field section "' + this.label + '" opened';
         this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
-        publishToAmplitude(this.appName, { type: amplitudeType});      
+        publishToAmplitude(this.appName, { type: amplitudeType });
     }
 }
