@@ -136,8 +136,8 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     // Handle row click event if clickableRows is enabled
     handleRowClick(event) {
-        let recordIndex = event.currentTarget.dataset.value;
-        this.navigateToRecord(this.relatedRecords[recordIndex].Id);
+        const recordId = event.currentTarget.dataset.recordId;
+        this.navigateToRecord(recordId);
         publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked on record'});
     }
 
