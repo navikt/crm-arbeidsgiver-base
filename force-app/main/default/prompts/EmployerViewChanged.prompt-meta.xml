@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Employer View Changed</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;Vi har ryddet på denne siden for å prøve å gi &lt;strong&gt;bedre oversikt&lt;/strong&gt;:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Fra èn kolonne med flere faner, til to kolonner:&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Bedriftsinformasjon&lt;/strong&gt; til venstre: her finner dere info om bedriften og &lt;strong&gt;kontaktpersoner&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Alle aktiviteter&lt;/strong&gt; i midten: Her vises alle aktiviteter Nav har hatt med bedriften over tid (&lt;strong&gt;nåtid + fortid&lt;/strong&gt;)&lt;/li&gt;&lt;li&gt;Tabeller: For å se tabeller/lister holder man musepeker over ønsket lenke/tema under &lt;strong&gt;Alle aktiviteter&lt;/strong&gt; for å se en forhåndsvisning av tabellen/listen, ellers kan man også klikke på lenken for å se tabellen på ny side.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;OBS: &lt;strong&gt;Tidslinjen er uendret.&lt;/strong&gt; Denne vil vi nemlig jobbe med senere, samtidig som vi ser på registreringspraksis og retningslinjer (i samarbeid med fagressurser fra direktoratet).&lt;/p&gt;&lt;p&gt;Merk: De gule merkelappene øverst, som allerede er lansert, trekker frem &lt;strong&gt;aktive/pågående aktiviteter,&lt;/strong&gt; så det skal være enkelt å scanne å se hva som er aktuelt på bedriften akkurat nå. Oversikten (lenkene) i midtre kolonne viser all aktivitet, det vil si både aktive/pågående, men også historiske. Tanken er at man her skal få et totalinntrykk av samarbeidet med bedriften, over tid.&lt;/p&gt;</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <endDate>2025-04-09</endDate>
+        <experience>Lightning</experience>
+        <header>Ny forside på arbeidsgiverkortet</header>
+        <isPublished>true</isPublished>
+        <masterLabel>Employer View Changed</masterLabel>
+        <publishedDate>2025-04-03</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2025-04-04</startDate>
+        <targetPageKey1>Account</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <timesToDisplay>3</timesToDisplay>
+        <title>Hva er nytt? Og hvorfor?</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
