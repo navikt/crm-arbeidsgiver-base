@@ -1,0 +1,4 @@
+<apex:page standardController="AccountTeamMember" extensions="DeleteAccountTeamMemberController" action="{!deleteRecord}">
+    <apex:pageMessages />
+    <apex:outputText value="Deleting record, please wait..." />
+</apex:page>
