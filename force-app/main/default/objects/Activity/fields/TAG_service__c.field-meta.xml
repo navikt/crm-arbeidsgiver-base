@@ -2,7 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_service__c</fullName>
     <description>HVIS DU SKAL REDIGERE PICKLIST, SØRG FOR AT DET MATCHER DET SOM LIGGER I NAVTask__c.CRM_SubTheme__c (https://github.com/navikt/crm-platform-base/blob/master/force-app/main/default/objects/NavTask__c/fields/CRM_SubTheme__c.field-meta.xml)</description>
-    <externalId>false</externalId>
     <label>Service</label>
     <required>false</required>
     <type>Picklist</type>
@@ -95,6 +94,11 @@
                 <default>false</default>
                 <label>IA-Samarbeid</label>
             </value>
+            <value>
+                <fullName>Informasjon</fullName>
+                <default>false</default>
+                <label>Informasjon</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
@@ -136,6 +140,10 @@
         <valueSettings>
             <controllingFieldValue>Prioritert IA (Fia)</controllingFieldValue>
             <valueName>IA-Sak</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hjelpemidler og tilrettelegging</controllingFieldValue>
+            <valueName>Informasjon</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

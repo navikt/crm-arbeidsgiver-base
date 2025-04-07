@@ -177,6 +177,10 @@
     <picklistValues>
         <picklist>TAG_ActivityType__c</picklist>
         <values>
+            <fullName>Hjelpemidler og tilrettelegging</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Prioritert IA %28Fia%29</fullName>
             <default>false</default>
         </values>
