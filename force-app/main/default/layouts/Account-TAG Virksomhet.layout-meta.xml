@@ -191,6 +191,21 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <excludeButtons>NewEvent</excludeButtons>
+        <excludeButtons>NewTask</excludeButtons>
+        <fields>TASK.SUBJECT</fields>
+        <fields>Date__c</fields>
+        <fields>TAG_ActivityType__c</fields>
+        <fields>ACTIVITY_SUBTYPE</fields>
+        <fields>TAG_Status__c</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <fields>TASK.WHAT_NAME</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <relatedList>Activity.RelatedToAccount__c</relatedList>
+        <sortField>Date__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
         <fields>EngagementType__c</fields>
@@ -198,6 +213,16 @@
         <fields>Expires__c</fields>
         <fields>Link_to_position__c</fields>
         <relatedList>JobPosting__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Inquiry_Category_2__c</fields>
+        <fields>Source__c</fields>
+        <fields>InclusionStage__c</fields>
+        <fields>OWNER.ALIAS</fields>
+        <fields>TAG_Age__c</fields>
+        <fields>Position_in_Rekrutteringsbistand__c</fields>
+        <relatedList>CustomOpportunity__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Se_alle_i_alle_enheter</customButtons>
@@ -213,16 +238,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Inquiry_Category_2__c</fields>
-        <fields>Source__c</fields>
-        <fields>InclusionStage__c</fields>
-        <fields>OWNER.ALIAS</fields>
-        <fields>TAG_Age__c</fields>
-        <fields>Position_in_Rekrutteringsbistand__c</fields>
-        <relatedList>CustomOpportunity__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
@@ -230,6 +245,10 @@
         <relatedList>IACooperation__c.Account__c</relatedList>
         <sortField>EndDate__c</sortField>
         <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>IACase__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CRM_YearQuarter__c</fields>
@@ -241,6 +260,13 @@
         <relatedList>Absence__c.CRM_Account__c</relatedList>
         <sortField>CRM_YearQuarter__c</sortField>
         <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MeetingTime__c</fields>
+        <fields>Status__c</fields>
+        <fields>UserNavIdent__c</fields>
+        <relatedList>DialogueMeeting__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -260,13 +286,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>MeetingTime__c</fields>
-        <fields>Status__c</fields>
-        <fields>UserNavIdent__c</fields>
-        <relatedList>DialogueMeeting__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>CRM_SubTheme__c</fields>
         <fields>CRM_Status__c</fields>
         <fields>CRM_NavUnit__c</fields>
@@ -274,31 +293,6 @@
         <relatedList>NavTask__c.CRM_AccountRelated__c</relatedList>
         <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>NewEvent</excludeButtons>
-        <excludeButtons>NewTask</excludeButtons>
-        <fields>TASK.SUBJECT</fields>
-        <fields>Date__c</fields>
-        <fields>TAG_ActivityType__c</fields>
-        <fields>ACTIVITY_SUBTYPE</fields>
-        <fields>TAG_Status__c</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <relatedList>Activity.RelatedToAccount__c</relatedList>
-        <sortField>Date__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassAddToCampaign</excludeButtons>
@@ -310,6 +304,16 @@
         <fields>CONTACT.ACCOUNT_NAME</fields>
         <fields>TAG_Former_Employee__c</fields>
         <relatedList>RelatedAccountContactRelationList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <fields>TASK.WHAT_NAME</fields>
+        <fields>ACTIVITY.TASK</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <fields>TASK.LAST_UPDATE</fields>
+        <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
