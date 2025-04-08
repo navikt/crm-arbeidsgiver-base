@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Do_not_add_description_on_HoT_task</fullName>
+    <active>true</active>
+    <description>Det skal ikke være mulig å registrere kommentar dersom tema er Hjelpemidler og tilrettelegging.</description>
+    <errorConditionFormula>ISPICKVAL(TAG_ActivityType__c , &apos;Hjelpemidler og tilrettelegging&apos;)&amp;&amp; $Permission.Arbeidsgiver = TRUE &amp;&amp; !ISBLANK( Description ) &amp;&amp; !ISNULL( Description ) &amp;&amp; !BEGINS( Subject, &quot;Email: &quot;) &amp;&amp; !BEGINS( Subject, &quot;E-post: &quot;) &amp;&amp; OR( RecordType.DeveloperName = &apos;ArbeidsgiverTask&apos;, RecordType.DeveloperName = &apos;IA_task&apos; )</errorConditionFormula>
+    <errorMessage>Det er ikke mulig å skrive inn kommentar for oppgaver og møter som omhandler temaene Hjelpemidler og Tilrettelegging. Dette er for å ivareta personvernshensyn. Takk for forståelsen</errorMessage>
+</ValidationRule>
