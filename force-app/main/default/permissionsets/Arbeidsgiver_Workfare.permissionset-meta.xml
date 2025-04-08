@@ -7,6 +7,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Workfare__c.ActionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Workfare__c.AgreementId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Workfare__c.ContentType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Workfare__c.EmployerContactName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -18,6 +33,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Workfare__c.EndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Workfare__c.InternalContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Workfare__c.Link__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
