@@ -201,6 +201,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>DeleteAccountTeamMemberController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DeleteAccountTeamTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -1240,6 +1244,10 @@
         <object>NavUnit__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>DeleteAccountTeamMember</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Account.Employer</recordType>
         <visible>true</visible>
