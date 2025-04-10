@@ -25,11 +25,13 @@ public with sharing class AccountBadgesController {
             List<CustomOpportunity__c> employerOpportunities = fetchOpportunities(accountId);
             List<JobPosting__c> employerJobPostings = fetchJobPostings(accountId);
             List<IACooperation__c> employerIACooperations = fetchIACooperations(accountId);
+            List<ArenaActivity__c> employerExpertAssistance = fetchExpertAssistances(accountId);
             addContractBadges(accountBadges, employerAgreements);
             addAccountBadges(accountBadges, account);
             addOpportunityBadges(accountBadges, employerOpportunities);
             addJobPostingBadges(accountBadges, employerJobPostings);
             addIACooperationBadges(accountBadges, employerIACooperations);
+            addExpertAssistanceBadges(accountBadges, employerExpertAssistance);
         } catch (Exception e) {
             logError(accountId, e);
             return new List<Badge>();
@@ -153,6 +155,24 @@ public with sharing class AccountBadgesController {
         return iaCooperations;
     }
 
+      /**
+     * @description Fetches ArenaActivity__c records where the agreement is Expert Assistance.
+     * @param accountId The Id of the Account to fetch jobpostings for.
+     * @return List of ArenaActivity__c records.
+     */
+    private static List<ArenaActivity__c> fetchExpertAssistance(Id accountId) {
+        if (!Schema.sObjectType.ArenaActivity__c.isAccessible()) {
+            return new List<ArenaActivity__c>();
+        }
+        String query = 'SELECT Id';
+        if (Schema.sObjectType.ArenaActivity__c.fields.Status__c.isAccessible()) {
+            query += ',AktivitetStatuskode__c';
+        }
+        query += ' FROM ArenaActivity__c WHERE AktivitetStatuskode__c = \'GJENN\' AND Aktivitetstype__c = \'Ekspertbistand\' AND Account__c = :accountId';
+        List<ArenaActivity__c> arenaActivity = Database.query(query);
+        return arenaActivity;
+    }
+
     /**
      * @description Adds badges to the accountBadges list based on the Account fields.
      * @param accountBadges The list of badges to add to.
@@ -206,6 +226,18 @@ public with sharing class AccountBadgesController {
         List<IACooperation__c> iaCooperations
     ) {
         accountBadges.addAll(createIACooperationBadge(iaCooperations));
+    }
+
+    /**
+     * @description Adds badges to the accountBadges list based on the related ArenaActivity__c records.
+     * @param accountBadges The list of badges to add to.
+     * @param expertAssistances The related expertAssistance records to evaluate.
+     */
+    private static void addExpertAssistance(
+        List<Badge> accountBadges,
+        List<ArenaActivity__c> expertAssistances
+    ) {
+        accountBadges.addAll(createExpertAssistanceBadge(expertAssistances));
     }
 
     /**
@@ -329,6 +361,22 @@ public with sharing class AccountBadgesController {
             String label = String.format(labelTemplate, new List<Object>{ iaCooperations.size() });
             String url = '/lightning/r/IACase__c/' + iaCooperations[0].IACase__c + '/view';
             String badgeType = 'IA-samarbeid';
+            Badge badge = new Badge(label, helpText, url, badgeType);
+            badges.put(label, badge);
+        }
+        return badges.values();
+    }
+
+    // Creates badge for expert aasistances at employer.
+    // Links to report Stillinger_adu with filter order: AccountId (fv0)
+    private static List<Badge> createExpertAssistanceBadge(List<ArenaActivity__c> expertAssistances) {
+        String labelTemplate = 'Ekspertbistand({0})';
+        String helpText = 'Antall aktive Ekspertbistand tiltak som er tilknyttet bedriften.';
+        Map<String, Badge> badges = new Map<String, Badge>();
+        if (expertAssistances.size() >= 1) {
+            String label = String.format(labelTemplate, new List<Object>{ expertAssistances.size() });
+            String url = getReportUrl('Stillinger_adu', '&fv2=');
+            String badgeType = 'Ekspertbistand';
             Badge badge = new Badge(label, helpText, url, badgeType);
             badges.put(label, badge);
         }

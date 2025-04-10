@@ -42,6 +42,8 @@ export default class AccountBadges extends LightningElement {
                 publishToAmplitude(this.appName, { type: 'Badge View - Stillinger' });
             } else if (badge.badgeType === 'IA-samarbeid') {
                 publishToAmplitude(this.appName, { type: 'Badge View - IA-samarbeid' });
+            } else if (badge.badgeType === 'Ekspertbistand') {
+                publishToAmplitude(this.appName, { type: 'Badge View - Ekspertbistand' });
             }
         });
     }
@@ -61,6 +63,8 @@ export default class AccountBadges extends LightningElement {
             publishToAmplitude(this.appName, { type: 'Badge Click - Stillinger' });
         } else if (badgetype === 'IA-samarbeid') {
             publishToAmplitude(this.appName, { type: 'Badge Click - IA-samarbeid' });
+        } else if (badgetype === 'Ekspertbistand') {
+            publishToAmplitude(this.appName, { type: 'Badge Click - Ekspertbistand' });
         }
     }
 }
