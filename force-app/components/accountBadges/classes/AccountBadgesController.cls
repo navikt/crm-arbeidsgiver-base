@@ -31,7 +31,7 @@ public with sharing class AccountBadgesController {
             addOpportunityBadges(accountBadges, employerOpportunities);
             addJobPostingBadges(accountBadges, employerJobPostings);
             addIACooperationBadges(accountBadges, employerIACooperations);
-            addExpertAssistanceBadges(accountBadges, employerExpertAssistance);
+            //addExpertAssistanceBadges(accountBadges, employerExpertAssistance);
         } catch (Exception e) {
             logError(accountId, e);
             return new List<Badge>();
