@@ -148,6 +148,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>JobPosting__c.TAG_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>JobPosting__c.Title__c</field>
         <readable>true</readable>
     </fieldPermissions>

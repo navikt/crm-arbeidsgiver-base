@@ -73,6 +73,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contract__c.TAG_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contract__c.TAG_NAVUnit__c</field>
         <readable>true</readable>
     </fieldPermissions>
