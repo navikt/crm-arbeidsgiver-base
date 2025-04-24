@@ -10,5 +10,7 @@
     <openType>sidebar</openType>
     <protected>false</protected>
     <requireRowSelection>false</requireRowSelection>
-    <url>{!URLFOR(&apos;/lightning/o/Event/new?recordTypeId=012KB000000woXBYAY&amp;defaultFieldValues=TAG_ActivityType__c=&apos;+&quot;Prioritert IA (Fia)&quot;+&apos;,WhatId=&apos;+IACooperation__c.Id+&apos;,TAG_IsIAPriority__c=&apos;+&quot;true&quot;+&apos;,IATheme__c=&apos;+&quot;Arbeidsmiljø&quot;)}</url>
+    <url>{!URLFOR(&apos;/lightning/o/Event/new?recordTypeId=&apos;
+     + $Setup.DefaultEventRecordTypeId__c.RecordTypeId__c
+   + &apos;&amp;defaultFieldValues=TAG_ActivityType__c=&apos;+&quot;Prioritert IA (Fia)&quot;+&apos;,WhatId=&apos;+IACooperation__c.Id+&apos;,TAG_IsIAPriority__c=&apos;+&quot;true&quot;+&apos;,IATheme__c=&apos;+&quot;Arbeidsmiljø&quot;)}</url>
 </WebLink>
