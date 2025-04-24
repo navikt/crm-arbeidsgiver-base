@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
-    <decisions>
-        <name>Is_Past_End_Date</name>
-        <label>Is Past End Date?</label>
-        <locationX>182</locationX>
-        <locationY>252</locationY>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.DateTo__c</leftValueReference>
-                <operator>LessThan</operator>
-                <rightValue>
-                    <elementReference>TimestampNow</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Activity_Status</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>ConvertStatus</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.AktivitetStatuskode__c}, 
+&apos;FULLF&apos;, &apos;AVSLUTTET&apos;, 
+&apos;PLAN&apos;, &apos;PÅBEGYNT&apos;, 
+&apos;AVBR&apos;, &apos;AVBRUTT&apos;, 
+&apos;GJENN&apos;, &apos;GJENNOMFØRES&apos;, 
+&apos;AVSLUTTET&apos;, &apos;AVSLUTTET&apos;, 
+&apos;ANNULLERT&apos;
+)</expression>
+    </formulas>
     <formulas>
         <name>TimestampNow</name>
         <dataType>Date</dataType>
@@ -50,37 +40,74 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordUpdates>
-        <name>Update_Activity_Status</name>
-        <label>Update Activity Status</label>
-        <locationX>50</locationX>
-        <locationY>360</locationY>
+    <recordCreates>
+        <name>Create_workfare</name>
+        <label>Create workfare</label>
+        <locationX>176</locationX>
+        <locationY>252</locationY>
         <inputAssignments>
-            <field>AktivitetStatuskode__c</field>
+            <field>Account__c</field>
             <value>
-                <stringValue>FULLF</stringValue>
+                <elementReference>$Record.Account__c</elementReference>
             </value>
         </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
+        <inputAssignments>
+            <field>EndDate__c</field>
+            <value>
+                <elementReference>$Record.DateTo__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>KafkaId__c</field>
+            <value>
+                <elementReference>$Record.KafkaId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>NavIdent__c</field>
+            <value>
+                <elementReference>$Record.CaseWorkerNavIdent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StartDate__c</field>
+            <value>
+                <elementReference>$Record.DateFrom__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <elementReference>ConvertStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>EKSPERTBISTAND</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Workfare__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <start>
-        <locationX>56</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Past_End_Date</targetReference>
+            <targetReference>Create_workfare</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
-            <field>AktivitetStatuskode__c</field>
+            <field>Aktivitetstype__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>GJENN</stringValue>
+                <stringValue>Ekspertbistand</stringValue>
             </value>
         </filters>
         <object>ArenaActivity__c</object>
         <schedule>
-            <frequency>Daily</frequency>
-            <startDate>2025-11-01</startDate>
+            <frequency>Once</frequency>
+            <startDate>2024-11-01</startDate>
             <startTime>03:45:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
