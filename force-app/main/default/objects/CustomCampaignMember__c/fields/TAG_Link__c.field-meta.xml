@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Link__c</fullName>
-    <deprecated>false</deprecated>
     <description>Viser link til stilling. Brukes i stedet for auto number i related lists etc.</description>
     <externalId>false</externalId>
-    <formula>HYPERLINK(&quot;/lightning/r/CustomOpportunity__c/&quot; + Id + &quot;/view&quot;, &quot;Se muligheten&quot;)</formula>
+    <formula>HYPERLINK(&quot;/lightning/r/&quot;+Id+&quot;/view&quot;,&quot;Kampanjemedlem (&quot;+  CustomCampaign__r.Name +&quot;)&quot;, &quot;_self&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Opportunity</label>
+    <label>Campaign Member</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

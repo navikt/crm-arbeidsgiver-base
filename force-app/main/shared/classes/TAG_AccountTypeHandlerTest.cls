@@ -84,7 +84,7 @@ private class TAG_AccountTypeHandlerTest {
             insert accounts;
         }
 
-        List<Account> savedAccounts = [SELECT CRM_AccountType__c FROM Account ORDER BY Name];
+        List<Account> savedAccounts = [SELECT CRM_AccountType__c FROM Account ORDER BY INT_OrganizationNumber__c];
         System.assertEquals('B', savedAccounts[0].CRM_AccountType__c, 'AAFY accountype should be B');
         System.assertEquals('J', savedAccounts[1].CRM_AccountType__c, 'ADOS accountype should be J');
         System.assertEquals('J', savedAccounts[2].CRM_AccountType__c, 'AS accountype should be J');

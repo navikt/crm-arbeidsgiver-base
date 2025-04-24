@@ -130,6 +130,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CustomCampaignMember__c.TAG_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CustomCampaignMember__c.TAG_Market_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
