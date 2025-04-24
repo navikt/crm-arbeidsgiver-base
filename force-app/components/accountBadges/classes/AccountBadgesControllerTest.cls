@@ -138,6 +138,7 @@ private class AccountBadgesControllerTest {
                     NavIdent__c = 'C4567'
                 )
             );
+            insert workfares;
         }
 
         User negativeAccessUser = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
