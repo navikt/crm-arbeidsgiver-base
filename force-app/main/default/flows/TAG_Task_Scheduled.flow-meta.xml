@@ -11,17 +11,17 @@
             <name>Right_record_type</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>AG Oppgave</stringValue>
+                    <stringValue>0122o000000xaTIAAY</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>IA task</stringValue>
+                    <stringValue>012KB000000woXCYAY</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -97,7 +97,7 @@
         <schedule>
             <frequency>Once</frequency>
             <startDate>2025-04-25</startDate>
-            <startTime>16:30:00.000Z</startTime>
+            <startTime>23:30:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
