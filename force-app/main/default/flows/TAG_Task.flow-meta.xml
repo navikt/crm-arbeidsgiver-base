@@ -171,19 +171,40 @@
         <defaultConnectorLabel>Not completed</defaultConnectorLabel>
         <rules>
             <name>Yes_completed</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>(1 OR 2 OR 3 OR 4) AND 5</conditionLogic>
             <conditions>
-                <leftValueReference>$Record__Prior.TAG_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>IsChanged</operator>
                 <rightValue>
-                    <stringValue>Åpen</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.TAG_Status__c</leftValueReference>
+                <leftValueReference>isRecordNew</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Fullført</stringValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Status</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -195,17 +216,17 @@
             <name>Uncompleted</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record__Prior.TAG_Status__c</leftValueReference>
+                <leftValueReference>$Record__Prior.Status</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Fullført</stringValue>
+                    <stringValue>Completed</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.TAG_Status__c</leftValueReference>
+                <leftValueReference>$Record.Status</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Åpen</stringValue>
+                    <stringValue>Open</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -425,6 +446,11 @@
         <name>isActivityDateNull</name>
         <dataType>Boolean</dataType>
         <expression>ISNULL ( {!$Record.ActivityDate} ) &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!$Record.Status} ) &amp;&amp; ISPICKVAL({!$Record.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}  &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY())</expression>
+    </formulas>
+    <formulas>
+        <name>isRecordNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
     </formulas>
     <formulas>
         <name>opprettet_dato_text</name>
