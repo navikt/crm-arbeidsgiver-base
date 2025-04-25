@@ -21,7 +21,7 @@
                 <leftValueReference>$Record.RecordTypeName__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>IA Task</stringValue>
+                    <stringValue>IA task</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -97,7 +97,7 @@
         <schedule>
             <frequency>Once</frequency>
             <startDate>2025-04-25</startDate>
-            <startTime>15:30:00.000Z</startTime>
+            <startTime>16:30:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
