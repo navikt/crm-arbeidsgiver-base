@@ -10,7 +10,8 @@ private class AccountBadgesControllerTest {
                 'Arbeidsgiver_contract',
                 'Arbeidsgiver_opportunity',
                 'Arbeidsgiver_IA',
-                'ArbeidsgiverStillinger'
+                'ArbeidsgiverStillinger',
+                'Arbeidsgiver_Workfare'
             }
         );
         User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
@@ -123,6 +124,21 @@ private class AccountBadgesControllerTest {
             );
 
             insert jobPostings;
+
+            // Create Workfare record
+            List<Workfare__c> workfares = new List<Workfare__c>();
+            workfares.add(
+                new Workfare__c(
+                    Account__c = arbeidsgiverUserAccounts[0].Id,
+                    Name = '1234',
+                    StartDate__c = Date.today(),
+                    EndDate__c = Date.today().addDays(30),
+                    Status__c = 'GJENNOMFØRES',
+                    Type__c = 'MENTOR',
+                    NavIdent__c = 'C4567'
+                )
+            );
+            insert workfares;
         }
 
         User negativeAccessUser = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
@@ -168,10 +184,11 @@ private class AccountBadgesControllerTest {
             'Should contain badge for agreement region+category'
         );
         Assert.isTrue(badgeMap.containsKey('Strategisk partner'), 'Should contain badge for partner type');
-        Assert.isTrue(badgeMap.containsKey('Aktive tiltak(5)'), 'Should contain badge for number of workfare');
+        //Assert.isTrue(badgeMap.containsKey('Aktive tiltak(5)'), 'Should contain badge for number of active workfare');
         Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
         Assert.isTrue(badgeMap.containsKey('IA-samarbeid(1)'), 'Should contain badge for number of ia-cooperations');
         Assert.isTrue(badgeMap.containsKey('Stillinger(2)'), 'Should contain badge for number of job postings');
+        Assert.isTrue(badgeMap.containsKey('Tiltak(1)'), 'Should contain badge for number of workfare');
         Assert.areEqual(6, accountBadges.size(), 'Expected 6 badges to be created');
     }
 
