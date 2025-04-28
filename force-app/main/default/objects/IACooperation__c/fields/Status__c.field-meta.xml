@@ -26,6 +26,11 @@
                 <default>false</default>
                 <label>FULLFØRT</label>
             </value>
+            <value>
+                <fullName>AVBRUTT</fullName>
+                <default>false</default>
+                <label>AVBRUTT</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
