@@ -46,6 +46,11 @@
                 <default>false</default>
                 <label>Ekspertbistand</label>
             </value>
+            <value>
+                <fullName>VTAO</fullName>
+                <default>false</default>
+                <label>Varig tilrettelagt arbeid i ordinær virksomhet</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

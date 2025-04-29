@@ -115,7 +115,7 @@
     <formulas>
         <name>IsRecordNew</name>
         <dataType>Boolean</dataType>
-        <expression>IF(ISBLANK(PRIORVALUE({!$Record.AktivitetStatuskode__c})), true, false)</expression>
+        <expression>ISNEW()</expression>
     </formulas>
     <interviewLabel>TAG Workfare Activities {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Workfare Activities</label>
