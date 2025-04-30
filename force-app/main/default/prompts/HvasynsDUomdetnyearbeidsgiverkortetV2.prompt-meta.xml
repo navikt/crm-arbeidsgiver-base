@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Hva syns DU om det nye arbeidsgiverkortet V2</masterLabel>
+    <promptVersions>
+        <actionButtonLabel>Gi tilbakemelding</actionButtonLabel>
+        <actionButtonLink>https://forms.office.com/e/K73TBj8Bme</actionButtonLink>
+        <body>&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68);&quot;&gt;Hva synes du om
+            endringene vi nylig gjorde på arbeidsgiverkortet? Vi vil gjerne høre fra akkurat deg!
+            Kun 3 korte spørsmål.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68,
+            68, 68);&quot;&gt;Svar ved å trykke på &quot;Gi tilbakemelding&quot;
+            nederst.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span
+            style=&quot;color: rgb(68, 68, 68);&quot;&gt;Obs! Lenken til skjemaet er fikset :)
+            &lt;/span&gt;&lt;/p&gt;</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>2</delayDays>
+        <displayType>DockedComposer</displayType>
+        <endDate>2025-05-31</endDate>
+        <experience>Lightning</experience>
+        <header>Vi setter pris på din tilbakemelding</header>
+        <isPublished>true</isPublished>
+        <masterLabel>Hva syns DU om det nye arbeidsgiverkortet V2</masterLabel>
+        <publishedDate>2025-04-30</publishedDate>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2025-04-30</startDate>
+        <targetPageKey1>Account</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <timesToDisplay>2</timesToDisplay>
+        <title>Hva syns DU om det nye utseendet?</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
