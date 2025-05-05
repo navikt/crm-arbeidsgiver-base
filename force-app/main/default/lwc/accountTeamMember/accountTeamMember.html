@@ -1,7 +1,7 @@
 <template>
   <article class="slds-card">
     <div class="slds-card__header slds-grid">
-      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate" onclick={navigateToRelatedRecordsPage}>
         <div class="slds-media__figure">
           <lightning-icon icon-name="standard:team_member" size="small" alternative-text="Approved" title="Approved">
           </lightning-icon>
@@ -12,8 +12,7 @@
               <span>Kontaktpersoner i Nav ({amount})</span>
             </p>
           </h2>
-        </div>
-        <div if:true={isDesktop}>
+        </div>        
           <lightning-button-icon
             icon-name="action:refresh"
             style="background-color: white"
@@ -27,7 +26,9 @@
             onclick={navigateToNewRecordPage}
             class="slds-m-right_x-small"
           ></lightning-button>
-        </div>
+       
+        
+        
       </header>
     </div>
 

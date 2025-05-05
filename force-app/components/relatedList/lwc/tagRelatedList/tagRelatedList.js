@@ -175,9 +175,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     // Compute records to display based on whether the list is expanded or collapsed
     get displayedRecords() {
         const records = this.listRecords;
+        console.log('RECORDS', JSON.stringify(records, null, 2));
         if (!this.isExpanded && records.length > this.collapsedCount) {
             return records.slice(0, this.collapsedCount);
-        }
+        }        
         return records;
     }
 

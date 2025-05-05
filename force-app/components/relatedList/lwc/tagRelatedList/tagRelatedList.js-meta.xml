@@ -5,26 +5,26 @@
     <masterLabel>TAG Related List</masterLabel>
     <description>Component to display a records related list</description>
     <targets>
-      <target>lightning__RecordPage</target>
-  </targets>
-  <targetConfigs>
-      <targetConfig targets="lightning__RecordPage">
-        <property name="listTitle" label="List title" type="String" default="Title" />
-        <property
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="listTitle" label="List title" type="String" default="Title" />
+            <property
                 name="iconName"
                 label="Icon name"
                 description="On the format category:iconName. See available icons: https://lightningdesignsystem.com/icons/"
                 type="String"
                 default=""
             />
-        <property
+            <property
                 name="headerColor"
                 label="Header color"
                 type="String"
                 datasource="white, whitesmoke, lightgray, gainsboro, beige, aliceblue, azure, lightgoldenrodyellow, honeydew, khaki, lavender, wheat"
                 default="white"
             />
-        <property
+            <property
                 name="maxHeight"
                 label="List Max Height"
                 description="The maximum height the list is allowed to consume on the layout (in em)"
@@ -32,52 +32,52 @@
                 datasource="10, 20, 30, 40"
                 default="20"
             />
-        <property
+            <property
                 name="showNewRecordButton"
                 label="Show New Record Button"
                 type="Boolean"
                 default="false"
             />
-        <property
+            <property
                 name="newRecordButtonLabel"
                 label="New Record Button Label"
                 type="String"
                 default="Ny"
             />
-        <property
+            <property
                 name="relatedObjectApiName"
                 label="Object API name for the related list"
                 type="String"
                 required="true"
             />
-        <property
+            <property
                 name="relationField"
                 label="API name of field relating the records to the parent"
                 type="String"
                 required="true"
             />
-        <property
+            <property
                 name="parentRelationField"
                 label="API name of field relating the parent to the records"
                 type="String"
                 required="true"
                 default="Id"
             />
-        <property
+            <property
                 name="displayedFields"
                 label="Fields to display (API names, comma separated)"
                 type="String"
                 required="true"
                 default="Name"
             />
-        <property
+            <property
                 name="columnLabels"
                 label="Labels for the table columns (match the order of the displayed fields input)"
                 type="String"
                 required="true"
                 default="Name"
             />
-        <property
+            <property
                 name="filterConditions"
                 label="Filter conditions"
                 description="I.e. Name != 'Test'"
@@ -85,49 +85,52 @@
                 required="false"
                 default=""
             />
-        <property
+            <property
                 name="dynamicUpdate"
                 label="Dynamic Update"
                 description="Set to true if an update to the parent record should trigger a list refresh"
                 type="Boolean"
                 default="false"
             />
-        <property
+            <property
                 name="clickableRows"
                 label="Clickable Rows"
                 description="Enables row clicks to navigate to the record in the list"
                 type="Boolean"
                 default="false"
             />
-        <property
+            <property
                 name="popoverFields"
                 label="Popover Fields"
                 description="Additional fields (comma separated) to show in the popover"
                 type="String"
                 default=""
             />
-        <property
+            <property
                 name="iconNamePopover"
                 label="Icon name Popover"
                 description="If main iconName not set, use this for icon in popover window. Format category:iconName. See available icons: https://lightningdesignsystem.com/icons/"
                 type="String"
                 default=""
             />
-        <property
+            <property
                 name="inactiveRecordFilter"
                 label="Inactive Record Filter"
                 description="Enter a SOQL condition (e.g., Active__c = false). Records meeting this condition will be styled as inactive."
                 type="String"
                 default=""
             />
-        <property
+            <property
                 name="inactivePrefix"
                 label="Inactive Record Prefix"
                 description="Enter prefix to show before String-value in first column for inactive records(e.g. Sluttet:)."
                 type="String"
                 default=""
             />
-
-      </targetConfig>
-  </targetConfigs>
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

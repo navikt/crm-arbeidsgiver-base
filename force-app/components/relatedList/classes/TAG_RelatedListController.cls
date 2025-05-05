@@ -25,7 +25,7 @@ public with sharing class TAG_RelatedListController {
         // query +=  relationField + ' IN (SELECT ' + parentRelationField + ' FROM ' + parentObjectApiName + ' WHERE Id = \'' + parentId + '\')';
         query += relationField + ' IN :parentRelationIds ';
         query += 'ORDER BY ' + (orderConditions != null ? orderConditions : 'ID DESC');
-
+        System.debug(query);
         List<sObject> returnList = Database.query(query);
         return returnList;
     }
@@ -52,7 +52,7 @@ public with sharing class TAG_RelatedListController {
         query += String.isNotBlank(filterConditions) ? filterConditions.trim() + ' AND ' : '';
         // query +=  relationField + ' IN (SELECT ' + parentRelationField + ' FROM ' + parentObjectApiName + ' WHERE Id = \'' + parentId + '\')';
         query += relationField + ' IN :parentRelationIds ORDER BY ID DESC';
-
+        System.debug(query);
         List<sObject> returnList = Database.query(query);
         return returnList;
     }

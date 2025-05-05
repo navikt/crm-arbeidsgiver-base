@@ -1,0 +1,24 @@
+{
+  "status": 0,
+  "result": {
+    "id": "00DQI00000C9orB2AR",
+    "devHubId": "silje.olsen@nav.no.dx",
+    "apiVersion": "63.0",
+    "accessToken": "00DQI00000C9orB!AQEAQBbemDDq61bbdrwMogkGNJtGfdC6_mHYrxmqLdfGqXrwm7.U7qK6pVPfR6FldvroeGgie9qVR2MnqXStBlXH4CKw_tP2",
+    "instanceUrl": "https://momentum-innovation-5101.scratch.my.salesforce.com",
+    "username": "test-vlz0cvwy8ype@example.com",
+    "clientId": "PlatformCLI",
+    "status": "Active",
+    "expirationDate": "2025-05-05",
+    "createdBy": "sfdx.integration.user@nav.no",
+    "edition": "Enterprise",
+    "orgName": "crm-workflows-base",
+    "createdDate": "2025-04-28T02:52:05.000+0000",
+    "signupUsername": "test-vlz0cvwy8ype@example.com",
+    "sfdxAuthUrl": "force://PlatformCLI::5Aep861Ug4YpivOGgkyfF883sqZkffV9L4XQCSov1qUl.2.PH0.bk0RQTjEgtiO04XjSaYDXz6qvbXphV7Q3NWA@momentum-innovation-5101.scratch.my.salesforce.com",
+    "alias": "arbeidsgiver-integration"
+  },
+  "warnings": [
+    "This command will expose sensitive information that allows for subsequent activity using your current authenticated session.\nSharing this information is equivalent to logging someone in under the current credential, resulting in unintended access and escalation of privilege.\nFor additional information, please review the authorization section of the https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_web_flow.htm."
+  ]
+}

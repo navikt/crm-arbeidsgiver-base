@@ -47,5 +47,8 @@
         "**/{aura|lwc}/**": [
             "eslint"
         ]
+    },
+    "dependencies": {
+        "@salesforce/lwc-dev-mobile": "^2.3.0"
     }
 }

@@ -1,79 +1,120 @@
 <template>
     <article class="slds-card">
-       <!-- HEADER WITH TOGGLE AND "NEW RECORD" BUTTON -->
+        <!-- HEADER WITH TOGGLE AND "NEW RECORD" BUTTON -->
         <div class="headerContainer" style={headerBackground}>
             <!-- Left Group: Icon, Title, Toggle Icon -->
             <div class="headerLeft" onclick={toggleAccordion}>
                 <template if:true={icon}>
-                    <lightning-icon icon-name={icon} size="small" class="headerIcon slds-m-right_x-small"></lightning-icon>
+                    <lightning-icon
+                        icon-name={icon}
+                        size="small"
+                        class="headerIcon slds-m-right_x-small"
+                    ></lightning-icon>
                 </template>
-                <lightning-icon 
-                icon-name={chevronIcon} 
-                size="x-small" 
-                class="chevronIcon slds-m-right_xx-small">
+                <lightning-icon icon-name={chevronIcon} size="x-small" class="chevronIcon slds-m-right_xx-small">
                 </lightning-icon>
                 <h1 class="headerTitle slds-text-heading_small">{cardTitle}</h1>
             </div>
             <!-- Right Group: New Record Button -->
             <template if:true={showNewRecordButton}>
-                <lightning-button 
-                    label={newRecordButtonLabel} 
-                    variant="brand" 
+                <lightning-button
+                    label={newRecordButtonLabel}
+                    variant="brand"
                     onclick={handleNewRecord}
-                    class="newRecordButton slds-m-left_small">
+                    class="newRecordButton slds-m-left_small"
+                >
                 </lightning-button>
             </template>
         </div>
-        
+
         <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
         <template if:true={showRecords}>
             <div style="overflow:auto; max-height: {maxHeight}em;">
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
-                        <thead>
-                            <tr class="slds-line-height_reset">
-                                <template for:each={fieldLabels} for:item="label">
-                                    <th key={label.value} scope="col" style={label.headerStyle}>
-                                        <div style="display: flex; align-items: center; height: 100%; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title={label.value}>
-                                            {label.value}
-                                        </div>
-                                    </th>
-                                </template>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
-                                <template if:true={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class={record.rowClass} onclick={handleRowClick} style="cursor: pointer"
-                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
-                                        <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label} style="max-width: 33%">
-                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
-                                            </td>
-                                        </template>
-                                    </tr>
-                                </template>
-                                <template if:false={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class={record.rowClass}
-                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
-                                        <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label} style="max-width: 33%">
-                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
-                                            </td>
-                                        </template>
-                                    </tr>
-                                </template>
+                <table
+                    class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal"
+                    data-clickable={clickableRows}
+                    style="table-layout: fixed; width: 100%"
+                >
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <template for:each={fieldLabels} for:item="label">
+                                <th key={label.value} scope="col" style={label.headerStyle}>
+                                    <div
+                                        style="
+                                            display: flex;
+                                            align-items: center;
+                                            height: 100%;
+                                            font-size: 0.75rem;
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                        "
+                                        title={label.value}
+                                    >
+                                        {label.value}
+                                    </div>
+                                </th>
                             </template>
-                        </tbody>
-                    </table>
-            </div>          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
+                            <template if:true={clickableRows}>
+                                <tr
+                                    key={record.Id}
+                                    data-record-id={record.Id}
+                                    data-value={rowIndex}
+                                    class={record.rowClass}
+                                    onclick={handleRowClick}
+                                    style="cursor: pointer"
+                                    onmouseenter={handleMouseEnter}
+                                    onmouseleave={handleMouseLeave}
+                                >
+                                    <template for:each={record.recordFields} for:item="field">
+                                        <td key={field.label} data-label={field.label}>
+                                            <div
+                                                style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
+                                                class="slds-truncate slds-cell-wrap"
+                                            >
+                                                {field.value}
+                                            </div>
+                                        </td>
+                                    </template>
+                                </tr>
+                            </template>
+                            <template if:false={clickableRows}>
+                                <tr
+                                    key={record.Id}
+                                    data-record-id={record.Id}
+                                    data-value={rowIndex}
+                                    class={record.rowClass}
+                                    onmouseenter={handleMouseEnter}
+                                    onmouseleave={handleMouseLeave}
+                                >
+                                    <template for:each={record.recordFields} for:item="field">
+                                        <td key={field.label} data-label={field.label}>
+                                            <div
+                                                style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
+                                                class="slds-truncate slds-cell-wrap"
+                                            >
+                                                {field.value}
+                                            </div>
+                                        </td>
+                                    </template>
+                                </tr>
+                            </template>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
         </template>
 
         <template if:true={showPopover}>
-            <div 
-                class="slds-popover slds-nubbin_top slds-popover_medium" 
-                style={popoverStyle} 
-                role="dialog" 
-                onmouseenter={handlePopoverEnter} 
+            <div
+                class="slds-popover slds-nubbin_top slds-popover_medium"
+                style={popoverStyle}
+                role="dialog"
+                onmouseenter={handlePopoverEnter}
                 onmouseleave={handleMouseLeave}
             >
                 <!-- Popover Header -->
@@ -83,9 +124,7 @@
                             <lightning-icon icon-name={iconToUse} size="small"></lightning-icon>
                         </div>
                         <div class="slds-media__body">
-                            <h2 id="popover-heading" class="slds-text-heading_small slds-hyphenate">
-                                {popoverTitle}
-                            </h2>
+                            <h2 id="popover-heading" class="slds-text-heading_small slds-hyphenate">{popoverTitle}</h2>
                         </div>
                     </div>
                 </div>

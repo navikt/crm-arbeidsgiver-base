@@ -1,0 +1,19 @@
+<template>
+    <template if:true={records}>
+        <c-related-records-table
+            if:false={isMobile}
+            records={records}
+            columns-config={columnsConfig}>
+        </c-related-records-table>
+
+        <c-related-records-card-list
+            if:true={isMobile}
+            records={records}
+            columns-config={columnsConfig}>
+        </c-related-records-card-list>
+    </template>
+
+    <template if:true={error}>
+        <p class="slds-text-color_error">Feil ved henting av data: {error.message}</p>
+    </template>
+</template>
