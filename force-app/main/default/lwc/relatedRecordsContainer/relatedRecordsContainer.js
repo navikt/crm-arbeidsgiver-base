@@ -10,10 +10,11 @@ export default class RelatedRecordsContainer extends LightningElement {
     @api parentRelationField;
     @api parentObjectApiName;
     @api parentId;
+    @api isMobile;
 
     records = [];
     error;
-    isMobile = window.innerWidth <= 768; // Initialize directly
+   
     columnsConfig = [];
     objectInfo;
     isObjectInfoLoaded = false;

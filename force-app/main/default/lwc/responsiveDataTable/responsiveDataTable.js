@@ -9,6 +9,7 @@ export default class ResponsiveDataTable extends LightningElement {
     parentRelationField = 'Id';
     parentObjectApiName = 'Account';
     parentRecordId = '001QI00000YZE7PYAX';
+    isMobile = window.innerWidth <= 768; // Initialize directly
     columnsConfig = [
         { "label": "E-post", "fieldName": "Email",type: 'email'},
         { "label": "Telefon", "fieldName": "Phone", type: 'phone' },

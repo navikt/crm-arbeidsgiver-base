@@ -1,14 +1,65 @@
-import { LightningElement, api } from 'lwc';
+/*
+Use this component to display related records in a Lightning Web Component (LWC).
+ * This component fetches related records based on the provided configuration
+ * and displays them in a responsive data table format.
+ *
+ * @component
+ * @example
+ * <c-related-records-page></c-related-records-page>
+ *
+ * Example: Navigation til component and set parameters:
+ Bruk i LWC: Ved navigasjon:
+this[NavigationMixin.Navigate]({
+  type: 'standard__component',
+  attributes: {
+    componentName: 'c__relatedRecordPage'
+  },
+  state: {
+    c__configKey: 'AccountContacts'
+  }
+});
+*/
 
+import { LightningElement, api, wire } from 'lwc';
+import { CurrentPageReference } from "lightning/navigation";
 export default class RelatedRecordsPage extends LightningElement {
-    columns = ['Name', 'CreatedDate', 'Email', 'Phone','MailingAddress']; // SELECT fields
-    relatedObjectApiName = 'Contact';  // from 
-    filter = 'CreatedDate < TODAY'; // F.eks. WHERE-klausul eller feltverdier
-     // query +=  relationField + ' IN (SELECT ' + parentRelationField + ' FROM ' + parentObjectApiName + ' WHERE Id = \'' + parentId + '\')';
-    relationField = 'AccountId'; 
-    parentRelationField = 'Id';
-    parentObjectApiName = 'Account';
-    parentRecordId = '001QI00000YZE7PYAX';
+   
+    // private properties
+    columns = ['Name', 'CreatedDate', 'Email', 'Phone','MailingAddress']; // Fields to return from database
+    filter = 'CreatedDate < TODAY'; // Query filter
+    
+    relationField = 'AccountId';  // Field API name on related object that contains reference ID to the parent
+    parentRelationField = 'Id'; // Field API name on parent object that contains the reference ID from "relationField"
+    parentObjectApiName = 'Account'; // sObject API name of the parent
+    
+
+    // Get public properties from url
+    @wire(CurrentPageReference)
+    currentPageRef;
+    // The key used to identify the configuration. i.e. configKey = 'Account_Contacts';
+    get configKey() { 
+        return this.currentPageRef.state.c__configKey;
+    }
+
+    // The record on the parent side of the lookup relationship. i.e. parentRecordId = '001QI00000YZE7PYAX';
+    get parentRecordId() { 
+        return this.currentPageRef.state.c__parentRecordId;
+    }
+    // sObject API name on the related object. i.e. relatedObjectApiName = 'Contact';  
+    get relatedObjectApiName() {
+        return this.currentPageRef.state.c__relatedObjectApiName;
+    }
+    // Specify layout type
+    get isMobile() {
+       // If not provided in url it should be initialize directly: isMobile = window.innerWidth <= 768;
+    if (!this.currentPageRef.state.c__isMobile) {
+        return window.innerWidth <= 768;
+    }
+       return this.currentPageRef.state.c__isMobile;
+    }
+
+
+    @wire(getConfig, { configKey: '$configKey' }) config;
 
     connectedCallback() {
         try {
