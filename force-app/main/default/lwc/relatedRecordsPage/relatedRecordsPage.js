@@ -22,12 +22,13 @@ this[NavigationMixin.Navigate]({
 
 import { LightningElement, api, wire } from 'lwc';
 import { CurrentPageReference } from "lightning/navigation";
+import getConfig from '@salesforce/apex/RelatedListConfigController.getConfig';
 export default class RelatedRecordsPage extends LightningElement {
    
     // private properties
     columns = ['Name', 'CreatedDate', 'Email', 'Phone','MailingAddress']; // Fields to return from database
     filter = 'CreatedDate < TODAY'; // Query filter
-    
+    columnsConfig = [];
     relationField = 'AccountId';  // Field API name on related object that contains reference ID to the parent
     parentRelationField = 'Id'; // Field API name on parent object that contains the reference ID from "relationField"
     parentObjectApiName = 'Account'; // sObject API name of the parent
@@ -59,7 +60,22 @@ export default class RelatedRecordsPage extends LightningElement {
     }
 
 
-    @wire(getConfig, { configKey: '$configKey' }) config;
+    @wire(getConfig, { configKey: '$configKey' })
+    config({ error, data }) {
+        if (data) {
+            console.log('Config data:', JSON.stringify(data, null, 2));
+            this.columns = data.columns;
+            this.filter = data.filter;
+            this.columnsConfig = data.columnsConfig;
+            this.relationField = data.relationField;
+            this.parentRelationField = data.parentRelationField;
+            this.parentObjectApiName = data.parentObjectApiName;
+            this.relatedObjectApiName = data.relatedObjectApiName;
+        } else if (error) {
+            console.error('Error fetching config:', error);
+        }
+    }
+    
 
     connectedCallback() {
         try {

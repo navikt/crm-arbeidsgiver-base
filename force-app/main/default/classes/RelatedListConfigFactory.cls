@@ -10,8 +10,7 @@ public class RelatedListConfigFactory {
         }
     }
 
-    @TestVisible
-    private static final Map<String, RelatedListConfig> CONFIGS = new Map<String, RelatedListConfig>{
+    @TestVisible private static final Map<String, RelatedListConfig> CONFIGS = new Map<String, RelatedListConfig>{
         'Account_Contacts' => new RelatedListConfig('Contact', new List<String>{'Name','Email'}, 'AccountId = :recordId'),
         'Account_Cases'    => new RelatedListConfig('Case', new List<String>{'Subject','Status'}, 'AccountId = :recordId')
         // ...more
