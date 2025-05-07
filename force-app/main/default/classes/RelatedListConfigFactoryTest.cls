@@ -11,7 +11,7 @@ private class RelatedListConfigFactoryTest {
             Test.startTest();
             RelatedListConfigFactory.RelatedListConfig config = RelatedListConfigFactory.getConfig(key);
             System.assertNotEquals(null, config, 'Config should not be null for key: ' + key);
-            System.assert(!String.isEmpty(config.objectApiName), 'relatedObject must be defined');
+            System.assert(!String.isEmpty(config.relatedObjectApiName), 'relatedObject must be defined');
             System.assert(config.columns.size() > 0, 'At least one column must be defined');
             Test.stopTest();
         }

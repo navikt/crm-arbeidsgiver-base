@@ -6,7 +6,7 @@ Use this component to display related records in a Lightning Web Component (LWC)
  * @component
  * @example
  * <c-related-records-page></c-related-records-page>
- *
+ * 
  * Example: Navigation til component and set parameters:
  Bruk i LWC: Ved navigasjon:
 this[NavigationMixin.Navigate]({
@@ -15,9 +15,14 @@ this[NavigationMixin.Navigate]({
     componentName: 'c__relatedRecordPage'
   },
   state: {
-    c__configKey: 'AccountContacts'
+    c__configKey: 'AccountContract',
+    c__additionalFilter: 'TAG_Type_Partner__c = \'Strategisk Partner\'',
+    c__parentRecordId: '001RR00000bhWZ8YAM',
+    c__isMobile: true
   }
 });
+
+https://energy-customization-5209.scratch.lightning.force.com/lightning/cmp/c__relatedRecordPage?c__configKey=AccountContract&c__parentRecordId=001RR00000bhWZ8YAM
 */
 
 import { LightningElement, api, wire } from 'lwc';
@@ -26,86 +31,76 @@ import getConfig from '@salesforce/apex/RelatedListConfigController.getConfig';
 export default class RelatedRecordsPage extends LightningElement {
    
     // private properties
-    columns = ['Name', 'CreatedDate', 'Email', 'Phone','MailingAddress']; // Fields to return from database
-    filter = 'CreatedDate < TODAY'; // Query filter
-    columnsConfig = [];
-    relationField = 'AccountId';  // Field API name on related object that contains reference ID to the parent
-    parentRelationField = 'Id'; // Field API name on parent object that contains the reference ID from "relationField"
-    parentObjectApiName = 'Account'; // sObject API name of the parent
+    relatedObjectApiName; // sObject API name on the related object. i.e. relatedObjectApiName = 'Contact';  
+    columns; // Fields to return from database
+    filter; // Query filter
+    columnsConfig;
+    relationField;  // Field API name on related object that contains reference ID to the parent
+    parentRelationField; // Field API name on parent object that contains the reference ID from "relationField"
+    parentObjectApiName; // sObject API name of the parent
     
 
-    // Get public properties from url
+    parentRecordId;
+    configKey;
+    isMobile;
+    additionalFilter; 
+   
     @wire(CurrentPageReference)
-    currentPageRef;
-    // The key used to identify the configuration. i.e. configKey = 'Account_Contacts';
-    get configKey() { 
-        return this.currentPageRef.state.c__configKey;
-    }
+    setCurrentPageReference(currentPageReference) {
+        this.currentPageRef = currentPageReference;
 
-    // The record on the parent side of the lookup relationship. i.e. parentRecordId = '001QI00000YZE7PYAX';
-    get parentRecordId() { 
-        return this.currentPageRef.state.c__parentRecordId;
-    }
-    // sObject API name on the related object. i.e. relatedObjectApiName = 'Contact';  
-    get relatedObjectApiName() {
-        return this.currentPageRef.state.c__relatedObjectApiName;
-    }
-    // Specify layout type
-    get isMobile() {
-       // If not provided in url it should be initialize directly: isMobile = window.innerWidth <= 768;
-    if (!this.currentPageRef.state.c__isMobile) {
-        return window.innerWidth <= 768;
-    }
-       return this.currentPageRef.state.c__isMobile;
-    }
-
-
-    @wire(getConfig, { configKey: '$configKey' })
-    config({ error, data }) {
-        if (data) {
-            console.log('Config data:', JSON.stringify(data, null, 2));
-            this.columns = data.columns;
-            this.filter = data.filter;
-            this.columnsConfig = data.columnsConfig;
-            this.relationField = data.relationField;
-            this.parentRelationField = data.parentRelationField;
-            this.parentObjectApiName = data.parentObjectApiName;
-            this.relatedObjectApiName = data.relatedObjectApiName;
-        } else if (error) {
-            console.error('Error fetching config:', error);
+        this.parentRecordId = currentPageReference.state.c__parentRecordId;
+        this.configKey=currentPageReference.state.c__configKey;
+        this.additionalFilter=currentPageReference.state.c__additionalFilter;
+        if (!currentPageReference.state.c__isMobile) {
+            this.isMobile = window.innerWidth <= 768;
+        } else{
+            this.isMobile = currentPageReference.state.c__isMobile;
         }
+        
+        if (currentPageReference?.state?.c__configKey) {           
+            this.loadConfig();
+        }       
+        
+        console.log('Ran setCurrentPageReference: ' + JSON.stringify(this.currentPageRef));
     }
     
+    loadConfig() {
+        getConfig({ configKey: this.configKey })
+            .then(result => {
+                
+                console.log('Config data:', JSON.stringify(result, null, 2));
+            this.columns = result.columns;
+            this.filter = this.combineFilters(result.filter, this.additionalFilter);            
+            this.columnsConfig = result.columnsConfig;
+            this.relationField = result.relationField;
+            this.parentRelationField = result.parentRelationField;
+            this.parentObjectApiName = result.parentObjectApiName;
+            this.relatedObjectApiName = result.relatedObjectApiName;
+              
+            })
+            .catch(error => {
+                console.error('Error loading config:', error);
+            });
+    }
+
+
+    combineFilters(f1, f2) {
+        console.log('Combining filters:', f1, f2);
+        if (f1 && f2) {
+            return `${f1} AND ${f2}`;
+        } else if (f1) {
+            return f1;
+        } else if (f2) {
+            return f2;
+        }
+        return null;
+
+    }
 
     connectedCallback() {
-        try {
-            // Simulate an asynchronous operation
-            this.initializeComponent()
-                .then(() => {
-                    console.log('Component initialized successfully');
-                })
-                .catch((error) => {
-                    this.handleError('Error during initialization', error);
-                });
-        } catch (error) {
-            this.handleError('Unexpected error in connectedCallback', error);
-        }
+        console.log('RelatedRecordsPage connectedCallback');
+        
     }
 
-    async initializeComponent() {
-        // Example of an asynchronous operation
-        return new Promise((resolve, reject) => {
-            // Simulate success or failure
-            const isSuccess = true; // Change to false to simulate an error
-            if (isSuccess) {
-                resolve();
-            } else {
-                reject(new Error('Initialization failed'));
-            }
-        });
-    }
-
-    handleError(message, error) {
-        console.error(`${message}:`, error);
-    }
 }

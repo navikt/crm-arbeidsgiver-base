@@ -160,24 +160,24 @@ export default class AccountTeamMember extends NavigationMixin(LightningElement)
         });
     }
 
-    navigateToNewRecordPage() {
-        const defaultValues = encodeDefaultFieldValues({
-            AccountId: this.recordId,
-            UserId: this.userId
-        });
+        navigateToNewRecordPage() {
+            const defaultValues = encodeDefaultFieldValues({
+                AccountId: this.recordId,
+                UserId: this.userId
+            });
 
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'AccountTeamMember',
-                actionName: 'new'
-            },
-            state: {
-                navigationLocation: 'RELATED_LIST',
-                defaultFieldValues: defaultValues
-            }
-        });
-    }
+            this[NavigationMixin.Navigate]({
+                type: 'standard__objectPage',
+                attributes: {
+                    objectApiName: 'AccountTeamMember',
+                    actionName: 'new'
+                },
+                state: {
+                    navigationLocation: 'RELATED_LIST',
+                    defaultFieldValues: defaultValues
+                }
+            });
+        }
 
     navigateToRelatedRecordsPage() {
         

@@ -8,7 +8,7 @@ public with sharing class RelatedListConfigController {
     public class RelatedListConfigResponse {
         @AuraEnabled public List<String> columns;
         @AuraEnabled public String filter;
-        @AuraEnabled public List<ColumnDefinition> columnConfig;
+        @AuraEnabled public List<ColumnDefinition> columnConfig; 
     }
 
     @AuraEnabled(cacheable=true)
@@ -18,12 +18,12 @@ public with sharing class RelatedListConfigController {
         RelatedListConfigResponse response = new RelatedListConfigResponse();
         response.columns = config.columns;
         response.filter = config.filter;
-        response.columnConfig = buildColumnConfig(config.objectApiName, config.columns);
+        response.columnConfig = buildColumnConfig(config.relatedObjectApiName, config.columns);
         return response;
     }
 
-    private static List<ColumnDefinition> buildColumnConfig(String objectApiName, List<String> columns) {
-        Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get(objectApiName).getDescribe().fields.getMap();
+    private static List<ColumnDefinition> buildColumnConfig(String relatedObjectApiName, List<String> columns) {
+        Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get(relatedObjectApiName).getDescribe().fields.getMap();
         List<ColumnDefinition> config = new List<ColumnDefinition>();
 // 
         for (String fieldName : columns) {

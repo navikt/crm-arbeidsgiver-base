@@ -327,6 +327,8 @@ public with sharing class AccountBadgesController {
                     'Avtaler_Zsu',
                     '&fv2=' + '&fv3=' + '&fv4=' + employerAgreement.TAG_Type_Partner__c
                 );
+
+                // '/lightning/r/Report/' + reportId + '/view?fv0=' + recordId + filters;
                 String badgeType = 'Partnerstatus';
                 Badge badge = new Badge(label, helpText, url, badgeType);
                 badges.put(label, badge);
