@@ -8,6 +8,9 @@ export default class FormattedField extends LightningElement {
     get isText(){
         return this.type?.toLowerCase() === 'text';
     }
+    get isRichText(){
+        return this.type?.toLowerCase() === 'rich-text';
+    }
     get isUndefined(){
         return this.type === null;
     }

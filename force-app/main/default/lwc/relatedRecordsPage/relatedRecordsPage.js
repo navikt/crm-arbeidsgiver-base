@@ -37,51 +37,82 @@ export default class RelatedRecordsPage extends LightningElement {
     columnsConfig;
     relationField;  // Field API name on related object that contains reference ID to the parent
     parentRelationField; // Field API name on parent object that contains the reference ID from "relationField"
-    parentObjectApiName; // sObject API name of the parent
-    
+    parentObjectApiName; // sObject API name of the parent 
 
     parentRecordId;
     configKey;
-    isMobile;
+    formFactor;
     additionalFilter; 
-   
-    @wire(CurrentPageReference)
-    setCurrentPageReference(currentPageReference) {
-        this.currentPageRef = currentPageReference;
 
-        this.parentRecordId = currentPageReference.state.c__parentRecordId;
-        this.configKey=currentPageReference.state.c__configKey;
-        this.additionalFilter=currentPageReference.state.c__additionalFilter;
-        if (!currentPageReference.state.c__isMobile) {
+
+    @wire(CurrentPageReference)
+    setPageRef(pageRef) {
+        this.configKey = pageRef?.state?.c__configKey;
+        this.parentRecordId = pageRef?.state?.c__parentRecordId;       
+        this.additionalFilter=pageRef?.state?.c__additionalFilter; 
+        this.formFactor = pageRef?.state?.c__size;  
+        if(!pageRef?.state?.c__size){
+            if (window.innerWidth <= 768) {
+                //this.formFactor  = 'small';
+             } else{
+                //this.formFactor  = 'large';
+             }
+        }  
+    }
+
+    @wire(getConfig, { key: '$configKey' })
+    configResult({ error, data }) { 
+        if (data) {
+            console.log('data:', JSON.stringify(data));
+            this.columns = data.columns;
+            this.filter = this.combineFilters(data.filter, this.additionalFilter);  
+            this.relationField = data.relationField;
+            this.parentRelationField = data.parentRelationField;
+            this.parentObjectApiName = data.parentObjectApiName;
+            this.relatedObjectApiName = data.relatedObjectApiName;
+
+            this.columnsConfig = data.columnDefinition;
+        } else if (error) {
+            console.error('Error fetching config:', error);
+        }
+    }
+
+
+    connectedCallback() {
+        /*
+        console.log('RelatedRecordsPage connectedCallback');
+        this.configKey = this.currentPageRef.state.c__configKey;
+        this.parentRecordId = this.currentPageRef.state.c__parentRecordId;       
+        this.additionalFilter=this.currentPageRef.state.c__additionalFilter;        
+        if (!this.currentPageRef.state.c__isMobile) {
             this.isMobile = window.innerWidth <= 768;
         } else{
-            this.isMobile = currentPageReference.state.c__isMobile;
-        }
-        
-        if (currentPageReference?.state?.c__configKey) {           
+            this.isMobile = this.currentPageRef.state.c__isMobile;
+        }        
+        if (this.configKey && this.parentRecordId) {           
             this.loadConfig();
         }       
-        
-        console.log('Ran setCurrentPageReference: ' + JSON.stringify(this.currentPageRef));
+            */ 
     }
-    
+
+
     loadConfig() {
-        getConfig({ configKey: this.configKey })
-            .then(result => {
-                
+        
+        getConfig({ key: this.configKey })
+            .then(result => {                
                 console.log('Config data:', JSON.stringify(result, null, 2));
-            this.columns = result.columns;
-            this.filter = this.combineFilters(result.filter, this.additionalFilter);            
-            this.columnsConfig = result.columnsConfig;
-            this.relationField = result.relationField;
-            this.parentRelationField = result.parentRelationField;
-            this.parentObjectApiName = result.parentObjectApiName;
-            this.relatedObjectApiName = result.relatedObjectApiName;
-              
-            })
-            .catch(error => {
-                console.error('Error loading config:', error);
-            });
+                this.columns = result.columns;
+                this.filter = this.combineFilters(result.filter, this.additionalFilter);            
+                this.columnsConfig = result.columnsConfig;
+                this.relationField = result.relationField;
+                this.parentRelationField = result.parentRelationField;
+                this.parentObjectApiName = result.parentObjectApiName;
+                this.relatedObjectApiName = result.relatedObjectApiName;
+                
+                })
+                .catch(error => {
+                    console.error('Error loading config:', JSON.stringify(error));
+                });
     }
 
 
@@ -95,12 +126,6 @@ export default class RelatedRecordsPage extends LightningElement {
             return f2;
         }
         return null;
-
-    }
-
-    connectedCallback() {
-        console.log('RelatedRecordsPage connectedCallback');
-        
     }
 
 }

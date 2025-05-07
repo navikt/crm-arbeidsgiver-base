@@ -6,36 +6,58 @@ public with sharing class RelatedListConfigController {
     }
 
     public class RelatedListConfigResponse {
-        @AuraEnabled public List<String> columns;
-        @AuraEnabled public String filter;
-        @AuraEnabled public List<ColumnDefinition> columnConfig; 
+        @AuraEnabled public String relatedObjectApiName;  // sObject API name on the related object. i.e. relatedObjectApiName = 'Contact';  
+        @AuraEnabled public List<String> columns; // Fields to return from database
+        @AuraEnabled public String filter; // Query filter
+        @AuraEnabled public String relationField;  // Field API name on related object that contains reference ID to the parent
+        @AuraEnabled public String parentRelationField; // Field API name on parent object that contains the reference ID from "relationField"
+        @AuraEnabled public String parentObjectApiName; // sObject API name of the parent
+        @AuraEnabled public List<ColumnDefinition> columnDefinition;
+        
     }
-
     @AuraEnabled(cacheable=true)
     public static RelatedListConfigResponse getConfig(String key) {
-        RelatedListConfigFactory.RelatedListConfig config = RelatedListConfigFactory.getConfig(key);
+        System.debug(key);
+        if (String.isEmpty(key)) {
+            throw new AuraHandledException('Key cannot be null or empty');
+        }
 
         RelatedListConfigResponse response = new RelatedListConfigResponse();
+        RelatedListConfigFactory.RelatedListConfig config = RelatedListConfigFactory.getConfig(key);
+
+        response.relatedObjectApiName = config.relatedObjectApiName;
         response.columns = config.columns;
         response.filter = config.filter;
-        response.columnConfig = buildColumnConfig(config.relatedObjectApiName, config.columns);
+        response.relationField = config.relationField;
+        response.parentRelationField = config.parentRelationField;
+        response.parentObjectApiName = config.parentObjectApiName;
+        response.columnDefinition = buildColumnConfig(response.relatedObjectApiName, response.columns);
+        System.debug('returning response: '+response);
         return response;
     }
 
+ 
     private static List<ColumnDefinition> buildColumnConfig(String relatedObjectApiName, List<String> columns) {
         Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get(relatedObjectApiName).getDescribe().fields.getMap();
         List<ColumnDefinition> config = new List<ColumnDefinition>();
-// 
-        for (String fieldName : columns) {
+//   
+for (String fieldName : columns) {
+            ColumnDefinition col = new ColumnDefinition();
             if (fields.containsKey(fieldName)) {
                 Schema.DescribeFieldResult f = fields.get(fieldName).getDescribe();
-                ColumnDefinition col = new ColumnDefinition();
                 col.label = f.getLabel();
-                col.fieldName = fieldName;
-                col.type = mapFieldType(f.getType());
-                config.add(col);
+                col.fieldName = fieldName;                
+                col.type = mapFieldType(f.getType());                
+                
+            }else {
+                System.debug('Field not found: ' + fieldName);
+                col.label = fieldName;
+                col.fieldName = fieldName;                
+                
             }
+            config.add(col);
         }
+       
         return config;
     }
 

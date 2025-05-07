@@ -36,11 +36,16 @@
             <lightning-formatted-date-time value={value} year="numeric" month="short" day="2-digit"></lightning-formatted-date-time>
         </template>
       
-        <!-- fallback: plain text -->
+       
         <template if:true={isText}>    
-            <lightning-formatted-text value={value} linkify></lightning-formatted-text>
+            <lightning-formatted-text value={value}></lightning-formatted-text>
         </template>
+        <template if:true={isRichText}>
+            <lightning-formatted-rich-text value={value}></lightning-formatted-rich-text>
+        </template>
+
     </template>
+     <!-- fallback: plain text -->
     <template if:false={type}><lightning-formatted-text value={value}></lightning-formatted-text></template>
     </template>
 </template>

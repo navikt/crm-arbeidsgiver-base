@@ -15,7 +15,8 @@ export default class ResponsiveDataTable extends LightningElement {
         { "label": "Telefon", "fieldName": "Phone", type: 'phone' },
         { "label": "Opprettet", "fieldName": "CreatedDate", type: 'datetime' },
         { "label": "Navn", "fieldName": "Name" },
-        { "label": "Adresse", "fieldName": "MailingAddress", type: 'address' }
+        { "label": "Link", "fieldName": "link__c", type: 'rich-text'},
+        { "label": "User", "fieldName": "User.Name" },
     ];
     records = [
         {
@@ -23,11 +24,18 @@ export default class ResponsiveDataTable extends LightningElement {
           "CreatedDate": "2025-04-29T10:11:32.000Z",
           "Email": "knormann@testepost.no",
           "Phone": "12345678",
-          "Id": "003QI00000ReFbsYAF"
+          "Id": "003QI00000ReFbsYAF",
+          "link__c": "<a href='/lightning/r/a0jRR00000PHCjL/view' target='_self'>IA-avtale</a>"
+
         },
         {
           "Name": "Geir Tønnesen",
           "CreatedDate": "2025-04-29T10:11:32.000Z",
+          "User": {
+            "Name": "User User",
+            "CompanyName": "crm-workflows-base",
+            "Id": "005RR00000CSEWlYAP"
+          },
           "Email": "gtonnesen@testepost.no",
           "Id": "003QI00000ReFbrYAF"
         },

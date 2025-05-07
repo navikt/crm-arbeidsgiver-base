@@ -10,20 +10,35 @@ export default class RelatedRecordsContainer extends LightningElement {
     @api parentRelationField;
     @api parentObjectApiName;
     @api parentId;
-    @api isMobile;
+    @api formFactor; // Small, Medium, Large
+    
+    get isMobile(){
+        if(this.formFactor){return this.formFactor;}
+        return window.innerWidth <= 768; // Initialize directly
+     }
 
     records = [];
     error;
    
-    columnsConfig = [];
+   //@api columnsConfig;
     objectInfo;
     isObjectInfoLoaded = false;
 
     // Lifecycle method to handle initialization
     connectedCallback() {
         console.log('connectedCallback initialized');
+        console.log('Parent ID:', this.parentId);
+        console.log('Related Object API Name:', this.relatedObjectApiName);
+        console.log('Columns:', this.columns);
+        console.log('Filter:', this.filter);
+        console.log('Relation Field:', this.relationField);
+        console.log('Parent Relation Field:', this.parentRelationField);
+        console.log('Parent Object API Name:', this.parentObjectApiName);
+        console.log('Form Factor:', this.formFactor);
+        this.getList();
     }
 
+   
     // Reactive wire to fetch object info
     @wire(getObjectInfo, { objectApiName: '$relatedObjectApiName' })
     wiredObjectInfo({ data, error }) {
@@ -38,11 +53,7 @@ export default class RelatedRecordsContainer extends LightningElement {
     }
 
     // Fetch related records
-    getList() {
-        if (!this.isObjectInfoLoaded) {
-            console.warn('getList skipped: objectInfo not loaded yet');
-            return;
-        }
+    getList() {        
         getRelatedList({
             fieldNames: this.columns,
             parentId: this.parentId,
@@ -77,7 +88,7 @@ export default class RelatedRecordsContainer extends LightningElement {
                 };
             })
             .filter(Boolean); // Remove null values
-        console.log('Generated columnsConfig:', this.columnsConfig);
+        console.log('Generated columnsConfig:', JSON.stringify( this.columnsConfig));
     }
 
     // Map field data types to LWC types
@@ -99,7 +110,7 @@ export default class RelatedRecordsContainer extends LightningElement {
 
     // Centralized error handling
     handleError(message, error) {
-        console.error(`${message}:`, error);
+        console.error(`${message}:`, JSON.stringify(error));
         this.error = error;
     }
 }
