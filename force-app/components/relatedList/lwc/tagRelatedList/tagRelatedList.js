@@ -172,6 +172,22 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         });
     }
 
+    navigateToRelatedRecordsPage(e) {
+        e.preventDefault();
+        this[NavigationMixin.Navigate]({
+            type: "standard__component",
+            attributes: {
+              componentName: "c__relatedRecordsPage",
+            },
+            state: {
+              c__configKey: this.relatedObjectApiName,
+            //  c__additionalFilter: "",// 'TAG_Type_Partner__c = \'Strategisk Partner\'',
+            c__parentRecordId: this.recordId,
+             c__size: 'small',
+            }
+          });
+    }
+
     // Compute records to display based on whether the list is expanded or collapsed
     get displayedRecords() {
         const records = this.listRecords;

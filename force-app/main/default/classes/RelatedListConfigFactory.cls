@@ -18,9 +18,9 @@ public class RelatedListConfigFactory {
     }
 
     @TestVisible private static final Map<String, RelatedListConfig> CONFIGS = new Map<String, RelatedListConfig>{
-        'AccountContacts' => new RelatedListConfig('Contact', new List<String>{'Name', 'Title', 'Email', 'MobilePhone'}, 'TAG_Former_Employee__c = false', 'AccountId', 'Id', 'Account'),
-        'AccountAccountTeamMembers'    => new RelatedListConfig('AccountTeamMember', new List<String>{'User.Name', 'TeamMemberRole', 'User.CompanyName', 'User.MobilePhone'}, null, 'AccountId', 'Id','Account'),
-        'AccountContracts'    => new RelatedListConfig('Contract__c', new List<String>{'TAG_Link__c', 'Region__c', 'TAG_StartDate__c', 'TAG_EndDate__c','TAG_Status__c'}, 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY', 'TAG_Account__c', 'Id','Account')
+        'Contact' => new RelatedListConfig('Contact', new List<String>{'Name', 'Title', 'Email', 'MobilePhone'}, 'TAG_Former_Employee__c = false', 'AccountId', 'Id', 'Account'),
+        'AccountTeamMember'    => new RelatedListConfig('AccountTeamMember', new List<String>{'User.Name', 'TeamMemberRole', 'User.CompanyName', 'User.MobilePhone'}, null, 'AccountId', 'Id','Account'),
+        'Contracts'    => new RelatedListConfig('Contract__c', new List<String>{'TAG_Link__c', 'Region__c', 'TAG_StartDate__c', 'TAG_EndDate__c','TAG_Status__c'}, 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY', 'TAG_Account__c', 'Id','Account')
         
         // ...more
     };
