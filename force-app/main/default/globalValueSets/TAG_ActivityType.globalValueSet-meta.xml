@@ -16,10 +16,9 @@
         <label>Prioritert IA (Fia)</label>
     </customValue>
     <customValue>
-        <fullName>Bedriftsundersøkelse</fullName>
+        <fullName>Hjelpemidler og tilrettelegging</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Bedriftsundersøkelse</label>
+        <label>Hjelpemidler og tilrettelegging</label>
     </customValue>
     <customValue>
         <fullName>Nedbemanne</fullName>
@@ -32,6 +31,12 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Generelt markedsarbeid</label>
+    </customValue>
+    <customValue>
+        <fullName>Bedriftsundersøkelse</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Bedriftsundersøkelse</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
