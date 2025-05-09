@@ -2,35 +2,54 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>59.0</apiVersion>
     <assignments>
-        <name>Count_amount_of_active_workfare_records</name>
-        <label>Count amount of active workfare records</label>
-        <locationX>242</locationX>
-        <locationY>755</locationY>
-        <assignmentItems>
-            <assignToReference>Get_account.NumberOfWorkfare__c</assignToReference>
-            <operator>AssignCount</operator>
-            <value>
-                <elementReference>ActiveWorkfareCollection</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_account_with_number_of_active_workfares</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Set_number_of_workfares_to_null</name>
-        <label>Set number of workfares to null</label>
+        <name>Assign_workfare_details</name>
+        <label>Assign workfare details</label>
         <locationX>506</locationX>
-        <locationY>755</locationY>
+        <locationY>647</locationY>
         <assignmentItems>
-            <assignToReference>Get_account.NumberOfWorkfare__c</assignToReference>
+            <assignToReference>Get_workfare.Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <numberValue>0.0</numberValue>
+                <elementReference>$Record.Account__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.EndDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.DateTo__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.NavIdent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.CaseWorkerNavIdent__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.StartDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.DateFrom__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ConvertStatus</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>EKSPERTBISTAND</stringValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_account_with_null_workfares</targetReference>
+            <targetReference>Update_workfare</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -39,7 +58,7 @@
         <locationX>176</locationX>
         <locationY>323</locationY>
         <defaultConnector>
-            <targetReference>Get_account</targetReference>
+            <targetReference>Is_updated_or_created</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Has account</defaultConnectorLabel>
         <rules>
@@ -56,31 +75,48 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Found_active_workfares</name>
-        <label>Found active workfares?</label>
+        <name>Is_updated_or_created</name>
+        <label>Is updated or created?</label>
         <locationX>374</locationX>
-        <locationY>647</locationY>
+        <locationY>431</locationY>
         <defaultConnector>
-            <targetReference>Set_number_of_workfares_to_null</targetReference>
+            <targetReference>Get_workfare</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>No active workfares</defaultConnectorLabel>
+        <defaultConnectorLabel>Updated</defaultConnectorLabel>
         <rules>
-            <name>Have_active_workfares</name>
+            <name>Created</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>ActiveWorkfareCollection</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>IsRecordNew</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Count_amount_of_active_workfare_records</targetReference>
+                <targetReference>Create_workfare</targetReference>
             </connector>
-            <label>Have active workfares</label>
+            <label>Created</label>
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>ConvertStatus</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.AktivitetStatuskode__c}, 
+&apos;FULLF&apos;, &apos;AVSLUTTET&apos;, 
+&apos;PLAN&apos;, &apos;PÅBEGYNT&apos;, 
+&apos;AVBR&apos;, &apos;AVBRUTT&apos;, 
+&apos;GJENN&apos;, &apos;GJENNOMFØRES&apos;, 
+&apos;AVSLUTTET&apos;, &apos;AVSLUTTET&apos;, 
+&apos;ANNULLERT&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>IsRecordNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
     <interviewLabel>TAG Workfare Activities {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Workfare Activities</label>
     <processMetadataValues>
@@ -102,68 +138,83 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_workfare</name>
+        <label>Create workfare</label>
+        <locationX>242</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>$Record.Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EndDate__c</field>
+            <value>
+                <elementReference>$Record.DateTo__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>KafkaId__c</field>
+            <value>
+                <elementReference>$Record.KafkaId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>NavIdent__c</field>
+            <value>
+                <elementReference>$Record.CaseWorkerNavIdent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StartDate__c</field>
+            <value>
+                <elementReference>$Record.DateFrom__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <elementReference>ConvertStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>EKSPERTBISTAND</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Workfare__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
-        <name>Get_account</name>
-        <label>Get account</label>
-        <locationX>374</locationX>
-        <locationY>431</locationY>
+        <name>Get_workfare</name>
+        <label>Get workfare</label>
+        <locationX>506</locationX>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_active_workfares</targetReference>
+            <targetReference>Assign_workfare_details</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Id</field>
+            <field>KafkaId__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
+                <elementReference>$Record.KafkaId__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Account</object>
+        <object>Workfare__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>Get_active_workfares</name>
-        <label>Get active workfares</label>
-        <locationX>374</locationX>
-        <locationY>539</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Found_active_workfares</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>ActiveWorkfare__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Account__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
-            </value>
-        </filters>
-        <object>ArenaActivity__c</object>
-        <outputReference>ActiveWorkfareCollection</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
     <recordUpdates>
-        <name>Update_account_with_null_workfares</name>
-        <label>Update account with null workfares</label>
+        <name>Update_workfare</name>
+        <label>Update workfare</label>
         <locationX>506</locationX>
-        <locationY>863</locationY>
-        <inputReference>Get_account</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_account_with_number_of_active_workfares</name>
-        <label>Update account with number of active workfares</label>
-        <locationX>242</locationX>
-        <locationY>863</locationY>
-        <inputReference>Get_account</inputReference>
+        <locationY>755</locationY>
+        <inputReference>Get_workfare</inputReference>
     </recordUpdates>
     <start>
         <locationX>50</locationX>
@@ -173,10 +224,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Aktivitetsgruppekode__c</field>
+            <field>Aktivitetstype__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>TLTAK</stringValue>
+                <stringValue>Ekspertbistand</stringValue>
             </value>
         </filters>
         <object>ArenaActivity__c</object>

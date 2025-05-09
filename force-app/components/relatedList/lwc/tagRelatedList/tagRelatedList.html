@@ -28,7 +28,7 @@
         <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
         <template if:true={showRecords}>
             <div style="overflow:auto; max-height: {maxHeight}em;">
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" style="table-layout: fixed; width: 100%;">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="slds-line-height_reset">
                                 <template for:each={fieldLabels} for:item="label">

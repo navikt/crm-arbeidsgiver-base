@@ -17,19 +17,21 @@ public with sharing class AccountBadgesController {
         recordId = accountId;
         List<Badge> accountBadges = new List<Badge>();
         try {
-            Account account = fetchAccount(accountId);
+            /*Account account = fetchAccount(accountId);
             if (account == null) {
                 return new List<Badge>();
-            }
+            }*/
             List<Contract__c> employerAgreements = fetchEmployerAgreements(accountId);
             List<CustomOpportunity__c> employerOpportunities = fetchOpportunities(accountId);
             List<JobPosting__c> employerJobPostings = fetchJobPostings(accountId);
             List<IACooperation__c> employerIACooperations = fetchIACooperations(accountId);
+            List<Workfare__c> employerWorkfares = fetchWorkfares(accountId);
             addContractBadges(accountBadges, employerAgreements);
-            addAccountBadges(accountBadges, account);
+            //addAccountBadges(accountBadges, account);
             addOpportunityBadges(accountBadges, employerOpportunities);
             addJobPostingBadges(accountBadges, employerJobPostings);
             addIACooperationBadges(accountBadges, employerIACooperations);
+            addWorkfareBadges(accountBadges, employerWorkfares);
         } catch (Exception e) {
             logError(accountId, e);
             return new List<Badge>();
@@ -153,6 +155,24 @@ public with sharing class AccountBadgesController {
         return iaCooperations;
     }
 
+       /**
+     * @description Fetches Workfare__c records.
+     * @param accountId The Id of the Account to fetch workfares for.
+     * @return List of Workfare__c records.
+     */
+    private static List<Workfare__c> fetchWorkfares(Id accountId) {
+        if (!Schema.sObjectType.Workfare__c.isAccessible()) {
+            return new List<Workfare__c>();
+        }
+        String query = 'SELECT Id';
+        if (Schema.sObjectType.Workfare__c.fields.Status__c.isAccessible()) {
+            query += ',Status__c';
+        }
+        query += ' FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId';
+        List<Workfare__c> workfares = Database.query(query);
+        return workfares;
+    }
+
     /**
      * @description Adds badges to the accountBadges list based on the Account fields.
      * @param accountBadges The list of badges to add to.
@@ -206,6 +226,18 @@ public with sharing class AccountBadgesController {
         List<IACooperation__c> iaCooperations
     ) {
         accountBadges.addAll(createIACooperationBadge(iaCooperations));
+    }
+
+       /**
+     * @description Adds badges to the accountBadges list based on the related Workfare__c records.
+     * @param accountBadges The list of badges to add to.
+     * @param workfares The related Workfare__c records to evaluate.
+     */
+    private static void addWorkfareBadges(
+        List<Badge> accountBadges,
+        List<Workfare__c> workfares
+    ) {
+        accountBadges.addAll(createWorkfareBadge(workfares));
     }
 
     /**
@@ -335,6 +367,22 @@ public with sharing class AccountBadgesController {
         return badges.values();
     }
 
+    // Creates badge for workfare at employer.
+    // Links to report Tiltak_adu with filter order: AccountId (fv0)
+    private static List<Badge> createWorkfareBadge(List<Workfare__c> workfares) {
+        String labelTemplate = 'Tiltak({0})';
+        String helpText = 'Antall aktive tiltak registrert i Tiltaksgjennomføring og Ekspertbistand fra Arena.';
+        Map<String, Badge> badges = new Map<String, Badge>();
+        if (workfares.size() >= 1) {
+            String label = String.format(labelTemplate, new List<Object>{ workfares.size() });
+            String url = getReportUrl('Aktive_tiltak_tilknyttet_arbeidsgiver', '&fv2=');
+            String badgeType = 'Tiltak';
+            Badge badge = new Badge(label, helpText, url, badgeType);
+            badges.put(label, badge);
+        }
+        return badges.values();
+    }
+
     private static string getReportUrl(String reportDeveloperName, String filters) {
         String reportId = getReportId(reportDeveloperName);
         if (String.isEmpty(reportId)) {
@@ -366,6 +414,7 @@ public with sharing class AccountBadgesController {
             // If any other environment, set map by quering report records and return value or null
             List<String> developerNames = new List<String>{
                 'Muligheter_4WR',
+                'Aktive_tiltak_tilknyttet_arbeidsgiver',
                 'Aktive_Tiltaksavtaler_per_Virksomhet',
                 'Avtaler_Zsu',
                 'Stillinger_adu'

@@ -63,6 +63,12 @@
     padding: 1rem;
 }
 
-.slds-table tbody tr:hover td:first-child .slds-truncate {
+.slds-table[data-clickable="true"] tbody tr:hover td:first-child .slds-truncate {
     text-decoration: underline;
+    color: var(--lwc-colorTextLinkHover);
 }
+
+.slds-table[data-clickable="true"] tbody tr td:first-child .slds-truncate {
+    color: var(--lwc-colorTextLink);
+    text-decoration: none;
+  }
