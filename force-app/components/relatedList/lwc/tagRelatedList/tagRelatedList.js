@@ -172,9 +172,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         });
     }
 
-    navigateToRelatedRecordsPage(e) {
-        e.preventDefault();
-        this[NavigationMixin.Navigate]({
+
+    generateUrl() {
+        this[NavigationMixin.GenerateUrl]({
             type: "standard__component",
             attributes: {
               componentName: "c__relatedRecordsPage",
@@ -184,8 +184,13 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             //  c__additionalFilter: "",// 'TAG_Type_Partner__c = \'Strategisk Partner\'',
             c__parentRecordId: this.recordId,
              c__size: 'small',
-            }
-          });
+            },
+        }).then((url) => {
+            console.log('Generated URL:', url);
+            // You can use the URL as needed, e.g., set it to a property or navigate to it
+        }).catch((error) => {
+            console.error('Error generating URL:', error);
+        });
     }
 
     // Compute records to display based on whether the list is expanded or collapsed

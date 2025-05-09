@@ -1,6 +1,7 @@
 import { LightningElement, track, api, wire } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 
-export default class ResponsiveDataTable extends LightningElement {
+export default class ResponsiveDataTable extends NavigationMixin(LightningElement)  {
     columns = ['Name', 'CreatedDate', 'Email', 'Phone', 'MailingAddress']; // SELECT fields
     relatedObjectApiName = 'Contact';  // from 
     filter = 'CreatedDate < TODAY'; // F.eks. WHERE-klausul eller feltverdier
@@ -59,10 +60,26 @@ export default class ResponsiveDataTable extends LightningElement {
         }
       ];
 
-    connectedCallback() {
-        console.log('log something'); // success
+     
+
+      connectedCallback() {
         
       }
     
+      iconName = 'standard:account';
+      cardTitle = 'Responsive Data Table';
+
+    get relatedRecordsPageUrl() {
+        return this.generateRelatedRecordsUrl();
+    }
+    generateRelatedRecordsUrl() {
+        const baseUrl = '/lightning/cmp/c__relatedRecordsPage';
+        const params = new URLSearchParams({
+            c__configKey: this.relatedObjectApiName,
+            c__parentRecordId: this.parentRecordId,
+            c__size: 'small'
+        });
+        return `${baseUrl}?${params.toString()}`;
+    }
 
 }

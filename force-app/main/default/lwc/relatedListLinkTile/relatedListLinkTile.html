@@ -1,0 +1,36 @@
+<template>
+    <template if:true={showTile}>
+        <a href={relatedRecordsPageUrl}
+        class="related-tile slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-around_small slds-text-link_reset">
+
+            <!-- Venstre side: ikon + tekst -->
+            <div class="slds-grid slds-grid_vertical-align-center slds-col_grow">
+                <lightning-icon
+                    icon-name={iconName}
+                    alternative-text="Relasjon"
+                    size="small"
+                    class="slds-m-right_small">
+                </lightning-icon>
+                <span class="slds-truncate">{cardTitle}</span>
+            </div>
+
+            <!-- Høyre side: chevron -->
+            <div>
+                <lightning-icon
+                    icon-name="utility:chevronright"
+                    size="xx-small"
+                    class="chevron-icon">
+                </lightning-icon>
+            </div>
+        </a>
+    </template>
+</template>
+<!--
+| Element                  | Effekt                                                                        |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| `slds-grid_align-spread` | Plasserer venstre og høyre innhold med **maksimal avstand** mellom            |
+| `slds-col_grow`          | Lar venstresiden bruke så mye plass den trenger, **uten å presse ut chevron** |
+| `slds-truncate`          | Hindrer at lang tekst bryter linjen – den trunces i stedet                    |
+| `<a>` wrapper            | Gjør hele flaten klikkbar på mobil og desktop                                 |
+
+-->

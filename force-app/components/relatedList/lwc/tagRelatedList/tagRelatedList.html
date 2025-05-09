@@ -140,12 +140,16 @@
             </div>
         </template>
 
-        <lightning-button
-  label={cardTitle}
-  class="slds-var-m-around_medium"
-onclick={navigateToRelatedRecordsPage}
-  ></lightning-button>
-            
+        
+       <!-- Tile with an icon -->
+        <c-related-list-link-tile
+            card-title={cardTitle}
+            icon-name={iconName}
+            parent-record-id={recordId}
+            related-object-api-name={relatedObjectApiName}
+            size="small">
+        </c-related-list-link-tile>
+          
      
     </article>
 </template>

@@ -1,5 +1,15 @@
 <template>
+<!-- Tile with an icon -->
+<c-related-list-link-tile
+card-title={cardTitle}
+icon-name={iconName}
+parent-record-id={parentRecordId}
+related-object-api-name={relatedObjectApiName}
+size="small">
+</c-related-list-link-tile>
 
+   <!--
+ 
 <c-related-records-table
 records={records}
 columns-config={columnsConfig}>
@@ -8,9 +18,6 @@ columns-config={columnsConfig}>
 records={records}
 columns-config={columnsConfig}>
 </c-related-records-card-list>
-
-   <!--
- 
    <c-related-records-container
    columns = {columns}
    related-object-api-name={relatedObjectApiName}  

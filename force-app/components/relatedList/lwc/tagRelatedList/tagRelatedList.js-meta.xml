@@ -15,7 +15,6 @@
                 label="Icon name"
                 description="On the format category:iconName. See available icons: https://lightningdesignsystem.com/icons/"
                 type="String"
-                default=""
             />
             <property
                 name="headerColor"
@@ -49,12 +48,14 @@
                 label="Object API name for the related list"
                 type="String"
                 required="true"
+                default="Contact"
             />
             <property
                 name="relationField"
                 label="API name of field relating the records to the parent"
                 type="String"
                 required="true"
+                default="AccountId"
             />
             <property
                 name="parentRelationField"
@@ -83,7 +84,6 @@
                 description="I.e. Name != 'Test'"
                 type="String"
                 required="false"
-                default=""
             />
             <property
                 name="dynamicUpdate"
@@ -104,28 +104,25 @@
                 label="Popover Fields"
                 description="Additional fields (comma separated) to show in the popover"
                 type="String"
-                default=""
             />
             <property
                 name="iconNamePopover"
                 label="Icon name Popover"
                 description="If main iconName not set, use this for icon in popover window. Format category:iconName. See available icons: https://lightningdesignsystem.com/icons/"
                 type="String"
-                default=""
             />
             <property
                 name="inactiveRecordFilter"
                 label="Inactive Record Filter"
                 description="Enter a SOQL condition (e.g., Active__c = false). Records meeting this condition will be styled as inactive."
                 type="String"
-                default=""
             />
             <property
                 name="inactivePrefix"
                 label="Inactive Record Prefix"
                 description="Enter prefix to show before String-value in first column for inactive records(e.g. Sluttet:)."
                 type="String"
-                default=""
+                
             />
             <supportedFormFactors>
                 <supportedFormFactor type="Small" />
