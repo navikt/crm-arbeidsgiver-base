@@ -172,34 +172,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         });
     }
 
-
-    generateUrl() {
-        this[NavigationMixin.GenerateUrl]({
-            type: "standard__component",
-            attributes: {
-              componentName: "c__relatedRecordsPage",
-            },
-            state: {
-              c__configKey: this.relatedObjectApiName,
-            //  c__additionalFilter: "",// 'TAG_Type_Partner__c = \'Strategisk Partner\'',
-            c__parentRecordId: this.recordId,
-             c__size: 'small',
-            },
-        }).then((url) => {
-            console.log('Generated URL:', url);
-            // You can use the URL as needed, e.g., set it to a property or navigate to it
-        }).catch((error) => {
-            console.error('Error generating URL:', error);
-        });
-    }
-
     // Compute records to display based on whether the list is expanded or collapsed
     get displayedRecords() {
         const records = this.listRecords;
-        console.log('RECORDS', JSON.stringify(records, null, 2));
         if (!this.isExpanded && records.length > this.collapsedCount) {
             return records.slice(0, this.collapsedCount);
-        }        
+        }
         return records;
     }
 

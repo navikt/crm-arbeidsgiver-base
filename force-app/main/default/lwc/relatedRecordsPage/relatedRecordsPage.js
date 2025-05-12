@@ -22,34 +22,31 @@ this[NavigationMixin.Navigate]({
   }
 });
 
-https://energy-customization-5209.scratch.lightning.force.com/lightning/cmp/c__relatedRecordPage?c__configKey=AccountContract&c__parentRecordId=001RR00000bhWZ8YAM
+https://energy-customization-5209.scratch.lightning.force.com/lightning/cmp/c__relatedRecordsPage?c__object=JobPosting__c&c__col=Name,Is_My_Region__c,Createddate&c__id=001RR00000bhZvMYAU&c__rf=Account__c&c__fv=Status__c%3D%22ACTIVE%22
 */
 
 import { LightningElement, api, wire } from 'lwc';
 import { CurrentPageReference } from "lightning/navigation";
-import getConfig from '@salesforce/apex/RelatedListConfigController.getConfig';
 export default class RelatedRecordsPage extends LightningElement {
    
     // private properties
-    relatedObjectApiName; // sObject API name on the related object. i.e. relatedObjectApiName = 'Contact';  
     columns; // Fields to return from database
+    objectApiName; // sObject API name on the related object. i.e. relatedObjectApiName = 'Contact';  
     filter; // Query filter
-    columnsConfig;
     relationField;  // Field API name on related object that contains reference ID to the parent
-    parentRelationField; // Field API name on parent object that contains the reference ID from "relationField"
-    parentObjectApiName; // sObject API name of the parent 
-
     parentRecordId;
-    configKey;
+    
     formFactor;
-    additionalFilter; 
-
+   
 
     @wire(CurrentPageReference)
     setPageRef(pageRef) {
-        this.configKey = pageRef?.state?.c__configKey;
-        this.parentRecordId = pageRef?.state?.c__parentRecordId;       
-        this.additionalFilter=pageRef?.state?.c__additionalFilter; 
+
+        this.objectApiName = pageRef?.state?.c__object;
+        this.parentRecordId = pageRef?.state?.c__id;
+        this.relationField = pageRef?.state?.c__rf;
+        this.filter=pageRef?.state?.c__fv; 
+        this.columns=pageRef?.state?.c__col; // Split the columns string into an array
         this.formFactor = pageRef?.state?.c__size;  
         if(!pageRef?.state?.c__size){
             if (window.innerWidth <= 768) {
@@ -58,23 +55,6 @@ export default class RelatedRecordsPage extends LightningElement {
                 //this.formFactor  = 'large';
              }
         }  
-    }
-
-    @wire(getConfig, { key: '$configKey' })
-    configResult({ error, data }) { 
-        if (data) {
-            console.log('data:', JSON.stringify(data));
-            this.columns = data.columns;
-            this.filter = this.combineFilters(data.filter, this.additionalFilter);  
-            this.relationField = data.relationField;
-            this.parentRelationField = data.parentRelationField;
-            this.parentObjectApiName = data.parentObjectApiName;
-            this.relatedObjectApiName = data.relatedObjectApiName;
-
-            this.columnsConfig = data.columnDefinition;
-        } else if (error) {
-            console.error('Error fetching config:', error);
-        }
     }
 
 
@@ -96,36 +76,7 @@ export default class RelatedRecordsPage extends LightningElement {
     }
 
 
-    loadConfig() {
-        
-        getConfig({ key: this.configKey })
-            .then(result => {                
-                console.log('Config data:', JSON.stringify(result, null, 2));
-                this.columns = result.columns;
-                this.filter = this.combineFilters(result.filter, this.additionalFilter);            
-                this.columnsConfig = result.columnsConfig;
-                this.relationField = result.relationField;
-                this.parentRelationField = result.parentRelationField;
-                this.parentObjectApiName = result.parentObjectApiName;
-                this.relatedObjectApiName = result.relatedObjectApiName;
-                
-                })
-                .catch(error => {
-                    console.error('Error loading config:', JSON.stringify(error));
-                });
-    }
+    
 
-
-    combineFilters(f1, f2) {
-        console.log('Combining filters:', f1, f2);
-        if (f1 && f2) {
-            return `${f1} AND ${f2}`;
-        } else if (f1) {
-            return f1;
-        } else if (f2) {
-            return f2;
-        }
-        return null;
-    }
 
 }

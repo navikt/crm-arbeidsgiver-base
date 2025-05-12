@@ -1,9 +1,8 @@
 import { LightningElement, api, wire } from 'lwc';
 import createBadges from '@salesforce/apex/AccountBadgesController.createBadges';
 import { publishToAmplitude } from 'c/amplitude';
-import { NavigationMixin } from 'lightning/navigation';
 
-export default class AccountBadges extends NavigationMixin(LightningElement){
+export default class AccountBadges extends LightningElement {
     @api recordId; // Automatically populated in record context
     badges = [];
     renderBadges = false; // Should be true if badges are returned, false if not
@@ -55,7 +54,6 @@ export default class AccountBadges extends NavigationMixin(LightningElement){
         } else if (badgetype === 'Muligheter') {
             publishToAmplitude(this.appName, { type: 'Badge Click - Muligheter' });
         } else if (badgetype === 'Partnerstatus') {
-            
             publishToAmplitude(this.appName, { type: 'Badge Click - Partnerstatus' });
         } else if (badgetype === 'Samarbeidsavtale') {
             publishToAmplitude(this.appName, { type: 'Badge Click - Samarbeidsavtale' });
@@ -64,35 +62,5 @@ export default class AccountBadges extends NavigationMixin(LightningElement){
         } else if (badgetype === 'IA-samarbeid') {
             publishToAmplitude(this.appName, { type: 'Badge Click - IA-samarbeid' });
         }
-        
     }
-
-    navigateToData(){
-        this[NavigationMixin.Navigate]({
-            type: "standard__component",
-            attributes: {
-              componentName: "c__relatedRecordsPage",
-            },
-            state: {
-              c__configKey: "AccountContract",
-                c__additionalFilter: "",// 'TAG_Type_Partner__c = \'Strategisk Partner\'',
-              c__parentRecordId: this.recordId,
-             c__isMobile: false,
-            }
-          });
-    }
-
-    navigateToRelatedRecordsPage() {
-        // https://energy-customization-5209.scratch.lightning.force.com/lightning/cmp/c__responsiveDataTable?c__p1=001RR00000bhWZ8YAM
-        this[NavigationMixin.Navigate]({
-            type: "standard__component",
-            attributes: {
-              componentName: "c__responsiveDataTable",
-            },
-            state: {
-                c__p1: this.recordId,
-            },
-          });
-    }
-
 }

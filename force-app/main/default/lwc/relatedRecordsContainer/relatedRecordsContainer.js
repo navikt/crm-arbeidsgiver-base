@@ -1,17 +1,15 @@
 import { LightningElement, api, wire } from 'lwc';
-import getRelatedList from '@salesforce/apex/TAG_RelatedListController.getRelatedList';
-import { getObjectInfo } from 'lightning/uiObjectInfoApi';
-
+import getRecords from '@salesforce/apex/RelatedListConfigController.getRecords';
 export default class RelatedRecordsContainer extends LightningElement {
     @api columns;
-    @api relatedObjectApiName;
+    @api objectApiName;
     @api filter;
     @api relationField;
-    @api parentRelationField;
-    @api parentObjectApiName;
     @api parentId;
     @api formFactor; // Small, Medium, Large
     
+    @api parentRelationField;
+    @api parentObjectApiName;
     get isMobile(){
         if(this.formFactor){return this.formFactor;}
         return window.innerWidth <= 768; // Initialize directly
@@ -28,7 +26,7 @@ export default class RelatedRecordsContainer extends LightningElement {
     connectedCallback() {
         console.log('connectedCallback initialized');
         console.log('Parent ID:', this.parentId);
-        console.log('Related Object API Name:', this.relatedObjectApiName);
+        console.log('Related Object API Name:', this.objectApiName);
         console.log('Columns:', this.columns);
         console.log('Filter:', this.filter);
         console.log('Relation Field:', this.relationField);
@@ -39,74 +37,25 @@ export default class RelatedRecordsContainer extends LightningElement {
     }
 
    
-    // Reactive wire to fetch object info
-    @wire(getObjectInfo, { objectApiName: '$relatedObjectApiName' })
-    wiredObjectInfo({ data, error }) {
-        if (data) {
-            this.objectInfo = data;
-            this.isObjectInfoLoaded = true;
-            this.generateColumnsConfig();
-            this.getList();
-        } else if (error) {
-            this.handleError('Error loading object info', error);
-        }
-    }
 
     // Fetch related records
     getList() {        
-        getRelatedList({
-            fieldNames: this.columns,
-            parentId: this.parentId,
-            objectApiName: this.relatedObjectApiName,
-            relationField: this.relationField,
-            parentRelationField: this.parentRelationField,
-            parentObjectApiName: this.parentObjectApiName,
-            filterConditions: this.filter
+        getRecords({
+            columns: this.columns,
+            parentRecordId: this.parentId,
+            objectApiName: this.objectApiName,
+            relationshipField: this.relationField,
+            filter: this.filter
         })
             .then((data) => {
                 this.records = data && data.length > 0 ? data : [];
-                console.log('Records returned:', this.records);
+                console.log('Records returned:', JSON.stringify( this.records));
             })
             .catch((error) => {
                 this.handleError('Error retrieving related records', error);
             });
     }
 
-    // Generate column configuration dynamically
-    generateColumnsConfig() {
-        if (!this.objectInfo || !this.columns) return;
-
-        this.columnsConfig = this.columns
-            .map((fieldName) => {
-                const fieldMeta = this.objectInfo.fields[fieldName];
-                if (!fieldMeta) return null;
-
-                return {
-                    label: fieldMeta.label,
-                    fieldName: fieldName,
-                    type: this.mapFieldType(fieldMeta.dataType)
-                };
-            })
-            .filter(Boolean); // Remove null values
-        console.log('Generated columnsConfig:', JSON.stringify( this.columnsConfig));
-    }
-
-    // Map field data types to LWC types
-    mapFieldType(dataType) {
-        const fieldTypeMap = {
-            Phone: 'phone',
-            Email: 'email',
-            Date: 'date',
-            DateTime: 'datetime',
-            Currency: 'currency',
-            Double: 'double',
-            Integer: 'number',
-            Boolean: 'boolean',
-            Picklist: 'text',
-            Address: 'address'
-        };
-        return fieldTypeMap[dataType] || 'text';
-    }
 
     // Centralized error handling
     handleError(message, error) {

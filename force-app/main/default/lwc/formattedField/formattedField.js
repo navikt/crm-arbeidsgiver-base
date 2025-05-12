@@ -39,6 +39,10 @@ export default class FormattedField extends LightningElement {
         return this.type?.toLowerCase() === 'double' || this.type?.toLowerCase() === 'integer';
     }
 
+    get isBoolean() {
+        return this.type?.toLowerCase() === 'boolean';
+    }
+
     get isAddress() {
         console.log(this.type);
         return this.type?.toLowerCase() === 'address' && this.value && typeof this.value === 'object';

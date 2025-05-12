@@ -1,14 +1,27 @@
 <template>
-    <template if:true={columns}>
+    <article class="slds-card slds-card_boundary slds-m-around_xx-small">
+        <dl class="slds-list_horizontal slds-wrap">
+            <dt  class="slds-item_label slds-text-color_weak slds-truncate" title="columns">columns: </dt>
+            <dd  class="slds-item_detail slds-truncate" title={columns}>{columns}</dd>
+
+            <dt  class="slds-item_label slds-text-color_weak slds-truncate" title="parentRecordId">parentRecordId: </dt>
+            <dd  class="slds-item_detail slds-truncate" title={parentRecordId}>{parentRecordId}</dd>
+
+            <dt  class="slds-item_label slds-text-color_weak slds-truncate" title="filter">filter: </dt>
+            <dd  class="slds-item_detail slds-truncate" title={filter}>{filter}</dd>
+
+            <dt  class="slds-item_label slds-text-color_weak slds-truncate" title="objectApiName">objectApiName: </dt>
+            <dd  class="slds-item_detail slds-truncate" title={objectApiName}>{objectApiName}</dd>
+
+            <dt  class="slds-item_label slds-text-color_weak slds-truncate" title="relationField">relationField: </dt>
+            <dd  class="slds-item_detail slds-truncate" title={relationField}>{relationField}</dd>
+        </dl>  
+    </article>
     <c-related-records-container
-        columns = {columns}
-        related-object-api-name={relatedObjectApiName}  
-        filter = {filter}
-        relation-field={relationField}
-        parent-relation-field={parentRelationField}
-        parent-object-api-name={parentObjectApiName}
+        columns={columns}
         parent-id={parentRecordId}
-        form-factor={formFactor}>
-    </c-related-records-container>
-</template>
+        filter={filter}
+        object-api-name={objectApiName}
+        relation-field={relationField}
+        ></c-related-records-container>         
 </template>

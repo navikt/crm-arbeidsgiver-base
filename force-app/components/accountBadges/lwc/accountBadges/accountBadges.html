@@ -7,10 +7,19 @@
                         key={badge.label}
                         class="slds-text-color_default slds-badge slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-m-around_xxx-small badge-neutral"
                         data-badgetype={badge.badgeType}
-                        
-                    ><lightning-button label={badge.label}
-                    title={badge.label} onclick={navigateToData}></lightning-button>
-                           
+                        onclick={handleBadgeClick}
+                    >
+                        <span>
+                            <template if:true={badge.url}>
+                                <lightning-formatted-url
+                                    value={badge.url}
+                                    tooltip={badge.urlTooltip}
+                                    label={badge.label}
+                                    target="_blank"
+                                ></lightning-formatted-url>
+                            </template>
+                            <template if:false={badge.url}>{badge.label}</template>
+                        </span>
                         <template if:true={badge.helpText}>
                             <lightning-helptext
                                 class="slds-var-m-left_xx-small"
@@ -25,16 +34,4 @@
     <template if:false={renderBadges}
         ><div style="margin-bottom: calc(var(--lwc-cardSpacingMargin) * -1)"></div
     ></template>
-    <lightning-button
-            label="navigateToData "
-            title="navigateToData"
-            onclick={navigateToData}
-            class="slds-m-right_x-small"
-          ></lightning-button>
-          <lightning-button
-            label="navigateToRelatedRecordsPage "
-            title="navigateToRelatedRecordsPage"
-            onclick={navigateToRelatedRecordsPage}
-            class="slds-m-right_x-small"
-          ></lightning-button>
 </template>

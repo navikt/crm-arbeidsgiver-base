@@ -36,7 +36,10 @@
             <lightning-formatted-date-time value={value} year="numeric" month="short" day="2-digit"></lightning-formatted-date-time>
         </template>
       
-       
+       <template if:true={isBoolean}>
+            <lightning-formatted-text value={value}></lightning-formatted-text>
+        </template>
+
         <template if:true={isText}>    
             <lightning-formatted-text value={value}></lightning-formatted-text>
         </template>

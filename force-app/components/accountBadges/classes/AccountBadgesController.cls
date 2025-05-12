@@ -439,14 +439,16 @@ public with sharing class AccountBadgesController {
 
     private static String getRelatedPageUrl(Id recordId, String objectName, String filters){
         String url;
-        String baseUrl = '/lightning/cmp/c__relatedRecordsPage';
-        String params = '?c__configKey=' + EncodingUtil.urlEncode(objectName, 'UTF-8');
-        params += '&c__parentRecordId=' + EncodingUtil.urlEncode(recordId, 'UTF-8');
+       // String sfdcBaseURL = URL.getOrgDomainURL().toExternalForm();
+        String pageUrl = '/lightning/cmp/c__relatedRecordsPage';
+        String params = '?c__object=' + EncodingUtil.urlEncode(objectName, 'UTF-8');
+        params += '&c__id=' + EncodingUtil.urlEncode(recordId, 'UTF-8');
         if (!String.isEmpty(filters)) {
-            params += '&c__filters=' + EncodingUtil.urlEncode(filters, 'UTF-8');
+            params += '&c__fv=' + EncodingUtil.urlEncode(filters, 'UTF-8');
         }
         
-        return url+params;
+        
+        return pageUrl+params;
     }
 
     public class Badge {
