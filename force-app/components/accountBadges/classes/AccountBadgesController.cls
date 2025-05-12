@@ -345,7 +345,8 @@ public with sharing class AccountBadgesController {
         Map<String, Badge> badges = new Map<String, Badge>();
         if (jobPostings.size() >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ jobPostings.size() });
-            String url = getReportUrl('Stillinger_adu', '&fv2=');
+            //String url = getReportUrl('Stillinger_adu', '&fv2=');
+            String url = getRelatedPageUrl(recordId, 'JobPosting__c', 'Status__c="ACTIVE"');
             String badgeType = 'Stillinger';
             Badge badge = new Badge(label, helpText, url, badgeType);
             badges.put(label, badge);
@@ -434,6 +435,18 @@ public with sharing class AccountBadgesController {
                 return null;
             }
         }
+    }
+
+    private static String getRelatedPageUrl(Id recordId, String objectName, String filters){
+        String url;
+        String baseUrl = '/lightning/cmp/c__relatedRecordsPage';
+        String params = '?c__configKey=' + EncodingUtil.urlEncode(objectName, 'UTF-8');
+        params += '&c__parentRecordId=' + EncodingUtil.urlEncode(recordId, 'UTF-8');
+        if (!String.isEmpty(filters)) {
+            params += '&c__filters=' + EncodingUtil.urlEncode(filters, 'UTF-8');
+        }
+        
+        return url+params;
     }
 
     public class Badge {
