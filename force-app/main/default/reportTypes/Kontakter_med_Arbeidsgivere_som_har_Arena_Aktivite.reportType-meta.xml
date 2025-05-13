@@ -962,16 +962,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>JsonPayload__c</field>
-            <table>Contact.AccountContactRelations.Arena_Aktiviteter__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>KafkaHash__c</field>
-            <table>Contact.AccountContactRelations.Arena_Aktiviteter__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>KafkaId__c</field>
             <table>Contact.AccountContactRelations.Arena_Aktiviteter__r</table>
         </columns>
