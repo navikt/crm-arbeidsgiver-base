@@ -20,27 +20,11 @@
             </lightning-layout>
         </lightning-card>
 
-
-       <lightning-layout multiple-rows>
-        
-                <template for:each={records} for:item="record">
-                    <lightning-layout-item  key={record.id} size="12" medium-device-size="6" large-device-size="4"
-                    padding="around-small">        
-                        <lightning-tile label={record.name} href="/path/to/somewhere" 
-                        >
-                            <dl class="slds-list_horizontal slds-wrap">
-                                <template for:each={record.fields} for:item="field">
-                                    <dt key={field.label} class="slds-item_label slds-text-color_weak slds-truncate" title={field.label}>{field.label}:</dt>
-                                    <dd key={field.label} class="slds-item_detail slds-truncate" title={field.value}>
-                                        <c-formatted-field value={field.value} type={field.type}></c-formatted-field></dd>
-                                </template>  
-                            </dl>                         
-                        </lightning-tile>
-                    </lightning-layout-item>
-                </template>
-            </lightning-layout>
-
-    </template>
+<c-related-records-table
+        key-field="Id"
+        data={recordsList}
+        columns={columnsConfig}>
+    </c-related-records-table>
 
     <template if:true={error}>
         <p class="slds-text-color_error">Feil ved henting av data: {error.message}</p>

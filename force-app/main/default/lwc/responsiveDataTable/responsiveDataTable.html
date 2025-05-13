@@ -1,12 +1,11 @@
 <template>
 <!-- Tile with an icon -->
-<c-related-list-link-tile
-card-title={cardTitle}
-icon-name={iconName}
-parent-record-id={parentRecordId}
-related-object-api-name={relatedObjectApiName}
-size="small">
-</c-related-list-link-tile>
+<c-related-records-table
+        key-field="Id"
+        data={records}
+        columns={columnsConfig}>
+    </c-related-records-table>
+
 
    <!--
  

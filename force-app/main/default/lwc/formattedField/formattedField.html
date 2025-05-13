@@ -41,7 +41,7 @@
         </template>
 
         <template if:true={isText}>    
-            <lightning-formatted-text value={value}></lightning-formatted-text>
+            <lightning-formatted-text value={value} linkify></lightning-formatted-text>
         </template>
         <template if:true={isRichText}>
             <lightning-formatted-rich-text value={value}></lightning-formatted-rich-text>

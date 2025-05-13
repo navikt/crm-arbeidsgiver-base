@@ -56,6 +56,52 @@ export default class RelatedRecordsContainer extends LightningElement {
             });
     }
 
+    // Create columns configuration for the datatable based on first record[0].fields
+    // for each field in record[0].fields, get label, fieldname and type and create column object
+    get columnsConfig() {
+        if(this.records && this.records.length > 0){
+            
+            const columns = this.records[0].fields.map((field) => {
+                return {
+                    label: field.label,
+                    fieldName: field.fieldName,
+                    type: field.type,
+                    sortable: false,
+                    cellAttributes: {
+                       alignment: 'left'
+                    },
+                };
+            });
+
+            // Modifiser første kolonne til å vises som link
+            columns[0].type = 'customName';
+            columns[0].typeAttributes = {
+                recordUrl: { fieldName: 'recordUrl' }
+            };
+
+            console.log('Columns:', JSON.stringify(columns));
+            return columns;
+        }
+        return [];
+    }
+
+    // Return list of records for data table
+    get recordsList() {
+        if(this.records && this.records.length > 0){
+            return this.records.map((record) => {
+                const recordData = {};
+
+                record.fields.forEach((field) => {
+                    recordData[field.fieldName] = field.value;
+                });
+                recordData.recordUrl = `/lightning/r/${record.id}/view`;
+                console.log('recordData:', JSON.stringify(recordData));
+                return recordData;
+            });
+        }
+        return [];
+    }
+
 
     // Centralized error handling
     handleError(message, error) {

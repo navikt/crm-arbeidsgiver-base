@@ -4,13 +4,14 @@ public with sharing class RelatedListConfigController {
         @AuraEnabled public String id;
         @AuraEnabled public String link;
         @AuraEnabled public List<Field> fields; // Field metadata
-        //@AuraEnabled public Map<String, Object> fieldValues; // Field values   
+       // @AuraEnabled public Map<String, Object> fieldValues; // Field values   
     }
     public class Field{
         @AuraEnabled public String label;
         @AuraEnabled public String fieldName;
         @AuraEnabled public String type;
         @AuraEnabled public Object value;
+        @AuraEnabled public String typeAttributes;
     }
 
  
@@ -45,11 +46,15 @@ public with sharing class RelatedListConfigController {
         List<Record> recordList = new List<Record>();
         for (SObject record : records) {
             Record rec = new Record();
-            rec.name = (String)record.get('Name');
-            rec.id = (String)record.get('Id');
-            
+            rec.name = (String)record.get(columns[0]);
+            rec.id = (String)record.get('Id');         
+            rec.link = '/' + rec.id;
+             
+
+            // Create fields
             rec.fields = new List<Field>();
             for (String fieldName : columns) {
+
                 Field col = new Field();
                 if (fieldData.containsKey(fieldName)) {
                     Schema.DescribeFieldResult f = fieldData.get(fieldName).getDescribe();
@@ -66,8 +71,19 @@ public with sharing class RelatedListConfigController {
                 }
                 rec.fields.add(col);
             }
+            
+            // Create field value map
+            /*rec.fieldValues = new Map<String, Object>();
+            for (String fieldName : columns) {
+                if (fieldData.containsKey(fieldName)) {
+                    rec.fieldValues.put(fieldName, record.get(fieldName));
+                } else {
+                    rec.fieldValues.put(fieldName, null);
+                }
+            } */ 
+            
 
-
+            // Add record to list
             recordList.add(rec);
         }
         return recordList;
@@ -82,6 +98,7 @@ public with sharing class RelatedListConfigController {
         List<Field> config = new List<Field>();
 //   
         for (String fieldName : columns) {
+           
             Field col = new Field();
             if (fieldData.containsKey(fieldName)) {
                 Schema.DescribeFieldResult f = fieldData.get(fieldName).getDescribe();
@@ -102,19 +119,26 @@ public with sharing class RelatedListConfigController {
         return config;
     }
 
+    private static String mapFieldType(Schema.DescribeFieldResult field) {
+        if(field.getType()==Schema.DisplayType.STRING && field.isHtmlFormatted()){
+            return 'customRichText';
+        }
+        return mapFieldType(field.getType());
+    }
     private static String mapFieldType(Schema.DisplayType type) {
         switch on type {
             when Email       { return 'email'; }
             when Phone       { return 'phone'; }
-            when Date        { return 'date'; }
-            when DateTime    { return 'datetime'; }
+            when Date        { return 'date-local'; }
+            when DateTime    { return 'date'; }
             when Currency    { return 'currency'; }
             when Double      { return 'double'; }
             when Integer     { return 'number'; }
             when Boolean     { return 'boolean'; }
             when Picklist    { return 'text'; }
             when Address     { return 'address'; }
-            when else        { return 'text'; }
+            
+            when else        { return 'customText'; }
         }
     }
 } 

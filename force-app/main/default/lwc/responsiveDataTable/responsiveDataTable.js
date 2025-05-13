@@ -12,13 +12,15 @@ export default class ResponsiveDataTable extends NavigationMixin(LightningElemen
     parentRecordId = '001RR00000bhWZ8YAM';
     isMobile = window.innerWidth <= 768; // Initialize directly
     columnsConfig = [
+        { "label": "Navn",  "fieldName": "Name", type: 'customName', typeAttributes:{ recordUrl: { fieldName:"recordUrl"}}},
         { "label": "E-post", "fieldName": "Email",type: 'email'},
         { "label": "Telefon", "fieldName": "Phone", type: 'phone' },
-        { "label": "Opprettet", "fieldName": "CreatedDate", type: 'datetime' },
-        { "label": "Navn", "fieldName": "Name" },
-        { "label": "Link", "fieldName": "link__c", type: 'rich-text'},
-        { "label": "User", "fieldName": "User.Name" },
+        { "label": "Opprettet", "fieldName": "CreatedDate", type: 'date-local' },
+        
+        { "label": "Link", "fieldName": "link__c", type: 'customRichText'},
     ];
+
+
     records = [
         {
           "Name": "Kari Normann",
@@ -26,7 +28,8 @@ export default class ResponsiveDataTable extends NavigationMixin(LightningElemen
           "Email": "knormann@testepost.no",
           "Phone": "12345678",
           "Id": "003QI00000ReFbsYAF",
-          "link__c": "<a href='/lightning/r/a0jRR00000PHCjL/view' target='_self'>IA-avtale</a>"
+          "link__c": "<a href='/lightning/r/a0jRR00000PHCjL/view' target='_self'>IA-avtale</a>", 
+          "recordUrl": "/003QI00000ReFbsYAF",
 
         },
         {
