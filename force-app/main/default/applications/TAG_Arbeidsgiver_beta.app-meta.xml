@@ -3,11 +3,20 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>TAG_EmployerDefaultRecordPageMobile</content>
+        <content>TAG_Workfare_RP</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Workfare__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>TAG_Workfare_RP</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>Account</pageOrSobjectType>
+        <pageOrSobjectType>Workfare__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
@@ -21,20 +30,19 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>TAG_Workfare_RP</content>
+        <content>TAG_EmployerDefaultRecordPageMobile</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>Workfare__c</pageOrSobjectType>
+        <pageOrSobjectType>Account</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>TAG_Workfare_RP</content>
+        <actionName>Tab</actionName>
+        <content>Tag_Arbeidsgiverbeta</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>Workfare__c</pageOrSobjectType>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
     </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
@@ -48,6 +56,7 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Arbeidsgiver beta</label>
     <navType>Standard</navType>
+    <tabs>standard-ApprovalsHome</tabs>
     <tabs>standard-Account</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>
