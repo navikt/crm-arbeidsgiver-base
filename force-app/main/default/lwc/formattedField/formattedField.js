@@ -6,48 +6,30 @@ export default class FormattedField extends LightningElement {
     @api type;
 
     get isText(){
-        return this.type?.toLowerCase() === 'text';
+       return this.activeTemplate === 'text';
     }
     get isRichText(){
-        return this.type?.toLowerCase() === 'rich-text';
+        return this.activeTemplate === 'customRichText';
     }
-    get isUndefined(){
-        return this.type === null;
-    }
-
     get isEmail() {
-        return this.type?.toLowerCase() === 'email';
+        return this.activeTemplate ===  'email';
     }
-
     get isPhone() {
-        return this.type?.toLowerCase() === 'phone';
+        return this.activeTemplate === 'phone';
     }
-
-    get isUrl() {
-        return this.type === 'url';
-    }
-
+    
     get isDate() {
-        return this.type?.toLowerCase() === 'date';
+        return this.activeTemplate ===  'date';
     }
-
-    get isDateTime() {
-        return this.type?.toLowerCase() === 'datetime';
-    }
-
     get isNumber() {
-        return this.type?.toLowerCase() === 'double' || this.type?.toLowerCase() === 'integer';
+        return this.activeTemplate  === 'number';
     }
-
     get isBoolean() {
-        return this.type?.toLowerCase() === 'boolean';
+        return this.activeTemplate ===  'boolean';
     }
-
-    get isAddress() {
-        console.log(this.type);
-        return this.type?.toLowerCase() === 'address' && this.value && typeof this.value === 'object';
+    get isAddress() {        
+        return this.activeTemplate === 'address';
     }
-
     get addressParts() {
         try {return {
             street: this.value?.street || '',
@@ -58,8 +40,30 @@ export default class FormattedField extends LightningElement {
         };}
         catch(error) {console.error('feil i adresseparsing...' + error);
             return null;
-        }
-        
+        } 
     }
+
+    isTemplate(typeKey) {
+        return this.activeTemplate === typeKey;
+    }
+
+    get activeTemplate() {
+        return this.type?.toLowerCase() || 'text';
+    }
+    /*
+    customRichText
+    switch on type {
+            when Email       { return 'email'; }
+            when Phone       { return 'phone'; }
+            when Date        { return 'date'; }
+            when DateTime    { return 'date'; }
+            when Double      { return 'number'; }
+            when Integer     { return 'number'; }
+            when Boolean     { return 'boolean'; }
+            when Picklist    { return 'text'; }
+            when Address     { return 'address'; }
+            when String      { return 'text'; }
+            when else        { return 'text'; }
+    */
 
 }

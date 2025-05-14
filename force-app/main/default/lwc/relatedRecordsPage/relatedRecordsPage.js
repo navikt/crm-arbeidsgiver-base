@@ -22,7 +22,13 @@ this[NavigationMixin.Navigate]({
   }
 });
 
-https://energy-customization-5209.scratch.lightning.force.com/lightning/cmp/c__relatedRecordsPage?c__object=JobPosting__c&c__col=Name,Is_My_Region__c,Createddate&c__id=001RR00000bhZvMYAU&c__rf=Account__c&c__fv=Status__c%3D%22ACTIVE%22
+https://energy-customization-5209.scratch.lightning.force.com
+/lightning/cmp/c__relatedRecordsPage?c__object=JobPosting__c&c__col=Name,Is_My_Region__c,Createddate&c__id=001QI00000Zb8nHYAR&c__rf=Account__c&c__fv=Status__c%3D%22ACTIVE%22
+
+CustomOpportunity__c
+/lightning/cmp/c__relatedRecordsPage?c__object=CustomOpportunity__c&c__col=Name,TAG_Is_my_NAV_region__c,TAG_IA_Service_End__c,Createddate&c__id=001QI00000Zb8nHYAR&c__rf=Account__c&c__fv=Createddate<TODAY
+
+
 */
 
 import { LightningElement, api, wire } from 'lwc';
