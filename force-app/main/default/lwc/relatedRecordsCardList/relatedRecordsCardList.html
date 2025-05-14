@@ -1,11 +1,11 @@
 <template>
-    <template if:true={processedRecords}>
+    <template if:true={records}>
         <lightning-card>
             <lightning-layout multiple-rows>
-                <template for:each={processedRecords} for:item="record">
+                <template for:each={records} for:item="record">
                     <lightning-layout-item  key={record.id} size="12" medium-device-size="6" large-device-size="4"
                     padding="around-small">        
-                        <lightning-tile label={record.name} href="/path/to/somewhere" actions={actions}
+                        <lightning-tile label={record.title} href={record.recordUrl} actions={actions}
                         onactiontriggered={handleAction}>
                             <dl class="slds-list_horizontal slds-wrap">
                                 <template for:each={record.fields} for:item="field">

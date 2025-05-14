@@ -33,56 +33,44 @@ CustomOpportunity__c
 
 import { LightningElement, api, wire } from 'lwc';
 import { CurrentPageReference } from "lightning/navigation";
+import getConfig from '@salesforce/apex/RelatedListConfigFactory.getConfig';
+
 export default class RelatedRecordsPage extends LightningElement {
-   
     // private properties
     columns; // Fields to return from database
     objectApiName; // sObject API name on the related object. i.e. relatedObjectApiName = 'Contact';  
     filter; // Query filter
     relationField;  // Field API name on related object that contains reference ID to the parent
     parentRecordId;
-    
-    formFactor;
-   
+    isConfigLoaded = false; // Flag to track if config is loaded
 
     @wire(CurrentPageReference)
     setPageRef(pageRef) {
-
         this.objectApiName = pageRef?.state?.c__object;
         this.parentRecordId = pageRef?.state?.c__id;
         this.relationField = pageRef?.state?.c__rf;
-        this.filter=pageRef?.state?.c__fv; 
-        this.columns=pageRef?.state?.c__col; // Split the columns string into an array
-        this.formFactor = pageRef?.state?.c__size;  
-        if(!pageRef?.state?.c__size){
-            if (window.innerWidth <= 768) {
-                //this.formFactor  = 'small';
-             } else{
-                //this.formFactor  = 'large';
-             }
-        }  
+        this.filter = pageRef?.state?.c__fv;
     }
-
 
     connectedCallback() {
-        /*
-        console.log('RelatedRecordsPage connectedCallback');
-        this.configKey = this.currentPageRef.state.c__configKey;
-        this.parentRecordId = this.currentPageRef.state.c__parentRecordId;       
-        this.additionalFilter=this.currentPageRef.state.c__additionalFilter;        
-        if (!this.currentPageRef.state.c__isMobile) {
-            this.isMobile = window.innerWidth <= 768;
-        } else{
-            this.isMobile = this.currentPageRef.state.c__isMobile;
-        }        
-        if (this.configKey && this.parentRecordId) {           
-            this.loadConfig();
-        }       
-            */ 
+        if (this.objectApiName) {
+            this.getColumns();
+        }
     }
 
+    getColumns() {
+        getConfig({ objectApiName: this.objectApiName })
+            .then((data) => {
+                this.columns = data && data.length > 0 ? data : [];
+                this.isConfigLoaded = true; // Mark config as loaded
+                console.log('Columns returned:', JSON.stringify(this.columns));
+            })
+            .catch((error) => {
+                this.handleError('Error retrieving related records', error);
+            });
+    }
 
-    
-
-
+    handleError(message, error) {
+        console.error(`${message}:`, JSON.stringify(error));
+    }
 }

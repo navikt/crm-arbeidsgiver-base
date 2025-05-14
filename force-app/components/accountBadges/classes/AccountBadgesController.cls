@@ -282,7 +282,9 @@ public with sharing class AccountBadgesController {
         Map<String, Badge> badges = new Map<String, Badge>();
         if (activeOpportunities.size() >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ activeOpportunities.size() });
-            String url = getReportUrl('Muligheter_4WR', '&fv2=');
+           // String url = getReportUrl('Muligheter_4WR', '&fv2=');
+            
+             String url = getRelatedPageUrl(recordId, 'CustomOpportunity__c','Account__c', 'InclusionStage__c != \'Avsluttet\'');
             String badgeType = 'Muligheter';
             Badge badge = new Badge(label, helpText, url, badgeType);
             badges.put(label, badge);
@@ -301,10 +303,12 @@ public with sharing class AccountBadgesController {
                 String category = employerAgreement.TAG_Category__c.replaceAll('\\(.*\\)', '').trim();
                 category = category.startsWith('IA') ? category : category.toLowerCase();
                 String label = String.format(labelTemplate, new List<Object>{ employerAgreement.Region__c, category });
-                String url = getReportUrl(
-                    'Avtaler_Zsu',
-                    '&fv2=' + employerAgreement.TAG_Category__c + '&fv3=' + employerAgreement.Region__c + '&fv4='
-                );
+                String f = ' RecordType.DeveloperName = \'EmployerAgreement\'';
+        f += ' AND TAG_Status__c = \'Godkjent\'';
+        f += ' AND TAG_EndDate__c > TODAY';
+        f += ' AND TAG_StartDate__c <= TODAY';
+        f+= 'AND TAG_Category__c="'+employerAgreement.TAG_Category__c+'"';
+                String url = getRelatedPageUrl(recordId, 'Contract__c','TAG_Account__c', f);
                 String badgeType = 'Samarbeidsavtale';
                 Badge badge = new Badge(label, helpText, url, badgeType);
                 badges.put(label, badge);
@@ -323,11 +327,12 @@ public with sharing class AccountBadgesController {
             if (!String.isBlank(employerAgreement.TAG_Type_Partner__c)) {
                 String label = String.format(labelTemplate, new List<Object>{ employerAgreement.TAG_Type_Partner__c });
                 label = label.toLowerCase().capitalize();
-                String url = getReportUrl(
-                    'Avtaler_Zsu',
-                    '&fv2=' + '&fv3=' + '&fv4=' + employerAgreement.TAG_Type_Partner__c
-                );
-
+                String f = ' RecordType.DeveloperName = \'EmployerAgreement\'';
+        f += ' AND TAG_Status__c = \'Godkjent\'';
+        f += ' AND TAG_EndDate__c > TODAY';
+        f += ' AND TAG_StartDate__c <= TODAY';
+        f+= 'AND TAG_Type_Partner__c="'+employerAgreement.TAG_Type_Partner__c+'"';
+                String url = getRelatedPageUrl(recordId, 'Contract__c','TAG_Account__c', f);
                 // '/lightning/r/Report/' + reportId + '/view?fv0=' + recordId + filters;
                 String badgeType = 'Partnerstatus';
                 Badge badge = new Badge(label, helpText, url, badgeType);
@@ -346,7 +351,7 @@ public with sharing class AccountBadgesController {
         if (jobPostings.size() >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ jobPostings.size() });
             //String url = getReportUrl('Stillinger_adu', '&fv2=');
-            String url = getRelatedPageUrl(recordId, 'JobPosting__c', 'Status__c="ACTIVE"');
+            String url = getRelatedPageUrl(recordId, 'JobPosting__c','Account__c', 'Status__c="ACTIVE"');
             String badgeType = 'Stillinger';
             Badge badge = new Badge(label, helpText, url, badgeType);
             badges.put(label, badge);
@@ -378,7 +383,9 @@ public with sharing class AccountBadgesController {
         Map<String, Badge> badges = new Map<String, Badge>();
         if (workfares.size() >= 1) {
             String label = String.format(labelTemplate, new List<Object>{ workfares.size() });
-            String url = getReportUrl('Aktive_tiltak_tilknyttet_arbeidsgiver', '&fv2=');
+           // String url = getReportUrl('Aktive_tiltak_tilknyttet_arbeidsgiver', '&fv2=');
+          
+             String url = getRelatedPageUrl(recordId, 'Workfare__c', 'Account__c', 'Status__c = \'GJENNOMFØRES\'');
             String badgeType = 'Tiltak';
             Badge badge = new Badge(label, helpText, url, badgeType);
             badges.put(label, badge);
@@ -437,12 +444,13 @@ public with sharing class AccountBadgesController {
         }
     }
 
-    private static String getRelatedPageUrl(Id recordId, String objectName, String filters){
+    private static String getRelatedPageUrl(Id recordId, String objectName,String field, String filters){
         String url;
        // String sfdcBaseURL = URL.getOrgDomainURL().toExternalForm();
         String pageUrl = '/lightning/cmp/c__relatedRecordsPage';
         String params = '?c__object=' + EncodingUtil.urlEncode(objectName, 'UTF-8');
         params += '&c__id=' + EncodingUtil.urlEncode(recordId, 'UTF-8');
+        params += '&c__rf=' + EncodingUtil.urlEncode(field, 'UTF-8');
         if (!String.isEmpty(filters)) {
             params += '&c__fv=' + EncodingUtil.urlEncode(filters, 'UTF-8');
         }

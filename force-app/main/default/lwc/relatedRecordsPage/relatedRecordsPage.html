@@ -17,11 +17,13 @@
             <dd  class="slds-item_detail slds-truncate" title={relationField}>{relationField}</dd>
         </dl>  
     </article>
+    <template if:true={isConfigLoaded}>
     <c-related-records-container
         columns={columns}
         parent-id={parentRecordId}
         filter={filter}
         object-api-name={objectApiName}
         relation-field={relationField}
-        ></c-related-records-container>         
+        ></c-related-records-container>    
+        </template>     
 </template>

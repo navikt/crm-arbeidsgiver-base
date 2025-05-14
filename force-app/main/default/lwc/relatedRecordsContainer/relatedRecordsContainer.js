@@ -6,10 +6,10 @@ export default class RelatedRecordsContainer extends LightningElement {
     @api filter;
     @api relationField;
     @api parentId;
-    @api formFactor; // Small, Medium, Large
     
-    @api parentRelationField;
-    @api parentObjectApiName;
+    
+    
+     // Small, Medium, Large
     get isMobile(){
         if(this.formFactor){return this.formFactor;}
         return window.innerWidth <= 768; // Initialize directly
@@ -17,10 +17,7 @@ export default class RelatedRecordsContainer extends LightningElement {
 
     records = [];
     error;
-   
-   //@api columnsConfig;
-    objectInfo;
-    isObjectInfoLoaded = false;
+
 
     // Lifecycle method to handle initialization
     connectedCallback() {
