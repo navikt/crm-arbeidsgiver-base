@@ -56,16 +56,7 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Arbeidsgiver beta</label>
     <navType>Standard</navType>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>HomePage_BetaApp</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Arbeidsgiver_beta_UtilityBar1</utilityBar>
 </CustomApplication>
