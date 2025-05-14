@@ -3,31 +3,8 @@ Use this component to display related records in a Lightning Web Component (LWC)
  * This component fetches related records based on the provided configuration
  * and displays them in a responsive data table format.
  *
- * @component
- * @example
- * <c-related-records-page></c-related-records-page>
- * 
- * Example: Navigation til component and set parameters:
- Bruk i LWC: Ved navigasjon:
-this[NavigationMixin.Navigate]({
-  type: 'standard__component',
-  attributes: {
-    componentName: 'c__relatedRecordPage'
-  },
-  state: {
-    c__configKey: 'AccountContract',
-    c__additionalFilter: 'TAG_Type_Partner__c = \'Strategisk Partner\'',
-    c__parentRecordId: '001RR00000bhWZ8YAM',
-    c__isMobile: true
-  }
-});
-
-https://energy-customization-5209.scratch.lightning.force.com
-/lightning/cmp/c__relatedRecordsPage?c__object=JobPosting__c&c__col=Name,Is_My_Region__c,Createddate&c__id=001QI00000Zb8nHYAR&c__rf=Account__c&c__fv=Status__c%3D%22ACTIVE%22
-
 CustomOpportunity__c
 /lightning/cmp/c__relatedRecordsPage?c__object=CustomOpportunity__c&c__col=Name,TAG_Is_my_NAV_region__c,TAG_IA_Service_End__c,Createddate&c__id=001QI00000Zb8nHYAR&c__rf=Account__c&c__fv=Createddate<TODAY
-
 
 */
 
