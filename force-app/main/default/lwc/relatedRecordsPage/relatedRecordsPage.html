@@ -1,4 +1,59 @@
 <template>
+    
+    <article class="slds-card">
+        <!-- Header -->
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name={iconName} alternative-text="Listeikon" size="small"></lightning-icon>
+                </div>
+               
+                 
+                <div class="slds-media__body">
+                    <div>
+            <lightning-breadcrumbs>
+                <lightning-breadcrumb
+                    label="Parent Account"
+                    href="http://example.com/parent">
+                </lightning-breadcrumb>
+                <lightning-breadcrumb
+                    label="Case"
+                    href="http://example.com/case">
+                </lightning-breadcrumb>
+            </lightning-breadcrumbs>
+        </div>
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small">{cardTitle}</span>
+                    </h2>
+                </div>
+            </header>
+
+            <!-- Høyre side: "View All" eller annen knapp -->
+            <div class="slds-no-flex">
+                <lightning-button
+                    variant="base"
+                    label="Vis alle"
+                    title="Vis alle"
+                    onclick={handleViewAll}
+                    class="slds-button slds-button_neutral">
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Body content her -->
+        <div class="slds-card__body slds-card__body_inner">
+            <template if:true={isConfigLoaded}>
+                <c-related-records-container
+                    columns={columns}
+                    parent-id={parentRecordId}
+                    filter={filter}
+                    object-api-name={objectApiName}
+                    relation-field={relationField}
+                    ></c-related-records-container>    
+            </template>   
+        </div>
+    </article>
+   
     <article class="slds-card slds-card_boundary slds-m-around_xx-small">
         <dl class="slds-list_horizontal slds-wrap">
             <dt  class="slds-item_label slds-text-color_weak slds-truncate" title="columns">columns: </dt>
@@ -17,13 +72,5 @@
             <dd  class="slds-item_detail slds-truncate" title={relationField}>{relationField}</dd>
         </dl>  
     </article>
-    <template if:true={isConfigLoaded}>
-    <c-related-records-container
-        columns={columns}
-        parent-id={parentRecordId}
-        filter={filter}
-        object-api-name={objectApiName}
-        relation-field={relationField}
-        ></c-related-records-container>    
-        </template>     
+     
 </template>

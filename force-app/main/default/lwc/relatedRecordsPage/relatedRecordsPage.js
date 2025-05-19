@@ -11,6 +11,8 @@ CustomOpportunity__c
 import { LightningElement, api, wire } from 'lwc';
 import { CurrentPageReference } from "lightning/navigation";
 import getConfig from '@salesforce/apex/RelatedListConfigFactory.getConfig';
+import getObjectIcon from '@salesforce/apex/RelatedListConfigFactory.getObjectIcon';
+import getTitle from '@salesforce/apex/RelatedListConfigFactory.getTitle';
 
 export default class RelatedRecordsPage extends LightningElement {
     // private properties
@@ -20,6 +22,9 @@ export default class RelatedRecordsPage extends LightningElement {
     relationField;  // Field API name on related object that contains reference ID to the parent
     parentRecordId;
     isConfigLoaded = false; // Flag to track if config is loaded
+
+    iconName; // Icon for the related object
+    cardTitle;
 
     @wire(CurrentPageReference)
     setPageRef(pageRef) {
@@ -32,15 +37,40 @@ export default class RelatedRecordsPage extends LightningElement {
     connectedCallback() {
         if (this.objectApiName) {
             this.getColumns();
+            this.getIcon();
+            this.getCardTitle();
         }
     }
 
+   
     getColumns() {
         getConfig({ objectApiName: this.objectApiName })
             .then((data) => {
                 this.columns = data && data.length > 0 ? data : [];
                 this.isConfigLoaded = true; // Mark config as loaded
                 console.log('Columns returned:', JSON.stringify(this.columns));
+            })
+            .catch((error) => {
+                this.handleError('Error retrieving related records', error);
+            });
+    }
+
+    getIcon() {
+        getObjectIcon({ objectApiName: this.objectApiName })
+            .then((data) => {
+                this.iconName = data && data.length > 0 ? data : [];               
+                console.log('Icon returned:', JSON.stringify(this.iconName));
+            })
+            .catch((error) => {
+                this.handleError('Error retrieving related records', error);
+            });
+    }
+
+    getCardTitle() {
+        getTitle({ objectApiName: this.objectApiName })
+            .then((data) => {
+                this.cardTitle = data && data.length > 0 ? data : [];               
+                console.log('Title returned:', JSON.stringify(this.cardTitle));
             })
             .catch((error) => {
                 this.handleError('Error retrieving related records', error);

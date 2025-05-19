@@ -11,13 +11,59 @@ public class RelatedListConfigFactory {
         // ...more
     };
     
+    @TestVisible private static final Map<String, String> ICONS = new Map<String, String>{
+        'Contact' => 'standard:contact',
+        'AccountTeamMember'    => 'standard:team_member',
+        'Contract__c'    => 'standard:form',
+        'JobPosting__c' => 'custom:custom27',
+        'CustomOpportunity__c' => 'custom:custom14'
+        
+        // ...more
+    };
+
+
+    @TestVisible private static final Map<String, String> TITLE = new Map<String, String>{
+        'Contact' => 'standard:contact',
+        'AccountTeamMember'    => 'standard:team_member',
+        'Contract__c'    => 'standard:form',
+        'JobPosting__c' => 'custom:custom27',
+        'CustomOpportunity__c' => 'custom:custom14'
+        
+        // ...more
+    };
+
+
     @AuraEnabled
     public static string getConfig(String objectApiName){
         try {
             if (!CONFIGS.containsKey(objectApiName)) {
-                throw new AuraHandledException('Unknown config key: ' + objectApiName);
+                throw new AuraHandledException('Unknown object name: ' + objectApiName);
             }
             return CONFIGS.get(objectApiName);            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static string getObjectIcon(String objectApiName){
+        try {
+            if (!ICONS.containsKey(objectApiName)) {
+                throw new AuraHandledException('Unknown object name: ' + objectApiName);
+            }
+            return ICONS.get(objectApiName);            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static string getTitle(String objectApiName){
+        try {
+            if (!TITLE.containsKey(objectApiName)) {
+                throw new AuraHandledException('Unknown object name: ' + objectApiName);
+            }
+            return TITLE.get(objectApiName);            
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
