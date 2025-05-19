@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_EndDate__c</fullName>
-    <externalId>false</externalId>
+    <defaultValue>ADDMONTHS( TODAY(), 12)</defaultValue>
+    <deprecated>false</deprecated>
+    <inlineHelpText>Datoen avtalen forfaller. Kan settes maks 12 måneder frem i tid.</inlineHelpText>
     <label>End Date</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
