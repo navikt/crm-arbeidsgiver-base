@@ -55,6 +55,21 @@
                 <default>false</default>
                 <label>Sommerjobb</label>
             </value>
+            <value>
+                <fullName>Marked-samarbeid</fullName>
+                <default>false</default>
+                <label>Marked-samarbeid</label>
+            </value>
+            <value>
+                <fullName>IA-samarbeid</fullName>
+                <default>false</default>
+                <label>IA-samarbeid</label>
+            </value>
+            <value>
+                <fullName>Strategisk partneravtale</fullName>
+                <default>false</default>
+                <label>Strategisk partneravtale</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
