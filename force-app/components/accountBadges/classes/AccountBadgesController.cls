@@ -7,6 +7,14 @@ public with sharing class AccountBadgesController {
     private static Id recordId;
     private static Map<String, String> reportIdMap;
 
+    private static Map<String, String> queryMap = new Map<String, String>{
+        'Account' => 'SELECT Id, Name, NumberOfWorkfare__c FROM Account WHERE Id = :accountId',
+        'CustomOpportunity__c' => 'SELECT Id, InquiryCategory__c, InclusionStage__c FROM CustomOpportunity__c WHERE InclusionStage__c != \'Avsluttet\' AND Account__c = :accountId',
+        'Contract__c' => 'SELECT Id, TAG_Category__c FROM Contract__c WHERE RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Account__c = :accountId',
+        'JobPosting__c' => 'SELECT Id, Status__c FROM JobPosting__c WHERE Status__c = \'ACTIVE\' AND Account__c = :accountId',
+        'IACooperation__c' => 'SELECT Id, Status__c, IACase__c FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND Account__c = :accountId AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))',
+        'Workfare__c' => 'SELECT Id, Status__c FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId'
+    };
     /**
      * @description Creates badges for a given account based on its fields and related records.
      * @param accountId The Id of the Account for which to create badges.
@@ -17,21 +25,22 @@ public with sharing class AccountBadgesController {
         recordId = accountId;
         List<Badge> accountBadges = new List<Badge>();
         try {
-            /*Account account = fetchAccount(accountId);
-            if (account == null) {
-                return new List<Badge>();
-            }*/
-            List<Contract__c> employerAgreements = fetchEmployerAgreements(accountId);
-            List<CustomOpportunity__c> employerOpportunities = fetchOpportunities(accountId);
-            List<JobPosting__c> employerJobPostings = fetchJobPostings(accountId);
-            List<IACooperation__c> employerIACooperations = fetchIACooperations(accountId);
-            List<Workfare__c> employerWorkfares = fetchWorkfares(accountId);
-            addContractBadges(accountBadges, employerAgreements);
-            //addAccountBadges(accountBadges, account);
-            addOpportunityBadges(accountBadges, employerOpportunities);
-            addJobPostingBadges(accountBadges, employerJobPostings);
-            addIACooperationBadges(accountBadges, employerIACooperations);
-            addWorkfareBadges(accountBadges, employerWorkfares);
+            List<Contract__c> employerAgreements = (List<Contract__c>) fetchRecords(accountId, 'Contract__c');
+            List<CustomOpportunity__c> employerOpportunities = (List<CustomOpportunity__c>) fetchRecords(
+                accountId,
+                'CustomOpportunity__c'
+            );
+            List<JobPosting__c> employerJobPostings = (List<JobPosting__c>) fetchRecords(accountId, 'JobPosting__c');
+            List<IACooperation__c> employerIACooperations = (List<IACooperation__c>) fetchRecords(
+                accountId,
+                'IACooperation__c'
+            );
+            List<Workfare__c> employerWorkfares = (List<Workfare__c>) fetchRecords(accountId, 'Workfare__c');
+
+            accountBadges.addAll(createPartnerTypeBadge(employerAgreements, employerIACooperations));
+            accountBadges.addAll(createOpportunityCountBadge(employerOpportunities));
+            accountBadges.addAll(createJobPostingBadge(employerJobPostings));
+            accountBadges.addAll(createWorkfareBadge(employerWorkfares));
         } catch (Exception e) {
             logError(accountId, e);
             return new List<Badge>();
@@ -40,204 +49,21 @@ public with sharing class AccountBadgesController {
     }
 
     /**
-     * @description Fetches an Account record.
-     * @param accountId The Id of the Account to fetch.
-     * @return The Account record.
+     * @description Fetches records of a given object type for a specific account.
+     * @param accountId The Id of the Account to fetch records for.
+     * @param objectName The name of the object to fetch records from.
+     * @return A list of records of the specified object type.
      */
-    private static Account fetchAccount(Id accountId) {
-        if (!Schema.sObjectType.Account.isAccessible()) {
-            return null;
+    private static List<sObject> fetchRecords(Id accountId, String objectName) {
+        String query = queryMap.get(objectName);
+        List<sObject> queryResult = new List<sObject>();
+        try {
+            queryResult = Database.query(query, AccessLevel.USER_MODE);
+            return queryResult;
+        } catch (QueryException e) {
+            logError(accountId, e);
+            return new List<sObject>();
         }
-        String query = 'SELECT Id';
-        if (Schema.sObjectType.Account.fields.NumberOfWorkfare__c.isAccessible()) {
-            query += ',NumberOfWorkfare__c';
-        }
-        query += ' FROM Account WHERE Id = :accountId AND IsPersonAccount = FALSE';
-        List<Account> accounts = Database.query(query);
-        if (accounts.isEmpty()) {
-            return null;
-        } else {
-            return accounts[0];
-        }
-    }
-    /**
-     * @description Fetches CustomOpportunity__c records.
-     * @param accountId The Id of the Account to fetch opportunities for.
-     * @return List of CustomOpportunity__c records.
-     */
-    private static List<CustomOpportunity__c> fetchOpportunities(Id accountId) {
-        if (!Schema.sObjectType.CustomOpportunity__c.isAccessible()) {
-            return new List<CustomOpportunity__c>();
-        }
-        String query = 'SELECT Id';
-        if (Schema.sObjectType.CustomOpportunity__c.fields.InquiryCategory__c.isAccessible()) {
-            query += ',InquiryCategory__c';
-        }
-        if (Schema.sObjectType.CustomOpportunity__c.fields.InclusionStage__c.isAccessible()) {
-            query += ',InclusionStage__c';
-        }
-        query += ' FROM CustomOpportunity__c WHERE InclusionStage__c != \'Avsluttet\' AND Account__c = :accountId';
-        List<CustomOpportunity__c> opportunities = Database.query(query);
-        return opportunities;
-    }
-
-    /**
-     * @description Fetches Contract records.
-     * @param accountId The Id of the Account to fetch contracts for.
-     * @return List of Contract__c records.
-     */
-    private static List<Contract__c> fetchEmployerAgreements(Id accountId) {
-        if (!Schema.sObjectType.Contract__c.isAccessible()) {
-            return new List<Contract__c>();
-        }
-        String query = 'SELECT Id';
-        if (Schema.sObjectType.Contract__c.fields.Region__c.isAccessible()) {
-            query += ',Region__c';
-        }
-        if (Schema.sObjectType.Contract__c.fields.TAG_Category__c.isAccessible()) {
-            query += ',TAG_Category__c';
-        }
-        if (Schema.sObjectType.Contract__c.fields.TAG_Type_Partner__c.isAccessible()) {
-            query += ',TAG_Type_Partner__c';
-        }
-        query += ' FROM Contract__c WHERE';
-        query += ' RecordType.DeveloperName = \'EmployerAgreement\'';
-        query += ' AND TAG_Status__c = \'Godkjent\'';
-        query += ' AND TAG_EndDate__c > TODAY';
-        query += ' AND TAG_StartDate__c <= TODAY';
-        query += ' AND TAG_Account__c = :accountId';
-
-        List<Contract__c> contracts = Database.query(query);
-        return contracts;
-    }
-
-     /**
-     * @description Fetches JobPosting__c records.
-     * @param accountId The Id of the Account to fetch jobpostings for.
-     * @return List of JobPosting__c records.
-     */
-    private static List<JobPosting__c> fetchJobPostings(Id accountId) {
-        if (!Schema.sObjectType.JobPosting__c.isAccessible()) {
-            return new List<JobPosting__c>();
-        }
-        String query = 'SELECT Id';
-        if (Schema.sObjectType.JobPosting__c.fields.Status__c.isAccessible()) {
-            query += ',Status__c';
-        }
-        query += ' FROM JobPosting__c WHERE Status__c = \'ACTIVE\' AND Account__c = :accountId';
-        List<JobPosting__c> jobPostings = Database.query(query);
-        return jobPostings;
-    }
-
-    /**
-     * @description Fetches IACooperation__c records.
-     * @param accountId The Id of the Account to fetch IA cooperations for.
-     * @return List of IACooperation__c records.
-     */
-    private static List<IACooperation__c> fetchIACooperations(Id accountId) {
-        if (!Schema.sObjectType.IACooperation__c.isAccessible()) {
-            return new List<IACooperation__c>();
-        }
-        String query = 'SELECT Id';
-        if (Schema.sObjectType.IACooperation__c.fields.Status__c.isAccessible()) {
-            query += ',Status__c';
-        }
-        if (Schema.sObjectType.IACooperation__c.fields.IACase__c.isAccessible()) {
-            query += ',IACase__c';
-        }
-        // Temporary filter on IA Case since implementation of cooperation status is incomplete
-        String activeIaCaseFilter = '(IACase__r.CaseStatus__c =\'NY\' OR IACase__r.CaseStatus__c =\'VURDERES\' OR IACase__r.CaseStatus__c =\'KONTAKTES\' OR IACase__r.CaseStatus__c =\'KARTLEGGES\' OR IACase__r.CaseStatus__c =\'VI_BISTÅR\')';
-        query +=
-            ' FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND ' +
-            activeIaCaseFilter +
-            ' AND Account__c = :accountId';
-        List<IACooperation__c> iaCooperations = Database.query(query);
-        return iaCooperations;
-    }
-
-       /**
-     * @description Fetches Workfare__c records.
-     * @param accountId The Id of the Account to fetch workfares for.
-     * @return List of Workfare__c records.
-     */
-    private static List<Workfare__c> fetchWorkfares(Id accountId) {
-        if (!Schema.sObjectType.Workfare__c.isAccessible()) {
-            return new List<Workfare__c>();
-        }
-        String query = 'SELECT Id';
-        if (Schema.sObjectType.Workfare__c.fields.Status__c.isAccessible()) {
-            query += ',Status__c';
-        }
-        query += ' FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId';
-        List<Workfare__c> workfares = Database.query(query);
-        return workfares;
-    }
-
-    /**
-     * @description Adds badges to the accountBadges list based on the Account fields.
-     * @param accountBadges The list of badges to add to.
-     * @param account The Account record to evaluate.
-     */
-    private static void addAccountBadges(List<Badge> accountBadges, Account account) {
-        accountBadges.addAll(createNumberOfWorkfareBadge(account));
-    }
-
-    /**
-     * @description Adds badges to the accountBadges list based on the related CustomOpportunity__c records.
-     * @param accountBadges The list of badges to add to.
-     * @param activeOpportunities The related CustomOpportunity__c records to evaluate.
-     */
-    private static void addOpportunityBadges(
-        List<Badge> accountBadges,
-        List<CustomOpportunity__c> activeOpportunities
-    ) {
-        accountBadges.addAll(createOpportunityCountBadge(activeOpportunities));
-    }
-
-    /**
-     * @description Adds badges to the accountBadges list based on the related Contract__c records.
-     * @param accountBadges The list of badges to add to.
-     * @param employerAgreements The related Contract__c records to evaluate.
-     */
-    private static void addContractBadges(List<Badge> accountBadges, List<Contract__c> employerAgreements) {
-        accountBadges.addAll(createAgreementBadges(employerAgreements));
-        accountBadges.addAll(createPartnerTypeBadge(employerAgreements));
-    }
-
-    /**
-     * @description Adds badges to the accountBadges list based on the related JobPosting__c records.
-     * @param accountBadges The list of badges to add to.
-     * @param jobPostings The related JobPosting__c records to evaluate.
-     */
-    private static void addJobPostingBadges(
-        List<Badge> accountBadges,
-        List<JobPosting__c> jobPostings
-    ) {
-        accountBadges.addAll(createJobPostingBadge(jobPostings));
-    }
-
-    /**
-     * @description Adds badges to the accountBadges list based on the related IACooperation__c records.
-     * @param accountBadges The list of badges to add to.
-     * @param iaCooperations The related IACooperation__c records to evaluate.
-     */
-    private static void addIACooperationBadges(
-        List<Badge> accountBadges,
-        List<IACooperation__c> iaCooperations
-    ) {
-        accountBadges.addAll(createIACooperationBadge(iaCooperations));
-    }
-
-       /**
-     * @description Adds badges to the accountBadges list based on the related Workfare__c records.
-     * @param accountBadges The list of badges to add to.
-     * @param workfares The related Workfare__c records to evaluate.
-     */
-    private static void addWorkfareBadges(
-        List<Badge> accountBadges,
-        List<Workfare__c> workfares
-    ) {
-        accountBadges.addAll(createWorkfareBadge(workfares));
     }
 
     /**
@@ -259,6 +85,7 @@ public with sharing class AccountBadgesController {
     }
 
     // Static methods to create specific badges
+
     // Creates badge for Aktive tiltak.
     private static List<Badge> createNumberOfWorkfareBadge(Account account) {
         String labelTemplate = 'Aktive tiltak({0})';
@@ -314,20 +141,53 @@ public with sharing class AccountBadgesController {
     }
 
     // Creates badge for partner status. Display badge for each partner type.
+    /* TAG_Category__c
+     * IA-samarbeid - enten avtale eller samarbeid
+     * Strategisk partner - har strategisk partneravtale
+     * Marked-samarbeid - har avtale med tilsvarende kategori
+     */
     // Links to report Avtaler_Zsu with filter order: AccountId (fv0), Recordtype(fv1), TAG_Category__c(fv2), Region__c(fv3), TAG_Type_Partner__c(fv4)
-    private static List<Badge> createPartnerTypeBadge(List<Contract__c> employerAgreements) {
-        String labelTemplate = '{0}';
-        String helpText = 'Denne bedriftens partnerstatus basert på aktive avtaler.';
+    private static List<Badge> createPartnerTypeBadge(
+        List<Contract__c> employerAgreements,
+        List<IACooperation__c> iaCooperations
+    ) {
+        String helpText = 'Denne bedriftens partnerstatus basert på aktive avtaler og IA-samarbeid.';
         Map<String, Badge> badges = new Map<String, Badge>();
-        for (Contract__c employerAgreement : employerAgreements) {
-            if (!String.isBlank(employerAgreement.TAG_Type_Partner__c)) {
-                String label = String.format(labelTemplate, new List<Object>{ employerAgreement.TAG_Type_Partner__c });
-                label = label.toLowerCase().capitalize();
-                String url = getReportUrl(
-                    'Avtaler_Zsu',
-                    '&fv2=' + '&fv3=' + '&fv4=' + employerAgreement.TAG_Type_Partner__c
-                );
-                String badgeType = 'Partnerstatus';
+
+        Set<String> partnerStatuses = new Set<String>();
+        for (Contract__c con : employerAgreements) {
+            if (!String.isBlank(con.TAG_Category__c)) {
+                partnerStatuses.add(con.TAG_Category__c);
+            }
+        }
+
+        // Check if there are any IA cooperations and add IA cooperation badge if so
+        if (iaCooperations.size() >= 1) {
+            String label = 'IA-samarbeid';
+            // Links to IA Case lightning page
+            String url = '/lightning/r/IACase__c/' + iaCooperations[0].IACase__c + '/view';
+            String badgeType = 'IA-samarbeid';
+            Badge badge = new Badge(label, helpText, url, badgeType);
+            badges.put(label, badge);
+        }
+        // Create badges for Contracts
+        for (String value : partnerStatuses) {
+            if (value == 'IA-samarbeid' && !badges.containsKey('IA-samarbeid')) {
+                String label = 'IA-samarbeid';
+                String url = getReportUrl('Avtaler_Zsu', '&fv2=' + value);
+                String badgeType = 'IA-samarbeid';
+                Badge badge = new Badge(label, helpText, url, badgeType);
+                badges.put(label, badge);
+            } else if (value == 'Strategisk partner' && !badges.containsKey('Strategisk partner')) {
+                String label = 'Strategisk partner';
+                String url = getReportUrl('Avtaler_Zsu', '&fv2=' + value);
+                String badgeType = 'Strategisk partner';
+                Badge badge = new Badge(label, helpText, url, badgeType);
+                badges.put(label, badge);
+            } else if (value == 'Marked-samarbeid' && !badges.containsKey('Marked-samarbeid')) {
+                String label = 'Marked-samarbeid';
+                String url = getReportUrl('Avtaler_Zsu', '&fv2=' + value);
+                String badgeType = 'Marked-samarbeid';
                 Badge badge = new Badge(label, helpText, url, badgeType);
                 badges.put(label, badge);
             }
@@ -351,22 +211,6 @@ public with sharing class AccountBadgesController {
         return badges.values();
     }
 
-    // Creates badge for IA cooperations at employer.
-    // Links to IA Case lightning page 
-    private static List<Badge> createIACooperationBadge(List<IACooperation__c> iaCooperations) {
-        String labelTemplate = 'IA-samarbeid({0})';
-        String helpText = 'Antall aktive IA-samarbeid for denne bedriften.';
-        Map<String, Badge> badges = new Map<String, Badge>();
-        if (iaCooperations.size() >= 1) {
-            String label = String.format(labelTemplate, new List<Object>{ iaCooperations.size() });
-            String url = '/lightning/r/IACase__c/' + iaCooperations[0].IACase__c + '/view';
-            String badgeType = 'IA-samarbeid';
-            Badge badge = new Badge(label, helpText, url, badgeType);
-            badges.put(label, badge);
-        }
-        return badges.values();
-    }
-
     // Creates badge for workfare at employer.
     // Links to report Tiltak_adu with filter order: AccountId (fv0)
     private static List<Badge> createWorkfareBadge(List<Workfare__c> workfares) {
@@ -383,6 +227,8 @@ public with sharing class AccountBadgesController {
         return badges.values();
     }
 
+    // Helper methods
+    // Returns report URL with filters
     private static string getReportUrl(String reportDeveloperName, String filters) {
         String reportId = getReportId(reportDeveloperName);
         if (String.isEmpty(reportId)) {
@@ -390,7 +236,7 @@ public with sharing class AccountBadgesController {
         }
         return '/lightning/r/Report/' + reportId + '/view?fv0=' + recordId + filters;
     }
-
+    // Returns report Id from static map or queries report records
     private static string getReportId(String reportDeveloperName) {
         // Return from static map if exist
         if (reportIdMap != null && !String.isEmpty(reportIdMap.get(reportDeveloperName))) {
