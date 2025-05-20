@@ -3,6 +3,7 @@
     <fullName>TAG_StartDate__c</fullName>
     <defaultValue>TODAY()</defaultValue>
     <deprecated>false</deprecated>
+    <inlineHelpText>Angir startdatoen for avtalen. Velg eller skriv inn datoen, eks.  &quot;01.05.2025&quot;.</inlineHelpText>
     <label>Start Date</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

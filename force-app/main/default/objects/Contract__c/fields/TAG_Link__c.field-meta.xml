@@ -3,8 +3,9 @@
     <fullName>TAG_Link__c</fullName>
     <description>Viser link til stilling. Brukes i stedet for auto number i related lists etc.</description>
     <externalId>false</externalId>
-    <formula>HYPERLINK(&quot;/lightning/r/&quot;+Id+&quot;/view&quot;, TEXT(TAG_Category__c)+ &quot;-&quot;+ TAG_Account__r.Name, &quot;_self&quot;)</formula>
+    <formula>HYPERLINK(&quot;/lightning/r/&quot;+Id+&quot;/view&quot;, TEXT(TAG_Category__c)+ &quot; - &quot;+ TAG_Account__r.Name, &quot;_self&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Angir navnet på avtalen.</inlineHelpText>
     <label>Contract Title</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
