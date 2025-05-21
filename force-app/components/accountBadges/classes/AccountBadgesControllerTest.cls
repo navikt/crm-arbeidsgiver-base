@@ -22,7 +22,6 @@ private class AccountBadgesControllerTest {
                     Name = 'TestAccount0',
                     INT_OrganizationNumber__c = '9000000001',
                     INT_MunicipalityNumber__c = '3301',
-                    NumberOfWorkfare__c = 5,
                     OwnerId = arbeidsgiverUser.id
                 )
             );
@@ -31,8 +30,6 @@ private class AccountBadgesControllerTest {
                     Name = 'TestAccount1',
                     INT_OrganizationNumber__c = '9000000002',
                     INT_MunicipalityNumber__c = '3301',
-                    TAG_Partner_Status__c = null,
-                    NumberOfWorkfare__c = 0,
                     OwnerId = arbeidsgiverUser.id
                 )
             );
@@ -74,7 +71,6 @@ private class AccountBadgesControllerTest {
                     TAG_StartDate__c = Date.today(),
                     TAG_EndDate__c = Date.today().addDays(30),
                     TAG_Status__c = 'Godkjent',
-                    Region__c = 'Regional',
                     TAG_Type_Partner__c = 'Strategisk Partner',
                     RecordTypeId = Schema.SObjectType.Contract__c.getRecordTypeInfosByDeveloperName()
                         .get('EmployerAgreement')
@@ -155,6 +151,37 @@ private class AccountBadgesControllerTest {
             );
             insert negativeAccessUserAccounts;
         }
+    }
+
+    @isTest
+    static void fetch_records_with_valid_parameters() {
+        //List<sObject> fetchRecords(Id accountId, String objectName)
+        Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
+        List<sObject> result = AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+        Assert.isNotNull(result, 'Result should not be null');
+        Assert.isTrue(result.size() == 1, 'Result should contain records');
+        Assert.isInstanceOfType(result[0], Workfare__c.class, 'Result should be of type Workfare__c');
+    }
+
+    @isTest
+    static void fetch_records_when_no_records_exists() {
+        //List<sObject> fetchRecords(Id accountId, String objectName)
+        Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount1' LIMIT 1];
+        List<sObject> result = AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+        Assert.isTrue(result.size() == 0, 'Result should not contain records');
+    }
+    
+    @isTest
+    static void fetch_records_when_no_access(){            	
+        Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
+        User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
+        List<Workfare__c> employerWorkfares;
+        System.runAs(user) {            
+            Test.startTest();
+            employerWorkfares = (List<Workfare__c>)AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+            Test.stopTest();
+        }
+        Assert.isTrue(employerWorkfares.size() == 0, 'Result should not contain records');
     }
 
     @isTest

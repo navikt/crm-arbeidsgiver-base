@@ -7,7 +7,8 @@ public with sharing class AccountBadgesController {
     private static Id recordId;
     private static Map<String, String> reportIdMap;
 
-    private static Map<String, String> queryMap = new Map<String, String>{
+    @TestVisible
+    private static final Map<String, String> QUERY_MAP = new Map<String, String>{
         'Account' => 'SELECT Id, Name, NumberOfWorkfare__c FROM Account WHERE Id = :accountId',
         'CustomOpportunity__c' => 'SELECT Id, InquiryCategory__c, InclusionStage__c FROM CustomOpportunity__c WHERE InclusionStage__c != \'Avsluttet\' AND Account__c = :accountId',
         'Contract__c' => 'SELECT Id, TAG_Category__c FROM Contract__c WHERE RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Account__c = :accountId',
@@ -54,8 +55,9 @@ public with sharing class AccountBadgesController {
      * @param objectName The name of the object to fetch records from.
      * @return A list of records of the specified object type.
      */
+    @TestVisible
     private static List<sObject> fetchRecords(Id accountId, String objectName) {
-        String query = queryMap.get(objectName);
+        String query = QUERY_MAP.get(objectName);
         List<sObject> queryResult = new List<sObject>();
         try {
             queryResult = Database.query(query, AccessLevel.USER_MODE);
@@ -84,37 +86,49 @@ public with sharing class AccountBadgesController {
         LOGGER.publish();
     }
 
-    // Static methods to create specific badges
-
-    // Creates badge for Aktive tiltak.
-    private static List<Badge> createNumberOfWorkfareBadge(Account account) {
-        String labelTemplate = 'Aktive tiltak({0})';
-        String helpText = accountFields.get('NumberOfWorkfare__c').getDescribe().getInlineHelpText();
-        Map<String, Badge> badges = new Map<String, Badge>();
-        if (account.NumberOfWorkfare__c >= 1) {
-            String label = String.format(labelTemplate, new List<Object>{ account.NumberOfWorkfare__c });
-            String url = getReportUrl('Aktive_Tiltaksavtaler_per_Virksomhet', '');
-            String badgeType = 'Tiltak';
-            Badge badge = new Badge(label, helpText, url, badgeType);
-            badges.put(label, badge);
+    // Centralized badge config
+    private static final Map<String, Map<String, String>> BADGE_CONFIG = new Map<String, Map<String, String>>{
+        'Muligheter' => new Map<String, String>{
+            'labelTemplate' => 'Muligheter({0})',
+            'helpText' => 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".',
+            'reportName' => 'Muligheter_4WR',
+            'badgeType' => 'Muligheter'
+        },
+        'Stillinger' => new Map<String, String>{
+            'labelTemplate' => 'Stillinger({0})',
+            'helpText' => 'Antall aktive offentlige utlyste- og direktemeldte stillinger.',
+            'reportName' => 'Stillinger_adu',
+            'badgeType' => 'Stillinger'
+        },
+        'Tiltak' => new Map<String, String>{
+            'labelTemplate' => 'Tiltak({0})',
+            'helpText' => 'Antall aktive tiltak registrert i Tiltaksgjennomføring og Ekspertbistand fra Arena.',
+            'reportName' => 'Aktive_tiltak_tilknyttet_arbeidsgiver',
+            'badgeType' => 'Tiltak'
         }
-        return badges.values();
+        // Add more badge configs as needed
+    };
+
+    // Helper to create a badge from config
+    private static Badge createBadgeFromConfig(String key, Integer count, String extraFilters) {
+        Map<String, String> config = BADGE_CONFIG.get(key);
+        if (config == null) return null;
+        String label = String.format(config.get('labelTemplate'), new List<Object>{ count });
+        String url = getReportUrl(config.get('reportName'), extraFilters);
+        return new Badge(label, config.get('helpText'), url, config.get('badgeType'));
     }
+
+    // Static methods to create specific badges
 
     // Creates badge for Muligheter. Counts open opportunities.
     // Links to report Muligheter_4WR with filter order: AccountId (fv0), InquiryCategory__c(fv1)
     private static List<Badge> createOpportunityCountBadge(List<CustomOpportunity__c> activeOpportunities) {
-        String labelTemplate = 'Muligheter({0})';
-        String helpText = 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".';
-        Map<String, Badge> badges = new Map<String, Badge>();
+        List<Badge> badges = new List<Badge>();
         if (activeOpportunities.size() >= 1) {
-            String label = String.format(labelTemplate, new List<Object>{ activeOpportunities.size() });
-            String url = getReportUrl('Muligheter_4WR', '&fv2=');
-            String badgeType = 'Muligheter';
-            Badge badge = new Badge(label, helpText, url, badgeType);
-            badges.put(label, badge);
+            Badge badge = createBadgeFromConfig('Muligheter', activeOpportunities.size(), '&fv2=');
+            if (badge != null) badges.add(badge);
         }
-        return badges.values();
+        return badges;
     }
 
     // Creates badge for Avtaler. Display badge for each region-category combo.
@@ -198,33 +212,23 @@ public with sharing class AccountBadgesController {
     // Creates badge for job postings at employer.
     // Links to report Stillinger_adu with filter order: AccountId (fv0)
     private static List<Badge> createJobPostingBadge(List<JobPosting__c> jobPostings) {
-        String labelTemplate = 'Stillinger({0})';
-        String helpText = 'Antall aktive offentlige utlyste- og direktemeldte stillinger.';
-        Map<String, Badge> badges = new Map<String, Badge>();
+        List<Badge> badges = new List<Badge>();
         if (jobPostings.size() >= 1) {
-            String label = String.format(labelTemplate, new List<Object>{ jobPostings.size() });
-            String url = getReportUrl('Stillinger_adu', '&fv2=');
-            String badgeType = 'Stillinger';
-            Badge badge = new Badge(label, helpText, url, badgeType);
-            badges.put(label, badge);
+            Badge badge = createBadgeFromConfig('Stillinger', jobPostings.size(), '&fv2=');
+            if (badge != null) badges.add(badge);
         }
-        return badges.values();
+        return badges;
     }
 
     // Creates badge for workfare at employer.
     // Links to report Tiltak_adu with filter order: AccountId (fv0)
     private static List<Badge> createWorkfareBadge(List<Workfare__c> workfares) {
-        String labelTemplate = 'Tiltak({0})';
-        String helpText = 'Antall aktive tiltak registrert i Tiltaksgjennomføring og Ekspertbistand fra Arena.';
-        Map<String, Badge> badges = new Map<String, Badge>();
+        List<Badge> badges = new List<Badge>();
         if (workfares.size() >= 1) {
-            String label = String.format(labelTemplate, new List<Object>{ workfares.size() });
-            String url = getReportUrl('Aktive_tiltak_tilknyttet_arbeidsgiver', '&fv2=');
-            String badgeType = 'Tiltak';
-            Badge badge = new Badge(label, helpText, url, badgeType);
-            badges.put(label, badge);
+            Badge badge = createBadgeFromConfig('Tiltak', workfares.size(), '&fv2=');
+            if (badge != null) badges.add(badge);
         }
-        return badges.values();
+        return badges;
     }
 
     // Helper methods
