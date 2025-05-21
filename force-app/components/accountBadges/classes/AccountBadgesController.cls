@@ -2,12 +2,12 @@
  * @description Controller class for managing badges on account page.
  */
 public with sharing class AccountBadgesController {
-    private static Map<String, Schema.SObjectField> accountFields = Schema.SObjectType.Account.fields.getMap();
+    // private static Map<String, Schema.SObjectField> accountFields = Schema.SObjectType.Account.fields.getMap();
     private static final LoggerUtility LOGGER = new LoggerUtility();
     private static Id recordId;
     private static Map<String, String> reportIdMap;
 
-    @TestVisible
+    // Centralized query config
     private static final Map<String, String> QUERY_MAP = new Map<String, String>{
         'Account' => 'SELECT Id, Name, NumberOfWorkfare__c FROM Account WHERE Id = :accountId',
         'CustomOpportunity__c' => 'SELECT Id, InquiryCategory__c, InclusionStage__c FROM CustomOpportunity__c WHERE InclusionStage__c != \'Avsluttet\' AND Account__c = :accountId',
@@ -16,6 +16,62 @@ public with sharing class AccountBadgesController {
         'IACooperation__c' => 'SELECT Id, Status__c, IACase__c FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND Account__c = :accountId AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))',
         'Workfare__c' => 'SELECT Id, Status__c FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId'
     };
+
+    // Centralized badge config
+    private static final Map<String, Map<String, String>> BADGE_CONFIG = new Map<String, Map<String, String>>{
+        'Muligheter' => new Map<String, String>{
+            'labelTemplate' => 'Muligheter({0})',
+            'helpText' => 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".',
+            'url' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'badgeType' => 'Muligheter'
+        },
+        'Stillinger' => new Map<String, String>{
+            'labelTemplate' => 'Stillinger({0})',
+            'helpText' => 'Antall aktive offentlige utlyste- og direktemeldte stillinger.',
+            'url' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'badgeType' => 'Stillinger'
+        },
+        'Tiltak' => new Map<String, String>{
+            'labelTemplate' => 'Tiltak({0})',
+            'helpText' => 'Antall aktive tiltak registrert i Tiltaksgjennomføring og Ekspertbistand fra Arena.',
+            'url' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'badgeType' => 'Tiltak'
+        },
+        'IA-samarbeid' => new Map<String, String>{
+            'labelTemplate' => 'IA-samarbeid',
+            'helpText' => 'Bedriften har IA-samarbeid med Nav.',
+            'url' => '/lightning/r/IACooperation__c/{0}/view',
+            'badgeType' => 'IA-samarbeid'
+        },
+        'IA-samarbeid_Avtale' => new Map<String, String>{
+            'labelTemplate' => 'IA-samarbeid',
+            'helpText' => 'Bedriften har IA-samarbeid med Nav.',
+            'url' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'badgeType' => 'IA-samarbeid'
+        },
+        'Strategisk partner' => new Map<String, String>{
+            'labelTemplate' => 'Strategisk partner',
+            'helpText' => 'Bedriften har strategisk partneravtale med Nav.',
+            'url' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'badgeType' => 'Strategisk partner'
+        },
+        'Marked-samarbeid' => new Map<String, String>{
+            'labelTemplate' => 'Marked-samarbeid',
+            'helpText' => 'Bedriften har avtale med tilsvarende kategori.',
+            'url' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'badgeType' => 'Marked-samarbeid'
+        }
+        // Add more badge configs as needed
+    };
+
+    // Static map for report names
+    private static final Map<String, String> REPORT_NAMES = new Map<String, String>{
+        'Muligheter' => 'Muligheter_4WR',
+        'Stillinger' => 'Stillinger_adu',
+        'Tiltak' => 'Aktive_tiltak_tilknyttet_arbeidsgiver',
+        'Avtaler' => 'Avtaler_Zsu'
+    };
+
     /**
      * @description Creates badges for a given account based on its fields and related records.
      * @param accountId The Id of the Account for which to create badges.
@@ -86,35 +142,17 @@ public with sharing class AccountBadgesController {
         LOGGER.publish();
     }
 
-    // Centralized badge config
-    private static final Map<String, Map<String, String>> BADGE_CONFIG = new Map<String, Map<String, String>>{
-        'Muligheter' => new Map<String, String>{
-            'labelTemplate' => 'Muligheter({0})',
-            'helpText' => 'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".',
-            'reportName' => 'Muligheter_4WR',
-            'badgeType' => 'Muligheter'
-        },
-        'Stillinger' => new Map<String, String>{
-            'labelTemplate' => 'Stillinger({0})',
-            'helpText' => 'Antall aktive offentlige utlyste- og direktemeldte stillinger.',
-            'reportName' => 'Stillinger_adu',
-            'badgeType' => 'Stillinger'
-        },
-        'Tiltak' => new Map<String, String>{
-            'labelTemplate' => 'Tiltak({0})',
-            'helpText' => 'Antall aktive tiltak registrert i Tiltaksgjennomføring og Ekspertbistand fra Arena.',
-            'reportName' => 'Aktive_tiltak_tilknyttet_arbeidsgiver',
-            'badgeType' => 'Tiltak'
-        }
-        // Add more badge configs as needed
-    };
-
     // Helper to create a badge from config
-    private static Badge createBadgeFromConfig(String key, Integer count, String extraFilters) {
+    @TestVisible
+    private static Badge createBadgeFromConfig(String key, List<Object> labelMergeFields, List<Object> urlMergeFields) {
         Map<String, String> config = BADGE_CONFIG.get(key);
-        if (config == null) return null;
-        String label = String.format(config.get('labelTemplate'), new List<Object>{ count });
-        String url = getReportUrl(config.get('reportName'), extraFilters);
+        if (config == null)
+            return null;
+
+        String label = labelMergeFields != null
+            ? String.format(config.get('labelTemplate'), labelMergeFields)
+            : config.get('labelTemplate');
+        String url = urlMergeFields != null ? String.format(config.get('url'), urlMergeFields) : config.get('url');
         return new Badge(label, config.get('helpText'), url, config.get('badgeType'));
     }
 
@@ -124,51 +162,34 @@ public with sharing class AccountBadgesController {
     // Links to report Muligheter_4WR with filter order: AccountId (fv0), InquiryCategory__c(fv1)
     private static List<Badge> createOpportunityCountBadge(List<CustomOpportunity__c> activeOpportunities) {
         List<Badge> badges = new List<Badge>();
+        String reportId = getReportId(REPORT_NAMES.get('Muligheter'));
+
         if (activeOpportunities.size() >= 1) {
-            Badge badge = createBadgeFromConfig('Muligheter', activeOpportunities.size(), '&fv2=');
-            if (badge != null) badges.add(badge);
+            Badge badge = createBadgeFromConfig(
+                'Muligheter',
+                new List<Object>{ activeOpportunities.size() },
+                new List<Object>{ reportId, recordId }
+            );
+            if (badge != null)
+                badges.add(badge);
         }
         return badges;
-    }
-
-    // Creates badge for Avtaler. Display badge for each region-category combo.
-    // Links to report Avtaler_Zsu with filter order: AccountId (fv0), Recordtype(fv1), TAG_Category__c(fv2), Region__c(fv3), TAG_Type_Partner__c(fv4)
-    private static List<Badge> createAgreementBadges(List<Contract__c> employerAgreements) {
-        String labelTemplate = '{0} {1}';
-        String helpText = 'Bedriften har aktiv samarbeidsavtale innen angitt region og kategori.';
-        Map<String, Badge> badges = new Map<String, Badge>();
-        for (Contract__c employerAgreement : employerAgreements) {
-            if (!String.isBlank(employerAgreement.Region__c) && !String.isBlank(employerAgreement.TAG_Category__c)) {
-                String category = employerAgreement.TAG_Category__c.replaceAll('\\(.*\\)', '').trim();
-                category = category.startsWith('IA') ? category : category.toLowerCase();
-                String label = String.format(labelTemplate, new List<Object>{ employerAgreement.Region__c, category });
-                String url = getReportUrl(
-                    'Avtaler_Zsu',
-                    '&fv2=' + employerAgreement.TAG_Category__c + '&fv3=' + employerAgreement.Region__c + '&fv4='
-                );
-                String badgeType = 'Samarbeidsavtale';
-                Badge badge = new Badge(label, helpText, url, badgeType);
-                badges.put(label, badge);
-            }
-        }
-        return badges.values();
     }
 
     // Creates badge for partner status. Display badge for each partner type.
     /* TAG_Category__c
      * IA-samarbeid - enten avtale eller samarbeid
-     * Strategisk partner - har strategisk partneravtale
+     * Strategisk partner - har Strategisk partneravtale
      * Marked-samarbeid - har avtale med tilsvarende kategori
      */
-    // Links to report Avtaler_Zsu with filter order: AccountId (fv0), Recordtype(fv1), TAG_Category__c(fv2), Region__c(fv3), TAG_Type_Partner__c(fv4)
     private static List<Badge> createPartnerTypeBadge(
         List<Contract__c> employerAgreements,
         List<IACooperation__c> iaCooperations
     ) {
-        String helpText = 'Denne bedriftens partnerstatus basert på aktive avtaler og IA-samarbeid.';
         Map<String, Badge> badges = new Map<String, Badge>();
-
         Set<String> partnerStatuses = new Set<String>();
+        String reportId = getReportId(REPORT_NAMES.get('Avtaler'));
+
         for (Contract__c con : employerAgreements) {
             if (!String.isBlank(con.TAG_Category__c)) {
                 partnerStatuses.add(con.TAG_Category__c);
@@ -177,69 +198,70 @@ public with sharing class AccountBadgesController {
 
         // Check if there are any IA cooperations and add IA cooperation badge if so
         if (iaCooperations.size() >= 1) {
-            String label = 'IA-samarbeid';
-            // Links to IA Case lightning page
-            String url = '/lightning/r/IACase__c/' + iaCooperations[0].IACase__c + '/view';
-            String badgeType = 'IA-samarbeid';
-            Badge badge = new Badge(label, helpText, url, badgeType);
-            badges.put(label, badge);
+            Badge badge = createBadgeFromConfig('IA-samarbeid', null, new List<Object>{ iaCooperations[0].IACase__c });
+            badges.put(badge.label, badge);
+        } else if (partnerStatuses.contains('IA-samarbeid')) {
+            Badge badge = createBadgeFromConfig(
+                'IA-samarbeid_Avtale',
+                null,
+                new List<Object>{ reportId, recordId, 'IA-samarbeid' }
+            );
+            badges.put(badge.label, badge);
         }
         // Create badges for Contracts
-        for (String value : partnerStatuses) {
-            if (value == 'IA-samarbeid' && !badges.containsKey('IA-samarbeid')) {
-                String label = 'IA-samarbeid';
-                String url = getReportUrl('Avtaler_Zsu', '&fv2=' + value);
-                String badgeType = 'IA-samarbeid';
-                Badge badge = new Badge(label, helpText, url, badgeType);
-                badges.put(label, badge);
-            } else if (value == 'Strategisk partner' && !badges.containsKey('Strategisk partner')) {
-                String label = 'Strategisk partner';
-                String url = getReportUrl('Avtaler_Zsu', '&fv2=' + value);
-                String badgeType = 'Strategisk partner';
-                Badge badge = new Badge(label, helpText, url, badgeType);
-                badges.put(label, badge);
-            } else if (value == 'Marked-samarbeid' && !badges.containsKey('Marked-samarbeid')) {
-                String label = 'Marked-samarbeid';
-                String url = getReportUrl('Avtaler_Zsu', '&fv2=' + value);
-                String badgeType = 'Marked-samarbeid';
-                Badge badge = new Badge(label, helpText, url, badgeType);
-                badges.put(label, badge);
-            }
+        if (partnerStatuses.contains('Strategisk partneravtale')) {
+            Badge badge = createBadgeFromConfig(
+                'Strategisk partner',
+                null,
+                new List<Object>{ reportId, recordId, 'Strategisk partner' }
+            );
+            badges.put(badge.label, badge);
+        }
+        if (partnerStatuses.contains('Marked-samarbeid')) {
+            Badge badge = createBadgeFromConfig(
+                'Marked-samarbeid',
+                null,
+                new List<Object>{ reportId, recordId, 'Marked-samarbeid' }
+            );
+            badges.put(badge.label, badge);
         }
         return badges.values();
     }
 
     // Creates badge for job postings at employer.
-    // Links to report Stillinger_adu with filter order: AccountId (fv0)
     private static List<Badge> createJobPostingBadge(List<JobPosting__c> jobPostings) {
         List<Badge> badges = new List<Badge>();
+        String reportId = getReportId(REPORT_NAMES.get('Stillinger'));
         if (jobPostings.size() >= 1) {
-            Badge badge = createBadgeFromConfig('Stillinger', jobPostings.size(), '&fv2=');
-            if (badge != null) badges.add(badge);
+            Badge badge = createBadgeFromConfig(
+                'Stillinger',
+                new List<Object>{ jobPostings.size() },
+                new List<Object>{ reportId, recordId }
+            );
+            if (badge != null)
+                badges.add(badge);
         }
         return badges;
     }
 
     // Creates badge for workfare at employer.
-    // Links to report Tiltak_adu with filter order: AccountId (fv0)
     private static List<Badge> createWorkfareBadge(List<Workfare__c> workfares) {
         List<Badge> badges = new List<Badge>();
+        String reportId = getReportId(REPORT_NAMES.get('Tiltak'));
         if (workfares.size() >= 1) {
-            Badge badge = createBadgeFromConfig('Tiltak', workfares.size(), '&fv2=');
-            if (badge != null) badges.add(badge);
+            Badge badge = createBadgeFromConfig(
+                'Tiltak',
+                new List<Object>{ workfares.size() },
+                new List<Object>{ reportId, recordId }
+            );
+            if (badge != null)
+                badges.add(badge);
         }
         return badges;
     }
 
     // Helper methods
-    // Returns report URL with filters
-    private static string getReportUrl(String reportDeveloperName, String filters) {
-        String reportId = getReportId(reportDeveloperName);
-        if (String.isEmpty(reportId)) {
-            return null; // report not found
-        }
-        return '/lightning/r/Report/' + reportId + '/view?fv0=' + recordId + filters;
-    }
+
     // Returns report Id from static map or queries report records
     private static string getReportId(String reportDeveloperName) {
         // Return from static map if exist
@@ -284,6 +306,7 @@ public with sharing class AccountBadgesController {
         }
     }
 
+    // Wrapper class for badge
     public class Badge {
         @AuraEnabled
         public String label;

@@ -62,16 +62,25 @@ private class AccountBadgesControllerTest {
             }
             insert arbeidsgiverUserOpportunities;
 
+            Contact employerContact = new Contact(
+                FirstName = 'Test',
+                LastName = 'User',
+                AccountId = arbeidsgiverUserAccounts[0].Id
+            );
+            insert employerContact;
             // Create employer agreements
             List<Contract__c> employerAgreements = new List<Contract__c>();
             employerAgreements.add(
                 new Contract__c(
                     TAG_Account__c = arbeidsgiverUserAccounts[0].Id,
-                    TAG_Category__c = 'Inkluderingsavtale (Arbeidsgiver)',
+                    TAG_Category__c = 'Strategisk partneravtale',
                     TAG_StartDate__c = Date.today(),
                     TAG_EndDate__c = Date.today().addDays(30),
                     TAG_Status__c = 'Godkjent',
-                    TAG_Type_Partner__c = 'Strategisk Partner',
+                    TAG_Description__c = 'test',
+                    TAG_Contact__c = employerContact.Id,
+                    TAG_InternalContact__c = arbeidsgiverUser.Id,
+                    TAG_ExternalURL__c = 'www.example.com',
                     RecordTypeId = Schema.SObjectType.Contract__c.getRecordTypeInfosByDeveloperName()
                         .get('EmployerAgreement')
                         .getRecordTypeId()
@@ -170,18 +179,35 @@ private class AccountBadgesControllerTest {
         List<sObject> result = AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
         Assert.isTrue(result.size() == 0, 'Result should not contain records');
     }
-    
+
     @isTest
-    static void fetch_records_when_no_access(){            	
+    static void fetch_records_when_no_access() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
         User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
         List<Workfare__c> employerWorkfares;
-        System.runAs(user) {            
+        System.runAs(user) {
             Test.startTest();
-            employerWorkfares = (List<Workfare__c>)AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+            employerWorkfares = (List<Workfare__c>) AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
             Test.stopTest();
         }
         Assert.isTrue(employerWorkfares.size() == 0, 'Result should not contain records');
+    }
+
+    @isTest
+    static void create_badge_from_config() {
+        // 'Muligheter({0})' og  'url' => '/lightning/r/Report/{0}/view?fv0={1}',
+        AccountBadgesController.Badge opportunityBadge = AccountBadgesController.createBadgeFromConfig(
+            'Muligheter',
+            new List<Object>{ 10 },
+            new List<Object>{ '00O0E000001lLPaUAM', '0010E00000iiinlQAA' }
+        );
+        Assert.areEqual('Muligheter(10)', opportunityBadge.label);
+        Assert.areEqual('/lightning/r/Report/00O0E000001lLPaUAM/view?fv0=0010E00000iiinlQAA', opportunityBadge.url);
+        Assert.areEqual('Muligheter', opportunityBadge.badgeType);
+        Assert.areEqual(
+            'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".',
+            opportunityBadge.helpText
+        );
     }
 
     @isTest
@@ -206,17 +232,15 @@ private class AccountBadgesControllerTest {
         for (AccountBadgesController.Badge badge : accountBadges) {
             badgeMap.put(badge.label, badge);
         }
+        Assert.areEqual(5, accountBadges.size(), 'Expected 5 badges to be created');
         Assert.isTrue(
-            badgeMap.containsKey('Regional inkluderingsavtale'),
-            'Should contain badge for agreement region+category'
+            badgeMap.containsKey('Strategisk partner'),
+            'Should contain badge for agreement Strategisk partneravtale'
         );
-        Assert.isTrue(badgeMap.containsKey('Strategisk partner'), 'Should contain badge for partner type');
-        //Assert.isTrue(badgeMap.containsKey('Aktive tiltak(5)'), 'Should contain badge for number of active workfare');
         Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
-        Assert.isTrue(badgeMap.containsKey('IA-samarbeid(1)'), 'Should contain badge for number of ia-cooperations');
+        Assert.isTrue(badgeMap.containsKey('IA-samarbeid'), 'Should contain badge for number of ia-cooperations');
         Assert.isTrue(badgeMap.containsKey('Stillinger(2)'), 'Should contain badge for number of job postings');
         Assert.isTrue(badgeMap.containsKey('Tiltak(1)'), 'Should contain badge for number of workfare');
-        Assert.areEqual(6, accountBadges.size(), 'Expected 6 badges to be created');
     }
 
     @isTest
