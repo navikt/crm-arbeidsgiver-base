@@ -3,7 +3,7 @@
     <fullName>Missing_fields</fullName>
     <active>true</active>
     <errorConditionFormula>RecordType.DeveloperName = &quot;EmployerAgreement&quot; &amp;&amp;
-ISCHANGED(TAG_Status__c) &amp;&amp;
+(ISCHANGED(TAG_Status__c) || ISNEW() ) &amp;&amp;
 ISPICKVAL(TAG_Status__c, &quot;Godkjent&quot;) &amp;&amp;
  ( ISPICKVAL( TAG_Category__c,&quot;&quot; ) ||
    ISBLANK( TAG_Description__c ) ||
