@@ -10,12 +10,6 @@
         <field>Contract__c.TAG_Category__c</field>
     </columns>
     <columns>
-        <field>Contract__c.Region__c</field>
-    </columns>
-    <columns>
-        <field>Contract__c.TAG_Type_Partner__c</field>
-    </columns>
-    <columns>
         <field>Contract__c.TAG_StartDate__c</field>
     </columns>
     <columns>
@@ -30,7 +24,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>001KF00000eCSHv</value>
+            <value>001RR00000cpjAL</value>
         </criteriaItems>
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
@@ -44,21 +38,14 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Rekrutteringsavtale,IA-avtale,Inkluderingsavtale (Arbeidsgiver),MIDLERTIDIG_LONNSTILSKUDD,VARIG_LONNSTILSKUDD,ARBEIDSTRENING,MENTOR,INKLUDERINGSTILSKUDD,SOMMERJOBB</value>
+            <value>INKLUDERINGSTILSKUDD,Marked-samarbeid,IA-samarbeid,Strategisk partneravtale</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Contract__c.Region__c</column>
+            <column>Contract__c.TAG_Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Lokal,Regional,Nasjonal</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Contract__c.TAG_Type_Partner__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Strategisk Partner,Samarbeidspartner,Selvbetjente tjenester</value>
+            <value>Godkjent</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
