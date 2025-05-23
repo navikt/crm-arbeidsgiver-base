@@ -3,6 +3,9 @@
     <fullName>TAG_Account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <inlineHelpText>Velg kontoen som avtalen gjelder for.
+Begynn å skrive for å se forslag basert på nylig brukte kontoer.
+Klikk på forstørrelsesglasset for å åpne avansert søk og full kontoliste.</inlineHelpText>
     <label>Account</label>
     <lookupFilter>
         <active>true</active>
