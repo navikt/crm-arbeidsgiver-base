@@ -14,6 +14,7 @@ public with sharing class AccountBadgesController {
         'Contract__c' => 'SELECT Id, TAG_Category__c FROM Contract__c WHERE RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Account__c = :accountId',
         'JobPosting__c' => 'SELECT Id, Status__c FROM JobPosting__c WHERE Status__c = \'ACTIVE\' AND Account__c = :accountId',
         'IACooperation__c' => 'SELECT Id, Status__c, IACase__c FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND Account__c = :accountId AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))',
+        'IACase__c' => 'SELECT Id FROM IACase__c WHERE CaseStatus__c = \'VI_BISTÅR\' AND Account__c = :accountId',
         'Workfare__c' => 'SELECT Id, Status__c FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId'
     };
 
@@ -40,7 +41,7 @@ public with sharing class AccountBadgesController {
         'IA-samarbeid' => new Map<String, String>{
             'labelTemplate' => 'IA-samarbeid',
             'helpText' => 'Bedriften har IA-samarbeid med Nav.',
-            'url' => '/lightning/r/IACooperation__c/{0}/view',
+            'url' => '/lightning/r/IACase__c/{0}/view',
             'badgeType' => 'IA-samarbeid'
         },
         'IA-samarbeid_Avtale' => new Map<String, String>{
@@ -79,6 +80,9 @@ public with sharing class AccountBadgesController {
      */
     @AuraEnabled(cacheable=true)
     public static List<Badge> createBadges(Id accountId) {
+        if (accountId == null) {
+            return new List<Badge>();
+        }
         recordId = accountId;
         List<Badge> accountBadges = new List<Badge>();
         try {
@@ -92,9 +96,10 @@ public with sharing class AccountBadgesController {
                 accountId,
                 'IACooperation__c'
             );
+            List<IACase__c> employerIACases = (List<IACase__c>) fetchRecords(accountId, 'IACase__c');
             List<Workfare__c> employerWorkfares = (List<Workfare__c>) fetchRecords(accountId, 'Workfare__c');
 
-            accountBadges.addAll(createPartnerTypeBadge(employerAgreements, employerIACooperations));
+            accountBadges.addAll(createPartnerTypeBadge(employerAgreements, employerIACooperations, employerIACases));
             accountBadges.addAll(createOpportunityCountBadge(employerOpportunities));
             accountBadges.addAll(createJobPostingBadge(employerJobPostings));
             accountBadges.addAll(createWorkfareBadge(employerWorkfares));
@@ -184,7 +189,8 @@ public with sharing class AccountBadgesController {
      */
     private static List<Badge> createPartnerTypeBadge(
         List<Contract__c> employerAgreements,
-        List<IACooperation__c> iaCooperations
+        List<IACooperation__c> iaCooperations,
+        List<IACase__c> iaCases
     ) {
         Map<String, Badge> badges = new Map<String, Badge>();
         Set<String> partnerStatuses = new Set<String>();
@@ -197,8 +203,11 @@ public with sharing class AccountBadgesController {
         }
 
         // Check if there are any IA cooperations and add IA cooperation badge if so
-        if (iaCooperations.size() >= 1) {
+        if (iaCooperations.size() > 0) {
             Badge badge = createBadgeFromConfig('IA-samarbeid', null, new List<Object>{ iaCooperations[0].IACase__c });
+            badges.put(badge.label, badge);
+        } else if (iaCases.size() > 0) {
+            Badge badge = createBadgeFromConfig('IA-samarbeid', null, new List<Object>{ iaCases[0].Id });
             badges.put(badge.label, badge);
         } else if (partnerStatuses.contains('IA-samarbeid')) {
             Badge badge = createBadgeFromConfig(
