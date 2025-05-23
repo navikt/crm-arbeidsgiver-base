@@ -151,8 +151,9 @@ public with sharing class AccountBadgesController {
     @TestVisible
     private static Badge createBadgeFromConfig(String key, List<Object> labelMergeFields, List<Object> urlMergeFields) {
         Map<String, String> config = BADGE_CONFIG.get(key);
-        if (config == null)
+        if (config == null) {
             return null;
+        }
 
         String label = labelMergeFields != null
             ? String.format(config.get('labelTemplate'), labelMergeFields)
@@ -175,8 +176,9 @@ public with sharing class AccountBadgesController {
                 new List<Object>{ activeOpportunities.size() },
                 new List<Object>{ reportId, recordId }
             );
-            if (badge != null)
+            if (badge != null) {
                 badges.add(badge);
+            }
         }
         return badges;
     }
@@ -247,8 +249,9 @@ public with sharing class AccountBadgesController {
                 new List<Object>{ jobPostings.size() },
                 new List<Object>{ reportId, recordId }
             );
-            if (badge != null)
+            if (badge != null) {
                 badges.add(badge);
+            }
         }
         return badges;
     }
@@ -263,8 +266,9 @@ public with sharing class AccountBadgesController {
                 new List<Object>{ workfares.size() },
                 new List<Object>{ reportId, recordId }
             );
-            if (badge != null)
+            if (badge != null) {
                 badges.add(badge);
+            }
         }
         return badges;
     }
