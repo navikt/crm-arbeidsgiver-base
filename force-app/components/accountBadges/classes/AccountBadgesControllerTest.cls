@@ -163,25 +163,34 @@ private class AccountBadgesControllerTest {
     }
 
     @isTest
-    static void fetch_records_with_valid_parameters() {
+    static void fetchRecordsWithValidParameters() {
         //List<sObject> fetchRecords(Id accountId, String objectName)
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
-        List<sObject> result = AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<sObject> result;
+        System.runAs(user) {
+            result = AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+        }
+
         Assert.isNotNull(result, 'Result should not be null');
         Assert.isTrue(result.size() == 1, 'Result should contain records');
         Assert.isInstanceOfType(result[0], Workfare__c.class, 'Result should be of type Workfare__c');
     }
 
     @isTest
-    static void fetch_records_when_no_records_exists() {
+    static void fetchRecordsWhenNoRecordsExists() {
         //List<sObject> fetchRecords(Id accountId, String objectName)
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount1' LIMIT 1];
-        List<sObject> result = AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<sObject> result;
+        System.runAs(user) {
+            result = AccountBadgesController.fetchRecords(testAccount.Id, 'Workfare__c');
+        }
         Assert.isTrue(result.size() == 0, 'Result should not contain records');
     }
 
     @isTest
-    static void fetch_records_when_no_access() {
+    static void fetchRecordsWhenNoAccess() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
         User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
         List<Workfare__c> employerWorkfares;
@@ -194,7 +203,7 @@ private class AccountBadgesControllerTest {
     }
 
     @isTest
-    static void create_badge_from_config() {
+    static void createBadgeFromConfig() {
         // 'Muligheter({0})' og  'url' => '/lightning/r/Report/{0}/view?fv0={1}',
         AccountBadgesController.Badge opportunityBadge = AccountBadgesController.createBadgeFromConfig(
             'Muligheter',
@@ -211,7 +220,7 @@ private class AccountBadgesControllerTest {
     }
 
     @isTest
-    static void badges_Should_Be_Created_When_Account_Match_Criteria() {
+    static void badgesShouldBeCreatedWhenAccountMatchCriteria() {
         Account testAccount = [
             SELECT Id, TAG_Partner_Status__c, NumberOfWorkfare__c
             FROM Account
@@ -244,7 +253,7 @@ private class AccountBadgesControllerTest {
     }
 
     @isTest
-    static void badges_Should_Not_Be_Created_When_No_Data() {
+    static void badgesShouldNotBeCreatedWhenNoData() {
         Account testAccount = [
             SELECT Id
             FROM Account
@@ -263,11 +272,11 @@ private class AccountBadgesControllerTest {
     }
 
     @isTest
-    static void badge_Should_Not_Be_Created_For_Non_Accessible_Account_Fields() {
+    static void badgeShouldNotBeCreatedForNonAccessibleAccountFields() {
         Account testAccount = [
             SELECT Id
             FROM Account
-            WHERE Name = 'TestAccount2'
+            WHERE Name = 'TestAccount0'
             LIMIT 1
         ];
 
@@ -282,7 +291,7 @@ private class AccountBadgesControllerTest {
     }
 
     @isTest
-    static void error_States_Should_Be_Handeled_Or_Logged() {
+    static void errorStatesShouldBeHandeledOrLogged() {
         List<AccountBadgesController.Badge> accountBadges = AccountBadgesController.createBadges(null);
         Assert.areEqual(0, accountBadges.size(), 'Should return empty list on error.');
     }
