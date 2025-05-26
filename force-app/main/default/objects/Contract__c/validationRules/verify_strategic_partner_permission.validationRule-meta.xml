@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>verify_strategic_partner_permission</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( TAG_Category__c, &quot;Strategisk partneravtale&quot;) &amp;&amp; 
+NOT( $Permission.Arbeidsgiver_Endre_Partner_Status )</errorConditionFormula>
+    <errorDisplayField>TAG_Category__c</errorDisplayField>
+    <errorMessage>Strategisk partneravtale kan kun settes av enkelt brukere.</errorMessage>
+</ValidationRule>
