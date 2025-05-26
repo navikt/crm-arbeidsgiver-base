@@ -73,7 +73,7 @@ private class AccountBadgesControllerTest {
             employerAgreements.add(
                 new Contract__c(
                     TAG_Account__c = arbeidsgiverUserAccounts[0].Id,
-                    TAG_Category__c = 'Strategisk partneravtale',
+                    TAG_Category__c = 'Marked-samarbeid',
                     TAG_StartDate__c = Date.today(),
                     TAG_EndDate__c = Date.today().addDays(30),
                     TAG_Status__c = 'Godkjent',
@@ -211,7 +211,10 @@ private class AccountBadgesControllerTest {
             new List<Object>{ '00O0E000001lLPaUAM', '0010E00000iiinlQAA' }
         );
         Assert.areEqual('Muligheter(10)', opportunityBadge.label);
-        Assert.areEqual('/lightning/r/Report/00O0E000001lLPaUAM/view?fv0=0010E00000iiinlQAA', opportunityBadge.url);
+        Assert.areEqual(
+            '/lightning/r/Report/00O0E000001lLPaUAM/view?fv0=0010E00000iiinlQAA&fv2=',
+            opportunityBadge.url
+        );
         Assert.areEqual('Muligheter', opportunityBadge.badgeType);
         Assert.areEqual(
             'Antall åpne muligheter. Inkluderer alle muligheter for denne bedriften i stegene "Ny henvendelse", "Utforskes" og "Åpen for kandidater".',
@@ -242,10 +245,7 @@ private class AccountBadgesControllerTest {
             badgeMap.put(badge.label, badge);
         }
         Assert.areEqual(5, accountBadges.size(), 'Expected 5 badges to be created');
-        Assert.isTrue(
-            badgeMap.containsKey('Strategisk partner'),
-            'Should contain badge for agreement Strategisk partneravtale'
-        );
+        Assert.isTrue(badgeMap.containsKey('Marked-samarbeid'), 'Should contain badge for agreement Marked-samarbeid');
         Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
         Assert.isTrue(badgeMap.containsKey('IA-samarbeid'), 'Should contain badge for number of ia-cooperations');
         Assert.isTrue(badgeMap.containsKey('Stillinger(2)'), 'Should contain badge for number of job postings');
