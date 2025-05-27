@@ -166,7 +166,7 @@ public with sharing class AccountBadgesController {
 
         Map<String, Badge> badges = new Map<String, Badge>();
         Set<String> partnerStatuses = new Set<String>();
-        String reportId = getReportId(REPORT_NAMES.get('Avtaler'));
+        String reportId = getReportId('Avtaler');
 
         for (Contract__c con : employerAgreements) {
             if (!String.isBlank(con.TAG_Category__c)) {
