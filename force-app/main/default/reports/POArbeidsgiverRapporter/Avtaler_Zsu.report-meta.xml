@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>CUST_NAME</field>
+        <field>Contract__c.TAG_Link__c</field>
     </columns>
     <columns>
         <field>FK_NAME</field>
@@ -10,13 +10,16 @@
         <field>Contract__c.TAG_Category__c</field>
     </columns>
     <columns>
+        <field>Contract__c.TAG_Status__c</field>
+    </columns>
+    <columns>
         <field>Contract__c.TAG_StartDate__c</field>
     </columns>
     <columns>
         <field>Contract__c.TAG_EndDate__c</field>
     </columns>
     <columns>
-        <field>Contract__c.TAG_Status__c</field>
+        <field>Contract__c.TAG_ExternalURL__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -38,7 +41,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>INKLUDERINGSTILSKUDD,Marked-samarbeid,IA-samarbeid,Strategisk partneravtale</value>
+            <value>Markedssamarbeid,Strategisk partneravtale</value>
         </criteriaItems>
         <criteriaItems>
             <column>Contract__c.TAG_Status__c</column>

@@ -73,7 +73,7 @@ private class AccountBadgesControllerTest {
             employerAgreements.add(
                 new Contract__c(
                     TAG_Account__c = arbeidsgiverUserAccounts[0].Id,
-                    TAG_Category__c = 'Marked-samarbeid',
+                    TAG_Category__c = 'Markedssamarbeid',
                     TAG_StartDate__c = Date.today(),
                     TAG_EndDate__c = Date.today().addDays(30),
                     TAG_Status__c = 'Godkjent',
@@ -245,9 +245,9 @@ private class AccountBadgesControllerTest {
             badgeMap.put(badge.label, badge);
         }
         Assert.areEqual(5, accountBadges.size(), 'Expected 5 badges to be created');
-        Assert.isTrue(badgeMap.containsKey('Marked-samarbeid'), 'Should contain badge for agreement Marked-samarbeid');
+        Assert.isTrue(badgeMap.containsKey('Markedssamarbeid'), 'Should contain badge for agreement Markedssamarbeid');
         Assert.isTrue(badgeMap.containsKey('Muligheter(15)'), 'Should contain badge for number of opportunities');
-        Assert.isTrue(badgeMap.containsKey('IA-samarbeid'), 'Should contain badge for number of ia-cooperations');
+        Assert.isTrue(badgeMap.containsKey('IA-samarbeid(1)'), 'Should contain badge for number of ia-cooperations');
         Assert.isTrue(badgeMap.containsKey('Stillinger(2)'), 'Should contain badge for number of job postings');
         Assert.isTrue(badgeMap.containsKey('Tiltak(1)'), 'Should contain badge for number of workfare');
     }
