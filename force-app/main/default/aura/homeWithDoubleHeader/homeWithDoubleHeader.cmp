@@ -1,0 +1,21 @@
+<aura:component implements="lightning:homeTemplate" access="global">
+    <aura:attribute name="header1" type="Aura.Component[]" />
+    <aura:attribute name="row1col1" type="Aura.Component[]" />
+    <aura:attribute name="row1col2" type="Aura.Component[]" />
+    <aura:attribute name="row1col3" type="Aura.Component[]" />
+    <aura:attribute name="header2" type="Aura.Component[]" />
+    <aura:attribute name="row2col1" type="Aura.Component[]" />
+    <aura:attribute name="row2col2" type="Aura.Component[]" />
+    <aura:attribute name="row2col3" type="Aura.Component[]" />
+
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">{! v.header1 }</div>
+        <div class="slds-col slds-size_1-of-3 slds-p-right_small">{! v.row1col1 }</div>
+        <div class="slds-col slds-size_1-of-3">{! v.row1col2 }</div>
+        <div class="slds-col slds-size_1-of-3 slds-p-left_small">{! v.row1col3 }</div>
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_small slds-m-top_small">{! v.header2 }</div>
+        <div class="slds-col slds-size_1-of-3 slds-p-right_small">{! v.row2col1 }</div>
+        <div class="slds-col slds-size_1-of-3">{! v.row2col2 }</div>
+        <div class="slds-col slds-size_1-of-3 slds-p-left_small">{! v.row2col3 }</div>
+    </div>
+</aura:component>
