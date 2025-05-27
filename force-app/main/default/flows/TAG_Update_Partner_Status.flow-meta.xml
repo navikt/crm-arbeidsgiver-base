@@ -33,6 +33,8 @@
         <filterFormula>{!$Record.RecordType.DeveloperName} = &apos;EmployerAgreement&apos; &amp;&amp; (
     ISCHANGED( {!$Record.TAG_Status__c} )  ||  
     ISCHANGED( {!$Record.TAG_Category__c} )  ||  
+ISCHANGED( {!$Record.TAG_StartDate__c} ) ||  
+ISCHANGED( {!$Record.TAG_EndDate__c} ) ||  
     ( ISNEW() &amp;&amp; ISPICKVAL( {!$Record.TAG_Status__c}, &apos;Godkjent&apos; ) )
 )</filterFormula>
         <object>Contract__c</object>

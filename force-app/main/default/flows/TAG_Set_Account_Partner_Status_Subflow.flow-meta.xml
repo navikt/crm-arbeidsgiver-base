@@ -88,26 +88,19 @@
             <label>Strategisk partner</label>
         </rules>
         <rules>
-            <name>Marked_or_IA</name>
+            <name>Marked</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>Loop_active_contracts.TAG_Category__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>IA-samarbeid</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Loop_active_contracts.TAG_Category__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Marked-samarbeid</stringValue>
+                    <stringValue>Markedssamarbeid</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Set_partner_field_Level_2</targetReference>
             </connector>
-            <label>Marked or IA</label>
+            <label>Marked</label>
         </rules>
     </decisions>
     <decisions>
