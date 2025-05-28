@@ -1,24 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
-        <name>top</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Bruker område + Badges&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>header1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>left</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Test column 1&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row1col1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>middle</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Test column 2&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row1col2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>right</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>entityNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Account</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contact</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contract</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contract__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>JobPosting__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Standard.RecentItems</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecords</name>
+                    <value>3</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:recentItems</componentName>
+                <identifier>flexipage_recentItems</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row1col3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Nav Kontor + Badges&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>header2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Column 1&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText5</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row2col1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Column 2 &lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row2col2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Nyttige lenker:&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Brukerdokumentasjon&lt;/a&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/intranett-Videoer-i-NAV/Delte%20dokumenter/Forms/AllItems.aspx?csf=1&amp;amp;web=1&amp;amp;e=ALXgpm&amp;amp;CID=0cd9f673-1189-4736-acef-66bf29b0db15&amp;amp;FolderCTID=0x012000D5D429EF87E52E42A9554C7125807DBA&amp;amp;id=%2Fsites%2Fintranett-Videoer-i-NAV%2FDelte+dokumenter%2FStream+Migrated+Videos%2FCRM+p%C3%A5+arbeidsgiveromr%C3%A5det&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Opplæringsvideoer&lt;/a&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIzOTM5NjY0NjkxMiJ9/new&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Viva Engage (Yammer) kanal&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText7</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row2col3</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Tag_Arbeidsgiverbeta</masterLabel>
     <template>
-        <name>home:desktopTemplateHeaderThreeColumns</name>
+        <name>homeWithDoubleHeader</name>
     </template>
     <type>HomePage</type>
 </FlexiPage>
