@@ -3,6 +3,8 @@
     <fullName>TAG_Contact__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <inlineHelpText>Virksomhetens kontaktperson for avtalen. Begynn å skrive for å se forslag basert på nylig brukte kontakter.
+Klikk på forstørrelsesglasset for å åpne avansert søk og full kontaktliste.</inlineHelpText>
     <label>Contact</label>
     <lookupFilter>
         <active>true</active>

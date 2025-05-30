@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Too_long_agreement_period</fullName>
+    <active>true</active>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;EmployerAgreement&apos; &amp;&amp; ( 
+/* Om start dato er i fremtiden så er maks sluttdato start dato+12mnd */
+ ( TAG_StartDate__c &gt; TODAY() &amp;&amp; TAG_EndDate__c &gt; ADDMONTHS(TAG_StartDate__c,12) )  
+ ||
+/* Ellers er maks sluttdato i dag+12mnd */
+ ( TAG_StartDate__c &lt;= TODAY() &amp;&amp; TAG_EndDate__c &gt;  ADDMONTHS(TODAY(),12) )
+)</errorConditionFormula>
+    <errorDisplayField>TAG_EndDate__c</errorDisplayField>
+    <errorMessage>Utløpsdato kan ikke være mer enn 12 måneder fram i tid.</errorMessage>
+</ValidationRule>

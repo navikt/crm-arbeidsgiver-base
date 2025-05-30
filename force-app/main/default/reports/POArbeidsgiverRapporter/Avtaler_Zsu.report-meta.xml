@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>CUST_NAME</field>
+        <field>Contract__c.TAG_Link__c</field>
     </columns>
     <columns>
         <field>FK_NAME</field>
@@ -10,10 +10,7 @@
         <field>Contract__c.TAG_Category__c</field>
     </columns>
     <columns>
-        <field>Contract__c.Region__c</field>
-    </columns>
-    <columns>
-        <field>Contract__c.TAG_Type_Partner__c</field>
+        <field>Contract__c.TAG_Status__c</field>
     </columns>
     <columns>
         <field>Contract__c.TAG_StartDate__c</field>
@@ -22,7 +19,7 @@
         <field>Contract__c.TAG_EndDate__c</field>
     </columns>
     <columns>
-        <field>Contract__c.TAG_Status__c</field>
+        <field>Contract__c.TAG_ExternalURL__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -30,7 +27,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>001KF00000eCSHv</value>
+            <value>001RR00000cpjAL</value>
         </criteriaItems>
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
@@ -44,21 +41,14 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Rekrutteringsavtale,IA-avtale,Inkluderingsavtale (Arbeidsgiver),MIDLERTIDIG_LONNSTILSKUDD,VARIG_LONNSTILSKUDD,ARBEIDSTRENING,MENTOR,INKLUDERINGSTILSKUDD,SOMMERJOBB</value>
+            <value>Markedssamarbeid,Strategisk partneravtale</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Contract__c.Region__c</column>
+            <column>Contract__c.TAG_Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Lokal,Regional,Nasjonal</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Contract__c.TAG_Type_Partner__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Strategisk Partner,Samarbeidspartner,Selvbetjente tjenester</value>
+            <value>Godkjent</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
