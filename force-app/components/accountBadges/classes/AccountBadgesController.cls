@@ -101,7 +101,6 @@ public with sharing class AccountBadgesController {
             queryResult = Database.query(query, AccessLevel.USER_MODE);
             return queryResult;
         } catch (QueryException e) {
-            logError(accountId, e);
             return new List<sObject>();
         }
     }
