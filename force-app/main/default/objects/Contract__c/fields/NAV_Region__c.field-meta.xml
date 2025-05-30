@@ -4,7 +4,6 @@
     <externalId>false</externalId>
     <formula>TAG_Account__r.NAV_Region__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Angir NAV regionen/fylket som er ansvarlig for avtalen. Settes automatisk basert på tilknyttet kontos Nav-enhet og dens region/fylke.</inlineHelpText>
     <label>NAV Region</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

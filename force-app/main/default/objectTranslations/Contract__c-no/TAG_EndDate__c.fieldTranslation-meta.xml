@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- Datoen avtalen forfaller. Kan settes maks 12 måneder frem i tid. --></help>
-    <label>Utløpsdato</label>
+    <label>Sluttdato</label>
     <name>TAG_EndDate__c</name>
 </CustomFieldTranslation>

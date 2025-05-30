@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Link__c</fullName>
-    <deprecated>false</deprecated>
     <description>Viser link til stilling. Brukes i stedet for auto number i related lists etc.</description>
     <externalId>false</externalId>
-    <formula>IF(ISPICKVAL(TAG_Category__c,&quot;&quot;), 
- HYPERLINK(&quot;/lightning/r/&quot;+Id+&quot;/view&quot;, &quot;Avtale - &quot;+ TAG_Account__r.Name, &quot;_self&quot;),
- HYPERLINK(&quot;/lightning/r/&quot;+Id+&quot;/view&quot;, TEXT(TAG_Category__c)+ &quot; - &quot;+ TAG_Account__r.Name, &quot;_self&quot;)
-)</formula>
+    <formula>HYPERLINK(&quot;/lightning/r/&quot;+Id+&quot;/view&quot;, TEXT(TAG_Category__c), &quot;_self&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Angir navnet på avtalen.</inlineHelpText>
-    <label>Contract Title</label>
+    <label>Contract</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
