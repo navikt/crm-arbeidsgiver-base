@@ -22,11 +22,15 @@
     <picklistValues>
         <picklist>TAG_Category__c</picklist>
         <values>
-            <fullName>Markedssamarbeid</fullName>
+            <fullName>IA-avtale</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Strategisk partneravtale</fullName>
+            <fullName>Inkluderingsavtale %28Arbeidsgiver%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekrutteringsavtale</fullName>
             <default>false</default>
         </values>
     </picklistValues>

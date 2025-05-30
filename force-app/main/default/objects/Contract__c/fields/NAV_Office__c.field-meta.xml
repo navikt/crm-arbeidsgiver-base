@@ -4,7 +4,6 @@
     <externalId>false</externalId>
     <formula>TAG_Account__r.TAG_NavUnit__r.Name</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Angir NAV-enheten som er ansvarlig for avtalen. Settes automatisk basert på tilknyttet kontos Nav-enhet.</inlineHelpText>
     <label>NAV Office</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

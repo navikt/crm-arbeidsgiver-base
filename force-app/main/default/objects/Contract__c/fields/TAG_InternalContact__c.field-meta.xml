@@ -3,7 +3,6 @@
     <fullName>TAG_InternalContact__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <inlineHelpText>Avtalens kontaktpersonen i Nav. Begynn å skrive for å se forslag basert på nylig brukte interne kontakter. Klikk på forstørrelsesglasset for å åpne avansert søk og full kontaktliste.</inlineHelpText>
     <label>Internal Contact</label>
     <referenceTo>User</referenceTo>
     <relationshipName>Contracts</relationshipName>

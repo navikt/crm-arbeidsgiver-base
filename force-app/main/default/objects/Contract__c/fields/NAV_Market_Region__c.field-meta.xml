@@ -4,7 +4,6 @@
     <externalId>false</externalId>
     <formula>TAG_Account__r.TAG_NavUnit__r.MarketRegion__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Angir NAV markedsregionen som er ansvarlig for avtalen. Settes automatisk basert på tilknyttet kontos Nav-enhet og dens markedsregion.</inlineHelpText>
     <label>NAV Market Region</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

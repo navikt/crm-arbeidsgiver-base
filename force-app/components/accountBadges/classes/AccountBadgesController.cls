@@ -8,11 +8,10 @@ public with sharing class AccountBadgesController {
     // Centralized query config
     private static final Map<String, String> QUERY_MAP = new Map<String, String>{
         'CustomOpportunity__c' => 'SELECT Id, InquiryCategory__c, InclusionStage__c FROM CustomOpportunity__c WHERE InclusionStage__c != \'Avsluttet\' AND Account__c = :accountId',
+        'Contract__c' => 'SELECT Id, TAG_Category__c,Region__c,TAG_Type_Partner__c FROM Contract__c WHERE RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Account__c = :accountId',
         'JobPosting__c' => 'SELECT Id, Status__c FROM JobPosting__c WHERE Status__c = \'ACTIVE\' AND Account__c = :accountId',
-        'Workfare__c' => 'SELECT Id, Status__c FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId',
-        'Contract__c' => 'SELECT Id, TAG_Category__c FROM Contract__c WHERE RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Account__c = :accountId',
         'IACooperation__c' => 'SELECT Id, Status__c, IACase__c FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND Account__c = :accountId AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))',
-        'IACase__c' => 'SELECT Id FROM IACase__c WHERE CaseStatus__c = \'VI_BISTÅR\' AND Account__c = :accountId'
+        'Workfare__c' => 'SELECT Id, Status__c FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId'
     };
 
     // Centralized badge config
@@ -41,16 +40,16 @@ public with sharing class AccountBadgesController {
             'urlTemplate' => '/lightning/r/IACase__c/{0}/view',
             'badgeType' => 'IA-samarbeid'
         },
-        'Strategisk partner' => new Map<String, String>{
-            'labelTemplate' => 'Strategisk partner',
-            'helpText' => 'Bedriften har strategisk partneravtale med Nav.',
-            'urlTemplate' => '/lightning/r/Report/{0}/view?fv0={1}',
-            'badgeType' => 'Strategisk partner'
+        'Partnerstatus' => new Map<String, String>{
+            'labelTemplate' => '{0}',
+            'helpText' => 'Denne bedriftens partnerstatus basert på aktive avtaler.',
+            'urlTemplate' => '/lightning/r/Report/{0}/view?fv0={1}&fv2=&fv3=&fv4={2}',
+            'badgeType' => 'Partnerstatus'
         },
-        'Markedssamarbeid' => new Map<String, String>{
-            'labelTemplate' => 'Markedssamarbeid',
+        'Samarbeidsavtale' => new Map<String, String>{
+            'labelTemplate' => '{0} {1}',
             'helpText' => 'Bedriften har avtale med tilsvarende kategori.',
-            'urlTemplate' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'urlTemplate' => '/lightning/r/Report/{0}/view?fv0={1}&fv2={2}&fv3={3}&fv4=',
             'badgeType' => 'Samarbeidsavtale'
         }
         // Add more badge configs as needed
@@ -77,9 +76,9 @@ public with sharing class AccountBadgesController {
         List<Badge> accountBadges = new List<Badge>();
         try {
             accountBadges.addAll(createContractBadges(accountId));
-            accountBadges.addAll(createIACooperationBadge(accountId));
             accountBadges.addAll(createOpportunityCountBadge(accountId));
             accountBadges.addAll(createJobPostingBadge(accountId));
+            accountBadges.addAll(createIACooperationBadge(accountId));
             accountBadges.addAll(createWorkfareBadge(accountId));
         } catch (Exception e) {
             logError(accountId, e);
@@ -153,25 +152,47 @@ public with sharing class AccountBadgesController {
         if (employerAgreements.isEmpty()) {
             return new List<Badge>();
         }
-
         Map<String, Badge> badges = new Map<String, Badge>();
         String reportId = getReportId('Avtaler');
-        Set<String> partnerStatuses = new Set<String>();
-
-        for (Contract__c con : employerAgreements) {
-            if (!String.isBlank(con.TAG_Category__c)) {
-                partnerStatuses.add(con.TAG_Category__c);
+        for (Contract__c employerAgreement : employerAgreements) {
+            if (!String.isBlank(employerAgreement.Region__c) && !String.isBlank(employerAgreement.TAG_Category__c)) {
+                String category = employerAgreement.TAG_Category__c.replaceAll('\\(.*\\)', '').trim();
+                category = category.startsWith('IA') ? category : category.toLowerCase();
+                Badge badge = createBadgeFromConfig(
+                    'Samarbeidsavtale',
+                    new List<Object>{ employerAgreement.Region__c, category },
+                    new List<Object>{
+                        reportId,
+                        accountId,
+                        employerAgreement.TAG_Category__c,
+                        employerAgreement.Region__c
+                    }
+                );
+                badges.put(badge.label, badge);
+            }
+            if (!String.isBlank(employerAgreement.TAG_Type_Partner__c)) {
+                Badge badge = createBadgeFromConfig(
+                    'Partnerstatus',
+                    new List<Object>{ employerAgreement.TAG_Type_Partner__c.toLowerCase().capitalize() },
+                    new List<Object>{ reportId, accountId, employerAgreement.TAG_Type_Partner__c }
+                );
+                badges.put(badge.label, badge);
             }
         }
-        if (partnerStatuses.contains('Strategisk partneravtale')) {
-            Badge badge = createBadgeFromConfig('Strategisk partner', null, new List<Object>{ reportId, accountId });
-            badges.put(badge.label, badge);
-        }
-        if (partnerStatuses.contains('Markedssamarbeid')) {
-            Badge badge = createBadgeFromConfig('Markedssamarbeid', null, new List<Object>{ reportId, accountId });
-            badges.put(badge.label, badge);
-        }
         return badges.values();
+    }
+
+    private static List<Badge> createJobPostingBadge(Id accountId) {
+        List<JobPosting__c> employerJobPostings = (List<JobPosting__c>) fetchRecords(accountId, 'JobPosting__c');
+        if (employerJobPostings.isEmpty()) {
+            return new List<Badge>();
+        }
+        Badge badge = createBadgeFromConfig(
+            'Stillinger',
+            new List<Object>{ employerJobPostings.size() },
+            new List<Object>{ getReportId('Stillinger'), accountId }
+        );
+        return new List<Badge>{ badge };
     }
 
     private static List<Badge> createIACooperationBadge(Id accountId) {
@@ -187,19 +208,6 @@ public with sharing class AccountBadgesController {
             'IA-samarbeid',
             new List<Object>{ employerIACooperations.size() },
             new List<Object>{ employerIACooperations[0].IACase__c }
-        );
-        return new List<Badge>{ badge };
-    }
-
-    private static List<Badge> createJobPostingBadge(Id accountId) {
-        List<JobPosting__c> employerJobPostings = (List<JobPosting__c>) fetchRecords(accountId, 'JobPosting__c');
-        if (employerJobPostings.isEmpty()) {
-            return new List<Badge>();
-        }
-        Badge badge = createBadgeFromConfig(
-            'Stillinger',
-            new List<Object>{ employerJobPostings.size() },
-            new List<Object>{ getReportId('Stillinger'), accountId }
         );
         return new List<Badge>{ badge };
     }
