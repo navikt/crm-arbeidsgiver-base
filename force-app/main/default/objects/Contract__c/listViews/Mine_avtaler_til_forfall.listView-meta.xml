@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mine_avtaler_til_forfall</fullName>
+    <columns>TAG_Link__c</columns>
+    <columns>TAG_StartDate__c</columns>
+    <columns>TAG_EndDate__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>TAG_Status__c</field>
+        <operation>equals</operation>
+        <value>Godkjent</value>
+    </filters>
+    <filters>
+        <field>TAG_Expiration_Reminder__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contract__c.EmployerAgreement</value>
+    </filters>
+    <label>Mine avtaler til forfall</label>
+</ListView>
