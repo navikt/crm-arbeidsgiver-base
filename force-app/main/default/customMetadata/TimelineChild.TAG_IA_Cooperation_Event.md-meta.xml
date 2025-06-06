@@ -15,6 +15,10 @@
         <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
+        <field>ClampLines__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>CreateableObject_Field1__c</field>
         <value xsi:type="xsd:string">TAG_ActivityType__c</value>
     </values>
@@ -24,7 +28,7 @@
     </values>
     <values>
         <field>CreateableObject_Field3__c</field>
-        <value xsi:type="xsd:string">IATheme__c</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Field4__c</field>
@@ -56,7 +60,7 @@
     </values>
     <values>
         <field>CreateableObject_Value3__c</field>
-        <value xsi:type="xsd:string">IA-Samarbeid</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CreateableObject_Value4__c</field>
@@ -67,12 +71,20 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>CustomComponent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>CustomView__c</field>
         <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>ExpandedFieldsToDisplay__c</field>
         <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Filter_Shown__c</field>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>FilterableCheckbox__c</field>
@@ -128,6 +140,14 @@
     </values>
     <values>
         <field>SObjectTypeValue__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Slick_Icon_Color__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Slick_background_color__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>
