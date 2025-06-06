@@ -1,0 +1,27 @@
+<template>
+    <!-- RelatedRecordsCardList -->
+    <ul class="slds-has-dividers_bottom-space">
+        <template for:each={records} for:item="record">
+            <li class="slds-item" key={record.id}>
+                <lightning-tile label={record.title} href={record.recordUrl} type="media">
+                    <lightning-icon slot="media" icon-name={record.icon} size="small"></lightning-icon>
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <template for:each={record.fields} for:item="field">
+                            <dt
+                                key={field.label}
+                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                title={field.label}
+                            >
+                                {field.label}:
+                            </dt>
+                            <dd key={field.label} class="slds-item_detail slds-truncate" title={field.value}>
+                                <c-formatted-field value={field.value} type={field.type}></c-formatted-field>
+                            </dd>
+                        </template>
+                    </dl>
+                </lightning-tile>
+            </li>
+        </template>
+    </ul>
+    <!-- -->
+</template>

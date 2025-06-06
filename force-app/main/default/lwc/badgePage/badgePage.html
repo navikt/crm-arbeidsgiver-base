@@ -1,0 +1,48 @@
+<template>
+    <article class="slds-card">
+        <!-- Header -->
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name={iconName} alternative-text="Listeikon" size="small"></lightning-icon>
+                </div>
+
+                <div class="slds-media__body">
+                    <div>
+                        <lightning-breadcrumbs>
+                            <lightning-breadcrumb label={parentRecordName} href={parentRecordUrl}>
+                            </lightning-breadcrumb>
+                        </lightning-breadcrumbs>
+                    </div>
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small">{cardTitle}</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+
+        <!-- Body content her -->
+        <div class="slds-card__body slds-card__body_inner">
+            <template if:true={isConfigLoaded}>
+                <template if:true={records}>
+                    <template if:true={isMobile}>
+                        <c-related-records-card-list records={recordListTiles}></c-related-records-card-list>
+                    </template>
+
+                    <template if:false={isMobile}>
+                        <c-related-records-table
+                            key-field="Id"
+                            data={recordsList}
+                            columns={columnsConfig}
+                            hide-checkbox-column
+                        >
+                        </c-related-records-table>
+                    </template>
+                </template>
+                <template if:true={error}>
+                    <p class="slds-text-color_error">Feil ved henting av data: {error.message}</p>
+                </template>
+            </template>
+        </div>
+    </article>
+</template>
