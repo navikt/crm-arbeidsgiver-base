@@ -1,0 +1,37 @@
+<template>
+    <template if:true={value}>
+        <template if:true={isText}>
+            <lightning-formatted-text value={value} linkify></lightning-formatted-text>
+        </template>
+        <template if:true={isRichText}>
+            <lightning-formatted-rich-text value={value}></lightning-formatted-rich-text>
+        </template>
+        <template if:true={isEmail}>
+            <lightning-formatted-email value={value}></lightning-formatted-email>
+        </template>
+        <template if:true={isPhone}>
+            <lightning-formatted-phone value={value}></lightning-formatted-phone>
+        </template>
+        <template if:true={isDate}>
+            <lightning-formatted-date-time value={value}></lightning-formatted-date-time>
+        </template>
+        <template if:true={isNumber}>
+            <lightning-formatted-number value={value}></lightning-formatted-number>
+        </template>
+        <template if:true={isBoolean}>
+            <!-- ToDO: Should be checkbox, not text -->
+            <lightning-formatted-text value={value}></lightning-formatted-text>
+        </template>
+        <template if:true={isAddress}>
+            <!-- show-static-map -->
+            <lightning-formatted-address
+                street={addressParts.street}
+                city={addressParts.city}
+                province={addressParts.province}
+                country={addressParts.country}
+                postal-code={addressParts.postalCode}
+            >
+            </lightning-formatted-address>
+        </template>
+    </template>
+</template>
