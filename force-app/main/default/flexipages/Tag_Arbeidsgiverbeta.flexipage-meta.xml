@@ -58,35 +58,17 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>entityNames</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>Account</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Contact</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Contract</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Contract__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>JobPosting__c</value>
-                        </valueListItems>
-                    </valueList>
+                    <name>allowedObjects</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Standard.RecentItems</value>
+                    <name>recordLimit</name>
+                    <value>10</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>maxRecords</name>
-                    <value>3</value>
+                    <name>titleFieldsMapping</name>
                 </componentInstanceProperties>
-                <componentName>flexipage:recentItems</componentName>
-                <identifier>flexipage_recentItems</identifier>
+                <componentName>tagRecentItemsList</componentName>
+                <identifier>c_tagRecentItemsList</identifier>
             </componentInstance>
         </itemInstances>
         <name>row1col3</name>
