@@ -12,9 +12,10 @@ public with sharing class BankAccountModel {
 
     public void parse(String json) {
         BankAccountModel model = (BankAccountModel) System.JSON.deserialize(json, BankAccountModel.class);
+        String sistEndretTekst = model.sist_endret;
         mottaker = model.mottaker;
         kontonr = model.kontonr;
-        sist_endret = left(model.sist_endret, 19);
+        sist_endret = left(sistEndretTekst, 19);
         feilmelding = model.feilmelding;
     }
 }
