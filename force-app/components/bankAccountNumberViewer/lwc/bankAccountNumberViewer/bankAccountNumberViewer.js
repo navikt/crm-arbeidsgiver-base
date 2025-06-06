@@ -8,14 +8,20 @@ export default class BankAccountNumberViewer extends LightningElement {
     isLoading = true;
     style = '';
     text;
+    textDate;
 
     @wire(getBankAccountNumber, { recordId: '$recordId' })
     deWire(result) {
         if (result.data) {
             if (result.data.isSuccess) {
                 this.text = result.data.kontonr;
+                const rawDate = result.data.sist_endret;
+                const parsedDate = new Date(rawDate);
+                this.textDate = parsedDate.toLocaleString(); 
+
             } else {
                 this.text = result.data.feilmelding;
+                this.textDate = result.data.feilmelding;
             }
             this.isLoading = false;
         } else if (result.error) {
