@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <formula>TAG_Account__r.Is_My_NAV_Region__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Angir om avtalen gjelder din region/fylke. Settes automatisk basert på tilknyttet kontos Nav-enhet og dens region/fylke.</inlineHelpText>
     <label>Is My NAV Region</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
