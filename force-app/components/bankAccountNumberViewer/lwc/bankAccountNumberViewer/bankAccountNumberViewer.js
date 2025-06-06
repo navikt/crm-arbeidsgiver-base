@@ -15,7 +15,7 @@ export default class BankAccountNumberViewer extends LightningElement {
         if (result.data) {
             if (result.data.isSuccess) {
                 this.text = result.data.kontonr;
-                this.textDate = result.data.sist_endret2;
+                this.textDate = result.data.sist_endret;
             } else {
                 this.text = result.data.feilmelding;
                 this.textDate = result.data.feilmelding;
