@@ -1,0 +1,19 @@
+/* Badge Styling */
+.badge-neutral {
+    background-color: var(--slds-g-color-palette-yellow-90);
+    border-color: var(--slds-g-color-palette-yellow-80);
+}
+
+/* Preview-knappen er skjult */
+.preview-button {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+}
+
+/* Hvis wrapper eller noe inni får fokus via TAB – vis knappen */
+.badge-wrapper:focus-within .preview-button {
+    clip-path: unset;
+    clip: unset;
+    position: relative;
+}
