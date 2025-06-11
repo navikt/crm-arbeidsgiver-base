@@ -52,6 +52,12 @@ public with sharing class AccountBadgesController {
             'helpText' => 'Bedriften har avtale med tilsvarende kategori.',
             'urlTemplate' => '/lightning/r/Report/{0}/view?fv0={1}',
             'badgeType' => 'Samarbeidsavtale'
+        },
+        'Avtale_gammel' => new Map<String, String>{
+            'labelTemplate' => '{0}',
+            'helpText' => 'Bedriften har avtale med tilsvarende kategori.',
+            'urlTemplate' => '/lightning/r/Report/{0}/view?fv0={1}',
+            'badgeType' => 'Avtale_gammel'
         }
         // Add more badge configs as needed
     };
