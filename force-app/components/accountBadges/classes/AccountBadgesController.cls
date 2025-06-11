@@ -10,7 +10,7 @@ public with sharing class AccountBadgesController {
         'CustomOpportunity__c' => 'SELECT Id, InquiryCategory__c, InclusionStage__c FROM CustomOpportunity__c WHERE InclusionStage__c != \'Avsluttet\' AND Account__c = :accountId',
         'JobPosting__c' => 'SELECT Id, Status__c FROM JobPosting__c WHERE Status__c = \'ACTIVE\' AND Account__c = :accountId',
         'Workfare__c' => 'SELECT Id, Status__c FROM Workfare__c WHERE Status__c = \'GJENNOMFØRES\' AND Account__c = :accountId',
-        'Contract__c' => 'SELECT Id, TAG_Category__c FROM Contract__c WHERE RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Account__c = :accountId',
+        'Contract__c' => 'SELECT Id, TAG_Category__c, Region__c,TAG_Type_Partner__c FROM Contract__c WHERE RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Account__c = :accountId',
         'IACooperation__c' => 'SELECT Id, Status__c, IACase__c FROM IACooperation__c WHERE Status__c = \'AKTIV\' AND Account__c = :accountId AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))',
         'IACase__c' => 'SELECT Id FROM IACase__c WHERE CaseStatus__c = \'VI_BISTÅR\' AND Account__c = :accountId'
     };
@@ -156,9 +156,27 @@ public with sharing class AccountBadgesController {
         Map<String, Badge> badges = new Map<String, Badge>();
         String reportId = getReportId('Avtaler');
         Set<String> partnerStatuses = new Set<String>();
-
+        Set<String> oldValuesFound = new Set<String>();
+        Set<String> oldValuesToCompare = new Set<String>{
+            'Rekrutteringsavtale',
+            'IA-avtale',
+            'Inkluderingsavtale (Arbeidsgiver)',
+            'Samarbeidspartner',
+            'Strategisk Partner'
+        };
         for (Contract__c con : employerAgreements) {
-            if (!String.isBlank(con.TAG_Category__c)) {
+            if (oldValuesToCompare.contains(con.TAG_Category__c)) {
+                // Gammelt rammeverk
+                if (!String.isBlank(con.Region__c)) {
+                    String category = con.TAG_Category__c.replaceAll('\\(.*\\)', '').trim();
+                    category = category.startsWith('IA') ? category : category.toLowerCase();
+                    oldValuesFound.add(con.Region__c + ' ' + category);
+                }
+                if (oldValuesToCompare.contains(con.TAG_Type_Partner__c)) {
+                    oldValuesFound.add(con.TAG_Type_Partner__c.toLowerCase().capitalize());
+                }
+            } else if (!String.isBlank(con.TAG_Category__c)) {
+                // Nytt rammeverk
                 partnerStatuses.add(con.TAG_Category__c);
             }
         }
@@ -169,6 +187,17 @@ public with sharing class AccountBadgesController {
         if (partnerStatuses.contains('Markedssamarbeid')) {
             Badge badge = createBadgeFromConfig('Markedssamarbeid', null, new List<Object>{ reportId, accountId });
             badges.put(badge.label, badge);
+        }
+
+        if (!oldValuesFound.isEmpty()) {
+            for (String s : oldValuesFound) {
+                Badge badge = createBadgeFromConfig(
+                    'Avtale_gammel',
+                    new List<Object>{ s },
+                    new List<Object>{ reportId, accountId }
+                );
+                badges.put(badge.label, badge);
+            }
         }
         return badges.values();
     }
