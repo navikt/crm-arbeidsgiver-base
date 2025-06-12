@@ -63,12 +63,10 @@ public with sharing class BadgeService {
         if (String.isNotBlank(filter)) {
             query += ' AND ' + filter;
         }
-        System.debug('query: ' + query);
         try {
             records = Database.query(query, AccessLevel.USER_MODE);
             return records;
         } catch (QueryException e) {
-            System.debug(e.getMessage());
             return null;
         }
     }
@@ -100,7 +98,6 @@ public with sharing class BadgeService {
                     col.typeAttributes = createTypeAttributes(f.getType());
                     col.value = record.get(fieldName);
                 } else {
-                    System.debug('Field not found: ' + fieldName);
                     col.label = fieldName;
                     col.fieldName = fieldName;
                 }

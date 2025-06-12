@@ -8,6 +8,10 @@ public with sharing class BadgeConfigProvider {
         return BADGE_CONFIG.get(badgeType);
     }
 
+    public static List<String> getAvailableBadgeTypes() {
+        return new List<String>(BADGE_CONFIG.keySet());
+    }
+
     // Centralized badge config for query, icon, help text etc.
     private static final Map<String, Map<String, String>> BADGE_CONFIG = new Map<String, Map<String, String>>{
         'muligheter' => new Map<String, String>{

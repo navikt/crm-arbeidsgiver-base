@@ -10,10 +10,8 @@ public with sharing class BadgeController {
      */
     @AuraEnabled(cacheable=true)
     public static List<BadgeService.Badge> createBadges(Id recordId, String keys) {
-        system.debug(keys);
         List<BadgeService.Badge> badges = new List<BadgeService.Badge>();
         if (recordId == null || String.isEmpty(keys)) {
-            system.debug('Missing input params');
             return new List<BadgeService.Badge>();
         }
 
@@ -34,12 +32,10 @@ public with sharing class BadgeController {
                         new List<Object>{ recordId, badgeKey }
                     );
                     badges.add(badge);
-                    system.debug(badge);
                 }
             }
         } catch (Exception e) {
             logError(recordId, e);
-            system.debug(e);
             return new List<BadgeService.Badge>();
         }
 
@@ -59,11 +55,8 @@ public with sharing class BadgeController {
     @AuraEnabled(cacheable=true)
     public static List<BadgeService.Record> getRecords(String recordId, String badgeKey) {
         try {
-            System.debug('badgeKey: ' + badgeKey);
             Map<String, String> config = BadgeConfigProvider.getBadgeConfig(badgeKey);
             List<SObject> records = BadgeService.getRecords(recordId, config);
-
-            System.debug('Record: ' + records);
             List<BadgeService.Record> recordsWithFields = BadgeService.createListOfRecords(records, config);
             return recordsWithFields;
         } catch (Exception e) {
@@ -73,14 +66,14 @@ public with sharing class BadgeController {
     }
     /**
      * @description Logs an error for a given account.
-     * @param recordId The Id of the Account for which to log the error.
+     * @param referenceInfo The reference for which to log the error, for instance record Id or badge key.
      * @param e The exception to log.
      */
-    private static void logError(Id recordId, Exception e) {
+    private static void logError(String referenceInfo, Exception e) {
         LOGGER.logMessage(
             LoggerUtility.LogLevel.Error,
             '',
-            recordId,
+            referenceInfo,
             e.getMessage(),
             e.getStackTraceString(),
             null,
