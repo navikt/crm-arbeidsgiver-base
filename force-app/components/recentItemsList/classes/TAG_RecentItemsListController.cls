@@ -39,13 +39,14 @@ public with sharing class TAG_RecentItemsListController {
         // Query RecentlyViewed
         String rvSoql =
             'SELECT Id, Name, Type, LastViewedDate ' +
-            'FROM RecentlyViewed';
+            'FROM RecentlyViewed ' +
+            'WHERE Type != \'ListView\'';
         if (!allowedTypes.isEmpty()) {
             List<String> quoted = new List<String>();
             for (String t : allowedTypes) {
                 quoted.add('\'' + String.escapeSingleQuotes(t) + '\'');
             }
-            rvSoql += ' WHERE Type IN (' + String.join(quoted, ',') + ')';
+            rvSoql += ' AND Type IN (' + String.join(quoted, ',') + ')';
         }
         rvSoql += ' ORDER BY LastViewedDate DESC LIMIT :limitSize';
 

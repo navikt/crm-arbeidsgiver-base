@@ -1,11 +1,10 @@
 <template>
-    <div style="margin-top: -1rem;">
-    <lightning-card title="Siste aktivitet" icon-name="utility:clock" class="slds-card">
+    <lightning-card title={cardTitle} icon-name="utility:clock" class="slds-card">
         <div class="slds-p-horizontal_small slds-p-vertical_x-small">
             <template if:true={hasItems}>
                 <ul class="slds-timeline">
                     <template for:each={items} for:item="item">
-                        <li key={item.recordId} class="slds-timeline__item slds-media">
+                        <li key={item.recordId} class={item.itemClass}>
                             <div class="slds-media__figure">
                                 <span class="slds-icon_container slds-icon-standard-timeline" title={item.sobjectType}>
                                     <lightning-icon 
@@ -54,5 +53,4 @@
             </template>
         </div>
     </lightning-card>
-</div>
 </template>

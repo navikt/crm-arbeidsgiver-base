@@ -7,24 +7,26 @@ export default class TagRecentItemsList extends LightningElement {
     @api recordLimit = DEFAULT_LIMIT;
     @api allowedObjects = '';
     @api titleFieldsMapping = '';
+    @api cardTitle = 'Siste aktivitet';
+    @api lineSpacing = false;
 
     @track rawItems = [];
     @track error;
 
     @wire(getRecentItems, {
-        limitSize           : '$recordLimit',
-        allowedObjects   : '$allowedObjects',
+        limitSize: '$recordLimit',
+        allowedObjects: '$allowedObjects',
         titleFieldsMapping: '$titleFieldsMapping'
     })
     wiredRecent({ error, data }) {
         if (data) {
-            this.rawItems = data.map(rec => ({
-                recordId       : rec.recordId,
-                displayTitle   : rec.displayTitle,
-                sobjectType    : rec.sobjectType,
-                lastViewedDate : rec.lastViewedDate,
-                url            : rec.url,
-                iconName       : rec.iconName
+            this.rawItems = data.map((rec) => ({
+                recordId: rec.recordId,
+                displayTitle: rec.displayTitle,
+                sobjectType: rec.sobjectType,
+                lastViewedDate: rec.lastViewedDate,
+                url: rec.url,
+                iconName: rec.iconName
             }));
         } else if (error) {
             this.rawItems = [];
@@ -37,9 +39,10 @@ export default class TagRecentItemsList extends LightningElement {
         if (!this.rawItems || this.rawItems.length === 0) {
             return [];
         }
-        return this.rawItems.map(raw => ({
+        return this.rawItems.map((raw) => ({
             ...raw,
-            secondaryText: `${raw.sobjectType} • ${this.formatDateTime(raw.lastViewedDate)}`
+            secondaryText: `${raw.sobjectType} • ${this.formatDateTime(raw.lastViewedDate)}`,
+            itemClass: this.computeItemClass()
         }));
     }
 
@@ -51,16 +54,24 @@ export default class TagRecentItemsList extends LightningElement {
         return !this.hasItems && !this.error;
     }
 
+    computeItemClass() {
+        let cls = 'slds-timeline__item slds-media';
+        if (this.lineSpacing) {
+            cls += ' line-spacing';
+        }
+        return cls;
+    }
+
     formatDateTime(dtString) {
         if (!dtString) {
             return '';
         }
         const dt = new Date(dtString);
         return dt.toLocaleString(undefined, {
-            year:   'numeric',
-            month:  'short',
-            day:    'numeric',
-            hour:   'numeric',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
             minute: '2-digit'
         });
     }
