@@ -10,6 +10,13 @@
     <targetConfigs>
         <targetConfig targets="lightning__HomePage">
             <property
+                name="cardTitle"
+                type="String"
+                label="List Title"
+                default="Siste aktivitet"
+                description="Title to display at the top of the card"
+            />
+            <property
                 name="recordLimit"
                 type="Integer"
                 default="10"
@@ -27,6 +34,13 @@
                 type="String"
                 label="Title Field Overrides (semicolon‐separated)"
                 description="Semicolon‐separated mapping of ObjectAPI:FieldAPI to use as the display title. e.g. Account:Phone;Custom__c:CustomField__c"
+            />
+            <property
+                name="lineSpacing"
+                type="Boolean"
+                default="false"
+                label="Use for SLDS 1 line spacing"
+                description="Enable to use for the older SLDS 1 spacing."
             />
         </targetConfig>
     </targetConfigs>
