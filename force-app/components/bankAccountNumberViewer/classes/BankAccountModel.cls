@@ -14,7 +14,7 @@ public with sharing class BankAccountModel {
         BankAccountModel model = (BankAccountModel) System.JSON.deserialize(json, BankAccountModel.class);
         mottaker = model.mottaker;
         kontonr = model.kontonr;
-        sist_endret = sist_endret;
+        sist_endret = model.sist_endret;
         feilmelding = model.feilmelding;
     }
 }
