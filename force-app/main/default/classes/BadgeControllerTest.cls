@@ -112,7 +112,11 @@ private class BadgeControllerTest {
     @isTest
     static void testBadgeCreateRequest() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
-        List<BadgeService.Badge> badges = BadgeController.createBadges(testAccount.id, 'muligheter,markedssamarbeid');
+        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<BadgeService.Badge> badges;
+        System.runAs(user) {
+            badges = BadgeController.createBadges(testAccount.id, 'muligheter,markedssamarbeid');
+        }
         Assert.isFalse(badges.isEmpty(), 'Badges should be returned');
         Assert.areEqual(2, badges.size(), 'Should contain 2 badges');
     }
