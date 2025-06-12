@@ -115,16 +115,21 @@ private class BadgeServiceTest {
     @isTest
     static void testGetRecordCount() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
+        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+
         Map<String, String> config = new Map<String, String>{
             'columns' => 'Name,TAG_Link__c, Source__c, InclusionStage__c,OWNER.ALIAS,TAG_Age__c,Position_in_Rekrutteringsbistand__c',
             'objectApiName' => 'CustomOpportunity__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'InclusionStage__c != \'Avsluttet\''
         };
+        Integer count;
+        System.runAs(user) {
+            Test.startTest();
+            count = BadgeService.getRecordCount(testAccount.Id, config);
+            Test.stopTest();
+        }
 
-        Test.startTest();
-        Integer count = BadgeService.getRecordCount(testAccount.Id, config);
-        Test.stopTest();
         Assert.isNotNull(count);
         Assert.areEqual(
             [
@@ -139,11 +144,11 @@ private class BadgeServiceTest {
     static void serviceShouldReturnNullOnQueryException() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount1' LIMIT 1];
         User user = [SELECT id FROM User WHERE LastName = 'USER WITHOUT PERMISSIONS' LIMIT 1];
-        insert new CustomOpportunity__c(
-            Account__c = testAccount.Id,
-            InquiryCategory__c = 'Skal ansette',
-            InclusionStage__c = 'Ny henvendelse'
-        );
+        List<CustomOpportunity__c> opportunities = TAG_TestDataFactory.getCustomOpportunities(1, false);
+        opportunities[0].Account__c = testAccount.Id;
+        opportunities[0].InquiryCategory__c = 'Skal ansette';
+        opportunities[0].InclusionStage__c = 'Ny henvendelse';
+        insert opportunities;
 
         Map<String, String> config = new Map<String, String>{
             'columns' => 'Name,TAG_Link__c, Source__c, InclusionStage__c,OWNER.ALIAS,TAG_Age__c,Position_in_Rekrutteringsbistand__c',
@@ -166,16 +171,20 @@ private class BadgeServiceTest {
     @isTest
     static void testGetRecords() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
+        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+
         Map<String, String> config = new Map<String, String>{
             'columns' => 'Name,TAG_Link__c, Source__c, InclusionStage__c,OWNER.ALIAS,TAG_Age__c,Position_in_Rekrutteringsbistand__c',
             'objectApiName' => 'CustomOpportunity__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'InclusionStage__c != \'Avsluttet\''
         };
-
-        Test.startTest();
-        List<SObject> returnedRecords = BadgeService.getRecords(testAccount.Id, config);
-        Test.stopTest();
+        List<SObject> returnedRecords;
+        System.runAs(user) {
+            Test.startTest();
+            returnedRecords = BadgeService.getRecords(testAccount.Id, config);
+            Test.stopTest();
+        }
         List<CustomOpportunity__c> opps = [
             SELECT
                 Name,

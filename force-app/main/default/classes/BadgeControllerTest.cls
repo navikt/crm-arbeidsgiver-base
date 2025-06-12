@@ -140,7 +140,11 @@ private class BadgeControllerTest {
     @isTest
     static void testGetRecords() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
-        List<BadgeService.Record> result = BadgeController.getRecords(testAccount.Id, 'muligheter');
+        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<BadgeService.Record> result;
+        System.runAs(user) {
+            result = BadgeController.getRecords(testAccount.Id, 'muligheter');
+        }
         Assert.isNotNull(result, 'Result should not be null');
         Assert.isFalse(result.isEmpty(), 'Records should be returned');
     }
