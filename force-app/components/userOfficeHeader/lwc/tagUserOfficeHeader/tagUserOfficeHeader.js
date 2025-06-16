@@ -1,23 +1,28 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import USER_ID from '@salesforce/user/Id';
 import { getRecord } from 'lightning/uiRecordApi';
 import FIRST_NAME_FIELD from '@salesforce/schema/User.FirstName';
 import LAST_NAME_FIELD from '@salesforce/schema/User.LastName';
+import COMPANY_NAME_FIELD from '@salesforce/schema/User.CompanyName';
+
+const FIELDS = [FIRST_NAME_FIELD, LAST_NAME_FIELD, COMPANY_NAME_FIELD];
 
 export default class TagUserOfficeHeader extends LightningElement {
-  @wire(getRecord, {
-    recordId: USER_ID,
-    fields: [FIRST_NAME_FIELD, LAST_NAME_FIELD]
-  })
-  userRecord;
+    @api showWelcomeMessage;
 
-  get fullName() {
-    const data = this.userRecord.data;
-    if (data) {
-      const fn = data.fields.FirstName.value;
-      const ln = data.fields.LastName.value;
-      return `${fn} ${ln}`;
+    @wire(getRecord, { recordId: USER_ID, fields: FIELDS })
+    userRecord;
+
+    get fullName() {
+        const data = this.userRecord.data;
+        if (data) {
+            return `${data.fields.FirstName.value} ${data.fields.LastName.value}`;
+        }
+        return '';
     }
-    return '';
-  }
+
+    get companyName() {
+        const data = this.userRecord.data;
+        return data ? data.fields.CompanyName.value : '';
+    }
 }

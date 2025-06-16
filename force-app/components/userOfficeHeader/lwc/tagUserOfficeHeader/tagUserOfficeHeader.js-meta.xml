@@ -9,6 +9,12 @@
   </targets>
   <targetConfigs>
     <targetConfig targets="lightning__HomePage">
+        <property
+          name="showWelcomeMessage"
+          type="Boolean"
+          label="Show Welcome Message"
+          default="true"
+        />
       <supportedFormFactors>
         <supportedFormFactor type="Small"/>
         <supportedFormFactor type="Large"/>
