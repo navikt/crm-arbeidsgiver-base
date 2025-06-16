@@ -3,6 +3,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>showWelcomeMessage</name>
+                    <value>true</value>
+                </componentInstanceProperties>
                 <componentName>tagUserOfficeHeader</componentName>
                 <identifier>c_tagUserOfficeHeader</identifier>
             </componentInstance>
@@ -103,15 +107,11 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
+                    <name>showWelcomeMessage</name>
+                    <value>false</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;Nav Kontor + Badges&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText4</identifier>
+                <componentName>tagUserOfficeHeader</componentName>
+                <identifier>c_tagUserOfficeHeader2</identifier>
             </componentInstance>
         </itemInstances>
         <name>header2</name>
