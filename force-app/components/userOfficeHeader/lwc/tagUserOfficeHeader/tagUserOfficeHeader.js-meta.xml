@@ -12,7 +12,7 @@
         <property
           name="showWelcomeMessage"
           type="Boolean"
-          label="Show Welcome Message"
+          label="Show User welcome message (checked) or Nav Office name (unchecked)"
           default="true"
         />
       <supportedFormFactors>
