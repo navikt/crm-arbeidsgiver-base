@@ -1,5 +1,8 @@
 <template>
     <template if:true={value}>
+        <template if:true={isUrl}>
+            <lightning-formatted-url value={url.link} label={url.name}></lightning-formatted-url>
+        </template>
         <template if:true={isText}>
             <lightning-formatted-text value={value} linkify></lightning-formatted-text>
         </template>
@@ -19,8 +22,8 @@
             <lightning-formatted-number value={value}></lightning-formatted-number>
         </template>
         <template if:true={isBoolean}>
-            <!-- ToDO: Should be checkbox, not text -->
-            <lightning-formatted-text value={value}></lightning-formatted-text>
+            <template if:true={value}><lightning-formatted-text value="✅"></lightning-formatted-text></template>
+            <template if:false={value}><lightning-formatted-text value="⬜"></lightning-formatted-text></template>
         </template>
         <template if:true={isAddress}>
             <!-- show-static-map -->

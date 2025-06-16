@@ -26,17 +26,11 @@
             <template if:true={isConfigLoaded}>
                 <template if:true={records}>
                     <template if:true={isMobile}>
-                        <c-related-records-card-list records={recordListTiles}></c-related-records-card-list>
+                        <c-related-records-card-list records={records}></c-related-records-card-list>
                     </template>
 
                     <template if:false={isMobile}>
-                        <c-related-records-table
-                            key-field="Id"
-                            data={recordsList}
-                            columns={columnsConfig}
-                            hide-checkbox-column
-                        >
-                        </c-related-records-table>
+                        <c-related-records-table records={records}> </c-related-records-table>
                     </template>
                 </template>
                 <template if:true={error}>
