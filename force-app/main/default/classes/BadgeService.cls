@@ -75,10 +75,10 @@ public with sharing class BadgeService {
         String objectApiName = config.get('objectApiName');
         String icon = config.get('icon');
         List<String> columns = config.get('columns').replace(' ', '').split(',');
-        Map<String, Schema.SObjectField> fieldData = Schema.getGlobalDescribe()
-            .get(objectApiName)
-            .getDescribe()
-            .fields.getMap();
+
+        Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new List<String>{ objectApiName });
+        Map<String, Schema.SObjectField> fieldData = descResult[0].fields.getMap();
+
         List<Record> recordList = new List<Record>();
         for (SObject record : records) {
             Record rec = new Record();
@@ -98,8 +98,46 @@ public with sharing class BadgeService {
                     col.typeAttributes = createTypeAttributes(f.getType());
                     col.value = record.get(fieldName);
                 } else {
-                    col.label = fieldName;
-                    col.fieldName = fieldName;
+                    List<String> relatedField = fieldName.split('\\.');
+                    String objectPart = relatedField[0];
+                    String fieldPart = relatedField[1];
+                    String fieldRelationshipName;
+                    String referenceLabel;
+                    String baseFieldName;
+                    // Get record referenced in lookup field
+                    SObject reference = record.getSObject(objectPart);
+                    // Get values in lookup field
+                    String referenceId = (String) reference.get('Id');
+                    String referenceFieldValue = (String) reference.get(fieldPart);
+
+                    if (objectPart.contains('__r')) {
+                        // Get base field label, Schema.DescribeFieldResult f = fieldData.get(fieldName).getDescribe();
+                        baseFieldName = objectPart.replace('__r', '__c');
+                        Schema.DescribeFieldResult f = fieldData.get(baseFieldName).getDescribe();
+                        referenceLabel = f.getLabel();
+                    } else {
+                        baseFieldName = objectPart;
+                        // Get field label
+
+                        System.debug(reference);
+                        Map<String, Schema.SObjectField> referenceFieldData = reference.getSObjectType()
+                            .getDescribe()
+                            .fields.getMap();
+                        Schema.DescribeFieldResult referenceFieldDescr = referenceFieldData.get(fieldPart)
+                            .getDescribe();
+                        referenceLabel = referenceFieldDescr.getLabel();
+                    }
+
+                    col.fieldName = objectPart + '_' + fieldPart;
+                    col.label = referenceLabel; //title="SKI KOMMUNE" label="SKI KOMMUNE"
+                    col.type = 'c_reference'; //
+                    col.typeAttributes = null; // typeAttributes: { label: { fieldName: 'parrentid_name' } }
+                    Record linkref = new Record();
+                    linkref.link = '/' + referenceId;
+                    linkref.id = referenceId;
+                    linkref.name = referenceFieldValue;
+                    col.value = linkref;
+                    System.debug(col);
                 }
                 rec.fields.add(col);
             }

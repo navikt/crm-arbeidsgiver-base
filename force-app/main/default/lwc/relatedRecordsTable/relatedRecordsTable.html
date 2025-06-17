@@ -1,0 +1,29 @@
+<template>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
+        <thead>
+            <tr>
+                <template if:true={hasFields}>
+                    <template for:each={fieldLabels} for:item="field">
+                        <th key={field}>{field}</th>
+                    </template>
+                </template>
+            </tr>
+        </thead>
+        <tbody>
+            <template if:true={hasFields}>
+                <template for:each={recordListTable} for:item="record">
+                    <tr key={record.id}>
+                        <td>
+                            <c-formatted-field value={record} type="c_reference"></c-formatted-field>
+                        </td>
+                        <template for:each={record.fields} for:item="field">
+                            <td key={field.label}>
+                                <c-formatted-field value={field.value} type={field.type}></c-formatted-field>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+            </template>
+        </tbody>
+    </table>
+</template>

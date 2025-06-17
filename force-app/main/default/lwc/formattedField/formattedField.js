@@ -4,6 +4,9 @@ export default class FormattedField extends LightningElement {
     @api value;
     @api type;
 
+    get isUrl() {
+        return this.activeTemplate === 'c_reference';
+    }
     get isText() {
         return this.activeTemplate === 'text';
     }
@@ -28,6 +31,17 @@ export default class FormattedField extends LightningElement {
     }
     get isAddress() {
         return this.activeTemplate === 'address';
+    }
+    get url() {
+        try {
+            return {
+                link: this.value?.link || '',
+                name: this.value?.name || ''
+            };
+        } catch (error) {
+            console.error('feil i url...' + error);
+            return null;
+        }
     }
     get addressParts() {
         try {

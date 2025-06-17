@@ -205,7 +205,7 @@ private class BadgeServiceTest {
     static void convertSObjectReordsToRecordWrapperObjects() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
         List<CustomOpportunity__c> records = [
-            SELECT Id, InclusionStage__c, InquiryCategory__c, createddate, Owner.Alias
+            SELECT Id, InclusionStage__c, InquiryCategory__c, createddate, Account__r.Name, Owner.Alias
             FROM CustomOpportunity__c
             WHERE
                 InquiryCategory__c = 'Skal ansette'
@@ -214,7 +214,7 @@ private class BadgeServiceTest {
         ];
 
         Map<String, String> config = new Map<String, String>{
-            'columns' => 'InquiryCategory__c, InclusionStage__c',
+            'columns' => 'InquiryCategory__c, InclusionStage__c,Account__r.Name, Owner.Alias',
             'objectApiName' => 'CustomOpportunity__c',
             'icon' => 'Icon'
         };
@@ -230,6 +230,10 @@ private class BadgeServiceTest {
         Assert.isNotNull(recordList[0].fields, 'Should contain list of fields');
         Assert.areEqual('InquiryCategory__c', recordList[0].fields[0].fieldName);
         Assert.areEqual('InclusionStage__c', recordList[0].fields[1].fieldName);
+
+        Assert.areEqual('Account__r_Name', recordList[0].fields[2].fieldName);
+        Assert.areEqual('Owner_Alias', recordList[0].fields[3].fieldName);
+
         Assert.areEqual('Skal ansette', recordList[0].fields[0].value);
         Assert.areEqual('Ny henvendelse', recordList[0].fields[1].value);
     }
