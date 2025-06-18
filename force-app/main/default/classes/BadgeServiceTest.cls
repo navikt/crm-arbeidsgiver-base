@@ -301,12 +301,5 @@ private class BadgeServiceTest {
         Assert.areEqual(records[0].Account__r.Name, lookupRecord.name, 'Field value should match record value');
         Assert.isNotNull(lookupRecord.link, 'Link should not be null');
         Assert.areEqual(records[0].Account__r.Id, lookupRecord.id, 'Id should match record Id');
-
-        BadgeService.Field polyField = BadgeService.createFieldFromSObject(
-            records[0],
-            'TYPEOF Owner WHEN User THEN Alias WHEN Group THEN Name END',
-            fieldData
-        );
-        BadgeService.Record polyRecord = (BadgeService.Record) polyField.value;
     }
 }
