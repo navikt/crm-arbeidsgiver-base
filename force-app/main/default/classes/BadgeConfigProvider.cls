@@ -22,7 +22,7 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'Muligheter',
             'icon' => 'custom:custom14',
-            'columns' => 'Name,TAG_Link__c, Source__c, InclusionStage__c,OWNER.ALIAS,TAG_Age__c,Position_in_Rekrutteringsbistand__c',
+            'columns' => 'Name,TAG_Link__c, Source__c, InclusionStage__c,TYPEOF Owner WHEN User THEN Alias WHEN Group THEN Name END,TAG_Age__c,Position_in_Rekrutteringsbistand__c',
             'objectApiName' => 'CustomOpportunity__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'InclusionStage__c != \'Avsluttet\''

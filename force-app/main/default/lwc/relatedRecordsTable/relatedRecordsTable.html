@@ -1,10 +1,14 @@
 <template>
-    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
+    <table
+        class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_resizable-cols slds-table_fixed-layout"
+    >
         <thead>
             <tr>
                 <template if:true={hasFields}>
                     <template for:each={fieldLabels} for:item="field">
-                        <th key={field}>{field}</th>
+                        <th class="slds-is-resizable" scope="col" key={field}>
+                            <div class="slds-truncate">{field}</div>
+                        </th>
                     </template>
                 </template>
             </tr>
@@ -13,12 +17,16 @@
             <template if:true={hasFields}>
                 <template for:each={recordListTable} for:item="record">
                     <tr key={record.id}>
-                        <td>
-                            <c-formatted-field value={record} type="c_reference"></c-formatted-field>
+                        <td scope="row">
+                            <div class="slds-truncate">
+                                <c-formatted-field value={record} type="c_reference"></c-formatted-field>
+                            </div>
                         </td>
                         <template for:each={record.fields} for:item="field">
                             <td key={field.label}>
-                                <c-formatted-field value={field.value} type={field.type}></c-formatted-field>
+                                <div class="slds-truncate">
+                                    <c-formatted-field value={field.value} type={field.type}></c-formatted-field>
+                                </div>
                             </td>
                         </template>
                     </tr>

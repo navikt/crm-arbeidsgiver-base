@@ -73,79 +73,125 @@ public with sharing class BadgeService {
 
     public static List<Record> createListOfRecords(List<SObject> records, Map<String, String> config) {
         String objectApiName = config.get('objectApiName');
-        String icon = config.get('icon');
-        List<String> columns = config.get('columns').replace(' ', '').split(',');
+        List<String> columns = config.get('columns').split(',');
 
         Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new List<String>{ objectApiName });
         Map<String, Schema.SObjectField> fieldData = descResult[0].fields.getMap();
-
         List<Record> recordList = new List<Record>();
         for (SObject record : records) {
-            Record rec = new Record();
-            rec.name = (String) record.get(columns[0]);
-            rec.id = (String) record.get('Id');
-            rec.link = '/' + rec.id;
-            rec.icon = icon;
-            // Create fields
-            rec.fields = new List<Field>();
-            for (String fieldName : columns) {
-                Field col = new Field();
-                if (fieldData.containsKey(fieldName)) {
-                    Schema.DescribeFieldResult f = fieldData.get(fieldName).getDescribe();
-                    col.label = f.getLabel();
-                    col.fieldName = fieldName;
-                    col.type = mapFieldType(f);
-                    col.typeAttributes = createTypeAttributes(f.getType());
-                    col.value = record.get(fieldName);
-                } else {
-                    List<String> relatedField = fieldName.split('\\.');
-                    String objectPart = relatedField[0];
-                    String fieldPart = relatedField[1];
-                    String fieldRelationshipName;
-                    String referenceLabel;
-                    String baseFieldName;
-                    // Get record referenced in lookup field
-                    SObject reference = record.getSObject(objectPart);
-                    // Get values in lookup field
-                    String referenceId = (String) reference.get('Id');
-                    String referenceFieldValue = (String) reference.get(fieldPart);
-
-                    if (objectPart.contains('__r')) {
-                        // Get base field label, Schema.DescribeFieldResult f = fieldData.get(fieldName).getDescribe();
-                        baseFieldName = objectPart.replace('__r', '__c');
-                        Schema.DescribeFieldResult f = fieldData.get(baseFieldName).getDescribe();
-                        referenceLabel = f.getLabel();
-                    } else {
-                        baseFieldName = objectPart;
-                        // Get field label
-
-                        System.debug(reference);
-                        Map<String, Schema.SObjectField> referenceFieldData = reference.getSObjectType()
-                            .getDescribe()
-                            .fields.getMap();
-                        Schema.DescribeFieldResult referenceFieldDescr = referenceFieldData.get(fieldPart)
-                            .getDescribe();
-                        referenceLabel = referenceFieldDescr.getLabel();
-                    }
-
-                    col.fieldName = objectPart + '_' + fieldPart;
-                    col.label = referenceLabel; //title="SKI KOMMUNE" label="SKI KOMMUNE"
-                    col.type = 'c_reference'; //
-                    col.typeAttributes = null; // typeAttributes: { label: { fieldName: 'parrentid_name' } }
-                    Record linkref = new Record();
-                    linkref.link = '/' + referenceId;
-                    linkref.id = referenceId;
-                    linkref.name = referenceFieldValue;
-                    col.value = linkref;
-                    System.debug(col);
-                }
-                rec.fields.add(col);
-            }
-
-            // Add record to list
-            recordList.add(rec);
+            recordList.add(createRecordFromSObject(record, columns, fieldData, config));
         }
         return recordList;
+    }
+
+    private static Record createRecordFromSObject(
+        SObject record,
+        List<String> columns,
+        Map<String, Schema.SObjectField> fieldData,
+        Map<String, String> config
+    ) {
+        Record rec = new Record();
+        rec.name = (String) record.get(columns[0]);
+        rec.id = (String) record.get('Id');
+        rec.link = '/' + rec.id;
+        rec.icon = config.get('icon');
+        // Create record.fields
+        rec.fields = new List<Field>();
+        for (String fieldName : columns) {
+            rec.fields.add(createFieldFromSObject(record, fieldName.trim(), fieldData));
+        }
+        return rec;
+    }
+
+    @TestVisible
+    private static Field createFieldFromSObject(
+        SObject record,
+        String fieldName,
+        Map<String, Schema.SObjectField> fieldData
+    ) {
+        Field col = new Field();
+        if (fieldData.containsKey(fieldName)) {
+            // Fields on the same object
+            Schema.DescribeFieldResult f = fieldData.get(fieldName).getDescribe();
+            col.label = f.getLabel();
+            col.fieldName = fieldName;
+            col.type = mapFieldType(f);
+            col.typeAttributes = createTypeAttributes(f.getType());
+            col.value = record.get(fieldName);
+        } else {
+            // Contains reference field in lookup relation. Example: Account__r.Name, Parent.Name
+            String objectPart;
+            String fieldPart;
+            SObject reference;
+            Schema.DescribeFieldResult f;
+            // Logic
+            if (fieldName.containsIgnoreCase('TYPEOF Owner')) {
+                // Owner is special case since type can be both User and Group. If TYPEOF is used in query, returned records will have different fields based on the type of owner.
+                String objectType = record.getSObject('Owner').getSObjectType().toString(); // e.g. User or Group
+                // Replace TYPEOF Owner WHEN objectType THEN field.. with Owner.field
+                fieldName = resolvePolymorphicOwnerField(fieldName, objectType);
+            }
+            // Split fieldName to get object and field part.
+            List<String> relatedField = fieldName.split('\\.');
+            objectPart = relatedField[0];
+            fieldPart = relatedField[1];
+            reference = record.getSObject(objectPart);
+
+            if (fieldName.contains('.') && fieldName.split('\\.')[0]?.contains('__r')) {
+                // Field data for custom field
+                f = fieldData.get(objectPart.replace('__r', '__c')).getDescribe();
+            } else if (fieldName.contains('.') && !fieldName.split('\\.')[0]?.contains('__r')) {
+                // Field data for field on lookup object
+                f = reference.getSObjectType().getDescribe().fields.getMap().get(fieldPart).getDescribe();
+            }
+            col = createReferenceField(
+                (String) reference.get(fieldPart),
+                (String) reference.get('Id'),
+                f.getLabel(),
+                objectPart + '_' + fieldPart
+            );
+        }
+
+        return col;
+    }
+
+    /* Create field with custom datatype to display lookup field as link.
+    Sets the "value" of a field to a Record object and type as c_reference. When LWC iterates fields, it will render as a link.    
+    */
+    private static Field createReferenceField(String linkText, String lookupRecordId, String label, String fieldName) {
+        Record lookupRecord = new Record();
+        lookupRecord.name = linkText;
+        lookupRecord.id = lookupRecordId;
+        lookupRecord.link = '/' + lookupRecordId;
+        Field f = new Field();
+        f.label = label;
+        f.fieldName = fieldName;
+        f.type = 'c_reference';
+        f.value = lookupRecord;
+        return f;
+    }
+    @TestVisible
+    private static String resolvePolymorphicOwnerField(String column, String whenObjectType) {
+        // https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_typeof.htm
+        // TYPEOF typeOfField WHEN whenObjectType THEN whenFieldList END >> typeOfField.whenFieldList[n]..
+        // Only supports one field type per WHEN clause.
+        String typeOfField;
+        column = column.remove(' END');
+        String[] whenParts = column.split('WHEN');
+        for (String part : whenParts) {
+            if (part.trim().startsWithIgnoreCase('TYPEOF ')) {
+                typeOfField = part.remove('TYPEOF ').trim();
+            } else if (part.trim().startsWithIgnoreCase(whenObjectType.trim() + ' THEN ')) {
+                String[] thenParts = part.split(' THEN ');
+                String whenFieldList = thenParts[1].trim();
+                // check if there are commas in whenFieldList and remove text after the first comma
+                if (whenFieldList.contains(',')) {
+                    whenFieldList = whenFieldList.split(',')[0].trim();
+                }
+                return typeOfField + '.' + whenFieldList; // e.g. Owner.Alias
+            }
+        }
+        return null;
     }
 
     private static String mapFieldType(Schema.DescribeFieldResult field) {
