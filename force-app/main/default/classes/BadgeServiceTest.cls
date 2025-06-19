@@ -237,4 +237,69 @@ private class BadgeServiceTest {
         Assert.areEqual('Skal ansette', recordList[0].fields[0].value);
         Assert.areEqual('Ny henvendelse', recordList[0].fields[1].value);
     }
+
+    @isTest
+    static void validateQueryForPolymorphicFields() {
+        Assert.areEqual(
+            BadgeService.resolvePolymorphicOwnerField(
+                'TYPEOF Owner WHEN User THEN Alias WHEN Group THEN Name END',
+                'user'
+            ),
+            'Owner.Alias'
+        );
+        Assert.areEqual(
+            BadgeService.resolvePolymorphicOwnerField(
+                'TYPEOF Owner WHEN User THEN Alias WHEN Group THEN Name END',
+                'group'
+            ),
+            'Owner.Name'
+        );
+    }
+
+    @isTest
+    static void validateLogicForFieldCreation() {
+        Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
+        List<CustomOpportunity__c> records = [
+            SELECT
+                Id,
+                InclusionStage__c,
+                InquiryCategory__c,
+                createddate,
+                Account__r.Name,
+                TYPEOF Owner
+                    WHEN User THEN Alias
+                    WHEN Group THEN Name
+                END
+            FROM CustomOpportunity__c
+            WHERE
+                InquiryCategory__c = 'Skal ansette'
+                AND InclusionStage__c = 'Ny henvendelse'
+                AND Account__c = :testAccount.Id
+        ];
+
+        Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new List<String>{ 'CustomOpportunity__c' });
+        Map<String, Schema.SObjectField> fieldData = descResult[0].fields.getMap();
+
+        String spaciousField = '    Account__r.Name   ';
+        String invalidField = 'Account__r.XX';
+        String invalidObject = 'XX__r.Name';
+
+        BadgeService.Field regularField = BadgeService.createFieldFromSObject(
+            records[0],
+            'InclusionStage__c',
+            fieldData
+        );
+        Assert.isNotNull(regularField.label, 'Field should not be null');
+        Assert.areEqual('InclusionStage__c', regularField.fieldName);
+        Assert.areEqual(records[0].InclusionStage__c, regularField.value, 'Field value should match record value');
+
+        BadgeService.Field lookupField = BadgeService.createFieldFromSObject(records[0], 'Account__r.Name', fieldData);
+        Assert.isNotNull(lookupField.label, 'Field should not be null');
+        Assert.areEqual('Account__r_Name', lookupField.fieldName);
+        Assert.areEqual('c_reference', lookupField.type);
+        BadgeService.Record lookupRecord = (BadgeService.Record) lookupField.value;
+        Assert.areEqual(records[0].Account__r.Name, lookupRecord.name, 'Field value should match record value');
+        Assert.isNotNull(lookupRecord.link, 'Link should not be null');
+        Assert.areEqual(records[0].Account__r.Id, lookupRecord.id, 'Id should match record Id');
+    }
 }
