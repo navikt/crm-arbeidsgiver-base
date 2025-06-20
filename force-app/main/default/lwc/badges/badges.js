@@ -32,6 +32,7 @@ export default class Badges extends LightningElement {
         if (data) {
             this.badges = data;
             this.renderBadges = this.badges.length > 0; // Check if badges array is empty
+            this.cachedRecords.clear(); // Clear cached records when new badges are fetched
             // console.log('Badges:', JSON.stringify(this.badges));
             this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
             this.handleBadgeDisplay();
