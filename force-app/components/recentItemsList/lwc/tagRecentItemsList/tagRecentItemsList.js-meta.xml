@@ -33,8 +33,13 @@
                 name="titleFieldsMapping"
                 type="String"
                 label="Title Field Overrides (semicolon‐separated)"
-                description="Semicolon‐separated mapping of ObjectAPI:FieldAPI to use as the display title. e.g. Account:Phone;Custom__c:CustomField__c"
+                description="Semicolon‐separated mapping of ObjectAPI:FieldAPI to use as the display title. e.g. Account:Name;Custom__c:CustomField__c"
             />
+            <property
+                name="secondaryFieldsMapping"
+                type="String"
+                label="Secondary Field Overrides (semicolon‐separated)"
+                description="Semicolon‐separated mapping of ObjectAPI:FieldAPI to use as a second displayed field in secondary title e.g. JobPosting__c:Status__c"/>
             <property
                 name="lineSpacing"
                 type="Boolean"

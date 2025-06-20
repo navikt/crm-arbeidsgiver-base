@@ -3,7 +3,8 @@ public with sharing class TAG_RecentItemsListController {
     public static List<VisitedWrapper> getRecentItems(
         Integer limitSize,
         String allowedObjects,
-        String titleFieldsMapping
+        String titleFieldsMapping,
+        String secondaryFieldsMapping
     ) {
         // Default limit to 10 if null/invalid
         if (limitSize == null || limitSize <= 0) {
@@ -36,6 +37,21 @@ public with sharing class TAG_RecentItemsListController {
             }
         }
 
+        Map<String,String> secondaryFieldMap = new Map<String,String>();
+        if (String.isNotBlank(secondaryFieldsMapping)) {
+            for (String entry : secondaryFieldsMapping.split(';')) {
+                entry = entry.trim();
+                if (entry.contains(':')) {
+                    List<String> parts = entry.split(':');
+                    String objName   = parts[0].trim();
+                    String fieldName = parts[1].trim();
+                    if (objName != '' && fieldName != '') {
+                        secondaryFieldMap.put(objName, fieldName);
+                    }
+                }
+            }
+        }
+
         // Query RecentlyViewed
         String rvSoql =
             'SELECT Id, Name, Type, LastViewedDate ' +
@@ -56,7 +72,7 @@ public with sharing class TAG_RecentItemsListController {
         }
 
         // Group record IDs by sObject Type
-        Map<String, List<Id>> typeToIds = new Map<String, List<Id>>();
+        Map<String,List<Id>> typeToIds = new Map<String,List<Id>>();
         for (RecentlyViewed rv : recents) {
             String sType = rv.Type;
             if (!typeToIds.containsKey(sType)) {
@@ -66,21 +82,30 @@ public with sharing class TAG_RecentItemsListController {
         }
 
         // For each sObject Type, query display field (Name or override)
-        Map<Id,String> idToTitle = new Map<Id,String>();
+        Map<Id,String> idToTitle     = new Map<Id,String>();
+        Map<Id,String> idToSecondary = new Map<Id,String>();
         for (String sType : typeToIds.keySet()) {
             List<Id> ids = typeToIds.get(sType);
-            String fieldToSelect = 'Name';
-            if (titleFieldMap.containsKey(sType)) {
-                fieldToSelect = titleFieldMap.get(sType);
+            String primaryField   = titleFieldMap.containsKey(sType)     ? titleFieldMap.get(sType)     : 'Name';
+            String secondaryField = secondaryFieldMap.containsKey(sType) ? secondaryFieldMap.get(sType) : null;
+
+            String selectList = 'Id, ' + primaryField;
+            if (secondaryField != null) {
+                selectList += ', ' + secondaryField;
             }
+
             String dynSoql =
-                'SELECT Id, ' + fieldToSelect +
+                'SELECT ' + selectList +
                 ' FROM ' + sType +
                 ' WHERE Id IN :ids';
             for (SObject sobj : Database.query(dynSoql)) {
                 Id rid = (Id) sobj.get('Id');
-                Object val = sobj.get(fieldToSelect);
-                idToTitle.put(rid, val == null ? '' : String.valueOf(val));
+                Object p = sobj.get(primaryField);
+                idToTitle.put(rid, p==null?'':String.valueOf(p));
+                if (secondaryField != null) {
+                    Object s = sobj.get(secondaryField);
+                    idToSecondary.put(rid, s==null?'':String.valueOf(s));
+                }
             }
         }
 
@@ -176,6 +201,7 @@ public with sharing class TAG_RecentItemsListController {
             w.displayTitle   = idToTitle.containsKey(rv.Id) 
                                  ? idToTitle.get(rv.Id) 
                                  : rv.Name;
+            w.secondaryOverride = idToSecondary.get(rv.Id);
             w.sobjectType    = rv.Type;
             w.lastViewedDate = rv.LastViewedDate;
             w.url            = '/' + rv.Id;
@@ -188,6 +214,7 @@ public with sharing class TAG_RecentItemsListController {
     public class VisitedWrapper {
         @AuraEnabled public Id     recordId;
         @AuraEnabled public String displayTitle;
+        @AuraEnabled public String secondaryOverride;
         @AuraEnabled public String sobjectType;
         @AuraEnabled public Datetime lastViewedDate;
         @AuraEnabled public String url;

@@ -1,56 +1,56 @@
 <template>
     <lightning-card title={cardTitle} icon-name="utility:clock" class="slds-card">
-        <div class="slds-p-horizontal_small slds-p-vertical_x-small">
-            <template if:true={hasItems}>
-                <ul class="slds-timeline">
-                    <template for:each={items} for:item="item">
-                        <li key={item.recordId} class={item.itemClass}>
-                            <div class="slds-media__figure">
-                                <span class="slds-icon_container slds-icon-standard-timeline" title={item.sobjectType}>
-                                    <lightning-icon 
-                                        icon-name={item.iconName} 
-                                        size="x-small" 
-                                        alternative-text={item.sobjectType}>
-                                    </lightning-icon>
-                                </span>
-                            </div>
-                            <!-- CONTENT -->
-                            <div class="slds-media__body slds-timeline__media">
-                                <div class="slds-timeline__detail">
-                                    <!-- PRIMARY: clickable displayTitle -->
-                                    <p class="slds-text-heading_small">
-                                        <a href={item.url} class="slds-text-link_reset">
-                                            {item.displayTitle}
-                                        </a>
-                                    </p>
-                                    <!-- SECONDARY: "<Type> • <Formatted Date>" -->
-                                    <p class="slds-text-body_small slds-text-color_weak">
-                                        {item.secondaryText}
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    </template>
-                </ul>
+      <div class="slds-p-horizontal_small slds-p-vertical_x-small">
+        <template if:true={hasItems}>
+          <ul class="slds-timeline">
+            <template for:each={items} for:item="item">
+                <li key={item.recordId} class={item.itemClass}>
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container slds-icon-standard-timeline" title={item.sobjectType}>
+                        <lightning-icon 
+                          icon-name={item.iconName} 
+                          size="x-small" 
+                          alternative-text={item.sobjectType}>
+                        </lightning-icon>
+                      </span>
+                    </div>
+                    <div class="slds-media__body slds-timeline__media">
+                      <div class="slds-timeline__detail">
+                        <!-- PRIMARY TITLE -->
+                        <p class="slds-text-heading_small">
+                          <a href={item.url} class="slds-text-link_reset">
+                            {item.displayTitle}
+                          </a>
+                        </p>
+                        <!-- SECONDARY TITLE -->
+                        <div class="slds-grid slds-grid_align-spread">
+                          <div class="slds-truncate" style="flex:1">
+                            <p class="slds-text-body_small slds-text-color_weak">{item.secondaryText}</p>
+                          </div>
+                          <div style="flex:none; text-align:right; white-space:nowrap;">
+                            <p class="slds-text-body_small slds-text-color_weak">{item.rightText}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
             </template>
-
-            <template if:true={noItems}>
-                <p class="slds-text-body_regular slds-text-align_center slds-text-color_weak" style="margin-top:1rem;">
-                    Ingenting å vise ennå.
-                </p>
-            </template>
-
-            <template if:true={error}>
-                <div class="slds-text-color_error slds-p-top_small">
-                    Feil ved henting av data:
-                    <template if:true={error.body}>
-                        {error.body.message}
-                    </template>
-                    <template if:false={error.body}>
-                        {error}
-                    </template>
-                </div>
-            </template>
-        </div>
+          </ul>
+        </template>
+  
+        <template if:true={noItems}>
+          <p class="slds-text-body_regular slds-text-align_center slds-text-color_weak">
+            Ingenting å vise ennå.
+          </p>
+        </template>
+  
+        <template if:true={error}>
+          <div class="slds-text-color_error slds-p-top_small">
+            Feil ved henting av data:
+            <template if:true={error.body}>{error.body.message}</template>
+            <template if:false={error.body}>{error}</template>
+          </div>
+        </template>
+      </div>
     </lightning-card>
-</template>
+  </template>  
