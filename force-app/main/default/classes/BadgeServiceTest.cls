@@ -219,13 +219,17 @@ private class BadgeServiceTest {
             'icon' => 'Icon'
         };
 
-        List<BadgeService.Record> recordList = BadgeService.createListOfRecords(records, config);
+        List<BadgeService.RecordWrapper> recordList = BadgeService.convertToWrappedRecords(records, config);
 
         Assert.isNotNull(recordList, 'Should not be null');
         Assert.areEqual(5, recordList.size(), 'List should contain 4 records');
         Assert.areEqual('Skal ansette', recordList[0].name, 'First field in columns should be set as Name');
         Assert.areEqual(records[0].Id, recordList[0].id, 'Record Id field should be set as id');
-        Assert.areEqual('/' + records[0].Id, recordList[0].link, 'Link should be set');
+        Assert.areEqual(
+            '/lightning/r/CustomOpportunity__c/' + records[0].Id + '/view',
+            recordList[0].link,
+            'Link should be set'
+        );
         Assert.areEqual(config.get('icon'), recordList[0].icon, 'Icon should be set from config');
         Assert.isNotNull(recordList[0].fields, 'Should contain list of fields');
         Assert.areEqual('InquiryCategory__c', recordList[0].fields[0].fieldName);
@@ -280,10 +284,6 @@ private class BadgeServiceTest {
         Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new List<String>{ 'CustomOpportunity__c' });
         Map<String, Schema.SObjectField> fieldData = descResult[0].fields.getMap();
 
-        String spaciousField = '    Account__r.Name   ';
-        String invalidField = 'Account__r.XX';
-        String invalidObject = 'XX__r.Name';
-
         BadgeService.Field regularField = BadgeService.createFieldFromSObject(
             records[0],
             'InclusionStage__c',
@@ -297,7 +297,7 @@ private class BadgeServiceTest {
         Assert.isNotNull(lookupField.label, 'Field should not be null');
         Assert.areEqual('Account__r_Name', lookupField.fieldName);
         Assert.areEqual('c_reference', lookupField.type);
-        BadgeService.Record lookupRecord = (BadgeService.Record) lookupField.value;
+        BadgeService.RecordWrapper lookupRecord = (BadgeService.RecordWrapper) lookupField.value;
         Assert.areEqual(records[0].Account__r.Name, lookupRecord.name, 'Field value should match record value');
         Assert.isNotNull(lookupRecord.link, 'Link should not be null');
         Assert.areEqual(records[0].Account__r.Id, lookupRecord.id, 'Id should match record Id');

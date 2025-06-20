@@ -53,11 +53,11 @@ public with sharing class BadgeController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static List<BadgeService.Record> getRecords(String recordId, String badgeKey) {
+    public static List<BadgeService.RecordWrapper> getRecords(String recordId, String badgeKey) {
         try {
             Map<String, String> config = BadgeConfigProvider.getBadgeConfig(badgeKey);
             List<SObject> records = BadgeService.getRecords(recordId, config);
-            List<BadgeService.Record> recordsWithFields = BadgeService.createListOfRecords(records, config);
+            List<BadgeService.RecordWrapper> recordsWithFields = BadgeService.convertToWrappedRecords(records, config);
             return recordsWithFields;
         } catch (Exception e) {
             logError(badgeKey, e);

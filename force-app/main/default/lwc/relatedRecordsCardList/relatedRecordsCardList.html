@@ -3,7 +3,7 @@
     <ul class="slds-has-dividers_bottom-space">
         <template for:each={recordListAsTiles} for:item="record">
             <li class="slds-item" key={record.id}>
-                <lightning-tile label={record.title} href={record.recordUrl} type="media">
+                <lightning-tile label={record.name} href={record.link} type="media">
                     <lightning-icon slot="media" icon-name={record.icon} size="small"></lightning-icon>
                     <dl class="slds-list_horizontal slds-wrap">
                         <template for:each={record.fields} for:item="field">

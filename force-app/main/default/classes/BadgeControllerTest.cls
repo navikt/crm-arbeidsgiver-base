@@ -145,7 +145,7 @@ private class BadgeControllerTest {
     static void testGetRecords() {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
-        List<BadgeService.Record> result;
+        List<BadgeService.RecordWrapper> result;
         System.runAs(user) {
             result = BadgeController.getRecords(testAccount.Id, 'muligheter');
         }
@@ -158,7 +158,7 @@ private class BadgeControllerTest {
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
         List<BadgeService.Badge> badges;
-        List<BadgeService.Record> records;
+        List<BadgeService.RecordWrapper> records;
         // Create record with no access for test user
         List<Workfare__c> workfares = new List<Workfare__c>();
         workfares.add(

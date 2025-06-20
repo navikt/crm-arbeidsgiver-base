@@ -1,7 +1,8 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import createBadges from '@salesforce/apex/BadgeController.createBadges';
 import getRecords from '@salesforce/apex/BadgeController.getRecords';
-//import { publishToAmplitude } from 'c/amplitude';
+import { publishToAmplitude } from 'c/amplitude';
+import FORM_FACTOR from '@salesforce/client/formFactor';
 
 export default class Badges extends LightningElement {
     @api recordId; // Automatically populated in record context
@@ -31,7 +32,8 @@ export default class Badges extends LightningElement {
         if (data) {
             this.badges = data;
             this.renderBadges = this.badges.length > 0; // Check if badges array is empty
-            console.log('Badges:', JSON.stringify(this.badges));
+            this.cachedRecords.clear(); // Clear cached records when new badges are fetched
+            // console.log('Badges:', JSON.stringify(this.badges));
             this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
             this.handleBadgeDisplay();
         } else if (error) {
@@ -92,14 +94,14 @@ export default class Badges extends LightningElement {
     }
 
     handleMouseEnter(event) {
-        if (!this.popoverIsPinned) {
+        if (this.isDesktop && !this.popoverIsPinned) {
             const triggerRect = event.currentTarget.getBoundingClientRect();
             const hostRect = this.template.host.getBoundingClientRect();
             const top = triggerRect.bottom - hostRect.top + 8; // 8px spacing
             const left = triggerRect.left - hostRect.left;
             this.popoverStyle = `position: absolute; top: ${top}px; left: ${left}px;`;
             const badgeKey = event.currentTarget.dataset.badgekey;
-            console.log('badgeKey:', JSON.stringify(badgeKey));
+
             this.hoverTimer = window.setTimeout(() => {
                 this.getList(badgeKey);
                 this.showPopover = true;
@@ -123,35 +125,37 @@ export default class Badges extends LightningElement {
     }
 
     handlePreviewClick(event) {
-        // Calculate popover position
-        const triggerRect = event.currentTarget.getBoundingClientRect();
-        const hostRect = this.template.host.getBoundingClientRect();
-        const top = triggerRect.bottom - hostRect.top + 8; // 8px spacing
-        const left = triggerRect.left - hostRect.left;
-        this.popoverStyle = `position: absolute; top: ${top}px; left: ${left}px;`;
+        if (this.isDesktop) {
+            // Calculate popover position
+            const triggerRect = event.currentTarget.getBoundingClientRect();
+            const hostRect = this.template.host.getBoundingClientRect();
+            const top = triggerRect.bottom - hostRect.top + 8; // 8px spacing
+            const left = triggerRect.left - hostRect.left;
+            this.popoverStyle = `position: absolute; top: ${top}px; left: ${left}px;`;
 
-        // Get data to display in popover
-        const badgeKey = event.currentTarget.dataset.badgekey;
-        this.getList(badgeKey);
+            // Get data to display in popover
+            const badgeKey = event.currentTarget.dataset.badgekey;
+            this.getList(badgeKey);
 
-        this.triggerButton = event.currentTarget;
-        this.popoverIsPinned = true;
-        this.showPopover = true;
-        // Place focus on the first focusable element that isn't the close button. If the close button is the only focusable element, focus should be placed there.
-        requestAnimationFrame(() => {
-            setTimeout(() => {
-                const popover = this.template.querySelector('.badgepopover');
-                const focusables = this.getFocusableElements(popover);
-                const firstFocusable =
-                    focusables.find((el) => el.dataset.id !== 'badge-popover-close') || focusables[0];
+            this.triggerButton = event.currentTarget;
+            this.popoverIsPinned = true;
+            this.showPopover = true;
+            // Place focus on the first focusable element that isn't the close button. If the close button is the only focusable element, focus should be placed there.
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    const popover = this.template.querySelector('.badgepopover');
+                    const focusables = this.getFocusableElements(popover);
+                    const firstFocusable =
+                        focusables.find((el) => el.dataset.id !== 'badge-popover-close') || focusables[0];
 
-                if (firstFocusable) {
-                    firstFocusable.focus();
-                } else {
-                    console.warn('No focusable element found in popover');
-                }
-            }, 0);
-        });
+                    if (firstFocusable) {
+                        firstFocusable.focus();
+                    } else {
+                        console.warn('No focusable element found in popover');
+                    }
+                }, 0);
+            });
+        }
     }
 
     handleKeyDown(event) {
@@ -173,7 +177,6 @@ export default class Badges extends LightningElement {
     }
 
     /* RELATED RECORDS */
-    // Fetch related records
     getList(badgeKey) {
         if (this.cachedRecords.has(badgeKey)) {
             this.records = this.cachedRecords.get(badgeKey);
@@ -192,88 +195,16 @@ export default class Badges extends LightningElement {
                 this.handleError('Error retrieving related records', error);
             });
     }
-    // Create columns configuration for the datatable based on first record[0].fields
-    // for each field in record[0].fields, get label, fieldname and type and create column object
-    get columnsConfig() {
-        if (this.records && this.records.length > 0) {
-            const columns = this.records[0].fields.map((field) => {
-                return {
-                    label: field.label,
-                    fieldName: field.fieldName,
-                    type: field.type,
-                    typeAttributes: field.typeAttributes,
-                    sortable: false,
-                    cellAttributes: {
-                        alignment: 'left'
-                    }
-                };
-            });
-
-            // Modifiser første kolonne til å vises som link
-            columns[0].type = 'customName';
-            columns[0].typeAttributes = {
-                recordUrl: { fieldName: 'recordUrl' }
-            };
-
-            // console.log('Columns:', JSON.stringify(columns));
-            return columns;
-        }
-        return [];
-    }
-
-    // Return list of records for data table
-    get recordsList() {
-        if (this.records && this.records.length > 0) {
-            return this.records.map((record) => {
-                const recordData = {};
-
-                record.fields.forEach((field) => {
-                    recordData[field.fieldName] = field.value;
-                });
-                recordData.recordUrl = `/lightning/r/${record.id}/view`;
-                //  console.log('recordData:', JSON.stringify(recordData));
-                return recordData;
-            });
-        }
-        return [];
-    }
-
-    /*
-        for each record, remove records[i].field[0] and add it as records[i].recordUrl instead
-        */
-    get recordListTiles() {
-        if (this.records && this.records.length > 0) {
-            try {
-                // Create a new list by mapping over the original records
-                const newRecordsList = this.records.map((record) => {
-                    // Ensure fields array exists and has at least one element
-                    if (record.fields && record.fields.length > 0) {
-                        const fieldsCopy = [...record.fields];
-                        const field = fieldsCopy.shift(); // Remove the first field
-
-                        return {
-                            ...record,
-                            title: field.value,
-                            recordUrl: `/lightning/r/${record.id}/view`,
-                            fields: fieldsCopy // Keep the remaining fields intact
-                        };
-                    }
-
-                    // Return the record as-is if fields are empty or undefined
-                    return { ...record, fields: [] };
-                });
-
-                //console.log('New record list:', JSON.stringify(newRecordsList));
-                return newRecordsList;
-            } catch (error) {
-                this.handleError('Error creating recordListTiles', error);
-                return [];
-            }
-        }
-        return [];
-    }
 
     /* HELPERS */
+
+    get isMobile() {
+        return FORM_FACTOR === 'Small';
+    }
+    get isDesktop() {
+        return FORM_FACTOR === 'Large';
+    }
+
     handleError(message, error) {
         console.error(`${message}:`, JSON.stringify(error));
     }
