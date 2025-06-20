@@ -147,7 +147,7 @@ public with sharing class BadgeService {
             field.fieldName = fieldName;
             field.type = mapFieldType(fieldDescribe);
             field.typeAttributes = createTypeAttributes(fieldDescribe.getType());
-            field.value = record.get(fieldName);
+            field.value = getFieldDisplayValue(record, fieldName, fieldDescribe); // Use display value for picklists
         } else if (fieldName.contains('.')) {
             List<String> relatedField = fieldName.split('\\.');
             objectPart = relatedField[0];
@@ -228,6 +228,25 @@ public with sharing class BadgeService {
             }
         }
         return null;
+    }
+
+    private static Object getFieldDisplayValue(
+        SObject record,
+        String fieldName,
+        Schema.DescribeFieldResult fieldDescribe
+    ) {
+        // Return the picklist label if the field is a picklist, otherwise return the raw value
+        Object value = record.get(fieldName);
+        if (fieldDescribe.getType() == Schema.DisplayType.Picklist && value != null) {
+            for (Schema.PicklistEntry entry : fieldDescribe.getPicklistValues()) {
+                if (entry.getValue() == (String) value) {
+                    return entry.getLabel();
+                }
+            }
+            // Fallback to API value if label not found
+            return value;
+        }
+        return value;
     }
 
     // Types are matched in the template.
