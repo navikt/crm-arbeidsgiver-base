@@ -4,7 +4,11 @@
     <deprecated>false</deprecated>
     <description>Viser link til stilling. Brukes i stedet for auto number i related lists etc.</description>
     <externalId>false</externalId>
-    <formula>HYPERLINK(&quot;/lightning/r/CustomOpportunity__c/&quot; + Id + &quot;/view&quot;, &quot;Se muligheten&quot;)</formula>
+    <formula>IF( 
+ NOT( ISBLANK( TEXT(InquiryCategory__c) ) ), 
+HYPERLINK(&quot;/lightning/r/CustomOpportunity__c/&quot; + Id + &quot;/view&quot;, TEXT(InquiryCategory__c),&quot;_self&quot;),
+HYPERLINK(&quot;/lightning/r/CustomOpportunity__c/&quot; + Id + &quot;/view&quot;, &quot;Se muligheten&quot;,&quot;_self&quot;)
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Opportunity</label>
     <required>false</required>

@@ -34,7 +34,6 @@ export default class relatedRecordsTable extends LightningElement {
                         return {
                             ...record,
                             title: field.value,
-                            recordUrl: `/lightning/r/${record.id}/view`,
                             fields: fieldsCopy // Keep the remaining fields intact
                         };
                     }

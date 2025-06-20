@@ -3,6 +3,7 @@ import { CurrentPageReference } from 'lightning/navigation';
 import getSettings from '@salesforce/apex/BadgeController.getSettings';
 import { getRecord } from 'lightning/uiRecordApi';
 import getRecords from '@salesforce/apex/BadgeController.getRecords';
+import FORM_FACTOR from '@salesforce/client/formFactor';
 
 export default class BadgePage extends LightningElement {
     @track recordId;
@@ -12,12 +13,11 @@ export default class BadgePage extends LightningElement {
     @track iconName;
     @track cardTitle;
 
-    // Small, Medium, Large
     get isMobile() {
-        if (this.formFactor) {
-            return this.formFactor;
-        }
-        return window.innerWidth <= 768; // Initialize directly
+        return FORM_FACTOR === 'Small';
+    }
+    get isDesktop() {
+        return FORM_FACTOR === 'Large';
     }
 
     @track records = [];
@@ -53,14 +53,13 @@ export default class BadgePage extends LightningElement {
 
     // Fetch related records
     getList() {
-        console.log('Get records');
         getRecords({
             recordId: this.recordId,
             badgeKey: this.badgeKey
         })
             .then((data) => {
                 this.records = data && data.length > 0 ? data : [];
-                console.log('Records returned:', JSON.stringify(this.records));
+                // console.log('Records returned:', JSON.stringify(this.records));
             })
             .catch((error) => {
                 this.handleError('Error retrieving related records', error);
