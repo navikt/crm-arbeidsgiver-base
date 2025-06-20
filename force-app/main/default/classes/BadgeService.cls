@@ -1,4 +1,7 @@
 public with sharing class BadgeService {
+    private static Map<String, Map<String, String>> fieldLabelsByLang = new Map<String, Map<String, String>>{
+        'OWNER' => new Map<String, String>{ 'NO_NB' => 'Eier', 'EN_US' => 'Owner' }
+    };
     /**
      * @description Create a badge from config
      * @param key The key used for config in BADGE_CONFIG.
@@ -71,29 +74,38 @@ public with sharing class BadgeService {
         }
     }
 
-    public static List<Record> createListOfRecords(List<SObject> records, Map<String, String> config) {
+    public static List<RecordWrapper> convertToWrappedRecords(List<SObject> records, Map<String, String> config) {
         String objectApiName = config.get('objectApiName');
         List<String> columns = config.get('columns').split(',');
 
         Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new List<String>{ objectApiName });
         Map<String, Schema.SObjectField> fieldData = descResult[0].fields.getMap();
-        List<Record> recordList = new List<Record>();
+
+        List<RecordWrapper> recordList = new List<RecordWrapper>();
         for (SObject record : records) {
-            recordList.add(createRecordFromSObject(record, columns, fieldData, config));
+            recordList.add(createRecordWrapperFromSObject(record, columns, fieldData, config));
         }
         return recordList;
     }
 
-    private static Record createRecordFromSObject(
+    private static RecordWrapper createRecordWrapperFromSObject(
         SObject record,
         List<String> columns,
         Map<String, Schema.SObjectField> fieldData,
         Map<String, String> config
     ) {
-        Record rec = new Record();
-        rec.name = (String) record.get(columns[0]);
+        RecordWrapper rec = new RecordWrapper();
+        String nameField = config.get('columns').split(',')[0].trim();
+
+        String name = (String) record.get(nameField);
+        // Strip HTML tags if present.
+        if (!String.isBlank(name) && name.containsIgnoreCase('<a')) {
+            name = name.replaceAll('<[^>]+>', '');
+        }
+        rec.name = name;
+
         rec.id = (String) record.get('Id');
-        rec.link = '/' + rec.id;
+        rec.link = createUrl(record);
         rec.icon = config.get('icon');
         // Create record.fields
         rec.fields = new List<Field>();
@@ -103,73 +115,101 @@ public with sharing class BadgeService {
         return rec;
     }
 
+    /* Creates a Field object with value, label and type based on provided field name, record and field metadata form Schema.describeSObjects.
+    Logic:
+    - If TYPEOF Owner is used in query, returned records will have different fields based on the type of owner.
+        - resolvePolymorphicOwnerField() replaces "TYPEOF Owner WHEN objectType THEN field.." with "Owner.field".
+    - If fieldName is in fieldData, it is a field on the same object.
+    - If fieldName contains a dot (.), it is a reference field in a lookup relation, e.g. Account__r.Name, Owner.Alias.
+        - If object part of field name exists in fieldLabelsByLang then the label is unavailable through describe info and is instead fetched from fieldLabelsByLang.
+         Currently just the Owner field.
+        - If fieldName starts with __r, it is a custom field. Replace __r to __c and get metadata fieldData.
+    */
     @TestVisible
     private static Field createFieldFromSObject(
         SObject record,
         String fieldName,
         Map<String, Schema.SObjectField> fieldData
     ) {
-        Field col = new Field();
+        Field field = new Field();
+        Schema.DescribeFieldResult fieldDescribe;
+        String objectPart;
+        String fieldPart;
+        SObject lookupRecord;
+        if (fieldName.containsIgnoreCase('TYPEOF Owner')) {
+            String typeOfField = record.getSObject('Owner').getSObjectType().toString(); // e.g. User or Group
+            fieldName = resolvePolymorphicOwnerField(fieldName, typeOfField);
+        }
         if (fieldData.containsKey(fieldName)) {
             // Fields on the same object
-            Schema.DescribeFieldResult f = fieldData.get(fieldName).getDescribe();
-            col.label = f.getLabel();
-            col.fieldName = fieldName;
-            col.type = mapFieldType(f);
-            col.typeAttributes = createTypeAttributes(f.getType());
-            col.value = record.get(fieldName);
-        } else {
-            // Contains reference field in lookup relation. Example: Account__r.Name, Parent.Name
-            String objectPart;
-            String fieldPart;
-            SObject reference;
-            Schema.DescribeFieldResult f;
-            // Logic
-            if (fieldName.containsIgnoreCase('TYPEOF Owner')) {
-                // Owner is special case since type can be both User and Group. If TYPEOF is used in query, returned records will have different fields based on the type of owner.
-                String objectType = record.getSObject('Owner').getSObjectType().toString(); // e.g. User or Group
-                // Replace TYPEOF Owner WHEN objectType THEN field.. with Owner.field
-                fieldName = resolvePolymorphicOwnerField(fieldName, objectType);
-            }
-            // Split fieldName to get object and field part.
+            fieldDescribe = fieldData.get(fieldName).getDescribe();
+            field.label = fieldDescribe.getLabel();
+            field.fieldName = fieldName;
+            field.type = mapFieldType(fieldDescribe);
+            field.typeAttributes = createTypeAttributes(fieldDescribe.getType());
+            field.value = record.get(fieldName);
+        } else if (fieldName.contains('.')) {
             List<String> relatedField = fieldName.split('\\.');
             objectPart = relatedField[0];
             fieldPart = relatedField[1];
-            reference = record.getSObject(objectPart);
+            lookupRecord = record.getSObject(objectPart);
 
-            if (fieldName.contains('.') && fieldName.split('\\.')[0]?.contains('__r')) {
-                // Field data for custom field
-                f = fieldData.get(objectPart.replace('__r', '__c')).getDescribe();
-            } else if (fieldName.contains('.') && !fieldName.split('\\.')[0]?.contains('__r')) {
-                // Field data for field on lookup object
-                f = reference.getSObjectType().getDescribe().fields.getMap().get(fieldPart).getDescribe();
+            if (fieldLabelsByLang.containsKey(objectPart.toUpperCase())) {
+                // Handle field labels for Owner and other standard reference fields.
+                fieldDescribe = lookupRecord.getSObjectType()
+                    .getDescribe()
+                    .fields.getMap()
+                    .get(fieldPart)
+                    .getDescribe();
+                String relationLabel = fieldLabelsByLang.get(objectPart.toUpperCase())
+                    .get(UserInfo.getLanguage().toUpperCase());
+                String label = relationLabel + ' ' + fieldDescribe.getLabel().toLowerCase();
+                field.label = label;
+                field.fieldName = objectPart + '_' + fieldPart;
+                field.type = 'text';
+                field.value = lookupRecord.get(fieldPart);
+            } else {
+                if (fieldName.split('\\.')[0]?.contains('__r')) {
+                    fieldDescribe = fieldData.get(objectPart.replace('__r', '__c')).getDescribe();
+                } else {
+                    fieldDescribe = lookupRecord.getSObjectType()
+                        .getDescribe()
+                        .fields.getMap()
+                        .get(fieldPart)
+                        .getDescribe();
+                }
+                field = createReferenceField(lookupRecord, fieldDescribe, objectPart, fieldPart);
             }
-            col = createReferenceField(
-                (String) reference.get(fieldPart),
-                (String) reference.get('Id'),
-                f.getLabel(),
-                objectPart + '_' + fieldPart
-            );
         }
 
-        return col;
+        return field;
+    }
+
+    private static String createUrl(SObject record) {
+        return '/lightning/r/' + record.getSObjectType().toString() + '/' + record.get('Id') + '/view';
     }
 
     /* Create field with custom datatype to display lookup field as link.
     Sets the "value" of a field to a Record object and type as c_reference. When LWC iterates fields, it will render as a link.    
     */
-    private static Field createReferenceField(String linkText, String lookupRecordId, String label, String fieldName) {
-        Record lookupRecord = new Record();
-        lookupRecord.name = linkText;
-        lookupRecord.id = lookupRecordId;
-        lookupRecord.link = '/' + lookupRecordId;
-        Field f = new Field();
-        f.label = label;
-        f.fieldName = fieldName;
-        f.type = 'c_reference';
-        f.value = lookupRecord;
-        return f;
+    private static Field createReferenceField(
+        sObject lookupRecord,
+        Schema.DescribeFieldResult fieldDescribe,
+        String objectPart,
+        String fieldPart
+    ) {
+        RecordWrapper recordWrapper = new RecordWrapper();
+        recordWrapper.name = (String) lookupRecord.get(fieldPart);
+        recordWrapper.id = (String) lookupRecord.get('Id');
+        recordWrapper.link = createUrl(lookupRecord);
+        Field lookupField = new Field();
+        lookupField.label = fieldDescribe.getLabel();
+        lookupField.fieldName = objectPart + '_' + fieldPart;
+        lookupField.type = 'c_reference';
+        lookupField.value = recordWrapper;
+        return lookupField;
     }
+
     @TestVisible
     private static String resolvePolymorphicOwnerField(String column, String whenObjectType) {
         // https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_typeof.htm
@@ -184,16 +224,14 @@ public with sharing class BadgeService {
             } else if (part.trim().startsWithIgnoreCase(whenObjectType.trim() + ' THEN ')) {
                 String[] thenParts = part.split(' THEN ');
                 String whenFieldList = thenParts[1].trim();
-                // check if there are commas in whenFieldList and remove text after the first comma
-                if (whenFieldList.contains(',')) {
-                    whenFieldList = whenFieldList.split(',')[0].trim();
-                }
                 return typeOfField + '.' + whenFieldList; // e.g. Owner.Alias
             }
         }
         return null;
     }
 
+    // Types are matched in the template.
+    // ToDo: Should be converted to static final variables
     private static String mapFieldType(Schema.DescribeFieldResult field) {
         if (field.getType() == Schema.DisplayType.STRING && field.isHtmlFormatted()) {
             return 'customRichText';
@@ -278,7 +316,7 @@ public with sharing class BadgeService {
         }
     }
 
-    public class Record {
+    public class RecordWrapper {
         @AuraEnabled
         public String name;
         @AuraEnabled
