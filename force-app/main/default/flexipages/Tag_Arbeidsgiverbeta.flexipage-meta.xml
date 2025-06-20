@@ -70,6 +70,10 @@
                     <value>5</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>secondaryFieldsMapping</name>
+                    <value>Account: CRM_MainIndustry__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>titleFieldsMapping</name>
                 </componentInstanceProperties>
                 <componentName>tagRecentItemsList</componentName>
@@ -92,6 +96,10 @@
                 <componentInstanceProperties>
                     <name>recordLimit</name>
                     <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>secondaryFieldsMapping</name>
+                    <value>JobPosting__c:Account_NAV_unit__c;Account:CRM_MainIndustry__c;IACooperation__c:Status__c;Contact:Title</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldsMapping</name>
