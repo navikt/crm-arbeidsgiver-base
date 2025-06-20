@@ -1,6 +1,5 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import getRecentItems from '@salesforce/apex/TAG_RecentItemsListController.getRecentItems';
-import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 
 const DEFAULT_LIMIT = 10;
 
@@ -14,8 +13,6 @@ export default class TagRecentItemsList extends LightningElement {
 
     @track rawItems = [];
     @track error;
-    @track objectApiNames = [];
-    @track objectLabels = {};
 
     @wire(getRecentItems, {
         limitSize: '$recordLimit',
@@ -29,12 +26,11 @@ export default class TagRecentItemsList extends LightningElement {
                 recordId: rec.recordId,
                 displayTitle: rec.displayTitle,
                 secondaryOverride: rec.secondaryOverride,
-                sobjectType: rec.sobjectType,
+                objectLabel: rec.objectLabel,
                 lastViewedDate: rec.lastViewedDate,
                 url: rec.url,
                 iconName: rec.iconName
             }));
-            this.objectApiNames = [...new Set(this.rawItems.map((i) => i.sobjectType))];
         } else if (error) {
             this.rawItems = [];
             this.error = error;
@@ -42,26 +38,13 @@ export default class TagRecentItemsList extends LightningElement {
         }
     }
 
-    @wire(getObjectInfos, { objectApiNames: '$objectApiNames' })
-    wiredInfos({ error, data }) {
-        if (data) {
-            const labels = {};
-            Object.keys(data).forEach((apiName) => {
-                labels[apiName] = data[apiName].label;
-            });
-            this.objectLabels = labels;
-        } else if (error) {
-            console.error('Error fetching object labels', error);
-        }
-    }
-
     get items() {
         return this.rawItems.map((raw) => {
-            const label = this.objectLabels[raw.sobjectType] || raw.sobjectType;
-            const secondaryField = raw.secondaryOverride;
+            const label = raw.objectLabel;
+            const secondary = raw.secondaryOverride ? `${label} • ${raw.secondaryOverride}` : label;
             return {
                 ...raw,
-                secondaryText: secondaryField ? `${label} • ${secondaryField}` : `${label}`,
+                secondaryText: secondary,
                 rightText: this.formatDateTime(raw.lastViewedDate),
                 itemClass: this.lineSpacing
                     ? 'slds-timeline__item slds-media line-spacing'
@@ -76,14 +59,6 @@ export default class TagRecentItemsList extends LightningElement {
 
     get noItems() {
         return !this.hasItems && !this.error;
-    }
-
-    computeItemClass() {
-        let cls = 'slds-timeline__item slds-media';
-        if (this.lineSpacing) {
-            cls += ' line-spacing';
-        }
-        return cls;
     }
 
     formatDateTime(dtString) {

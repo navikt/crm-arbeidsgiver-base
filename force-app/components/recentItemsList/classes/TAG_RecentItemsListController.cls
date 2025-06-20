@@ -193,6 +193,15 @@ public with sharing class TAG_RecentItemsListController {
                 typeToIconName.put(sType, chosenIconName);
             }
         }
+        Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
+        Map<String, String> typeToLabel = new Map<String, String>();
+        for (String sType : typeToIds.keySet()) {
+            if (gd.containsKey(sType)) {
+                typeToLabel.put(sType, gd.get(sType).getDescribe().getLabel());
+            } else {
+                typeToLabel.put(sType, sType);
+            }
+        }
 
         List<VisitedWrapper> wrappers = new List<VisitedWrapper>();
         for (RecentlyViewed rv : recents) {
@@ -202,6 +211,7 @@ public with sharing class TAG_RecentItemsListController {
                                  ? idToTitle.get(rv.Id) 
                                  : rv.Name;
             w.secondaryOverride = idToSecondary.get(rv.Id);
+            w.objectLabel       = typeToLabel.get(rv.Type); 
             w.sobjectType    = rv.Type;
             w.lastViewedDate = rv.LastViewedDate;
             w.url            = '/' + rv.Id;
@@ -215,6 +225,7 @@ public with sharing class TAG_RecentItemsListController {
         @AuraEnabled public Id     recordId;
         @AuraEnabled public String displayTitle;
         @AuraEnabled public String secondaryOverride;
+        @AuraEnabled public String objectLabel;
         @AuraEnabled public String sobjectType;
         @AuraEnabled public Datetime lastViewedDate;
         @AuraEnabled public String url;
