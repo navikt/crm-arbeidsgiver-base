@@ -22,7 +22,7 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'Muligheter',
             'icon' => 'custom:custom14',
-            'columns' => 'TAG_Link__c, Source__c, InclusionStage__c,TYPEOF Owner WHEN User THEN Alias WHEN Group THEN Name END,TAG_Age__c,Position_in_Rekrutteringsbistand__c',
+            'columns' => 'TAG_Link__c, InclusionStage__c,Result__c,Profession__c,Source__c, TAG_Age__c,Position_in_Rekrutteringsbistand__c, TYPEOF Owner WHEN User THEN Name WHEN Group THEN Name END',
             'objectApiName' => 'CustomOpportunity__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'InclusionStage__c != \'Avsluttet\''
@@ -35,7 +35,7 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'Stillinger',
             'icon' => 'custom:custom27',
-            'columns' => 'TAG_Link__c, EngagementType__c,Extent__c,Expires__c, Link_to_position__c',
+            'columns' => 'TAG_Link__c, EngagementType__c,Extent__c,Link_to_position__c,WorkplaceCity__c,ProfessionCategory__c,Expires__c',
             'objectApiName' => 'JobPosting__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'Status__c = \'ACTIVE\''
@@ -61,7 +61,7 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'IA-samarbeid',
             'icon' => 'standard:form',
-            'columns' => 'Name,Status__c, StartDate__c,EndDate__c',
+            'columns' => 'Name, IACase__c,StartDate__c,EndDate__c, Status__c',
             'objectApiName' => 'IACooperation__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'Status__c = \'AKTIV\' AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))'
@@ -76,7 +76,7 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'Partnerstatus',
             'icon' => 'standard:form',
-            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
+            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_ExternalURL__c,TAG_Contact__r.Name,TAG_InternalContact__r.Name',
             'objectApiName' => 'Contract__c',
             'lookupField' => 'TAG_Account__c',
             'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
@@ -95,42 +95,13 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'Samarbeidsavtale',
             'icon' => 'standard:form',
-            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
+            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_ExternalURL__c,TAG_Contact__r.Name,TAG_InternalContact__r.Name',
             'objectApiName' => 'Contract__c',
             'lookupField' => 'TAG_Account__c',
             'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
             ' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND' +
             ' TAG_Category__c  IN (\'Markedssamarbeid\', \'Rekrutteringsavtale\', \'Inkluderingsavtale (Arbeidsgiver)\' )' +
             ' AND (TAG_Type_Partner__c = \'Samarbeidspartner\' OR TAG_Type_Partner__c=NULL)'
-        },
-        'strategisk_partner_ny' => new Map<String, String>{
-            'badgeKey' => 'strategisk_partner_ny',
-            'labelTemplate' => 'Strategisk partner',
-            'listTitle' => 'Strategisk partner',
-            'helpText' => 'Denne bedriftens partnerstatus basert på aktive avtaler.',
-            'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
-            'badgeType' => 'Partnerstatus',
-            'icon' => 'standard:form',
-            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
-            'objectApiName' => 'Contract__c',
-            'lookupField' => 'TAG_Account__c',
-            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
-            ' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY' +
-            ' AND TAG_Category__c=\'Strategisk partneravtale\''
-        },
-        'markedssamarbeid_ny' => new Map<String, String>{
-            'badgeKey' => 'markedssamarbeid_ny',
-            'labelTemplate' => 'Markedssamarbeid',
-            'listTitle' => 'Markedssamarbeid',
-            'helpText' => 'Bedriften har avtale med tilsvarende kategori.',
-            'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
-            'badgeType' => 'Samarbeidsavtale',
-            'icon' => 'standard:form',
-            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
-            'objectApiName' => 'Contract__c',
-            'lookupField' => 'TAG_Account__c',
-            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
-            ' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Category__c=\'Markedssamarbeid\''
         }
         // Add more badge configs as needed
     };
