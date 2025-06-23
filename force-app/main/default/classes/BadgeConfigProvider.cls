@@ -66,6 +66,8 @@ public with sharing class BadgeConfigProvider {
             'lookupField' => 'Account__c',
             'queryFilter' => 'Status__c = \'AKTIV\' AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))'
         },
+        // Ifbm overgang til nytt rammeverk for avtaler vises badge for strategisk partner avtaler med enten
+        //  TAG_Type_Partner__c lik Strategisk Partner, eller TAG_Category__c lik Stategisk partner.
         'strategisk_partner' => new Map<String, String>{
             'badgeKey' => 'strategisk_partner',
             'labelTemplate' => 'Strategisk partner',
@@ -77,8 +79,14 @@ public with sharing class BadgeConfigProvider {
             'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
             'objectApiName' => 'Contract__c',
             'lookupField' => 'TAG_Account__c',
-            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Category__c=\'Strategisk partner\''
+            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
+            ' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY' +
+            ' AND (TAG_Category__c=\'Strategisk partneravtale\' OR TAG_Type_Partner__c = \'Strategisk Partner\')'
         },
+        // Ifbm overgang til nytt rammeverk for avtaler vises badge for markedssamarbeid avtaler med
+        //  TAG_Category__c lik Markedssamarbeid, Rekrutteringsavtale eller Inkluderingsavtale (Arbeidsgiver)
+        //  og TAG_Type_Partner__c lik Samarbeidspartner eller blank.
+        // Avtaler med TAG_Category__c IA-avtale vises ikke som badge. I stedet vises badge for IA-samarbeid.
         'markedssamarbeid' => new Map<String, String>{
             'badgeKey' => 'markedssamarbeid',
             'labelTemplate' => 'Markedssamarbeid',
@@ -90,7 +98,39 @@ public with sharing class BadgeConfigProvider {
             'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
             'objectApiName' => 'Contract__c',
             'lookupField' => 'TAG_Account__c',
-            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Category__c=\'Markedssamarbeid\''
+            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
+            ' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND' +
+            ' TAG_Category__c  IN (\'Markedssamarbeid\', \'Rekrutteringsavtale\', \'Inkluderingsavtale (Arbeidsgiver)\' )' +
+            ' AND (TAG_Type_Partner__c = \'Samarbeidspartner\' OR TAG_Type_Partner__c=NULL)'
+        },
+        'strategisk_partner_ny' => new Map<String, String>{
+            'badgeKey' => 'strategisk_partner_ny',
+            'labelTemplate' => 'Strategisk partner',
+            'listTitle' => 'Strategisk partner',
+            'helpText' => 'Denne bedriftens partnerstatus basert på aktive avtaler.',
+            'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
+            'badgeType' => 'Partnerstatus',
+            'icon' => 'custom:form',
+            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
+            'objectApiName' => 'Contract__c',
+            'lookupField' => 'TAG_Account__c',
+            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
+            ' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY' +
+            ' AND TAG_Category__c=\'Strategisk partneravtale\''
+        },
+        'markedssamarbeid_ny' => new Map<String, String>{
+            'badgeKey' => 'markedssamarbeid_ny',
+            'labelTemplate' => 'Markedssamarbeid',
+            'listTitle' => 'Markedssamarbeid',
+            'helpText' => 'Bedriften har avtale med tilsvarende kategori.',
+            'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
+            'badgeType' => 'Samarbeidsavtale',
+            'icon' => 'standard:form',
+            'columns' => 'TAG_Link__c, TAG_Status__c,TAG_StartDate__c,TAG_EndDate__c,TAG_Category__c',
+            'objectApiName' => 'Contract__c',
+            'lookupField' => 'TAG_Account__c',
+            'queryFilter' => 'RecordType.DeveloperName = \'EmployerAgreement\' AND TAG_Status__c = \'Godkjent\'' +
+            ' AND TAG_EndDate__c > TODAY AND TAG_StartDate__c <= TODAY AND TAG_Category__c=\'Markedssamarbeid\''
         }
         // Add more badge configs as needed
     };
