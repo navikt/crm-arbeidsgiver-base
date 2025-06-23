@@ -163,8 +163,9 @@ public with sharing class BadgeService {
                     .getDescribe();
                 String relationLabel = fieldLabelsByLang.get(objectPart.toUpperCase())
                     .get(UserInfo.getLanguage().toUpperCase());
-                String label = String.isNotNull(relationLabel) ? relationLabel + ' ' + fieldDescribe.getLabel().toLowerCase() ? 
-                    fieldDescribe.getLabel(); 
+                String label = String.isNotBlank(relationLabel)
+                    ? relationLabel + ' ' + fieldDescribe.getLabel().toLowerCase()
+                    : fieldDescribe.getLabel();
                 field.label = label;
                 field.fieldName = objectPart + '_' + fieldPart;
                 field.type = 'text';
