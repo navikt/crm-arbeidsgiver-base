@@ -1,6 +1,6 @@
 public with sharing class BadgeService {
     private static Map<String, Map<String, String>> fieldLabelsByLang = new Map<String, Map<String, String>>{
-        'OWNER' => new Map<String, String>{ 'NO_NB' => 'Eier', 'EN_US' => 'Owner' }
+        'OWNER' => new Map<String, String>{ 'NO' => 'Eier', 'EN_US' => 'Owner' }
     };
     /**
      * @description Create a badge from config
@@ -163,7 +163,8 @@ public with sharing class BadgeService {
                     .getDescribe();
                 String relationLabel = fieldLabelsByLang.get(objectPart.toUpperCase())
                     .get(UserInfo.getLanguage().toUpperCase());
-                String label = relationLabel + ' ' + fieldDescribe.getLabel().toLowerCase();
+                String label = String.isNotNull(relationLabel) ? relationLabel + ' ' + fieldDescribe.getLabel().toLowerCase() ? 
+                    fieldDescribe.getLabel(); 
                 field.label = label;
                 field.fieldName = objectPart + '_' + fieldPart;
                 field.type = 'text';
