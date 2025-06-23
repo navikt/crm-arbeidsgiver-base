@@ -137,8 +137,12 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>accountBadges</componentName>
-                <identifier>c_accountBadges</identifier>
+                <componentInstanceProperties>
+                    <name>badgesToDisplay</name>
+                    <value>markedssamarbeid, strategisk_partner,ia-samarbeid,muligheter,stillinger,tiltak</value>
+                </componentInstanceProperties>
+                <componentName>badges</componentName>
+                <identifier>c_badges</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
