@@ -48,7 +48,7 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'Tiltak',
             'icon' => 'custom:custom60',
-            'columns' => 'Name, Type__c, Status__c, StartDate__c, EndDate__c',
+            'columns' => 'Type__c,Name, Status__c, StartDate__c, EndDate__c, Link__c',
             'objectApiName' => 'Workfare__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'Status__c = \'GJENNOMFØRES\''
