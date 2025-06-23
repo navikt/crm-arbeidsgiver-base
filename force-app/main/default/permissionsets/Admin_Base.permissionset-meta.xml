@@ -356,7 +356,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
+        <field>IACooperation__c.PlanStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IACooperation__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
