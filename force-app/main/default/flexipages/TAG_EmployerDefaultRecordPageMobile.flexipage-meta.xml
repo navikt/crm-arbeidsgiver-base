@@ -139,6 +139,64 @@
                 <identifier>c_accountMessages</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>badgesToDisplay</name>
+                    <value>markedssamarbeid, strategisk_partner,ia-samarbeid,muligheter,stillinger,tiltak</value>
+                </componentInstanceProperties>
+                <componentName>badges</componentName>
+                <identifier>c_badges</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9</booleanFilter>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>fakeemail@nav.no.scratchorg</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Thor.Henrik.Nordvik@nav.no</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Andre.Colle@nav.no</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Espen.Kirste.Egge@nav.no</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Gisle.Stenseng@nav.no</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Martin.Ingeberg@nav.no</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Piotr.Szostak@nav.no</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Susanne.Klungland.Harder@nav.no</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Email}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>silje.olsen@nav.no</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
