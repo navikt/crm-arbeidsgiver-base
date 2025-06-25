@@ -137,109 +137,12 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>accountBadges</componentName>
-                <identifier>c_accountBadges</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8</booleanFilter>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>fakeemail@nav.no.scratchorg</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>thor.henrik.nordvik@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>andre.colle@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>espen.kirste.egge@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>gisle.stenseng@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>martin.ingeberg@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>piotr.szostak@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>susanne.klungland.harder@nav.no</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>badgesToDisplay</name>
                     <value>markedssamarbeid, strategisk_partner,ia-samarbeid,muligheter,stillinger,tiltak</value>
                 </componentInstanceProperties>
                 <componentName>badges</componentName>
                 <identifier>c_badges</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9</booleanFilter>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>fakeemail@nav.no.scratchorg</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>thor.henrik.nordvik@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>andre.colle@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>espen.kirste.egge@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>gisle.stenseng@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>martin.ingeberg@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>piotr.szostak@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>susanne.klungland.harder@nav.no</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Email}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>silje.olsen@nav.no</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
