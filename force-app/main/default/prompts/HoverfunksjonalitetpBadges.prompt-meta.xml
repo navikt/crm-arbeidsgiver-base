@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Hover funksjonalitet på Badges</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;Hold musepekeren over merkeleppen og det vises en forhåndsvisning av innholdet. &lt;/p&gt;</body>
+        <customApplication>TAG_Arbeidsgiver_beta</customApplication>
+        <delayDays>1</delayDays>
+        <description>Forteller om hover funksjonalitet på Badges</description>
+        <dismissButtonLabel>OK</dismissButtonLabel>
+        <displayType>Targeted</displayType>
+        <endDate>2025-07-04</endDate>
+        <experience>Lightning</experience>
+        <image>Skjermbilde_20250625_kl_125514</image>
+        <imageAltText>Bilde mouse over funksjonen</imageAltText>
+        <imageLocation>Bottom</imageLocation>
+        <isPublished>true</isPublished>
+        <masterLabel>Hover funksjonalitet på Badges</masterLabel>
+        <publishedDate>2025-06-25</publishedDate>
+        <referenceElementContext>{&quot;scope&quot;:{&quot;attributes&quot;:{&quot;id&quot;:&quot;c_badges&quot;}},&quot;version&quot;:2}</referenceElementContext>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
+        <startDate>2025-06-26</startDate>
+        <targetPageKey1>Account</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <themeColor>Theme1</themeColor>
+        <themeSaturation>Dark</themeSaturation>
+        <timesToDisplay>1</timesToDisplay>
+        <title>Ny funksjonalitet for merkelapper</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
