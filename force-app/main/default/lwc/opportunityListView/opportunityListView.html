@@ -1,0 +1,100 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <h2 class="slds-form-element__label slds-text-heading_small">{cardTitle}</h2>
+            <lightning-helptext
+                class="slds-text-heading_small"
+                icon-name="utility:info"
+                content={helpText}
+            ></lightning-helptext>
+        </div>
+        <lightning-button-menu
+            slot="actions"
+            variant="bare"
+            alternative-text="Action"
+            onselect={handleObjectLevelAction}
+        >
+            <template for:each={objectLevelActions} for:item="action">
+                <lightning-menu-item
+                    key={action.label}
+                    data-action-id={action.id}
+                    label={action.label}
+                    value={action.value}
+                >
+                </lightning-menu-item>
+            </template>
+        </lightning-button-menu>
+        <div slot="footer">
+            <template if:true={hasMoreRecords}
+                ><lightning-formatted-url
+                    onclick={navigateToListView}
+                    value={listViewUrl}
+                    label="Se alle"
+                ></lightning-formatted-url>
+            </template>
+        </div>
+        <!-- Body -->
+        <template lwc:if={records}>
+            <ul>
+                <template for:each={records} for:item="record">
+                    <li key={record.Id} class="slds-item">
+                        <lightning-layout vertical-align="center" class="slds-p-vertical_xx-small">
+                            <!-- Venstre ikon -->
+                            <lightning-layout-item padding="horizontal-small">
+                                <lightning-icon icon-name={iconName} size="small"> </lightning-icon>
+                            </lightning-layout-item>
+
+                            <!-- tittel og detaljer -->
+                            <lightning-layout-item class="slds-truncate" flexibility="grow">
+                                <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                                    <a href={record.titleLink} data-record-id={record.id} onclick={navigateToRecord}
+                                        >{record.title}</a
+                                    >
+                                </div>
+                                <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                                    <span class="slds-text-heading_label-normal">{record.detailLine}</span>
+                                </div>
+                            </lightning-layout-item>
+
+                            <!-- Høyre ikon -->
+                            <lightning-layout-item padding="horizontal-small">
+                                <div class="slds-grid slds-grid_align-end slds-grid_vertical-align-center">
+                                    <lightning-icon
+                                        class="slds-m-right_x-small"
+                                        icon-name="utility:expired"
+                                        size="x-small"
+                                        variant="error"
+                                    ></lightning-icon>
+
+                                    <lightning-button-menu
+                                        variant="bare"
+                                        alternative-text="Action"
+                                        onselect={handleRecordLevelAction}
+                                        data-record-id={record.id}
+                                    >
+                                        <template for:each={recordLevelActions} for:item="action">
+                                            <lightning-menu-item
+                                                key={action.label}
+                                                data-action-id={action.id}
+                                                label={action.label}
+                                                value={action.value}
+                                            >
+                                            </lightning-menu-item>
+                                        </template>
+                                    </lightning-button-menu>
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        
+        <template if:true={isRefreshing}>
+            <div class="slds-align_absolute-center">
+                <lightning-spinner alternative-text="Laster data..." size="small"></lightning-spinner>
+            </div>
+        </template>
+    </lightning-card>
+</template>
