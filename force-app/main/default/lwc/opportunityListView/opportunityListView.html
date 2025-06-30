@@ -58,8 +58,9 @@
 
                             <!-- Høyre ikon -->
                             <lightning-layout-item padding="horizontal-small">
+
                                 <div class="slds-grid slds-grid_align-end slds-grid_vertical-align-center">
-                                    <lightning-icon
+                                    <lightning-icon if:true={record.showWarning}
                                         class="slds-m-right_x-small"
                                         icon-name="utility:expired"
                                         size="x-small"

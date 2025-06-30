@@ -1,9 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
-//import { getListInfoByName } from "lightning/uiListsApi";
 import { getListRecordsByName } from 'lightning/uiListsApi';
 import { NavigationMixin } from 'lightning/navigation';
-import { refreshApex } from '@salesforce/apex';
-
 
 export default class OpportunityListView extends NavigationMixin(LightningElement) {
     @api previewRecords = 4; // Maks antall records å vise
@@ -27,17 +24,34 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
     fieldsTest = [
         'CustomOpportunity__c.TAG_Link__c',
         'CustomOpportunity__c.Account__r.Name',
-        'CustomOpportunity__c.TAG_Age__c'
+        'CustomOpportunity__c.TAG_Age__c',
+        'CustomOpportunity__c.InclusionStage__c'
     ];
 
-    titleField = 'TAG_Link__c';
-    detailFields = ['Account__r.Name'];
-    warningField = 'TAG_Age__c'; // Felt som brukes for å vise advarsel
+    titleFieldInput = 'TAG_Link__c';    
+    detailFieldInput = 'Account__r.Name'; // Felt som brukes for å vise detaljer i listen
+    warningFieldsInput = 'InclusionStage__c, TAG_Age__c'; // Felt som brukes for å vise advarsel
+    
+    warningCriteriaInput = 'TAG_Age__c > 1 && InclusionStage__c == "Ny henvendelse"'; // f.eks. 'DueDate__c < TODAY'
 
     @track recordLevelActions = [{ id: 'record-edit-1', label: 'Edit', value: 'edit'}];
     @track objectLevelActions = [{ id: 'object-new-1', label: 'New', value: 'new' }];
 
-    
+    get warningFields() {
+        return this.warningFieldsInput.split(',').map(field => field.trim());
+    }
+
+    displayWarning(record){
+        let condition = this.warningCriteriaInput.replace(/\bTODAY\b/g, `"${new Date().toISOString().split('T')[0]}"`);
+        this.warningFields.forEach(field => {
+            console.log('field: ', field);
+           const value = typeof record.fields[field].value === 'string' ? `"${record.fields[field].value}"` : record.fields[field].value;
+            console.log('value: ', value);
+           condition = condition.replace(new RegExp(`\\b${field}\\b`, 'g'), value);
+           console.log('condition: ', condition);
+        });
+        return this.evaluateBooleanExpression(condition);
+    }
     
 
     // 2. Hent records når listViewId og felter er tilgjengelige
@@ -48,33 +62,30 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
         pageSize: '$previewRecords'
     })
     wiredListViewRecords(result) {
-        this.wiredListViewRecordsResult = result; // Lagre resultatet for senere oppdatering
+       // this.wiredListViewRecordsResult = result; // Lagre resultatet for senere oppdatering
         if (result.data) {
             console.log('listRecords data:', JSON.stringify(result.data, null, 2));
             this.records = result.data.records.map((record) => {
-                let title = record.fields[this.titleField]
-                    ? this.sanitizeHtml(record.fields[this.titleField].value)
+                let title = record.fields[this.titleFieldInput]
+                    ? this.sanitizeHtml(record.fields[this.titleFieldInput].value)
                     : null;
-                let recordFields = [];
-                this.detailFields.forEach((field) => {
-                    if (this.isRelatedField(field)) {
-                        const value = this.getNestedFieldValue(record, field);
-                        recordFields.push(value);
-                    } else {
-                        const value = record.fields[field] ? record.fields[field].value : null;
-                        recordFields.push(value);
-                    }
-                });
+                let detailLine;               
+                if (this.isRelatedField(this.detailFieldInput)) {
+                    detailLine = this.getNestedFieldValue(record, this.detailFieldInput);                    
+                } else {
+                    detailLine = record.fields[this.detailFieldInput] ? record.fields[this.detailFieldInput].value : null;                    
+                }
+                
                 let listRecord = {
                     id: record.id,
                     title: title,
                     titleLink: '/lightning/r/' + record.apiName + '/' + record.id + '/view',
-                    detailLine: recordFields.toString(),
-                    showWarning:
-                        record.fields[this.warningField] && record.fields[this.warningField].value > 5 ? true : false
+                    detailLine: detailLine,
+                    showWarning: this.displayWarning(record)
                 };
                 return listRecord;
             });
+            console.log('this.records data:', JSON.stringify(this.records, null, 2));
             this.nextPageToken = result.data.nextPageToken;   
             this.count = result.data.count;            
             this.error = undefined;            
@@ -207,6 +218,96 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
         }
 
         return '';
+    }
+
+    /**
+     * Safely evaluate boolean expressions without Function constructor
+     * @param {string} expression - Processed expression string
+     * @returns {boolean} - Evaluation result
+     */
+    evaluateBooleanExpression(expression) {
+        // Simple regex-based parser for basic expressions
+        // This handles: field comparisons, AND/OR operators, parentheses
+        
+        // Remove extra whitespace
+        expression = expression.trim();
+        
+        // Split by AND/OR operators while preserving them
+        const tokens = expression.split(/(\s+&&\s+|\s+\|\|\s+|\s+AND\s+|\s+OR\s+)/i);
+        
+        let result = this.evaluateComparison(tokens[0]);
+        
+        for (let i = 1; i < tokens.length; i += 2) {
+            const operator = tokens[i].trim().toUpperCase();
+            const nextComparison = this.evaluateComparison(tokens[i + 1]);
+            
+            if (operator === '&&' || operator === 'AND') {
+                result = result && nextComparison;
+            } else if (operator === '||' || operator === 'OR') {
+                result = result || nextComparison;
+            }
+        }
+        
+        return result;
+    }
+
+    /**
+     * Evaluate a single comparison
+     * @param {string} comparison - Single comparison expression
+     * @returns {boolean} - Comparison result
+     */
+    evaluateComparison(comparison) {
+        comparison = comparison.trim();
+        
+        // Handle different comparison operators
+        const operators = ['>=', '<=', '!=', '==', '>', '<'];
+        
+        for (const op of operators) {
+            if (comparison.includes(op)) {
+                const [left, right] = comparison.split(op).map(s => s.trim());
+                const leftValue = this.parseValue(left);
+                const rightValue = this.parseValue(right);
+                console.log(`Evaluating: ${leftValue} ${op} ${rightValue}`);
+                switch (op) {
+                    case '==': return leftValue === rightValue;
+                    case '!=': return leftValue !== rightValue;
+                    case '>': return leftValue > rightValue;
+                    case '<': return leftValue < rightValue;
+                    case '>=': return leftValue >= rightValue;
+                    case '<=': return leftValue <= rightValue;
+                }
+            }
+        }
+        
+        // If no operator found, treat as boolean value
+        return this.parseValue(comparison);
+    }
+
+    /**
+     * Parse string value to appropriate type
+     * @param {string} value - String value to parse
+     * @returns {any} - Parsed value
+     */
+    parseValue(value) {
+        value = value.trim();
+        
+        // Remove quotes from strings
+        if ((value.startsWith('"') && value.endsWith('"')) || 
+            (value.startsWith("'") && value.endsWith("'"))) {
+            return value.slice(1, -1);
+        }
+        
+        // Parse numbers
+        if (!isNaN(value) && !isNaN(parseFloat(value))) {
+            return parseFloat(value);
+        }
+        
+        // Parse booleans
+        if (value.toLowerCase() === 'true') return true;
+        if (value.toLowerCase() === 'false') return false;
+        
+        // Return as string
+        return value;
     }
 
     /*
