@@ -14,11 +14,6 @@
         <operation>equals</operation>
         <value>Ny henvendelse,Avklaring</value>
     </filters>
-    <filters>
-        <field>RECORDTYPE</field>
-        <operation>equals</operation>
-        <value>CustomOpportunity__c.Inclusion</value>
-    </filters>
     <label>Mine åpne muligheter</label>
     <sharedTo>
         <role>PO_Arbeidsgiver</role>
