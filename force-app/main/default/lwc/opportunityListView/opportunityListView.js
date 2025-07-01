@@ -235,8 +235,6 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
 
     /**
      * Simple regex-based parser for basic expressions. Handles field comparisons, AND/OR operators, parentheses
-     * @param {string} expression Processed expression string
-     * @returns {boolean} Evaluation result
      */
     evaluateBooleanExpression(expression) {
         expression = expression.trim();
@@ -261,8 +259,6 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
 
     /**
      * Evaluate a single comparison
-     * @param {string} comparison Single comparison expression
-     * @returns {boolean} Comparison result
      */
     evaluateComparison(comparison) {
         comparison = comparison.trim();
@@ -342,8 +338,6 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
 
     /**
      * Parse string value to appropriate type
-     * @param {string} value - String value to parse
-     * @returns {any} - Parsed value
      */
     parseValue(value) {
         value = value.trim();
