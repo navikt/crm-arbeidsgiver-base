@@ -36,15 +36,47 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
+                    <name>detailFieldInput</name>
+                    <value>Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;Test column 2&lt;/p&gt;</value>
+                    <name>helpText</name>
+                    <value>Dette er en hjelpetekst for komponentet.</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText</identifier>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom14</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>TAG_Mine_pne_muligheter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>CustomOpportunity__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>TAG_Link__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Mine muligheter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                </componentInstanceProperties>
+                <componentName>opportunityListView</componentName>
+                <identifier>c_opportunityListView</identifier>
             </componentInstance>
         </itemInstances>
         <name>row1col2</name>

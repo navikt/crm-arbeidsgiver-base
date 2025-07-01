@@ -9,18 +9,19 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__HomePage">
-            <property name="objectApiName" type="String" placeholder="CustomOpportunity__c" label="Object API Name" description="The API name of a supported object." required="true"  />
+            <property name="objectApiName" label="Object API Name" type="String" placeholder="CustomOpportunity__c" description="The API name of a supported object." required="true"  />
             <property name="iconName" label="Object icon" type="String" placeholder="custom:custom14" />
-            <property name="listViewApiName" type="String" placeholder="TAG_Mine_pne_muligheter" label="List View API Name" description="The API name of a list view, such as AllAccounts." required="true"  />
-            <property name="pageSize" type="Integer" default="4" label="Number of records to display" required="true" min="1" max="2000" />
+            <property name="listViewApiName" label="List View API Name" type="String" placeholder="TAG_Mine_pne_muligheter" description="The API name of a list view, such as AllAccounts." required="true"  />
+            <property name="pageSize" label="Number of records to display" type="Integer" default="4"  required="true" min="1" max="2000" />
 
             <property name="titleFieldInput" label="Primary field" type="String" placeholder="TAG_Link__c" description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
             <property name="detailFieldInput" label="Secondary field" type="String" placeholder="Account__r.Name" description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sesnsitive fieldnames!" />
             
-            <property name="warningCriteriaInput" label="Warning condition"  type="String" placeholder='{!TAG_Age__c} > 1 AND InclusionStage__c == "Ny henvendelse"' description="Boolean expression with fieldname and operators, for instance TAG_Age__c > 1. Obs! CASE sesnsitive fieldnames!" />
-            
-            <property name="titleText" label="Component heading"  type="String" placeholder="Mine muligheter" required="true" />
-            <property name="helpText" label="Component help text" type="String" placeholder="Dette er en hjelpetekst for komponentet."/>
+            <property name="warningCriteriaInput" label="Warning icon: Display condition"  type="String" placeholder='{{TAG_Age__c}} > 1 AND {{InclusionStage__c}} == "Ny henvendelse"' description="Boolean expression using {{fieldName}} syntax for field references. Obs! CASE sesnsitive fieldnames!" />
+            <property name="warningTextInput" label="Warning icon: Tooltip"  type="String" placeholder='Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.' />
+             
+            <property name="titleText" label="Component: Heading"  type="String" placeholder="Mine muligheter" required="true" />
+            <property name="helpText" label="Component: Tooltip" type="String" placeholder="Dette er en hjelpetekst for komponentet."/>
             
            
 
