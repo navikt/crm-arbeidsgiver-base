@@ -9,7 +9,8 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
     // Configuration Properties
     @api objectApiName; // = 'CustomOpportunity__c';
     @api listViewApiName; // = 'TAG_Mine_pne_muligheter'; // List view navn for å hente records
-    @api pageSize; // = 4; // Maks antall records å vise
+    @api pageSize; // = 10; // Maks antall records å hente
+    @api previewRecords; // = 4;
     @api titleText; // = 'Mine muligheter'; // Tittel for komponentet
     @api helpText; // = 'Dette er en hjelpetekst for komponentet.'; // Hjelpetekst for komponentet
     @api iconName; // = 'custom:custom14';
@@ -78,7 +79,10 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
         this.wiredListViewRecordsResult = result;
         if (result.data) {
             console.log('listRecords data:', JSON.stringify(result.data, null, 2));
-            this.records = result.data.records.map((record) => this.createDataItemFromRecord(record));
+            this.records = result.data.records
+            .slice(0, this.previewRecords)
+            .map((record) => this.createDataItemFromRecord(record));
+           
             this.nextPageToken = result.data.nextPageToken;
             this.count = result.data.count;
             this.error = undefined;

@@ -3,7 +3,8 @@
     <apiVersion>64.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Muligheter Listevisning</masterLabel>
-    <description>Konfigurerbar komponent som viser en liste over muligheter fra en spesifisert listevisning. Støtter navigering til detaljer og handlinger som redigering og opprettelse av nye records.</description>
+    <description>Display a list view for an object. Similar to standard list view component, but adapted to fit narrow columns.
+    </description>
     <targets>
         <target>lightning__HomePage</target>
     </targets>
@@ -12,8 +13,7 @@
             <property name="objectApiName" label="Object API Name" type="String" placeholder="CustomOpportunity__c" description="The API name of a supported object." required="true"  />
             <property name="iconName" label="Object icon" type="String" placeholder="custom:custom14" />
             <property name="listViewApiName" label="List View API Name" type="String" placeholder="TAG_Mine_pne_muligheter" description="The API name of a list view, such as AllAccounts." required="true"  />
-            <property name="pageSize" label="Number of records to display" type="Integer" default="4"  required="true" min="1" max="2000" />
-
+            
             <property name="titleFieldInput" label="Primary field" type="String" placeholder="TAG_Link__c" description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
             <property name="detailFieldInput" label="Secondary field" type="String" placeholder="Account__r.Name" description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sesnsitive fieldnames!" />
             
@@ -23,8 +23,9 @@
             <property name="titleText" label="Component: Heading"  type="String" placeholder="Mine muligheter" required="true" />
             <property name="helpText" label="Component: Tooltip" type="String" placeholder="Dette er en hjelpetekst for komponentet."/>
             
-           
-
+            <property name="previewRecords" label="Number of records to display" type="Integer" default="4" required="true" description="Number of records to display" min="1" max="10" />
+            <property name="pageSize" label="Number of records to count" type="Integer" default="10"  required="true" min="1" max="2000" description="The number of list records to retrieve in order to display total count. If list contains more records than this number a + sign is displayed to indicate more records. Note that a high number can cause performance issues!" />
+            
             
         </targetConfig>
     </targetConfigs>
