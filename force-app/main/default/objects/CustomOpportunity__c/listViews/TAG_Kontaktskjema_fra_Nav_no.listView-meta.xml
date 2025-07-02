@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Kontaktskjema_fra_Nav_no</fullName>
+    <columns>TAG_Link__c</columns>
+    <columns>Account__c</columns>
+    <columns>InclusionStage__c</columns>
+    <columns>OwnerFullName__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>InclusionStage__c</field>
+        <operation>equals</operation>
+        <value>Ny henvendelse</value>
+    </filters>
+    <filters>
+        <field>Source__c</field>
+        <operation>equals</operation>
+        <value>Kontaktskjema</value>
+    </filters>
+    <filters>
+        <field>Is_My_NAV_Office__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Kontaktskjema fra Nav.no</label>
+    <sharedTo>
+        <role>PO_Arbeidsgiver</role>
+    </sharedTo>
+</ListView>
