@@ -3,35 +3,29 @@
         <div slot="title">
             <h2 class="slds-form-element__label slds-text-heading_small">{cardTitle}</h2>
             <lightning-helptext
+                if:true={helpText}
                 class="slds-text-heading_small"
                 icon-name="utility:info"
                 content={helpText}
             ></lightning-helptext>
         </div>
-        <lightning-button-menu
+
+        <lightning-button-icon
             slot="actions"
-            variant="bare"
-            alternative-text="Action"
-            onselect={handleObjectLevelAction}
+            variant="border"
+            alternative-text="Opprett ny mulighet"
+            title="Opprett ny mulighet"
+            onclick={handleNewRecord}
+            icon-name="utility:add"
         >
-            <template for:each={objectLevelActions} for:item="action">
-                <lightning-menu-item
-                    key={action.label}
-                    data-action-id={action.id}
-                    label={action.label}
-                    value={action.value}
-                >
-                </lightning-menu-item>
-            </template>
-        </lightning-button-menu>
+        </lightning-button-icon>
+
         <div slot="footer">
-            <template if:true={hasMoreRecords}
-                ><lightning-formatted-url
-                    onclick={navigateToListView}
-                    value={listViewUrl}
-                    label="Se alle"
-                ></lightning-formatted-url>
-            </template>
+            <lightning-formatted-url
+                onclick={navigateToListView}
+                value={listViewUrl}
+                label="Se alle"
+            ></lightning-formatted-url>
         </div>
         <!-- Body -->
         <template lwc:if={records}>
@@ -39,33 +33,38 @@
                 <template for:each={records} for:item="record">
                     <li key={record.Id} class="slds-item">
                         <lightning-layout vertical-align="center" class="slds-p-vertical_xx-small">
-                            <!-- Venstre ikon -->
+                            <!-- Venstre side ikon -->
                             <lightning-layout-item padding="horizontal-small">
-                                <lightning-icon icon-name={iconName} size="small"> </lightning-icon>
+                                <lightning-icon if:true={iconName} icon-name={iconName} size="small"> </lightning-icon>
                             </lightning-layout-item>
 
-                            <!-- tittel og detaljer -->
+                            <!-- Tekst -->
                             <lightning-layout-item class="slds-truncate" flexibility="grow">
                                 <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
                                     <a href={record.titleLink} data-record-id={record.id} onclick={navigateToRecord}
                                         >{record.title}</a
                                     >
                                 </div>
-                                <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                                <div
+                                    if:true={record.detailLine}
+                                    style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis"
+                                >
                                     <span class="slds-text-heading_label-normal">{record.detailLine}</span>
                                 </div>
                             </lightning-layout-item>
 
-                            <!-- Høyre ikon -->
+                            <!-- Høyre side -->
                             <lightning-layout-item padding="horizontal-small">
                                 <div class="slds-grid slds-grid_align-end slds-grid_vertical-align-center">
-                                    <lightning-icon
+                                    <!-- Varselikon -->
+                                    <lightning-helptext
+                                        if:true={record.showWarning}
                                         class="slds-m-right_x-small"
                                         icon-name="utility:expired"
-                                        size="x-small"
-                                        variant="error"
-                                    ></lightning-icon>
-
+                                        icon-variant="error"
+                                        content={warningTextInput}
+                                    ></lightning-helptext>
+                                    <!-- Record actions -->
                                     <lightning-button-menu
                                         variant="bare"
                                         alternative-text="Action"
@@ -89,8 +88,7 @@
                 </template>
             </ul>
         </template>
-
-        
+        <!-- Laster -->
         <template if:true={isRefreshing}>
             <div class="slds-align_absolute-center">
                 <lightning-spinner alternative-text="Laster data..." size="small"></lightning-spinner>
