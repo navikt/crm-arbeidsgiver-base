@@ -317,9 +317,8 @@
     </textTemplates>
     <textTemplates>
         <name>Notify_new_owner_body</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;{!$Record.LastModifiedBy.FirstName} {!$Record.LastModifiedBy.LastName} har
-            tildelt deg muligheten: {!$Record.Name}&lt;/p&gt;</text>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!$Record.LastModifiedBy.FirstName} {!$Record.LastModifiedBy.LastName} har tildelt deg muligheten: {!$Record.Name}</text>
     </textTemplates>
     <textTemplates>
         <name>test</name>
