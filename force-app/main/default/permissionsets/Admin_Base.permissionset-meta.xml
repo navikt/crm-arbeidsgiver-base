@@ -41,7 +41,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.NumberOfWorkfare__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -63,6 +63,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.TAG_NavUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.TAG_Partner_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
