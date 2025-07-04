@@ -7,8 +7,8 @@ Komponenten er laget for å passe inn i smale kolonner på hjemmesider og tilbyr
 
 Funksjonen er basert på standard list view komponent. Man velger objekt, hvilket list view som skal vises og antal rader.
 I stedet for å vise alle kolonner fra list view så spesifiserer man hvilke felt som skal vises i komponentet.
-I tillegg kan man spesifisere kriterier for å markere en linje med varselsymbol.
-Komponentet er utviklet for muligheter, men fungerer for andre custom objekter og standard objekter som er tilgjenelige i UI API. 
+I tillegg kan man spesifisere kriterier for å markere en linje med varselsymbol. 
+
 
 ## Hovedflyt
 
@@ -71,17 +71,3 @@ Logikk for å evaluere uttrykket:
 - For returnerte records, erstatt `{{fieldName}}` i uttrykket med faktiske verdi fra record. 
 Eks. om record har TAG_Age__c lik 4, så erstattes `{{TAG_Age__c}} > 1` med `4 > 1`
 - Evaluerer `4 > 1`
-
-
-
-## Utvidelsesmuligheter / Foreslåtte forbedringer
-
-3. **Sortering**: Konfigurerbar sortering av records
-5. **Bulk-handlinger**: Støtte for handlinger på flere records samtidig
-4. **Internationalization**: Støtte for flere språk
-
-1. **Service Layer**: Ekstrahere API-kall til dedikerte services
-
-Task og Event støttes ikke ennå i UI API, så må bruke Apex for å hente disse.
-Undersøkt om man kan bruke detaljer fra list view for å bygge soql query, men list view filter er ikke tilgjengelig i Apex. 
-Foreslår å lage et eget komponent for Task og Events tar filter som input i tillegg til input på `opportunityListView`, og ellers er ganske likt. Det ryktes om at støtte i UI API kommer sommeren 2026, så da kan man kan man slå de sammen :) 
