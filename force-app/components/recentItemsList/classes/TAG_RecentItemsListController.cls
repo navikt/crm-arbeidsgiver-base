@@ -56,7 +56,8 @@ public with sharing class TAG_RecentItemsListController {
         String rvSoql =
             'SELECT Id, Name, Type, LastViewedDate ' +
             'FROM RecentlyViewed ' +
-            'WHERE Type != \'ListView\'';
+            'WHERE Type != \'ListView\' ' +
+            'AND Type != \'Dashboard\'';
         if (!allowedTypes.isEmpty()) {
             List<String> quoted = new List<String>();
             for (String t : allowedTypes) {
