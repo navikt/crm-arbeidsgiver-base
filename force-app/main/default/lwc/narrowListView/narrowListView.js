@@ -1,7 +1,7 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
 import { NavigationMixin } from 'lightning/navigation';
-export default class OpportunityListView extends NavigationMixin(LightningElement) {
+export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
     // PROPERTIES & GETTERS
     // =========================
