@@ -2,7 +2,7 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Muligheter Listevisning</masterLabel>
+    <masterLabel>Narrow ListView</masterLabel>
     <description>Display a list view for an object. Similar to standard list view component, but adapted to fit narrow columns.
     </description>
     <targets>
