@@ -9,6 +9,8 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     // Configuration Properties
     @api objectApiName; // = 'CustomOpportunity__c';
     @api listViewApiName; // = 'TAG_Mine_pne_muligheter'; // List view navn for å hente records
+    @api newRecordButton; // = false; // Om knappen for å opprette ny record skal vises
+    @api altTextNewRecordButton; // = 'Opprett ny mulighet'; // Alternativ tekst for knappen for å opprette ny record
     @api pageSize; // = 10; // Maks antall records å hente
     @api previewRecords; // = 4;
     @api titleText; // = 'Mine muligheter'; // Tittel for komponentet
@@ -80,9 +82,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         if (result.data) {
             console.log('listRecords data:', JSON.stringify(result.data, null, 2));
             this.records = result.data.records
-            .slice(0, this.previewRecords)
-            .map((record) => this.createDataItemFromRecord(record));
-           
+                .slice(0, this.previewRecords)
+                .map((record) => this.createDataItemFromRecord(record));
+
             this.nextPageToken = result.data.nextPageToken;
             this.count = result.data.count;
             this.error = undefined;
