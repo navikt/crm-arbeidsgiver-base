@@ -50,6 +50,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                    <value>Opprett ny mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>detailFieldInput</name>
                     <value>Account__r.Name</value>
                 </componentInstanceProperties>
@@ -64,6 +68,10 @@
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
                     <value>TAG_Mine_pne_muligheter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>
@@ -181,6 +189,10 @@
                     <value>TAG_Kontaktskjema_fra_Nav_no</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>objectApiName</name>
                     <value>CustomOpportunity__c</value>
                 </componentInstanceProperties>
@@ -241,15 +253,55 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
+                    <name>altTextNewRecordButton</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;Column 2 &lt;/p&gt;</value>
+                    <name>detailFieldInput</name>
+                    <value>CRM_Account__r.Name</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText6</identifier>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom45</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>Mitt_NAV_kontor</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>NavTask__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>25</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Innkomne oppgaver fra NKS</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView3</identifier>
             </componentInstance>
         </itemInstances>
         <name>row2col2</name>

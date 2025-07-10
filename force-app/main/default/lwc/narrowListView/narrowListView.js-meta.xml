@@ -13,6 +13,8 @@
             <property name="objectApiName" label="Object API Name" type="String" placeholder="CustomOpportunity__c" description="The API name of a supported object." required="true"  />
             <property name="iconName" label="Object icon" type="String" placeholder="custom:custom14" />
             <property name="listViewApiName" label="List View API Name" type="String" placeholder="TAG_Mine_pne_muligheter" description="The API name of a list view, such as AllAccounts." required="true"  />
+            <property name="newRecordButton" label="Show New Record Button" type="Boolean" default="false" />
+            <property name="altTextNewRecordButton" label="Alternative text New Record Button" type="String" description="Alternative text to pop-up when hover over button." />
             
             <property name="titleFieldInput" label="Primary field" type="String" placeholder="TAG_Link__c" description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
             <property name="detailFieldInput" label="Secondary field" type="String" placeholder="Account__r.Name" description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sesnsitive fieldnames!" />
