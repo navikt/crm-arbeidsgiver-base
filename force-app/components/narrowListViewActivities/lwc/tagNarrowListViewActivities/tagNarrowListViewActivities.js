@@ -84,10 +84,9 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
                 id: task.Id,
                 title: task.Subject,
                 titleLink: '/lightning/r/' + this.objectApiName + '/' + task.Id + '/view',
-                detailLine: task.What?.Name || task.Who?.Name || '',
+                detailLine: this.getSObjectFieldValue(task, this.detailFieldInput),
                 showWarning: false
             }));
-            //console.log('Component1 - Processing Record (JSON):', JSON.stringify(records, null, 2));
         } else if (error) {
             this.error = error;
             this.records = [];
@@ -171,31 +170,12 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     // RECORD PROCESSING
     // =========================
 
-    createDataItemFromRecord(record) {
-        return {
-            id: record.id,
-            title: this.getFieldValue(record, this.titleFieldInput),
-            titleLink: '/lightning/r/' + record.apiName + '/' + record.id + '/view',
-            detailLine: this.getFieldValue(record, this.detailFieldInput),
-            showWarning: this.shouldShowWarning(record)
-        };
-    }
-
-    getFieldValue(record, fieldName) {
-        if (!fieldName) {
-            return '';
-        }
-        if (this.isRelatedField(fieldName)) {
-            return this.getNestedFieldValue(record, fieldName);
-        }
-        const fieldData = record.fields[fieldName];
-        if (!fieldData) {
-            return '';
-        }
-        if (fieldName === this.titleFieldInput) {
-            return this.sanitizeHtml(fieldData.value);
-        }
-        return fieldData.displayValue ?? fieldData.value ?? '';
+    getSObjectFieldValue(record, fieldPath) {
+        if (!record || !fieldPath) return '';
+        return (
+            fieldPath.split('.').reduce((obj, part) => (obj && obj[part] !== undefined ? obj[part] : null), record) ||
+            ''
+        );
     }
 
     // =========================
