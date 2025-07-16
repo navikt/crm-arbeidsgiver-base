@@ -2,7 +2,7 @@ import { LightningElement, api, wire, track } from 'lwc';
 import fetchOpenTasks from '@salesforce/apex/TAG_NarrowListViewActivitiesController.fetchOpenTasks';
 import { NavigationMixin } from 'lightning/navigation';
 
-export default class TagNarrowListViewActivities extends LightningElement {
+export default class TagNarrowListViewActivities extends NavigationMixin(LightningElement) {
     // =========================
     // PROPERTIES & GETTERS
     // =========================
@@ -80,15 +80,14 @@ export default class TagNarrowListViewActivities extends LightningElement {
             this.count = data.records.length;
             this.nextPageToken = data.count > this.pageSize ? 'MORE' : null;
 
-            this.records = data.records
-                .slice(0, this.previewRecords)
-                .map(task => ({
-                    id: task.Id,
-                    title: task.Subject,
-                    titleLink: `/lightning/r/Task/${task.Id}/view`,
-                    detailLine: task.What?.Name || task.Who?.Name || '',
-                    showWarning: false
-             }));
+            this.records = data.records.slice(0, this.previewRecords).map((task) => ({
+                id: task.Id,
+                title: task.Subject,
+                titleLink: '/lightning/r/' + this.objectApiName + '/' + task.Id + '/view',
+                detailLine: task.What?.Name || task.Who?.Name || '',
+                showWarning: false
+            }));
+            //console.log('Component1 - Processing Record (JSON):', JSON.stringify(records, null, 2));
         } else if (error) {
             this.error = error;
             this.records = [];
