@@ -22,7 +22,9 @@ public with sharing class TAG_NarrowListViewActivitiesController {
                 Subject,
                 Status,
                 WhatId, What.Name,
-                WhoId,  Who.Name
+                WhoId,  Who.Name,
+                RelatedToAccount__c,
+                RelatedToAccount__r.Name
             FROM Task
             WHERE OwnerId = :UserInfo.getUserId()
               AND IsClosed = false
