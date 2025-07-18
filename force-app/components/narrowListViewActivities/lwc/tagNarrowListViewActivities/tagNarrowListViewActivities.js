@@ -23,7 +23,6 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     @api iconName; // = 'custom:custom14';
     @api titleFieldInput; // = 'TAG_Link__c';
     @api detailFieldInput; // = 'Account__r.Name'; // Felt som brukes for å vise detaljer i listen
-    @api warningCriteriaInput; // = '{{TAG_Age__c}} > 1 && {{InclusionStage__c}} == "Ny henvendelse"';
     @api warningTextInput; // = 'Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.';
 
     // State Properties
@@ -42,29 +41,8 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         { id: 'record-followup-1', label: 'Opprett oppfølgingsoppgave', value: 'followup' }
     ];
 
-    get warningFields() {
-        return this.extractMergeFields(this.warningCriteriaInput);
-    }
-
-    get queryFields() {
-        let fields = [];
-        fields.push(this.objectApiName + '.' + this.titleFieldInput);
-        if (this.detailFieldInput) {
-            fields.push(this.objectApiName + '.' + this.detailFieldInput);
-        }
-
-        this.warningFields.forEach((field) => {
-            fields.push(this.objectApiName + '.' + field);
-        });
-        return fields;
-    }
-
     get hasMoreRecords() {
         return this.nextPageToken === null ? false : true;
-    }
-
-    get listViewUrl() {
-        return `/lightning/o/${this.objectApiName}/list?filterName=${this.listViewApiName}`;
     }
 
     get cardTitle() {
@@ -91,15 +69,22 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
             this.count = data.records.length;
             this.nextPageToken = data.count > this.pageSize ? 'MORE' : null;
 
-            this.records = data.records.slice(0, this.previewRecords).map((task) => ({
-                id: task.Id,
-                title: task.Subject,
-                whatId: task.WhatId,
-                whoId: task.WhoId,
-                titleLink: '/lightning/r/' + this.objectApiName + '/' + task.Id + '/view',
-                detailLine: this.getSObjectFieldValue(task, this.detailFieldInput),
-                showWarning: false
-            }));
+            this.records = data.records.slice(0, this.previewRecords).map((task) => {
+                const now = new Date();
+                const todayMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                const dueDate = task.ActivityDate ? new Date(task.ActivityDate) : null;
+                const isOverdue = dueDate && dueDate < todayMid;
+
+                return {
+                    id: task.Id,
+                    title: task.Subject,
+                    whatId: task.WhatId,
+                    whoId: task.WhoId,
+                    titleLink: `/lightning/r/${this.objectApiName}/${task.Id}/view`,
+                    detailLine: this.getSObjectFieldValue(task, this.detailFieldInput),
+                    showWarning: isOverdue
+                };
+            });
         } else if (error) {
             this.error = error;
             this.records = [];
@@ -237,170 +222,8 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     }
 
     // =========================
-    // WARNING LOGIC
-    // =========================
-
-    shouldShowWarning(record) {
-        if (!this.warningCriteriaInput) {
-            return false;
-        }
-        try {
-            const warningCondition = this.resolveMergeFields(this.warningCriteriaInput, record);
-
-            return this.evaluateBooleanExpression(warningCondition);
-        } catch (error) {
-            console.error('Error evaluating warning criteria:', error);
-            return false;
-        }
-    }
-
-    resolveMergeFields(mergeTemplate, record) {
-        let condition = mergeTemplate.replace(/\bTODAY\b/g, `"${new Date().toISOString().split('T')[0]}"`);
-        // Iterate fields used in warning criteria and replace them with their values
-        this.extractMergeFields(mergeTemplate).forEach((field) => {
-            // Get field data from record
-            const fieldData = record.fields?.[field];
-            if (!fieldData) {
-                console.warn(`Field ${field} not found in record`);
-                return;
-            }
-            // Add "" around string values
-            const value = typeof fieldData.value === 'string' ? `"${fieldData.value}"` : fieldData.value;
-
-            // Replace {{field}} with value
-            const fieldPattern = `{{${field}}}`;
-            condition = condition.replaceAll(fieldPattern, value);
-        });
-        //console.log('Resolved '+mergeTemplate+' to '+ condition);
-        return condition;
-    }
-
-    /**
-     * Simple regex-based parser for basic expressions. Handles field comparisons, AND/OR operators, parentheses
-     */
-    evaluateBooleanExpression(expression) {
-        expression = expression.trim();
-        // Split by AND/OR operators while preserving them
-        const tokens = expression.split(/(\s+&&\s+|\s+\|\|\s+|\s+AND\s+|\s+OR\s+)/i);
-        // Evaluate first comparison
-        let result = this.evaluateComparison(tokens[0]);
-
-        for (let i = 1; i < tokens.length; i += 2) {
-            const operator = tokens[i].trim().toUpperCase();
-            const nextComparison = this.evaluateComparison(tokens[i + 1]);
-
-            if (operator === '&&' || operator === 'AND') {
-                result = result && nextComparison;
-            } else if (operator === '||' || operator === 'OR') {
-                result = result || nextComparison;
-            }
-        }
-        //console.log('Evaluated expression '+ expression+'to '+ result);
-        return result;
-    }
-
-    /**
-     * Evaluate a single comparison
-     */
-    evaluateComparison(comparison) {
-        comparison = comparison.trim();
-        // Handle different comparison operators
-        const operators = ['>=', '<=', '!=', '==', '>', '<'];
-        for (const op of operators) {
-            if (comparison.includes(op)) {
-                const [left, right] = comparison.split(op).map((s) => s.trim());
-                const leftValue = this.parseValue(left);
-                const rightValue = this.parseValue(right);
-
-                switch (op) {
-                    case '==':
-                        return leftValue === rightValue;
-                    case '!=':
-                        return leftValue !== rightValue;
-                    case '>':
-                        return leftValue > rightValue;
-                    case '<':
-                        return leftValue < rightValue;
-                    case '>=':
-                        return leftValue >= rightValue;
-                    case '<=':
-                        return leftValue <= rightValue;
-                }
-            }
-        }
-        // If no operator found, treat as boolean value
-        return this.parseValue(comparison);
-    }
-
-    // =========================
     // UTILITY METHODS
     // =========================
-
-    extractMergeFields(mergeTemplate) {
-        if (!mergeTemplate) return [];
-        // Finn alle feltnavn i warningCriteriaInput som er omsluttet av {{ }}
-        const fieldPattern = /\{\{([^}]+)\}\}/g;
-        const fieldNames = [];
-        let match;
-        while ((match = fieldPattern.exec(mergeTemplate)) !== null) {
-            fieldNames.push(match[1]);
-        }
-        return fieldNames;
-    }
-
-    sanitizeHtml(input) {
-        return input?.replace(/<[^>]+>/g, '') ?? '';
-    }
-
-    isRelatedField(fieldName) {
-        return fieldName.includes('__r.');
-    }
-
-    getNestedFieldValue(record, fieldName) {
-        const parts = fieldName.split('.');
-
-        let current = record.fields;
-
-        for (const part of parts) {
-            const field = current?.[part];
-            if (!field) return '';
-
-            // Hvis vi er på siste del
-            if (part === parts.at(-1)) {
-                return field.displayValue ?? field.value ?? '';
-            }
-
-            // Gå ett nivå dypere
-            current = field.value?.fields;
-            if (!current) return '';
-        }
-
-        return '';
-    }
-
-    /**
-     * Parse string value to appropriate type
-     */
-    parseValue(value) {
-        value = value.trim();
-
-        // Remove quotes from strings
-        if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-            return value.slice(1, -1);
-        }
-
-        // Parse numbers
-        if (!isNaN(value) && !isNaN(parseFloat(value))) {
-            return parseFloat(value);
-        }
-
-        // Parse booleans
-        if (value.toLowerCase() === 'true') return true;
-        if (value.toLowerCase() === 'false') return false;
-
-        // Return as string
-        return value;
-    }
 
     refreshList() {
         return refreshApex(this.wiredOpenTasksResult);
