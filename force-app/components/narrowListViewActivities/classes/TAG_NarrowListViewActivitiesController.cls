@@ -4,6 +4,12 @@ public with sharing class TAG_NarrowListViewActivitiesController {
         @AuraEnabled public Integer count;
     }
 
+    @AuraEnabled
+    public static void closeTask(Id taskId) {
+    Task t = new Task(Id = taskId, Status = 'Completed');
+    update t;
+    }
+
     @AuraEnabled(cacheable=true)
     public static TaskListResult fetchOpenTasks(Integer limitSize) {
         // total count of open Tasks for current user

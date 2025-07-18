@@ -30,7 +30,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     nextPageToken;
     count;
     // Action Configuration
-    @track recordLevelActions = [{ id: 'record-edit-1', label: 'Edit', value: 'edit' }];
+    @track recordLevelActions = [{ id: 'record-edit-1', label: 'Rediger', value: 'edit' }];
 
     get warningFields() {
         return this.extractMergeFields(this.warningCriteriaInput);
@@ -80,7 +80,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     wiredListViewRecords(result) {
         this.wiredListViewRecordsResult = result;
         if (result.data) {
-            console.log('listRecords data:', JSON.stringify(result.data, null, 2));
+            //console.log('listRecords data:', JSON.stringify(result.data, null, 2));
             this.records = result.data.records
                 .slice(0, this.previewRecords)
                 .map((record) => this.createDataItemFromRecord(record));
@@ -105,6 +105,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         // Get the value of the selected action
         const selectedItemValue = event.detail.value;
         const recordId = event.target.dataset.recordId; // Hent recordId fra data attributtet
+
         if (selectedItemValue === 'edit') {
             // Håndter redigeringshandling
             this.navigateToRecordEdit(recordId, this.objectApiName);
