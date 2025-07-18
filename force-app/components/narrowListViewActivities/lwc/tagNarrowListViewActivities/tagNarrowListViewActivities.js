@@ -1,6 +1,10 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import fetchOpenTasks from '@salesforce/apex/TAG_NarrowListViewActivitiesController.fetchOpenTasks';
+import closeTask from '@salesforce/apex/TAG_NarrowListViewActivitiesController.closeTask';
 import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { refreshApex } from '@salesforce/apex';
+import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 
 export default class TagNarrowListViewActivities extends NavigationMixin(LightningElement) {
     // =========================
@@ -30,8 +34,13 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     wiredListViewRecordsResult;
     nextPageToken;
     count;
+    wiredOpenTasksResult;
     // Action Configuration
-    @track recordLevelActions = [{ id: 'record-edit-1', label: 'Edit', value: 'edit' }];
+    @track recordLevelActions = [
+        { id: 'record-edit-1', label: 'Rediger', value: 'edit' },
+        { id: 'record-complete-1', label: 'Fullfør oppgave', value: 'complete' },
+        { id: 'record-followup-1', label: 'Opprett oppfølgingsoppgave', value: 'followup' }
+    ];
 
     get warningFields() {
         return this.extractMergeFields(this.warningCriteriaInput);
@@ -73,7 +82,9 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     // =========================
 
     @wire(fetchOpenTasks, { limitSize: '$pageSize' })
-    wiredOpenTasks({ data, error }) {
+    wiredOpenTasks(result) {
+        this.wiredOpenTasksResult = result;
+        const { data, error } = result;
         this.isRefreshing = false;
         if (data) {
             this.error = undefined;
@@ -83,6 +94,8 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
             this.records = data.records.slice(0, this.previewRecords).map((task) => ({
                 id: task.Id,
                 title: task.Subject,
+                whatId: task.WhatId,
+                whoId: task.WhoId,
                 titleLink: '/lightning/r/' + this.objectApiName + '/' + task.Id + '/view',
                 detailLine: this.getSObjectFieldValue(task, this.detailFieldInput),
                 showWarning: false
@@ -102,11 +115,23 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         // Get the value of the selected action
         const selectedItemValue = event.detail.value;
         const recordId = event.target.dataset.recordId; // Hent recordId fra data attributtet
-        if (selectedItemValue === 'edit') {
-            // Håndter redigeringshandling
-            this.navigateToRecordEdit(recordId, this.objectApiName);
-        } else {
-            console.warn('Ukjent handling valgt:', selectedItemValue);
+        const rec = this.records.find((r) => r.id === recordId);
+
+        switch (selectedItemValue) {
+            case 'edit':
+                this.navigateToRecordEdit(recordId);
+                break;
+
+            case 'complete':
+                this.markTaskComplete(recordId);
+                break;
+
+            case 'followup':
+                this.createFollowUpTask(recordId, rec);
+                break;
+
+            default:
+                console.warn('Ukjent handling valgt:', selectedItemValue);
         }
     }
 
@@ -162,6 +187,39 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
                 recordId: recordId,
                 objectApiName: this.objectApiName,
                 actionName: 'view'
+            }
+        });
+    }
+
+    async markTaskComplete(taskId) {
+        try {
+            await closeTask({ taskId });
+            this.showToast('Success', 'Oppgaven ble fullført', 'success');
+            refreshApex(this.wiredOpenTasksResult);
+        } catch (e) {
+            this.showToast('Error', 'Fullføring av oppgaven feilet: ' + e.body.message, 'error');
+        }
+    }
+
+    createFollowUpTask(currentRecord) {
+        const defaultValues = {};
+
+        if (currentRecord.whatId) {
+            defaultValues.WhatId = currentRecord.whatId;
+        }
+        if (currentRecord.whoId) {
+            defaultValues.WhoId = currentRecord.whoId;
+        }
+        defaultValues.Subject = currentRecord.title;
+
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: this.objectApiName,
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: encodeDefaultFieldValues(defaultValues)
             }
         });
     }
@@ -342,5 +400,13 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
 
         // Return as string
         return value;
+    }
+
+    refreshList() {
+        return refreshApex(this.wiredOpenTasksResult);
+    }
+
+    showToast(title, message, variant = 'info') {
+        this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
     }
 }
