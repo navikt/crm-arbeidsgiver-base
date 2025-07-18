@@ -152,10 +152,8 @@
                     <value>Min oppgaveliste</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>warningCriteriaInput</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>warningTextInput</name>
+                    <value>Oppgavens forfallsdato er passert.</value>
                 </componentInstanceProperties>
                 <componentName>tagNarrowListViewActivities</componentName>
                 <identifier>c_tagNarrowListViewActivities</identifier>

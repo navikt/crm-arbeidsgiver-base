@@ -29,6 +29,7 @@ public with sharing class TAG_NarrowListViewActivitiesController {
                 Status,
                 WhatId, What.Name,
                 WhoId,  Who.Name,
+                ActivityDate, 
                 RelatedToAccount__c,
                 RelatedToAccount__r.Name
             FROM Task
