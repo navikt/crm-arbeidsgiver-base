@@ -112,7 +112,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
                 break;
 
             case 'followup':
-                this.createFollowUpTask(recordId, rec);
+                this.createFollowUpTask(rec);
                 break;
 
             default:
