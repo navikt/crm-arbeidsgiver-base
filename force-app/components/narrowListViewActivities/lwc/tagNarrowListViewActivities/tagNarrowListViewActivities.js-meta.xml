@@ -19,7 +19,6 @@
             <property name="titleFieldInput" label="Primary field" type="String" placeholder="Subject" description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
             <property name="detailFieldInput" label="Secondary field" type="String" placeholder="RelatedToAccount__r.Name" description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sesnsitive fieldnames!" />
             
-            <property name="warningCriteriaInput" label="Warning icon: Display condition"  type="String" placeholder='{{TAG_Age__c}} > 1 AND {{InclusionStage__c}} == "Ny henvendelse"' description="Boolean expression using {{fieldName}} syntax for field references. Obs! CASE sesnsitive fieldnames!" />
             <property name="warningTextInput" label="Warning icon: Tooltip"  type="String" placeholder='Oppgavens forfallsdato er passert.' />
              
             <property name="titleText" label="Component: Heading"  type="String" placeholder="Mine oppgaver" required="true" />
