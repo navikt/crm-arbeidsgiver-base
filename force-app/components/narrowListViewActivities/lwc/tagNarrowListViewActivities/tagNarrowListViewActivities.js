@@ -24,6 +24,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     @api titleFieldInput; // = 'TAG_Link__c';
     @api detailFieldInput; // = 'Account__r.Name'; // Felt som brukes for å vise detaljer i listen
     @api warningTextInput; // = 'Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.';
+    @api warningCriteriaInput; // = 'ActivityDate < LAST_N_DAYS:1'; // Kriterier for å vise advarsel
 
     // State Properties
     error;
