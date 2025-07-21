@@ -105,60 +105,6 @@
                 <identifier>c_narrowListView</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>altTextNewRecordButton</name>
-                    <value>Opprett ny oppgave</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>detailFieldInput</name>
-                    <value>RelatedToAccount__r.Name</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>helpText</name>
-                    <value>Liste med Mine åpne oppgaver</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>standard:task</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>listViewApiName</name>
-                    <value>Mine_oppgaver_pne</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>newRecordButton</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>objectApiName</name>
-                    <value>Task</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>pageSize</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>previewRecords</name>
-                    <value>4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleFieldInput</name>
-                    <value>Subject</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleText</name>
-                    <value>Min oppgaveliste</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>warningTextInput</name>
-                    <value>Oppgavens forfallsdato er passert.</value>
-                </componentInstanceProperties>
-                <componentName>tagNarrowListViewActivities</componentName>
-                <identifier>c_tagNarrowListViewActivities</identifier>
-            </componentInstance>
-        </itemInstances>
         <name>row1col2</name>
         <type>Region</type>
     </flexiPageRegions>
