@@ -47,6 +47,10 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         return this.nextPageToken === null ? false : true;
     }
 
+    get listViewUrl() {
+        return `/lightning/o/${this.objectApiName}/list?filterName=${this.listViewApiName}`;
+    }
+
     get cardTitle() {
         if (this.isRefreshing) {
             return this.titleText + ' (...)';
