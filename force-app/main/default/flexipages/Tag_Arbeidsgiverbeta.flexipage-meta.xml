@@ -350,6 +350,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
+                    <value>{{CRM_DueDate__c}} &lt; TODAY &amp;&amp; {{CRM_Status__c}} == &quot;Ny&quot;</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
