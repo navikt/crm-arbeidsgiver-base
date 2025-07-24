@@ -35,11 +35,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>secondaryFieldsMapping</name>
-                    <value>JobPosting__c:Account__r.Name;Account:CRM_MainIndustry__c;Contact:Title;CustomOpportunity__c:Account__r.Name;IACooperation__c:Account__r.Name</value>
+                    <value>JobPosting__c:Account__r.Name;Account:CRM_MainIndustry__c;Contact:Title;CustomOpportunity__c:Account__r.Name;IACooperation__c:Account__r.Name;AccountTeamMember:TeamMemberRole;ArenaActivity__c:Account__r.Name;Workfare__c:Account__r.Name;CustomCampaignMember__c:Account__r.Name;DialogueMeeting__c:Account__r.Name;Contract__c:TAG_Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldsMapping</name>
-                    <value>CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c</value>
+                    <value>CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c;ArenaActivity__c:Aktivitetstype__c;Workfare__c:Type__c;CustomCampaignMember__c:Campaign_type__c;Contract__c:TAG_Category__c</value>
                 </componentInstanceProperties>
                 <componentName>tagRecentItemsList</componentName>
                 <identifier>c_tagRecentItemsList</identifier>
