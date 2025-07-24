@@ -35,7 +35,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>secondaryFieldsMapping</name>
-                    <value>JobPosting__c:Account_NAV_unit__c;Account:CRM_MainIndustry__c;IACooperation__c:Status__c;Contact:Title;CustomOpportunity__c:InclusionStage__c</value>
+                    <value>JobPosting__c:Account_NAV_unit__c;Account:CRM_MainIndustry__c;Contact:Title;CustomOpportunity__c:Account__r.Name;IACooperation__c:Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldsMapping</name>
@@ -143,7 +143,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>previewRecords</name>
-                    <value>1</value>
+                    <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldInput</name>
