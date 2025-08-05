@@ -9,6 +9,7 @@ export default class TagRecentItemsList extends LightningElement {
     @api titleFieldsMapping = '';
     @api secondaryFieldsMapping = '';
     @api cardTitle = 'Siste aktivitet';
+    @api helpText; // Hjelpetekst for komponenten
     @api lineSpacing = false;
 
     @track rawItems = [];

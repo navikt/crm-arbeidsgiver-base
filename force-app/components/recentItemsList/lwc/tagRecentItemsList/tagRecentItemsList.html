@@ -2,7 +2,12 @@
     <lightning-card>
         <div slot="title">
             <h2 class="slds-form-element__label slds-text-heading_small">{cardTitle}</h2>
-            <lightning-icon icon-name="utility:clock" size="small"> </lightning-icon>
+            <lightning-helptext
+                if:true={helpText}
+                class="slds-text-heading_small"
+                icon-name="utility:info"
+                content={helpText}
+            ></lightning-helptext>
         </div>
         <template if:true={hasItems}>
           <ul>

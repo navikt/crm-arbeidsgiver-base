@@ -18,40 +18,6 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>allowedObjects</name>
-                    <value>Account, Contact, AccountTeamMember, JobPosting__c, NavUnit__c, Contract__c, NavTask__c, IACooperation__c, CustomOpportunity__c, Workfare__c, DialogueMeeting__c, CustomCampaignMember__c, ArenaActivity__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>cardTitle</name>
-                    <value>Nylig aktivitet</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>lineSpacing</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>recordLimit</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>secondaryFieldsMapping</name>
-                    <value>JobPosting__c:Account__r.Name;Account:CRM_MainIndustry__c;Contact:Title;CustomOpportunity__c:Account__r.Name;IACooperation__c:Account__r.Name;AccountTeamMember:TeamMemberRole;ArenaActivity__c:Account__r.Name;Workfare__c:Account__r.Name;CustomCampaignMember__c:Account__r.Name;DialogueMeeting__c:Account__r.Name;Contract__c:TAG_Account__r.Name</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleFieldsMapping</name>
-                    <value>CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c;ArenaActivity__c:Aktivitetstype__c;Workfare__c:Type__c;CustomCampaignMember__c:Campaign_type__c;Contract__c:TAG_Category__c</value>
-                </componentInstanceProperties>
-                <componentName>tagRecentItemsList</componentName>
-                <identifier>c_tagRecentItemsList</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>row1col1</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
                     <name>altTextNewRecordButton</name>
                     <value>Opprett ny mulighet</value>
                 </componentInstanceProperties>
@@ -61,7 +27,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Dette er en hjelpetekst for komponentet.</value>
+                    <value>Viser de fire nyeste åpne mulighetene som du eier</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -119,7 +85,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Liste med Mine åpne oppgaver</value>
+                    <value>Viser de fire nyeste åpne oppgavene som du eier</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -164,6 +130,44 @@
                 <identifier>c_tagNarrowListViewActivities</identifier>
             </componentInstance>
         </itemInstances>
+        <name>row1col1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>allowedObjects</name>
+                    <value>Contact, AccountTeamMember, JobPosting__c, NavUnit__c, Contract__c, NavTask__c, IACooperation__c, CustomOpportunity__c, Workfare__c, DialogueMeeting__c, CustomCampaignMember__c, ArenaActivity__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Mine siste aktiviteter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de ti siste aktivitetene du har vært inne på</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lineSpacing</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>recordLimit</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>secondaryFieldsMapping</name>
+                    <value>JobPosting__c:Account__r.Name;Account:CRM_MainIndustry__c;Contact:Title;CustomOpportunity__c:Account__r.Name;IACooperation__c:Account__r.Name;AccountTeamMember:TeamMemberRole;ArenaActivity__c:Account__r.Name;Workfare__c:Account__r.Name;CustomCampaignMember__c:Account__r.Name;DialogueMeeting__c:Account__r.Name;Contract__c:TAG_Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldsMapping</name>
+                    <value>CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c;ArenaActivity__c:Aktivitetstype__c;Workfare__c:Type__c;CustomCampaignMember__c:Campaign_type__c;Contract__c:TAG_Category__c</value>
+                </componentInstanceProperties>
+                <componentName>tagRecentItemsList</componentName>
+                <identifier>c_tagRecentItemsList</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>row1col2</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -176,7 +180,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;Nyttige lenker:&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno%2F3432924302Quick%2Dguide%2DSalesforce%2DArbeidsgiver%2Epdf&amp;amp;parent=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Quick Guide - Kom i gang (PDF)&lt;/a&gt; ✨&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Brukerveiledning (Navet)&lt;/a&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIzOTM5NjY0NjkxMiJ9/new&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Spør Team Salesforce Arbeidsgiver (Viva Engage)&lt;/a&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Nyttige lenker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno%2F3432924302Quick%2Dguide%2DSalesforce%2DArbeidsgiver%2Epdf&amp;amp;parent=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Quick Guide - Kom i gang (PDF)&lt;/a&gt; ✨&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Brukerveiledning (Navet)&lt;/a&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIzOTM5NjY0NjkxMiJ9/new&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Spør Team Salesforce Arbeidsgiver (Viva Engage)&lt;/a&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText7</identifier>
@@ -190,7 +194,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>cardTitle</name>
-                    <value>Siste kontoer</value>
+                    <value>Mine siste kontoer</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de fem siste kontoene du har vært inne på</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>lineSpacing</name>
@@ -237,7 +245,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Dette er en hjelpetekst for komponentet.</value>
+                    <value>Viser de fire nyeste åpne kontaktskjemaene som er sendt til ditt Nav kontor</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -320,6 +328,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
+                    <value>Viser de fire nyeste åpne oppgavene som er sendt fra Arbeidsgivertelefonen til ditt Nav kontor</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
