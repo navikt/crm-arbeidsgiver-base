@@ -139,6 +139,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
             attributes: {
                 objectApiName: objectApiName,
                 actionName: 'new'
+            },
+            state: {
+                useRecordTypeCheck: 'true'
             }
         });
     }
