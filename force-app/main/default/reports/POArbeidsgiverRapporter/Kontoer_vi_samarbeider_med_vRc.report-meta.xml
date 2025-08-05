@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>Donut</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>CDF1</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
+        <location>CHART_BOTTOM</location>
+        <showAxisLabels>false</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>true</showTotal>
+        <showValues>true</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.OrganizationNumberFormula__c</field>
+    </columns>
+    <columns>
+        <field>Account.CRM_MainIndustry__c</field>
+    </columns>
+    <columns>
+        <field>Account.TAG_Sector__c</field>
+    </columns>
+    <columns>
+        <field>Account.CRM_NumberOfEmployeesFormula__c</field>
+    </columns>
+    <columns>
+        <field>Account.CRM_RegistrationYear__c</field>
+    </columns>
+    <columns>
+        <field>Account.TAG_Proff_no__c</field>
+    </columns>
+    <columns>
+        <field>PARENT.NAME</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>IF(ISPICKVAL(Account.TAG_Partner_Status__c, &apos;&apos;),&apos;Nivå 1 - Selvbetjente tjenester&apos;, 
+IF(ISPICKVAL(Account.TAG_Partner_Status__c, &apos;Samarbeidspartner&apos;),&apos;Nivå 2 - Samarbeidspartner&apos;, 
+IF(ISPICKVAL(Account.TAG_Partner_Status__c, &apos;Strategisk partner&apos;),&apos;Nivå 3 - Strategisk partner&apos;, TEXT(Account.TAG_Partner_Status__c))
+)
+)</calculatedFormula>
+        <dataType>Text</dataType>
+        <developerName>CDF1</developerName>
+        <label>Partnerstatus</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <filter>
+        <criteriaItems>
+            <column>Account.Is_My_NAV_Office__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CDF1</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Kontoer vi samarbeider med</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
