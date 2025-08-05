@@ -47,6 +47,12 @@
                 label="Use for SLDS 1 line spacing"
                 description="Enable to use for the older SLDS 1 spacing."
             />
+            <property 
+                name="helpText"
+                type="String"
+                label="Component: Tooltip"
+                placeholder="Dette er en hjelpetekst for komponentet."
+            />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

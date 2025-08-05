@@ -27,7 +27,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Dette er en hjelpetekst for komponentet.</value>
+                    <value>Viser de fire nyeste åpne mulighetene som du eier</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -85,7 +85,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Liste med Mine åpne oppgaver</value>
+                    <value>Viser de fire nyeste åpne oppgavene som du eier</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -145,6 +145,10 @@
                     <value>Mine siste aktiviteter</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de ti siste aktivitetene du har vært inne på</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>lineSpacing</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -193,6 +197,10 @@
                     <value>Mine siste kontoer</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de fem siste kontoene du har vært inne på</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>lineSpacing</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -237,7 +245,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Dette er en hjelpetekst for komponentet.</value>
+                    <value>Viser de fire nyeste åpne kontaktskjemaene som er sendt til ditt Nav kontor</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -320,6 +328,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
+                    <value>Viser de fire nyeste åpne oppgavene som er sendt fra Arbeidsgivertelefonen til ditt Nav kontor</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
