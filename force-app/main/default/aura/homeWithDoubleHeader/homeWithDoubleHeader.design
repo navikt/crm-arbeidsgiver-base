@@ -1,12 +1,13 @@
-<design:component label="Home: 2 Headers + 3×2 Columns">
+<design:component label="Home: 2 Sections with Header and Columns">
     <flexipage:template>
-        <flexipage:region name="header1"  label="Header #1" defaultWidth="XLARGE"/>
-        <flexipage:region name="row1col1" label="Row 1 – Col 1" defaultWidth="MEDIUM"/>
-        <flexipage:region name="row1col2" label="Row 1 – Col 2" defaultWidth="MEDIUM"/>
-        <flexipage:region name="row1col3" label="Row 1 – Col 3" defaultWidth="MEDIUM"/>
-        <flexipage:region name="header2"  label="Header #2" defaultWidth="XLARGE"/>
-        <flexipage:region name="row2col1" label="Row 2 – Col 1" defaultWidth="MEDIUM"/>
-        <flexipage:region name="row2col2" label="Row 2 – Col 2" defaultWidth="MEDIUM"/>
-        <flexipage:region name="row2col3" label="Row 2 – Col 3" defaultWidth="MEDIUM"/>
+        <flexipage:region name="header1" label="Header #1" defaultWidth="XLARGE" />
+        <flexipage:region name="row1col1" label="Row 1 - Col 1" defaultWidth="MEDIUM" />
+        <flexipage:region name="row1col2" label="Row 1 - Col 2" defaultWidth="MEDIUM" />
+        <flexipage:region name="row1col3" label="Row 1 - Col 3" defaultWidth="MEDIUM" />
+        <flexipage:region name="header2" label="Header #2" defaultWidth="XLARGE" />
+        <flexipage:region name="row2col1" label="Row 2 - Col 1" defaultWidth="MEDIUM" />
+        <flexipage:region name="row2col2" label="Row 2 - Col 2" defaultWidth="MEDIUM" />
+        <flexipage:region name="row2col3" label="Row 2 - Col 3" defaultWidth="MEDIUM" />
+        <flexipage:region name="row2col4" label="Row 2 - Col 4" defaultWidth="MEDIUM" />
     </flexipage:template>
 </design:component>
