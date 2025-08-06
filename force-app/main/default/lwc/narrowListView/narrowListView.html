@@ -66,6 +66,7 @@
                                     ></lightning-helptext>
                                     <!-- Record actions -->
                                     <lightning-button-menu
+                                        if:true={newRecordButton}
                                         variant="bare"
                                         alternative-text="Action"
                                         onselect={handleRecordLevelAction}

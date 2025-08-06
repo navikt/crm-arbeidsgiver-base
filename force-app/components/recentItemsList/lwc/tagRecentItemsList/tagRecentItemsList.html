@@ -1,38 +1,46 @@
 <template>
-    <lightning-card title={cardTitle} icon-name="utility:clock" class="slds-card">
-      <div class="slds-p-horizontal_small slds-p-vertical_x-small">
+    <lightning-card>
+        <div slot="title">
+            <h2 class="slds-form-element__label slds-text-heading_small">{cardTitle}</h2>
+            <lightning-helptext
+                if:true={helpText}
+                class="slds-text-heading_small"
+                icon-name="utility:info"
+                content={helpText}
+            ></lightning-helptext>
+        </div>
         <template if:true={hasItems}>
-          <ul class="slds-timeline">
+          <ul>
             <template for:each={items} for:item="item">
-                <li key={item.recordId} class={item.itemClass}>
-                    <div class="slds-media__figure">
-                      <span class="slds-icon_container slds-icon-standard-timeline" title={item.sobjectType}>
-                        <lightning-icon 
-                          icon-name={item.iconName} 
-                          size="x-small" 
-                          alternative-text={item.sobjectType}>
-                        </lightning-icon>
-                      </span>
-                    </div>
-                    <div class="slds-media__body slds-timeline__media">
-                      <div class="slds-timeline__detail">
-                        <!-- PRIMARY TITLE -->
-                        <p class="slds-text-heading_small">
-                          <a href={item.url} class="slds-text-link_reset">
-                            {item.displayTitle}
-                          </a>
-                        </p>
-                        <!-- SECONDARY TITLE -->
-                        <div class="slds-grid slds-grid_align-spread">
-                          <div class="slds-truncate" style="flex:1">
-                            <p class="slds-text-body_small slds-text-color_weak">{item.secondaryText}</p>
-                          </div>
-                          <div style="flex:none; text-align:right; white-space:nowrap;">
-                            <p class="slds-text-body_small slds-text-color_weak">{item.rightText}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <li key={item.recordId} class="slds-item">
+                    <lightning-layout vertical-align="center" class="slds-p-vertical_xx-small">
+                        <lightning-layout-item padding="horizontal-small">
+                            <span class="slds-icon_container slds-icon-standard-timeline" title={item.sobjectType}>
+                              <lightning-icon
+                                icon-name={item.iconName}
+                                size="small"
+                                alternative-text={item.sobjectType}>
+                              </lightning-icon>
+                            </span>
+                          </lightning-layout-item>
+          
+                          <!-- Text block -->
+                          <lightning-layout-item class="slds-truncate" flexibility="grow">
+                            <div style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis">
+                              <a href={item.url}>{item.displayTitle}</a>
+                            </div>
+                            <div style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis">
+                              <span class="slds-text-heading_label-normal">{item.secondaryText}</span>
+                            </div>
+                          </lightning-layout-item>
+          
+                          <!-- Right‑side date/time -->
+                          <lightning-layout-item padding="horizontal-small">
+                            <div style="white-space:nowrap;">
+                              <span class="slds-text-body_small slds-text-color_weak">{item.rightText}</span>
+                            </div>
+                          </lightning-layout-item>
+                    </lightning-layout>
                   </li>
             </template>
           </ul>
@@ -51,6 +59,5 @@
             <template if:false={error.body}>{error}</template>
           </div>
         </template>
-      </div>
     </lightning-card>
   </template>  

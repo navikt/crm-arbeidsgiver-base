@@ -99,17 +99,44 @@ public with sharing class TAG_RecentItemsListController {
                 'SELECT ' + selectList +
                 ' FROM ' + sType +
                 ' WHERE Id IN :ids';
-            for (SObject sobj : Database.query(dynSoql)) {
-                Id rid = (Id) sobj.get('Id');
-                Object p = sobj.get(primaryField);
-                idToTitle.put(rid, p==null?'':String.valueOf(p));
-                if (secondaryField != null) {
-                    Object s = sobj.get(secondaryField);
-                    idToSecondary.put(rid, s==null?'':String.valueOf(s));
+                for (SObject sobj : Database.query(dynSoql)) {
+                    Id rid = (Id) sobj.get('Id');
+                
+                    String titleValue = '';
+                    if (primaryField.contains('.')) {
+                        // split "Account__r.Name" → ["Account__r","Name"]
+                        List<String> parts = primaryField.split('\\.');
+                        String relName   = parts[0];
+                        String fieldName = parts[1];
+                        SObject parent = sobj.getSObject(relName);
+                        if (parent != null) {
+                            Object p = parent.get(fieldName);
+                            titleValue = (p == null) ? '' : String.valueOf(p);
+                        }
+                    } else {
+                        Object p = sobj.get(primaryField);
+                        titleValue = (p == null) ? '' : String.valueOf(p);
+                    }
+                    idToTitle.put(rid, titleValue);
+                
+                    if (secondaryField != null) {
+                        String secondaryValue = '';
+                        if (secondaryField.contains('.')) {
+                            List<String> parts2 = secondaryField.split('\\.');
+                            SObject parent2 = sobj.getSObject(parts2[0]);
+                            if (parent2 != null) {
+                                Object s = parent2.get(parts2[1]);
+                                secondaryValue = (s == null) ? '' : String.valueOf(s);
+                            }
+                        } else {
+                            Object s = sobj.get(secondaryField);
+                            secondaryValue = (s == null) ? '' : String.valueOf(s);
+                        }
+                        idToSecondary.put(rid, secondaryValue);
+                    }
                 }
-            }
         }
-
+                
         List<String> distinctTypes = new List<String>(typeToIds.keySet());
 
         // Query TabDefinition and its Icons

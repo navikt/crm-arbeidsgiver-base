@@ -39,11 +39,16 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     @track recordLevelActions = [
         { id: 'record-edit-1', label: 'Rediger', value: 'edit' },
         { id: 'record-complete-1', label: 'Fullfør oppgave', value: 'complete' },
-        { id: 'record-followup-1', label: 'Opprett oppfølgingsoppgave', value: 'followup' }
+        { id: 'record-followup-1', label: 'Opprett oppfølgingsoppgave', value: 'followup' },
+        { id: 'record-followup-1', label: 'Opprett oppfølgingsmøte', value: 'followupEvent' }
     ];
 
     get hasMoreRecords() {
         return this.nextPageToken === null ? false : true;
+    }
+
+    get listViewUrl() {
+        return `/lightning/o/${this.objectApiName}/list?filterName=${this.listViewApiName}`;
     }
 
     get cardTitle() {
@@ -114,6 +119,10 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
 
             case 'followup':
                 this.createFollowUpTask(rec);
+                break;
+
+            case 'followupEvent':
+                this.createFollowUpEvent(rec);
                 break;
 
             default:
@@ -201,7 +210,29 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {
-                objectApiName: this.objectApiName,
+                objectApiName: 'Task',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: encodeDefaultFieldValues(defaultValues)
+            }
+        });
+    }
+
+    createFollowUpEvent(currentRecord) {
+        const defaultValues = {};
+
+        if (currentRecord.whatId) {
+            defaultValues.WhatId = currentRecord.whatId;
+        }
+        if (currentRecord.whoId) {
+            defaultValues.WhoId = currentRecord.whoId;
+        }
+
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Event',
                 actionName: 'new'
             },
             state: {
