@@ -91,6 +91,10 @@
             <fullName>Forebygge sykefravær</fullName>
             <default>true</default>
         </values>
+        <values>
+            <fullName>Ungdomsløftet</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Inquiry_Category_2__c</picklist>
@@ -104,6 +108,10 @@
         </values>
         <values>
             <fullName>Tiltak</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ungdomsløftet</fullName>
             <default>false</default>
         </values>
     </picklistValues>
