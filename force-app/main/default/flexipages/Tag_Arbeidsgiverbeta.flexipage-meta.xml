@@ -189,34 +189,43 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>allowedObjects</name>
-                    <value>Account</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>cardTitle</name>
-                    <value>Mine siste kontoer</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>helpText</name>
                     <value>Viser de fem siste kontoene du har vært inne på</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>lineSpacing</name>
-                    <value>true</value>
+                    <name>iconName</name>
+                    <value>standard:account</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>recordLimit</name>
+                    <name>listViewApiName</name>
+                    <value>__Recent</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>Account</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
                     <value>5</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>secondaryFieldsMapping</name>
-                    <value>Account: CRM_MainIndustry__c</value>
+                    <name>titleFieldInput</name>
+                    <value>Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>titleFieldsMapping</name>
+                    <name>titleText</name>
+                    <value>Mine siste kontoer</value>
                 </componentInstanceProperties>
-                <componentName>tagRecentItemsList</componentName>
-                <identifier>c_tagRecentItemsList2</identifier>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView4</identifier>
             </componentInstance>
         </itemInstances>
         <name>row1col3</name>
