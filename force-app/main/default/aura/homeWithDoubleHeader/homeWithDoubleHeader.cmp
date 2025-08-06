@@ -9,8 +9,8 @@
     <aura:attribute name="row2col3" type="Aura.Component[]" />
 
     <aura:attribute name="row2col4" type="Aura.Component[]" />
-    <div id="top_section">
-        <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">{! v.header1 }</div>
+    <div id="top_section" class="slds-box slds-theme_default slds-m-bottom_medium">
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_x-small">{! v.header1 }</div>
         <div class="slds-grid slds-wrap slds-gutters_direct-x-small">
             <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_4-of-12 slds-p-bottom_small">
                 {! v.row1col1 }
@@ -23,8 +23,8 @@
             </div>
         </div>
     </div>
-    <div id="bottom_section">
-        <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">{! v.header2 }</div>
+    <div id="bottom_section" class="slds-box slds-theme_default slds-m-bottom_medium">
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_x-small">{! v.header2 }</div>
         <div class="slds-grid slds-wrap slds-gutters_direct-x-small">
             <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-12 slds-p-bottom_small">
                 {! v.row2col1 }
