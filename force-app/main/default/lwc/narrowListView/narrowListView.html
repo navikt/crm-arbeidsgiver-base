@@ -55,6 +55,7 @@
                                 <!-- Høyre side -->
                                 <lightning-layout-item padding="horizontal-small">
                                     <div class="slds-grid slds-grid_align-end slds-grid_vertical-align-center">
+                                        <!-- Varselikon -->
                                         <lightning-helptext
                                             if:true={record.showWarning}
                                             class="slds-m-right_x-small"
@@ -62,7 +63,9 @@
                                             icon-variant="error"
                                             content={warningTextInput}>
                                         </lightning-helptext>
+                                        <!-- Record actions -->
                                         <lightning-button-menu
+                                            if:true={newRecordButton}
                                             variant="bare"
                                             alternative-text="Action"
                                             onselect={handleRecordLevelAction}
