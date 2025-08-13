@@ -61,6 +61,15 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         return this.titleText + ' (' + this.count + ')';
     }
 
+    get paddedRecords() {
+        const padded = [...this.records];
+        const placeholdersNeeded = this.previewRecords - padded.length;
+        for (let i = 0; i < placeholdersNeeded; i++) {
+            padded.push({ id: `placeholder-${i}`, isPlaceholder: true });
+        }
+        return padded;
+    }
+
     // =========================
     // WIRE METHODS
     // =========================
