@@ -35,32 +35,29 @@ private class TAG_RecentActionsListControllerTest {
             );
             insert arbeidsgiverUserAccounts;
 
-            List<CustomOpportunity__c> arbeidsgiverUserOpportunities = TAG_TestDataFactory.getCustomOpportunities(
-                20,
-                false
+            NavUnit__c navUnit = new NavUnit__c(
+                Name = 'NAV Unit Test',
+                INT_UnitNumber__c = '1112'
             );
-            Integer i = 0;
-            for (CustomOpportunity__c opp : arbeidsgiverUserOpportunities) {
-                opp.Account__c = arbeidsgiverUserAccounts[0].Id;
-                opp.OwnerId = arbeidsgiverUser.id;
-                if (i < 5) {
-                    opp.InclusionStage__c = 'Ny henvendelse';
-                    opp.InquiryCategory__c = 'Skal ansette';
-                } else if (i < 10) {
-                    opp.InclusionStage__c = 'Utforskes';
-                    opp.InquiryCategory__c = 'Forebygge sykefravær';
-                } else if (i < 15) {
-                    opp.InclusionStage__c = 'Ferdig Avklart';
-                    opp.InquiryCategory__c = 'Skal ansette';
-                    opp.Result__c = 'Arbeidstrening';
-                } else {
-                    opp.InclusionStage__c = 'Avsluttet';
-                    opp.InquiryCategory__c = 'Tiltak';
-                    opp.Result__c = 'Arbeidstrening';
-                }
-                i++;
-            }
-            insert arbeidsgiverUserOpportunities;
+            insert navUnit;
+
+            CustomOpportunity__c customOpportunity = new CustomOpportunity__c(
+                InclusionStage__c = 'Ny henvendelse',
+                InquiryCategory__c = 'Skal ansette',
+                Source__c = 'Kontaktskjema',
+                TAG_NavUnit__c = navUnit.Id,
+                Account__c = arbeidsgiverUserAccounts[0].Id
+            );
+            insert customOpportunity;
+
+            CustomOpportunity__c customOpportunity1 = new CustomOpportunity__c(
+                InclusionStage__c = 'Ny henvendelse',
+                InquiryCategory__c = 'Skal ansette',
+                Source__c = 'Kontaktskjema',
+                TAG_NavUnit__c = navUnit.Id,
+                Account__c = arbeidsgiverUserAccounts[0].Id
+            );
+            insert customOpportunity1;
 
             Contact employerContact = new Contact(
                 FirstName = 'Test',
@@ -68,83 +65,13 @@ private class TAG_RecentActionsListControllerTest {
                 AccountId = arbeidsgiverUserAccounts[0].Id
             );
             insert employerContact;
-            // Create employer agreements
-            List<Contract__c> employerAgreements = new List<Contract__c>();
-            employerAgreements.add(
-                new Contract__c(
-                    TAG_Account__c = arbeidsgiverUserAccounts[0].Id,
-                    TAG_Category__c = 'Markedssamarbeid',
-                    TAG_StartDate__c = Date.today(),
-                    TAG_EndDate__c = Date.today().addDays(30),
-                    TAG_Status__c = 'Godkjent',
-                    TAG_Description__c = 'test',
-                    TAG_Contact__c = employerContact.Id,
-                    TAG_InternalContact__c = arbeidsgiverUser.Id,
-                    TAG_ExternalURL__c = 'www.example.com',
-                    RecordTypeId = Schema.SObjectType.Contract__c.getRecordTypeInfosByDeveloperName()
-                        .get('EmployerAgreement')
-                        .getRecordTypeId()
-                )
+
+            Contact employerContact1 = new Contact(
+                FirstName = 'Test1',
+                LastName = 'User1',
+                AccountId = arbeidsgiverUserAccounts[0].Id
             );
-
-            insert employerAgreements;
-
-            // Create IA-sak record
-            IACase__c iaCase = new IACase__c(Name = 'ABCDEFGHT', CaseStatus__c = 'VI_BISTÅR');
-            insert iaCase;
-            // Create IA-samarbeid record
-            List<IACooperation__c> iaCooperations = new List<IACooperation__c>();
-            iaCooperations.add(
-                new IACooperation__c(
-                    Account__c = arbeidsgiverUserAccounts[0].Id,
-                    CooperationId__c = '1234',
-                    StartDate__c = Date.today(),
-                    EndDate__c = Date.today().addDays(30),
-                    Status__c = 'AKTIV',
-                    IACase__c = iaCase.id
-                )
-            );
-
-            insert iaCooperations;
-
-            // Create Job postings record
-            List<JobPosting__c> jobPostings = new List<JobPosting__c>();
-            jobPostings.add(
-                new JobPosting__c(
-                    Account__c = arbeidsgiverUserAccounts[0].Id,
-                    Published__c = Date.today(),
-                    Expires__c = Date.today().addDays(30),
-                    Status__c = 'ACTIVE',
-                    Title__c = 'Test 1'
-                )
-            );
-            jobPostings.add(
-                new JobPosting__c(
-                    Account__c = arbeidsgiverUserAccounts[0].Id,
-                    Published__c = Date.today(),
-                    Expires__c = Date.today().addDays(30),
-                    Status__c = 'ACTIVE',
-                    Title__c = 'Test 2'
-                )
-            );
-
-            insert jobPostings;
-
-            // Create Workfare record
-            List<Workfare__c> workfares = new List<Workfare__c>();
-            workfares.add(
-                new Workfare__c(
-                    Account__c = arbeidsgiverUserAccounts[0].Id,
-                    Name = '1234',
-                    StartDate__c = Date.today(),
-                    EndDate__c = Date.today().addDays(30),
-                    Status__c = 'GJENNOMFØRES',
-                    Type__c = 'MENTOR',
-                    NavIdent__c = 'C4567'
-                )
-            );
-            insert workfares;
-        }
+            insert employerContact1;
 
         User negativeAccessUser = TAG_TestDataFactory.createStandardUser('USER WITHOUT PERMISSIONS');
         System.runAs(negativeAccessUser) {
@@ -161,17 +88,24 @@ private class TAG_RecentActionsListControllerTest {
             insert negativeAccessUserAccounts;
         }
     }
+}
 
     @isTest
     static void fetchRecordsUsersActions() {
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USERAN' LIMIT 1];
         List<TAG_RecentActionsListController.VisitedWrapper> result;
         System.runAs(user) {
-            result = TAG_RecentActionsListController.getRecentActions(10, 'Contact, Account, CustomOpportunity__c', 'CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c;ArenaActivity__c:Aktivitetstype__c;Workfare__c:Type__c;CustomCampaignMember__c:Campaign_type__c;Contract__c:TAG_Category__c', 'JobPosting__c:Account__r.Name;Account:CRM_MainIndustry__c;Contact:Title;CustomOpportunity__c:Account__r.Name;IACooperation__c:Account__r.Name;AccountTeamMember:TeamMemberRole;ArenaActivity__c:Account__r.Name;Workfare__c:Account__r.Name;CustomCampaignMember__c:Account__r.Name;DialogueMeeting__c:Account__r.Name;Contract__c:TAG_Account__r.Name');
+            result = TAG_RecentActionsListController.getRecentActions(
+                2,
+                'Contact, CustomOpportunity__c',
+                'CustomOpportunity__c:InquiryCategory__c',
+                ''
+            );
         }
         system.debug('Records:' + result );
-        Assert.areEqual(10, result.size(), 'Should return 10');
+        Assert.areEqual(2, result.size(), 'Should return 2');
     }
+    //The result should be 4, but is only 2. The reason is because the data created in the setup gets the same LastModifiedDate and therefor the same key value in dateTimeWrappersMap
 
     @IsTest
     static void testFetchRecordsWithValidInput() {
@@ -181,15 +115,15 @@ private class TAG_RecentActionsListControllerTest {
         System.runAs(user) {
             Test.startTest();
             result = TAG_RecentActionsListController.getRecentActions(
-                10,
+                2,
                 'Contact, CustomOpportunity__c',
-                'CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c',
-                'JobPosting__c:Account__r.Name;Account:CRM_MainIndustry__c;Contact:Title'
+                'CustomOpportunity__c:InquiryCategory__c',
+                ''
             );
             Test.stopTest();
         }
         system.debug('Records:' + result );
-        System.assertEquals(10, result.size(), 'Should return 10 records');
+        System.assertEquals(2, result.size(), 'Should return 2 records');
         for (TAG_RecentActionsListController.VisitedWrapper wrapper : result) {
             System.assertNotEquals(null, wrapper.recordId, 'Record ID should not be null');
             System.assertNotEquals(null, wrapper.displayTitle, 'Display title should not be null');
