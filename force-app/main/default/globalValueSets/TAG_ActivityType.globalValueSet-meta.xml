@@ -21,6 +21,12 @@
         <label>Hjelpemidler og tilrettelegging</label>
     </customValue>
     <customValue>
+        <fullName>Bedriftsundersøkelse</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Bedriftsundersøkelse</label>
+    </customValue>
+    <customValue>
         <fullName>Nedbemanne</fullName>
         <default>false</default>
         <isActive>false</isActive>
@@ -31,12 +37,6 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Generelt markedsarbeid</label>
-    </customValue>
-    <customValue>
-        <fullName>Bedriftsundersøkelse</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Bedriftsundersøkelse</label>
     </customValue>
     <description>Used on activity to set type of followup</description>
     <masterLabel>Activity Type</masterLabel>
