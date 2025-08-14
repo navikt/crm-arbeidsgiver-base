@@ -453,6 +453,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>TAG_RecentItemsListHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TAG_RelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
