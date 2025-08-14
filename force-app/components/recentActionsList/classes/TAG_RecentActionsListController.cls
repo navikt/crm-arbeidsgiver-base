@@ -133,6 +133,8 @@ public with sharing class TAG_RecentActionsListController {
         Map<String,String> secondaryFieldMap = parseFieldMapping(secondaryFieldsMapping);
 
         List<VisitedWrapper> wrappers = new List<VisitedWrapper>();
+        Map<DateTime, VisitedWrapper> dateTimeWrappersMap = new Map<DateTime, VisitedWrapper>(); //Map containing the wrapper with LastModifiedDate as key
+        List<VisitedWrapper> reversedWrappersList = new List<VisitedWrapper>();
 
         for (String sType : allowedTypes) {
             String primaryField = titleFieldMap.get(sType) != null ? titleFieldMap.get(sType) : 'Name';
@@ -160,14 +162,40 @@ public with sharing class TAG_RecentActionsListController {
                     w.lastViewedDate = (Datetime)sobj.get('LastModifiedDate');
                     w.url = '/' + sobj.get('Id');
                     w.iconName = sType.endsWith('__c') ? 'standard:custom' : 'standard:record';
-                    wrappers.add(w);
+                    //wrappers.add(w);
+                    dateTimeWrappersMap.put(w.lastViewedDate, w);
                 }
             } catch (Exception e) {
                 System.debug('Error querying object ' + sType + ': ' + e.getMessage());
             }
         }
 
-        return wrappers;
+            List<DateTime> sortedKeys = new List<DateTime>(dateTimeWrappersMap.keySet());
+            sortedKeys.sort(); // Ascending order
+
+        //Run through dateTimeWrappersMap and save the keys (LastModifiedDate) to wrappers list
+        for (DateTime dt : sortedKeys) {
+            wrappers.add(dateTimeWrappersMap.get(dt));
+            }
+
+            //Remove the first rows from wrappers list (depending on the size of limitSize)
+            if (sortedKeys.size() > limitSize) {
+                Integer deleteNr = sortedKeys.size() - limitSize;
+                for (Integer i = 0; i < deleteNr; i++) {
+                    wrappers.remove(0);
+                }
+            }
+
+            //Reverse wrappers list so it becomes descending order
+        for (Integer i = wrappers.size() - 1; i >= 0; i--) {
+            reversedWrappersList.add(wrappers[i]);
+        }
+
+// Now `reversedList` contains the reversed version of `wrappers`
+
+            
+
+        return reversedWrappersList;
     }
 
     private static Map<String,String> parseFieldMapping(String mapping) {
