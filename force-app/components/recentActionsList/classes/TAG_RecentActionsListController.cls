@@ -21,6 +21,8 @@ public with sharing class TAG_RecentActionsListController {
                 }
             }
         }
+
+        Map<String, String> typeToIconName = TAG_RecentItemsListHelper.getTypeToIconName(allowedTypes);
         
         Map<String,String> titleFieldMap = parseFieldMapping(titleFieldsMapping);
         Map<String,String> secondaryFieldMap = parseFieldMapping(secondaryFieldsMapping);
@@ -54,7 +56,7 @@ public with sharing class TAG_RecentActionsListController {
                     w.sobjectType = sType;
                     w.lastViewedDate = (Datetime)sobj.get('LastModifiedDate');
                     w.url = '/' + sobj.get('Id');
-                    w.iconName = sType.endsWith('__c') ? 'standard:custom' : 'standard:record';
+                    w.iconName = typeToIconName.get(sType);
                     //wrappers.add(w);
                     dateTimeWrappersMap.put(w.lastViewedDate, w);
                 }
