@@ -1,0 +1,63 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <h2 class="slds-form-element__label slds-text-heading_small">{cardTitle}</h2>
+            <lightning-helptext
+                if:true={helpText}
+                class="slds-text-heading_small"
+                icon-name="utility:info"
+                content={helpText}
+            ></lightning-helptext>
+        </div>
+        <template if:true={hasItems}>
+          <ul>
+            <template for:each={items} for:item="item">
+                <li key={item.recordId} class="slds-item">
+                    <lightning-layout vertical-align="center" class="slds-p-vertical_xx-small">
+                        <lightning-layout-item padding="horizontal-small">
+                            <span class="slds-icon_container slds-icon-standard-timeline" title={item.sobjectType}>
+                              <lightning-icon
+                                icon-name={item.iconName}
+                                size="small"
+                                alternative-text={item.sobjectType}>
+                              </lightning-icon>
+                            </span>
+                          </lightning-layout-item>
+          
+                          <!-- Text block -->
+                          <lightning-layout-item class="slds-truncate" flexibility="grow">
+                            <div style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis">
+                              <a href={item.url}>{item.displayTitle}</a>
+                            </div>
+                            <div style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis">
+                              <span class="slds-text-heading_label-normal">{item.secondaryText}</span>
+                            </div>
+                          </lightning-layout-item>
+          
+                          <!-- Right‑side date/time -->
+                          <lightning-layout-item padding="horizontal-small">
+                            <div style="white-space:nowrap;">
+                              <span class="slds-text-body_small slds-text-color_weak">{item.rightText}</span>
+                            </div>
+                          </lightning-layout-item>
+                    </lightning-layout>
+                  </li>
+            </template>
+          </ul>
+        </template>
+  
+        <template if:true={noItems}>
+          <p class="slds-text-body_regular slds-text-align_center slds-text-color_weak">
+            Ingenting å vise ennå.
+          </p>
+        </template>
+  
+        <template if:true={error}>
+          <div class="slds-text-color_error slds-p-top_small">
+            Feil ved henting av data:
+            <template if:true={error.body}>{error.body.message}</template>
+            <template if:false={error.body}>{error}</template>
+          </div>
+        </template>
+    </lightning-card>
+  </template>  
