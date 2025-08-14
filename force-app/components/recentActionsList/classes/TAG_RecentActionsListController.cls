@@ -1,0 +1,113 @@
+public with sharing class TAG_RecentActionsListController {
+    @AuraEnabled(cacheable=true)
+    public static List<VisitedWrapper> getRecentActions(
+        Integer limitSize,
+        String allowedObjects,
+        String titleFieldsMapping,
+        String secondaryFieldsMapping
+    ) {
+        if (limitSize == null || limitSize <= 0) {
+            limitSize = 10;
+        }
+
+        Id currentUserId = UserInfo.getUserId();
+
+        Set<String> allowedTypes = new Set<String>();
+        if (String.isNotBlank(allowedObjects)) {
+            for (String objName : allowedObjects.split(',')) {
+                objName = objName.trim();
+                if (objName != '') {
+                    allowedTypes.add(objName);
+                }
+            }
+        }
+        
+        Map<String,String> titleFieldMap = parseFieldMapping(titleFieldsMapping);
+        Map<String,String> secondaryFieldMap = parseFieldMapping(secondaryFieldsMapping);
+
+        List<VisitedWrapper> wrappers = new List<VisitedWrapper>();
+        Map<DateTime, VisitedWrapper> dateTimeWrappersMap = new Map<DateTime, VisitedWrapper>(); //Map containing the wrapper with LastModifiedDate as key
+        List<VisitedWrapper> reversedWrappersList = new List<VisitedWrapper>();
+
+        for (String sType : allowedTypes) {
+            String primaryField = titleFieldMap.get(sType) != null ? titleFieldMap.get(sType) : 'Name';
+            String secondaryField = secondaryFieldMap.get(sType);
+
+            String selectFields = 'Id, ' + primaryField + ', LastModifiedDate';
+            if (secondaryField != null) {
+                selectFields += ', ' + secondaryField;
+            }
+
+            String query = 'SELECT ' + selectFields +
+                           ' FROM ' + sType +
+                           ' WHERE LastModifiedById = :currentUserId OR CreatedById = :currentUserId ' +
+                           ' ORDER BY LastModifiedDate DESC LIMIT :limitSize';
+
+            try {
+                List<SObject> records = Database.query(query);
+                for (SObject sobj : records) {
+                    VisitedWrapper w = new VisitedWrapper();
+                    w.recordId = (Id)sobj.get('Id');
+                    w.displayTitle = String.valueOf(sobj.get(primaryField));
+                    w.secondaryOverride = secondaryField != null ? String.valueOf(sobj.get(secondaryField)) : null;
+                    w.objectLabel = sType;
+                    w.sobjectType = sType;
+                    w.lastViewedDate = (Datetime)sobj.get('LastModifiedDate');
+                    w.url = '/' + sobj.get('Id');
+                    w.iconName = sType.endsWith('__c') ? 'standard:custom' : 'standard:record';
+                    //wrappers.add(w);
+                    dateTimeWrappersMap.put(w.lastViewedDate, w);
+                }
+            } catch (Exception e) {
+                System.debug('Error querying object ' + sType + ': ' + e.getMessage());
+            }
+        }
+
+            List<DateTime> sortedKeys = new List<DateTime>(dateTimeWrappersMap.keySet());
+            sortedKeys.sort(); // Ascending order
+
+        //Run through dateTimeWrappersMap and save the keys (LastModifiedDate) to wrappers list
+        for (DateTime dt : sortedKeys) {
+            wrappers.add(dateTimeWrappersMap.get(dt));
+            }
+
+            //Remove the first rows from wrappers list (depending on the size of limitSize)
+            if (sortedKeys.size() > limitSize) {
+                Integer deleteNr = sortedKeys.size() - limitSize;
+                for (Integer i = 0; i < deleteNr; i++) {
+                    wrappers.remove(0);
+                }
+            }
+
+        //Reverse wrappers list so it becomes descending order
+        for (Integer i = wrappers.size() - 1; i >= 0; i--) {
+            reversedWrappersList.add(wrappers[i]);
+        }     
+
+        return reversedWrappersList;
+    }
+
+    private static Map<String,String> parseFieldMapping(String mapping) {
+        Map<String,String> result = new Map<String,String>();
+        if (String.isNotBlank(mapping)) {
+            for (String entry : mapping.split(';')) {
+                List<String> parts = entry.split(':');
+                if (parts.size() == 2) {
+                    result.put(parts[0].trim(), parts[1].trim());
+                }
+            }
+        }
+        return result;
+    }
+
+    public class VisitedWrapper {
+        @AuraEnabled public Id recordId;
+        @AuraEnabled public String displayTitle;
+        @AuraEnabled public String secondaryOverride;
+        @AuraEnabled public String objectLabel;
+        @AuraEnabled public String sobjectType;
+        @AuraEnabled public Datetime lastViewedDate;
+        @AuraEnabled public String url;
+        @AuraEnabled public String iconName;
+    }
+}
