@@ -1,0 +1,51 @@
+<template>
+    <div
+        style="margin-top: calc(var(--lwc-cardSpacingMargin) * -1)"
+        class="slds-float_right slds-grid slds-grid_vertical-align-center"
+    >
+        <template if:false={isRated}>
+            <p if:true={question} class="slds-text-align_center slds-text-color_weak slds-text-body_small">
+                {question}
+            </p>
+        </template>
+        <template if:true={isRated}>
+            <p
+                if:true={displayThankYouMessage}
+                class="slds-text-align_center slds-text-color_weak slds-text-body_small"
+            >
+                {thankYouMessage}
+            </p>
+        </template>
+        <!-- Rating buttons -->
+
+        <lightning-button-group>
+            <lightning-button-icon
+                if:false={isRated}
+                icon-name="utility:like"
+                variant="bare"
+                title="Tommel opp"
+                onclick={handleLikeClick}
+                size="small"
+            >
+            </lightning-button-icon>
+            <lightning-button-icon
+                if:false={isRated}
+                icon-name="utility:dislike"
+                variant="bare"
+                title="Tommel ned"
+                onclick={handleDislikeClick}
+                size="small"
+            >
+            </lightning-button-icon>
+            <lightning-button-icon
+                if:true={isRated}
+                icon-name="utility:undo"
+                variant="bare"
+                title="Slett vurdering"
+                onclick={handleUndoClick}
+                size="small"
+            >
+            </lightning-button-icon>
+        </lightning-button-group>
+    </div>
+</template>
