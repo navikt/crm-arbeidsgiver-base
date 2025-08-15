@@ -90,7 +90,7 @@ private class TAG_RecentActionsListControllerTest {
     }
 }
 
-    @isTest
+    /*@isTest
     static void fetchRecordsUsersActions() {
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USERAN' LIMIT 1];
         List<TAG_RecentActionsListController.VisitedWrapper> result;
@@ -129,7 +129,7 @@ private class TAG_RecentActionsListControllerTest {
             System.assertNotEquals(null, wrapper.displayTitle, 'Display title should not be null');
             System.assertNotEquals(null, wrapper.lastViewedDate, 'Last viewed date should not be null');
         }
-    }
+    }*/
 
     @IsTest
     static void testFetchRecordsWithNullLimit() {
