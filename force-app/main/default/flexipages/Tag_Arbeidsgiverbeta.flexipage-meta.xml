@@ -168,6 +168,39 @@
                 <identifier>c_tagRecentItemsList</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>allowedObjects</name>
+                    <value>Contact, AccountTeamMember, JobPosting__c, NavUnit__c, Contract__c, NavTask__c, IACooperation__c, CustomOpportunity__c, Workfare__c, DialogueMeeting__c, CustomCampaignMember__c, ArenaActivity__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Mine siste handlinger</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de ti siste postene du har endret eller opprettet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lineSpacing</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>recordLimit</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>secondaryFieldsMapping</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldsMapping</name>
+                    <value>CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c;ArenaActivity__c:Aktivitetstype__c;Workfare__c:Type__c;CustomCampaignMember__c:Campaign_type__c;Contract__c:TAG_Category__c</value>
+                </componentInstanceProperties>
+                <componentName>tagRecentActionsList</componentName>
+                <identifier>c_tagRecentActionsList</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>row1col2</name>
         <type>Region</type>
     </flexiPageRegions>
