@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_Like__c</fullName>
-    <defaultValue>false</defaultValue>
-    <label>Like</label>
+    <fullName>Comment__c</fullName>
+    <label>Comment</label>
+    <length>32768</length>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
 </CustomField>

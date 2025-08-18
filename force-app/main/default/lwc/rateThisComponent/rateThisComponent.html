@@ -1,4 +1,5 @@
 <template>
+    <!-- css tags: float left/right, cardSpacingMargin, height, Overlay? -->
     <div
         style="margin-top: calc(var(--lwc-cardSpacingMargin) * -1)"
         class="slds-float_right slds-grid slds-grid_vertical-align-center"
@@ -34,15 +35,6 @@
                 variant="bare"
                 title="Tommel ned"
                 onclick={handleDislikeClick}
-                size="small"
-            >
-            </lightning-button-icon>
-            <lightning-button-icon
-                if:true={isRated}
-                icon-name="utility:undo"
-                variant="bare"
-                title="Slett vurdering"
-                onclick={handleUndoClick}
                 size="small"
             >
             </lightning-button-icon>

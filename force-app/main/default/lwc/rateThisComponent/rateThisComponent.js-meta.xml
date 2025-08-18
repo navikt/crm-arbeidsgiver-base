@@ -7,7 +7,8 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__HomePage">
-            <property name="voteKey" label="Vote Key" type="String" required="true" description="" />
+                <property name="componentName" label="Component Name" type="String" required="true"
+                description="" />
             <property name="question" label="Question" type="String" required="false" />
             <property name="thankYouMessage" label="Thank You Message" type="String"
                 required="false"
