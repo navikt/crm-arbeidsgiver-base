@@ -2,17 +2,22 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
     <isExposed>true</isExposed>
+    <masterLabel>Brukerfeedback</masterLabel>
     <targets>
         <target>lightning__HomePage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
     </targets>
     <targetConfigs>
-        <targetConfig targets="lightning__HomePage">
+        <targetConfig targets="lightning__HomePage, lightning__RecordPage, lightning__AppPage">
                 <property name="componentName" label="Component Name" type="String" required="true"
                 description="" />
+                <property name="page" label="Page" type="String" required="false" />
             <property name="question" label="Question" type="String" required="false" />
             <property name="thankYouMessage" label="Thank You Message" type="String"
                 required="false"
                 description="Message displayed after a user has rated the component." />
+                <property name="floatRight" label="Float Right" type="Boolean" required="false" default="false" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

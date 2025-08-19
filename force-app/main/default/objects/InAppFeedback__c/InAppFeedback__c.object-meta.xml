@@ -149,18 +149,19 @@
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableSearch>false</enableSearch>
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>POAG Data</label>
+    <label>In App Feedback</label>
     <nameField>
         <displayFormat>{0}</displayFormat>
-        <label>POAG Statistic Name</label>
+        <label>Feedback Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>POAG Data</pluralLabel>
+    <pluralLabel>In App Feedback</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

@@ -1,0 +1,31 @@
+<template>
+    <div style="margin-top: calc(var(--lwc-cardSpacingMargin) * -1)" class={cssGridClass}>
+        <div class="slds-col slds-no-flex slds-var-p-right_xx-small">
+            <p class="slds-text-color_weak slds-text-body_small slds-m-bottom_none">
+                <span class={cssThankYouMessage}>{thankYouMessage}</span>
+                <span class={cssFeedbackRequest}>{question}</span>
+            </p>
+        </div>
+        <div class="slds-col slds-no-flex">
+            <!-- Rating buttons -->
+            <lightning-button-group class={cssFeedbackRequest}>
+                <lightning-button-icon
+                    icon-name="utility:like"
+                    variant="bare"
+                    title="Tommel opp"
+                    onclick={handleLikeClick}
+                    size="small"
+                >
+                </lightning-button-icon>
+                <lightning-button-icon
+                    icon-name="utility:dislike"
+                    variant="bare"
+                    title="Tommel ned"
+                    onclick={handleDislikeClick}
+                    size="small"
+                >
+                </lightning-button-icon>
+            </lightning-button-group>
+        </div>
+    </div>
+</template>
