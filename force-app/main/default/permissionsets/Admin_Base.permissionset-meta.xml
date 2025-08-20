@@ -406,6 +406,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Workfare__c.Account__c</field>
         <readable>true</readable>
@@ -584,10 +589,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>CustomOpportunity__c.Inclusion</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>CustomOpportunity__c.Inclusive_Employment</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
