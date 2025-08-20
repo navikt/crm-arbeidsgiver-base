@@ -1,6 +1,7 @@
 <design:component label="Home: 2 Sections with Header and Columns">
     <flexipage:template>
         <flexipage:region name="header1" label="Header #1" defaultWidth="XLARGE" />
+        <flexipage:region name="header3" label="Header #3" defaultWidth="XLARGE" />
         <flexipage:region name="row1col1" label="Row 1 - Col 1" defaultWidth="MEDIUM" />
         <flexipage:region name="row1col2" label="Row 1 - Col 2" defaultWidth="MEDIUM" />
         <flexipage:region name="row1col3" label="Row 1 - Col 3" defaultWidth="MEDIUM" />
