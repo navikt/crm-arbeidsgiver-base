@@ -5,13 +5,226 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>showWelcomeMessage</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentName>tagUserOfficeHeader</componentName>
                 <identifier>c_tagUserOfficeHeader</identifier>
             </componentInstance>
         </itemInstances>
         <name>header1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>showWelcomeMessage</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>tagUserOfficeHeader</componentName>
+                <identifier>c_tagUserOfficeHeader3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>header3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de fire nyeste åpne kontaktskjemaene som er sendt til ditt Nav kontor</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom14</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>TAG_Kontaktskjema_fra_Nav_no</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>CustomOpportunity__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>25</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>TAG_Link__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Kontaktskjema fra Nav.no</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row1col1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>CRM_Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de fire nyeste åpne oppgavene som er sendt fra Arbeidsgivertelefonen til ditt Nav kontor</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom45</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>Mitt_NAV_kontor</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>NavTask__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>25</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Innkomne oppgaver fra NKS</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                    <value>{{CRM_DueDate__c}} &lt; TODAY &amp;&amp; {{CRM_Status__c}} == &quot;Ny&quot;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                    <value>Oppgavens forfallsdato er passert.</value>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row1col2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                    <value>TAG_Mine_pne_muligheter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de fire nyeste åpne mulighetene som tilhører din Nav-enhet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom14</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>TAG_siste_muligheter_til_nav_enhet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>CustomOpportunity__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>TAG_Link__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Siste muligheter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView5</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row1col3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>row1col4</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>showWelcomeMessage</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>tagUserOfficeHeader</componentName>
+                <identifier>c_tagUserOfficeHeader2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>header2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -73,6 +286,10 @@
                 <identifier>c_narrowListView</identifier>
             </componentInstance>
         </itemInstances>
+        <name>row2col1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -130,95 +347,10 @@
                 <identifier>c_tagNarrowListViewActivities</identifier>
             </componentInstance>
         </itemInstances>
-        <name>row1col1</name>
+        <name>row2col2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>allowedObjects</name>
-                    <value>Contact, AccountTeamMember, JobPosting__c, NavUnit__c, Contract__c, NavTask__c, IACooperation__c, CustomOpportunity__c, Workfare__c, DialogueMeeting__c, CustomCampaignMember__c, ArenaActivity__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>cardTitle</name>
-                    <value>Mine siste aktiviteter</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>helpText</name>
-                    <value>Viser de ti siste aktivitetene du har vært inne på</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>lineSpacing</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>recordLimit</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>secondaryFieldsMapping</name>
-                    <value>JobPosting__c:Account__r.Name;Account:CRM_MainIndustry__c;Contact:Title;CustomOpportunity__c:Account__r.Name;IACooperation__c:Account__r.Name;AccountTeamMember:TeamMemberRole;ArenaActivity__c:Account__r.Name;Workfare__c:Account__r.Name;CustomCampaignMember__c:Account__r.Name;DialogueMeeting__c:Account__r.Name;Contract__c:TAG_Account__r.Name</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleFieldsMapping</name>
-                    <value>CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c;ArenaActivity__c:Aktivitetstype__c;Workfare__c:Type__c;CustomCampaignMember__c:Campaign_type__c;Contract__c:TAG_Category__c</value>
-                </componentInstanceProperties>
-                <componentName>tagRecentItemsList</componentName>
-                <identifier>c_tagRecentItemsList</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>allowedObjects</name>
-                    <value>Contact, AccountTeamMember, JobPosting__c, NavUnit__c, Contract__c, NavTask__c, IACooperation__c, CustomOpportunity__c, Workfare__c, DialogueMeeting__c, CustomCampaignMember__c, ArenaActivity__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>cardTitle</name>
-                    <value>Mine siste handlinger</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>helpText</name>
-                    <value>Viser de ti siste postene du har endret eller opprettet</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>lineSpacing</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>recordLimit</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>secondaryFieldsMapping</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleFieldsMapping</name>
-                    <value>CustomOpportunity__c:InquiryCategory__c;JobPosting__c:Title__c;ArenaActivity__c:Aktivitetstype__c;Workfare__c:Type__c;CustomCampaignMember__c:Campaign_type__c;Contract__c:TAG_Category__c</value>
-                </componentInstanceProperties>
-                <componentName>tagRecentActionsList</componentName>
-                <identifier>c_tagRecentActionsList</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>row1col2</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Nyttige lenker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno%2F3432924302Quick%2Dguide%2DSalesforce%2DArbeidsgiver%2Epdf&amp;amp;parent=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Quick Guide - Kom i gang (PDF)&lt;/a&gt; ✨&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Brukerveiledning (Navet)&lt;/a&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIzOTM5NjY0NjkxMiJ9/new&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Spør Team Salesforce Arbeidsgiver (Viva Engage)&lt;/a&gt;&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText7</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -261,165 +393,6 @@
                 <identifier>c_narrowListView4</identifier>
             </componentInstance>
         </itemInstances>
-        <name>row1col3</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>showWelcomeMessage</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentName>tagUserOfficeHeader</componentName>
-                <identifier>c_tagUserOfficeHeader2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>header2</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>detailFieldInput</name>
-                    <value>Account__r.Name</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>helpText</name>
-                    <value>Viser de fire nyeste åpne kontaktskjemaene som er sendt til ditt Nav kontor</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>custom:custom14</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>listViewApiName</name>
-                    <value>TAG_Kontaktskjema_fra_Nav_no</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>newRecordButton</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>objectApiName</name>
-                    <value>CustomOpportunity__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>pageSize</name>
-                    <value>25</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>previewRecords</name>
-                    <value>4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleFieldInput</name>
-                    <value>TAG_Link__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleText</name>
-                    <value>Kontaktskjema fra Nav.no</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>warningCriteriaInput</name>
-                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>warningTextInput</name>
-                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
-                </componentInstanceProperties>
-                <componentName>narrowListView</componentName>
-                <identifier>c_narrowListView2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>row2col1</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>altTextNewRecordButton</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>detailFieldInput</name>
-                    <value>CRM_Account__r.Name</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>helpText</name>
-                    <value>Viser de fire nyeste åpne oppgavene som er sendt fra Arbeidsgivertelefonen til ditt Nav kontor</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>custom:custom45</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>listViewApiName</name>
-                    <value>Mitt_NAV_kontor</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>newRecordButton</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>objectApiName</name>
-                    <value>NavTask__c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>pageSize</name>
-                    <value>25</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>previewRecords</name>
-                    <value>4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleFieldInput</name>
-                    <value>Name</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>titleText</name>
-                    <value>Innkomne oppgaver fra NKS</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>warningCriteriaInput</name>
-                    <value>{{CRM_DueDate__c}} &lt; TODAY &amp;&amp; {{CRM_Status__c}} == &quot;Ny&quot;</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>warningTextInput</name>
-                    <value>Oppgavens forfallsdato er passert.</value>
-                </componentInstanceProperties>
-                <componentName>narrowListView</componentName>
-                <identifier>c_narrowListView3</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>row2col2</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>cacheAge</name>
-                    <value>1440</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Åpne for kandidater</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>reportName</name>
-                    <value>Muligheter_4WR1</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showRefreshButton</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:reportChart</componentName>
-                <identifier>flexipage_reportChart</identifier>
-            </componentInstance>
-        </itemInstances>
         <name>row2col3</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -427,19 +400,15 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>cacheAge</name>
-                    <value>1440</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>reportName</name>
-                    <value>Kontoer_vi_samarbeider_med_vRc</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showRefreshButton</name>
+                    <name>decorate</name>
                     <value>true</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:reportChart</componentName>
-                <identifier>flexipage_reportChart2</identifier>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Nyttige lenker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno%2F3432924302Quick%2Dguide%2DSalesforce%2DArbeidsgiver%2Epdf&amp;amp;parent=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Quick Guide - Kom i gang (PDF)&lt;/a&gt; ✨&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Brukerveiledning (Navet)&lt;/a&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;a href=&quot;https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIzOTM5NjY0NjkxMiJ9/new&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Spør Team Salesforce Arbeidsgiver (Viva Engage)&lt;/a&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText7</identifier>
             </componentInstance>
         </itemInstances>
         <name>row2col4</name>
