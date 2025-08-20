@@ -2,7 +2,6 @@
     <div style="margin-top: calc(var(--lwc-cardSpacingMargin) * -1)" class={cssGridClass}>
         <div class="slds-col slds-no-flex slds-var-p-right_xx-small">
             <p class="slds-text-color_weak slds-text-body_small slds-m-bottom_none">
-                <span class={cssThankYouMessage}>{thankYouMessage}</span>
                 <span class={cssFeedbackRequest}>{question}</span>
             </p>
         </div>
@@ -27,5 +26,9 @@
                 </lightning-button-icon>
             </lightning-button-group>
         </div>
+        <!-- Thank you message -->
+        <p class="slds-text-color_weak slds-text-body_small slds-m-bottom_none">
+            <span class={cssThankYouMessage}>{thankYouMessage}</span>
+        </p>
     </div>
 </template>

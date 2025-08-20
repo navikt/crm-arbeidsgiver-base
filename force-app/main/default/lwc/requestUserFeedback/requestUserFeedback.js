@@ -30,10 +30,14 @@ export default class RateThisComponent extends LightningElement {
         return false;
     }
     get cssThankYouMessage() {
-        return this.displayThankYouMessage ? 'slds-transition-show' : 'slds-hide';
+        return this.displayThankYouMessage
+            ? 'slds-transition-show custom-transition'
+            : 'slds-transition-hide custom-transition-slow';
     }
     get cssFeedbackRequest() {
-        return this.displayFeedbackRequest ? 'slds-transition-show' : 'slds-hide';
+        return this.displayFeedbackRequest
+            ? 'slds-transition-show custom-transition'
+            : 'slds-transition-hide custom-transition-slow';
     }
 
     get cssGridClass() {
@@ -46,10 +50,6 @@ export default class RateThisComponent extends LightningElement {
 
     get displayContent() {
         return this.displayThankYouMessage || this.displayFeedbackRequest;
-    }
-
-    toggleVisibilityTest() {
-        this._displayThankYouMessage = !this._displayThankYouMessage;
     }
 
     connectedCallback() {
