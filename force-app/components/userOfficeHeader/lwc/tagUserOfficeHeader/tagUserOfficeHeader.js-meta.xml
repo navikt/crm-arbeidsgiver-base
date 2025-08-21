@@ -15,6 +15,13 @@
           label="Show User (checked) or Nav Office name (unchecked)"
           default="true"
         />
+         <property
+          name="headerUserAffiliation"
+          type="String"
+          label="User, Nav office or Nav region"
+          required="true"
+          default="User"
+        />
       <supportedFormFactors>
         <supportedFormFactor type="Small"/>
         <supportedFormFactor type="Large"/>

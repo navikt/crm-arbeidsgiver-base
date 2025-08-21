@@ -3,21 +3,34 @@
         <div class="slds-grid slds-align-center slds-align-spread">
             <div class="slds-grid slds-align-center">
                 <!-- User icon -->
-                <lightning-icon if:true={showWelcomeMessage} icon-name="standard:user" size="medium"></lightning-icon>
-                <!-- Unit icon -->
-                <lightning-icon
-                    if:false={showWelcomeMessage}
-                    icon-name="custom:custom61"
-                    size="medium"
-                ></lightning-icon>
+                <template if:true={isUser}>
+                    <lightning-icon icon-name="standard:user" size="medium"></lightning-icon>
+                </template>
+
+                <!-- Nav office icon -->
+                <template if:true={isNavOffice}>
+                    <lightning-icon icon-name="custom:custom61" size="medium"></lightning-icon>
+                </template>
+
+                 <!-- Nav region icon -->
+                <template if:true={isNavRegion}>
+                    <lightning-icon icon-name="custom:custom61" size="medium"></lightning-icon>
+                </template>
+
                 <!-- Heading -->
                 <h1 class="slds-text-heading_medium slds-m-left_small">
-                    <template if:true={showWelcomeMessage}> <strong>{fullName}</strong> </template>
-                    <template if:false={showWelcomeMessage}>
+                    <template if:true={isUser}>
+                        <strong>{fullName}</strong>
+                    </template>
+                    <template if:true={isNavOffice}>
                         <strong>{companyName}</strong>
+                    </template>
+                    <template if:true={isNavRegion}>
+                        <strong>{regionName}</strong>
                     </template>
                 </h1>
             </div>
         </div>
     </div>
 </template>
+
