@@ -11,10 +11,10 @@
     <aura:attribute name="row2col3" type="Aura.Component[]" />
     <aura:attribute name="row2col4" type="Aura.Component[]" />
 
-    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_x-small">
+    <div class="slds-grid slds-wrap no-slds-gutters slds-m-bottom_x-small">
         <!-- Top Section (Left Column) -->
-        <div class="slds-col slds-size_1-of-1 slds-large-size_9-of-12">
-            <div id="top_section" class="slds-box slds-theme_default slds-m-right_x-small">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_9-of-12 slds-p-right_x-small">
+            <div id="top_section" class="slds-box slds-theme_default">
                 <div class="slds-grid slds-wrap slds-gutters">
                     <div class="slds-col slds-size_1-of-1 slds-large-size_9-of-12 slds-m-bottom_x-small">
                         {! v.header1 }
