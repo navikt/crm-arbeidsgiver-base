@@ -210,6 +210,64 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                    <value>Opprett ny mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Viser de fire nyeste åpne mulighetene som tilhører din Nav region</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom14</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>TAG_Muligheter_Min_region</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>CustomOpportunity__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>25</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>TAG_Link__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Siste Muligheter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView6</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>row1col4</name>
         <type>Region</type>
     </flexiPageRegions>
