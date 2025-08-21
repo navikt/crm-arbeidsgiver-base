@@ -27,7 +27,7 @@
             </lightning-button-group>
         </div>
         <!-- Thank you message -->
-        <p style="position: absolute" class="slds-text-color_weak slds-text-body_small slds-m-bottom_none">
+        <p if:true={displayThankYouMessage} class="slds-text-color_weak slds-text-body_small slds-m-bottom_none">
             <span class={cssThankYouMessage}>{thankYouMessage}</span>
         </p>
     </div>
