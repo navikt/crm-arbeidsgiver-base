@@ -10,14 +10,15 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__HomePage, lightning__RecordPage, lightning__AppPage">
-                <property name="componentName" label="Component Name" type="String" required="true"
+            <property name="componentName" label="Component Name" type="String" required="true"
                 description="" />
-                <property name="page" label="Page" type="String" required="false" />
+            <property name="page" label="Page" type="String" required="false" />
             <property name="question" label="Question" type="String" required="false" />
             <property name="thankYouMessage" label="Thank You Message" type="String"
                 required="false"
                 description="Message displayed after a user has rated the component." />
-                <property name="floatRight" label="Float Right" type="Boolean" required="false" default="false" />
+            <property name="floatRight" label="Float Right" type="Boolean" required="false"
+                default="true" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
