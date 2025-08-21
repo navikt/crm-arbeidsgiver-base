@@ -1,0 +1,8 @@
+/* Visibility-based hiding to preserve layout space */
+.custom-transition {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.custom-transition-slow {
+    transition: opacity 0.3s ease-in-out;
+}
