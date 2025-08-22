@@ -54,6 +54,10 @@
                     <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>-CreatedDate</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>titleFieldInput</name>
                     <value>TAG_Link__c</value>
                 </componentInstanceProperties>
@@ -113,6 +117,10 @@
                 <componentInstanceProperties>
                     <name>previewRecords</name>
                     <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>-CreatedDate</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldInput</name>
@@ -175,6 +183,10 @@
                 <componentInstanceProperties>
                     <name>previewRecords</name>
                     <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>-CreatedDate</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldInput</name>
@@ -257,6 +269,10 @@
                     <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>-CreatedDate</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>titleFieldInput</name>
                     <value>TAG_Link__c</value>
                 </componentInstanceProperties>
@@ -335,6 +351,10 @@
                 <componentInstanceProperties>
                     <name>previewRecords</name>
                     <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>-CreatedDate</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldInput</name>
@@ -450,6 +470,9 @@
                 <componentInstanceProperties>
                     <name>previewRecords</name>
                     <value>5</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortBy</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldInput</name>
