@@ -1,13 +1,64 @@
 # NarrowListView Component
 
-## Oversikt
+## Hva er det?
 
-`NarrowListView` er en Lightning Web Component som viser en tilpasset listevisning for Salesforce-objekter.
-Komponenten er laget for å passe inn i smale kolonner på hjemmesider og tilbyr en mer kompakt visning enn standard listevisningskomponent.
+En tilpasset listevisning som viser Salesforce-data i et kompakt format. Den er spesielt laget for å passe inn i smale kolonner på hjemmesider, i motsetning til Salesforce sin standard listevisning som tar mye plass.
 
-Funksjonen er basert på standard list view komponent. Man velger objekt, hvilket list view som skal vises og antal rader.
-I stedet for å vise alle kolonner fra list view så spesifiserer man hvilke felt som skal vises i komponentet.
-I tillegg kan man spesifisere kriterier for å markere en linje med varselsymbol.
+## Hvordan bruker man den?
+
+Som administrator/utvikler:
+
+1. Dra komponenten inn på ønskede sider via Lightning Page Builder
+2. Konfigurer følgende innstillinger:
+   Grunnleggende oppsett:
+
+-   Object API Name: Hvilket objekt du vil vise (f.eks. "CustomOpportunity\_\_c")
+-   List View API Name: Hvilket eksisterende listeview du vil bruke som datakilde
+-   Component Heading: Overskrift som vises på komponenten
+-   Primary field: Hovedfeltet som vises som klikkbar tittel
+-   Secondary field: Valgfritt detaljfelt som vises under
+-   Sort by field: Angir hvordan liste sorteres
+
+Visningsinnstillinger:
+
+-   Number of records to display: Hvor mange poster som vises (1-10)
+-   Number of records to count: Hvor mange poster som hentes for telling (påvirker ytelse)
+-   Object icon: Ikon som vises ved hver post
+-   Component Tooltip: Hjelpetekst for komponenten
+
+Avanserte funksjoner:
+
+-   Warning icon conditions: Regler for når varselsikon skal vises
+-   Warning tooltip: Tekst som vises når man holder over varselsikonet
+-   Show New Record Button: Om "opprett ny"-knapp skal vises
+
+Som sluttbruker:
+
+-   Se listen med poster på hjemmesiden
+-   Klikk på titler for å åpne poster
+-   Bruk "Se alle" for å gå til full listevisning
+-   Opprett nye poster via "ny post"-knappen (hvis aktivert)
+
+## Hvordan fungerer den?
+
+Enkelt forklart:
+
+1. Komponenten bruker et eksisterende Salesforce-listeview som datakilde
+2. I stedet for å vise alle kolonner fra listeviewet, velger du kun 1-2 felt som vises kompakt
+3. Den henter data automatisk og oppdaterer seg når data endres
+4. Viser antall poster i overskriften (f.eks. "Mine muligheter (5)" eller "Mine muligheter (10+)")
+
+Smart varsling:
+
+-   Kan automatisk vise varselsikoner basert på regler du setter opp
+-   Eksempel: Vis varsel hvis en sak er eldre enn 1 dag og fortsatt har status "Ny henvendelse"
+-   Reglene skrives som: {{TAG_Age__c}} > 1 AND {{InclusionStage__c}} == "Ny henvendelse"
+
+Navigasjon:
+
+-   Klikk på en post → åpner postens detaljside
+-   "Se alle" → åpner fullstendig listevisning
+-   Støtter også redigering og opprettelse av nye poster
 
 ## Hovedflyt
 
@@ -37,7 +88,9 @@ showWarning: this.shouldShowWarning(record)
 
 4. Liste med strukturerte records vises i html-template
 
-## API Properties og detaljer
+## Tekniske detaljer
+
+### API Properties og input
 
 | Property               | Type    | Required | Description                                                         |
 | ---------------------- | ------- | -------- | ------------------------------------------------------------------- |
