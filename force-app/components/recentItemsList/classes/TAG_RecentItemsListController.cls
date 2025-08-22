@@ -56,7 +56,8 @@ public with sharing class TAG_RecentItemsListController {
         String rvSoql =
             'SELECT Id, Name, Type, LastViewedDate ' +
             'FROM RecentlyViewed ' +
-            'WHERE Type != \'ListView\'';
+            'WHERE Type != \'ListView\' ' +
+            'AND Type != \'Dashboard\'';
         if (!allowedTypes.isEmpty()) {
             List<String> quoted = new List<String>();
             for (String t : allowedTypes) {
@@ -98,101 +99,48 @@ public with sharing class TAG_RecentItemsListController {
                 'SELECT ' + selectList +
                 ' FROM ' + sType +
                 ' WHERE Id IN :ids';
-            for (SObject sobj : Database.query(dynSoql)) {
-                Id rid = (Id) sobj.get('Id');
-                Object p = sobj.get(primaryField);
-                idToTitle.put(rid, p==null?'':String.valueOf(p));
-                if (secondaryField != null) {
-                    Object s = sobj.get(secondaryField);
-                    idToSecondary.put(rid, s==null?'':String.valueOf(s));
+                for (SObject sobj : Database.query(dynSoql)) {
+                    Id rid = (Id) sobj.get('Id');
+                
+                    String titleValue = '';
+                    if (primaryField.contains('.')) {
+                        // split "Account__r.Name" → ["Account__r","Name"]
+                        List<String> parts = primaryField.split('\\.');
+                        String relName   = parts[0];
+                        String fieldName = parts[1];
+                        SObject parent = sobj.getSObject(relName);
+                        if (parent != null) {
+                            Object p = parent.get(fieldName);
+                            titleValue = (p == null) ? '' : String.valueOf(p);
+                        }
+                    } else {
+                        Object p = sobj.get(primaryField);
+                        titleValue = (p == null) ? '' : String.valueOf(p);
+                    }
+                    idToTitle.put(rid, titleValue);
+                
+                    if (secondaryField != null) {
+                        String secondaryValue = '';
+                        if (secondaryField.contains('.')) {
+                            List<String> parts2 = secondaryField.split('\\.');
+                            SObject parent2 = sobj.getSObject(parts2[0]);
+                            if (parent2 != null) {
+                                Object s = parent2.get(parts2[1]);
+                                secondaryValue = (s == null) ? '' : String.valueOf(s);
+                            }
+                        } else {
+                            Object s = sobj.get(secondaryField);
+                            secondaryValue = (s == null) ? '' : String.valueOf(s);
+                        }
+                        idToSecondary.put(rid, secondaryValue);
+                    }
                 }
-            }
         }
-
+                
         List<String> distinctTypes = new List<String>(typeToIds.keySet());
 
-        // Query TabDefinition and its Icons
-        Map<String, String> typeToIconName = new Map<String, String>();
-        if (!distinctTypes.isEmpty()) {
-            List<TabDefinition> tabs = [
-                SELECT SobjectName,
-                       (SELECT Url, ContentType FROM Icons)
-                FROM TabDefinition
-                WHERE SobjectName IN :distinctTypes
-            ];
-
-            // Initialize with null
-            for (String sType : distinctTypes) {
-                typeToIconName.put(sType, null);
-            }
-
-            // Build a helper map: sObject → list of IconDefinition (Url + ContentType)
-            Map<String, List<IconDefinition>> iconsByType = new Map<String, List<IconDefinition>>();
-            for (TabDefinition td : tabs) {
-                iconsByType.put(td.SobjectName, td.Icons);
-            }
-
-            // For each sObject type, pick a custom‐icon SVG first, else a standard SVG
-            for (String sType : distinctTypes) {
-                String chosenIconName = null;
-                List<IconDefinition> iconDefs = iconsByType.get(sType);
-
-                if (iconDefs != null && !iconDefs.isEmpty()) {
-                    // 1st pass: find SVG containing "/custom/"
-                    for (IconDefinition idDef : iconDefs) {
-                        if (idDef.ContentType != null 
-                            && idDef.ContentType.contains('svg') 
-                            && idDef.Url != null 
-                            && idDef.Url.toLowerCase().contains('/custom/')) {
-                            // e.g. "/img/icon/t4v35/custom/custom71_120.svg"
-                            String url = idDef.Url;
-                            List<String> parts = url.split('/');
-                            if (parts.size() >= 2) {
-                                String folder = parts[parts.size()-2];       // "custom"
-                                String filename = parts[parts.size()-1];     // e.g. "custom71_120.svg"
-                                filename = filename.replace('.svg','');
-                                // strip "_120" suffix if present
-                                if (folder == 'custom' && filename.contains('_')) {
-                                    filename = filename.substring(0, filename.indexOf('_'));
-                                }
-                                chosenIconName = folder + ':' + filename;     // "custom:custom71"
-                                break;
-                            }
-                        }
-                    }
-                    // 2nd pass: if no custom SVG found, find any SVG
-                    if (chosenIconName == null) {
-                        for (IconDefinition idDef : iconDefs) {
-                            if (idDef.ContentType != null 
-                                && idDef.ContentType.contains('svg') 
-                                && idDef.Url != null) {
-                                String url = idDef.Url;
-                                List<String> parts = url.split('/');
-                                if (parts.size() >= 2) {
-                                    String folder = parts[parts.size()-2];       // "standard" or "custom"
-                                    String filename = parts[parts.size()-1];     // e.g. "account_120.svg"
-                                    filename = filename.replace('.svg','');
-                                    if (folder == 'standard' && filename.endsWith('_120')) {
-                                        filename = filename.substring(0, filename.lastIndexOf('_120'));
-                                    }
-                                    chosenIconName = folder + ':' + filename;     // "standard:account"
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (chosenIconName == null) {
-                    if (sType != null && sType.endsWith('__c')) {
-                        chosenIconName = 'standard:custom';
-                    } else {
-                        chosenIconName = 'standard:record';
-                    }
-                }
-                typeToIconName.put(sType, chosenIconName);
-            }
-        }
+        Map<String, String> typeToIconName = TAG_RecentItemsListHelper.getTypeToIconName(new Set<String>(distinctTypes));
+       
         Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
         Map<String, String> typeToLabel = new Map<String, String>();
         for (String sType : typeToIds.keySet()) {

@@ -3,7 +3,7 @@
     <apiVersion>63.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Header for User or Office</masterLabel>
-  <description>Shows “Velkommen Ola Nordmann”</description>
+  <description>Shows “Ola Nordmann”</description>
   <targets>
     <target>lightning__HomePage</target>
   </targets>
@@ -12,8 +12,15 @@
         <property
           name="showWelcomeMessage"
           type="Boolean"
-          label="Show User welcome message (checked) or Nav Office name (unchecked)"
+          label="Show User (checked) or Nav Office name (unchecked)"
           default="true"
+        />
+         <property
+          name="headerUserAffiliation"
+          type="String"
+          label="User, Nav office or Nav region"
+          required="true"
+          default="User"
         />
       <supportedFormFactors>
         <supportedFormFactor type="Small"/>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_siste_muligheter_til_nav_enhet</fullName>
+    <columns>TAG_Link__c</columns>
+    <columns>Account__c</columns>
+    <columns>InclusionStage__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Source__c</columns>
+    <columns>TAG_Age__c</columns>
+    <columns>Result__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>InclusionStage__c</field>
+        <operation>equals</operation>
+        <value>Ny henvendelse,Avklaring,Ferdig Avklart</value>
+    </filters>
+    <filters>
+        <field>Is_My_NAV_Office__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Siste muligheter tilhørende Nav-enhet</label>
+</ListView>

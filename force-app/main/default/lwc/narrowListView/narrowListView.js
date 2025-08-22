@@ -1,7 +1,7 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
 import { NavigationMixin } from 'lightning/navigation';
-export default class OpportunityListView extends NavigationMixin(LightningElement) {
+export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
     // PROPERTIES & GETTERS
     // =========================
@@ -9,6 +9,8 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
     // Configuration Properties
     @api objectApiName; // = 'CustomOpportunity__c';
     @api listViewApiName; // = 'TAG_Mine_pne_muligheter'; // List view navn for å hente records
+    @api newRecordButton; // = false; // Om knappen for å opprette ny record skal vises
+    @api altTextNewRecordButton; // = 'Opprett ny mulighet'; // Alternativ tekst for knappen for å opprette ny record
     @api pageSize; // = 10; // Maks antall records å hente
     @api previewRecords; // = 4;
     @api titleText; // = 'Mine muligheter'; // Tittel for komponentet
@@ -28,7 +30,7 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
     nextPageToken;
     count;
     // Action Configuration
-    @track recordLevelActions = [{ id: 'record-edit-1', label: 'Edit', value: 'edit' }];
+    @track recordLevelActions = [{ id: 'record-edit-1', label: 'Rediger', value: 'edit' }];
 
     get warningFields() {
         return this.extractMergeFields(this.warningCriteriaInput);
@@ -65,6 +67,15 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
         return this.titleText + ' (' + this.count + ')';
     }
 
+    get paddedRecords() {
+        const padded = [...this.records];
+        const placeholdersNeeded = this.previewRecords - padded.length;
+        for (let i = 0; i < placeholdersNeeded; i++) {
+            padded.push({ id: `placeholder-${i}`, isPlaceholder: true });
+        }
+        return padded;
+    }
+
     // =========================
     // WIRE METHODS
     // =========================
@@ -78,11 +89,11 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
     wiredListViewRecords(result) {
         this.wiredListViewRecordsResult = result;
         if (result.data) {
-            console.log('listRecords data:', JSON.stringify(result.data, null, 2));
+            //console.log('listRecords data:', JSON.stringify(result.data, null, 2));
             this.records = result.data.records
-            .slice(0, this.previewRecords)
-            .map((record) => this.createDataItemFromRecord(record));
-           
+                .slice(0, this.previewRecords)
+                .map((record) => this.createDataItemFromRecord(record));
+
             this.nextPageToken = result.data.nextPageToken;
             this.count = result.data.count;
             this.error = undefined;
@@ -103,6 +114,7 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
         // Get the value of the selected action
         const selectedItemValue = event.detail.value;
         const recordId = event.target.dataset.recordId; // Hent recordId fra data attributtet
+
         if (selectedItemValue === 'edit') {
             // Håndter redigeringshandling
             this.navigateToRecordEdit(recordId, this.objectApiName);
@@ -136,6 +148,9 @@ export default class OpportunityListView extends NavigationMixin(LightningElemen
             attributes: {
                 objectApiName: objectApiName,
                 actionName: 'new'
+            },
+            state: {
+                useRecordTypeCheck: 'true'
             }
         });
     }

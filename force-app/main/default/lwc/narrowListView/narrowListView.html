@@ -1,0 +1,104 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <h2 class="slds-form-element__label slds-text-heading_small">{cardTitle}</h2>
+            <lightning-helptext
+                if:true={helpText}
+                class="slds-text-heading_small"
+                icon-name="utility:info"
+                content={helpText}>
+            </lightning-helptext>
+        </div>
+
+        <lightning-button-icon 
+            if:true={newRecordButton}
+            slot="actions"
+            variant="border"
+            alternative-text={altTextNewRecordButton}
+            title="Opprett ny mulighet"
+            onclick={handleNewRecord}
+            icon-name="utility:add">
+        </lightning-button-icon>
+
+        <div slot="footer">
+            <lightning-formatted-url
+                onclick={navigateToListView}
+                value={listViewUrl}
+                label="Se alle">
+            </lightning-formatted-url>
+        </div>
+        
+        <!-- Body -->
+        <template lwc:if={records}>
+            <ul>
+                <template for:each={paddedRecords} for:item="record">
+                    <template if:false={record.isPlaceholder}>
+                        <li key={record.id} class="slds-item">
+                            <lightning-layout vertical-align="center" class="slds-p-vertical_xx-small">
+                                <!-- Venstre side ikon -->
+                                <lightning-layout-item padding="horizontal-small">
+                                    <lightning-icon if:true={iconName} icon-name={iconName} size="small"></lightning-icon>
+                                </lightning-layout-item>
+
+                                <!-- Tekst -->
+                                <lightning-layout-item class="slds-truncate" flexibility="grow">
+                                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                                        <a href={record.titleLink} data-record-id={record.id} onclick={navigateToRecord}>
+                                            {record.title}
+                                        </a>
+                                    </div>
+                                    <div if:true={record.detailLine} style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
+                                        <span class="slds-text-heading_label-normal">{record.detailLine}</span>
+                                    </div>
+                                </lightning-layout-item>
+
+                                <!-- Høyre side -->
+                                <lightning-layout-item padding="horizontal-small">
+                                    <div class="slds-grid slds-grid_align-end slds-grid_vertical-align-center">
+                                        <!-- Varselikon -->
+                                        <lightning-helptext
+                                            if:true={record.showWarning}
+                                            class="slds-m-right_x-small"
+                                            icon-name="utility:expired"
+                                            icon-variant="error"
+                                            content={warningTextInput}>
+                                        </lightning-helptext>
+                                        <!-- Record actions -->
+                                        <lightning-button-menu
+                                            if:true={newRecordButton}
+                                            variant="bare"
+                                            alternative-text="Action"
+                                            onselect={handleRecordLevelAction}
+                                            data-record-id={record.id}>
+                                            <template for:each={recordLevelActions} for:item="action">
+                                                <lightning-menu-item
+                                                    key={action.label}
+                                                    data-action-id={action.id}
+                                                    label={action.label}
+                                                    value={action.value}>
+                                                </lightning-menu-item>
+                                            </template>
+                                        </lightning-button-menu>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </li>
+                    </template>
+
+                    <template if:true={record.isPlaceholder}>
+                        <li key={record.id} class="slds-item">
+                            <div class="placeholder-item"></div>
+                        </li>
+                    </template>
+                </template>
+            </ul>
+        </template>
+
+        <!-- Laster -->
+        <template if:true={isRefreshing}>
+            <div class="slds-align_absolute-center">
+                <lightning-spinner alternative-text="Laster data..." size="small"></lightning-spinner>
+            </div>
+        </template>
+    </lightning-card>
+</template>
