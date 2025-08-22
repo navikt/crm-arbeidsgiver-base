@@ -20,6 +20,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     @api detailFieldInput; // = 'Account__r.Name'; // Felt som brukes for å vise detaljer i listen
     @api warningCriteriaInput; // = '{{TAG_Age__c}} > 1 && {{InclusionStage__c}} == "Ny henvendelse"';
     @api warningTextInput; // = 'Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.';
+    @api sortBy; // = '-CreatedDate'; // Felt som brukes for å sortere records
 
     // State Properties
     error;
@@ -47,6 +48,13 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
             fields.push(this.objectApiName + '.' + field);
         });
         return fields;
+    }
+
+    get sortField() {
+        if (!this.sortBy) {
+            return null;
+        }
+        return [this.sortBy];
     }
 
     get hasMoreRecords() {
@@ -84,7 +92,8 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         objectApiName: '$objectApiName',
         listViewApiName: '$listViewApiName',
         fields: '$queryFields',
-        pageSize: '$pageSize'
+        pageSize: '$pageSize',
+        sortBy: '$sortField'
     })
     wiredListViewRecords(result) {
         this.wiredListViewRecordsResult = result;
