@@ -6,11 +6,11 @@ En tilpasset listevisning som viser Salesforce-data i et kompakt format. Den er 
 
 **Fordeler vs standard listevisning:**
 
--   ✅ **Kompakt**: Passer i smale kolonner
--   ✅ **Fokusert**: Viser kun de viktigste feltene
--   ✅ **Intelligent varsling**: Fremhever poster som trenger oppmerksomhet
--   ✅ **Rask navigasjon**: Direkte lenker til poster og fullstendig listevisning
--   ⚠️ **Begrenset**: Viser færre felt og poster enn standard listevisning
+-   **Kompakt**: Passer i smale kolonner
+-   **Fokusert**: Viser kun de viktigste feltene
+-   **Intelligent varsling**: Fremhever poster som trenger oppmerksomhet
+-   **Rask navigasjon**: Direkte lenker til poster og fullstendig listevisning
+-   **Begrenset**: Viser færre felt og poster enn standard listevisning
 
 ## Typiske bruksområder
 
