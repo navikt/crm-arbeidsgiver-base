@@ -14,7 +14,10 @@
                 description="" />
             <property name="page" label="Page" type="String" required="false" />
             <property name="question" label="Question" type="String" required="false" />
-            <property name="thankYouMessage" label="Thank You Message" type="String"
+            <property name="thankYouMessage" label="Thank You Message (+)" type="String"
+                required="false"
+                description="Message displayed after a user has rated the component." />
+            <property name="followUpMessage" label="Follow Up Message (-)" type="String"
                 required="false"
                 description="Message displayed after a user has rated the component." />
             <property name="floatRight" label="Float Right" type="Boolean" required="false"
