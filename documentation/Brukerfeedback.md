@@ -12,9 +12,12 @@ Som utvikler/administrator:
 2.  Konfigurer følgende:
     -   Component Name: Navn på komponenten/funksjonen du vil ha feedback på (påkrevd)
     -   Page: Hvilken side komponenten befinner seg på (valgfritt)
-    -   Question: Spørsmålet som vises til brukeren (valgfritt, f.eks. "Var dette nyttig?") (valgfritt)
-    -   Thank You Message: Takkemelding som vises etter stemmegivning (valgfritt)
+    -   Question: Spørsmålet som vises til brukeren (f.eks. "Var dette nyttig?") (valgfritt)
+    -   Thank You Message: Tekst som vises etter stemmegivning for tommel opp (valgfritt)
+    -   Follow Up Message: Tekst som vises etter stemmegivning for tommel ned (valgfritt)
     -   Float Right: Om komponenten skal plasseres til høyre (standard: ja)
+    
+    Tips: "Thank You Message" og "Follow Up Message" kan inneholde link til eksterne sider. Eks. `Fortell oss gjerne mer <a href="https://din_link">her</a>`
 
 Som bruker:
 

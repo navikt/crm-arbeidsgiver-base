@@ -1,13 +1,14 @@
 <template>
+    <template if:true={loadContent}>
     <div style="margin-top: calc(var(--lwc-cardSpacingMargin) * -1)" class={cssGridClass}>
-        <div class="slds-col slds-no-flex slds-var-p-right_xx-small">
+        <div if:false={feedbackSubmitted} class="slds-col slds-no-flex slds-var-p-right_xx-small">
             <p class="slds-text-color_weak slds-text-body_small slds-m-bottom_none">
-                <span class={cssFeedbackRequest}>{question}</span>
+                {question}
             </p>
         </div>
-        <div class="slds-col slds-no-flex">
+        <div if:false={feedbackSubmitted} class="slds-col slds-no-flex">
             <!-- Rating buttons -->
-            <lightning-button-group class={cssFeedbackRequest}>
+            <lightning-button-group >
                 <lightning-button-icon
                     icon-name="utility:like"
                     variant="bare"
@@ -26,9 +27,13 @@
                 </lightning-button-icon>
             </lightning-button-group>
         </div>
-        <!-- Thank you message -->
-        <p if:true={displayThankYouMessage} class="slds-text-color_weak slds-text-body_small slds-m-bottom_none">
-            <span class={cssThankYouMessage}>{thankYouMessage}</span>
-        </p>
+        <!-- Thank you/Follow up message -->
+        <div class={cssMessage}>
+        <lightning-formatted-rich-text if:true={feedbackSubmitted} 
+            value={messageText}
+            class="slds-text-color_weak slds-text-body_small slds-m-bottom_none slds-transition-show custom-transition-slow">
+        </lightning-formatted-rich-text>
+        </div>
     </div>
+    </template>
 </template>
