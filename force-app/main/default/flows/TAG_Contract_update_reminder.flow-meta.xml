@@ -44,6 +44,12 @@
                 <elementReference>NotificationText</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
         <nameSegment>emailSimple</nameSegment>
         <offset>0</offset>
         <versionString>1.0.1</versionString>
@@ -164,7 +170,7 @@
     <formulas>
         <name>updatePageUrl</name>
         <dataType>String</dataType>
-        <expression>HYPERLINK(&apos;/lightning/o/Contract__c/list?filterName=Mine_avtaler_til_forfall&apos;, &apos;Mine avtaler til forfall&apos;)</expression>
+        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; &apos;lightning/o/Contract__c/list?filterName=Mine_avtaler_til_forfall&apos;</expression>
     </formulas>
     <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Contract update reminder</label>
@@ -323,8 +329,8 @@
     <textTemplates>
         <description>Bedriftsavtale nærmer seg utløpsdato</description>
         <name>NotificationText</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>&lt;p&gt;Hei,&lt;/p&gt;&lt;p&gt;Du mottar denne varslingen fordi det er registrert bedriftsavtaler som du har ansvar for som nærmer seg utløpsdato.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva betyr dette?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Bedriftsavtalene har mindre enn 2 måneder igjen til utløp og bør vurderes for enten forlenging eller avslutning. Det er viktig at disse avtalene følges opp i tide for å sikre kontinuitet i samarbeidet med arbeidsgiverne.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva må du gjøre?&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Gå til oversikten over avtaler som nærmer seg forfall: &lt;a href=&quot;https://drive-nosoftware-6143.scratch.lightning.force.com/builder_platform_interaction/%7B!updatePageUrl%7D&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); color: rgb(11, 92, 171);&quot;&gt;&lt;strong&gt;Mine bedriftsavtaler nær utløpsdato&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Vurder hver avtale individuelt&lt;/li&gt;&lt;li&gt;Ta kontakt med arbeidsgiver for å avklare om avtalen skal forlenges&lt;/li&gt;&lt;li&gt;Oppdater avtalens status og eventuelt ny sluttdato i systemet&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Ved spørsmål om oppfølging av bedriftsavtaler, ta kontakt med din leder eller teamleder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Med vennlig hilsen&lt;/p&gt;&lt;p&gt;Nav Arbeidsgiver CRM&lt;/p&gt;</text>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Hei,&lt;/p&gt;&lt;p&gt;Du mottar denne varslingen fordi det er registrert bedriftsavtaler som du har ansvar for som nærmer seg utløpsdato.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva betyr dette?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Bedriftsavtalene har mindre enn 2 måneder igjen til utløp og bør vurderes for enten forlenging eller avslutning. Det er viktig at disse avtalene følges opp i tide for å sikre kontinuitet i samarbeidet med arbeidsgiverne.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva må du gjøre?&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Gå til oversikten over avtaler som nærmer seg forfall: &lt;a href=&quot;{!updatePageUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(11, 92, 171); background-color: rgb(255, 255, 255);&quot;&gt;&lt;strong&gt;Mine bedriftsavtaler nær utløpsdato&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Vurder hver avtale individuelt&lt;/li&gt;&lt;li&gt;Ta kontakt med arbeidsgiver for å avklare om avtalen skal forlenges&lt;/li&gt;&lt;li&gt;Oppdater avtalens status og eventuelt ny sluttdato i systemet&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Ved spørsmål om oppfølging av bedriftsavtaler, ta kontakt med din leder eller teamleder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Med vennlig hilsen&lt;/p&gt;&lt;p&gt;Nav Arbeidsgiver CRM&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>InternalContactEmails</name>
