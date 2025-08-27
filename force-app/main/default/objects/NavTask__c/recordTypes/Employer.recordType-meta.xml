@@ -80,6 +80,10 @@
             <fullName>Rekrutteringsoppdrag</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Ungdomsløftet</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>CRM_Theme__c</picklist>
