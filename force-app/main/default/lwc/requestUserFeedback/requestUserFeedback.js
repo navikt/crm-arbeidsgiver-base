@@ -10,35 +10,39 @@ export default class RateThisComponent extends LightningElement {
     @api page;
     @api question; // Optional question to display when not rated
     @api thankYouMessage; // Optional thank you message to display after rating
+    @api followUpMessage; //'Fortell oss gjerne hva du savner <a href="https://engage.cloud.....">i kanalen vår på Yammer</a>'; // Optional follow up message to display after rating
     @api floatRight;
-    @track _displayThankYouMessage = false;
     @track _isRated = false;
     @track _hasCheckedDatabase = false;
-
-    get displayFeedbackRequest() {
-        // Check database only once when component loads
-        if (!this._hasCheckedDatabase) {
-            this.checkDatabaseForPreviousRating();
+    @track _rating;
+    loadContent = false;
+    
+    get feedbackSubmitted() {
+        if (this._rating === 1) {
+            return true;
         }
-        return !this._isRated;
-    }
-
-    get displayThankYouMessage() {
-        if (this.thankYouMessage && this._displayThankYouMessage) {
+        if (this._rating === -1) {
             return true;
         }
         return false;
     }
-    get cssThankYouMessage() {
-        return this.displayThankYouMessage
-            ? 'slds-transition-show custom-transition'
-            : 'slds-transition-hide custom-transition-slow';
+
+    get messageText(){
+        if (this.thankYouMessage && this._rating === 1) {
+            return this.thankYouMessage;
+        }
+        if (this.followUpMessage && this._rating === -1) {
+            return this.followUpMessage;
+        }
+        return '';
     }
-    get cssFeedbackRequest() {
-        return this.displayFeedbackRequest
-            ? 'slds-transition-show custom-transition'
-            : 'slds-transition-hide custom-transition-slow';
+
+    get cssMessage() {
+        return this.messageText
+            ? 'slds-transition-show custom-transition-slow slds-col slds-no-flex slds-var-p-right_xx-small'
+            : 'slds-transition-hide custom-transition slds-col slds-no-flex slds-var-p-right_xx-small';
     }
+
 
     get cssGridClass() {
         let cssClasses = 'slds-grid slds-grid_vertical-align-center slds-var-p-left_medium';
@@ -48,25 +52,21 @@ export default class RateThisComponent extends LightningElement {
         return cssClasses;
     }
 
-    get displayContent() {
-        return this.displayThankYouMessage || this.displayFeedbackRequest;
-    }
+    
 
     connectedCallback() {
-        // Initialize database check when component connects
+        
         this.checkDatabaseForPreviousRating();
+        this.loadContent = !this._isRated; // Load content if not rated
     }
 
     // =========================
     // DATABASE / APEX METHODS
     // =========================
     checkDatabaseForPreviousRating() {
-        if (this._hasCheckedDatabase) {
-            return; // Already checked, don't check again
-        }
-
         this._hasCheckedDatabase = true;
         this._isRated = this.getHasRated(this.componentName);
+        
     }
 
     saveRating(rating) {
@@ -75,12 +75,13 @@ export default class RateThisComponent extends LightningElement {
             .then(() => {
                 this.saveHasRated(this.componentName); // Save rating status in browser storage
                 console.log('Rating saved successfully');
-                this._displayThankYouMessage = true; // Show thank you message after rating
+                this._rating = rating;
+                //this._displayThankYouMessage = true; // Show thank you message after rating
             })
             .catch((error) => {
                 this._isRated = false;
                 this.deleteHasRated(this.componentName);
-                this._displayThankYouMessage = false;
+               // this._displayThankYouMessage = false;
                 this.handleError('Error saving rating', error);
             });
     }
@@ -151,6 +152,5 @@ export default class RateThisComponent extends LightningElement {
 
     handleError(message, error) {
         console.error(message, error);
-        // Add user-friendly error handling here
     }
 }
