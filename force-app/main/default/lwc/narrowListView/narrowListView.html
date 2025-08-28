@@ -41,7 +41,7 @@
                                 </lightning-layout-item>
 
                                 <!-- Tekst -->
-                                <lightning-layout-item class="slds-truncate" flexibility="grow">
+                                <lightning-layout-item class="slds-truncate recordText placeholder-text slds-grid_vertical-align-center" flexibility="grow">
                                     <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
                                         <a href={record.titleLink} data-record-id={record.id} onclick={navigateToRecord}>
                                             {record.title}
@@ -86,8 +86,10 @@
                     </template>
 
                     <template if:true={record.isPlaceholder}>
-                        <li key={record.id} class="slds-item">
-                            <div class="placeholder-item"></div>
+                        <li key={record.id} class="slds-hidden slds-item">
+                            <div class="slds-p-vertical_xx-small">
+                            <div class="placeholder-text"></div>
+                        </div>
                         </li>
                     </template>
                 </template>
