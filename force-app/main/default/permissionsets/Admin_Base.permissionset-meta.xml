@@ -146,6 +146,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.TAG_CompletedLateNrOfHours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Event.TAG_DeletedDate__c</field>
         <readable>true</readable>
@@ -368,6 +373,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_ActivityType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.TAG_CompletedLateNrOfHours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
