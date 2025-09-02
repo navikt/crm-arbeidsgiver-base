@@ -27,7 +27,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne kontaktskjemaene som er sendt til ditt Nav kontor</value>
+                    <value>Viser de fire nyeste åpne mulighetene, som er meldt inn via kontaktskjema, til din Nav-enhet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -35,7 +35,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_Kontaktskjema_fra_Nav_no</value>
+                    <value>TAG_Min_Nav_enhet_kontaktskjema_nye</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -92,7 +92,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne oppgavene som er sendt fra Arbeidsgivertelefonen til ditt Nav kontor</value>
+                    <value>Viser de fire nyeste åpne oppgavene, som er sendt fra Arbeidsgivertelefonen, til din Nav-enhet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -100,7 +100,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>Mitt_NAV_kontor</value>
+                    <value>TAG_Min_Nav_enhet_innkommende_oppgaver_nye</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -166,7 +166,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_siste_muligheter_til_nav_enhet</value>
+                    <value>TAG_Min_Nav_enhet_muligheter_pne</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -272,7 +272,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne mulighetene som tilhører din Nav region</value>
+                    <value>Viser de fire nyeste åpne mulighetene som tilhører din Nav-region</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -280,7 +280,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_Muligheter_Min_region</value>
+                    <value>TAG_Min_Nav_region_muligheter_pne</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
