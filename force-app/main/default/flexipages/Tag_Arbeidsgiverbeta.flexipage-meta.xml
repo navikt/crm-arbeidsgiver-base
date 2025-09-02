@@ -504,8 +504,15 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>INT_OrganizationNumber__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fem siste kontoene du har vært inne på</value>
+                    <value>Viser de fire siste kontoene du har vært inne på</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -529,7 +536,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>previewRecords</name>
-                    <value>5</value>
+                    <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortBy</name>
