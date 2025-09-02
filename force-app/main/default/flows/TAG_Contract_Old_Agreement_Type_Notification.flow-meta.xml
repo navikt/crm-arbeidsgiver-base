@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_update_reminder</name>
-        <label>Send update reminder</label>
+        <name>Send_update_request</name>
+        <label>Send update request</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <actionName>emailSimple</actionName>
@@ -35,7 +35,7 @@
         <inputParameters>
             <name>emailSubject</name>
             <value>
-                <stringValue>Bedriftsavtale nærmer seg utløpsdato</stringValue>
+                <stringValue>Bedriftsavtale må oppdateres til nytt rammeverk</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -156,12 +156,17 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_update_reminder</targetReference>
+                <targetReference>Send_update_request</targetReference>
             </connector>
             <label>Emails found</label>
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>finalEndDate</name>
+        <dataType>Date</dataType>
+        <expression>DATE(2025, 11, 30)</expression>
+    </formulas>
     <formulas>
         <name>timestampNow</name>
         <dataType>DateTime</dataType>
@@ -170,10 +175,10 @@
     <formulas>
         <name>updatePageUrl</name>
         <dataType>String</dataType>
-        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; &apos;lightning/o/Contract__c/list?filterName=Mine_avtaler_til_forfall&apos;</expression>
+        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; &apos;lightning/o/Contract__c/list?filterName=Mine_bedriftsavtaler_Gammel_type&apos;</expression>
     </formulas>
-    <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Contract update reminder</label>
+    <interviewLabel>TAG Contract Notify Old Agreement Type {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Contract Old Agreement Type Notification</label>
     <loops>
         <name>Loop_contracts</name>
         <label>Loop contracts</label>
@@ -216,16 +221,86 @@
         <connector>
             <targetReference>Check_if_contracts_was_found</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>1 AND (2 OR 3 OR 4 ) AND 5 AND 6 AND 7</filterLogic>
         <filters>
-            <field>TAG_Expiration_Reminder__c</field>
+            <field>TAG_InternalContact__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Category__c</field>
             <operator>EqualTo</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <stringValue>Rekrutteringsavtale</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Category__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>IA-avtale</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Category__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Inkluderingsavtale (Arbeidsgiver)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Godkjent</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_EndDate__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <elementReference>finalEndDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_recordtype.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_recordtype</name>
+        <label>Get recordtype</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_contracts_marked_for_update</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Contract__c</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>EmployerAgreement</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
@@ -242,11 +317,11 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_contracts_marked_for_update</targetReference>
+            <targetReference>Get_recordtype</targetReference>
         </connector>
         <schedule>
             <frequency>Weekly</frequency>
-            <startDate>2025-12-01</startDate>
+            <startDate>2025-09-29</startDate>
             <startTime>09:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
@@ -273,7 +348,7 @@
         <inputAssignments>
             <name>Error_Source</name>
             <value>
-                <stringValue>TAG Contract update reminder</stringValue>
+                <stringValue>TAG Contract Old Agreement Type Notification</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -310,7 +385,7 @@
         <inputAssignments>
             <name>Error_Source</name>
             <value>
-                <stringValue>TAG Contract update reminder</stringValue>
+                <stringValue>TAG Contract Old Agreement Type Notification</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -327,10 +402,10 @@
         </inputAssignments>
     </subflows>
     <textTemplates>
-        <description>Bedriftsavtale nærmer seg utløpsdato</description>
+        <description>Bedriftsavtale må oppdateres til nytt rammeverk</description>
         <name>NotificationText</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Hei,&lt;/p&gt;&lt;p&gt;Dette er et automatisk varsel fra Salesforce Arbeidsgiver.&lt;/p&gt;&lt;p&gt;Du mottar denne varslingen fordi du er registrert som ansvarlig for en eller flere bedriftsavtaler som nærmere seg utløpsdato.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva betyr dette?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Bedriftsavtalene har mindre enn 2 måneder igjen til utløp og bør vurderes for enten forlenging eller avslutning. Det er viktig at disse avtalene følges opp i tide for å sikre kontinuitet i samarbeidet med arbeidsgiverne.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva må du gjøre?&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Gå til oversikten over avtaler som nærmer seg forfall: &lt;a href=&quot;{!updatePageUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(11, 92, 171); background-color: rgb(255, 255, 255);&quot;&gt;&lt;strong&gt;Mine bedriftsavtaler nær utløpsdato&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Vurder hver avtale individuelt&lt;/li&gt;&lt;li&gt;Ta kontakt med arbeidsgiver for å avklare om avtalen skal forlenges&lt;/li&gt;&lt;li&gt;Oppdater avtalens status og eventuelt ny sluttdato i systemet&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Ved spørsmål om oppfølging av bedriftsavtaler, ta kontakt med din leder eller teamleder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Med vennlig hilsen&lt;/p&gt;&lt;p&gt;Nav Salesforce Arbeidsgiver&lt;/p&gt;</text>
+        <text>&lt;p&gt;Hei,&lt;/p&gt;&lt;p&gt;Dette er et automatisk varsel fra Salesforce Arbeidsgiver.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;VIKTIG: Bedriftsavtaler må oppdateres innen 30. november 2025.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du mottar denne varslingen fordi du er ansvarlig for en eller flere bedriftsavtaler som må oppdateres til vårt nye rammeverk.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva betyr dette for deg?&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Avtalekategorier i &lt;/span&gt;Salesforce Arebidsgiver er endret så de samsvarer med &lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/Rammeverk-for-tjenester-til-arbeidsgivere.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Rammeverk for tjenester til arbeidsgivere&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Eksisterende avtaler må oppdateres for å fortsette å være gyldige&lt;/li&gt;&lt;li&gt;Avtaler som ikke oppdateres innen 30. november 2025 vil automatisk avsluttes&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva må du gjøre?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;1. Gå til oversikten over avtaler som må oppdateres: &quot;&lt;a href=&quot;{!updatePageUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Mine bedriftsavtaler - Gammel type&lt;/a&gt;&quot;&lt;/p&gt;&lt;p&gt;2. For hver avtale som fortsatt er aktuell:&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;- Oppdater avtaletype til enten &quot;Markedssamarbeid&quot; eller &quot;Strategisk partneravtale&quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;- Kontroller og oppdater utløpsdato ved behov&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;- Fyll ut eventuelle påkrevde felter som systemet ber om&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ved spørsmål om oppfølging av bedriftsavtaler, ta kontakt med din nærmeste leder eller teamleder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Med vennlig hilsen,&lt;/p&gt;&lt;p&gt;Nav Salesforce Arbeidsgiver&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>InternalContactEmails</name>

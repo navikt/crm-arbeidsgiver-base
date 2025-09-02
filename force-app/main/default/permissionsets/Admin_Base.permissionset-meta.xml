@@ -92,6 +92,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_IsFromArticle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.CRM_AccountOrgNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -138,6 +143,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.TAG_ActivityType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.TAG_CompletedLateNrOfHours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -363,6 +373,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_ActivityType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.TAG_CompletedLateNrOfHours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

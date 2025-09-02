@@ -9,10 +9,7 @@
 &amp;&amp; ISPICKVAL( TAG_Status__c , &apos;Godkjent&apos;)
 &amp;&amp; OR( 
       ISPICKVAL( TAG_Category__c  , &apos;Strategisk partneravtale&apos;),
-      ISPICKVAL( TAG_Category__c  , &apos;Markedssamarbeid&apos;),
-      ISPICKVAL( TAG_Category__c  , &apos;Rekrutteringsavtale&apos;),
-      ISPICKVAL( TAG_Category__c  , &apos;IA-avtale&apos;),
-      ISPICKVAL( TAG_Category__c  , &apos;Inkluderingsavtale (Arbeidsgiver)&apos;)
+      ISPICKVAL( TAG_Category__c  , &apos;Markedssamarbeid&apos;)
 
 )</formula>
     <label>Expiration Reminder</label>
