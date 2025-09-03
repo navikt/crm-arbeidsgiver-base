@@ -35,7 +35,7 @@
         <inputParameters>
             <name>emailSubject</name>
             <value>
-                <stringValue>Bedriftsavtale nærmer seg utløpsdato</stringValue>
+                <stringValue>Bedriftsavtale må oppdateres til nytt rammeverk</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -165,7 +165,7 @@
     <formulas>
         <name>finalEndDate</name>
         <dataType>Date</dataType>
-        <expression>DATE(2025, 11, 31)</expression>
+        <expression>DATE(2025, 11, 30)</expression>
     </formulas>
     <formulas>
         <name>timestampNow</name>
@@ -348,7 +348,7 @@
         <inputAssignments>
             <name>Error_Source</name>
             <value>
-                <stringValue>TAG Contract update reminder</stringValue>
+                <stringValue>TAG Contract Old Agreement Type Notification</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -385,7 +385,7 @@
         <inputAssignments>
             <name>Error_Source</name>
             <value>
-                <stringValue>TAG Contract update reminder</stringValue>
+                <stringValue>TAG Contract Old Agreement Type Notification</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -405,7 +405,7 @@
         <description>Bedriftsavtale må oppdateres til nytt rammeverk</description>
         <name>NotificationText</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Hei,&lt;/p&gt;&lt;p&gt;Dette er et automatisk melding fra &lt;strong&gt;Salesforce Arbeidsgiver&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;Du mottar denne varslingen fordi du er ansvarlig for en eller flere bedriftsavtaler som ikke er oppdatert i henhold til nytt rammeverk.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva betyr dette?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;TEKST HER&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva må du gjøre?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;FORKLARING HER&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Link til oversikt: &lt;a href=&quot;https://drive-nosoftware-6143.scratch.lightning.force.com/builder_platform_interaction/%7B!updatePageUrl%7D&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); color: rgb(11, 92, 171);&quot;&gt;&lt;strong&gt;Mine bedriftsavtaler - Gammel type&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ved spørsmål om oppfølging av bedriftsavtaler, ta kontakt med din leder eller teamleder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Med vennlig hilsen&lt;/p&gt;&lt;p&gt;Nav Salesforce Arbeidsgiver&lt;/p&gt;</text>
+        <text>&lt;p&gt;Hei,&lt;/p&gt;&lt;p&gt;Dette er et automatisk varsel fra Salesforce Arbeidsgiver.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;VIKTIG: Bedriftsavtaler må oppdateres innen 30. november 2025.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Du mottar denne varslingen fordi du er ansvarlig for en eller flere bedriftsavtaler som må oppdateres til vårt nye rammeverk.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva betyr dette for deg?&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Avtalekategorier i &lt;/span&gt;Salesforce Arebidsgiver er endret så de samsvarer med &lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/Rammeverk-for-tjenester-til-arbeidsgivere.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Rammeverk for tjenester til arbeidsgivere&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Eksisterende avtaler må oppdateres for å fortsette å være gyldige&lt;/li&gt;&lt;li&gt;Avtaler som ikke oppdateres innen 30. november 2025 vil automatisk avsluttes&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Hva må du gjøre?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;1. Gå til oversikten over avtaler som må oppdateres: &quot;&lt;a href=&quot;{!updatePageUrl}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Mine bedriftsavtaler - Gammel type&lt;/a&gt;&quot;&lt;/p&gt;&lt;p&gt;2. For hver avtale som fortsatt er aktuell:&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;- Oppdater avtaletype til enten &quot;Markedssamarbeid&quot; eller &quot;Strategisk partneravtale&quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;- Kontroller og oppdater utløpsdato ved behov&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;- Fyll ut eventuelle påkrevde felter som systemet ber om&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ved spørsmål om oppfølging av bedriftsavtaler, ta kontakt med din nærmeste leder eller teamleder.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Med vennlig hilsen,&lt;/p&gt;&lt;p&gt;Nav Salesforce Arbeidsgiver&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>InternalContactEmails</name>

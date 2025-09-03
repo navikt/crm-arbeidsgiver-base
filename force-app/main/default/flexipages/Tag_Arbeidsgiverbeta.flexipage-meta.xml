@@ -22,12 +22,15 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>detailFieldInput</name>
                     <value>Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne kontaktskjemaene som er sendt til ditt Nav kontor</value>
+                    <value>Åpne muligheter meldt inn via kontaktskjema for din Nav-enhet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -35,7 +38,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_Kontaktskjema_fra_Nav_no</value>
+                    <value>TAG_Min_Nav_enhet_kontaktskjema_nye</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -47,7 +50,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageSize</name>
-                    <value>25</value>
+                    <value>10</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>previewRecords</name>
@@ -63,7 +66,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleText</name>
-                    <value>Kontaktskjema fra Nav.no</value>
+                    <value>Kontaktskjema fra nav.no</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
@@ -92,7 +95,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne oppgavene som er sendt fra Arbeidsgivertelefonen til ditt Nav kontor</value>
+                    <value>Nye oppgaver, som er sendt fra Arbeidsgivertelefonen, til din Nav-enhet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -100,7 +103,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>Mitt_NAV_kontor</value>
+                    <value>TAG_Min_Nav_enhet_innkommende_oppgaver_nye</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -112,7 +115,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageSize</name>
-                    <value>25</value>
+                    <value>10</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>previewRecords</name>
@@ -128,7 +131,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleText</name>
-                    <value>Innkomne oppgaver fra NKS</value>
+                    <value>Oppgaver fra Arbeidsgivertelefonen</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
@@ -158,7 +161,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne mulighetene som tilhører din Nav-enhet</value>
+                    <value>Nyeste åpne mulighetene som tilhører din Nav-enhet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -166,7 +169,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_siste_muligheter_til_nav_enhet</value>
+                    <value>TAG_Min_Nav_enhet_muligheter_pne</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -272,7 +275,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne mulighetene som tilhører din Nav region</value>
+                    <value>Nyeste åpne mulighetene som tilhører din Nav-region</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -280,7 +283,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_Muligheter_Min_region</value>
+                    <value>TAG_Min_Nav_region_muligheter_pne</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -292,7 +295,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageSize</name>
-                    <value>25</value>
+                    <value>10</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>previewRecords</name>
@@ -308,7 +311,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleText</name>
-                    <value>Siste Muligheter</value>
+                    <value>Siste muligheter</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
@@ -386,7 +389,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne mulighetene som du eier</value>
+                    <value>Nyeste åpne mulighetene som du eier</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -394,7 +397,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_Mine_pne_muligheter</value>
+                    <value>TAG_Mine_muligheter_pne</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -406,7 +409,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageSize</name>
-                    <value>25</value>
+                    <value>10</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>previewRecords</name>
@@ -452,7 +455,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fire nyeste åpne oppgavene som du eier</value>
+                    <value>Nyeste åpne oppgavene som du eier</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -504,8 +507,15 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>INT_OrganizationNumber__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Viser de fem siste kontoene du har vært inne på</value>
+                    <value>Siste kontoene du har vært inne på</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -529,7 +539,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>previewRecords</name>
-                    <value>5</value>
+                    <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortBy</name>

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_Mine_pne_muligheter</fullName>
+    <fullName>TAG_Mine_muligheter_pne</fullName>
     <columns>TAG_Link__c</columns>
     <columns>Account__c</columns>
+    <columns>InquiryCategory__c</columns>
+    <columns>Profession__c</columns>
+    <columns>TAG_Age__c</columns>
     <columns>InclusionStage__c</columns>
     <columns>CREATED_DATE</columns>
-    <columns>Source__c</columns>
-    <columns>TAG_Age__c</columns>
-    <columns>Result__c</columns>
+    <columns>OwnerFullName__c</columns>
     <filterScope>Mine</filterScope>
     <filters>
         <field>InclusionStage__c</field>
-        <operation>equals</operation>
-        <value>Ny henvendelse,Avklaring</value>
+        <operation>notEqual</operation>
+        <value>Avsluttet</value>
     </filters>
-    <label>Mine åpne muligheter</label>
+    <label>Mine muligheter åpne</label>
     <sharedTo>
         <role>PO_Arbeidsgiver</role>
     </sharedTo>
