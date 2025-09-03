@@ -211,36 +211,6 @@
                 <identifier>c_narrowListView5</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>componentName</name>
-                    <value>Siste muligheter (kontor)</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>floatRight</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>followUpMessage</name>
-                    <value>Fortell oss gjerne hva du savner på &lt;a href=&quot;https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIzOTM5NjY0NjkxMiJ9/all&quot;&gt; i kanalen vår på Yammer&lt;/a&gt;</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>page</name>
-                    <value>Home</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>question</name>
-                    <value>Er denne listen relevant for deg?</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>thankYouMessage</name>
-                    <value>Takk for tilbakemeldingen!</value>
-                </componentInstanceProperties>
-                <componentName>requestUserFeedback</componentName>
-                <identifier>c_requestUserFeedback</identifier>
-            </componentInstance>
-        </itemInstances>
         <name>row1col3</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -323,36 +293,6 @@
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView6</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>componentName</name>
-                    <value>Siste muligheter (region)</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>floatRight</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>followUpMessage</name>
-                    <value>Fortell oss gjerne hva du savner på &lt;a href=&quot;https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIzOTM5NjY0NjkxMiJ9/all&quot;&gt; i kanalen vår på Yammer&lt;/a&gt;</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>page</name>
-                    <value>Home</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>question</name>
-                    <value>Er denne listen relevant for deg?</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>thankYouMessage</name>
-                    <value>Takk for tilbakemeldingen!</value>
-                </componentInstanceProperties>
-                <componentName>requestUserFeedback</componentName>
-                <identifier>c_requestUserFeedback2</identifier>
             </componentInstance>
         </itemInstances>
         <name>row1col4</name>
@@ -577,7 +517,7 @@
         <name>row2col4</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>TAG_DefaultHomePage</masterLabel>
+    <masterLabel>NAV Default Home Page</masterLabel>
     <template>
         <name>homeWithDoubleHeader</name>
     </template>
