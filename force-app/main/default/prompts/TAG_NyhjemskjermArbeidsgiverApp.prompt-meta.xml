@@ -5,13 +5,14 @@
         <body>&lt;p&gt;Vi håper at denne oppdateringen vil gi deg enda mer verdi i hverdagen.&lt;/p&gt;&lt;p&gt;Målet er å skape et naturlig startpunkt som gir deg enkel tilgang til – og oversikt over – det du bruker og trenger mest.&lt;/p&gt;&lt;p&gt;Dette er første versjon, og vi kommer til å videreutvikle den gjennom høsten.&lt;/p&gt;</body>
         <customApplication>TAG_NAV_default</customApplication>
         <delayDays>2</delayDays>
-        <dismissButtonLabel>Dismiss</dismissButtonLabel>
+        <dismissButtonLabel>OK</dismissButtonLabel>
         <displayType>Targeted</displayType>
         <elementRelativePosition>RightCenter</elementRelativePosition>
         <endDate>2025-09-30</endDate>
         <experience>Lightning</experience>
-        <isPublished>false</isPublished>
+        <isPublished>true</isPublished>
         <masterLabel>Ny hjemskjerm Arbeidsgiver App</masterLabel>
+        <publishedDate>2025-09-03</publishedDate>
         <referenceElementContext>{&quot;scope&quot;:{&quot;attributes&quot;:{&quot;id&quot;:&quot;sfdc:TabDefinition.standard-home&quot;}},&quot;version&quot;:2}</referenceElementContext>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
