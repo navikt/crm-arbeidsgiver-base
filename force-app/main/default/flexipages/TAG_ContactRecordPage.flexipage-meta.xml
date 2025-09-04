@@ -10,7 +10,14 @@
                             <value>Edit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Delete</value>
+                            <value>Contact.Tidligere_ansatt</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.TAG_Former_Employee__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>false</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
