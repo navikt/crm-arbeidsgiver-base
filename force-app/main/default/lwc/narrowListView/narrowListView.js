@@ -1,6 +1,8 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
 import { NavigationMixin } from 'lightning/navigation';
+import { publishToAmplitude } from 'c/amplitude';
+
 export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
     // PROPERTIES & GETTERS
@@ -30,6 +32,10 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     wiredListViewRecordsResult;
     nextPageToken;
     count;
+
+    connectedCallback() {
+        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
+    }
     // Action Configuration
     @track recordLevelActions = [{ id: 'record-edit-1', label: 'Rediger', value: 'edit' }];
 
@@ -125,6 +131,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         const recordId = event.target.dataset.recordId; // Hent recordId fra data attributtet
 
         if (selectedItemValue === 'edit') {
+            publishToAmplitude(this.appName, {
+                type: 'HomePage list "' + this.titleText + '" clicked on Rediger'
+            });
             // Håndter redigeringshandling
             this.navigateToRecordEdit(recordId, this.objectApiName);
         } else {
@@ -133,6 +142,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     }
 
     handleNewRecord() {
+        publishToAmplitude(this.appName, {
+            type: 'HomePage list "' + this.titleText + '" clicked on Ny knapp'
+        });
         this.navigateToRecordNew(this.objectApiName);
     }
 
@@ -166,6 +178,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
     navigateToListView(event) {
         event.preventDefault();
+        publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked on Se alle' });
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {
@@ -180,6 +193,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
     navigateToRecord(event) {
         event.preventDefault();
+        publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked on Record' });
         const recordId = event.target.dataset.recordId;
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',

@@ -5,6 +5,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
+import { publishToAmplitude } from 'c/amplitude';
 
 export default class TagNarrowListViewActivities extends NavigationMixin(LightningElement) {
     // =========================
@@ -35,6 +36,10 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     nextPageToken;
     count;
     wiredOpenTasksResult;
+
+    connectedCallback() {
+        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
+    }
     // Action Configuration
     @track recordLevelActions = [
         { id: 'record-edit-1', label: 'Rediger', value: 'edit' },
@@ -119,18 +124,30 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
 
         switch (selectedItemValue) {
             case 'edit':
+                publishToAmplitude(this.appName, {
+                    type: 'HomePage list "' + this.titleText + '" clicked on Rediger'
+                });
                 this.navigateToRecordEdit(recordId);
                 break;
 
             case 'complete':
+                publishToAmplitude(this.appName, {
+                    type: 'HomePage list "' + this.titleText + '" clicked on Fullfør oppgave'
+                });
                 this.markTaskComplete(recordId);
                 break;
 
             case 'followup':
+                publishToAmplitude(this.appName, {
+                    type: 'HomePage list "' + this.titleText + '" clicked on Oppfølgingsoppgave'
+                });
                 this.createFollowUpTask(rec);
                 break;
 
             case 'followupEvent':
+                publishToAmplitude(this.appName, {
+                    type: 'HomePage list "' + this.titleText + '" clicked on Oppfølgingsmøte'
+                });
                 this.createFollowUpEvent(rec);
                 break;
 
@@ -140,6 +157,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     }
 
     handleNewRecord() {
+        publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked on Ny knapp' });
         this.navigateToRecordNew(this.objectApiName);
     }
 
@@ -170,6 +188,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
 
     navigateToListView(event) {
         event.preventDefault();
+        publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked on Se alle' });
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {
@@ -184,6 +203,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
 
     navigateToRecord(event) {
         event.preventDefault();
+        publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked on Record' });
         const recordId = event.target.dataset.recordId;
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
