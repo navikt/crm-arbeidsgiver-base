@@ -143,7 +143,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
     handleNewRecord() {
         publishToAmplitude(this.appName, {
-            type: 'HomePage list "' + this.titleText + '" clicked on Ny knapp'
+            type: 'HomePage list "' + this.titleText + '" clicked "New" button'
         });
         this.navigateToRecordNew(this.objectApiName);
     }
@@ -177,8 +177,8 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     }
 
     navigateToListView(event) {
+        publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked "Se alle"' });
         event.preventDefault();
-        publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked on Se alle' });
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {
