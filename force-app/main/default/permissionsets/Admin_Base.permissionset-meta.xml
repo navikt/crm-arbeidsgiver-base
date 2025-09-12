@@ -91,6 +91,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ArenaActivity__c.TimeStampFromMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contract__c.TAG_Expiration_Reminder_Send_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -542,6 +547,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Workfare__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Workfare__c.TimeStampFromMessage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
