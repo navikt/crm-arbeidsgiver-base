@@ -1,5 +1,7 @@
 import { LightningElement, track, api } from 'lwc';
 import handleNewRating from '@salesforce/apex/TAG_FeedbackHandler.handleNewRating';
+import hasFeedbackPermission from '@salesforce/customPermission/Arbeidsgiver_Se_sp_rsm_l_fra_In_App_Feedback';
+
 
 export default class RateThisComponent extends LightningElement {
     // =========================
@@ -17,6 +19,9 @@ export default class RateThisComponent extends LightningElement {
     @track _rating;
     loadContent = false;
     
+    get canUseFeedback() {
+        return hasFeedbackPermission;
+    }
     get feedbackSubmitted() {
         if (this._rating === 1) {
             return true;
@@ -55,9 +60,13 @@ export default class RateThisComponent extends LightningElement {
     
 
     connectedCallback() {
-        
-        this.checkDatabaseForPreviousRating();
-        this.loadContent = !this._isRated; // Load content if not rated
+        if(!this.canUseFeedback){
+            this.loadContent = false;
+        }
+        else {
+            this.checkDatabaseForPreviousRating();
+            this.loadContent = !this._isRated; // Load content if not rated
+        }
     }
 
     // =========================
