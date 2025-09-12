@@ -4,6 +4,14 @@
         <application>TAG_Arbeidsgiver_beta</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>TAG_FeedbackHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Arbeidsgiver_Se_sp_rsm_l_fra_In_App_Feedback</name>
+    </customPermissions>
     <description>Tilgang til Arbeidsgiver Beta appen</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Beta app</label>
