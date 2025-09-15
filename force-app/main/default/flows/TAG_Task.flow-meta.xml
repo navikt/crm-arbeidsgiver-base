@@ -4,7 +4,7 @@
     <assignments>
         <name>Assign_AccountId</name>
         <label>Assign AccountId</label>
-        <locationX>424</locationX>
+        <locationX>754</locationX>
         <locationY>1247</locationY>
         <assignmentItems>
             <assignToReference>accountId</assignToReference>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
-        <locationX>699</locationX>
-        <locationY>3047</locationY>
+        <locationX>1128</locationX>
+        <locationY>3527</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -36,8 +36,8 @@
     <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>963</locationX>
-        <locationY>3047</locationY>
+        <locationX>1392</locationX>
+        <locationY>3527</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -52,7 +52,7 @@
     <decisions>
         <name>Are_any_values_missing</name>
         <label>Are any values missing?</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>1955</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
@@ -105,8 +105,8 @@
     <decisions>
         <name>Is_IA_priority</name>
         <label>Is IA priority?</label>
-        <locationX>556</locationX>
-        <locationY>2447</locationY>
+        <locationX>886</locationX>
+        <locationY>2687</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
         </defaultConnector>
@@ -130,7 +130,7 @@
     <decisions>
         <name>Is_RelatedToAccount_null</name>
         <label>Is RelatedToAccount null?</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>1139</locationY>
         <defaultConnector>
             <targetReference>Update_Activity_Date</targetReference>
@@ -163,7 +163,7 @@
     <decisions>
         <name>Is_Task_set_to_Completed</name>
         <label>Is Task set to Completed?</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>431</locationY>
         <defaultConnector>
             <targetReference>Related_to_What_Object</targetReference>
@@ -238,7 +238,7 @@
     <decisions>
         <name>Related_to_What_Object</name>
         <label>Related to What Object?</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>731</locationY>
         <defaultConnector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
@@ -292,8 +292,8 @@
     <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
-        <locationX>831</locationX>
-        <locationY>2939</locationY>
+        <locationX>1260</locationX>
+        <locationY>3419</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
@@ -317,7 +317,7 @@
     <decisions>
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>1547</locationY>
         <defaultConnector>
             <targetReference>What_is_task_related_to</targetReference>
@@ -342,7 +342,7 @@
     <decisions>
         <name>What_is_task_related_to</name>
         <label>What is task related to?</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>1847</locationY>
         <defaultConnector>
             <targetReference>Is_IA_priority</targetReference>
@@ -397,7 +397,7 @@
     <decisions>
         <name>What_record_type</name>
         <label>What record type?</label>
-        <locationX>831</locationX>
+        <locationX>1260</locationX>
         <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
@@ -496,8 +496,8 @@
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>831</locationX>
-        <locationY>3239</locationY>
+        <locationX>1260</locationX>
+        <locationY>3719</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
             <value>
@@ -702,7 +702,7 @@
     <recordLookups>
         <name>Get_Custom_Campaign_Member</name>
         <label>Get Custom Campaign Member</label>
-        <locationX>292</locationX>
+        <locationX>622</locationX>
         <locationY>839</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -723,7 +723,7 @@
     <recordLookups>
         <name>Get_Custom_Opportunity</name>
         <label>Get Custom Opportunity</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>839</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -765,7 +765,7 @@
     <recordLookups>
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
-        <locationX>490</locationX>
+        <locationX>754</locationX>
         <locationY>2063</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -786,7 +786,7 @@
     <recordLookups>
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
-        <locationX>490</locationX>
+        <locationX>754</locationX>
         <locationY>1955</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -807,8 +807,8 @@
     <recordLookups>
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
-        <locationX>424</locationX>
-        <locationY>2555</locationY>
+        <locationX>622</locationX>
+        <locationY>2795</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -844,7 +844,7 @@
     <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
-        <locationX>424</locationX>
+        <locationX>754</locationX>
         <locationY>1655</locationY>
         <connector>
             <targetReference>What_is_task_related_to</targetReference>
@@ -860,11 +860,14 @@
     <recordUpdates>
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
-        <locationX>490</locationX>
+        <locationX>754</locationX>
         <locationY>2171</locationY>
         <connector>
             <targetReference>Is_IA_priority</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_IA_Cooperation</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -918,7 +921,7 @@
     <recordUpdates>
         <name>Set_Completed_Date</name>
         <label>Set Completed Date</label>
-        <locationX>292</locationX>
+        <locationX>622</locationX>
         <locationY>539</locationY>
         <connector>
             <targetReference>Related_to_What_Object</targetReference>
@@ -934,7 +937,7 @@
     <recordUpdates>
         <name>Set_Completed_Date_to_Null</name>
         <label>Set Completed Date to Null</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>539</locationY>
         <connector>
             <targetReference>Related_to_What_Object</targetReference>
@@ -950,11 +953,14 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>424</locationX>
-        <locationY>2663</locationY>
+        <locationX>622</locationX>
+        <locationY>2903</locationY>
         <connector>
             <targetReference>Trigger_type</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_IA_Priority</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -974,7 +980,7 @@
     <recordUpdates>
         <name>Update_Account_Value_for_CCM</name>
         <label>Update Account Value for CCM</label>
-        <locationX>292</locationX>
+        <locationX>622</locationX>
         <locationY>947</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
@@ -990,7 +996,7 @@
     <recordUpdates>
         <name>Update_Account_Value_for_CO</name>
         <label>Update Account Value for CO</label>
-        <locationX>556</locationX>
+        <locationX>886</locationX>
         <locationY>947</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
@@ -1011,6 +1017,9 @@
         <connector>
             <targetReference>Is_IA_priority</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Create_Application_Log_IA_Case</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>IACase__c</field>
             <value>
@@ -1046,7 +1055,7 @@
     <recordUpdates>
         <name>Update_RelatedToAccount</name>
         <label>Update RelatedToAccount</label>
-        <locationX>424</locationX>
+        <locationX>754</locationX>
         <locationY>1355</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>
@@ -1060,7 +1069,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>705</locationX>
+        <locationX>1134</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>What_record_type</targetReference>
@@ -1078,6 +1087,171 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Create_Application_Log_IA_Case</name>
+        <label>Create Application Log IA Case</label>
+        <locationX>314</locationX>
+        <locationY>2279</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow - TAG Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>TAG Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error encountered updating IA Task for IA Case Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Create_Application_Log_IA_Cooperation</name>
+        <label>Create Application Log IA Cooperation</label>
+        <locationX>1018</locationX>
+        <locationY>2279</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow - TAG Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>TAG Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error encountered updating IA Task for IA Cooperation Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Create_Application_Log_IA_Priority</name>
+        <label>Create Application Log IA Priority</label>
+        <locationX>886</locationX>
+        <locationY>3011</locationY>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <elementReference>$Record.WhoId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>Flow -  TAG Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error encountered updating IA Task setting IA Priority</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>Task</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <textTemplates>
         <name>StoreTaskValues</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
