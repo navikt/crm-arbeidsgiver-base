@@ -27,6 +27,10 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     @api warningTextInput; // = 'Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.';
     @api warningCriteriaInput; // = 'ActivityDate < LAST_N_DAYS:1'; // Kriterier for å vise advarsel
 
+    @api flowName = 'TAG_New_Activity';
+    @api recordId;
+    showModal = false;
+
     // State Properties
     error;
     records = [];
@@ -158,7 +162,27 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
 
     handleNewRecord() {
         publishToAmplitude(this.appName, { type: 'HomePage list "' + this.titleText + '" clicked "New" button' });
-        this.navigateToRecordNew(this.objectApiName);
+
+        this.showModal = true;
+
+        requestAnimationFrame(() => {
+            const flowCmp = this.template.querySelector('lightning-flow');
+            if (flowCmp) {
+                let inputVars = [];
+                flowCmp.startFlow(this.flowName, inputVars);
+            }
+        });
+    }
+
+    handleFlowStatusChange(event) {
+        const status = event.detail.status;
+        if (status === 'FINISHED' || status === 'FINISHED_SCREEN' || status === 'ERROR') {
+            this.showModal = false;
+        }
+    }
+
+    closeModal() {
+        this.showModal = false;
     }
 
     // =========================
@@ -172,16 +196,6 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
                 recordId: recordId,
                 objectApiName: objectApiName,
                 actionName: 'edit'
-            }
-        });
-    }
-
-    navigateToRecordNew(objectApiName) {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: objectApiName,
-                actionName: 'new'
             }
         });
     }

@@ -108,7 +108,7 @@
         </fields>
         <fields>
             <name>SelectAccountToContinue</name>
-            <fieldText>&lt;p&gt;Select the account where the activity should be registered to continue.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Velg kontoen der aktiviteten skal registreres for å fortsette.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -122,7 +122,7 @@
             </visibilityRule>
         </fields>
         <showFooter>false</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
     </screens>
     <start>
         <locationX>50</locationX>
