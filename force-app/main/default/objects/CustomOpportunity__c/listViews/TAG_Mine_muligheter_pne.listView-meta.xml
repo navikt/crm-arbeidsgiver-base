@@ -9,6 +9,7 @@
     <columns>InclusionStage__c</columns>
     <columns>CREATED_DATE</columns>
     <columns>OwnerFullName__c</columns>
+    <columns>TAG_NavUnit__c</columns>
     <filterScope>Mine</filterScope>
     <filters>
         <field>InclusionStage__c</field>
