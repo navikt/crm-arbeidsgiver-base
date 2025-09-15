@@ -14,7 +14,7 @@
         slot="actions"
         variant="border"
         alternative-text={altTextNewRecordButton}
-        title="Opprett ny mulighet"
+        title="Opprett ny oppgave"
         onclick={handleNewRecord}
         icon-name="utility:add"
         size="small" 
@@ -28,6 +28,28 @@
                 label="Se alle"
             ></lightning-formatted-url>
         </div>
+        <!-- Modal with embedded flow -->
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container" style="width: 900px; max-width: 95%;">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close" title="Avbryt og lukk" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="lukk" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Lukk</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium">Ny aktivitet</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-flow
+                            onstatuschange={handleFlowStatusChange}>
+                        </lightning-flow>
+                    </div>
+                </div>
+            </section>
+
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
         <!-- Body -->
         <template lwc:if={records}>
             <ul>
