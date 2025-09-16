@@ -23,7 +23,13 @@
         <inputParameters>
             <name>senderType</name>
             <value>
-                <stringValue>DefaultWorkflowUser</stringValue>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>do-not-reply@nav.no</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -266,7 +272,7 @@
         <schedule>
             <frequency>Weekly</frequency>
             <startDate>2025-09-16</startDate>
-            <startTime>08:00:00.000Z</startTime>
+            <startTime>12:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
