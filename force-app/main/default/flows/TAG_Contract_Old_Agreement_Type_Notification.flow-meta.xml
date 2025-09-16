@@ -23,7 +23,13 @@
         <inputParameters>
             <name>senderType</name>
             <value>
-                <stringValue>DefaultWorkflowUser</stringValue>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>do-not-reply@nav.no</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
