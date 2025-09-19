@@ -10,10 +10,9 @@ import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import { publishToAmplitude } from 'c/amplitude';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
-    
     hoverTimer;
     hideTimer;
-    
+
     @api recordId;
     @api objectApiName;
     @api listTitle; // Title of the list.
@@ -43,6 +42,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @track showPopover = false; // Flag to conditionally display popover
     @track popoverPosition = { top: 0, left: 0 };
     @track teamMemberRoleMapping;
+    @track showFlowModal = false;
+
+    flowApiName = 'TAG_Create_New_Contact_Screen';
 
     connectedCallback() {
         this.wireFields = [this.objectApiName + '.Id'];
@@ -54,7 +56,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         if (!this.displayedFields) return [];
         const fields = this.displayedFields.replace(/\s/g, '').split(',');
         const related = new Set();
-        fields.forEach(field => {
+        fields.forEach((field) => {
             if (field.includes('.')) {
                 let relationship = field.split('.')[0];
                 related.add(relationship);
@@ -62,7 +64,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         });
         return Array.from(related);
     }
-    
+
     @wire(getObjectInfos, { objectApiNames: '$relatedObjectNames' })
     wiredRelatedObjectInfos({ data, error }) {
         if (data) {
@@ -87,9 +89,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         }
     }
 
-    @wire(getPicklistValues, { 
-        recordTypeId: "012000000000000AAA", 
-        fieldApiName: TEAM_MEMBER_ROLE_FIELD 
+    @wire(getPicklistValues, {
+        recordTypeId: '012000000000000AAA',
+        fieldApiName: TEAM_MEMBER_ROLE_FIELD
     })
     wiredTeamMemberRolePicklist({ data, error }) {
         if (data) {
@@ -125,8 +127,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     toggleAccordion() {
         this.isExpanded = !this.isExpanded;
         if (this.isExpanded) {
-            publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" opened'});
-        } else {
+            publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" opened' });
         }
     }
 
@@ -138,7 +139,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handleRowClick(event) {
         const recordId = event.currentTarget.dataset.recordId;
         this.navigateToRecord(recordId);
-        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked on record'});
+        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked on record' });
     }
 
     navigateToRecord(recordId) {
@@ -155,21 +156,42 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handleNewRecord(event) {
         // Prevent the header's onclick from firing
         event.stopPropagation();
-        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked "New" button'});
+        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked "New" button' });
 
-        const defaultValues = encodeDefaultFieldValues({
-            [this.relationField]: this.recordId
-        });
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: this.relatedObjectApiName,
-                actionName: 'new'
-            },
-            state: {
-                defaultFieldValues: defaultValues
+        if (this.relatedObjectApiName === 'Contact') {
+            this.showFlowModal = true;
+            requestAnimationFrame(() => {
+                const flowCmp = this.template.querySelector('lightning-flow');
+                if (flowCmp) {
+                    flowCmp.startFlow(this.flowApiName, [{ name: 'recordId', type: 'String', value: this.recordId }]);
+                }
+            });
+        } else {
+            const defaultValues = encodeDefaultFieldValues({
+                [this.relationField]: this.recordId
+            });
+            this[NavigationMixin.Navigate]({
+                type: 'standard__objectPage',
+                attributes: {
+                    objectApiName: this.relatedObjectApiName,
+                    actionName: 'new'
+                },
+                state: {
+                    defaultFieldValues: defaultValues
+                }
+            });
         }
-        });
+    }
+
+    handleCloseFlowModal() {
+        this.showFlowModal = false;
+    }
+
+    handleFlowStatusChange(event) {
+        if (event.detail.status === 'FINISHED' || event.detail.status === 'FINISHED_SCREEN') {
+            this.showFlowModal = false;
+            this.getList();
+        }
     }
 
     // Compute records to display based on whether the list is expanded or collapsed
@@ -202,17 +224,17 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                     filterValue = match[3].trim().toLowerCase();
                 }
             }
-            
+
             this.relatedRecords.forEach((dataRecord) => {
                 let isInactive = false;
                 if (filterField) {
                     let fieldVal = this.resolve(filterField, dataRecord);
                     let recordValue = fieldVal !== null ? String(fieldVal).toLowerCase() : null;
-    
-                    if (filterOperator === "=") {
-                        isInactive = (recordValue === filterValue);
-                    } else if (filterOperator === "!=") {
-                        isInactive = (recordValue !== filterValue && recordValue !== null);
+
+                    if (filterOperator === '=') {
+                        isInactive = recordValue === filterValue;
+                    } else if (filterOperator === '!=') {
+                        isInactive = recordValue !== filterValue && recordValue !== null;
                     }
                 }
 
@@ -220,7 +242,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 this.displayedFieldList.forEach((key, index) => {
                     if (key !== 'Id') {
                         let rawValue = this.resolve(key, dataRecord);
-                        if (key === 'TeamMemberRole' && this.teamMemberRoleMapping && this.teamMemberRoleMapping[rawValue]) {
+                        if (
+                            key === 'TeamMemberRole' &&
+                            this.teamMemberRoleMapping &&
+                            this.teamMemberRoleMapping[rawValue]
+                        ) {
                             rawValue = this.teamMemberRoleMapping[rawValue];
                         }
                         if (index === 0 && isInactive && this.inactivePrefix) {
@@ -229,15 +255,15 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                         recordFields.push({
                             label: key,
                             value: this.convertBoolean(rawValue)
-                        });                       
+                        });
                     }
                 });
-                
+
                 let rowClass = 'slds-hint-parent';
                 if (isInactive) {
                     rowClass += ' inactiveRow';
                 }
-                
+
                 returnRecords.push({
                     recordFields: recordFields,
                     Id: dataRecord.Id,
@@ -263,7 +289,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     get headerBackground() {
-        return this.headerColor 
+        return this.headerColor
             ? `background-color: ${this.headerColor}; border: 1px solid ${this.headerColor}; cursor: pointer;`
             : 'cursor: pointer;';
     }
@@ -278,32 +304,30 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     // Prepare column labels array for rendering the header row
     get fieldLabels() {
-        let labels = this.columnLabels 
-            ? this.columnLabels.replace(/\s/g, '').split(',') 
-            : [];
+        let labels = this.columnLabels ? this.columnLabels.replace(/\s/g, '').split(',') : [];
         return labels.map((label, index, arr) => {
-             // Base style for every header cell.
-             let style = 'vertical-align: middle; text-align: left; padding: 4px 8px; max-width: 33%';
-             // Padding for the first cell.
-             if (index === 0) {
-                 style += 'padding-left: 1rem;';
-             }
-             if (index === arr.length - 1) {
-                 style += 'padding-right: 0px;';
-             }
-             return { 
-                 value: label, 
-                 headerStyle: style
-             };
+            // Base style for every header cell.
+            let style = 'vertical-align: middle; text-align: left; padding: 4px 8px; max-width: 33%';
+            // Padding for the first cell.
+            if (index === 0) {
+                style += 'padding-left: 1rem;';
+            }
+            if (index === arr.length - 1) {
+                style += 'padding-right: 0px;';
+            }
+            return {
+                value: label,
+                headerStyle: style
+            };
         });
-    }    
+    }
 
     get apexFieldList() {
         // Get fields from displayedFields and popoverFields
         let displayed = this.displayedFields ? this.displayedFields.replace(/\s/g, '').split(',') : [];
         let popover = this.popoverFields ? this.popoverFields.replace(/\s/g, '').split(',') : [];
         let combined = Array.from(new Set([...displayed, ...popover]));
-        
+
         // extract the field name and add it to the list if not already present.
         if (this.inactiveRecordFilter) {
             let regex = /^([^!<>=]+)\s*(=|!=)\s*(.*)$/;
@@ -328,13 +352,13 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     get showRecords() {
         return this.relatedRecords && this.relatedRecords.length > 0 && this.isExpanded;
-    }    
-    
+    }
+
     resolve(path, obj) {
         if (typeof path !== 'string') {
             throw new Error('Path must be a string');
         }
-    
+
         return path.split('.').reduce(function (prev, curr) {
             return prev ? prev[curr] : null;
         }, obj || {});
@@ -348,7 +372,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             left: rect.left + 2
         };
         this.hoverTimer = window.setTimeout(() => {
-            this.popoverRecordData = this.relatedRecords.find(rec => rec.Id === recordId);
+            this.popoverRecordData = this.relatedRecords.find((rec) => rec.Id === recordId);
             this.showPopover = true;
         }, 1000);
     }
@@ -375,13 +399,13 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         if (!this.popoverRecordData || !this.objectInfo.data) {
             return [];
         }
-    
-        return this.combinedPopoverFields.map(fieldApiName => {
+
+        return this.combinedPopoverFields.map((fieldApiName) => {
             let fieldLabel;
-            
+
             if (fieldApiName.includes('.')) {
                 let [relationship, childField] = fieldApiName.split('.');
-                
+
                 if (this.relatedObjectMetadata[relationship] && this.relatedObjectMetadata[relationship][childField]) {
                     fieldLabel = this.relatedObjectMetadata[relationship][childField].label;
                 } else {
@@ -392,17 +416,21 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             }
 
             let rawValue = this.resolve(fieldApiName, this.popoverRecordData);
-            if (fieldApiName === 'TeamMemberRole' && this.teamMemberRoleMapping && this.teamMemberRoleMapping[rawValue]) {
+            if (
+                fieldApiName === 'TeamMemberRole' &&
+                this.teamMemberRoleMapping &&
+                this.teamMemberRoleMapping[rawValue]
+            ) {
                 rawValue = this.teamMemberRoleMapping[rawValue];
             }
-        
+
             return {
                 apiName: fieldLabel,
                 value: this.convertBoolean(rawValue)
-            };          
+            };
         });
     }
-    
+
     // Getter for popover style
     get popoverStyle() {
         if (this.popoverPosition) {
@@ -422,7 +450,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     get popoverTitle() {
-        if (this.popoverRecordData && this.displayedFieldList && this.displayedFieldList.length > 0 && this.objectInfo.data) {
+        if (
+            this.popoverRecordData &&
+            this.displayedFieldList &&
+            this.displayedFieldList.length > 0 &&
+            this.objectInfo.data
+        ) {
             // Get the first field's API name from the displayedFields array
             let firstFieldApiName = this.displayedFieldList[0];
             let fieldValue = this.resolve(firstFieldApiName, this.popoverRecordData);
@@ -432,16 +465,14 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     get iconToUse() {
-        return (this.iconName && this.iconName.trim() !== '') 
-               ? this.iconName 
-               : this.iconNamePopover;
-    }    
+        return this.iconName && this.iconName.trim() !== '' ? this.iconName : this.iconNamePopover;
+    }
 
     convertBoolean(val) {
-        if (val === true || String(val).toLowerCase() === "true") {
-            return "Ja";
-        } else if (val === false || String(val).toLowerCase() === "false") {
-            return "Nei";
+        if (val === true || String(val).toLowerCase() === 'true') {
+            return 'Ja';
+        } else if (val === false || String(val).toLowerCase() === 'false') {
+            return 'Nei';
         }
         return val;
     }
