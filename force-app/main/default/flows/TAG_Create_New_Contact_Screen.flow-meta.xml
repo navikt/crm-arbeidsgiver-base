@@ -78,12 +78,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Source__c</field>
-            <value>
-                <elementReference>SourcePicklist</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_Informed__c</field>
             <value>
                 <elementReference>Kontakt_informed</elementReference>
@@ -128,7 +122,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Account</stringValue>
+                    <stringValue>Konto</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -164,6 +158,10 @@
             <helpText>&lt;p&gt;Personen er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om h*n og kan knytte aktiviteter til h*n. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression>{!Kontakt_informed}</formulaExpression>
+            </validationRule>
         </fields>
         <fields>
             <name>Fornavn</name>
@@ -283,26 +281,6 @@
             <fieldText>Tema</fieldText>
             <fieldType>MultiSelectPicklist</fieldType>
             <helpText>&lt;p&gt;Velg hvilket tema kontakten gjelder. &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Hold nede Shift for å markere flere temaer.&lt;/span&gt;&lt;/p&gt;</helpText>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>ToggleMoreFields.value</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>SourcePicklist</name>
-            <choiceReferences>PicklistValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Kilde</fieldText>
-            <fieldType>MultiSelectPicklist</fieldType>
-            <helpText>&lt;p&gt;Velg hvilken kilde kontakten er hentet fra. Hold nede Shift for å markere flere kilder.&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <visibilityRule>
