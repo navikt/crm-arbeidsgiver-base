@@ -212,7 +212,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                     // Return the record as-is if fields are empty or undefined
                     return { ...record };
                 });
-                console.log('Related records retrieved:', JSON.stringify(newRecordsList));
                 return newRecordsList;
             } catch (error) {
                 console.error('Error processing recordListMobile:', error);
