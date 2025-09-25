@@ -27,7 +27,38 @@
         
         <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
         <template if:true={showRecords}>
-            <div style="overflow:auto; max-height: {maxHeight}em;">
+            <!-- MOBILE VIEW -->
+            <template if:true={isMobile}>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={recordListMobile} for:item="record">
+                        <li class="slds-item" key={record.id}>
+                            <lightning-tile label={record.title} href={record.link}>
+                                <dl class="slds-list_horizontal slds-wrap">
+                                    <template for:each={record.recordFields} for:item="field">
+                                        <dt
+                                            key={field.label}
+                                            class="slds-item_label slds-text-color_weak slds-truncate"
+                                            title={field.customFieldLabel}
+                                        >
+                                            {field.customFieldLabel}:
+                                        </dt>
+                                        <dd
+                                            key={field.label}
+                                            class="slds-item_detail slds-truncate"
+                                            title={field.value}
+                                        >
+                                            {field.value}
+                                        </dd>
+                                    </template>
+                                </dl>
+                            </lightning-tile>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <!-- DESKTOP VIEW -->
+            <template if:false={isMobile}>
+                <div style="overflow:auto; max-height: {maxHeight}em;">
                     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="slds-line-height_reset">
@@ -65,7 +96,8 @@
                             </template>
                         </tbody>
                     </table>
-            </div>          
+                </div> 
+            </template>              
         </template>
 
         <template if:true={showPopover}>

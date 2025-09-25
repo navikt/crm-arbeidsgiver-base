@@ -1,19 +1,19 @@
 <template>
     <div class="slds-card slds-theme_default">
-        <div class="slds-card__body slds-card__body_inner">
-            <div class={sectionClass}>
-                <h3 class="slds-section__title slds-truncate slds-p-around_xx-small slds-theme_shade">
-                    <button class="slds-button slds-section__title-action" onclick={handleClick} label={label}>
+        <div class={cardStyle}>
+            <div class={sectionStyle} >
+                <h3 class={h3Style}>
+                    <button type="button" aria-controls={sectionId} aria-expanded={open} class={buttonStyle} data-buttonid={sectionId} onclick={handleClick}>
                         <lightning-icon
                             icon-name="utility:switch"
                             alternative-text="button icon"
                             size="x-small"
-                            class="slds-section__title-action-icon slds-button__icon_left"
+                            class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
                         ></lightning-icon>
                         <span class="slds-truncate" title={label}>{label}</span>
                     </button>
                 </h3>
-                <div class="slds-section__content">
+                <div class="slds-section__content" hidden={ariaHidden} data-id={sectionId}>
                     <template if:true={fields}>
                         <lightning-record-form
                             object-api-name={objectApiName}

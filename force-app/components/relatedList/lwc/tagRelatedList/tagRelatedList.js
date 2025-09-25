@@ -8,6 +8,7 @@ import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import TEAM_MEMBER_ROLE_FIELD from '@salesforce/schema/AccountTeamMember.TeamMemberRole';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import { publishToAmplitude } from 'c/amplitude';
+import FORM_FACTOR from '@salesforce/client/formFactor';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
     
@@ -179,6 +180,45 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             return records.slice(0, this.collapsedCount);
         }
         return records;
+    }
+
+    get recordListMobile() {
+        let customFieldLabels = this.columnLabels
+            ? this.columnLabels.replace(/\s/g, '').split(',') 
+            : [];
+        if (this.listRecords && this.listRecords.length > 0) {
+            try {
+                // Create a new list by mapping over the original records
+                const newRecordsList = this.listRecords.map((record) => {
+                    // Ensure fields array exists and has at least one element
+                    if (record.recordFields && record.recordFields.length > 0) {
+                        const fieldsCopy = [...record.recordFields];
+                        // Combine customFieldLabels with fieldsCopy by adding customFieldLabel to each field
+                        fieldsCopy.forEach((field, index) => {
+                            if (customFieldLabels[index]) {
+                                field.customFieldLabel = customFieldLabels[index];
+                            }
+                        });
+
+                            const firstField = fieldsCopy.shift(); // Remove the first field
+
+                        return {
+                            ...record,
+                            title: firstField.value,
+                            recordFields: fieldsCopy,
+                            link: `/lightning/r/${record.Id}/view`
+                        };
+                    }
+                    // Return the record as-is if fields are empty or undefined
+                    return { ...record };
+                });
+                return newRecordsList;
+            } catch (error) {
+                console.error('Error processing recordListMobile:', error);
+                return [];
+            }
+        }
+        return [];
     }
 
     get displayedFieldList() {
@@ -444,5 +484,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             return "Nei";
         }
         return val;
+    }
+     get isMobile() {
+        return FORM_FACTOR === 'Small';
+    }
+    get isDesktop() {
+        return FORM_FACTOR === 'Large';
     }
 }
