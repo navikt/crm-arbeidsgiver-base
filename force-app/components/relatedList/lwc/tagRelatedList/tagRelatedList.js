@@ -186,10 +186,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         let customFieldLabels = this.columnLabels
             ? this.columnLabels.replace(/\s/g, '').split(',') 
             : [];
-        if (this.listRecords && this.listRecords.length > 0) {
+        const records = this.listRecords;
+        if (records && records.length > 0) {
             try {
                 // Create a new list by mapping over the original records
-                const newRecordsList = this.listRecords.map((record) => {
+                const newRecordsList = records.map((record) => {
                     // Ensure fields array exists and has at least one element
                     if (record.recordFields && record.recordFields.length > 0) {
                         const fieldsCopy = [...record.recordFields];
