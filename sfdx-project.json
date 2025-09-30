@@ -8,7 +8,7 @@
             "dependencies": [
                 {
                     "package": "crm-platform-base",
-                    "versionNumber": "0.283.0.LATEST"
+                    "versionNumber": "0.287.0.LATEST"
                 },
                 {
                     "package": "crm-platform-access-control",
@@ -24,7 +24,7 @@
                 },
                 {
                     "package": "crm-platform-reporting",
-                    "versionNumber": "0.42.0.LATEST"
+                    "versionNumber": "0.44.0.LATEST"
                 },
                 {
                     "package": "crm-shared-timeline",
@@ -39,12 +39,28 @@
                     "versionNumber": "0.36.0.LATEST"
                 },
                 {
+                    "package": "platform-data-model",
+                    "versionNumber": "0.1.2.LATEST"
+                },
+                {
+                    "package": "custom-metadata-dao",
+                    "versionNumber": "0.1.2.LATEST"
+                },
+                {
+                    "package": "custom-permission-helper",
+                    "versionNumber": "0.1.2.LATEST"
+                },
+                {
+                    "package": "feature-toggle",
+                    "versionNumber": "0.1.3.LATEST"
+                },
+                {
                     "package": "crm-platform-integration",
-                    "versionNumber": "0.159.0.LATEST"
+                    "versionNumber": "0.161.0.LATEST"
                 },
                 {
                     "package": "crm-journal-utilities",
-                    "versionNumber": "0.50.0.LATEST"
+                    "versionNumber": "0.51.0.LATEST"
                 },
                 {
                     "package": "crm-platform-oppgave",
@@ -63,11 +79,21 @@
         "crm-shared-timeline": "0Ho2o000000fxXBCAY",
         "crm-shared-base": "0Ho2o000000fxXLCAY",
         "crm-arbeidsgiver-base": "0Ho2o0000008OQtCAM",
+        "platform-data-model": "0HoKB00000000010AA",
+        "custom-metadata-dao": "0HoKB000000000B0AQ",
+        "custom-permission-helper": "0HoKB000000000f0AA",
+        "feature-toggle": "0HoKB000000000V0AQ",
         "crm-platform-integration": "0Ho2o0000008ORrCAM",
         "crm-shared-flowComponents": "0Ho2o000000fxYJCAY",
         "crm-journal-utilities": "0Ho2o000000fxXkCAI",
         "crm-thread-view": "0Ho7U000000000zSAA",
         "crm-platform-oppgave": "0Ho2o000000fxXzCAI",
         "crm-henvendelse-base": "0Ho7U000000000kSAA"
+    },
+    "packageKeyConfig": {
+        "platform-data-model": false,
+        "custom-metadata-dao": false,
+        "custom-permission-helper": false,
+        "feature-toggle": false
     }
 }

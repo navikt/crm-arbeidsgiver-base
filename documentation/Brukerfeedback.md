@@ -47,17 +47,25 @@ Feedback blir lagret i Salesforce-objektet "In App Feedback" og kan sees på fø
 1. Salesforce Reports: Lag rapporter basert på In App Feedback-objektet
 2. Salesforce Dashboard: Visualiser feedback-data i dashboards
 
-Tilgangsstyring:
+## Tilgangsstyring:
 
--   Vanlige brukere: Kan kun gi feedback (gjennom "Arbeidsgiver - Gi Feedback" permission set)
--   Administratorer: Kan se og administrere all feedback-data (gjennom "Arbeidsgiver - Feedback Admin" permission set)
+-   Vanlige brukere: For å gi feedback må bruker ha tilgang til TAG_FeedbackHandler Apex class og Arbeidsgiver_Se_sp_rsm_l_fra_In_App_Feedback Custom permission
+-   Administratorer: For å se feedback må man ha tilgang til InAppFeedback__c objekt og felt.
 
 ## Teknisk arkitektur (forenklet)
 
 Løsningen består av:
-
--   En Lightning Web Component som viser feedback-knappene
+-   Et Lightning Web Component som viser feedback-knappene
+-   En custom permission som styrer om Lightning Web Component skal vises
 -   En Apex-klasse som håndterer stemmegivning
 -   Platform Events for asynkron databehandling
 -   En Flow som lager feedback-records
 -   Et custom object for lagring av feedback-data
+
+## Testing: Resette feedback
+-   Åpne DevTools og finn Local Storage (Google "how to view localStorage in [browser name]" for å finne hvordan).
+-   Under Local Storage, velg domene for Salesforce-miljøet.
+-   Finn nøkkelen "LSKey[c]requestUserFeedback" i listen.
+-   Slett: Høyreklikk på raden og velg Delete.
+
+ 
