@@ -89,5 +89,11 @@
         "crm-thread-view": "0Ho7U000000000zSAA",
         "crm-platform-oppgave": "0Ho2o000000fxXzCAI",
         "crm-henvendelse-base": "0Ho7U000000000kSAA"
+    },
+    "packageKeyConfig": {
+        "platform-data-model": false,
+        "custom-metadata-dao": false,
+        "custom-permission-helper": false,
+        "feature-toggle": false
     }
 }
