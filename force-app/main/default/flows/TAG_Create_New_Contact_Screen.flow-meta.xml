@@ -211,7 +211,7 @@
                     <defaultValue>
                         <booleanValue>false</booleanValue>
                     </defaultValue>
-                    <fieldText>Kontakt informert</fieldText>
+                    <fieldText>Jeg bekrefter at kontakten er informert</fieldText>
                     <fieldType>InputField</fieldType>
                     <helpText>&lt;p&gt;Personen er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/p&gt;</helpText>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -244,6 +244,11 @@
             <regionContainerType>SectionWithoutHeader</regionContainerType>
         </fields>
         <fields>
+            <name>infoText</name>
+            <fieldText>&lt;p&gt;Når du legger inn en kontaktperson, må du fylle ut Fornavn, Etternavn og E-postadresse. Da kan vi lettere kjenne igjen personen, følge opp på en god måte og ha oppdatert informasjon i systemet.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Create_contact_screen_Section2</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
@@ -255,7 +260,7 @@
                     <fieldText>Fornavn</fieldText>
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>EmailField</name>
