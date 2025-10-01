@@ -103,6 +103,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_BypassDuplicate__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_Informed__c</field>
             <value>
                 <elementReference>Kontakt_informed</elementReference>
@@ -144,7 +150,7 @@
         <object>Contact</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <runInMode>SystemModeWithSharing</runInMode>
+    <runInMode>DefaultMode</runInMode>
     <screens>
         <name>Create_contact_screen</name>
         <label>Create contact screen</label>
