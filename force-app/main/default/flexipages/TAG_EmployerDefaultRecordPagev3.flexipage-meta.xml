@@ -92,6 +92,16 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>cssInput</name>
+                    <value>.slds-page-header { padding-block: var(--slds-g-spacing-var-block-4) 0 !important; } .slds-page-header__detail-row { margin-block: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; }</value>
+                </componentInstanceProperties>
+                <componentName>customPageStyle</componentName>
+                <identifier>c_customPageStyle</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
