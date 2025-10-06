@@ -169,6 +169,12 @@
     </decisions>
     <environments>Default</environments>
     <formulas>
+        <description>Logging of flow error in application log could fail if the flow fault message exceeds number of characters allowed. Reduce size of flow fault message to avoid errors.</description>
+        <name>Flowfaultmessage</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Flow.FaultMessage}, 1000)</expression>
+    </formulas>
+    <formulas>
         <name>timestampNow</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
@@ -292,7 +298,7 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
+                <elementReference>Flowfaultmessage</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -329,7 +335,7 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
+                <elementReference>Flowfaultmessage</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
