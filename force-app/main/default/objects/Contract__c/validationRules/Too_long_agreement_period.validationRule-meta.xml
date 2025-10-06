@@ -2,7 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Too_long_agreement_period</fullName>
     <active>true</active>
-    <errorConditionFormula>RecordType.DeveloperName = &apos;EmployerAgreement&apos; &amp;&amp; ( 
+    <description>Regel som begrenser varighet på avtalen.</description>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;EmployerAgreement&apos; &amp;&amp;
+OR( ISCHANGED(TAG_EndDate__c), ISCHANGED(TAG_StartDate__c), ISCHANGED( TAG_Category__c ) ) &amp;&amp;
+ ( 
 /* Om start dato er i fremtiden så er maks sluttdato start dato+12mnd */
  ( TAG_StartDate__c &gt; TODAY() &amp;&amp; TAG_EndDate__c &gt; ADDMONTHS(TAG_StartDate__c,12) )  
  ||
