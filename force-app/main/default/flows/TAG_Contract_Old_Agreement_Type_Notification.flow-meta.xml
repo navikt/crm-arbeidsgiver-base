@@ -99,6 +99,35 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Check_environment</name>
+        <label>Check environment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_recordtype</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_sandbox</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Api.Partner_Server_URL_340</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>sandbox</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Api.Partner_Server_URL_340</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>scratch</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Is sandbox</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_if_contracts_was_found</name>
         <label>Check if contracts was found</label>
         <locationX>0</locationX>
@@ -348,7 +377,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_recordtype</targetReference>
+            <targetReference>Check_environment</targetReference>
         </connector>
         <schedule>
             <frequency>Weekly</frequency>
