@@ -99,6 +99,35 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Check_environment</name>
+        <label>Check environment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_contracts_marked_for_update</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_sandbox</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Api.Partner_Server_URL_340</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>sandbox</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Api.Partner_Server_URL_340</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>scratch</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Is sandbox</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_if_contracts_was_found</name>
         <label>Check if contracts was found</label>
         <locationX>0</locationX>
@@ -168,6 +197,12 @@
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <description>Logging of flow error in application log could fail if the flow fault message exceeds number of characters allowed. Reduce size of flow fault message to avoid errors.</description>
+        <name>Flowfaultmessage</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Flow.FaultMessage}, 1000)</expression>
+    </formulas>
     <formulas>
         <name>timestampNow</name>
         <dataType>DateTime</dataType>
@@ -267,7 +302,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_contracts_marked_for_update</targetReference>
+            <targetReference>Check_environment</targetReference>
         </connector>
         <schedule>
             <frequency>Weekly</frequency>
@@ -292,7 +327,7 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
+                <elementReference>Flowfaultmessage</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -329,7 +364,7 @@
         <inputAssignments>
             <name>Error_Payload</name>
             <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
+                <elementReference>Flowfaultmessage</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
