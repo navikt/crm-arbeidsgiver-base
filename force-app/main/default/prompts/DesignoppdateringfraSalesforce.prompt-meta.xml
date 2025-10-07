@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Designoppdatering fra Salesforce</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;Fra mandag 6.okt ser løsningen vår bittelitt annerledes ut:&amp;nbsp;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Avrundende hjørner&lt;/li&gt;&lt;li&gt;Flere farger&lt;/li&gt;&lt;li&gt;Større skrift&lt;/li&gt;&lt;li&gt;Mer luft/tomrom&lt;/li&gt;&lt;li&gt;Økt kontrast&lt;/li&gt;&lt;li&gt;Ting tar nok litt mer plass&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;⚠️ &lt;strong&gt;Merk&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Alt er fortsatt på samme sted &lt;/strong&gt;- Ingenting er flyttet til nye steder.&lt;/p&gt;&lt;p&gt;Du må ikke endre hvordan du jobber - &lt;strong&gt;Ingen funksjonalitet er endret.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Dette er kun &lt;strong&gt;visuelle forskjeller&lt;/strong&gt;, og Salesforce gjør dette for å få et mer moderne uttrykk, fordi brukerne deres har etterspurt dette lenge. Dette er faktisk første gang de endrer på utseende sitt i så stor skala, på mange, mange år!&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Vi håper dere vil like det! 🎉&lt;/p&gt;</body>
+        <customApplication>TAG_NAV_default</customApplication>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <endDate>2025-11-03</endDate>
+        <experience>Lightning</experience>
+        <header>Designoppdatering fra Salesforce</header>
+        <isPublished>false</isPublished>
+        <masterLabel>Designoppdatering fra Salesforce</masterLabel>
+        <publishedDate>2025-10-07</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
+        <startDate>2025-10-13</startDate>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <timesToDisplay>1</timesToDisplay>
+        <title>Hva betyr det for deg?</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>
