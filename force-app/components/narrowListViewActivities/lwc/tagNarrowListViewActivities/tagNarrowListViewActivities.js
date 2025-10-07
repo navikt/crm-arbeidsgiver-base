@@ -6,6 +6,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import { publishToAmplitude } from 'c/amplitude';
+import getIaRecordTypeIds from '@salesforce/apex/TAG_NarrowListViewActivitiesController.getIaRecordTypeIds';
 
 export default class TagNarrowListViewActivities extends NavigationMixin(LightningElement) {
     // =========================
@@ -40,9 +41,26 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     nextPageToken;
     count;
     wiredOpenTasksResult;
+    iaTaskRecordTypeId;
+    iaEventRecordTypeId;
 
     connectedCallback() {
         this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
+        getIaRecordTypeIds()
+            .then((result) => {
+                if (Array.isArray(result)) {
+                    result.forEach((rt) => {
+                        if (rt.developerName === 'IA_task') {
+                            this.iaTaskRecordTypeId = rt.id;
+                        } else if (rt.developerName === 'IA_event') {
+                            this.iaEventRecordTypeId = rt.id;
+                        }
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error('Error loading IA record types', error);
+            });
     }
     // Action Configuration
     @track recordLevelActions = [
@@ -104,6 +122,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
                     title: task.Subject,
                     whatId: task.WhatId,
                     whoId: task.WhoId,
+                    relatedObject: task.What?.Type,
                     titleLink: `/lightning/r/${this.objectApiName}/${task.Id}/view`,
                     detailLine: this.getSObjectFieldValue(task, this.detailFieldInput),
                     showWarning: isOverdue
@@ -242,24 +261,31 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     createFollowUpTask(currentRecord) {
         const defaultValues = {};
 
-        if (currentRecord.whatId) {
-            defaultValues.WhatId = currentRecord.whatId;
-        }
-        if (currentRecord.whoId) {
-            defaultValues.WhoId = currentRecord.whoId;
-        }
         defaultValues.Subject = currentRecord.title;
+        if (currentRecord.whatId) defaultValues.WhatId = currentRecord.whatId;
+        if (currentRecord.whoId) defaultValues.WhoId = currentRecord.whoId;
+        if (currentRecord.relatedObject === 'IACooperation__c' && this.iaTaskRecordTypeId) {
+            defaultValues.TAG_IsIAPriority__c = true;
+            defaultValues.TAG_ActivityType__c = 'Prioritert IA (Fia)';
+            this[NavigationMixin.Navigate]({
+                type: 'standard__objectPage',
+                attributes: { objectApiName: 'Task', actionName: 'new' },
+                state: {
+                    recordTypeId: this.iaTaskRecordTypeId,
+                    defaultFieldValues: encodeDefaultFieldValues(defaultValues)
+                }
+            });
+        }
 
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Task',
-                actionName: 'new'
-            },
-            state: {
-                defaultFieldValues: encodeDefaultFieldValues(defaultValues)
-            }
-        });
+        if (currentRecord.relatedObject !== 'IACooperation__c' && this.iaTaskRecordTypeId) {
+            this[NavigationMixin.Navigate]({
+                type: 'standard__objectPage',
+                attributes: { objectApiName: 'Task', actionName: 'new' },
+                state: {
+                    defaultFieldValues: encodeDefaultFieldValues(defaultValues)
+                }
+            });
+        }
     }
 
     createFollowUpEvent(currentRecord) {
@@ -271,17 +297,34 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         if (currentRecord.whoId) {
             defaultValues.WhoId = currentRecord.whoId;
         }
+        if (currentRecord.relatedObject === 'IACooperation__c' && this.iaEventRecordTypeId) {
+            defaultValues.TAG_IsIAPriority__c = true;
+            defaultValues.TAG_ActivityType__c = 'Prioritert IA (Fia)';
+            this[NavigationMixin.Navigate]({
+                type: 'standard__objectPage',
+                attributes: {
+                    objectApiName: 'Event',
+                    actionName: 'new'
+                },
+                state: {
+                    recordTypeId: this.iaEventRecordTypeId,
+                    defaultFieldValues: encodeDefaultFieldValues(defaultValues)
+                }
+            });
+        }
 
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Event',
-                actionName: 'new'
-            },
-            state: {
-                defaultFieldValues: encodeDefaultFieldValues(defaultValues)
-            }
-        });
+        if (currentRecord.relatedObject !== 'IACooperation__c' && this.iaEventRecordTypeId) {
+            this[NavigationMixin.Navigate]({
+                type: 'standard__objectPage',
+                attributes: {
+                    objectApiName: 'Event',
+                    actionName: 'new'
+                },
+                state: {
+                    defaultFieldValues: encodeDefaultFieldValues(defaultValues)
+                }
+            });
+        }
     }
 
     // =========================
