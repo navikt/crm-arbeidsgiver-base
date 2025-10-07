@@ -17,7 +17,7 @@ public with sharing class TAG_NarrowListViewActivitiesController {
             SELECT count(Id) cnt
             FROM Task
             WHERE OwnerId = :UserInfo.getUserId()
-              AND IsClosed = false
+            AND IsClosed = false
         ];
 
         Integer total = (Integer)agg.get('cnt');
@@ -27,14 +27,17 @@ public with sharing class TAG_NarrowListViewActivitiesController {
                 Id,
                 Subject,
                 Status,
-                WhatId, What.Name,
-                WhoId,  Who.Name,
+                WhatId,
+                What.Name,
+                What.Type,
+                WhoId,
+                Who.Name,
                 ActivityDate, 
                 RelatedToAccount__c,
                 RelatedToAccount__r.Name
             FROM Task
             WHERE OwnerId = :UserInfo.getUserId()
-              AND IsClosed = false
+            AND IsClosed = false
             ORDER BY CreatedDate DESC
             LIMIT :limitSize
         ];
@@ -44,5 +47,28 @@ public with sharing class TAG_NarrowListViewActivitiesController {
         result.records = tasks;
         result.count   = total;
         return result;
+    }
+
+    public class RecordTypeDto {
+        @AuraEnabled public String developerName;
+        @AuraEnabled public String id;
+        public RecordTypeDto(String developerName, String id) {
+            this.developerName = developerName;
+            this.id = id;
+        }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<RecordTypeDto> getIaRecordTypeIds() {
+        List<RecordTypeDto> out = new List<RecordTypeDto>();
+        for (RecordType rt : [
+            SELECT Id, DeveloperName, SObjectType
+            FROM RecordType
+            WHERE SObjectType IN ('Task','Event')
+              AND DeveloperName IN ('IA_task','IA_event')
+        ]) {
+            out.add(new RecordTypeDto(rt.DeveloperName, String.valueOf(rt.Id)));
+        }
+        return out;
     }
 }
