@@ -247,10 +247,6 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>IACase__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>CRM_YearQuarter__c</fields>
         <fields>CRM_LostDaysWork__c</fields>
         <fields>CRM_Percent__c</fields>
@@ -330,7 +326,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hQI000007QMzQ</masterLabel>
+        <masterLabel>00hRR000009pVbB</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
