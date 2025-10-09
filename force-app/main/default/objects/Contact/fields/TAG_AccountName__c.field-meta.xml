@@ -2,7 +2,11 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_AccountName__c</fullName>
     <externalId>false</externalId>
-    <formula>Account.Name</formula>
+    <formula>IF(
+    NOT(ISBLANK(Account.CRM_AccountType__c)),
+    Account.Name &amp; &quot; (&quot; &amp; Account.CRM_AccountType__c &amp; &quot;)&quot;,
+    Account.Name
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Account Name Formula</label>
     <required>false</required>

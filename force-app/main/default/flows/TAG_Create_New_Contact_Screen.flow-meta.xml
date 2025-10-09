@@ -269,6 +269,33 @@
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
+                    <name>Etternavn</name>
+                    <dataType>String</dataType>
+                    <fieldText>Etternavn</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>Rolle_i_bedriften</name>
+                    <dataType>String</dataType>
+                    <fieldText>Rolle i bedriften</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Create_contact_screen_Section2_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
                     <name>EmailField</name>
                     <extensionName>flowruntime:email</extensionName>
                     <fieldType>ComponentInstance</fieldType>
@@ -293,33 +320,10 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <fields>
-                    <name>Rolle_i_bedriften</name>
-                    <dataType>String</dataType>
-                    <fieldText>Rolle i bedriften</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>6</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>Create_contact_screen_Section2_Column2</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>Etternavn</name>
-                    <dataType>String</dataType>
-                    <fieldText>Etternavn</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;Oppgi en gyldig e-postadresse, som navn@post.no&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression>REGEX({!EmailField.value}, &quot;^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z]{2,4}$&quot;)</formulaExpression>
+                    </validationRule>
                 </fields>
                 <fields>
                     <name>PhoneField</name>
@@ -331,9 +335,20 @@
                             <stringValue>Telefon</stringValue>
                         </value>
                     </inputParameters>
+                    <inputParameters>
+                        <name>placeholder</name>
+                        <value>
+                            <stringValue>Eks: 45123123 eller +4712312312</stringValue>
+                        </value>
+                    </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;Vennligst bruk riktig format for telefonnummer, for eksempel &quot;45123123&quot; eller &quot;+4712312312&quot;&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression>OR(ISBLANK({!PhoneField.value}),
+REGEX({!PhoneField.value}, &quot;\\+*?[0-9]{5,12}&quot;))</formulaExpression>
+                    </validationRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -380,7 +395,7 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>HelpText</name>
-                    <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Velg hvilke tema det er aktuelt å kontakte denne personen for.&lt;/span&gt;&lt;span style=&quot;font-size: 12px; background-color: rgb(255, 255, 255);&quot;&gt; Hold nede Shift for å markere flere temaer.&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Velg hvilke tema det er aktuelt å kontakte denne personen for.&lt;/span&gt;&lt;span style=&quot;font-size: 12px; background-color: rgb(255, 255, 255);&quot;&gt; Hold nede Ctrl for å markere flere temaer.&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -490,7 +505,7 @@
             <inputParameters>
                 <name>columns</name>
                 <value>
-                    <stringValue>[{&quot;apiName&quot;:&quot;TAG_AccountName__c&quot;,&quot;guid&quot;:&quot;column-9ff7&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Konto&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Account Name Formula&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;FirstName&quot;,&quot;guid&quot;:&quot;column-c4a1&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Fornavn&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;First Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;LastName&quot;,&quot;guid&quot;:&quot;column-da0d&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Etternavn&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Last Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Email&quot;,&quot;guid&quot;:&quot;column-9c22&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;E-post&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;Email&quot;,&quot;type&quot;:&quot;email&quot;},{&quot;apiName&quot;:&quot;MobilePhone&quot;,&quot;guid&quot;:&quot;column-891c&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Telefon&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;Mobile Phone&quot;,&quot;type&quot;:&quot;phone&quot;},{&quot;apiName&quot;:&quot;Title&quot;,&quot;guid&quot;:&quot;column-ec9b&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Rolle&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:5,&quot;label&quot;:&quot;Title&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                    <stringValue>[{&quot;apiName&quot;:&quot;TAG_AccountName__c&quot;,&quot;guid&quot;:&quot;column-9ff7&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Konto&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Account Name Formula&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;FirstName&quot;,&quot;guid&quot;:&quot;column-c4a1&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Fornavn&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;First Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;LastName&quot;,&quot;guid&quot;:&quot;column-da0d&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Etternavn&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Last Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Email&quot;,&quot;guid&quot;:&quot;column-9c22&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;E-post&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;Email&quot;,&quot;type&quot;:&quot;email&quot;},{&quot;apiName&quot;:&quot;MobilePhone&quot;,&quot;guid&quot;:&quot;column-891c&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Telefon&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;Mobile Phone&quot;,&quot;type&quot;:&quot;phone&quot;},{&quot;apiName&quot;:&quot;Title&quot;,&quot;guid&quot;:&quot;column-ec9b&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Rolle&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:5,&quot;label&quot;:&quot;Title&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;TAG_Former_Employee__c&quot;,&quot;guid&quot;:&quot;column-8b7e&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Tidligere ansatt&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:6,&quot;label&quot;:&quot;Former Employee&quot;,&quot;type&quot;:&quot;boolean&quot;}]</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
