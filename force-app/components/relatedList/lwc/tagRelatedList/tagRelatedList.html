@@ -67,8 +67,8 @@
             </template>
             <!-- DESKTOP VIEW -->
             <template if:false={isMobile}>
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
                 <div style="overflow:auto; max-height: {maxHeight}em;" hidden={ariaHidden} data-id="accordionContent">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="slds-line-height_reset">
                                 <template for:each={fieldLabels} for:item="label">
