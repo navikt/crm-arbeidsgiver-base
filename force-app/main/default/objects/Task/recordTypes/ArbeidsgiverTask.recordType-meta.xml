@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ArbeidsgiverTask</fullName>
     <active>true</active>
+    <description>Denne posttypen brukes til å registrere oppgaver med arbeidsgivere ang rekruttering eller forebygge fravær (ikke IA-samarbeid)</description>
     <label>AG Oppgave</label>
     <picklistValues>
         <picklist>IASubtheme__c</picklist>
