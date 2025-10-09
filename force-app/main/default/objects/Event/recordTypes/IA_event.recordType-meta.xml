@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IA_event</fullName>
     <active>true</active>
-    <description>Used for events related to employer IA cases</description>
+    <description>Denne posttypen brukes til å registrere møter med arbeidsgivere ang IA-samarbeid</description>
     <label>IA event</label>
     <picklistValues>
         <picklist>IASubtheme__c</picklist>
