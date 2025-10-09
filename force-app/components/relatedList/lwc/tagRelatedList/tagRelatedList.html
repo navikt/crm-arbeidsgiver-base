@@ -8,6 +8,8 @@
                     type="button"
                     onclick={toggleAccordion}
                     class="slds-button slds-has-flexi-truncate headerToggleAction"
+                    aria-controls="accordionContent"
+                    aria-expanded={isExpanded}
                 >
                     <template if:true={icon}>
                         <lightning-icon
@@ -36,7 +38,7 @@
         <template if:true={showRecords}>
             <!-- MOBILE VIEW -->
             <template if:true={isMobile}>
-                <ul class="slds-has-dividers_bottom-space">
+                <ul class="slds-has-dividers_bottom-space" hidden={ariaHidden} data-id="accordionContent">
                     <template for:each={recordListMobile} for:item="record">
                         <li class="slds-item" key={record.Id}>
                             <lightning-tile label={record.title} href={record.link}>
@@ -65,8 +67,8 @@
             </template>
             <!-- DESKTOP VIEW -->
             <template if:false={isMobile}>
-                <div style="overflow:auto; max-height: {maxHeight}em;">
                     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
+                <div style="overflow:auto; max-height: {maxHeight}em;" hidden={ariaHidden} data-id="accordionContent">
                         <thead>
                             <tr class="slds-line-height_reset">
                                 <template for:each={fieldLabels} for:item="label">

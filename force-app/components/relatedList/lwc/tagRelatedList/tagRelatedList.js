@@ -494,3 +494,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         return FORM_FACTOR === 'Large';
     }
 }
+    get ariaHidden() {
+        return !this.isExpanded;
+    }
