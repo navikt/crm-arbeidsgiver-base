@@ -497,3 +497,4 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     get ariaHidden() {
         return !this.isExpanded;
     }
+}
