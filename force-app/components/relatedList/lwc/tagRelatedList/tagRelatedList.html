@@ -1,19 +1,28 @@
 <template>
-    <article class="slds-card">
-       <!-- HEADER WITH TOGGLE AND "NEW RECORD" BUTTON -->
-        <div class="headerContainer" style={headerBackground}>
+    <article class="slds-card slds-theme_default">
+        <!-- HEADER WITH TOGGLE AND "NEW RECORD" BUTTON -->
+        <div class="headerContainer slds-has-flexi-truncate" style={headerBackground}>
             <!-- Left Group: Icon, Title, Toggle Icon -->
-            <div class="headerLeft" onclick={toggleAccordion}>
-                <template if:true={icon}>
-                    <lightning-icon icon-name={icon} size="small" class="headerIcon slds-m-right_x-small"></lightning-icon>
-                </template>
-                <lightning-icon 
-                icon-name={chevronIcon} 
-                size="x-small" 
-                class="chevronIcon slds-m-right_xx-small">
-                </lightning-icon>
-                <h1 class="headerTitle slds-text-heading_small">{cardTitle}</h1>
-            </div>
+            <h3 class="headerLeft slds-var-p-around_xx-small slds-has-flexi-truncate">
+                <button
+                    type="button"
+                    onclick={toggleAccordion}
+                    class="slds-button slds-has-flexi-truncate headerToggleAction"
+                    aria-controls="accordionContent"
+                    aria-expanded={isExpanded}
+                >
+                    <template if:true={icon}>
+                        <lightning-icon
+                            icon-name={icon}
+                            size="small"
+                            class="headerIcon slds-m-right_x-small"
+                        ></lightning-icon>
+                    </template>
+                    <lightning-icon icon-name={chevronIcon} size="x-small" class="chevronIcon slds-m-right_xx-small">
+                    </lightning-icon>
+                    <span class="slds-truncate" title={cardTitle}> {cardTitle} </span>
+                </button>
+            </h3>
             <!-- Right Group: New Record Button -->
             <template if:true={showNewRecordButton}>
                 <lightning-button 
@@ -29,7 +38,7 @@
         <template if:true={showRecords}>
             <!-- MOBILE VIEW -->
             <template if:true={isMobile}>
-                <ul class="slds-has-dividers_bottom-space">
+                <ul class="slds-has-dividers_bottom-space" hidden={ariaHidden} data-id="accordionContent">
                     <template for:each={recordListMobile} for:item="record">
                         <li class="slds-item" key={record.Id}>
                             <lightning-tile label={record.title} href={record.link}>
@@ -58,7 +67,7 @@
             </template>
             <!-- DESKTOP VIEW -->
             <template if:false={isMobile}>
-                <div style="overflow:auto; max-height: {maxHeight}em;">
+                <div style="overflow:auto; max-height: {maxHeight}em;" hidden={ariaHidden} data-id="accordionContent">
                     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="slds-line-height_reset">
