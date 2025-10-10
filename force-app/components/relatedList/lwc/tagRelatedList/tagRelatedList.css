@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
 }
 
 .chevronIcon {
@@ -13,7 +13,48 @@
 .headerLeft {
     display: flex;
     align-items: center;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    border: var(--slds-g-sizing-border-1) solid transparent;
+}
+.headerToggleAction {
+    display: flex;
+    align-items: center;
+    background-color: var(--slds-g-color-surface-container-2);
     cursor: pointer;
+    text-align: left;
+    color: var(--slds-g-color-on-surface-3);
+    font-size: inherit;
+    font-weight: normal;
+    padding: 0 var(--slds-g-spacing-2);
+}
+/* Adjustments for mobile app */
+@media (max-width: 480px) {
+    .headerContainer {
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        background: white;
+    }
+    .headerLeft {
+        background: white;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+        padding-left: 13px;
+        padding-right: 8px;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+    }
+    .headerToggleAction {
+        background: white;
+        padding-left: 0;
+        border: none;
+        box-shadow: none;
+        font-weight: bold;
+    }
 }
 
 .headerIcon {
@@ -33,7 +74,6 @@
 
 .newRecordButton {
     align-self: center;
-    height: 2rem;
     padding: 0 0.5rem;
 }
 
