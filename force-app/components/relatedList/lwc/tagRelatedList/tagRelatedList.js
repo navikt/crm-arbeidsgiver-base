@@ -304,9 +304,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     get headerBackground() {
-        return this.headerColor 
-            ? `background-color: ${this.headerColor}; border: 1px solid ${this.headerColor}; cursor: pointer;`
-            : 'cursor: pointer;';
+        if (this.isMobile) {
+            return 'background-color: white;';
+        }
+        return this.headerColor ? `background-color: ${this.headerColor};` : '';
     }
 
     get tableHeaderStyle() {
@@ -491,5 +492,8 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
     get isDesktop() {
         return FORM_FACTOR === 'Large';
+    }
+    get ariaHidden() {
+        return !this.isExpanded;
     }
 }
