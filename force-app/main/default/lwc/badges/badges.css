@@ -3,32 +3,7 @@
     background-color: var(--slds-g-color-palette-yellow-90);
     border-color: var(--slds-g-color-palette-yellow-80);
 }
-.badgepopover {
-    border-radius: 0.25rem;
-    min-height: 2rem;
-    z-index: 6000;
-    background-color: #fff;
-    display: inline-block;
-    -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);
-    border: 1px solid #dddbda;
-    width: fit-content;
-    
-}
 
-/* Responsive popover sizing 
-@media (max-width: 768px) {
-    .badgepopover {
-        max-width: 296px; /* 1 tile + padding 
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .badgepopover {
-        max-width: 592px; /* 2 tiles + gap + padding 
-    }
-}
-*/
 /* Preview-knappen er skjult 
 .preview-button {
     position: absolute;
