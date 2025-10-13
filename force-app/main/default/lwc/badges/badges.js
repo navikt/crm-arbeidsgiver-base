@@ -21,12 +21,6 @@ export default class Badges extends LightningElement {
     popoverIsPinned = false; // Prevents popover close from mouse events
     triggerButton = null;
 
-    // Popover size configuration - adjust as needed
-    maxTilesPerRow = 3; // Maximum number of record tiles per row to display in popover
-    tileWidth = '400px'; // Width of each record tile displayed in popover
-    
-
-
     // Wire service to fetch badges
     @wire(createBadges, { recordId: '$recordId', keys: '$badgesToDisplay' })
     wiredBadges({ error, data }) {
@@ -178,49 +172,6 @@ export default class Badges extends LightningElement {
         }
     }
 
-      
-    
-    
- // Dynamic styling based on parameters
-    get popoverContentStyle() {
-        return `max-width: ${this.popoverWidth};`
-    }
-    // Calculate popover width based on maxTilesPerRow
-        get popoverWidth() {            
-            const tileWidthNum = parseInt(this.tileWidth, 10); // Convert '250px' to 250
-            const gap = 16; // Gap between tiles            
-            const totalWidth = (this.maxTilesPerRow * tileWidthNum) + ((this.maxTilesPerRow - 1) * gap) + 32; // 32px for container padding           
-            return `${totalWidth}px`;
-        }
-
-    get popoverTileStyle() {
-        return `width: ${this.tileWidth}; max-width: ${this.tileWidth};`;
-    }
-    /* Get popover content  */
-    get recordListAsTiles() {
-        if (this.records && this.records.length > 0) {
-            try {                
-                const newRecordsList = this.records.map((record) => {
-                    if (record.fields && record.fields.length > 0) {
-                        const fieldsCopy = [...record.fields];
-                        const field = fieldsCopy.shift();
-                        return {
-                            ...record,
-                            title: field.value,
-                            fields: fieldsCopy
-                        };
-                    }
-                    return { ...record, fields: [] };
-                });
-                return newRecordsList;
-            } catch (error) {
-                this.handleError('Error creating recordListTiles', error);
-                return [];
-            }
-        }
-        return [];
-    }
-
     /* RELATED RECORDS */
     getList(badgeKey) {
         if (this.cachedRecords.has(badgeKey)) {
@@ -242,10 +193,6 @@ export default class Badges extends LightningElement {
     }
 
     /* HELPERS */
-
-    get ariaHaspopup() {
-       return this.showPopover;
-   }
 
     get isMobile() {
         return FORM_FACTOR === 'Small';
