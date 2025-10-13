@@ -45,18 +45,14 @@
                                     alternative-text="Forhåndsvis"
                                     title="Forhåndsvis"
                                     label="Forhåndsvis"
-                                    aria-haspopup={ariaHaspopup}
-                                ></lightning-button-icon>
-                                -->
+                                ></lightning-button-icon> -->
                             </li>
                         </template>
                     </ul>
                     <!-- Popover that displays related records -->
                     <template if:true={showPopover}>
-                        <section
-                            aria-describedby="popover-content"
-                            aria-label="Viser relaterte poster for merkelappen"
-                            class="badgepopover slds-nubbin_top-left slds-is-absolute"
+                        <div
+                            class="badgepopover slds-popover slds-nubbin_top-left slds-popover_large"
                             style={popoverStyle}
                             onmouseenter={handlePopoverEnter}
                             onmouseleave={handleMouseLeave}
@@ -64,7 +60,7 @@
                             tabindex="-1"
                             role="dialog"
                         >
-                         <!-- Fokuserbar fallback-knapp (kun for å sikre fokus) -->
+                            <!-- Fokuserbar fallback-knapp (kun for å sikre fokus) -->
                             <button
                                 class="invisible-focusable"
                                 style="position: absolute; left: -9999px"
@@ -73,62 +69,25 @@
                             >
                                 Fokus
                             </button>
+
                             <!-- Close button -->
                             <lightning-button-icon
                                 onclick={handlePopoverClose}
                                 icon-name="utility:close"
+                                label="Close"
                                 variant="bare"
-                                size="x-small"
                                 alternative-text="Close dialog"
                                 class="slds-float_right slds-popover__close"
                                 data-id="badge-popover-close"
                             ></lightning-button-icon>
 
-                            <div
-                                class="slds-var-p-horizontal_x-small slds-var-p-vertical_small"
-                                style={popoverContentStyle}
-                                id="popover-content"
-                            >
+                            <!-- Popover body -->
+                            <div class="slds-popover__body">
                                 <!-- RelatedRecordsCardList -->
-                                <ul style="display: flex; flex-wrap: wrap">
-                                    <template for:each={recordListAsTiles} for:item="record">
-                                        <li class="slds-var-m-around_xx-small" key={record.id} style={popoverTileStyle}>
-                                            <div class="slds-box slds-theme_default">
-                                                <lightning-tile label={record.name} href={record.link} type="media">
-                                                    <lightning-icon
-                                                        slot="media"
-                                                        icon-name={record.icon}
-                                                        size="small"
-                                                    ></lightning-icon>
-                                                    <dl class="slds-list_horizontal slds-wrap">
-                                                        <template for:each={record.fields} for:item="field">
-                                                            <dt
-                                                                key={field.label}
-                                                                class="slds-item_label slds-text-color_weak slds-truncate"
-                                                                title={field.label}
-                                                            >
-                                                                {field.label}:
-                                                            </dt>
-                                                            <dd
-                                                                key={field.label}
-                                                                class="slds-item_detail slds-truncate"
-                                                                title={field.value}
-                                                            >
-                                                                <c-formatted-field
-                                                                    value={field.value}
-                                                                    type={field.type}
-                                                                ></c-formatted-field>
-                                                            </dd>
-                                                        </template>
-                                                    </dl>
-                                                </lightning-tile>
-                                            </div>
-                                        </li>
-                                    </template>
-                                </ul>
+                                <c-related-records-card-list records={records}></c-related-records-card-list>
                                 <!-- -->
                             </div>
-                        </section>
+                        </div>
                     </template>
                 </lightning-layout-item>
             </lightning-layout>
