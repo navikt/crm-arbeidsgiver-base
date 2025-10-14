@@ -467,7 +467,7 @@ REGEX({!PhoneField.value}, &quot;\\+*?[0-9]{5,12}&quot;))</formulaExpression>
         </connector>
         <fields>
             <name>DuplicatesTitle</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;Potensielle duplikater&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Se gjennom potensielle duplikater vi har funnet. Hvis du mener det er riktig, kan du likevel opprette en ny kontakt.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;Er dette kontakten du holder på å registrere?&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Det ser ut som du er i ferd med å opprette en kontakt som allerede ligger i systemet. Kan du bruke en av de som er listet under?&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
