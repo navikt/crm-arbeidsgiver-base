@@ -3,8 +3,8 @@
     <fullName>Disallow_AGTask_for_IACooperation</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-TAG_RelatedToObject__c = &apos;AG Oppgave&apos;,
+RecordTypeName__c = &apos;AG Oppgave&apos;,
 TAG_RelatedToObject__c = &apos;IA-Samarbeid&apos;
 )</errorConditionFormula>
-    <errorMessage>Du prøver å registrere en oppgave relatert til IA-samarbeid. Du må velge posttype IA-samarbeid eller registrere fra tidslinjen i kontekst av IA-samarbeid.</errorMessage>
+    <errorMessage>Du prøver å registrere en oppgave relatert til IA-samarbeid. Du må velge posttype &quot;IA-samarbeid oppgave&quot; eller registrere fra tidslinjen i kontekst av IA-samarbeid.</errorMessage>
 </ValidationRule>
