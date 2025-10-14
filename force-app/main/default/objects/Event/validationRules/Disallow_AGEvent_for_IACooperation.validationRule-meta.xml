@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disallow_AGEvent_for_IACooperation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    TAG_RelatedToObject__c = &apos;AG Møte&apos;,
+    TAG_RelatedToObject__c = &apos;IA-Samarbeid&apos;
+)</errorConditionFormula>
+    <errorMessage>Du prøver å registrere et møte relatert til IA-samarbeid. Du må velge posttype IA-samarbeid eller registrere fra tidslinjen i kontekst av IA-samarbeid.</errorMessage>
+</ValidationRule>
