@@ -3,6 +3,11 @@
     <description>Tilgang til muligheter-objektet</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contact.TAG_BypassDuplicate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CustomOpportunity__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
