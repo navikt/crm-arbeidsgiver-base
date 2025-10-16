@@ -55,6 +55,22 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>Filter_Shown__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>FilterableCheckbox__c</field>
+        <value xsi:type="xsd:string">Type</value>
+    </values>
+    <values>
+        <field>FilterablePicklist1__c</field>
+        <value xsi:type="xsd:string">TAG_ActivityType__c</value>
+    </values>
+    <values>
+        <field>FilterablePicklist2__c</field>
+        <value xsi:type="xsd:string">TAG_service__c</value>
+    </values>
+    <values>
         <field>SLDS_Dropdown_Icon__c</field>
         <value xsi:type="xsd:string">utility:sms</value>
     </values>
