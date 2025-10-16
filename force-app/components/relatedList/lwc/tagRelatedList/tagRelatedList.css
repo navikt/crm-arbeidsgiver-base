@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     border-radius: 0.25rem;
-    font-size: 1.25rem;
+    font-size: var(--slds-g-font-scale-var-3);
     line-height: 1.875rem;
     border: var(--slds-g-sizing-border-1) solid transparent;
 }
@@ -26,7 +26,7 @@
     text-align: left;
     color: var(--slds-g-color-on-surface-3);
     font-size: inherit;
-    font-weight: normal;
+    font-weight: var(--slds-s-container-heading-font-weight);
     padding: 0 var(--slds-g-spacing-2);
 }
 /* Adjustments for mobile app */
