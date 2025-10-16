@@ -172,6 +172,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IACooperation__c.Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IACooperation__c.PlanId__c</field>
         <readable>true</readable>
     </fieldPermissions>
