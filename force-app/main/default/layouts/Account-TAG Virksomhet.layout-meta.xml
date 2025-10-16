@@ -241,7 +241,6 @@
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
-        <fields>IACase__c</fields>
         <relatedList>IACooperation__c.Account__c</relatedList>
         <sortField>EndDate__c</sortField>
         <sortOrder>Desc</sortOrder>
@@ -326,7 +325,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hRR000009pVbB</masterLabel>
+        <masterLabel>00hQI00000ALM63</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
