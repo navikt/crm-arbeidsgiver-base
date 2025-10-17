@@ -22,11 +22,12 @@
         </lightning-button-icon>
 
         <div slot="footer">
-            <lightning-formatted-url
-                onclick={navigateToListView}
-                value={listViewUrl}
+            <lightning-button
+                variant="base"
                 label="Se alle"
-            ></lightning-formatted-url>
+                class="slds-text-link"
+                onclick={navigateToListView}>
+            </lightning-button>
         </div>
         <!-- Modal with embedded flow -->
         <template if:true={showModal}>
