@@ -59,6 +59,16 @@
                 <identifier>RecordStatus_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Link__c</fieldItem>
+                <identifier>RecordLink_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-655891c7-54f6-485f-8846-792f8d4ea291</name>
         <type>Facet</type>
     </flexiPageRegions>

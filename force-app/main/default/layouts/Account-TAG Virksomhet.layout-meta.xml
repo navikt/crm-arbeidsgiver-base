@@ -241,6 +241,7 @@
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
+        <fields>Link__c</fields>
         <relatedList>IACooperation__c.Account__c</relatedList>
         <sortField>EndDate__c</sortField>
         <sortOrder>Desc</sortOrder>
