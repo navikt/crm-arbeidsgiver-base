@@ -22,11 +22,12 @@
         </lightning-button-icon>
 
         <div slot="footer">
-            <lightning-formatted-url
-                onclick={navigateToListView}
-                value={listViewUrl}
-                label="Se alle">
-            </lightning-formatted-url>
+            <lightning-button
+                variant="base"
+                label="Se alle"
+                class="slds-text-link"
+                onclick={navigateToListView}>
+            </lightning-button>
         </div>
         
         <!-- Body -->
