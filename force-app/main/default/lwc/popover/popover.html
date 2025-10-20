@@ -1,0 +1,59 @@
+<template>
+    <div class="popover-container" data-id="popover-container">
+        <div id="trigger-container" class="slds-grid trigger-container" data-id="trigger-container">
+            <a
+                href={linkUrl}
+                data-id="popover-link"
+                onmouseover={handleMouseEnter}
+                onmouseout={handleMouseLeave}
+                onfocus={handleButtonFocusIn}
+                onblur={handleButtonFocusOut}
+                >{linkLabel}</a
+            >
+            <lightning-button-icon
+                icon-name={iconName}
+                tooltip={tooltip}
+                onclick={handleButtonClick}
+                onfocus={handleButtonFocusIn}
+                onblur={handleButtonFocusOut}
+                class={triggerButtonClassNames}
+                size="small"
+                title={title}
+                variant="bare"
+                data-id="popover-button"
+                aria-haspopup={ariaHaspopup}
+            ></lightning-button-icon>
+        </div>
+
+        <!-- Backdrop for catching clicks outside popover (only when opened via button) -->
+        <div if:true={shouldShowBackdrop} class="outside-click-capture" onclick={handleBackdropClick}></div>
+
+        <div if:true={showPopover} class="popover-wrapper" data-id="popover-wrapper">
+            <section
+                class="popover-style"
+                role="dialog"
+                tabindex="-1"
+                aria-describedby="popover-body"
+                aria-label={title}
+                onmouseenter={handlePopoverEnter}
+                onmouseleave={handleMouseLeave}
+                onclick={ignore}
+                style={popoverStyle}
+            >
+                <lightning-button-icon
+                    onclick={handlePopoverClose}
+                    icon-name="utility:close"
+                    variant="bare"
+                    alternative-text="Close dialog"
+                    class="slds-float_right"
+                    data-id="popover-close"
+                ></lightning-button-icon>
+                <div class="">
+                    <slot name="body" data-id="popover-body"> </slot>
+                </div>
+                <div data-id="mypopoverend" tabindex="0" class="sr-only"></div>
+            </section>
+            <div class={pointerClassNames} style={pointerStyle}></div>
+        </div>
+    </div>
+</template>

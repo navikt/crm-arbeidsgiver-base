@@ -1,0 +1,94 @@
+<template>
+    <div class="headercontainer slds-grid slds-wrap slds-grid_vertical-align-start">
+        <!-- Field 1: Organisation Number  -->
+        <div
+            class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
+        >
+            <c-highlights-panel-field>
+                <span slot="label">{organisationNumberFormula.label}</span>
+                <span slot="value">
+                    {organisationNumberFormula.value}
+                    <lightning-button-icon
+                        value={organisationNumber.value}
+                        icon-name="utility:copy"
+                        onclick={handleCopy}
+                        alternative-text="Kopier organisasjonsnummer"
+                        title="Kopier organisasjonsnummer"
+                        variant="bare"
+                    >
+                    </lightning-button-icon>
+                </span>
+            </c-highlights-panel-field>
+        </div>
+
+        <!-- Field 2: Main Industry -->
+        <div
+            class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
+        >
+            <c-highlights-panel-field>
+                <span slot="label">{mainIndustry.label}</span>
+                <span slot="value">{mainIndustry.value}</span>
+            </c-highlights-panel-field>
+        </div>
+        <!-- Field 3: Sector -->
+        <div
+            class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
+        >
+            <c-highlights-panel-field>
+                <span slot="label">{sector.label}</span>
+                <span slot="value">{sector.value}</span>
+            </c-highlights-panel-field>
+        </div>
+        <!-- Number of Employees -->
+        <div
+            class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
+        >
+            <c-highlights-panel-field>
+                <span slot="label">{numberOfEmployeesFormula.label}</span>
+                <span slot="value">{numberOfEmployeesFormula.value}</span>
+            </c-highlights-panel-field>
+        </div>
+        <!-- Field 4: Registration Year -->
+        <div
+            class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
+        >
+            <c-highlights-panel-field>
+                <span slot="label">{registrationYear.label}</span>
+                <span slot="value">{registrationYear.value}</span>
+            </c-highlights-panel-field>
+        </div>
+        <!-- Field 5: Proff.no -->
+        <div
+            class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
+        >
+            <c-highlights-panel-field>
+                <span slot="label">{proffNo.label}</span>
+                <span slot="value">
+                    <lightning-formatted-rich-text value={proffNo.value}></lightning-formatted-rich-text>
+                </span>
+            </c-highlights-panel-field>
+        </div>
+        <!-- Field 7: Parent Account -->
+        <div
+            class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
+        >
+            <c-highlights-panel-field>
+                <span slot="label">{parentAccount.label}</span>
+                <span slot="value">
+                    <c-popover
+                        link-label={parentAccount.value}
+                        link-url={parentAccount.url}
+                        tooltip="Forhåndsvis"
+                        title="Forhåndsvis"
+                    >
+                        <span slot="body">
+                            <c-parent-account-compact-view
+                                parent-account-id={parentAccount.id}
+                            ></c-parent-account-compact-view>
+                        </span>
+                    </c-popover>
+                </span>
+            </c-highlights-panel-field>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,82 @@
+lightning-icon {
+    cursor: pointer;
+}
+
+.popover-container {
+    position: relative;
+}
+
+.outside-click-capture {
+    position: fixed;
+    z-index: 5999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    cursor: default;
+    /* This is the key: backdrop catches all clicks */
+    pointer-events: auto;
+}
+.popover-wrapper {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 6000;
+    /* Allow clicks to pass through wrapper to reach popover content */
+    pointer-events: none;
+}
+.trigger-container {
+    /* Ensure trigger elements are above backdrop */
+    position: relative;
+    z-index: 6001;
+}
+.trigger-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(1px 1px 1px 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+}
+
+.trigger-button-focus {
+    clip: auto;
+    clip-path: none;
+    position: relative;
+}
+
+.popover-style {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    will-change: transform;
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    border-radius: var(--slds-g-radius-border-2, 0.5rem);
+    /* Re-enable pointer events for popover content */
+    pointer-events: auto;
+}
+
+.popover-pointer {
+    z-index: 9001;
+    width: calc(1.25rem + 0.0625rem);
+    height: calc(1.25rem + 0.0625rem);
+    transform: rotate(45deg);
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /* Re-enable pointer events for pointer/nubbin */
+    pointer-events: auto;
+}
+.pointer_left {
+    border: 0;
+    border-right: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+}
+.pointer_below {
+    border: 0;
+    border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    border-left: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+}

@@ -1,0 +1,26 @@
+.fieldcontainer {
+    margin-block-end: var(--slds-g-spacing-2);
+}
+.fieldlabel {
+    color: var(--slds-s-label-color, var(--slds-g-color-on-surface-2));
+    font-size: var(--slds-s-label-font-size, var(--slds-g-font-scale-neg-2));
+    font-weight: var(--slds-s-label-font-weight);
+
+    /*
+    border-bottom: 0;
+    padding-inline-start: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    display: inline-block;
+    
+    padding-inline-end: var(--slds-g-spacing-2);
+    padding-block-start: var(--slds-g-spacing-1);
+    margin-block-end: var(--slds-s-label-spacing-gap, calc(var(--slds-g-spacing-1) / 2)); */
+}
+
+.fieldvalue {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}

@@ -1,0 +1,45 @@
+.parent-account-preview-container {
+    background-color: var(--slds-g-color-neutral-base-95);
+}
+header h2 {
+    max-width: 280px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+header a {
+    color: #0176d3;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Two-column layout for secondary fields */
+.secondaryFieldsWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.secondaryFieldGrid {
+    min-width: 0;
+}
+
+.forceListRecordItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.recordCellLabel {
+    font-size: 0.75rem;
+    margin-bottom: 0.125rem;
+}
+
+.recordCellDetail {
+    font-size: 0.8125rem;
+}
