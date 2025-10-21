@@ -61,7 +61,7 @@ public with sharing class BadgeConfigProvider {
             'urlTemplate' => '/lightning/cmp/c__badgePage?c__id={0}&c__badge={1}',
             'badgeType' => 'IA-samarbeid',
             'icon' => 'standard:form',
-            'columns' => 'Name, StartDate__c,EndDate__c, Status__c',
+            'columns' => 'Name, Status__c, StartDate__c,EndDate__c, Link__c',
             'objectApiName' => 'IACooperation__c',
             'lookupField' => 'Account__c',
             'queryFilter' => 'Status__c = \'AKTIV\' AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))'
