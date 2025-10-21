@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description_limited_characters</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( OR(RecordType.Name = &apos;AG Møte&apos;, RecordType.Name = &apos;IA event&apos;) &amp;&amp; LEN(Description) &gt; 1000, true, false)</errorConditionFormula>
+    <errorMessage>Feltet &quot;Kommentarer&quot; kan kun inneholde 1000 tegn</errorMessage>
+</ValidationRule>
