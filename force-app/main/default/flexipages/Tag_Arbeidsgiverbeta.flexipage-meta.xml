@@ -445,6 +445,42 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>runtime_sales_activities:todayTaskContainer</componentName>
+                <identifier>runtime_sales_activities_todayTaskContainer</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>componentName</name>
+                    <value>Dagens oppgaver (bruker)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>floatRight</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>followUpMessage</name>
+                    <value>Fortell oss gjerne hva du savner i &lt;a href=&quot;https://teams.microsoft.com/l/channel/19%3A6e27024572134ce3a453d68946fa1ebb%40thread.skype/- Salesforce Arbeidsgiver?groupId=123a02dc-0cd0-4da3-8f1c-d496a1b8f130&amp;tenantId=62366534-1ec3-4962-8869-9b5535279d0b&quot;&gt;kanalen vår på Markedsnettverket (Teams)&lt;/a&gt;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>page</name>
+                    <value>Home</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>question</name>
+                    <value>Er denne listen relevant for deg?</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>thankYouMessage</name>
+                    <value>Takk for tilbakemeldingen!</value>
+                </componentInstanceProperties>
+                <componentName>requestUserFeedback</componentName>
+                <identifier>c_requestUserFeedback4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>altTextNewRecordButton</name>
                     <value>Opprett ny oppgave</value>
@@ -560,6 +596,42 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>home:eventContainer</componentName>
+                <identifier>home_eventContainer</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>componentName</name>
+                    <value>Dagens møter (bruker)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>floatRight</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>followUpMessage</name>
+                    <value>Fortell oss gjerne hva du savner i &lt;a href=&quot;https://teams.microsoft.com/l/channel/19%3A6e27024572134ce3a453d68946fa1ebb%40thread.skype/- Salesforce Arbeidsgiver?groupId=123a02dc-0cd0-4da3-8f1c-d496a1b8f130&amp;tenantId=62366534-1ec3-4962-8869-9b5535279d0b&quot;&gt;kanalen vår på Markedsnettverket (Teams)&lt;/a&gt;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>page</name>
+                    <value>Home</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>question</name>
+                    <value>Er denne listen relevant for deg?</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>thankYouMessage</name>
+                    <value>Takk for tilbakemeldingen!</value>
+                </componentInstanceProperties>
+                <componentName>requestUserFeedback</componentName>
+                <identifier>c_requestUserFeedback3</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
