@@ -2,6 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Description_limited_characters</fullName>
     <active>true</active>
-    <errorConditionFormula>IF( OR(RecordType.Name = &apos;AG Oppgave&apos;, RecordType.Name = &apos;IA task&apos;) &amp;&amp; LEN(Description) &gt; 1000, true, false)</errorConditionFormula>
-    <errorMessage>Feltet &quot;Kommentarer&quot; kan kun inneholde 1000 tegn</errorMessage>
+    <errorConditionFormula>IF( OR(RecordType.Name = &apos;AG Oppgave&apos;, RecordType.Name = &apos;IA task&apos;) &amp;&amp;
+			    LEN(Description) &gt; 1000 &amp;&amp; 
+			        CreatedDate &gt; DATETIMEVALUE(&quot;2025-10-25 00:00:00&quot;), true, false)</errorConditionFormula>
+    <errorMessage>Feltet &quot;Kommentarer&quot; kan ikke inneholde mer enn 1000 tegn</errorMessage>
 </ValidationRule>
