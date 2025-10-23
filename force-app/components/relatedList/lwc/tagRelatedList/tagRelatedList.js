@@ -139,16 +139,23 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     // Handle row click event if clickableRows is enabled
     handleRowClick(event) {
         const recordId = event.currentTarget.dataset.recordId;
-        this.navigateToRecord(recordId);
+        if (this.relatedObjectApiName === 'AccountContactRelation') {
+            const contactId = event.currentTarget.dataset.contactId;
+            if (contactId) {
+                this.navigateToRecord(contactId, 'Contact');
+            }
+        } else {
+            this.navigateToRecord(recordId, this.relatedObjectApiName);
+        }
         publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked on record' });
     }
 
-    navigateToRecord(recordId) {
+    navigateToRecord(recordId, objectApiName) {
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
                 recordId: recordId,
-                objectApiName: this.relatedObjectApiName,
+                objectApiName: objectApiName,
                 actionName: 'view'
             }
         });
@@ -159,7 +166,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         event.stopPropagation();
         publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked "New" button' });
 
-        if (this.relatedObjectApiName === 'Contact') {
+        if (this.relatedObjectApiName === 'Contact' || this.relatedObjectApiName === 'AccountContactRelation') {
             this.showFlowModal = true;
             requestAnimationFrame(() => {
                 const flowCmp = this.template.querySelector('lightning-flow');
@@ -205,9 +212,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     get recordListMobile() {
-        let customFieldLabels = this.columnLabels
-            ? this.columnLabels.replace(/\s/g, '').split(',') 
-            : [];
+        let customFieldLabels = this.columnLabels ? this.columnLabels.replace(/\s/g, '').split(',') : [];
         const records = this.listRecords;
         if (records && records.length > 0) {
             try {
@@ -223,7 +228,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                             }
                         });
 
-                            const firstField = fieldsCopy.shift(); // Remove the first field
+                        const firstField = fieldsCopy.shift(); // Remove the first field
 
                         return {
                             ...record,
@@ -304,10 +309,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 if (isInactive) {
                     rowClass += ' inactiveRow';
                 }
-
                 returnRecords.push({
                     recordFields: recordFields,
                     Id: dataRecord.Id,
+                    ContactId: this.resolve('ContactId', dataRecord) || dataRecord.ContactId,
                     isInactive: isInactive,
                     rowClass: rowClass
                 });
@@ -381,6 +386,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 }
             }
         }
+        if (this.relatedObjectApiName === 'AccountContactRelation' && !combined.includes('ContactId')) {
+            combined.push('ContactId');
+        }
         return combined;
     }
 
@@ -442,7 +450,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             return [];
         }
 
-        return this.combinedPopoverFields.map((fieldApiName) => {
+        const fieldsToShow = (this.combinedPopoverFields || []).filter((f) => {
+            return f !== 'ContactId' && f !== 'Id';
+        });
+
+        return fieldsToShow.map((fieldApiName) => {
             let fieldLabel;
 
             if (fieldApiName.includes('.')) {
@@ -518,7 +530,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         }
         return val;
     }
-     get isMobile() {
+    get isMobile() {
         return FORM_FACTOR === 'Small';
     }
     get isDesktop() {
