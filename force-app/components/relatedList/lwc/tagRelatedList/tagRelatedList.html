@@ -83,7 +83,7 @@
                         <tbody>
                             <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
                                 <template if:true={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class={record.rowClass} onclick={handleRowClick} style="cursor: pointer"
+                                    <tr key={record.Id} data-record-id={record.Id} data-contact-id={record.ContactId} data-value={rowIndex} class={record.rowClass} onclick={handleRowClick} style="cursor: pointer"
                                         onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
                                         <template for:each={record.recordFields} for:item="field">
                                             <td key={field.label} style="max-width: 33%">
@@ -93,7 +93,7 @@
                                     </tr>
                                 </template>
                                 <template if:false={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-value={rowIndex} class={record.rowClass}
+                                    <tr key={record.Id} data-record-id={record.Id} data-contact-id={record.ContactId} data-value={rowIndex} class={record.rowClass}
                                         onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
                                         <template for:each={record.recordFields} for:item="field">
                                             <td key={field.label} style="max-width: 33%">

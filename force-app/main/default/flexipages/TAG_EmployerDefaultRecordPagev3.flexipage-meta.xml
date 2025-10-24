@@ -237,7 +237,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>displayedFields</name>
-                    <value>Name, Title, Email, MobilePhone</value>
+                    <value>Contact.Name, Contact.Title, Contact.Email, Contact.MobilePhone</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>dynamicUpdate</name>
@@ -263,7 +263,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>inactiveRecordFilter</name>
-                    <value>TAG_Former_Employee__c = true</value>
+                    <value>Contact.TAG_Former_Employee__c = true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listTitle</name>
@@ -283,11 +283,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>popoverFields</name>
-                    <value>Phone, TAG_Theme__c, SourceFormula__c</value>
+                    <value>Contact.Phone, Contact.TAG_Theme__c, Contact.SourceFormula__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedObjectApiName</name>
-                    <value>Contact</value>
+                    <value>AccountContactRelation</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relationField</name>
