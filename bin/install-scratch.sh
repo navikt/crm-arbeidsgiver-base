@@ -43,11 +43,25 @@ creatingScratchOrg () {
 
 installDependencies() {
     keys=""
-    for p in $(jq '.packageAliases | keys[]' sfdx-project.json -r);
-    do
-        keys+=$p":"$secret" ";
+
+    for p in $(jq -r '.packageAliases | keys[]' sfdx-project.json); do
+        needs_key=$(jq -r --arg pkg "$p" '.packageKeyConfig[$pkg]' sfdx-project.json)
+
+        if [[ "$needs_key" == "false" ]]; then
+            echo "Skipping installation key for package: $p"
+            continue
+        fi
+
+        keys+="$p:$secret "
     done
-    sf dependency install --installationkeys "${keys}" --targetusername "$org_alias" --targetdevhubusername "$devHubAlias" || { error $? '"sf dependency install" command failed.'; }
+
+    echo "Installing dependencies..."
+
+    if [[ -n "$keys" ]]; then
+        sf dependency install --installationkeys "$keys" --targetusername "$org_alias" --targetdevhubusername "$devHubAlias" || { error $? '"sf dependency install" command failed.'; }
+    else
+        sf dependency install --targetusername "$org_alias" --targetdevhubusername "$devHubAlias" || { error $? '"sf dependency install" command failed.'; }
+    fi
 }
 
 deployingMetadata() {
