@@ -1,11 +1,11 @@
 <template>
-    <div class="parent-account-preview-container">
+    <div class="account-preview-container">
         <template if:true={isLoading}>
             <lightning-spinner alternative-text="Laster..." size="small"></lightning-spinner>
         </template>
 
-        <template if:true={parentAccountData}>
-            <header role="region" aria-label="Parent Account Highlights" class="slds-panel__section">
+        <template if:true={accountData}>
+            <header role="region" aria-label="" class="slds-panel__section">
                 <!-- Header with icon, name and hierarchy button -->
                 <div class="slds-grid slds-nowrap slds-gutters_xxx-small">
                     <!-- Profile Picture / Icon -->
@@ -65,7 +65,7 @@
                                 title="Parent Account"
                                 class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
                             >
-                                Parent Account
+                                {parentAccount.label}
                             </div>
                             <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
                                 <template if:true={parentAccount.value}>
@@ -85,7 +85,7 @@
                                 title="Main Industry"
                                 class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
                             >
-                                Main Industry
+                                {mainIndustry.label}
                             </div>
                             <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
                                 {mainIndustry.value}
@@ -101,7 +101,7 @@
                                 title="Number of Employees Formula"
                                 class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
                             >
-                                Number of Employees Formula
+                                {numberOfEmployees.label}
                             </div>
                             <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
                                 {numberOfEmployees.value}
@@ -117,7 +117,7 @@
                                 title="Registration Year"
                                 class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
                             >
-                                Registration Year
+                                {registrationYear.label}
                             </div>
                             <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
                                 {registrationYear.value}
