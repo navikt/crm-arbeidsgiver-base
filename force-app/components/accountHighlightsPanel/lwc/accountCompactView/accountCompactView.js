@@ -18,6 +18,7 @@ import PARENT_NAME_FIELD from '@salesforce/schema/Account.Parent.Name';
 
 // Account fields to retrieve
 const ACCOUNT_FIELDS = [
+    ACCOUNT_NAME,
     ORG_FORMULA_FIELD,
     MAIN_INDUSTRY_FIELD,
     REGISTRATION_YEAR_FIELD,
