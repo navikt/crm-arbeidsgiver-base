@@ -1,0 +1,12 @@
+.headercontainer {
+    margin-block: calc(var(--slds-g-spacing-var-block-4) * -1) calc(var(--slds-g-spacing-var-block-4) * -1);
+    margin-inline: calc(var(--slds-g-spacing-var-inline-4) * -1);
+    padding: 0 var(--slds-g-spacing-var-inline-4) 0 var(--slds-g-spacing-var-inline-4);
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    border-end-end-radius: var(--slds-s-pageheader-radius-border);
+    border-end-start-radius: var(--slds-s-pageheader-radius-border);
+    background-color: var(--slds-s-pageheader-row-color-background);
+    position: relative;
+    z-index: 2;
+}
