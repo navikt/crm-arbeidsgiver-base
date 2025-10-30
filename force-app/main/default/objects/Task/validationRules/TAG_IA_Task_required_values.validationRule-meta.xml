@@ -7,5 +7,5 @@
 					NOT( TAG_RelatedToObject__c = &apos;IA-samarbeid&apos; ),
       NOT( ISPICKVAL(TAG_ActivityType__c, &apos;Forebygge sykefravær og redusere frafall&apos;) )),
 			    true, false)</errorConditionFormula>
-    <errorMessage>Aktiviteter registrert på IA-samarbeid må være Relatert til et IA-samarbeid og ha verdien &quot;Forebygge og redusere fravær&quot; på Tema</errorMessage>
+    <errorMessage>Aktiviteter registrert på IA-samarbeid må være knyttet til et IA-samarbeid i feltet &quot;Relatert til&quot; og ha verdien &quot;Forebygge og redusere fravær&quot; i feltet &quot;Tema&quot;</errorMessage>
 </ValidationRule>
