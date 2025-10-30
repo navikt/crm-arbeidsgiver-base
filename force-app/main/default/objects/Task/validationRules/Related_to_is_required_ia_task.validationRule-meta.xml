@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Related_to_is_required_ia_task</fullName>
-    <active>true</active>
-    <errorConditionFormula>IF( RecordType.Name = &apos;IA task&apos; &amp;&amp; 
-			OR(ISBLANK( WhatId ),
-    ISBLANK( TEXT(TAG_ActivityType__c) )), true, false)</errorConditionFormula>
-    <errorMessage>Feltene &quot;Relatert til&quot; og &quot;Tema&quot; må være fylt ut</errorMessage>
-</ValidationRule>

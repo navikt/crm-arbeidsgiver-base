@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_IA_Task_required_values</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( RecordType.Name = &apos;IA task&apos; &amp;&amp;
+    OR ( ISBLANK( WhatId ),  
+					NOT( TAG_RelatedToObject__c = &apos;IA-samarbeid&apos; ),
+      NOT( ISPICKVAL(TAG_ActivityType__c, &apos;Forebygge sykefravær og redusere frafall&apos;) )),
+			    true, false)</errorConditionFormula>
+    <errorMessage>Aktiviteter registrert på IA-samarbeid må være Relatert til et IA-samarbeid og ha verdien &quot;Forebygge og redusere fravær&quot; på Tema</errorMessage>
+</ValidationRule>
