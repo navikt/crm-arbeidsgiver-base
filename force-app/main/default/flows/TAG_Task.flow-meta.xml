@@ -118,7 +118,7 @@
                 <leftValueReference>$Record.TAG_ActivityType__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Prioritert IA (Fia)</stringValue>
+                    <stringValue>Forebygge sykefravær og redusere frafall</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -818,7 +818,7 @@
             <field>TAG_ActivityType__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Prioritert IA (Fia)</stringValue>
+                <stringValue>Forebygge sykefravær og redusere frafall</stringValue>
             </value>
         </filters>
         <filters>
@@ -883,7 +883,7 @@
         <inputAssignments>
             <field>TAG_ActivityType__c</field>
             <value>
-                <stringValue>Prioritert IA (Fia)</stringValue>
+                <stringValue>Forebygge sykefravær og redusere frafall</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1029,7 +1029,7 @@
         <inputAssignments>
             <field>TAG_ActivityType__c</field>
             <value>
-                <stringValue>Prioritert IA (Fia)</stringValue>
+                <stringValue>Forebygge sykefravær og redusere frafall</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>

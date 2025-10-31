@@ -266,7 +266,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         if (currentRecord.whoId) defaultValues.WhoId = currentRecord.whoId;
         if (currentRecord.relatedObject === 'IACooperation__c' && this.iaTaskRecordTypeId) {
             defaultValues.TAG_IsIAPriority__c = true;
-            defaultValues.TAG_ActivityType__c = 'Prioritert IA (Fia)';
+            defaultValues.TAG_ActivityType__c = 'Forebygge sykefravær og redusere frafall';
             this[NavigationMixin.Navigate]({
                 type: 'standard__objectPage',
                 attributes: { objectApiName: 'Task', actionName: 'new' },
@@ -299,7 +299,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         }
         if (currentRecord.relatedObject === 'IACooperation__c' && this.iaEventRecordTypeId) {
             defaultValues.TAG_IsIAPriority__c = true;
-            defaultValues.TAG_ActivityType__c = 'Prioritert IA (Fia)';
+            defaultValues.TAG_ActivityType__c = 'Forebygge sykefravær og redusere frafall';
             this[NavigationMixin.Navigate]({
                 type: 'standard__objectPage',
                 attributes: {
