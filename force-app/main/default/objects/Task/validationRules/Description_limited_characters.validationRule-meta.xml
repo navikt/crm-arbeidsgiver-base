@@ -3,7 +3,7 @@
     <fullName>Description_limited_characters</fullName>
     <active>true</active>
     <errorConditionFormula>IF( OR(RecordType.Name = &apos;AG Oppgave&apos;, RecordType.Name = &apos;IA task&apos;) &amp;&amp;
-			    LEN(Description) &gt; 1000 &amp;&amp; 
+			    LEN(Description) &gt; 5000 &amp;&amp; 
 			        CreatedDate &gt; DATETIMEVALUE(&quot;2025-10-25 00:00:00&quot;), true, false)</errorConditionFormula>
-    <errorMessage>Feltet &quot;Kommentarer&quot; kan ikke inneholde mer enn 1000 tegn</errorMessage>
+    <errorMessage>Feltet &quot;Kommentarer&quot; kan ikke inneholde mer enn 5000 tegn</errorMessage>
 </ValidationRule>
