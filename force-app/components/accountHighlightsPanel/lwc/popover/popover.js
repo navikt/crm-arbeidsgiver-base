@@ -129,7 +129,6 @@ export default class Popover extends LightningElement {
      * Handle mouse entering trigger link (hover to open)
      */
     handleMouseEnter(event) {
-        this.debugEvent(event);
         if (event.target.dataset.id === this.POPOVER_ANCHOR_ID) {
             this.triggerId = 'popover-link';
             // Clear any pending hide timer
@@ -156,7 +155,6 @@ export default class Popover extends LightningElement {
      * Delays closing to allow mouse movement between link and popover
      */
     handleMouseLeave(event) {
-        this.debugEvent(event);
         if (this.triggerId === 'popover-link') {
             if (this.hideTimer) {
                 window.clearTimeout(this.hideTimer);
@@ -177,7 +175,6 @@ export default class Popover extends LightningElement {
      * Cancels delayed closing to keep popover open
      */
     handlePopoverEnter(event) {
-        this.debugEvent(event);
         if (this.triggerId === 'popover-link') {
             // Prevent hiding when entering the popover
             if (this.hideTimer) {
@@ -196,7 +193,6 @@ export default class Popover extends LightningElement {
      * Opens/closes popover and manages focus
      */
     handleButtonClick(event) {
-        this.debugEvent(event);
         this.triggerId = 'popover-button';
         this.showPopover = !this.showPopover;
         this.hasButtonFocus = true;
@@ -227,7 +223,6 @@ export default class Popover extends LightningElement {
      * Only active when popover is opened via button click
      */
     handleBackdropClick() {
-        console.log('Backdrop clicked - closing popover');
         this.hasButtonFocus = false;
         this.closePopover();
     }
@@ -253,7 +248,6 @@ export default class Popover extends LightningElement {
      */
     handleButtonFocusIn(event) {
         this.hasButtonFocus = true;
-        this.debugEvent(event);
     }
 
     /**
@@ -261,7 +255,6 @@ export default class Popover extends LightningElement {
      */
     handleButtonFocusOut(event) {
         this.hasButtonFocus = this.showPopover ? true : false;
-        this.debugEvent(event);
     }
 
     // ========================================
@@ -317,7 +310,6 @@ export default class Popover extends LightningElement {
      */
     remToPx(rem) {
         const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-        console.log('rootFontSize:', rootFontSize);
         return rem * rootFontSize;
     }
 
@@ -330,7 +322,6 @@ export default class Popover extends LightningElement {
      * Escape closes popover, Tab traps focus within popover
      */
     addKeyDownListener() {
-        console.log('Adding keydown listener for popover');
         this.removeKeyDownListener(); // Ensure no duplicate listeners
         this.keyDownListener = (event) => {
             if (['Escape', 'Esc'].includes(event.key)) {
@@ -347,7 +338,6 @@ export default class Popover extends LightningElement {
      * Remove keyboard event listener
      */
     removeKeyDownListener() {
-        console.log('Removing keydown listener for popover');
         if (this.keyDownListener) {
             window.removeEventListener('keydown', this.keyDownListener, false);
             this.keyDownListener = null;
@@ -359,7 +349,6 @@ export default class Popover extends LightningElement {
      * Removes keyboard listener and resets trigger state
      */
     closePopover() {
-        console.log('Closing popover');
         this.showPopover = false;
         this.removeKeyDownListener();
 
@@ -394,7 +383,6 @@ export default class Popover extends LightningElement {
         const element = this.template.querySelector(`[data-id="${elementId}"]`);
 
         if (element) {
-            console.log('Setting focus:', element);
             element.focus();
         } else {
             console.warn(`[data-id="${elementId}"] element not found`);
@@ -410,26 +398,22 @@ export default class Popover extends LightningElement {
         const myPopoverEnd = this.template.querySelector('[data-id="mypopoverend"]');
 
         if (!myPopoverStart || !myPopoverEnd) {
-            console.warn('mypopoverstart or mypopoverend not found');
             return;
         }
 
         const currentActiveElement = this.template.activeElement || document.activeElement;
-        console.log('Currently focused element:', currentActiveElement);
 
         if (event.shiftKey) {
             // Shift + Tab - going backwards
             if (currentActiveElement === myPopoverStart) {
                 event.preventDefault();
                 myPopoverEnd.focus();
-                console.log('Focus trapped backwards: moved to mypopoverend');
             }
         } else {
             // Tab - going forwards
             if (currentActiveElement === myPopoverEnd) {
                 event.preventDefault();
                 myPopoverStart.focus();
-                console.log('Focus trapped forwards: moved to mypopoverstart');
             }
         }
     }
@@ -437,12 +421,4 @@ export default class Popover extends LightningElement {
     // ========================================
     // Utility Functions
     // ========================================
-
-    /**
-     * Debug helper to log event information
-     */
-    debugEvent(event) {
-        console.log('event.type:', event.type);
-        console.log('CurrentTarget:', event.currentTarget.dataset.id);
-    }
 }
