@@ -76,6 +76,10 @@ export default class Popover extends LightningElement {
     // Computed Properties / Getters
     // ========================================
 
+    /* Ensure trigger elements are above backdrop */
+    get triggerContainerStyle() {
+        return this.showPopover ? 'position: relative; z-index: 6001;' : '';
+    }
     /**
      * Show backdrop only when popover is opened via button click (not hover)
      * Backdrop catches clicks outside popover to close it

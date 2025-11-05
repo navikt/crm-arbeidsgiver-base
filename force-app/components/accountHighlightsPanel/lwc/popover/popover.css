@@ -26,11 +26,6 @@ lightning-icon {
     /* Allow clicks to pass through wrapper to reach popover content */
     pointer-events: none;
 }
-.trigger-container {
-    /* Ensure trigger elements are above backdrop */
-    position: relative;
-    z-index: 6001;
-}
 .trigger-button {
     position: absolute;
     top: 0;
