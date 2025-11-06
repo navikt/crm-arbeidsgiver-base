@@ -19,10 +19,6 @@ lightning-icon {
     pointer-events: auto;
 }
 .popover-wrapper {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 6000;
     /* Allow clicks to pass through wrapper to reach popover content */
     pointer-events: none;
 }

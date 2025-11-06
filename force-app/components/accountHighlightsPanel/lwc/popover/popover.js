@@ -281,39 +281,44 @@ export default class Popover extends LightningElement {
         const rect = target.getBoundingClientRect();
         this.anchor.height = rect.height;
         this.anchor.width = rect.width;
-        this.anchor.x = rect.x;
-        this.anchor.y = rect.y;
+        this.anchor.x = 0; //rect.x;
+        this.anchor.y = 0; //rect.y;
 
-        // Positioned left of target
-        this.popover.position = 'left';
-        const targetVerticalCenter = this.anchor.y + this.anchor.height / 2;
+        const nubbinSize = this.remToPx(1.25) + this.remToPx(0.0625); // pointer size is calc(1.25rem + 0.0625rem), 29.7px/2 = 14.85px
+        this.nubbin.width = nubbinSize;
+        this.nubbin.height = nubbinSize;
 
-        const pointerSize = this.remToPx(1.25) + this.remToPx(0.0625); // pointer size is calc(1.25rem + 0.0625rem), 29.7px/2 = 14.85px
-        this.nubbin.width = pointerSize;
-        this.nubbin.height = pointerSize;
-        const nubbinXoffset = pointerSize * Math.sqrt(2); // 21px
-
-        this.nubbin.x = this.anchor.x - nubbinXoffset; // Position nubbin at the right edge of the link
-        this.nubbin.y = targetVerticalCenter - this.nubbin.height / 2; // Center pointer vertically
-        this.pointerStyle = `top: ${this.nubbin.y}px; left: ${this.nubbin.x}px;`;
-
-        this.popover.x = this.nubbin.x - this.popover.width + this.nubbin.width / 2; // Til venstre
-        this.popover.y = this.anchor.y - this.popover.minHeight / 2;
-        this.popoverStyle = `width: ${this.popover.width}px; min-height: ${this.popover.minHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
-
-        if (this.popover.x < 0) {
+        if (this.canFitToLeft(rect, this.popover.width, nubbinSize)) {
+            // Positioned left of target
+            this.calculateLeft(rect, nubbinSize, this.popover.width, this.popover.minHeight);
+            this.popover.position = 'left';
+        } else {
             // Vis popover under target
             this.popover.position = 'below';
-            const targetHorizontalCenter = this.anchor.x + this.anchor.width / 2;
-            this.nubbin.x = targetHorizontalCenter - this.nubbin.width / 2; // Center pointer vertically
-            //  const nubbinYoffset = pointerSize * Math.sqrt(2); // 21px
-            this.nubbin.y = this.anchor.y + this.anchor.height; // Position nubbin at the bottom edge of the link
-            this.pointerStyle = `top: ${this.nubbin.y}px; left: ${this.nubbin.x}px;`;
-
-            this.popover.x = this.anchor.x;
-            this.popover.y = this.nubbin.y + this.nubbin.width / 2;
-            this.popoverStyle = `width: ${this.popover.width}px; min-height: ${this.popover.minHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
+            this.calculateBelow(rect, nubbinSize);
         }
+        this.pointerStyle = `top: ${this.nubbin.y}px; left: ${this.nubbin.x}px;`;
+        this.popoverStyle = `width: ${this.popover.width}px; min-height: ${this.popover.minHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
+    }
+
+    canFitToLeft(rect, popoverWidth, nubbinSize) {
+        // Check if there is enough space to the left
+        return rect.left >= popoverWidth + nubbinSize;
+    }
+
+    calculateLeft(rect, nubbinSize, popoverWidth, popoverHeight) {
+        const nubbinDiameter = nubbinSize * Math.sqrt(2); //
+        this.nubbin.x = 0 - nubbinDiameter; // Move nubbin to left edge
+        this.nubbin.y = 0 + rect.height / 2 - nubbinSize / 2; // Align nubbin to vertical center
+        this.popover.x = this.nubbin.x - popoverWidth + nubbinSize / 2; // Move popover to left edge and add offset to account for nubbin and popover overlap
+        this.popover.y = this.nubbin.y - popoverHeight / 2; // Align popover to vertical center
+    }
+
+    calculateBelow(rect, nubbinSize) {
+        this.nubbin.y = 0 + rect.height; // Move nubbin to bottom edge
+        this.nubbin.x = 0 + rect.width / 2 - nubbinSize / 2; // Align center
+        this.popover.y = this.nubbin.y + nubbinSize / 2; // Move popover to bottom edge and add offset to account for nubbin and popover overlap
+        this.popover.x = 0; // Align popover with left edge
     }
 
     /**
