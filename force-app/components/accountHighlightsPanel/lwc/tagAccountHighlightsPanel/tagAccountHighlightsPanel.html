@@ -6,7 +6,7 @@
         >
             <c-highlights-panel-field>
                 <span slot="label">{organisationNumberFormula.label}</span>
-                <span slot="value">
+                <span lwc:if={organisationNumberFormula.value} slot="value">
                     {organisationNumberFormula.value}
                     <lightning-button-icon
                         value={organisationNumber.value}
@@ -74,7 +74,7 @@
         >
             <c-highlights-panel-field>
                 <span slot="label">{parentAccount.label}</span>
-                <span slot="value">
+                <span lwc:if={parentAccount.url} slot="value">
                     <c-popover
                         link-label={parentAccount.value}
                         link-url={parentAccount.url}
