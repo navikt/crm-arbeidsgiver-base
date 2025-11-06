@@ -40,6 +40,7 @@ export default class Popover extends LightningElement {
     // ========================================
     keyDownListener = null; // Reference to keyboard event listener
     hideTimer; // Timer for delayed popover hiding (hover mode)
+    showTimer; // Timer for delayed popover showing (hover mode)
 
     // ========================================
     // Styling & Positioning
@@ -139,13 +140,17 @@ export default class Popover extends LightningElement {
 
             // Only open popover if it's not already open
             if (!this.showPopover) {
-                this.popoverPosition();
-                this.showPopover = true;
-
-                // Use setTimeout to ensure DOM is updated before setting focus
+                // Delay opening popover by 300ms
                 // eslint-disable-next-line @lwc/lwc/no-async-operation
-                setTimeout(() => {}, 0);
-                this.addKeyDownListener();
+                this.showTimer = window.setTimeout(() => {
+                    this.popoverPosition();
+                    this.showPopover = true;
+
+                    // Use setTimeout to ensure DOM is updated before setting focus
+                    // eslint-disable-next-line @lwc/lwc/no-async-operation
+                    setTimeout(() => {}, 0);
+                    this.addKeyDownListener();
+                }, 300);
             }
         }
     }
@@ -156,6 +161,12 @@ export default class Popover extends LightningElement {
      */
     handleMouseLeave(event) {
         if (this.triggerId === 'popover-link') {
+            // Clear any pending show timer
+            if (this.showTimer) {
+                window.clearTimeout(this.showTimer);
+                this.showTimer = null;
+            }
+
             if (this.hideTimer) {
                 window.clearTimeout(this.hideTimer);
             }
@@ -369,6 +380,10 @@ export default class Popover extends LightningElement {
 
         if (this.hideTimer) {
             window.clearTimeout(this.hideTimer);
+        }
+
+        if (this.showTimer) {
+            window.clearTimeout(this.showTimer);
         }
     }
 
