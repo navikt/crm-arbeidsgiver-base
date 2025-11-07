@@ -61,7 +61,7 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
     PARENT_ACCOUNT_LABEL_NO = 'Overordnet konto';
     TOAST_SUCCESS = 'success';
     TOAST_ERROR = 'error';
-
+    popoverWidth = 380;
     // ========== Wire Methods ==========
     /**
      * Fetches Account record data using Lightning Data Service
@@ -71,7 +71,6 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
     wiredAccount({ error, data }) {
         if (data) {
             this.accountRecord = data;
-            console.log('Account record data: ' + JSON.stringify(data));
             this.error = undefined;
         } else if (error) {
             this.error = error;
@@ -188,7 +187,6 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
         document.body.appendChild(hiddenInput);
         hiddenInput.focus();
         hiddenInput.select();
-        console.log('Copying text:', eventValue);
         try {
             // eslint-disable-next-line @locker/locker/distorted-document-exec-command
             const successful = document.execCommand('copy');
