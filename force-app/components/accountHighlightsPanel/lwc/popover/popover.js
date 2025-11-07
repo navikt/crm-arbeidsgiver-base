@@ -16,7 +16,11 @@ export default class Popover extends LightningElement {
     // ========================================
     // Constants
     // ========================================
-    POPOVER_ANCHOR_ID = 'popover-link';
+    TRIGGER_LINK_ID = 'cmp-popover__trigger-link';
+    TRIGGER_BUTTON_ID = 'cmp-popover__trigger-button';
+    CLOSE_BUTTON_ID = 'cmp-popover__close-button';
+    FOCUS_TRAP_END_ID = 'cmp-popover__focus-trap-end';
+    CONTENT_WRAPPER_SELECTOR = '.cmp-popover__content-wrapper';
     // ========================================
     // Public API Properties
     // ========================================
@@ -46,10 +50,10 @@ export default class Popover extends LightningElement {
     // Styling & Positioning
     // ========================================
     @track popoverStyle = 'transform: translate(0px, 0px);'; // Dynamic popover position
-    @track nubbinStyle = 'top: 0px; left: 0px;'; // Dynamic nubbin position
+    @track pointerStyle = 'top: 0px; left: 0px;'; // Dynamic pointer/nubbin position
 
-    // Position for nubbin (the small pointer/arrow)
-    nubbin = {
+    // Position for pointer/nubbin (the small arrow)
+    pointer = {
         x: 0,
         y: 0
     };
@@ -101,28 +105,21 @@ export default class Popover extends LightningElement {
      * Backdrop catches clicks outside popover to close it
      */
     get shouldShowBackdrop() {
-        return this.showPopover && this.triggerId === 'popover-button';
+        return this.showPopover && this.triggerId === this.TRIGGER_BUTTON_ID;
     }
 
     /**
-     * Dynamic CSS classes for the nubbin based on position
+     * Dynamic CSS classes for the pointer/nubbin based on position
      */
-    get nubbinClassNames() {
-        if (this.currentPopoverPosition === 'west') {
-            return `popover-nubbin nubbin-right`;
-        }
-        if (this.currentPopoverPosition === 'south') {
-            return `popover-nubbin nubbin-top`;
-        }
-
-        return `popover-nubbin`;
+    get pointerClassNames() {
+        return `cmp-popover__pointer cmp-popover__pointer--${this.currentPopoverPosition}`;
     }
 
     /**
      * Dynamic CSS classes for trigger button (shows when focused)
      */
     get triggerButtonClassNames() {
-        return 'trigger-button' + (this.hasButtonFocus ? ' trigger-button-focus' : '');
+        return 'cmp-popover__trigger-button' + (this.hasButtonFocus ? ' cmp-popover__trigger-button--focus' : '');
     }
 
     /**
@@ -137,7 +134,7 @@ export default class Popover extends LightningElement {
      * Used for setting initial focus when popover opens
      */
     get firstFocusableElementId() {
-        const popover = this.template.querySelector('.popover-wrapper');
+        const popover = this.template.querySelector(this.CONTENT_WRAPPER_SELECTOR);
         if (!popover) {
             return null;
         }
@@ -152,8 +149,8 @@ export default class Popover extends LightningElement {
      * Handle mouse entering trigger link (hover to open)
      */
     handleMouseEnter(event) {
-        if (event.target.dataset.id === this.POPOVER_ANCHOR_ID) {
-            this.triggerId = 'popover-link';
+        if (event.target.dataset.id === this.TRIGGER_LINK_ID) {
+            this.triggerId = this.TRIGGER_LINK_ID;
             // Clear any pending hide timer
             if (this.hideTimer) {
                 window.clearTimeout(this.hideTimer);
@@ -181,8 +178,8 @@ export default class Popover extends LightningElement {
      * Handle mouse leaving trigger link or popover
      * Delays closing to allow mouse movement between link and popover
      */
-    handleMouseLeave(event) {
-        if (this.triggerId === 'popover-link') {
+    handleMouseLeave() {
+        if (this.triggerId === this.TRIGGER_LINK_ID) {
             // Clear any pending show timer
             if (this.showTimer) {
                 window.clearTimeout(this.showTimer);
@@ -198,8 +195,6 @@ export default class Popover extends LightningElement {
             this.hideTimer = window.setTimeout(() => {
                 this.closePopover();
             }, 500);
-        } else if (this.triggerId === 'popover-button') {
-            // Don't auto-close when triggered by button
         }
     }
 
@@ -207,8 +202,8 @@ export default class Popover extends LightningElement {
      * Handle mouse entering popover content
      * Cancels delayed closing to keep popover open
      */
-    handlePopoverEnter(event) {
-        if (this.triggerId === 'popover-link') {
+    handlePopoverEnter() {
+        if (this.triggerId === this.TRIGGER_LINK_ID) {
             // Prevent hiding when entering the popover
             if (this.hideTimer) {
                 window.clearTimeout(this.hideTimer);
@@ -225,8 +220,8 @@ export default class Popover extends LightningElement {
      * Handle button click to toggle popover
      * Opens/closes popover and manages focus
      */
-    handleButtonClick(event) {
-        this.triggerId = 'popover-button';
+    handleButtonClick() {
+        this.triggerId = this.TRIGGER_BUTTON_ID;
         this.showPopover = !this.showPopover;
         this.hasButtonFocus = true;
         this.keepPopoverOpen = this.showPopover;
@@ -264,7 +259,7 @@ export default class Popover extends LightningElement {
      * Handle close button click
      */
     handlePopoverClose() {
-        if (this.triggerId === 'popover-button') {
+        if (this.triggerId === this.TRIGGER_BUTTON_ID) {
             this.hasButtonFocus = true;
             // Set focus back to trigger button
             this.setFocusToElement(this.triggerId);
@@ -279,14 +274,14 @@ export default class Popover extends LightningElement {
     /**
      * Handle focus entering button or link
      */
-    handleButtonFocusIn(event) {
+    handleButtonFocusIn() {
         this.hasButtonFocus = true;
     }
 
     /**
      * Handle focus leaving button or link
      */
-    handleButtonFocusOut(event) {
+    handleButtonFocusOut() {
         this.hasButtonFocus = this.showPopover ? true : false;
     }
 
@@ -295,48 +290,48 @@ export default class Popover extends LightningElement {
     // ========================================
 
     /**
-     * Calculate popover and nubbin position relative to trigger link
+     * Calculate popover and pointer position relative to trigger link
      * Positions popover to the left of trigger, or below if not enough space
      */
     calculatePopoverPosition() {
-        const target = this.template.querySelector(`[data-id="${this.POPOVER_ANCHOR_ID}"]`);
+        const target = this.template.querySelector(`[data-id="${this.TRIGGER_LINK_ID}"]`);
         const rect = target.getBoundingClientRect();
 
-        const nubbinSize = this.remToPx(1.25) + this.remToPx(0.0625); // nubbin size is calc(1.25rem + 0.0625rem), 29.7px/2 = 14.85px
+        const pointerSize = this.remToPx(1.25) + this.remToPx(0.0625); // pointer size is calc(1.25rem + 0.0625rem), 29.7px/2 = 14.85px
 
         const popoverWidth = this._popoverWidth;
         const popoverMinHeight = this._popoverMinHeight;
 
-        if (this.canFitToLeft(rect, popoverWidth, nubbinSize)) {
+        if (this.canFitToLeft(rect, popoverWidth, pointerSize)) {
             // Positioned left of target
-            this.calculateLeft(rect, nubbinSize, popoverWidth, popoverMinHeight);
+            this.calculateLeft(rect, pointerSize, popoverWidth, popoverMinHeight);
             this.currentPopoverPosition = 'west';
         } else {
             // Position popover under target
             this.currentPopoverPosition = 'south';
-            this.calculateBelow(rect, nubbinSize);
+            this.calculateBelow(rect, pointerSize);
         }
-        this.nubbinStyle = `top: ${this.nubbin.y}px; left: ${this.nubbin.x}px;`;
+        this.pointerStyle = `top: ${this.pointer.y}px; left: ${this.pointer.x}px;`;
         this.popoverStyle = `width: ${popoverWidth}px; min-height: ${popoverMinHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
     }
 
-    canFitToLeft(rect, popoverWidth, nubbinSize) {
+    canFitToLeft(rect, popoverWidth, pointerSize) {
         // Check if there is enough space to the left
-        return rect.left >= popoverWidth + nubbinSize;
+        return rect.left >= popoverWidth + pointerSize;
     }
 
-    calculateLeft(rect, nubbinSize, popoverWidth, popoverHeight) {
-        const nubbinDiameter = nubbinSize * Math.sqrt(2); //
-        this.nubbin.x = 0 - nubbinDiameter; // Move nubbin to left edge
-        this.nubbin.y = 0 + rect.height / 2 - nubbinSize / 2; // Align nubbin to vertical center
-        this.popover.x = this.nubbin.x - popoverWidth + nubbinSize / 2; // Move popover to left edge and add offset to account for nubbin and popover overlap
-        this.popover.y = this.nubbin.y - popoverHeight / 2; // Align popover to vertical center
+    calculateLeft(rect, pointerSize, popoverWidth, popoverHeight) {
+        const pointerDiameter = pointerSize * Math.sqrt(2);
+        this.pointer.x = 0 - pointerDiameter; // Move pointer to left edge
+        this.pointer.y = 0 + rect.height / 2 - pointerSize / 2; // Align pointer to vertical center
+        this.popover.x = this.pointer.x - popoverWidth + pointerSize / 2; // Move popover to left edge and add offset to account for pointer and popover overlap
+        this.popover.y = this.pointer.y - popoverHeight / 2; // Align popover to vertical center
     }
 
-    calculateBelow(rect, nubbinSize) {
-        this.nubbin.y = 0 + rect.height; // Move nubbin to bottom edge
-        this.nubbin.x = 0 + rect.width / 2 - nubbinSize / 2; // Align center
-        this.popover.y = this.nubbin.y + nubbinSize / 2; // Move popover to bottom edge and add offset to account for nubbin and popover overlap
+    calculateBelow(rect, pointerSize) {
+        this.pointer.y = 0 + rect.height; // Move pointer to bottom edge
+        this.pointer.x = 0 + rect.width / 2 - pointerSize / 2; // Align center
+        this.popover.y = this.pointer.y + pointerSize / 2; // Move popover to bottom edge and add offset to account for pointer and popover overlap
         this.popover.x = 0; // Align popover with left edge
     }
 
@@ -433,10 +428,10 @@ export default class Popover extends LightningElement {
      * Cycles between first (close button) and last (end marker) focusable elements
      */
     trapFocus(event) {
-        const myPopoverStart = this.template.querySelector('[data-id="popover-close"]');
-        const myPopoverEnd = this.template.querySelector('[data-id="mypopoverend"]');
+        const focusTrapStart = this.template.querySelector(`[data-id="${this.CLOSE_BUTTON_ID}"]`);
+        const focusTrapEnd = this.template.querySelector(`[data-id="${this.FOCUS_TRAP_END_ID}"]`);
 
-        if (!myPopoverStart || !myPopoverEnd) {
+        if (!focusTrapStart || !focusTrapEnd) {
             return;
         }
 
@@ -444,15 +439,15 @@ export default class Popover extends LightningElement {
 
         if (event.shiftKey) {
             // Shift + Tab - going backwards
-            if (currentActiveElement === myPopoverStart) {
+            if (currentActiveElement === focusTrapStart) {
                 event.preventDefault();
-                myPopoverEnd.focus();
+                focusTrapEnd.focus();
             }
         } else {
             // Tab - going forwards
-            if (currentActiveElement === myPopoverEnd) {
+            if (currentActiveElement === focusTrapEnd) {
                 event.preventDefault();
-                myPopoverStart.focus();
+                focusTrapStart.focus();
             }
         }
     }

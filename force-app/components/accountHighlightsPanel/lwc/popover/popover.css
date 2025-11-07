@@ -2,11 +2,13 @@ lightning-icon {
     cursor: pointer;
 }
 
-.popover-container {
+/* Base component container */
+.cmp-popover {
     position: relative;
 }
 
-.outside-click-capture {
+/* Backdrop layer for click-outside detection */
+.cmp-popover__backdrop {
     position: fixed;
     z-index: 5999;
     top: 0;
@@ -15,14 +17,18 @@ lightning-icon {
     bottom: 0;
     background-color: transparent;
     cursor: default;
-    /* This is the key: backdrop catches all clicks */
+    /* Captures all clicks outside popover */
     pointer-events: auto;
 }
-.popover-wrapper {
-    /* Allow clicks to pass through wrapper to reach popover content */
+
+/* Content wrapper - allows pointer events to pass through to backdrop */
+.cmp-popover__content-wrapper {
+    /* Allow clicks to pass through wrapper to reach popover content or backdrop */
     pointer-events: none;
 }
-.trigger-button {
+
+/* Trigger button (icon button) - hidden by default, shown on focus */
+.cmp-popover__trigger-button {
     position: absolute;
     top: 0;
     left: 0;
@@ -30,13 +36,14 @@ lightning-icon {
     clip-path: polygon(0 0, 0 0, 0 0, 0 0);
 }
 
-.trigger-button-focus {
+.cmp-popover__trigger-button--focus {
     clip: auto;
     clip-path: none;
     position: relative;
 }
 
-.popover-style {
+/* Popover dialog container */
+.cmp-popover__dialog {
     z-index: 6000;
     position: absolute;
     left: 0px;
@@ -49,7 +56,8 @@ lightning-icon {
     pointer-events: auto;
 }
 
-.popover-nubbin {
+/* Pointer/arrow element pointing to trigger */
+.cmp-popover__pointer {
     z-index: 9001;
     width: calc(1.25rem + 0.0625rem);
     height: calc(1.25rem + 0.0625rem);
@@ -59,18 +67,19 @@ lightning-icon {
     position: absolute;
     left: 0px;
     top: 0px;
-    /* Re-enable pointer events for pointer/nubbin */
+    /* Re-enable pointer events for pointer */
     pointer-events: auto;
 }
-/* Border adjustments for different nubbin positions */
-/* Border on top-right for right-arrow */
-.nubbin-right {
+
+/* Pointer positioned to the west (pointing right) */
+.cmp-popover__pointer--west {
     border: 0;
     border-right: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
     border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
 }
-/* Border on top-left for up-arrow */
-.nubbin-top {
+
+/* Pointer positioned to the south (pointing up) */
+.cmp-popover__pointer--south {
     border: 0;
     border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
     border-left: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);

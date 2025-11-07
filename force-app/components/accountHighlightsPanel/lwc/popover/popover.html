@@ -1,40 +1,45 @@
 <template>
-    <div class="popover-container" data-id="popover-container">
-        <div id="trigger-container" class="slds-grid" data-id="trigger-container" style={triggerContainerStyle}>
+    <div class="cmp-popover" data-id="cmp-popover">
+        <div
+            id="cmp-popover__trigger-wrapper"
+            class="slds-grid cmp-popover__trigger-wrapper"
+            data-id="cmp-popover__trigger-wrapper"
+            style={triggerContainerStyle}
+        >
             <a
-                href={linkUrl}
-                data-id="popover-link"
+                href={_linkUrl}
+                data-id="cmp-popover__trigger-link"
                 onmouseover={handleMouseEnter}
                 onmouseout={handleMouseLeave}
                 onfocus={handleButtonFocusIn}
                 onblur={handleButtonFocusOut}
-                >{linkLabel}</a
+                >{_linkLabel}</a
             >
             <lightning-button-icon
-                icon-name={iconName}
-                tooltip={tooltip}
+                icon-name={_iconName}
+                tooltip={_tooltip}
                 onclick={handleButtonClick}
                 onfocus={handleButtonFocusIn}
                 onblur={handleButtonFocusOut}
                 class={triggerButtonClassNames}
                 size="small"
-                title={title}
+                title={_title}
                 variant="bare"
-                data-id="popover-button"
+                data-id="cmp-popover__trigger-button"
                 aria-haspopup={ariaHaspopup}
             ></lightning-button-icon>
         </div>
 
         <!-- Backdrop for catching clicks outside popover (only when opened via button) -->
-        <div if:true={shouldShowBackdrop} class="outside-click-capture" onclick={handleBackdropClick}></div>
+        <div if:true={shouldShowBackdrop} class="cmp-popover__backdrop" onclick={handleBackdropClick}></div>
 
-        <div if:true={showPopover} class="popover-wrapper" data-id="popover-wrapper">
+        <div if:true={showPopover} class="cmp-popover__content-wrapper" data-id="cmp-popover__content-wrapper">
             <section
-                class="popover-style"
+                class="cmp-popover__dialog"
                 role="dialog"
                 tabindex="-1"
-                aria-describedby="popover-body"
-                aria-label={title}
+                aria-describedby="cmp-popover__body"
+                aria-label={_title}
                 onmouseenter={handlePopoverEnter}
                 onmouseleave={handleMouseLeave}
                 onclick={ignore}
@@ -46,14 +51,14 @@
                     variant="bare"
                     alternative-text="Close dialog"
                     class="slds-float_right"
-                    data-id="popover-close"
+                    data-id="cmp-popover__close-button"
                 ></lightning-button-icon>
                 <div class="slds-p-around_xx-small">
-                    <slot name="body" data-id="popover-body"> </slot>
+                    <slot name="body" data-id="cmp-popover__body"> </slot>
                 </div>
-                <div data-id="mypopoverend" tabindex="0" class="sr-only"></div>
+                <div data-id="cmp-popover__focus-trap-end" tabindex="0" class="sr-only"></div>
             </section>
-            <div class={nubbinClassNames} style={nubbinStyle}></div>
+            <div class={pointerClassNames} style={pointerStyle}></div>
         </div>
     </div>
 </template>
