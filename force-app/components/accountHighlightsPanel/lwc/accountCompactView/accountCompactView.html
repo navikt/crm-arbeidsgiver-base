@@ -1,0 +1,135 @@
+<template>
+    <div class="account-preview-container">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Laster..." size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={accountData}>
+            <header role="region" aria-label="" class="slds-panel__section">
+                <!-- Header with icon, name and hierarchy button -->
+                <div class="slds-grid slds-nowrap slds-gutters_xxx-small">
+                    <!-- Icon -->
+                    <div class="slds-col slds-no-flex">
+                        <div class="slds-avatar slds-avatar_small" style="background-color: #5867e8">
+                            <lightning-icon
+                                icon-name="standard:account"
+                                size="small"
+                                alternative-text="Account"
+                            ></lightning-icon>
+                        </div>
+                    </div>
+
+                    <!-- Primary Field (Account Name) -->
+                    <div class="slds-col">
+                        <h2 class="slds-m-around_none slds-text-heading_medium">
+                            <a href={accountUrl} title={name.label} target="_self"> {name.value} </a>
+                        </h2>
+                    </div>
+
+                    <!-- Hierarchy Button 
+                    <div class="slds-col slds-no-flex">
+                        <lightning-button-icon
+                            icon-name="utility:hierarchy"
+                            variant="border-filled"
+                            alternative-text="View Account Hierarchy"
+                            title="View Account Hierarchy"
+                            onclick={navigateToHierarchy}
+                        ></lightning-button-icon>
+                    </div>
+                    -->
+                </div>
+
+                <!-- Secondary Fields -->
+                <ul role="presentation" class="secondaryFieldsWrapper slds-m-top_small">
+                    <!-- Organisasjonsnummer -->
+                    <li class="secondaryFieldGrid">
+                        <div class="slds-list_vertical forceListRecordItem">
+                            <div
+                                role="link"
+                                title="Organisasjonsnummer"
+                                class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
+                            >
+                                Organisasjonsnummer
+                            </div>
+                            <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
+                                {organisationNumber.value}
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Parent Account (if exists) -->
+                    <li class="secondaryFieldGrid">
+                        <div class="slds-list_vertical forceListRecordItem">
+                            <div
+                                role="link"
+                                title="Parent Account"
+                                class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
+                            >
+                                {parentAccount.label}
+                            </div>
+                            <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
+                                <template if:true={parentAccount.value}>
+                                    <a href={parentUrl} title={parentAccount.value} target="_blank">
+                                        {parentAccount.value}
+                                    </a>
+                                </template>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Main Industry -->
+                    <li class="secondaryFieldGrid">
+                        <div class="slds-list_vertical forceListRecordItem">
+                            <div
+                                role="link"
+                                title="Main Industry"
+                                class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
+                            >
+                                {mainIndustry.label}
+                            </div>
+                            <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
+                                {mainIndustry.value}
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Number of Employees -->
+                    <li class="secondaryFieldGrid">
+                        <div class="slds-list_vertical forceListRecordItem">
+                            <div
+                                role="link"
+                                title="Number of Employees Formula"
+                                class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
+                            >
+                                {numberOfEmployees.label}
+                            </div>
+                            <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
+                                {numberOfEmployees.value}
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Registration Year -->
+                    <li class="secondaryFieldGrid">
+                        <div class="slds-list_vertical forceListRecordItem">
+                            <div
+                                role="link"
+                                title="Registration Year"
+                                class="slds-item_label slds-truncate recordCell recordCellLabel slds-text-color_weak"
+                            >
+                                {registrationYear.label}
+                            </div>
+                            <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
+                                {registrationYear.value}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </header>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-m-around_small">{error}</div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,86 @@
+lightning-icon {
+    cursor: pointer;
+}
+
+/* Base component container */
+.cmp-popover {
+    position: relative;
+}
+
+/* Backdrop layer for click-outside detection */
+.cmp-popover__backdrop {
+    position: fixed;
+    z-index: 5999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    cursor: default;
+    /* Captures all clicks outside popover */
+    pointer-events: auto;
+}
+
+/* Content wrapper - allows pointer events to pass through to backdrop */
+.cmp-popover__content-wrapper {
+    /* Allow clicks to pass through wrapper to reach popover content or backdrop */
+    pointer-events: none;
+}
+
+/* Trigger button (icon button) - hidden by default, shown on focus */
+.cmp-popover__trigger-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(1px 1px 1px 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+}
+
+.cmp-popover__trigger-button--focus {
+    clip: auto;
+    clip-path: none;
+    position: relative;
+}
+
+/* Popover dialog container */
+.cmp-popover__dialog {
+    z-index: 6000;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    will-change: transform;
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    border-radius: var(--slds-g-radius-border-2, 0.5rem);
+    /* Re-enable pointer events for popover content */
+    pointer-events: auto;
+}
+
+/* Pointer/arrow element pointing to trigger */
+.cmp-popover__pointer {
+    z-index: 9001;
+    width: calc(1.25rem + 0.0625rem);
+    height: calc(1.25rem + 0.0625rem);
+    transform: rotate(45deg);
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /* Re-enable pointer events for pointer */
+    pointer-events: auto;
+}
+
+/* Pointer positioned to the west (pointing right) */
+.cmp-popover__pointer--west {
+    border: 0;
+    border-right: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+}
+
+/* Pointer positioned to the south (pointing up) */
+.cmp-popover__pointer--south {
+    border: 0;
+    border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+    border-left: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
+}
