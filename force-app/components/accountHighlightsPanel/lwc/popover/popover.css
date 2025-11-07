@@ -49,7 +49,7 @@ lightning-icon {
     pointer-events: auto;
 }
 
-.popover-pointer {
+.popover-nubbin {
     z-index: 9001;
     width: calc(1.25rem + 0.0625rem);
     height: calc(1.25rem + 0.0625rem);
@@ -62,12 +62,15 @@ lightning-icon {
     /* Re-enable pointer events for pointer/nubbin */
     pointer-events: auto;
 }
-.pointer_left {
+/* Border adjustments for different nubbin positions */
+/* Border on top-right for right-arrow */
+.nubbin-right {
     border: 0;
     border-right: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
     border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
 }
-.pointer_below {
+/* Border on top-left for up-arrow */
+.nubbin-top {
     border: 0;
     border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);
     border-left: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #b6b6b6);

@@ -17,15 +17,15 @@ export default class Popover extends LightningElement {
     // Constants
     // ========================================
     POPOVER_ANCHOR_ID = 'popover-link';
-
     // ========================================
     // Public API Properties
     // ========================================
-    @api iconName = 'utility:preview'; // Icon displayed in trigger button
-    @api tooltip = ''; // Tooltip text for button
-    @api title = ''; // Title for popover dialog
-    @api linkUrl = ''; // URL for the trigger link
-    @api linkLabel = 'Show Popover'; // Text for the trigger link
+    @api iconName; // Icon displayed in trigger button
+    @api tooltip; // Tooltip text for button
+    @api title; // Title for popover dialog
+    @api linkUrl; // URL for the trigger link
+    @api linkLabel; // Text for the trigger link
+    @api popoverWidth; // Width of the popover in pixels
 
     // ========================================
     // State Management
@@ -46,36 +46,51 @@ export default class Popover extends LightningElement {
     // Styling & Positioning
     // ========================================
     @track popoverStyle = 'transform: translate(0px, 0px);'; // Dynamic popover position
-    @track pointerStyle = 'top: 0px; left: 0px;'; // Dynamic nubbin/pointer position
+    @track nubbinStyle = 'top: 0px; left: 0px;'; // Dynamic nubbin position
 
-    // Position data for nubbin (the small pointer/arrow)
+    // Position for nubbin (the small pointer/arrow)
     nubbin = {
-        width: 0,
-        height: 0,
         x: 0,
         y: 0
     };
 
-    // Position and size data for popover
+    // Position for popover
     popover = {
-        width: 380,
-        minHeight: 100,
-        x: 0,
-        y: 0,
-        position: 'left' // Can be 'left' or 'below'
-    };
-
-    // Position data for anchor element (trigger link)
-    anchor = {
-        width: 0,
-        height: 0,
         x: 0,
         y: 0
     };
+
+    currentPopoverPosition = 'west'; // Placement of popover relative to trigger ('west' or 'south')
 
     // ========================================
     // Computed Properties / Getters
     // ========================================
+
+    get _iconName() {
+        return this.iconName || 'utility:preview';
+    }
+    get _tooltip() {
+        return this.tooltip || this.title || 'Show Popover';
+    }
+    get _title() {
+        return this.title || 'Details';
+    }
+    get _linkUrl() {
+        return this.linkUrl || '';
+    }
+    get _linkLabel() {
+        return this.linkLabel || 'Show Popover';
+    }
+    get _popoverWidth() {
+        // Parse the value as integer, fallback to default if invalid
+        const width = parseInt(this.popoverWidth, 10);
+        // Return parsed value if it's a valid number, otherwise return default
+        return !isNaN(width) && width > 0 ? width : 380;
+    }
+    get _popoverMinHeight() {
+        // return this.popoverMinHeight || 100;
+        return 100;
+    }
 
     /* Ensure trigger elements are above backdrop */
     get triggerContainerStyle() {
@@ -90,10 +105,17 @@ export default class Popover extends LightningElement {
     }
 
     /**
-     * Dynamic CSS classes for the pointer/nubbin based on position
+     * Dynamic CSS classes for the nubbin based on position
      */
-    get pointerClassNames() {
-        return `popover-pointer pointer_${this.popover.position}`;
+    get nubbinClassNames() {
+        if (this.currentPopoverPosition === 'west') {
+            return `popover-nubbin nubbin-right`;
+        }
+        if (this.currentPopoverPosition === 'south') {
+            return `popover-nubbin nubbin-top`;
+        }
+
+        return `popover-nubbin`;
     }
 
     /**
@@ -143,7 +165,7 @@ export default class Popover extends LightningElement {
                 // Delay opening popover by 300ms
                 // eslint-disable-next-line @lwc/lwc/no-async-operation
                 this.showTimer = window.setTimeout(() => {
-                    this.popoverPosition();
+                    this.calculatePopoverPosition();
                     this.showPopover = true;
 
                     // Use setTimeout to ensure DOM is updated before setting focus
@@ -210,7 +232,7 @@ export default class Popover extends LightningElement {
         this.keepPopoverOpen = this.showPopover;
 
         if (this.showPopover) {
-            this.popoverPosition();
+            this.calculatePopoverPosition();
             // Use setTimeout to ensure DOM is updated before setting focus
             // eslint-disable-next-line @lwc/lwc/no-async-operation
             setTimeout(() => {
@@ -273,32 +295,29 @@ export default class Popover extends LightningElement {
     // ========================================
 
     /**
-     * Calculate popover and pointer position relative to trigger link
+     * Calculate popover and nubbin position relative to trigger link
      * Positions popover to the left of trigger, or below if not enough space
      */
-    popoverPosition() {
+    calculatePopoverPosition() {
         const target = this.template.querySelector(`[data-id="${this.POPOVER_ANCHOR_ID}"]`);
         const rect = target.getBoundingClientRect();
-        this.anchor.height = rect.height;
-        this.anchor.width = rect.width;
-        this.anchor.x = 0; //rect.x;
-        this.anchor.y = 0; //rect.y;
 
-        const nubbinSize = this.remToPx(1.25) + this.remToPx(0.0625); // pointer size is calc(1.25rem + 0.0625rem), 29.7px/2 = 14.85px
-        this.nubbin.width = nubbinSize;
-        this.nubbin.height = nubbinSize;
+        const nubbinSize = this.remToPx(1.25) + this.remToPx(0.0625); // nubbin size is calc(1.25rem + 0.0625rem), 29.7px/2 = 14.85px
 
-        if (this.canFitToLeft(rect, this.popover.width, nubbinSize)) {
+        const popoverWidth = this._popoverWidth;
+        const popoverMinHeight = this._popoverMinHeight;
+
+        if (this.canFitToLeft(rect, popoverWidth, nubbinSize)) {
             // Positioned left of target
-            this.calculateLeft(rect, nubbinSize, this.popover.width, this.popover.minHeight);
-            this.popover.position = 'left';
+            this.calculateLeft(rect, nubbinSize, popoverWidth, popoverMinHeight);
+            this.currentPopoverPosition = 'west';
         } else {
-            // Vis popover under target
-            this.popover.position = 'below';
+            // Position popover under target
+            this.currentPopoverPosition = 'south';
             this.calculateBelow(rect, nubbinSize);
         }
-        this.pointerStyle = `top: ${this.nubbin.y}px; left: ${this.nubbin.x}px;`;
-        this.popoverStyle = `width: ${this.popover.width}px; min-height: ${this.popover.minHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
+        this.nubbinStyle = `top: ${this.nubbin.y}px; left: ${this.nubbin.x}px;`;
+        this.popoverStyle = `width: ${popoverWidth}px; min-height: ${popoverMinHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
     }
 
     canFitToLeft(rect, popoverWidth, nubbinSize) {
