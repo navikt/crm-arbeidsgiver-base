@@ -15,7 +15,7 @@ export default class Badges extends LightningElement {
 
     // Popover size configuration - adjust as needed
     maxTilesPerRow = 3; // Maximum number of record tiles per row to display in popover
-    tileWidth = 400; // Width of each record tile displayed in popover
+    tileWidth = 300; // Width of each record tile displayed in popover
 
     // Wire service to fetch badges
     @wire(createBadges, { recordId: '$recordId', keys: '$badgesToDisplay' })
@@ -26,13 +26,14 @@ export default class Badges extends LightningElement {
             return;
         }
         if (data) {
-            this.badges = data;
-            this.renderBadges = this.badges.length > 0; // Check if badges array is empty
-            this.badges.forEach((badge) => {
+            this.badges = data.map((badge) => {
                 // create new property for popover width
-                badge.popoverWidth = this.calculatePopoverWidth(badge.relatedRecords.length);
-                console.log('Badge popoverWidth:', badge.popoverWidth);
+                return {
+                    ...badge,
+                    popoverWidth: this.calculatePopoverWidth(badge.relatedRecords.length)
+                };
             });
+            this.renderBadges = this.badges.length > 0; // Check if badges array is empty
             this.cachedRecords.clear(); // Clear cached records when new badges are fetched
             // console.log('Badges:', JSON.stringify(this.badges));
         } else if (error) {
