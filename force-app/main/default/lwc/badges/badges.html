@@ -16,120 +16,69 @@
                 <lightning-layout-item padding="around-small">
                     <ul class="slds-list_horizontal slds-wrap">
                         <template for:each={badges} for:item="badge">
-                            <li
-                                class="badge-wrapper slds-item slds-badge badge-neutral"
-                                key={badge.label}
-                                onclick={handleBadgeClick}
-                            >
-                                <template if:true={badge.url}>
-                                    <lightning-formatted-url
-                                        value={badge.url}
-                                        label={badge.label}
-                                        data-badgekey={badge.badgeKey}
-                                        onmouseenter={handleMouseEnter}
-                                        onmouseleave={handleMouseLeave}
-                                    ></lightning-formatted-url>
-                                </template>
-                                <template if:false={badge.url}>{badge.label}</template>
+                            <li class="badge-wrapper slds-item slds-badge badge-neutral" key={badge.label}>
+                                <c-popover
+                                    link-label={badge.label}
+                                    link-url={badge.url}
+                                    tooltip="Forhåndsvis"
+                                    title="Forhåndsvis"
+                                    popover-width={badge.popoverWidth}
+                                >
+                                    <span slot="body">
+                                        <ul
+                                            style="display: flex; flex-wrap: wrap"
+                                            class="slds-has-dividers_bottom-space"
+                                        >
+                                            <template for:each={badge.relatedRecords} for:item="relatedRecord">
+                                                <li
+                                                    class="slds-var-m-around_xx-small"
+                                                    key={relatedRecord.id}
+                                                    style={popoverTileStyle}
+                                                >
+                                                    <lightning-tile
+                                                        label={relatedRecord.name}
+                                                        href={relatedRecord.link}
+                                                        type="media"
+                                                    >
+                                                        <lightning-icon
+                                                            slot="media"
+                                                            icon-name={relatedRecord.icon}
+                                                            size="x-small"
+                                                        ></lightning-icon>
+                                                        <dl class="slds-list_horizontal slds-wrap">
+                                                            <template for:each={relatedRecord.fields} for:item="field">
+                                                                <dt
+                                                                    key={field.label}
+                                                                    class="slds-item_label slds-text-color_weak slds-truncate"
+                                                                    title={field.label}
+                                                                >
+                                                                    {field.label}:
+                                                                </dt>
+                                                                <dd
+                                                                    key={field.label}
+                                                                    class="slds-item_detail slds-truncate"
+                                                                    title={field.value}
+                                                                >
+                                                                    <c-formatted-field
+                                                                        value={field.value}
+                                                                        type={field.type}
+                                                                    ></c-formatted-field>
+                                                                </dd>
+                                                            </template>
+                                                        </dl>
+                                                    </lightning-tile>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </span>
+                                </c-popover>
+
                                 <template if:true={badge.helpText}>
                                     <lightning-helptext content={badge.helpText}></lightning-helptext>
                                 </template>
-                                <!-- Preview-knapp som kun vises ved fokus 
-                                <lightning-button-icon
-                                    class="preview-button"
-                                    size="small"
-                                    data-badgekey={badge.badgeKey}
-                                    onclick={handlePreviewClick}
-                                    icon-name="utility:preview"
-                                    variant="bare"
-                                    alternative-text="Forhåndsvis"
-                                    title="Forhåndsvis"
-                                    label="Forhåndsvis"
-                                    aria-haspopup={ariaHaspopup}
-                                ></lightning-button-icon>
-                                -->
                             </li>
                         </template>
                     </ul>
-                    <!-- Popover that displays related records -->
-                    <template if:true={showPopover}>
-                        <section
-                            aria-describedby="popover-content"
-                            aria-label="Viser relaterte poster for merkelappen"
-                            class="badgepopover slds-nubbin_top-left slds-is-absolute"
-                            style={popoverStyle}
-                            onmouseenter={handlePopoverEnter}
-                            onmouseleave={handleMouseLeave}
-                            onkeydown={handleKeyDown}
-                            tabindex="-1"
-                            role="dialog"
-                        >
-                         <!-- Fokuserbar fallback-knapp (kun for å sikre fokus) -->
-                            <button
-                                class="invisible-focusable"
-                                style="position: absolute; left: -9999px"
-                                data-id="popover-first-item"
-                                tabindex="0"
-                            >
-                                Fokus
-                            </button>
-                            <!-- Close button -->
-                            <lightning-button-icon
-                                onclick={handlePopoverClose}
-                                icon-name="utility:close"
-                                variant="bare"
-                                size="x-small"
-                                alternative-text="Close dialog"
-                                class="slds-float_right slds-popover__close"
-                                data-id="badge-popover-close"
-                            ></lightning-button-icon>
-
-                            <div
-                                class="slds-var-p-horizontal_x-small slds-var-p-vertical_small"
-                                style={popoverContentStyle}
-                                id="popover-content"
-                            >
-                                <!-- RelatedRecordsCardList -->
-                                <ul style="display: flex; flex-wrap: wrap">
-                                    <template for:each={recordListAsTiles} for:item="record">
-                                        <li class="slds-var-m-around_xx-small" key={record.id} style={popoverTileStyle}>
-                                            <div class="slds-box slds-theme_default">
-                                                <lightning-tile label={record.name} href={record.link} type="media">
-                                                    <lightning-icon
-                                                        slot="media"
-                                                        icon-name={record.icon}
-                                                        size="small"
-                                                    ></lightning-icon>
-                                                    <dl class="slds-list_horizontal slds-wrap">
-                                                        <template for:each={record.fields} for:item="field">
-                                                            <dt
-                                                                key={field.label}
-                                                                class="slds-item_label slds-text-color_weak slds-truncate"
-                                                                title={field.label}
-                                                            >
-                                                                {field.label}:
-                                                            </dt>
-                                                            <dd
-                                                                key={field.label}
-                                                                class="slds-item_detail slds-truncate"
-                                                                title={field.value}
-                                                            >
-                                                                <c-formatted-field
-                                                                    value={field.value}
-                                                                    type={field.type}
-                                                                ></c-formatted-field>
-                                                            </dd>
-                                                        </template>
-                                                    </dl>
-                                                </lightning-tile>
-                                            </div>
-                                        </li>
-                                    </template>
-                                </ul>
-                                <!-- -->
-                            </div>
-                        </section>
-                    </template>
                 </lightning-layout-item>
             </lightning-layout>
         </article>

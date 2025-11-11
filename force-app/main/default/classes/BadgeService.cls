@@ -326,6 +326,10 @@ public with sharing class BadgeService {
         public String badgeKey;
         @AuraEnabled
         public String icon;
+        @AuraEnabled
+        public List<RecordWrapper> relatedRecords;
+        @AuraEnabled
+        public Integer recordCount;
 
         public Badge(String label, String url, String helpText, String badgeType, String badgeKey, String icon) {
             this.label = label;

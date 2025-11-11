@@ -2,6 +2,19 @@ public with sharing class BadgeController {
     private static Map<String, Map<String, String>> badgeConfig = new Map<String, Map<String, String>>();
     private static final LoggerUtility LOGGER = new LoggerUtility();
 
+    @AuraEnabled(cacheable=true)
+    public static List<BadgeService.Badge> createBadgesWithRelatedRecords(Id recordId, String keys) {
+        // Create badges using existing method
+        List<BadgeService.Badge> badges = createBadges(recordId, keys);
+        // Get related records using existing method
+        for (BadgeService.Badge badge : badges) {
+            List<BadgeService.RecordWrapper> relatedRecords = getRecords(recordId, badge.badgeKey);
+            badge.relatedRecords = relatedRecords;
+            badge.recordCount = relatedRecords.size();
+        }
+        return badges;
+    }
+
     /**
      * @description Creates badges for a given record based on its fields and related records.
      * @param recordId The Id of the record for which to create badges.
