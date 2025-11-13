@@ -443,6 +443,11 @@
         <expression>TEXT({!$Record.ActivityDate})</expression>
     </formulas>
     <formulas>
+        <name>GetLabelName</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.TAG_ActivityType__c}, &apos;Forebygge sykefravær og redusere frafall&apos;), &apos;Forebygge og redusere fravær&apos;, TEXT({!$Record.TAG_ActivityType__c}))</expression>
+    </formulas>
+    <formulas>
         <name>isActivityDateNull</name>
         <dataType>Boolean</dataType>
         <expression>ISNULL ( {!$Record.ActivityDate} ) &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY()) ||  ISCHANGED({!$Record.Status} ) &amp;&amp; ISPICKVAL({!$Record.Status} , &apos;Completed&apos;)  &amp;&amp; {!$Permission.Arbeidsgiver}  &amp;&amp; ({!$Record.ActivityDate} &gt;TODAY())</expression>
@@ -543,7 +548,7 @@
         <inputAssignments>
             <field>ActivityType__c</field>
             <value>
-                <elementReference>$Record.TAG_ActivityType__c</elementReference>
+                <elementReference>GetLabelName</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
