@@ -72,6 +72,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.TAG_JobPosting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.TAG_Link__c</field>
         <readable>true</readable>

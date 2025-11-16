@@ -43,6 +43,11 @@
                 <default>false</default>
                 <label>Utgående henvendelse</label>
             </value>
+            <value>
+                <fullName>Arbeidsplassen</fullName>
+                <default>false</default>
+                <label>Arbeidsplassen.no</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
