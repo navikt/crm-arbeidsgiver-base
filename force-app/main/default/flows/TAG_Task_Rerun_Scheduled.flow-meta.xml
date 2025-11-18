@@ -18,6 +18,11 @@
         </connector>
     </assignments>
     <environments>Default</environments>
+    <formulas>
+        <name>GetLabelName</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.TAG_ActivityType__c}, &apos;Forebygge sykefravær og redusere frafall&apos;), &apos;Forebygge og redusere fravær&apos;, TEXT({!$Record.TAG_ActivityType__c}))</expression>
+    </formulas>
     <interviewLabel>TAG Task Rerun Scheduled {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Task Rerun Scheduled</label>
     <processMetadataValues>
@@ -89,7 +94,7 @@
         <inputAssignments>
             <field>ActivityType__c</field>
             <value>
-                <elementReference>$Record.TAG_ActivityType__c</elementReference>
+                <elementReference>GetLabelName</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
