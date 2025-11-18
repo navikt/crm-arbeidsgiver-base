@@ -18,7 +18,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Create_Opportunity_Update</targetReference>
+                <targetReference>Get_Account</targetReference>
             </connector>
             <label>No</label>
         </rules>
@@ -40,7 +40,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Create_Opportunity</targetReference>
+                <targetReference>Get_Account</targetReference>
             </connector>
             <label>Created</label>
         </rules>
@@ -65,6 +65,28 @@
                 <targetReference>Get_Opportunity</targetReference>
             </connector>
             <label>Updated to Rekrutteringshjelp True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_there_Account</name>
+        <label>Is there Account?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Account</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Inclusion_Record_Type_Id</targetReference>
+            </connector>
+            <label>Yes</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -126,7 +148,13 @@
         <inputAssignments>
             <field>OwnerId</field>
             <value>
-                <elementReference>$Record.Account__r.TAG_NavUnit__r.CRM_QueueId__c</elementReference>
+                <elementReference>Get_Nav_Unit.CRM_QueueId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Get_Inclusion_Record_Type_Id.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -144,7 +172,7 @@
         <inputAssignments>
             <field>TAG_NavUnit__c</field>
             <value>
-                <elementReference>$Record.Account__r.TAG_NavUnit__c</elementReference>
+                <elementReference>Get_Nav_Unit.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -156,80 +184,75 @@
         <inputAssignments>
             <field>TAG_OrganizationNameFromForm__c</field>
             <value>
-                <elementReference>$Record.Account__r.Name</elementReference>
+                <elementReference>Get_Account.Name</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <recordCreates>
-        <name>Create_Opportunity_Update</name>
-        <label>Create Opportunity Update</label>
+    <recordLookups>
+        <name>Get_Account</name>
+        <label>Get Account</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <inputAssignments>
-            <field>Account__c</field>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_there_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.Account__c</elementReference>
             </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>InclusionStage__c</field>
-            <value>
-                <stringValue>Ny henvendelse</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>InquiryCategory__c</field>
-            <value>
-                <stringValue>Rekrutteringshjelp</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Notes__c</field>
-            <value>
-                <elementReference>NotesWithTlfNumber</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>OwnerId</field>
-            <value>
-                <elementReference>$Record.Account__r.TAG_NavUnit__r.CRM_QueueId__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Source__c</field>
-            <value>
-                <stringValue>Arbeidsplassen</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_JobPosting__c</field>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_NavUnit__c</field>
-            <value>
-                <elementReference>$Record.Account__r.TAG_NavUnit__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_No_person_information__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_OrganizationNameFromForm__c</field>
-            <value>
-                <elementReference>$Record.Account__r.Name</elementReference>
-            </value>
-        </inputAssignments>
-        <object>CustomOpportunity__c</object>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Inclusion_Record_Type_Id</name>
+        <label>Get Inclusion Record Type Id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Nav_Unit</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Inclusion</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Nav_Unit</name>
+        <label>Get Nav Unit</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Account.TAG_NavUnit__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>NavUnit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <name>Get_Opportunity</name>
         <label>Get Opportunity</label>
