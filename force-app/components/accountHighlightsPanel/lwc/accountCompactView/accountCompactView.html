@@ -22,7 +22,7 @@
                     <!-- Primary Field (Account Name) -->
                     <div class="slds-col">
                         <h2 class="slds-m-around_none slds-text-heading_medium">
-                            <a href={accountUrl} title={name.label} target="_self"> {name.value} </a>
+                            <lightning-formatted-url value={accountUrl} label={name.value}></lightning-formatted-url>
                         </h2>
                     </div>
 
@@ -69,9 +69,10 @@
                             </div>
                             <div class="slds-item_detail slds-truncate recordCell recordCellDetail">
                                 <template if:true={parentAccount.value}>
-                                    <a href={parentUrl} title={parentAccount.value} target="_blank">
-                                        {parentAccount.value}
-                                    </a>
+                                    <lightning-formatted-url
+                                        value={parentUrl}
+                                        label={parentAccount.value}
+                                    ></lightning-formatted-url>
                                 </template>
                             </div>
                         </div>
