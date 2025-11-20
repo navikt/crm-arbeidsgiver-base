@@ -75,6 +75,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.TAG_UltimateParentSectorCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>ArenaActivity__c.AktivitetStatuskode__c</field>
         <readable>true</readable>
