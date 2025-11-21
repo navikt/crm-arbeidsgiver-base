@@ -33,12 +33,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>amplitudeNavUnit</componentName>
-                <identifier>c_amplitudeNavUnit</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>relatedListComponentOverride</name>
                     <value>NONE</value>
@@ -59,12 +53,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeNavUnitDetaljer</componentName>
-                <identifier>c_amplitudeNavUnitDetaljer</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>force:detailPanel</componentName>

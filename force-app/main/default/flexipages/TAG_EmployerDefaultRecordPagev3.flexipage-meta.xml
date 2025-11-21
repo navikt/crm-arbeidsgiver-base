@@ -83,18 +83,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>amplitudeDeviceReader</componentName>
-                <identifier>c_amplitudeDeviceReader</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeKontoOversikt</componentName>
-                <identifier>c_amplitudeKontoOversikt</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>accountMessages</componentName>
                 <identifier>c_accountMessages</identifier>
             </componentInstance>
@@ -562,7 +550,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>logEvent</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>picklistFilter1Label</name>
@@ -571,6 +559,9 @@
                 <componentInstanceProperties>
                     <name>picklistFilter2Label</name>
                     <value>{!$Label.Service}</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showHideLabel</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>timelineParentField</name>
