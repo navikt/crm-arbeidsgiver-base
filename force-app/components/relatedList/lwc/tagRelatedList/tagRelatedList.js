@@ -7,7 +7,6 @@ import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import TEAM_MEMBER_ROLE_FIELD from '@salesforce/schema/AccountTeamMember.TeamMemberRole';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
-import { publishToAmplitude } from 'c/amplitude';
 import FORM_FACTOR from '@salesforce/client/formFactor';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
@@ -50,7 +49,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     connectedCallback() {
         this.wireFields = [this.objectApiName + '.Id'];
         this.getList();
-        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
     }
 
     get relatedObjectNames() {
@@ -127,9 +125,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     // Toggle the accordion state
     toggleAccordion() {
         this.isExpanded = !this.isExpanded;
-        if (this.isExpanded) {
-            publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" opened' });
-        }
     }
 
     get chevronIcon() {
@@ -147,7 +142,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         } else {
             this.navigateToRecord(recordId, this.relatedObjectApiName);
         }
-        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked on record' });
     }
 
     navigateToRecord(recordId, objectApiName) {
@@ -164,7 +158,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handleNewRecord(event) {
         // Prevent the header's onclick from firing
         event.stopPropagation();
-        publishToAmplitude(this.appName, { type: 'Related list "' + this.listTitle + '" clicked "New" button' });
 
         if (this.relatedObjectApiName === 'Contact' || this.relatedObjectApiName === 'AccountContactRelation') {
             this.showFlowModal = true;
