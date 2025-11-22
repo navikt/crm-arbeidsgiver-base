@@ -3,15 +3,17 @@
     <fullName>TAG_UltimateParentAccountId__c</fullName>
     <externalId>false</externalId>
     <formula>IF(NOT(ISBLANK(Parent.Parent.Parent.Parent.Parent.Id)), 
-			&apos;5&apos;,
+			Parent.Parent.Parent.Parent.Parent.Id,
 			 IF(NOT(ISBLANK(Parent.Parent.Parent.Parent.Id)),
-			 &apos;4&apos;,
+			 Parent.Parent.Parent.Parent.Id,
 			  IF(NOT(ISBLANK(Parent.Parent.Parent.Id)),
-			  &apos;3&apos;,
+			  Parent.Parent.Parent.Id,
 			   IF(NOT(ISBLANK(Parent.Parent.Id)),
-			   &apos;2&apos;,
-			    &apos;0&apos;
-			))))</formula>
+			   Parent.Parent.Id,
+						 IF(NOT(ISBLANK(Parent.Id)),
+			    Parent.Id,
+			     INT_SectorCode__c
+			)))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Ultimate Parent Account Id</label>
     <required>false</required>
