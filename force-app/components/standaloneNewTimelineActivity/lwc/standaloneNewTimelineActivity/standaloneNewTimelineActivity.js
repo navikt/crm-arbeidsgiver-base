@@ -2,7 +2,6 @@ import { LightningElement, api, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import * as helper from './helper';
 import getTimelineObjects from '@salesforce/apex/Timeline_Controller.getTimelineObjects';
-import { publishToAmplitude } from 'c/amplitude';
 
 export default class StandaloneNewTimelineActivity extends NavigationMixin(LightningElement) {
     @api configIdProperty;
@@ -11,7 +10,6 @@ export default class StandaloneNewTimelineActivity extends NavigationMixin(Light
     @api recordIdProperty;
     containsMacros;
     @track sObjects;
-    appName;
 
     @api get recordId() {
         return this.recordIdProperty;
@@ -37,9 +35,6 @@ export default class StandaloneNewTimelineActivity extends NavigationMixin(Light
     }
 
     createRecord(event) {
-        this.appName = localStorage.getItem('currentAppName') || 'Unknown App';
-        publishToAmplitude(this.appName, { type: 'Header - New activity button clicked to create Task/Meeting'});
-
         const row = this.sObjects[event.target.dataset.index];
         const override = this.sObjects[event.target.dataset.index].CreateableObject_NoOverride__c === false ? '0' : '1'; // == false to fallback to true if null
 
