@@ -21,6 +21,8 @@ Outputs &quot;Privat&quot; if none of the above matches.</description>
         OR(
         LOWER(INT_OrganizationalStructureDesc__c) = &apos;staten&apos;,
         LOWER(Parent.INT_OrganizationalStructureDesc__c) = &apos;staten&apos;,
+								INT_OrganizationalStructure__c = &apos;ADOS&apos;,
+								Parent.INT_OrganizationalStructure__c = &apos;ADOS&apos;,
         TAG_UltimateParentSectorCode__c = &apos;6100&apos;,
 								TAG_UltimateParentSectorCode__c = &apos;1110&apos;,
 								TAG_UltimateParentSectorCode__c = &apos;1120&apos;,
