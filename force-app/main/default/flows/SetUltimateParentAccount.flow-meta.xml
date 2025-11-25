@@ -411,21 +411,7 @@
         <connector>
             <targetReference>Check_for_1st_parent_account</targetReference>
         </connector>
-        <filterLogic>((1 OR 2) AND 3) OR 4</filterLogic>
-        <filters>
-            <field>ParentId</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>CRM_UltimateParentAccount__c</field>
-            <operator>IsNull</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterLogic>1 AND 2 AND (3 OR 4)</filterLogic>
         <filters>
             <field>IsPersonAccount</field>
             <operator>EqualTo</operator>
@@ -434,10 +420,24 @@
             </value>
         </filters>
         <filters>
-            <field>TAG_Force_Update__c</field>
+            <field>IsDeletedEmployer__c</field>
             <operator>EqualTo</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CRM_UltimateParentAccount__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue></stringValue>
             </value>
         </filters>
         <object>Account</object>
