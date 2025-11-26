@@ -301,6 +301,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IACooperation__c.TAG_Quality_Issue_Timeliness__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IACooperation__c.TAG_initial_activity_date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IACooperation__c.Type_IA_Cooperation__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -382,6 +392,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>JobPosting__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.TAG_Quality_Issue_Timeliness__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>JobPosting__c.TAG_initial_activity_date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -607,6 +627,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Workfare__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Workfare__c.TAG_Quality_Issue_Timeliness__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Workfare__c.TAG_initial_activity_date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
