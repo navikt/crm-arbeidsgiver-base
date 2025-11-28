@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Public_Sector__c</fullName>
+    <deprecated>false</deprecated>
     <description>Display a sector category based on fields from Ereg.
 Formula checks description of the organization structure, organization structure type for parent account and sector code.
 Outputs &quot;Kommune&quot; if organization structure is described as such or parent account is &quot;ORGL&quot;.
@@ -11,11 +12,23 @@ Outputs &quot;Privat&quot; if none of the above matches.</description>
     OR(
         LOWER(INT_OrganizationalStructureDesc__c) = &apos;kommune&apos;,
         LOWER(Parent.INT_OrganizationalStructureDesc__c) = &apos;kommune&apos;,
-        UPPER(Parent.INT_OrganizationalStructure__c) = &apos;ORGL&apos;
+        TAG_UltimateParentSectorCode__c = &apos;6500&apos;,
+								TAG_UltimateParentSectorCode__c = &apos;1510&apos;,
+								TAG_UltimateParentSectorCode__c = &apos;1520&apos;
     ),
     &apos;Kommune&apos;,
     IF(
-        INT_SectorCode__c = &apos;6100&apos;, 
+        OR(
+        LOWER(INT_OrganizationalStructureDesc__c) = &apos;staten&apos;,
+        LOWER(Parent.INT_OrganizationalStructureDesc__c) = &apos;staten&apos;,
+								INT_OrganizationalStructure__c = &apos;ADOS&apos;,
+								Parent.INT_OrganizationalStructure__c = &apos;ADOS&apos;,
+        TAG_UltimateParentSectorCode__c = &apos;6100&apos;,
+								TAG_UltimateParentSectorCode__c = &apos;1110&apos;,
+								TAG_UltimateParentSectorCode__c = &apos;1120&apos;,
+								TAG_UltimateParentSectorCode__c = &apos;3100&apos;,
+								TAG_UltimateParentSectorCode__c = &apos;3900&apos;
+    ), 
         &apos;Stat&apos;,
         &apos;Privat&apos;
     )

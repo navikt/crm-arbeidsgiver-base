@@ -133,6 +133,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>JobPosting__c.RecruitmentAssistance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>JobPosting__c.RecruitmentPhone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>JobPosting__c.SourceURL__c</field>
         <readable>true</readable>
     </fieldPermissions>

@@ -150,12 +150,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>amplitudeDeviceReader</componentName>
-                <identifier>c_amplitudeDeviceReader</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>accountMessages</componentName>
                 <identifier>accountMessages</identifier>
             </componentInstance>
@@ -164,12 +158,6 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeKontoOversikt</componentName>
-                <identifier>c_amplitudeKontoOversikt</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -430,12 +418,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeKontoHendelser</componentName>
-                <identifier>c_amplitudeKontoHendelser</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -735,12 +717,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>amplitudeKontoDetaljer</componentName>
-                <identifier>c_amplitudeKontoDetaljer</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
                     <valueList>
@@ -982,12 +958,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeKontoRekruttering</componentName>
-                <identifier>c_amplitudeKontoRekruttering</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -1339,12 +1309,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeKontoRedusereFravaer</componentName>
-                <identifier>c_amplitudeKontoRedusereFravaer</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -1750,7 +1714,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>logEvent</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>picklistFilter1Label</name>
@@ -1759,6 +1723,9 @@
                 <componentInstanceProperties>
                     <name>picklistFilter2Label</name>
                     <value>{!$Label.Service}</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showHideLabel</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>timelineParentField</name>

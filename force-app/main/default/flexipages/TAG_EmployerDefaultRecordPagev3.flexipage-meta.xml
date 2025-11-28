@@ -15,76 +15,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.OrganizationNumberFormula__c</fieldItem>
-                <identifier>RecordOrganizationNumberFormula_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.CRM_MainIndustry__c</fieldItem>
-                <identifier>RecordCRM_MainIndustry_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Sector__c</fieldItem>
-                <identifier>RecordTAG_Sector_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.CRM_NumberOfEmployeesFormula__c</fieldItem>
-                <identifier>RecordCRM_NumberOfEmployeesFormula_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.CRM_RegistrationYear__c</fieldItem>
-                <identifier>RecordCRM_RegistrationYear_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Proff_no__c</fieldItem>
-                <identifier>RecordTAG_Proff_no_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.ParentId</fieldItem>
-                <identifier>RecordParentIdField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-dde3d28a-20fa-43a2-ad78-338fb1f6bae1</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -137,24 +67,18 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>tagAccountHighlightsPanel</componentName>
+                <identifier>c_tagAccountHighlightsPanel</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>badgesToDisplay</name>
                     <value>markedssamarbeid, strategisk_partner,ia-samarbeid,muligheter,stillinger,tiltak</value>
                 </componentInstanceProperties>
                 <componentName>badges</componentName>
                 <identifier>c_badges</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeDeviceReader</componentName>
-                <identifier>c_amplitudeDeviceReader</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>amplitudeKontoOversikt</componentName>
-                <identifier>c_amplitudeKontoOversikt</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -626,7 +550,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>logEvent</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>picklistFilter1Label</name>
@@ -635,6 +559,9 @@
                 <componentInstanceProperties>
                     <name>picklistFilter2Label</name>
                     <value>{!$Label.Service}</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showHideLabel</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>timelineParentField</name>
