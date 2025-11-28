@@ -110,8 +110,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.TAG_Employer_Last_Activity_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.TAG_IsFromArticle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_Quality_Issue_Timeliness__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
