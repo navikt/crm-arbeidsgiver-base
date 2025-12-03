@@ -3,7 +3,7 @@
     <fullName>TAG_Account_Ultimate_Sector_Code__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>RelatedToAccount__r.TAG_UltimateParentSectorCode__c</formula>
+    <formula>RelatedToAccount__r.TAG_Ultimate_Sector_Code_from_parent__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Account Ultimate Sector Code</label>
     <required>false</required>
