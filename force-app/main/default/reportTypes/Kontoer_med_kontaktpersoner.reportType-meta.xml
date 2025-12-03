@@ -652,16 +652,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_UltimateParentAccountId__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_UltimateParentSectorCode__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_Ultimate_Sector_Code_from_parent__c</field>
             <table>Account</table>
         </columns>
