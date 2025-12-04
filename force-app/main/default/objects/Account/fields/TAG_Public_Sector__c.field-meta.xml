@@ -12,9 +12,9 @@ Outputs &quot;Privat&quot; if none of the above matches.</description>
     OR(
         LOWER(INT_OrganizationalStructureDesc__c) = &apos;kommune&apos;,
         LOWER(Parent.INT_OrganizationalStructureDesc__c) = &apos;kommune&apos;,
-        TAG_UltimateParentSectorCode__c = &apos;6500&apos;,
-								TAG_UltimateParentSectorCode__c = &apos;1510&apos;,
-								TAG_UltimateParentSectorCode__c = &apos;1520&apos;
+        TAG_Ultimate_Sector_Code_from_parent__c = &apos;6500&apos;,
+								TAG_Ultimate_Sector_Code_from_parent__c = &apos;1510&apos;,
+								TAG_Ultimate_Sector_Code_from_parent__c = &apos;1520&apos;
     ),
     &apos;Kommune&apos;,
     IF(
@@ -23,11 +23,11 @@ Outputs &quot;Privat&quot; if none of the above matches.</description>
         LOWER(Parent.INT_OrganizationalStructureDesc__c) = &apos;staten&apos;,
 								INT_OrganizationalStructure__c = &apos;ADOS&apos;,
 								Parent.INT_OrganizationalStructure__c = &apos;ADOS&apos;,
-        TAG_UltimateParentSectorCode__c = &apos;6100&apos;,
-								TAG_UltimateParentSectorCode__c = &apos;1110&apos;,
-								TAG_UltimateParentSectorCode__c = &apos;1120&apos;,
-								TAG_UltimateParentSectorCode__c = &apos;3100&apos;,
-								TAG_UltimateParentSectorCode__c = &apos;3900&apos;
+        TAG_Ultimate_Sector_Code_from_parent__c = &apos;6100&apos;,
+								TAG_Ultimate_Sector_Code_from_parent__c = &apos;1110&apos;,
+								TAG_Ultimate_Sector_Code_from_parent__c = &apos;1120&apos;,
+								TAG_Ultimate_Sector_Code_from_parent__c = &apos;3100&apos;,
+								TAG_Ultimate_Sector_Code_from_parent__c = &apos;3900&apos;
     ), 
         &apos;Stat&apos;,
         &apos;Privat&apos;
