@@ -111,6 +111,16 @@
                 <identifier>RecordProfessionCategory_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.RecruitmentAssistanceFormula__c</fieldItem>
+                <identifier>RecordRecruitmentAssistanceFormula_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-83d57ab0-55b0-4725-b893-aef3fe5ebe1a</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -173,6 +183,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ProfessionCategoryCode__c</fieldItem>
                 <identifier>RecordProfessionCategoryCode_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.RecruitmentPhone__c</fieldItem>
+                <identifier>RecordRecruitmentPhone_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-5d23063f-0fbe-4e7c-bb9a-eee62534ce64</name>

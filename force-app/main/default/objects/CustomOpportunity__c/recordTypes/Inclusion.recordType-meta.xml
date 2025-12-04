@@ -1987,6 +1987,10 @@
     <picklistValues>
         <picklist>Source__c</picklist>
         <values>
+            <fullName>Arbeidsplassen</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Bedriftsundersøkelsen</fullName>
             <default>false</default>
         </values>
