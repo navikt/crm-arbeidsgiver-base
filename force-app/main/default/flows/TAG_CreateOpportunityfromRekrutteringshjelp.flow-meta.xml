@@ -93,7 +93,7 @@
     <formulas>
         <name>NotesWithTlfNumber</name>
         <dataType>String</dataType>
-        <expression>&quot;Henvendelse fra Arbeidsplassen.no – arbeidsgiver har bedt om rekrutteringshjelp. Vennligst kontakt arbeidsgiver på telefonnummer &quot; &amp; {!$Record.RecruitmentPhone__c} &amp; &quot;.&quot;</expression>
+        <expression>&quot;Henvendelse fra Arbeidsplassen.no: Arbeidsgiver ønsker rekrutteringshjelp i forbindelse med en konkret stilling (se lenke over). Vennligst kontakt arbeidsgiver på telefonnummer &quot; &amp; {!$Record.RecruitmentPhone__c} &amp; &quot;.&quot;</expression>
     </formulas>
     <interviewLabel>TAG Create Opportunity from Rekrutteringshjelp {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Create Opportunity from Rekrutteringshjelp</label>
