@@ -445,42 +445,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>runtime_sales_activities:todayTaskContainer</componentName>
-                <identifier>runtime_sales_activities_todayTaskContainer</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>componentName</name>
-                    <value>Dagens oppgaver (bruker)</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>floatRight</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>followUpMessage</name>
-                    <value>Fortell oss gjerne hva du savner i &lt;a href=&quot;https://teams.microsoft.com/l/channel/19%3A6e27024572134ce3a453d68946fa1ebb%40thread.skype/- Salesforce Arbeidsgiver?groupId=123a02dc-0cd0-4da3-8f1c-d496a1b8f130&amp;tenantId=62366534-1ec3-4962-8869-9b5535279d0b&quot;&gt;kanalen vår på Markedsnettverket (Teams)&lt;/a&gt;</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>page</name>
-                    <value>Home</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>question</name>
-                    <value>Er denne listen relevant for deg?</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>thankYouMessage</name>
-                    <value>Takk for tilbakemeldingen!</value>
-                </componentInstanceProperties>
-                <componentName>requestUserFeedback</componentName>
-                <identifier>c_requestUserFeedback4</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>altTextNewRecordButton</name>
                     <value>Opprett ny oppgave</value>
@@ -598,8 +562,16 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>home:eventContainer</componentName>
-                <identifier>home_eventContainer</identifier>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Nyttige rapporter&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002dWBl2AM/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Mine aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002dmq12AA/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(0, 120, 215); background-color: rgb(255, 255, 255);&quot;&gt;Mine fremtidige aktiviteter&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002dWWj2AM/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Kontorets aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002dWi12AE/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Kontorets forfalte oppgaver&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002dmBh2AI/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Kontorets fremtidige aktiviteter&lt;/a&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
