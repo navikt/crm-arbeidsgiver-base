@@ -450,4 +450,8 @@
         <recordType>Task.IA_task</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabSettings>
+        <tab>IACooperation__c</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
 </PermissionSet>
