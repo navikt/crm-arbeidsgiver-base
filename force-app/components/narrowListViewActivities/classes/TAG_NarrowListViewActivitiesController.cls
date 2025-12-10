@@ -4,6 +4,11 @@ public with sharing class TAG_NarrowListViewActivitiesController {
         @AuraEnabled public Integer count;
     }
 
+    public class EventListResult {
+        @AuraEnabled public List<Event> records;
+        @AuraEnabled public Integer count;
+    }
+
     @AuraEnabled
     public static void closeTask(Id taskId) {
     Task t = new Task(Id = taskId, Status = 'Completed');
@@ -46,6 +51,39 @@ public with sharing class TAG_NarrowListViewActivitiesController {
         TaskListResult result = new TaskListResult();
         result.records = tasks;
         result.count   = total;
+        return result;
+    }
+
+    @AuraEnabled(cacheable=true)
+        public static EventListResult fetchOpenEvents(Integer limitSize) {
+        Date today = Date.today();
+        Datetime start = Datetime.newInstance(today, Time.newInstance(0, 0, 0, 0));
+
+        Datetime endDate = start.addDays(90);
+
+        List<Event> events = [
+            SELECT Id,
+                Subject,
+                WhoId,
+                WhatId,
+                LastModifiedDate,
+                CreatedDate,
+                OwnerId,
+                ActivityDate,
+                StartDateTime,
+                EndDateTime,
+                RelatedToAccount__c,
+                RelatedToAccount__r.Name
+            FROM Event
+            WHERE StartDateTime >= :start
+            AND StartDateTime <= :endDate
+            ORDER BY StartDateTime ASC
+            LIMIT :limitSize
+        ];
+
+        EventListResult result = new EventListResult();
+        result.records = events;
+        result.count = events.size();
         return result;
     }
 
