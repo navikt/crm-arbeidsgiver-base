@@ -201,10 +201,14 @@ public with sharing class BadgeService {
         String fieldPart
     ) {
         RecordWrapper recordWrapper = new RecordWrapper();
-        recordWrapper.name = (String) lookupRecord.get(fieldPart);
-        recordWrapper.id = (String) lookupRecord.get('Id');
-        recordWrapper.link = createUrl(lookupRecord);
         Field lookupField = new Field();
+
+        if (lookupRecord != null && fieldPart != null) {
+            recordWrapper.name = (String) lookupRecord.get(fieldPart);
+            recordWrapper.id = (String) lookupRecord.get('Id');
+            recordWrapper.link = createUrl(lookupRecord);
+        }
+
         lookupField.label = fieldDescribe.getLabel();
         lookupField.fieldName = objectPart + '_' + fieldPart;
         lookupField.type = 'c_reference';
