@@ -1,4 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 
 /**
  * A generic popover button utility component that displays the specified icon name with the
@@ -10,12 +11,13 @@ import { LightningElement, api, track } from 'lwc';
  * @param linkLabel: Text for the trigger link (if any)
  * @slot body The HTML to place in the popup window's body
  */
-export default class Popover extends LightningElement {
+export default class Popover extends NavigationMixin(LightningElement) {
     static delegatesFocus = true;
 
     // ========================================
     // Constants
     // ========================================
+    TRIGGER_WAPPER_ID = 'cmp-popover__trigger-wrapper';
     TRIGGER_LINK_ID = 'cmp-popover__trigger-link';
     TRIGGER_BUTTON_ID = 'cmp-popover__trigger-button';
     CLOSE_BUTTON_ID = 'cmp-popover__close-button';
@@ -36,8 +38,7 @@ export default class Popover extends LightningElement {
     // ========================================
     showPopover = false; // Controls popover visibility
     triggerId = ''; // Tracks what triggered popover ('popover-link' or 'popover-button')
-    hasButtonFocus = false; // Tracks if button has focus
-    keepPopoverOpen = false; // Flag to prevent accidental closing
+    hasButtonFocus = false; // Tracks if button should be visible (keyboard navigation only)
 
     // ========================================
     // Timers
@@ -85,6 +86,7 @@ export default class Popover extends LightningElement {
     get _linkLabel() {
         return this.linkLabel || 'Show Popover';
     }
+    /** Width of the popover in pixels */
     get _popoverWidth() {
         // Parse the value as integer, fallback to default if invalid
         const width = parseInt(this.popoverWidth, 10);
@@ -96,27 +98,27 @@ export default class Popover extends LightningElement {
         return 100;
     }
 
-    /* Ensure trigger elements are above backdrop */
+    /** Ensure trigger elements are above backdrop */
     get triggerContainerStyle() {
         return this.showPopover ? 'position: relative; z-index: 6001;' : '';
     }
     /**
-     * Show backdrop only when popover is opened via button click (not hover)
-     * Backdrop catches clicks outside popover to close it
+     * Show backdrop only when popover is opened via button click (not on hover).
+     * The backdrop catches clicks outside popover to close it.
      */
     get shouldShowBackdrop() {
         return this.showPopover && this.triggerId === this.TRIGGER_BUTTON_ID;
     }
 
     /**
-     * Dynamic CSS classes for the pointer/nubbin based on position
+     * Dynamic CSS classes for the pointer/nubbin based on popover position.
      */
     get pointerClassNames() {
         return `cmp-popover__pointer cmp-popover__pointer--${this.currentPopoverPosition}`;
     }
 
     /**
-     * Dynamic CSS classes for trigger button (shows when focused)
+     * Dynamic CSS classes for trigger button visibility based on focus state
      */
     get triggerButtonClassNames() {
         return 'cmp-popover__trigger-button' + (this.hasButtonFocus ? ' cmp-popover__trigger-button--focus' : '');
@@ -130,8 +132,8 @@ export default class Popover extends LightningElement {
     }
 
     /**
-     * Get first focusable element within popover
-     * Used for setting initial focus when popover opens
+     * Get first focusable element within popover.
+     * Used for setting initial focus when popover opens. Currently don't work (shadow DOM restrictions?).
      */
     get firstFocusableElementId() {
         const popover = this.template.querySelector(this.CONTENT_WRAPPER_SELECTOR);
@@ -142,157 +144,168 @@ export default class Popover extends LightningElement {
     }
 
     // ========================================
-    // Event Handlers - Mouse/Hover Interactions
+    // Event Handlers
     // ========================================
 
-    /**
-     * Handle mouse entering trigger link (hover to open)
-     */
-    handleMouseEnter(event) {
-        if (event.target.dataset.id === this.TRIGGER_LINK_ID) {
-            this.triggerId = this.TRIGGER_LINK_ID;
-            // Clear any pending hide timer
-            if (this.hideTimer) {
-                window.clearTimeout(this.hideTimer);
-                this.hideTimer = null;
-            }
-
-            // Only open popover if it's not already open
-            if (!this.showPopover) {
-                // Delay opening popover by 300ms
-                // eslint-disable-next-line @lwc/lwc/no-async-operation
-                this.showTimer = window.setTimeout(() => {
-                    this.calculatePopoverPosition();
-                    this.showPopover = true;
-
-                    // Use setTimeout to ensure DOM is updated before setting focus
-                    // eslint-disable-next-line @lwc/lwc/no-async-operation
-                    setTimeout(() => {}, 0);
-                    this.addKeyDownListener();
-                }, 300);
-            }
+    /** Handle mouse hover trigger elements. Opens popover after delay.  */
+    handleTriggerMouseEnter(event) {
+        this.triggerId = this.TRIGGER_LINK_ID;
+        this.hasButtonFocus = false;
+        // Clear any pending hide timer
+        if (this.hideTimer) {
+            window.clearTimeout(this.hideTimer);
+            this.hideTimer = null;
         }
-    }
-
-    /**
-     * Handle mouse leaving trigger link or popover
-     * Delays closing to allow mouse movement between link and popover
-     */
-    handleMouseLeave() {
-        if (this.triggerId === this.TRIGGER_LINK_ID) {
-            // Clear any pending show timer
-            if (this.showTimer) {
-                window.clearTimeout(this.showTimer);
-                this.showTimer = null;
-            }
-
-            if (this.hideTimer) {
-                window.clearTimeout(this.hideTimer);
-            }
-
-            // Delay closing popover to allow mouse movement to popover content
+        // Only open popover if it's not already open
+        if (!this.showPopover) {
             // eslint-disable-next-line @lwc/lwc/no-async-operation
-            this.hideTimer = window.setTimeout(() => {
-                this.closePopover();
-            }, 500);
+            this.showTimer = window.setTimeout(() => {
+                this.openPopover(false);
+            }, 300);
         }
     }
 
+    /** Handle mouse leaving link or popover. Closes popover after delay, unless triggered by button (accessibility reasons). */
+    handleTriggerMouseLeave(event) {
+        if (this.triggerId === this.TRIGGER_BUTTON_ID) {
+            return;
+        }
+        this.hasButtonFocus = false;
+        // Clear any pending show timer
+        if (this.showTimer) {
+            window.clearTimeout(this.showTimer);
+            this.showTimer = null;
+        }
+        if (this.hideTimer) {
+            window.clearTimeout(this.hideTimer);
+        }
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        this.hideTimer = window.setTimeout(() => {
+            this.closePopover(false);
+        }, 500);
+    }
+
     /**
-     * Handle mouse entering popover content
+     * Handle mouse entering popover content. Prevent hiding when entering the popover.
      * Cancels delayed closing to keep popover open
      */
     handlePopoverEnter() {
-        if (this.triggerId === this.TRIGGER_LINK_ID) {
-            // Prevent hiding when entering the popover
-            if (this.hideTimer) {
-                window.clearTimeout(this.hideTimer);
-                this.hideTimer = null;
-            }
+        if (this.hideTimer) {
+            window.clearTimeout(this.hideTimer);
+            this.hideTimer = null;
         }
     }
+    /** When trigger link or button is focused, the trigger button is shown. */
+    handleTriggerFocusIn(event) {
+        this.hasButtonFocus = true;
+    }
 
-    // ========================================
-    // Event Handlers - Button/Click Interactions
-    // ========================================
+    /** Hide button when focus is lost, unless the popover is open. */
+    handleTriggerFocusOut(event) {
+        this.hasButtonFocus = this.showPopover ? true : false;
+    }
 
+    /** Handle link click to navigate to record page */
+    handleLinkClick(event) {
+        event.preventDefault();
+        this.hasButtonFocus = false;
+        // https://page-flow-7636.scratch.lightning.force.com/lightning/r/001JW000012P7MTYA0/view
+        // Get record id from _linkUrl. Find a better way to do this later.
+        // Split by '/' and get the last segment. If last segment is 'view', get the second last segment.
+        let urlParts = this._linkUrl.split('/');
+        let recordId =
+            urlParts[urlParts.length - 1] === 'view' ? urlParts[urlParts.length - 2] : urlParts[urlParts.length - 1];
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: recordId,
+                actionName: 'view'
+            }
+        });
+    }
+
+    /** Prevent focus when link is clicked by mouse (mousedown event) */
+    handleLinkMouseDown(event) {
+        event.preventDefault();
+    }
     /**
      * Handle button click to toggle popover
      * Opens/closes popover and manages focus
      */
-    handleButtonClick() {
-        this.triggerId = this.TRIGGER_BUTTON_ID;
-        this.showPopover = !this.showPopover;
+    handlePreviewButtonClick() {
         this.hasButtonFocus = true;
-        this.keepPopoverOpen = this.showPopover;
-
-        if (this.showPopover) {
-            this.calculatePopoverPosition();
-            // Use setTimeout to ensure DOM is updated before setting focus
-            // eslint-disable-next-line @lwc/lwc/no-async-operation
-            setTimeout(() => {
-                const element = this.firstFocusableElementId;
-                if (element) {
-                    console.log('Setting focus to first focusable element:', element);
-                    //element.focus();
-                } else {
-                    console.warn('No focusable element found, falling back to close button');
-                    // this.setFocusToElement('popover-close');
-                }
-            }, 0);
-            this.addKeyDownListener();
+        this.triggerId = this.TRIGGER_BUTTON_ID;
+        if (!this.showPopover) {
+            this.openPopover(true);
         } else {
-            this.removeKeyDownListener();
+            this.closePopover(true);
         }
     }
 
     /**
-     * Handle clicks on the backdrop (outside popover)
+     * Handle clicks on the backdrop (outside popover).
      * Only active when popover is opened via button click
      */
     handleBackdropClick() {
         this.hasButtonFocus = false;
-        this.closePopover();
+        this.closePopover(false);
     }
 
     /**
-     * Handle close button click
+     * Handle close button click inside popover.
+     * Closes popover and returns focus to trigger if opened via button.
      */
-    handlePopoverClose() {
+    handleCloseButtonClick() {
         if (this.triggerId === this.TRIGGER_BUTTON_ID) {
-            this.hasButtonFocus = true;
-            // Set focus back to trigger button
+            this.closePopover(true);
+        } else {
+            this.hasButtonFocus = false;
+            this.closePopover(false);
+        }
+    }
+
+    // ========================================
+    // Open and close popover
+    // ========================================
+
+    /**
+     * Open popover, calculates position, traps focus if specified, and adds keyboard listener.
+     * @param trapFocus Boolean indicating whether to trap focus within popover
+     */
+    openPopover(trapFocus) {
+        this.showPopover = true;
+        this.calculatePopoverPosition();
+        if (trapFocus) {
+            // eslint-disable-next-line @lwc/lwc/no-async-operation
+            setTimeout(() => {
+                const element = this.firstFocusableElementId;
+                if (element) {
+                    element.focus();
+                }
+            }, 0);
+        }
+        this.addKeyDownListener();
+    }
+
+    /**
+     * Hides popover, removes keyboard listener and resets trigger state.
+     * @param returnFocus Boolean indicating whether to return focus to trigger element
+     */
+    closePopover(returnFocus) {
+        this.showPopover = false;
+
+        if (returnFocus) {
             this.setFocusToElement(this.triggerId);
         }
-        this.closePopover();
-    }
-
-    // ========================================
-    // Event Handlers - Focus Management
-    // ========================================
-
-    /**
-     * Handle focus entering button or link
-     */
-    handleButtonFocusIn() {
-        this.hasButtonFocus = true;
-    }
-
-    /**
-     * Handle focus leaving button or link
-     */
-    handleButtonFocusOut() {
-        this.hasButtonFocus = this.showPopover ? true : false;
+        this.removeKeyDownListener();
+        this.triggerId = '';
     }
 
     // ========================================
     // Positioning Logic
     // ========================================
 
-    /**
-     * Calculate popover and pointer position relative to trigger link
-     * Positions popover to the left of trigger, or below if not enough space
-     */
+    /** Calculate popover and pointer position relative to trigger link. Positions popover to the left of trigger, or below if not enough space */
     calculatePopoverPosition() {
         const target = this.template.querySelector(`[data-id="${this.TRIGGER_LINK_ID}"]`);
         const rect = target.getBoundingClientRect();
@@ -315,11 +328,12 @@ export default class Popover extends LightningElement {
         this.popoverStyle = `width: ${popoverWidth}px; min-height: ${popoverMinHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
     }
 
+    /** Check if there is enough space to the left of the target to fit the popover */
     canFitToLeft(rect, popoverWidth, pointerSize) {
-        // Check if there is enough space to the left
         return rect.left >= popoverWidth + pointerSize;
     }
 
+    /** Calculate positions when popover is to the left of target */
     calculateLeft(rect, pointerSize, popoverWidth, popoverHeight) {
         const pointerDiameter = pointerSize * Math.sqrt(2);
         this.pointer.x = 0 - pointerDiameter; // Move pointer to left edge
@@ -327,7 +341,7 @@ export default class Popover extends LightningElement {
         this.popover.x = this.pointer.x - popoverWidth + pointerSize / 2; // Move popover to left edge and add offset to account for pointer and popover overlap
         this.popover.y = this.pointer.y - popoverHeight / 2; // Align popover to vertical center
     }
-
+    /** Calculate positions when popover is below target */
     calculateBelow(rect, pointerSize) {
         this.pointer.y = 0 + rect.height; // Move pointer to bottom edge
         this.pointer.x = 0 + rect.width / 2 - pointerSize / 2; // Align center
@@ -335,9 +349,7 @@ export default class Popover extends LightningElement {
         this.popover.x = 0; // Align popover with left edge
     }
 
-    /**
-     * Convert rem units to pixels based on root font size
-     */
+    /** Convert rem units to pixels based on root font size */
     remToPx(rem) {
         const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
         return rem * rootFontSize;
@@ -355,8 +367,11 @@ export default class Popover extends LightningElement {
         this.removeKeyDownListener(); // Ensure no duplicate listeners
         this.keyDownListener = (event) => {
             if (['Escape', 'Esc'].includes(event.key)) {
-                this.closePopover();
-                this.setFocusToElement(this.triggerId);
+                if (this.triggerId === this.TRIGGER_BUTTON_ID) {
+                    this.closePopover(true);
+                } else {
+                    this.closePopover(false);
+                }
             } else if (event.key === 'Tab') {
                 this.trapFocus(event);
             }
@@ -372,18 +387,6 @@ export default class Popover extends LightningElement {
             window.removeEventListener('keydown', this.keyDownListener, false);
             this.keyDownListener = null;
         }
-    }
-
-    /**
-     * Close popover and clean up state
-     * Removes keyboard listener and resets trigger state
-     */
-    closePopover() {
-        this.showPopover = false;
-        this.removeKeyDownListener();
-
-        this.triggerId = '';
-        this.keepPopoverOpen = false;
     }
 
     // ========================================
