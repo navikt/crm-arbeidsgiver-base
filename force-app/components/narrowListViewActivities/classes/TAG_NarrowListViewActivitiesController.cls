@@ -77,6 +77,7 @@ public with sharing class TAG_NarrowListViewActivitiesController {
             FROM Event
             WHERE StartDateTime >= :start
             AND StartDateTime <= :endDate
+            AND OwnerId = :UserInfo.getUserId()
             ORDER BY StartDateTime ASC
             LIMIT :limitSize
         ];
