@@ -282,7 +282,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     createFollowUpTask(currentRecord) {
         const defaultValues = {};
 
-        defaultValues.Subject = currentRecord.title;
+        //defaultValues.Subject = currentRecord.title;
         if (currentRecord.whatId) defaultValues.WhatId = currentRecord.whatId;
         if (currentRecord.whoId) defaultValues.WhoId = currentRecord.whoId;
         if (currentRecord.relatedObject === 'IACooperation__c' && this.iaTaskRecordTypeId) {
