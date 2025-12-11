@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mine_planlagte_m_ter_neste_90_dager</fullName>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>WHO_NAME</columns>
+    <columns>TAG_ActivityType__c</columns>
+    <columns>WHAT_NAME</columns>
+    <columns>SUBJECT</columns>
+    <columns>START_DATE_TIME</columns>
+    <columns>END_DATE_TIME</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>DUE_DATE</field>
+        <operation>equals</operation>
+        <value>TODAY,NEXT_90_DAYS</value>
+    </filters>
+    <label>Mine planlagte møter (neste 90 dager)</label>
+</ListView>

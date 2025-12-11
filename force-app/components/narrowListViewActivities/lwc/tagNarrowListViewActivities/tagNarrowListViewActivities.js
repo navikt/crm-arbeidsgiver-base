@@ -69,6 +69,13 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         { id: 'record-followup-1', label: 'Opprett oppfølgingsmøte', value: 'followupEvent' }
     ];
 
+    get availableActions() {
+        if (this.objectApiName === 'Event') {
+            return this.recordLevelActions.filter((a) => a.value !== 'complete');
+        }
+        return this.recordLevelActions;
+    }
+
     get hasMoreRecords() {
         return this.nextPageToken === null ? false : true;
     }

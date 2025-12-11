@@ -96,7 +96,7 @@
                                         onselect={handleRecordLevelAction}
                                         data-record-id={record.id}
                                     >
-                                        <template for:each={recordLevelActions} for:item="action">
+                                        <template for:each={availableActions} for:item="action">
                                             <lightning-menu-item
                                                 key={action.label}
                                                 data-action-id={action.id}
