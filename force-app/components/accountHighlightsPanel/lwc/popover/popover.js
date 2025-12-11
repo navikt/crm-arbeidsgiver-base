@@ -52,55 +52,59 @@ export default class Popover extends NavigationMixin(LightningElement) {
     // ========================================
     @track popoverStyle = 'transform: translate(0px, 0px);'; // Dynamic popover position
     @track pointerStyle = 'top: 0px; left: 0px;'; // Dynamic pointer/nubbin position
-
-    // Position for pointer/nubbin (the small arrow)
-    pointer = {
-        x: 0,
-        y: 0
-    };
-
-    // Position for popover
-    popover = {
-        x: 0,
-        y: 0
-    };
-
+    pointer = { x: 0, y: 0 }; // Position for pointer/nubbin (the small arrow)
+    popover = { x: 0, y: 0 }; // Position for popover
     currentPopoverPosition = 'west'; // Placement of popover relative to trigger ('west' or 'south')
 
     // ========================================
     // Computed Properties / Getters
     // ========================================
-
     get _iconName() {
         return this.iconName || 'utility:preview';
     }
+    /**
+     * Returns the tooltip text, defaults to title or 'Show Popover'
+     */
     get _tooltip() {
         return this.tooltip || this.title || 'Show Popover';
     }
+    /**
+     * Returns the popover title, defaults to 'Details'
+     */
     get _title() {
         return this.title || 'Details';
     }
+    /**
+     * Returns the link URL, defaults to empty string
+     */
     get _linkUrl() {
         return this.linkUrl || '';
     }
+    /**
+     * Returns the link label text, defaults to 'Show Popover'
+     */
     get _linkLabel() {
         return this.linkLabel || 'Show Popover';
     }
-    /** Width of the popover in pixels */
+    /**
+     * Width of the popover in pixels, defaults to 380
+     */
     get _popoverWidth() {
-        // Parse the value as integer, fallback to default if invalid
         const width = parseInt(this.popoverWidth, 10);
-        // Return parsed value if it's a valid number, otherwise return default
         return !isNaN(width) && width > 0 ? width : 380;
     }
+    /**
+     * Minimum height of the popover in pixels, currently fixed at 100
+     */
     get _popoverMinHeight() {
-        // return this.popoverMinHeight || 100;
+        // ToDo: Include as property and return this.popoverMinHeight || 100;
         return 100;
     }
-
-    /** Ensure trigger elements are above backdrop */
-    get triggerContainerStyle() {
-        return this.showPopover ? 'position: relative; z-index: 6001;' : '';
+    /**
+     * Dynamic CSS classes for trigger button visibility based on focus state
+     */
+    get triggerButtonClassNames() {
+        return 'cmp-popover__trigger-button' + (this.hasButtonFocus ? ' cmp-popover__trigger-button--focus' : '');
     }
     /**
      * Show backdrop only when popover is opened via button click (not on hover).
@@ -109,21 +113,18 @@ export default class Popover extends NavigationMixin(LightningElement) {
     get shouldShowBackdrop() {
         return this.showPopover && this.triggerId === this.TRIGGER_BUTTON_ID;
     }
-
+    /**
+     * Dynamic CSS to ensure trigger elements are above backdrop
+     */
+    get triggerContainerStyle() {
+        return this.showPopover ? 'position: relative; z-index: 6001;' : '';
+    }
     /**
      * Dynamic CSS classes for the pointer/nubbin based on popover position.
      */
     get pointerClassNames() {
         return `cmp-popover__pointer cmp-popover__pointer--${this.currentPopoverPosition}`;
     }
-
-    /**
-     * Dynamic CSS classes for trigger button visibility based on focus state
-     */
-    get triggerButtonClassNames() {
-        return 'cmp-popover__trigger-button' + (this.hasButtonFocus ? ' cmp-popover__trigger-button--focus' : '');
-    }
-
     /**
      * ARIA attribute indicating popover state
      */
@@ -144,10 +145,30 @@ export default class Popover extends NavigationMixin(LightningElement) {
     }
 
     // ========================================
-    // Event Handlers
+    // Lifecycle Hooks
     // ========================================
+    /**
+     * Cleanup when component is removed from DOM.
+     * Removes event listeners and clears timers.
+     */
+    disconnectedCallback() {
+        this.removeKeyDownListener();
+        if (this.hideTimer) {
+            window.clearTimeout(this.hideTimer);
+        }
+        if (this.showTimer) {
+            window.clearTimeout(this.showTimer);
+        }
+    }
 
-    /** Handle mouse hover trigger elements. Opens popover after delay.  */
+    // ========================================
+    // User Interaction Events
+    // ========================================
+    // Mouse Events
+    /**
+     * Handle mouse hover on trigger elements. Opens popover after 300ms delay.
+     * @param {Event} event - The mouse enter event
+     */
     handleTriggerMouseEnter(event) {
         this.triggerId = this.TRIGGER_LINK_ID;
         this.hasButtonFocus = false;
@@ -164,8 +185,11 @@ export default class Popover extends NavigationMixin(LightningElement) {
             }, 300);
         }
     }
-
-    /** Handle mouse leaving link or popover. Closes popover after delay, unless triggered by button (accessibility reasons). */
+    /**
+     * Handle mouse leaving link or popover. Closes popover after 500ms delay,
+     * unless triggered by button (for accessibility reasons).
+     * @param {Event} event - The mouse leave event
+     */
     handleTriggerMouseLeave(event) {
         if (this.triggerId === this.TRIGGER_BUTTON_ID) {
             return;
@@ -184,10 +208,9 @@ export default class Popover extends NavigationMixin(LightningElement) {
             this.closePopover(false);
         }, 500);
     }
-
     /**
-     * Handle mouse entering popover content. Prevent hiding when entering the popover.
-     * Cancels delayed closing to keep popover open
+     * Handle mouse entering popover content.
+     * Prevents hiding by canceling delayed closing to keep popover open.
      */
     handlePopoverEnter() {
         if (this.hideTimer) {
@@ -195,17 +218,14 @@ export default class Popover extends NavigationMixin(LightningElement) {
             this.hideTimer = null;
         }
     }
-    /** When trigger link or button is focused, the trigger button is shown. */
-    handleTriggerFocusIn(event) {
-        this.hasButtonFocus = true;
-    }
 
-    /** Hide button when focus is lost, unless the popover is open. */
-    handleTriggerFocusOut(event) {
-        this.hasButtonFocus = this.showPopover ? true : false;
-    }
+    // Click Events
 
-    /** Handle link click to navigate to record page */
+    /**
+     * Handle link click to navigate to record page.
+     * Extracts record ID from URL and navigates using NavigationMixin.
+     * @param {Event} event - The click event
+     */
     handleLinkClick(event) {
         event.preventDefault();
         this.hasButtonFocus = false;
@@ -224,13 +244,16 @@ export default class Popover extends NavigationMixin(LightningElement) {
         });
     }
 
-    /** Prevent focus when link is clicked by mouse (mousedown event) */
+    /**
+     * Prevent focus when link is clicked by mouse during mousedown event.
+     * @param {Event} event - The mousedown event
+     */
     handleLinkMouseDown(event) {
         event.preventDefault();
     }
     /**
-     * Handle button click to toggle popover
-     * Opens/closes popover and manages focus
+     * Handle button click to toggle popover.
+     * Opens/closes popover and manages focus.
      */
     handlePreviewButtonClick() {
         this.hasButtonFocus = true;
@@ -241,16 +264,14 @@ export default class Popover extends NavigationMixin(LightningElement) {
             this.closePopover(true);
         }
     }
-
     /**
      * Handle clicks on the backdrop (outside popover).
-     * Only active when popover is opened via button click
+     * Only active when popover is opened via button click.
      */
     handleBackdropClick() {
         this.hasButtonFocus = false;
         this.closePopover(false);
     }
-
     /**
      * Handle close button click inside popover.
      * Closes popover and returns focus to trigger if opened via button.
@@ -264,13 +285,29 @@ export default class Popover extends NavigationMixin(LightningElement) {
         }
     }
 
-    // ========================================
-    // Open and close popover
-    // ========================================
+    // Focus Events
 
     /**
-     * Open popover, calculates position, traps focus if specified, and adds keyboard listener.
-     * @param trapFocus Boolean indicating whether to trap focus within popover
+     * Handle focus on trigger link or button. Shows the trigger button.
+     * @param {Event} event - The focus event
+     */
+    handleTriggerFocusIn(event) {
+        this.hasButtonFocus = true;
+    }
+    /**
+     * Handle focus leaving trigger. Hides button unless popover is open.
+     * @param {Event} event - The focus event
+     */
+    handleTriggerFocusOut(event) {
+        this.hasButtonFocus = this.showPopover ? true : false;
+    }
+
+    // ========================================
+    // Popover Control
+    // ========================================
+    /**
+     * Opens popover, calculates position, traps focus if specified, and adds keyboard listener.
+     * @param {boolean} trapFocus - Whether to trap focus within popover
      */
     openPopover(trapFocus) {
         this.showPopover = true;
@@ -289,11 +326,10 @@ export default class Popover extends NavigationMixin(LightningElement) {
 
     /**
      * Hides popover, removes keyboard listener and resets trigger state.
-     * @param returnFocus Boolean indicating whether to return focus to trigger element
+     * @param {boolean} returnFocus - Whether to return focus to trigger element
      */
     closePopover(returnFocus) {
         this.showPopover = false;
-
         if (returnFocus) {
             this.setFocusToElement(this.triggerId);
         }
@@ -302,19 +338,18 @@ export default class Popover extends NavigationMixin(LightningElement) {
     }
 
     // ========================================
-    // Positioning Logic
+    // Popover Positioning Logic
     // ========================================
-
-    /** Calculate popover and pointer position relative to trigger link. Positions popover to the left of trigger, or below if not enough space */
+    /**
+     * Calculates popover and pointer position relative to trigger link.
+     * Positions popover to the left of trigger, or below if not enough space.
+     */
     calculatePopoverPosition() {
         const target = this.template.querySelector(`[data-id="${this.TRIGGER_LINK_ID}"]`);
         const rect = target.getBoundingClientRect();
-
         const pointerSize = this.remToPx(1.25) + this.remToPx(0.0625); // pointer size is calc(1.25rem + 0.0625rem), 29.7px/2 = 14.85px
-
         const popoverWidth = this._popoverWidth;
         const popoverMinHeight = this._popoverMinHeight;
-
         if (this.canFitToLeft(rect, popoverWidth, pointerSize)) {
             // Positioned left of target
             this.calculateLeft(rect, pointerSize, popoverWidth, popoverMinHeight);
@@ -328,12 +363,24 @@ export default class Popover extends NavigationMixin(LightningElement) {
         this.popoverStyle = `width: ${popoverWidth}px; min-height: ${popoverMinHeight}px; transform: translate(${this.popover.x}px, ${this.popover.y}px);`;
     }
 
-    /** Check if there is enough space to the left of the target to fit the popover */
+    /**
+     * Checks if there is enough space to the left of the target to fit the popover.
+     * @param {DOMRect} rect - The bounding rectangle of the trigger element
+     * @param {number} popoverWidth - Width of the popover in pixels
+     * @param {number} pointerSize - Size of the pointer/nubbin in pixels
+     * @returns {boolean} True if popover fits to the left
+     */
     canFitToLeft(rect, popoverWidth, pointerSize) {
         return rect.left >= popoverWidth + pointerSize;
     }
 
-    /** Calculate positions when popover is to the left of target */
+    /**
+     * Calculates positions when popover is to the left of target.
+     * @param {DOMRect} rect - The bounding rectangle of the trigger element
+     * @param {number} pointerSize - Size of the pointer/nubbin in pixels
+     * @param {number} popoverWidth - Width of the popover in pixels
+     * @param {number} popoverHeight - Height of the popover in pixels
+     */
     calculateLeft(rect, pointerSize, popoverWidth, popoverHeight) {
         const pointerDiameter = pointerSize * Math.sqrt(2);
         this.pointer.x = 0 - pointerDiameter; // Move pointer to left edge
@@ -341,7 +388,11 @@ export default class Popover extends NavigationMixin(LightningElement) {
         this.popover.x = this.pointer.x - popoverWidth + pointerSize / 2; // Move popover to left edge and add offset to account for pointer and popover overlap
         this.popover.y = this.pointer.y - popoverHeight / 2; // Align popover to vertical center
     }
-    /** Calculate positions when popover is below target */
+    /**
+     * Calculates positions when popover is below target.
+     * @param {DOMRect} rect - The bounding rectangle of the trigger element
+     * @param {number} pointerSize - Size of the pointer/nubbin in pixels
+     */
     calculateBelow(rect, pointerSize) {
         this.pointer.y = 0 + rect.height; // Move pointer to bottom edge
         this.pointer.x = 0 + rect.width / 2 - pointerSize / 2; // Align center
@@ -349,19 +400,12 @@ export default class Popover extends NavigationMixin(LightningElement) {
         this.popover.x = 0; // Align popover with left edge
     }
 
-    /** Convert rem units to pixels based on root font size */
-    remToPx(rem) {
-        const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-        return rem * rootFontSize;
-    }
-
     // ========================================
-    // Keyboard & Accessibility
+    // Focus Management
     // ========================================
-
     /**
-     * Add keyboard event listener for Escape and Tab keys
-     * Escape closes popover, Tab traps focus within popover
+     * Adds keyboard event listener for Escape and Tab keys.
+     * Escape closes popover, Tab traps focus within popover.
      */
     addKeyDownListener() {
         this.removeKeyDownListener(); // Ensure no duplicate listeners
@@ -380,7 +424,7 @@ export default class Popover extends NavigationMixin(LightningElement) {
     }
 
     /**
-     * Remove keyboard event listener
+     * Removes keyboard event listener.
      */
     removeKeyDownListener() {
         if (this.keyDownListener) {
@@ -388,58 +432,18 @@ export default class Popover extends NavigationMixin(LightningElement) {
             this.keyDownListener = null;
         }
     }
-
-    // ========================================
-    // Lifecycle Hooks
-    // ========================================
-
     /**
-     * Cleanup when component is removed from DOM
-     * Removes event listeners and clears timers
-     */
-    disconnectedCallback() {
-        this.removeKeyDownListener();
-
-        if (this.hideTimer) {
-            window.clearTimeout(this.hideTimer);
-        }
-
-        if (this.showTimer) {
-            window.clearTimeout(this.showTimer);
-        }
-    }
-
-    // ========================================
-    // Focus Management
-    // ========================================
-
-    /**
-     * Set focus to a specific element by data-id
-     */
-    setFocusToElement(elementId) {
-        const element = this.template.querySelector(`[data-id="${elementId}"]`);
-
-        if (element) {
-            element.focus();
-        } else {
-            console.warn(`[data-id="${elementId}"] element not found`);
-        }
-    }
-
-    /**
-     * Trap focus within popover using Tab key
-     * Cycles between first (close button) and last (end marker) focusable elements
+     * Traps focus within popover using Tab key.
+     * Cycles between first (close button) and last (end marker) focusable elements.
+     * @param {KeyboardEvent} event - The keyboard event
      */
     trapFocus(event) {
         const focusTrapStart = this.template.querySelector(`[data-id="${this.CLOSE_BUTTON_ID}"]`);
         const focusTrapEnd = this.template.querySelector(`[data-id="${this.FOCUS_TRAP_END_ID}"]`);
-
         if (!focusTrapStart || !focusTrapEnd) {
             return;
         }
-
         const currentActiveElement = this.template.activeElement || document.activeElement;
-
         if (event.shiftKey) {
             // Shift + Tab - going backwards
             if (currentActiveElement === focusTrapStart) {
@@ -455,7 +459,30 @@ export default class Popover extends NavigationMixin(LightningElement) {
         }
     }
 
+    /**
+     * Sets focus to a specific element by data-id.
+     * @param {string} elementId - The data-id of the element to focus
+     */
+    setFocusToElement(elementId) {
+        const element = this.template.querySelector(`[data-id="${elementId}"]`);
+
+        if (element) {
+            element.focus();
+        } else {
+            console.warn(`[data-id="${elementId}"] element not found`);
+        }
+    }
+
     // ========================================
-    // Utility Functions
+    // Utility
     // ========================================
+    /**
+     * Converts rem units to pixels based on root font size.
+     * @param {number} rem - The value in rem units
+     * @returns {number} The value in pixels
+     */
+    remToPx(rem) {
+        const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+        return rem * rootFontSize;
+    }
 }
