@@ -32,7 +32,12 @@ public with sharing class TAG_EmployerSurveyCampaignsBatch implements Database.B
             String composedName = 'BU ' + String.valueOf(yearToApply) + ' ' + originalName;
 
             toInsert.add(new CustomCampaign__c(
-                Name = composedName
+                Name = composedName,
+                NAV_Unit__c = nav.Id,
+                Type__c = 'Bedriftsundersøkelse',
+                Status__c = 'Åpen',
+                StartDate__c = Date.today(),
+                EndDate__c = Date.today().addDays(45)
             ));
         }
 
