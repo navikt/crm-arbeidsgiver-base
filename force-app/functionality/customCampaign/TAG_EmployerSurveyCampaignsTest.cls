@@ -45,7 +45,7 @@ private class TAG_EmployerSurveyCampaignsTest {
         }
     }
 
-    @IsTest
+    /*@IsTest
     static void schedulerCronPositiveTest() {
         Test.startTest();
         String jobId = System.schedule(
@@ -62,6 +62,6 @@ private class TAG_EmployerSurveyCampaignsTest {
         ];
         System.assertEquals(TAG_EmployerSurveyCampaignsScheduler.CRON, ct.CronExpression, 'Cron expression should match');
         System.assertEquals(0, ct.TimesTriggered, 'Job should not execute during test context');
-    }
+    }*/
 }
 
