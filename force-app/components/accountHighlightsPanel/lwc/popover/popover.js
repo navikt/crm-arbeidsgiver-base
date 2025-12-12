@@ -90,8 +90,13 @@ export default class Popover extends NavigationMixin(LightningElement) {
      * Width of the popover in pixels, defaults to 380
      */
     get _popoverWidth() {
+        console.log('popoverWidth from api: ' + this.popoverWidth);
         const width = parseInt(this.popoverWidth, 10);
-        return !isNaN(width) && width > 0 ? width : 380;
+        // Add 2x slds-p-around_xx-small + 2x border 1px + button icon 0.875
+        // 0.25rem or 0.125rem
+        const extraWidth = this.remToPx(0.25) * 2 + 2 + this.remToPx(0.875);
+        console.log('extraWidth: ' + extraWidth);
+        return !isNaN(width) && width > 0 ? width + extraWidth : 380;
     }
     /**
      * Minimum height of the popover in pixels, currently fixed at 100
