@@ -5,48 +5,55 @@
             class="slds-grid cmp-popover__trigger-wrapper"
             data-id="cmp-popover__trigger-wrapper"
             style={triggerContainerStyle}
+            onmouseenter={handleTriggerMouseEnter}
+            onmouseleave={handleTriggerMouseLeave}
         >
             <a
                 href={_linkUrl}
                 data-id="cmp-popover__trigger-link"
-                onmouseover={handleMouseEnter}
-                onmouseout={handleMouseLeave}
-                onfocus={handleButtonFocusIn}
-                onblur={handleButtonFocusOut}
+                class="cmp-popover__trigger-link"
+                onfocus={handleTriggerFocusIn}
+                onblur={handleTriggerFocusOut}
+                onclick={handleLinkClick}
+                onmousedown={handleLinkMouseDown}
                 >{_linkLabel}</a
             >
+
             <lightning-button-icon
                 icon-name={_iconName}
                 tooltip={_tooltip}
-                onclick={handleButtonClick}
-                onfocus={handleButtonFocusIn}
-                onblur={handleButtonFocusOut}
+                onclick={handlePreviewButtonClick}
                 class={triggerButtonClassNames}
                 size="small"
                 title={_title}
                 variant="bare"
                 data-id="cmp-popover__trigger-button"
                 aria-haspopup={ariaHaspopup}
+                onfocus={handleTriggerFocusIn}
+                onblur={handleTriggerFocusOut}
             ></lightning-button-icon>
         </div>
 
         <!-- Backdrop for catching clicks outside popover (only when opened via button) -->
         <div if:true={shouldShowBackdrop} class="cmp-popover__backdrop" onclick={handleBackdropClick}></div>
 
-        <div if:true={showPopover} class="cmp-popover__content-wrapper" data-id="cmp-popover__content-wrapper">
+        <div
+            if:true={showPopover}
+            class="cmp-popover__content-wrapper"
+            data-id="cmp-popover__content-wrapper"
+            onmouseenter={handlePopoverEnter}
+            onmouseleave={handleTriggerMouseLeave}
+        >
             <section
                 class="cmp-popover__dialog"
                 role="dialog"
                 tabindex="-1"
                 aria-describedby="cmp-popover__body"
                 aria-label={_title}
-                onmouseenter={handlePopoverEnter}
-                onmouseleave={handleMouseLeave}
-                onclick={ignore}
                 style={popoverStyle}
             >
                 <lightning-button-icon
-                    onclick={handlePopoverClose}
+                    onclick={handleCloseButtonClick}
                     icon-name="utility:close"
                     variant="bare"
                     alternative-text="Close dialog"
