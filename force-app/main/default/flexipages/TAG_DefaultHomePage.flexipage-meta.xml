@@ -379,6 +379,20 @@
                 <identifier>c_narrowListView</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(0, 0, 0);&quot;&gt;﻿&lt;/strong&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Nyttige lenker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(1, 118, 211);&quot;&gt;📘 &lt;/strong&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno%2F3432924302Quick%2Dguide%2DSalesforce%2DArbeidsgiver%2Epdf&amp;amp;parent=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Quick Guide - Kom i gang (PDF)&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(1, 118, 211);&quot;&gt;📘 &lt;/strong&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Brukerveiledning (Navet)&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(1, 118, 211);&quot;&gt;💬 &lt;/strong&gt;&lt;a href=&quot;https://teams.microsoft.com/l/channel/19%3A6e27024572134ce3a453d68946fa1ebb%40thread.skype/-%20Salesforce%20Arbeidsgiver?groupId=123a02dc-0cd0-4da3-8f1c-d496a1b8f130&amp;amp;tenantId=62366534-1ec3-4962-8869-9b5535279d0b&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Spørsmål og tilbakemeldinger til Team Salesforce Arbeidsgiver (Teams)&lt;/a&gt;&lt;span style=&quot;color: rgb(1, 118, 211);&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(1, 118, 211);&quot;&gt;📢 &lt;/span&gt;&lt;a href=&quot;https://jira.adeo.no/plugins/servlet/desk/portal/541/create/3442&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Meld om feil (Porten)﻿&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(1, 118, 211);&quot;&gt;💡 &lt;/span&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/o/Knowledge__kav/list?filterName=__Recent&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Kunnskapsbasen (Salesforce)&lt;/a&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText7</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>row2col1</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -440,7 +454,80 @@
                 <identifier>c_tagNarrowListViewActivities</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Nyttige rapporter&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002ewox2AA/view?queryScope=userFolders&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Mine aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>row2col2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>RelatedToAccount__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Mine planlagte møter (neste 90 dager)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>standard:event</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>Mine_planlagte_m_ter_neste_90_dager</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>Event</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>Subject</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Mine planlagte møter</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                </componentInstanceProperties>
+                <componentName>tagNarrowListViewActivities</componentName>
+                <identifier>c_tagNarrowListViewActivities2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row2col3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -494,38 +581,6 @@
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView4</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>row2col3</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Nyttige rapporter&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002ewox2AA/view?queryScope=userFolders&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Mine aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(0, 0, 0);&quot;&gt;﻿&lt;/strong&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Nyttige lenker&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(1, 118, 211);&quot;&gt;📘 &lt;/strong&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno%2F3432924302Quick%2Dguide%2DSalesforce%2DArbeidsgiver%2Epdf&amp;amp;parent=%2Fsites%2Ffag%2Dog%2Dytelser%2Darbeid%2Dmarkedsarbeid%2FSiteAssets%2FSitePages%2FInngang%2Dtil%2Drekrutteringbistand%2Dfra%2DArbeidsplassenno&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Quick Guide - Kom i gang (PDF)&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(1, 118, 211);&quot;&gt;📘 &lt;/strong&gt;&lt;a href=&quot;https://navno.sharepoint.com/sites/fag-og-ytelser-arbeid-markedsarbeid/SitePages/CRM-l%C3%B8sningen-Salesforce.aspx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Brukerveiledning (Navet)&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(1, 118, 211);&quot;&gt;💬 &lt;/strong&gt;&lt;a href=&quot;https://teams.microsoft.com/l/channel/19%3A6e27024572134ce3a453d68946fa1ebb%40thread.skype/-%20Salesforce%20Arbeidsgiver?groupId=123a02dc-0cd0-4da3-8f1c-d496a1b8f130&amp;amp;tenantId=62366534-1ec3-4962-8869-9b5535279d0b&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Spørsmål og tilbakemeldinger til Team Salesforce Arbeidsgiver (Teams)&lt;/a&gt;&lt;span style=&quot;color: rgb(1, 118, 211);&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(1, 118, 211);&quot;&gt;📢 &lt;/span&gt;&lt;a href=&quot;https://jira.adeo.no/plugins/servlet/desk/portal/541/create/3442&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Meld om feil (Porten)﻿&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(1, 118, 211);&quot;&gt;💡 &lt;/span&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/o/Knowledge__kav/list?filterName=__Recent&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Kunnskapsbasen (Salesforce)&lt;/a&gt;&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText7</identifier>
             </componentInstance>
         </itemInstances>
         <name>row2col4</name>

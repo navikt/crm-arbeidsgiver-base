@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import fetchOpenTasks from '@salesforce/apex/TAG_NarrowListViewActivitiesController.fetchOpenTasks';
+import fetchOpenEvents from '@salesforce/apex/TAG_NarrowListViewActivitiesController.fetchOpenEvents';
 import closeTask from '@salesforce/apex/TAG_NarrowListViewActivitiesController.closeTask';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -68,6 +69,13 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
         { id: 'record-followup-1', label: 'Opprett oppfølgingsmøte', value: 'followupEvent' }
     ];
 
+    get availableActions() {
+        if (this.objectApiName === 'Event') {
+            return this.recordLevelActions.filter((a) => a.value !== 'complete');
+        }
+        return this.recordLevelActions;
+    }
+
     get hasMoreRecords() {
         return this.nextPageToken === null ? false : true;
     }
@@ -100,36 +108,67 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     // =========================
 
     @wire(fetchOpenTasks, { limitSize: '$pageSize' })
-    wiredOpenTasks(result) {
+    wiredTasks(result) {
+        if (this.objectApiName !== 'Task') return;
+        this.processResult(result);
+    }
+
+    @wire(fetchOpenEvents, { limitSize: '$pageSize' })
+    wiredEvents(result) {
+        if (this.objectApiName !== 'Event') return;
+        this.processResult(result);
+    }
+
+    processResult(result) {
         this.wiredOpenTasksResult = result;
         const { data, error } = result;
         this.isRefreshing = false;
+
         if (data) {
             this.error = undefined;
             this.count = data.records.length;
             this.nextPageToken = data.count > this.pageSize ? 'MORE' : null;
 
-            this.records = data.records.slice(0, this.previewRecords).map((task) => {
+            this.records = data.records.slice(0, this.previewRecords).map((item) => {
                 const now = new Date();
                 const todayMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-                const dueDate = task.ActivityDate ? new Date(task.ActivityDate) : null;
+
+                const dueDate = item.ActivityDate ? new Date(item.ActivityDate) : null;
                 const isOverdue = dueDate && dueDate < todayMid;
 
+                let title;
+                if (this.objectApiName === 'Event') {
+                    const start = item.StartDateTime
+                        ? new Date(item.StartDateTime).toLocaleString(undefined, {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                          })
+                        : '';
+
+                    title = `${start} - ${item.Subject || ''}`;
+                } else {
+                    // Task
+                    title = item.Subject || '';
+                }
+
                 return {
-                    id: task.Id,
-                    title: task.Subject,
-                    whatId: task.WhatId,
-                    whoId: task.WhoId,
-                    relatedObject: task.What?.Type,
-                    titleLink: `/lightning/r/${this.objectApiName}/${task.Id}/view`,
-                    detailLine: this.getSObjectFieldValue(task, this.detailFieldInput),
+                    id: item.Id,
+                    title: title,
+                    whatId: item.WhatId,
+                    whoId: item.WhoId,
+                    relatedObject: item.What?.Type,
+                    titleLink: `/lightning/r/${this.objectApiName}/${item.Id}/view`,
+                    detailLine: this.getSObjectFieldValue(item, this.detailFieldInput),
                     showWarning: isOverdue
                 };
             });
         } else if (error) {
             this.error = error;
             this.records = [];
-            console.error('Error fetching open tasks:', error);
+            console.error('Error fetching open tasks/events:', error);
         }
     }
 
@@ -243,7 +282,7 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
     createFollowUpTask(currentRecord) {
         const defaultValues = {};
 
-        defaultValues.Subject = currentRecord.title;
+        //defaultValues.Subject = currentRecord.title;
         if (currentRecord.whatId) defaultValues.WhatId = currentRecord.whatId;
         if (currentRecord.whoId) defaultValues.WhoId = currentRecord.whoId;
         if (currentRecord.relatedObject === 'IACooperation__c' && this.iaTaskRecordTypeId) {
