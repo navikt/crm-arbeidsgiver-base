@@ -34,92 +34,54 @@
             <ul>
                 <template for:each={records} for:item="record">
                     <li key={record.id} class="slds-item">
-                        <section class="slds-card slds-theme_default slds-m-bottom_none">
-                            <div
-                                class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none"
-                            >
-                                <lightning-layout multiple-rows="true">
-                                    <lightning-layout-item padding="horizontal-small" size="12">
-                                        <lightning-layout vertical-align="center" class="slds-p-vertical_xx-small">
-                                            <lightning-layout-item
-                                                class="slds-truncate slds-grid_vertical-align-center"
-                                                flexibility="grow"
-                                            >
-                                                <lightning-avatar
-                                                    size="small"
-                                                    fallback-icon-name="standard:avatar"
-                                                    alternative-text="Bob Wilson"
-                                                    class="slds-m-right_small"
-                                                ></lightning-avatar>
+                        <div class="slds-box">
+                            <lightning-layout multiple-rows="true">
+                                <lightning-layout-item padding="horizontal-small" size="12">
+                                    <div>
+                                        <span class="slds-text-body_small">
+                                            <lightning-avatar
+                                                size="small"
+                                                fallback-icon-name="standard:avatar"
+                                                alternative-text={record.author}
+                                                class="slds-m-right_small"
+                                            ></lightning-avatar>
+                                            {record.author}
+                                        </span>
+                                        <span class="slds-text-color_weak slds-text-align_right slds-p-left_medium"
+                                            >{record.published}</span
+                                        >
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item padding="horizontal-small" size="12">
+                                    <div>
+                                        <h2 class="slds-truncate slds-text-heading_small">{record.title}</h2>
 
-                                                <div
-                                                    style="
-                                                        overflow: hidden;
-                                                        white-space: nowrap;
-                                                        text-overflow: ellipsis;
-                                                    "
-                                                >
-                                                    {record.author}
-                                                </div>
-                                            </lightning-layout-item>
-                                            <lightning-layout-item padding="horizontal-small">
-                                                <div
-                                                    class="slds-grid slds-grid_align-end slds-grid_vertical-align-center"
-                                                >
-                                                    <div
-                                                        style="
-                                                            overflow: hidden;
-                                                            white-space: nowrap;
-                                                            text-overflow: ellipsis;
-                                                        "
-                                                    >
-                                                        <span class="slds-text-heading_label-normal"
-                                                            >{record.published}</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </lightning-layout-item>
-                                        </lightning-layout>
-                                    </lightning-layout-item>
-                                    <lightning-layout-item padding="horizontal-small" size="12">
-                                        <div class="slds-box slds-p-around_medium">
-                                            <h2>{record.title}</h2>
-                                            <p>
-                                                <lightning-formatted-rich-text
-                                                    value={record.text}
-                                                ></lightning-formatted-rich-text>
-                                                <lightning-formatted-url
-                                                    if:true={record.url}
-                                                    value={record.url}
-                                                    label={record.urlLabel}
-                                                    target="_blank"
-                                                ></lightning-formatted-url>
-                                            </p>
-                                        </div>
-                                    </lightning-layout-item>
-                                    <lightning-layout-item>
-                                        <lightning-button-group>
-                                            <lightning-button
-                                                label="Edit"
-                                                icon-name="utility:edit"
-                                                variant="base"
-                                                class="slds-m-left_x-small"
-                                                data-record-id={record.id}
-                                                onclick={handleEditClick}
-                                            ></lightning-button>
-                                            <lightning-button
-                                                label="Unpublish"
-                                                icon-name="utility:hide"
-                                                variant="base"
-                                                class="slds-m-left_x-small"
-                                                data-record-id={record.id}
-                                                onclick={handleUnpublishClick}
-                                            ></lightning-button>
-                                        </lightning-button-group>
-                                    </lightning-layout-item>
-                                </lightning-layout>
-                            </div>
-                        </section>
+                                        <lightning-formatted-rich-text
+                                            value={record.text}
+                                            class="slds-has-bottom-magnet"
+                                        ></lightning-formatted-rich-text>
+                                        <lightning-formatted-url
+                                            class="slds-has-top-magnet"
+                                            style="float: right"
+                                            if:true={record.url}
+                                            value={record.url}
+                                            label={record.urlLabel}
+                                            target="_blank"
+                                        ></lightning-formatted-url>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item padding="horizontal-small" size="12">
+                                    <lightning-button
+                                        label="Edit"
+                                        icon-name="utility:edit"
+                                        variant="base"
+                                        class="slds-m-left_x-small"
+                                        data-record-id={record.id}
+                                        onclick={handleEditClick}
+                                    ></lightning-button>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
                     </li>
                 </template>
             </ul>

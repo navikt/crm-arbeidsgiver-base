@@ -1,7 +1,5 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
-import { getListInfoByName } from 'lightning/uiListsApi';
-import { createListInfo } from 'lightning/uiListsApi';
 import NOTE_OBJECT from '@salesforce/schema/TAG_Note__c';
 
 import { NavigationMixin } from 'lightning/navigation';
@@ -25,7 +23,7 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     maxTextLength = 200;
 
     pageSize = 4;
-    sortBy = PUBLISH_DATE.objectApiName + '.' + PUBLISH_DATE.fieldApiName;
+    sortBy = '-' + PUBLISH_DATE.objectApiName + '.' + PUBLISH_DATE.fieldApiName;
     @track records = [];
     iconName = 'custom:custom63';
     @api listViewApiName = 'PublishedNotes';
@@ -85,20 +83,13 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     // =========================
 
     createDataItemFromRecord(record) {
-        // "value": "2025-12-17T10:00:00.000Z"-> Torsdag, 11:00
-        const publishedDate = new Date(this.getFieldValue(record, PUBLISH_DATE.fieldApiName))?.toLocaleDateString(
-            'no-NO',
-            { day: '2-digit', month: '2-digit', year: 'numeric' }
-        );
-        console.log('Published Date:', publishedDate);
         return {
             id: record.id,
             title: this.getFieldValue(record, NAME.fieldApiName),
             url: this.getFieldValue(record, LINK_URL.fieldApiName),
             urlLabel: this.getFieldValue(record, LINK_URL.fieldApiName) ? '[Les mer]' : '',
-            imageUrl: this.getFieldValue(record, IMAGE_URL.fieldApiName),
             text: this.abbriviateText(this.getFieldValue(record, TEXT.fieldApiName), this.maxTextLength),
-            published: publishedDate,
+            published: this.getFieldValue(record, PUBLISH_DATE.fieldApiName),
             author: this.getFieldValue(record, AUTHOR.fieldApiName)
         };
     }
@@ -110,11 +101,6 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     handleEditClick(event) {
         const recordId = event.target.dataset.recordId;
         this.navigateToRecordEdit(recordId, this.objectApiName);
-    }
-    handleUnpublishClick(event) {
-        const recordId = event.target.dataset.recordId;
-        // Implement unpublish logic here
-        console.log('Unpublish record with ID:', recordId);
     }
 
     handleNewRecord() {
@@ -200,19 +186,5 @@ export default class Announcement extends NavigationMixin(LightningElement) {
             return text;
         }
         return text.substring(0, maxLength) + '...';
-    }
-
-    formatDate(dateString) {
-        // "value": "2025-12-17T10:00:00.000Z"-> Torsdag, 11:00
-        const publishedDate = new Date(this.getFieldValue(record, PUBLISH_DATE.fieldApiName)).toLocaleDateString(
-            'no-NO',
-            { day: '2-digit', month: '2-digit', year: 'numeric' }
-        );
-        const date = new Date(dateString);
-        return date.toLocaleDateString('no-NO', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        });
     }
 }
