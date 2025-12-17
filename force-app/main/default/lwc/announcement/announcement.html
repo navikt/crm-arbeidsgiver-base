@@ -1,0 +1,128 @@
+<template>
+    <template if:true={records}>
+        <lightning-card>
+            <div slot="title">
+                <h2 class="slds-form-element__label slds-text-heading_small">{label}</h2>
+                <lightning-helptext
+                    if:true={helpText}
+                    class="slds-text-heading_small"
+                    icon-name="utility:info"
+                    content={helpText}
+                >
+                </lightning-helptext>
+            </div>
+            <lightning-button-icon
+                slot="actions"
+                variant="border"
+                alternative-text=""
+                title="Opprett ny mulighet"
+                onclick={handleNewRecord}
+                icon-name="utility:add"
+                size="small"
+            >
+            </lightning-button-icon>
+
+            <div slot="footer">
+                <lightning-button
+                    variant="base"
+                    label="Administrer meldinger"
+                    class="slds-text-link"
+                    onclick={navigateToListView}
+                >
+                </lightning-button>
+            </div>
+            <ul>
+                <template for:each={records} for:item="record">
+                    <li key={record.id} class="slds-item">
+                        <section class="slds-card slds-theme_default slds-m-bottom_none">
+                            <div
+                                class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none"
+                            >
+                                <lightning-layout multiple-rows="true">
+                                    <lightning-layout-item padding="horizontal-small" size="12">
+                                        <lightning-layout vertical-align="center" class="slds-p-vertical_xx-small">
+                                            <lightning-layout-item
+                                                class="slds-truncate slds-grid_vertical-align-center"
+                                                flexibility="grow"
+                                            >
+                                                <lightning-avatar
+                                                    size="small"
+                                                    fallback-icon-name="standard:avatar"
+                                                    alternative-text="Bob Wilson"
+                                                    class="slds-m-right_small"
+                                                ></lightning-avatar>
+
+                                                <div
+                                                    style="
+                                                        overflow: hidden;
+                                                        white-space: nowrap;
+                                                        text-overflow: ellipsis;
+                                                    "
+                                                >
+                                                    {record.author}
+                                                </div>
+                                            </lightning-layout-item>
+                                            <lightning-layout-item padding="horizontal-small">
+                                                <div
+                                                    class="slds-grid slds-grid_align-end slds-grid_vertical-align-center"
+                                                >
+                                                    <div
+                                                        style="
+                                                            overflow: hidden;
+                                                            white-space: nowrap;
+                                                            text-overflow: ellipsis;
+                                                        "
+                                                    >
+                                                        <span class="slds-text-heading_label-normal"
+                                                            >{record.published}</span
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </lightning-layout-item>
+                                        </lightning-layout>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item padding="horizontal-small" size="12">
+                                        <div class="slds-box slds-p-around_medium">
+                                            <h2>{record.title}</h2>
+                                            <p>
+                                                <lightning-formatted-rich-text
+                                                    value={record.text}
+                                                ></lightning-formatted-rich-text>
+                                                <lightning-formatted-url
+                                                    if:true={record.url}
+                                                    value={record.url}
+                                                    label={record.urlLabel}
+                                                    target="_blank"
+                                                ></lightning-formatted-url>
+                                            </p>
+                                        </div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item>
+                                        <lightning-button-group>
+                                            <lightning-button
+                                                label="Edit"
+                                                icon-name="utility:edit"
+                                                variant="base"
+                                                class="slds-m-left_x-small"
+                                                data-record-id={record.id}
+                                                onclick={handleEditClick}
+                                            ></lightning-button>
+                                            <lightning-button
+                                                label="Unpublish"
+                                                icon-name="utility:hide"
+                                                variant="base"
+                                                class="slds-m-left_x-small"
+                                                data-record-id={record.id}
+                                                onclick={handleUnpublishClick}
+                                            ></lightning-button>
+                                        </lightning-button-group>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </div>
+                        </section>
+                    </li>
+                </template>
+            </ul>
+        </lightning-card>
+    </template>
+</template>
