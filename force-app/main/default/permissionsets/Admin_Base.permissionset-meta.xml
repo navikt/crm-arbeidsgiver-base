@@ -6,6 +6,10 @@
     </applicationVisibilities>
     <customPermissions>
         <enabled>true</enabled>
+        <name>Arbeidsgiver_Manage_custom_notes</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
         <name>Arbeidsgiver_Se_sp_rsm_l_fra_In_App_Feedback</name>
     </customPermissions>
     <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>

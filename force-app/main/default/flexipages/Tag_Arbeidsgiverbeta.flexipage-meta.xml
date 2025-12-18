@@ -562,6 +562,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>announcement</componentName>
+                <identifier>c_announcement</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>decorate</name>
                     <value>true</value>

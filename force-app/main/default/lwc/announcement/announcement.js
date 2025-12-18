@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
+import hasArbeidsgiver_Manage_custom_notes from '@salesforce/customPermission/Arbeidsgiver_Manage_custom_notes';
 import NOTE_OBJECT from '@salesforce/schema/TAG_Note__c';
 
 import { NavigationMixin } from 'lightning/navigation';
@@ -25,14 +26,9 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     pageSize = 4;
     sortBy = '-' + PUBLISH_DATE.objectApiName + '.' + PUBLISH_DATE.fieldApiName;
     @track records = [];
-    iconName = 'custom:custom63';
+
     @api listViewApiName = 'PublishedNotes';
     listViewRecords;
-    // Action Configuration
-    recordLevelActions = [
-        { id: 'edit', label: 'Rediger', value: 'edit' },
-        { id: 'unpublish', label: 'Stopp publisering', value: 'unpublish' }
-    ];
 
     get label() {
         return this.inputLabel || 'Diskusjoner på Teams - Bli med!';
@@ -56,6 +52,9 @@ export default class Announcement extends NavigationMixin(LightningElement) {
             return `{ TAG_Active__c: { eq: true } }`;
         }
         return null;
+    }
+    get isNoteAdmin() {
+        return hasArbeidsgiver_Manage_custom_notes;
     }
 
     @wire(getListRecordsByName, {
@@ -87,10 +86,11 @@ export default class Announcement extends NavigationMixin(LightningElement) {
             id: record.id,
             title: this.getFieldValue(record, NAME.fieldApiName),
             url: this.getFieldValue(record, LINK_URL.fieldApiName),
-            urlLabel: this.getFieldValue(record, LINK_URL.fieldApiName) ? '[Les mer]' : '',
+            urlLabel: this.getFieldValue(record, LINK_URL.fieldApiName) ? '[Les på Teams]' : '',
             text: this.abbriviateText(this.getFieldValue(record, TEXT.fieldApiName), this.maxTextLength),
             published: this.getFieldValue(record, PUBLISH_DATE.fieldApiName),
-            author: this.getFieldValue(record, AUTHOR.fieldApiName)
+            author: this.getFieldValue(record, AUTHOR.fieldApiName),
+            canEdit: record.editable
         };
     }
 

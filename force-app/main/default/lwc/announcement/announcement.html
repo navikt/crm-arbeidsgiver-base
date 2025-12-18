@@ -11,58 +11,48 @@
                 >
                 </lightning-helptext>
             </div>
-            <lightning-button-icon
-                slot="actions"
-                variant="border"
-                alternative-text=""
-                title="Opprett ny mulighet"
-                onclick={handleNewRecord}
-                icon-name="utility:add"
-                size="small"
-            >
-            </lightning-button-icon>
-
-            <div slot="footer">
-                <lightning-button
-                    variant="base"
-                    label="Administrer meldinger"
-                    class="slds-text-link"
+            <lightning-button-group slot="actions" if:true={isNoteAdmin}>
+                <lightning-button-icon
+                    variant="brand"
+                    alternative-text="Åpne listevisning av poster"
+                    icon-name="utility:table"
+                    tooltip="Administrer poster i listevisning"
                     onclick={navigateToListView}
+                    size="small"
                 >
-                </lightning-button>
-            </div>
-            <ul>
-                <template for:each={records} for:item="record">
-                    <li key={record.id} class="slds-item">
-                        <div class="slds-box">
-                            <lightning-layout multiple-rows="true">
-                                <lightning-layout-item padding="horizontal-small" size="12">
-                                    <div>
-                                        <span class="slds-text-body_small">
-                                            <lightning-avatar
-                                                size="small"
-                                                fallback-icon-name="standard:avatar"
-                                                alternative-text={record.author}
-                                                class="slds-m-right_small"
-                                            ></lightning-avatar>
+                </lightning-button-icon>
+                <lightning-button-icon
+                    variant="brand"
+                    icon-name="utility:add"
+                    alternative-text="Opprett ny post"
+                    tooltip="Opprett ny post"
+                    onclick={handleNewRecord}
+                    size="small"
+                >
+                </lightning-button-icon>
+            </lightning-button-group>
+
+            <template for:each={records} for:item="record">
+                <div class="slds-m-top_x-small slds-m-bottom_small" key={record.id}>
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item padding="horizontal-small" size="12">
+                            <lightning-layout>
+                                <lightning-layout-item flexibility="grow">
+                                    <div class="slds-box slds-box_xx-small post-container">
+                                        <lightning-avatar
+                                            size="x-small"
+                                            fallback-icon-name="standard:avatar"
+                                            alternative-text={record.author}
+                                        ></lightning-avatar>
+                                        <span class="slds-text-body_small slds-var-p-right_small">
                                             {record.author}
                                         </span>
-                                        <span class="slds-text-color_weak slds-text-align_right slds-p-left_medium"
+                                        <span class="slds-text-color_weak slds-text-body_small slds-var-p-right_small"
                                             >{record.published}</span
                                         >
-                                    </div>
-                                </lightning-layout-item>
-                                <lightning-layout-item padding="horizontal-small" size="12">
-                                    <div>
-                                        <h2 class="slds-truncate slds-text-heading_small">{record.title}</h2>
 
-                                        <lightning-formatted-rich-text
-                                            value={record.text}
-                                            class="slds-has-bottom-magnet"
-                                        ></lightning-formatted-rich-text>
                                         <lightning-formatted-url
-                                            class="slds-has-top-magnet"
-                                            style="float: right"
+                                            class="slds-var-p-left_small"
                                             if:true={record.url}
                                             value={record.url}
                                             label={record.urlLabel}
@@ -70,21 +60,38 @@
                                         ></lightning-formatted-url>
                                     </div>
                                 </lightning-layout-item>
-                                <lightning-layout-item padding="horizontal-small" size="12">
-                                    <lightning-button
-                                        label="Edit"
+
+                                <lightning-layout-item>
+                                    <lightning-button-icon
+                                        if:true={isNoteAdmin}
+                                        variant="bare"
+                                        alternative-text="Edit"
                                         icon-name="utility:edit"
-                                        variant="base"
-                                        class="slds-m-left_x-small"
+                                        tooltip="Rediger post"
                                         data-record-id={record.id}
                                         onclick={handleEditClick}
-                                    ></lightning-button>
+                                    >
+                                    </lightning-button-icon>
                                 </lightning-layout-item>
                             </lightning-layout>
-                        </div>
-                    </li>
-                </template>
-            </ul>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="horizontal-small" size="12">
+                            <div class="slds-box slds-box_small slds-theme_default slds-m-top_xx-small">
+                                <h2
+                                    class="slds-truncate slds-text-heading_small slds-m-bottom_x-small"
+                                    title={record.title}
+                                >
+                                    {record.title}
+                                </h2>
+                                <lightning-formatted-rich-text
+                                    value={record.text}
+                                    class="slds-text-body_small"
+                                ></lightning-formatted-rich-text>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </template>
         </lightning-card>
     </template>
 </template>
