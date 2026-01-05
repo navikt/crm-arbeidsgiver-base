@@ -34,13 +34,11 @@
             <template if:false={displayRecordsFound}>
                 <div class="slds-var-m-top_medium slds-text-align_center slds-text-body_small slds-text-color_weak">
                     Ingen poster å vise.
-                </div>
-                <template if:true={isNoteAdmin}>
-                    <br />
-                    <div class="slds-var-m-top_medium slds-text-align_right slds-text-body_small slds-text-color_weak">
+                    <template if:true={isNoteAdmin}>
+                        <br />
                         Klikk på plusstegnet øverst for å opprette en ny post.
-                    </div>
-                </template>
+                    </template>
+                </div>
             </template>
             <template if:true={displayRecordsFound} for:each={displayRecords} for:item="record">
                 <div key={record.id} class="slds-var-m-bottom_small slds-box slds-box_x-small">
