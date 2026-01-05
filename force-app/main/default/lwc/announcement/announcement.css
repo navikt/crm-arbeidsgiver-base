@@ -6,3 +6,13 @@
     background-color: var(--slds-g-color-on-surface-inverse-1);
     border-radius: var(--lwc-border-radius-medium);
 }
+
+.author-text {
+    color: var(--slds-g-color-on-surface-2);
+}
+.note-title {
+    color: var(--slds-g-color-on-surface-2);
+}
+.note-text {
+    color: var(--slds-g-color-on-surface-1);
+}

@@ -1,97 +1,104 @@
 <template>
-    <template if:true={records}>
-        <lightning-card>
-            <div slot="title">
-                <h2 class="slds-form-element__label slds-text-heading_small">{label}</h2>
-                <lightning-helptext
-                    if:true={helpText}
-                    class="slds-text-heading_small"
-                    icon-name="utility:info"
-                    content={helpText}
-                >
-                </lightning-helptext>
-            </div>
-            <lightning-button-group slot="actions" if:true={isNoteAdmin}>
-                <lightning-button-icon
-                    variant="brand"
-                    alternative-text="Åpne listevisning av poster"
-                    icon-name="utility:table"
-                    tooltip="Administrer poster i listevisning"
-                    onclick={navigateToListView}
-                    size="small"
-                >
-                </lightning-button-icon>
-                <lightning-button-icon
-                    variant="brand"
-                    icon-name="utility:add"
-                    alternative-text="Opprett ny post"
-                    tooltip="Opprett ny post"
-                    onclick={handleNewRecord}
-                    size="small"
-                >
-                </lightning-button-icon>
-            </lightning-button-group>
+    <lightning-card>
+        <div slot="title">
+            <h2 class="slds-truncate slds-text-heading_small">{title}</h2>
+            <lightning-helptext
+                if:true={helpText}
+                class="slds-text-heading_small"
+                icon-name="utility:info"
+                content={helpText}
+            >
+            </lightning-helptext>
+        </div>
+        <lightning-button-group slot="actions" if:true={isNoteAdmin}>
+            <lightning-button-icon
+                variant="border"
+                alternative-text="Åpne listevisning av poster"
+                icon-name="utility:table"
+                tooltip="Administrer poster i listevisning"
+                onclick={handleListViewClick}
+                size="small"
+            >
+            </lightning-button-icon>
+            <lightning-button-icon
+                variant="border"
+                icon-name="utility:add"
+                alternative-text="Opprett ny post"
+                tooltip="Opprett ny post"
+                onclick={handleNewRecord}
+                size="small"
+            >
+            </lightning-button-icon>
+        </lightning-button-group>
+        <div class="slds-var-p-right_small slds-var-p-left_small">
+            <template if:false={displayRecordsFound}>
+                <div class="slds-var-m-top_medium slds-text-align_center slds-text-body_small slds-text-color_weak">
+                    Ingen poster å vise.
+                </div>
+                <template if:true={isNoteAdmin}>
+                    <br />
+                    <div class="slds-var-m-top_medium slds-text-align_right slds-text-body_small slds-text-color_weak">
+                        Klikk på plusstegnet øverst for å opprette en ny post.
+                    </div>
+                </template>
+            </template>
+            <template if:true={displayRecordsFound} for:each={displayRecords} for:item="record">
+                <div key={record.id} class="slds-var-m-bottom_small slds-box slds-box_x-small">
+                    <lightning-layout multiple-rows="true" class="">
+                        <lightning-layout-item size="12">
+                            <div class="slds-grid">
+                                <div class="slds-col slds-grid slds-has-flexi-truncate">
+                                    <span class="author-text slds-truncate" title={record.author}
+                                        ><lightning-icon icon-name="utility:user" size="xx-small"></lightning-icon
+                                        >{record.author}</span
+                                    >
+                                    <span class="slds-truncate slds-var-m-left_small" title={record.publishedTooltip}
+                                        ><lightning-icon icon-name="utility:date_time" size="xx-small"></lightning-icon
+                                        ><lightning-relative-date-time value={record.published}>
+                                        </lightning-relative-date-time
+                                    ></span>
+                                </div>
 
-            <template for:each={records} for:item="record">
-                <div class="slds-m-top_x-small slds-m-bottom_small" key={record.id}>
-                    <lightning-layout multiple-rows="true">
-                        <lightning-layout-item padding="horizontal-small" size="12">
-                            <lightning-layout>
-                                <lightning-layout-item flexibility="grow">
-                                    <div class="slds-box slds-box_xx-small post-container">
-                                        <lightning-avatar
-                                            size="x-small"
-                                            fallback-icon-name="standard:avatar"
-                                            alternative-text={record.author}
-                                        ></lightning-avatar>
-                                        <span class="slds-text-body_small slds-var-p-right_small">
-                                            {record.author}
-                                        </span>
-                                        <span class="slds-text-color_weak slds-text-body_small slds-var-p-right_small"
-                                            >{record.published}</span
-                                        >
-
-                                        <lightning-formatted-url
-                                            class="slds-var-p-left_small"
-                                            if:true={record.url}
-                                            value={record.url}
-                                            label={record.urlLabel}
-                                            target="_blank"
-                                        ></lightning-formatted-url>
-                                    </div>
-                                </lightning-layout-item>
-
-                                <lightning-layout-item>
+                                <div class="slds-col_bump-right">
                                     <lightning-button-icon
                                         if:true={isNoteAdmin}
                                         variant="bare"
-                                        alternative-text="Edit"
+                                        alternative-text="Rediger"
                                         icon-name="utility:edit"
                                         tooltip="Rediger post"
                                         data-record-id={record.id}
                                         onclick={handleEditClick}
                                     >
                                     </lightning-button-icon>
-                                </lightning-layout-item>
-                            </lightning-layout>
-                        </lightning-layout-item>
-                        <lightning-layout-item padding="horizontal-small" size="12">
-                            <div class="slds-box slds-box_small slds-theme_default slds-m-top_xx-small">
-                                <h2
-                                    class="slds-truncate slds-text-heading_small slds-m-bottom_x-small"
-                                    title={record.title}
-                                >
-                                    {record.title}
-                                </h2>
-                                <lightning-formatted-rich-text
-                                    value={record.text}
-                                    class="slds-text-body_small"
-                                ></lightning-formatted-rich-text>
+                                </div>
                             </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12">
+                            <h2
+                                if:true={record.title}
+                                class="note-title slds-text-heading_small slds-truncate"
+                                title={record.title}
+                            >
+                                {record.title}
+                            </h2>
+
+                            <lightning-formatted-rich-text
+                                value={record.text}
+                                class="note-text slds-text-longform slds-line-clamp"
+                            ></lightning-formatted-rich-text>
+
+                            <lightning-formatted-url
+                                class=""
+                                if:true={record.url}
+                                value={record.url}
+                                label={record.urlLabel}
+                                target="_blank"
+                                tooltip={record.urlLabel}
+                            ></lightning-formatted-url>
                         </lightning-layout-item>
                     </lightning-layout>
                 </div>
             </template>
-        </lightning-card>
-    </template>
+        </div>
+    </lightning-card>
 </template>

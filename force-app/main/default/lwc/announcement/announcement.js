@@ -15,65 +15,73 @@ import PUBLISH_DATE from '@salesforce/schema/TAG_Note__c.TAG_Publish_Date__c';
 import UNPUBLISH_DATE from '@salesforce/schema/TAG_Note__c.TAG_Unpublish_Date__c';
 
 export default class Announcement extends NavigationMixin(LightningElement) {
-    objectApiName = NOTE_OBJECT.objectApiName;
-    @api inputLabel;
+    @api inputTitle;
     @api inputHelpText;
-    fields = this.convertSchemaFieldToPath([NAME, TEXT, LINK_URL, AUTHOR, PUBLISH_DATE, UNPUBLISH_DATE, ACTIVE]);
+    @api inputNumberOfRecordsToShow;
 
-    excludeInactive = false;
-    maxTextLength = 200;
+    HIDE_NOTE_TITLE = true;
+    LIST_VIEW_API_NAME = 'Teams_Alle_innlegg';
+    EXCLUDE_INACTIVE = true;
+    MAX_TEXT_LENGTH = 1000;
+    DEFAULT_LINK_LABEL = 'Les mer på Teams (Nytt vindu)';
+    DEFAULT_PAGE_SIZE = 2;
 
-    pageSize = 4;
-    sortBy = '-' + PUBLISH_DATE.objectApiName + '.' + PUBLISH_DATE.fieldApiName;
-    @track records = [];
+    objectApiName = NOTE_OBJECT.objectApiName;
+    listViewFields = this.convertSchemaFieldToPath([
+        NAME,
+        TEXT,
+        LINK_URL,
+        AUTHOR,
+        PUBLISH_DATE,
+        UNPUBLISH_DATE,
+        ACTIVE
+    ]);
 
-    @api listViewApiName = 'PublishedNotes';
-    listViewRecords;
+    get pageSize() {
+        return this.inputNumberOfRecordsToShow || this.DEFAULT_PAGE_SIZE;
+    }
+    get sortBy() {
+        return ['-' + PUBLISH_DATE.objectApiName + '.' + PUBLISH_DATE.fieldApiName];
+    }
+    get whereClause() {
+        if (this.EXCLUDE_INACTIVE) {
+            return `{ TAG_Active__c: { eq: true } }`;
+        }
+        return null;
+    }
 
-    get label() {
-        return this.inputLabel || 'Diskusjoner på Teams - Bli med!';
+    get title() {
+        return this.inputTitle || 'Diskusjoner på Teams - Bli med!';
     }
 
     get helpText() {
         return this.inputHelpText || '';
     }
 
-    get mode() {
-        return 'view';
-    }
-    get density() {
-        return 'Comfy';
-    }
-    get columns() {
-        return '1';
-    }
-    get filter() {
-        if (this.excludeInactive) {
-            return `{ TAG_Active__c: { eq: true } }`;
-        }
-        return null;
-    }
     get isNoteAdmin() {
         return hasArbeidsgiver_Manage_custom_notes;
     }
+    get displayRecordsFound() {
+        return this.displayRecords && this.displayRecords.length > 0;
+    }
+
+    @track displayRecords = [];
 
     @wire(getListRecordsByName, {
         objectApiName: '$objectApiName',
-        listViewApiName: '$listViewApiName',
-        fields: '$fields',
+        listViewApiName: '$LIST_VIEW_API_NAME',
+        fields: '$listViewFields',
         pageSize: '$pageSize',
-        sortBy: '$sortField',
-        where: '$filter'
+        sortBy: '$sortBy',
+        where: '$whereClause'
     })
-    wiredListViewRecords(result) {
-        console.log('result :', JSON.stringify(result, null, 2));
+    wireResult(result) {
+        // console.log('result :', JSON.stringify(result, null, 2));
         if (result.data) {
-            this.listViewRecords = result;
-            this.records = result.data.records.map((record) => this.createDataItemFromRecord(record));
-            //console.log('listRecords data:', JSON.stringify(this.records, null, 2));
+            this.displayRecords = result.data.records.map((record) => this.createDataItemFromRecord(record));
         } else if (result.error) {
             console.error('Feil ved henting av records:', result.error);
-            this.records = [];
+            this.displayRecords = [];
         }
     }
 
@@ -82,13 +90,22 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     // =========================
 
     createDataItemFromRecord(record) {
+        var title = this.HIDE_NOTE_TITLE ? '' : this.getFieldValue(record, NAME.fieldApiName);
+        var url = this.getFieldValue(record, LINK_URL.fieldApiName);
+        var urlLabel = url ? this.DEFAULT_LINK_LABEL : '';
+        var text = this.abbriviateText(this.getFieldValue(record, TEXT.fieldApiName), this.MAX_TEXT_LENGTH);
+        var publishDateField = this.getField(record, PUBLISH_DATE.fieldApiName);
+        var publishDateTime = publishDateField ? new Date(publishDateField.value) : null;
+        var publishDateDisplayValue = publishDateField ? publishDateField.displayValue : '';
+
         return {
             id: record.id,
-            title: this.getFieldValue(record, NAME.fieldApiName),
-            url: this.getFieldValue(record, LINK_URL.fieldApiName),
-            urlLabel: this.getFieldValue(record, LINK_URL.fieldApiName) ? '[Les på Teams]' : '',
-            text: this.abbriviateText(this.getFieldValue(record, TEXT.fieldApiName), this.maxTextLength),
-            published: this.getFieldValue(record, PUBLISH_DATE.fieldApiName),
+            title: title,
+            url: url,
+            urlLabel: urlLabel,
+            text: text,
+            published: publishDateTime,
+            publishedTooltip: publishDateDisplayValue,
             author: this.getFieldValue(record, AUTHOR.fieldApiName),
             canEdit: record.editable
         };
@@ -106,10 +123,9 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     handleNewRecord() {
         this.navigateToRecordNew(this.objectApiName);
     }
-
-    handleLinkClicked(event) {
+    handleListViewClick(event) {
         event.preventDefault();
-        this.navigateToExternalUrl(event.target.dataset.url);
+        this.navigateToListView(event);
     }
 
     // =========================
@@ -141,7 +157,6 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     }
 
     navigateToListView(event) {
-        event.preventDefault();
         this[NavigationMixin.Navigate]({
             type: 'standard__objectPage',
             attributes: {
@@ -149,19 +164,27 @@ export default class Announcement extends NavigationMixin(LightningElement) {
                 actionName: 'list'
             },
             state: {
-                filterName: this.listViewApiName
+                filterName: this.LIST_VIEW_API_NAME
             }
         });
     }
-
-    navigateToExternalUrl(url) {}
 
     // =========================
     // HELPERS
     // =========================
 
+    getField(record, fieldName) {
+        if (!fieldName) {
+            return '';
+        }
+        const fieldData = record.fields[fieldName];
+        if (!fieldData) {
+            return '';
+        }
+        return fieldData;
+    }
+
     getFieldValue(record, fieldName) {
-        //console.log('Getting field value for:', fieldName);
         if (!fieldName) {
             return '';
         }
