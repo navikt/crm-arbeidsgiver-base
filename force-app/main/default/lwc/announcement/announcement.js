@@ -1,6 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
-import hasArbeidsgiver_Manage_custom_notes from '@salesforce/customPermission/Arbeidsgiver_Manage_custom_notes';
+import hasArbeidsgiver_Manage_custom_notes from '@salesforce/customPermission/Arbeidsgiver_Announcements_View_admin_options';
 import NOTE_OBJECT from '@salesforce/schema/TAG_Announcement__c';
 
 import { NavigationMixin } from 'lightning/navigation';
@@ -19,11 +19,11 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     @api inputHelpText;
     @api inputNumberOfRecordsToShow;
 
-    HIDE_NOTE_TITLE = true;
+    HIDE_NOTE_TITLE = false;
     LIST_VIEW_API_NAME = 'Teams_Alle_innlegg';
     EXCLUDE_INACTIVE = true;
     MAX_TEXT_LENGTH = 1000;
-    DEFAULT_LINK_LABEL = 'Les mer på Teams (Nytt vindu)';
+    DEFAULT_LINK_LABEL = 'Si din mening (åpner Teams)';
     DEFAULT_PAGE_SIZE = 2;
 
     objectApiName = NOTE_OBJECT.objectApiName;

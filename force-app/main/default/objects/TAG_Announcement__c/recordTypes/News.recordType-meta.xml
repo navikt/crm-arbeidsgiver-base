@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Post</fullName>
+    <fullName>News</fullName>
     <active>true</active>
-    <label>Post</label>
+    <description>For general news and updates</description>
+    <label>News</label>
 </RecordType>

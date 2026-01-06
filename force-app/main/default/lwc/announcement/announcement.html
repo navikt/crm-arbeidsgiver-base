@@ -46,7 +46,7 @@
                         <lightning-layout-item size="12">
                             <div class="slds-grid">
                                 <div class="slds-col slds-grid slds-has-flexi-truncate">
-                                    <span class="author-text slds-truncate" title={record.author}
+                                    <span class="announcement__author slds-truncate" title={record.author}
                                         ><lightning-icon icon-name="utility:user" size="xx-small"></lightning-icon
                                         >{record.author}</span
                                     >
@@ -74,7 +74,7 @@
                         <lightning-layout-item size="12">
                             <h2
                                 if:true={record.title}
-                                class="note-title slds-text-heading_small slds-truncate"
+                                class="announcement__title slds-text-heading_small slds-truncate"
                                 title={record.title}
                             >
                                 {record.title}
@@ -82,7 +82,7 @@
 
                             <lightning-formatted-rich-text
                                 value={record.text}
-                                class="note-text slds-text-longform slds-line-clamp"
+                                class="announcement__content slds-text-longform slds-line-clamp"
                             ></lightning-formatted-rich-text>
 
                             <lightning-formatted-url

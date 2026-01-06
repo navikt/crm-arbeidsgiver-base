@@ -6,7 +6,7 @@
     </applicationVisibilities>
     <customPermissions>
         <enabled>true</enabled>
-        <name>Arbeidsgiver_Manage_custom_notes</name>
+        <name>Arbeidsgiver_Announcements_View_admin_options</name>
     </customPermissions>
     <customPermissions>
         <enabled>true</enabled>
@@ -873,7 +873,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>TAG_Announcement__c.Post</recordType>
+        <recordType>TAG_Announcement__c.News</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

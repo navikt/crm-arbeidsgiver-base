@@ -1,18 +1,9 @@
-.post-container {
-    background-color: var(--slds-g-color-surface-3);
-}
-
-.post-text {
-    background-color: var(--slds-g-color-on-surface-inverse-1);
-    border-radius: var(--lwc-border-radius-medium);
-}
-
-.author-text {
+.announcement__author {
     color: var(--slds-g-color-on-surface-2);
 }
-.note-title {
+.announcement__title {
     color: var(--slds-g-color-on-surface-2);
 }
-.note-text {
+.announcement__content {
     color: var(--slds-g-color-on-surface-1);
 }
