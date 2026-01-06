@@ -300,7 +300,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>entityName</name>
-                    <value>TAG_Note__c</value>
+                    <value>TAG_Announcement__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>filterName</name>
@@ -325,8 +325,8 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>TAG Note Record Page</masterLabel>
-    <sobjectType>TAG_Note__c</sobjectType>
+    <masterLabel>TAG Announcement Record Page</masterLabel>
+    <sobjectType>TAG_Announcement__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>

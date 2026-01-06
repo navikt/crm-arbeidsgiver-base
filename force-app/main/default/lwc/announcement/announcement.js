@@ -1,18 +1,18 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
 import hasArbeidsgiver_Manage_custom_notes from '@salesforce/customPermission/Arbeidsgiver_Manage_custom_notes';
-import NOTE_OBJECT from '@salesforce/schema/TAG_Note__c';
+import NOTE_OBJECT from '@salesforce/schema/TAG_Announcement__c';
 
 import { NavigationMixin } from 'lightning/navigation';
 
-import NAME from '@salesforce/schema/TAG_Note__c.Name';
-import TEXT from '@salesforce/schema/TAG_Note__c.TAG_Text_Content__c';
-import LINK_URL from '@salesforce/schema/TAG_Note__c.TAG_Link_URL__c';
-import AUTHOR from '@salesforce/schema/TAG_Note__c.TAG_Author_Name__c';
+import NAME from '@salesforce/schema/TAG_Announcement__c.Name';
+import TEXT from '@salesforce/schema/TAG_Announcement__c.TAG_Text_Content__c';
+import LINK_URL from '@salesforce/schema/TAG_Announcement__c.TAG_Link_URL__c';
+import AUTHOR from '@salesforce/schema/TAG_Announcement__c.TAG_Author_Name__c';
 
-import ACTIVE from '@salesforce/schema/TAG_Note__c.TAG_Active__c';
-import PUBLISH_DATE from '@salesforce/schema/TAG_Note__c.TAG_Publish_Date__c';
-import UNPUBLISH_DATE from '@salesforce/schema/TAG_Note__c.TAG_Unpublish_Date__c';
+import ACTIVE from '@salesforce/schema/TAG_Announcement__c.TAG_Active__c';
+import PUBLISH_DATE from '@salesforce/schema/TAG_Announcement__c.TAG_Publish_Date__c';
+import UNPUBLISH_DATE from '@salesforce/schema/TAG_Announcement__c.TAG_Unpublish_Date__c';
 
 export default class Announcement extends NavigationMixin(LightningElement) {
     @api inputTitle;
