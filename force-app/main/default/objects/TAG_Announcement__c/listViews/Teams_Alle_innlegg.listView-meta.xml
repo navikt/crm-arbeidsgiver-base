@@ -11,7 +11,7 @@
     <filters>
         <field>RECORDTYPE</field>
         <operation>equals</operation>
-        <value>TAG_Announcement__c.Post</value>
+        <value>TAG_Announcement__c.News</value>
     </filters>
     <label>Teams - Alle innlegg</label>
 </ListView>
