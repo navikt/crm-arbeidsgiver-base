@@ -243,23 +243,6 @@ elif [[ -z $npm_config_package_key ]] && [[ -z $npm_config_step ]] && [[ -z $npm
     info
 fi
 
-sf plugins inspect @dxatscale/sfpowerscripts >/dev/null 2>&1 || { 
-    echo >&2 "\"@dxatscale/sfpowerscripts\" is required, but it's not installed."
-    echo "Run \"sf plugins install @dxatscale/sfpowerscripts\" to install it."
-    echo ""
-    echo "Aborting...."
-    echo ""
-    exit 1
-}
-sf plugins inspect sfdmu >/dev/null 2>&1 || {
-    echo >&2 "\"sfdmu\" is required, but it's not installed."
-    echo "Run \"sf plugins install sfdmu\" to install it."
-    echo ""
-    echo "Aborting..."
-    echo ""
-    exit 1
-}
-
 command -v jq >/dev/null 2>&1 || {
     echo >&2 "\"jq\" is required, but it's not installed."
     echo "Run \"brew install jq\" to install it if you have Homebrew installed."
