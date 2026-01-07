@@ -14,6 +14,7 @@
     <aura:attribute name="row3col2" type="Aura.Component[]" />
     <aura:attribute name="row3col3" type="Aura.Component[]" />
     <aura:attribute name="row3col4" type="Aura.Component[]" />
+    <aura:attribute name="header4" type="Aura.Component[]" />
 
     <!-- Grid -->
     <div class="slds-grid slds-wrap slds-gutters_direct-x-small">
@@ -81,7 +82,11 @@
                 </div>
             </div>
         </div>
+        <!-- Bottom section -->
         <div class="slds-col slds-size_1-of-1">
+            <!-- Header row -->
+            <div class="slds-col slds-size_1-of-1">{! v.header4 }</div>
+            <!-- Nested grid -->
             <div class="slds-grid slds-wrap slds-gutters_direct-x-small">
                 <div
                     class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-12 slds-p-bottom_small"
