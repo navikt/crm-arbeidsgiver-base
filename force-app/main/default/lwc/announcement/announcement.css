@@ -2,8 +2,18 @@
     color: var(--slds-g-color-on-surface-2);
 }
 .announcement__title {
+    font-size: var(--slds-g-font-size-base, 0.875rem);
+    font-weight: var(--slds-g-heading-font-weight, 700);
     color: var(--slds-g-color-on-surface-2);
 }
 .announcement__content {
+    font-size: var(--slds-g-font-size-base, 0.875rem);
+    line-height: var(--slds-c-body-line-height, 1.5);
     color: var(--slds-g-color-on-surface-1);
+}
+.announcement__label {
+    /* Same as rich text areas */
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
 }

@@ -51,7 +51,7 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     }
 
     get title() {
-        return this.inputTitle || 'Diskusjoner på Teams - Bli med!';
+        return this.inputTitle || 'Bli med å påvirke Salesforce Arbeidsgiver';
     }
 
     get helpText() {
