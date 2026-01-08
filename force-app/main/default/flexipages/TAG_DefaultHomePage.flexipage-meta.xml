@@ -562,6 +562,26 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>inputHelpText</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inputNumberOfRecordsToShow</name>
+                    <value>2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inputTitle</name>
+                </componentInstanceProperties>
+                <componentName>announcement</componentName>
+                <identifier>c_announcement</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row3col1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>decorate</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -573,7 +593,7 @@
                 <identifier>flexipage_richText7</identifier>
             </componentInstance>
         </itemInstances>
-        <name>row3col1</name>
+        <name>row3col2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -591,10 +611,6 @@
                 <identifier>flexipage_richText</identifier>
             </componentInstance>
         </itemInstances>
-        <name>row3col2</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <name>row3col3</name>
         <type>Region</type>
     </flexiPageRegions>
