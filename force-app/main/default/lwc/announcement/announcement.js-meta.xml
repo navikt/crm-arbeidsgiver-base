@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Announcement</masterLabel>
+    <description>Announcement component to show important information to users.</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>
+        lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
+            <property name="inputTitle" label="Title" type="String" placeholder="" description=""
+                required="false" />
+            <property name="inputHelpText" label="Help Text" type="String" placeholder=""
+                description="" required="false" />
+            <property name="inputNumberOfRecordsToShow" label="Number of Records to Show"
+                type="Integer" default="2" min="1" max="10" description="" required="false" />
+
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
