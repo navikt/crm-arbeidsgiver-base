@@ -1,0 +1,116 @@
+<template>
+    <lightning-card class="slds-var-p-bottom_small">
+        <div slot="title">
+            <h2 class="slds-truncate slds-text-heading_small announcement__label">{title}</h2>
+            <lightning-helptext
+                if:true={helpText}
+                class="slds-text-heading_small"
+                icon-name="utility:info"
+                content={helpText}
+            >
+            </lightning-helptext>
+        </div>
+        <lightning-button-group slot="actions" if:true={isNoteAdmin}>
+            <lightning-button-icon
+                variant="border"
+                alternative-text="Åpne listevisning av poster"
+                icon-name="utility:table"
+                tooltip="Administrer poster i listevisning"
+                onclick={handleListViewClick}
+                size="small"
+            >
+            </lightning-button-icon>
+            <lightning-button-icon
+                variant="border"
+                icon-name="utility:add"
+                alternative-text="Opprett ny post"
+                tooltip="Opprett ny post"
+                onclick={handleNewRecord}
+                size="small"
+            >
+            </lightning-button-icon>
+        </lightning-button-group>
+        <div class="slds-var-p-right_small slds-var-p-left_small">
+            <template if:false={displayRecordsFound}>
+                <div class="slds-var-m-top_medium slds-text-align_center slds-text-body_small slds-text-color_weak">
+                    Ingen poster å vise.
+                    <template if:true={isNoteAdmin}>
+                        <br />
+                        Klikk på plusstegnet øverst for å opprette en ny post.
+                    </template>
+                </div>
+            </template>
+            <ul class="slds-list_vertical-space">
+                <template if:true={displayRecordsFound} for:each={displayRecords} for:item="record">
+                    <li key={record.id} class="slds-item">
+                        <article class="slds-var-m-bottom_small slds-box slds-box_x-small">
+                            <header>
+                                <div class="slds-grid slds-align-middle slds-var-m-bottom_xx-small">
+                                    <div class="slds-col slds-grid slds-has-flexi-truncate">
+                                        <span class="announcement__author slds-truncate" title={record.author}
+                                            ><lightning-icon
+                                                icon-name="utility:user"
+                                                size="xx-small"
+                                                class="slds-var-m-right_xx-small"
+                                            ></lightning-icon
+                                            >{record.author}</span
+                                        >
+                                        <span
+                                            class="slds-truncate slds-var-m-left_small"
+                                            title={record.publishedTooltip}
+                                            ><lightning-icon
+                                                icon-name="utility:date_time"
+                                                size="xx-small"
+                                                class="slds-var-m-right_xx-small"
+                                            ></lightning-icon
+                                            ><lightning-relative-date-time value={record.published}>
+                                            </lightning-relative-date-time
+                                        ></span>
+                                    </div>
+                                    <div class="slds-col_bump-right">
+                                        <lightning-button-icon
+                                            if:true={isNoteAdmin}
+                                            variant="bare"
+                                            alternative-text="Rediger"
+                                            icon-name="utility:edit"
+                                            tooltip="Rediger post"
+                                            data-record-id={record.id}
+                                            onclick={handleEditClick}
+                                        >
+                                        </lightning-button-icon>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-grid slds-grid_vertical slds-var-m-bottom_xx-small">
+                                <div class="slds-col slds-var-m-bottom_xx-small">
+                                    <h3
+                                        if:true={record.title}
+                                        class="announcement__title slds-truncate"
+                                        title={record.title}
+                                    >
+                                        {record.title}
+                                    </h3>
+                                </div>
+                                <div class="slds-col">
+                                    <lightning-formatted-rich-text
+                                        value={record.text}
+                                        class="announcement__content slds-text-longform slds-line-clamp"
+                                    ></lightning-formatted-rich-text>
+
+                                    <lightning-formatted-url
+                                        class=""
+                                        if:true={record.url}
+                                        value={record.url}
+                                        label={record.urlLabel}
+                                        target="_blank"
+                                        tooltip={record.urlLabel}
+                                    ></lightning-formatted-url>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </lightning-card>
+</template>
