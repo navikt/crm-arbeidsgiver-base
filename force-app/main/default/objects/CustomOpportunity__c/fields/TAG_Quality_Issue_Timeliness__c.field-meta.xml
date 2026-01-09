@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Quality_Issue_Timeliness__c</fullName>
-    <formula>OR( 
-    AND(
-        TAG_Age__c &gt;=30, 
-        ISPICKVAL(InclusionStage__c, &quot;Ny henvendelse&quot;)
-    ),
-    AND(
-        TAG_Age__c &gt;=30,
-        OR(
-            ISPICKVAL(InclusionStage__c, &quot;Avklaring&quot;),
-            ISPICKVAL(InclusionStage__c, &quot;Ferdig Avklart&quot;)
-        ),
+    <deprecated>false</deprecated>
+    <formula>IF( 
+    AND( 
+        ISPICKVAL(InclusionStage__c, &apos;Ny henvendelse&apos;), 
+        TAG_Age__c&gt;30 
+    ), 
+    TRUE, /*&apos;Ny henvendelse &gt; 30 dager&apos;*/
+    IF(
         AND(
-            OR(
-                ISBLANK(TAG_Employer_Last_Activity_Date__c),
-                TAG_Employer_Last_Activity_Date__c + 30 &lt; TODAY()
+            OR( 
+                ISPICKVAL(InclusionStage__c, &apos;Avklaring&apos;), 
+                ISPICKVAL(InclusionStage__c, &apos;Ferdig Avklart&apos;) 
             ), 
-            OR(
-                ISBLANK(LastActivityDate),
-                LastActivityDate + 30 &lt; TODAY()
-            )
+           LastActivityDate + 30  &gt;= TODAY()
+        ), 
+        FALSE, /*&apos;Har oppfølging på mulighet&apos;*/
+        IF(
+            AND(
+                OR(
+                    ISPICKVAL(InclusionStage__c, &apos;Avklaring&apos;), 
+                    ISPICKVAL(InclusionStage__c, &apos;Ferdig Avklart&apos;) 
+                ),
+                Account__r.LastActivityDate + 30  &gt;= TODAY()
+                    
+            ),
+            FALSE,/*&apos;Har oppfølging på konto&apos;*/  
+            NOT(ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;))/*&apos;Ingen oppfølging &gt; 30 dager&apos;*/
         )
-    ),
-    AND(
-        ISPICKVAL(InclusionStage__c, &quot;Avsluttet&quot;),
-        DATEVALUE(TAG_Resolved_Date_Time__c) &lt; TAG_Employer_Last_Activity_Date__c+30
     )
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

@@ -90,7 +90,7 @@ OR( ISBLANK({!$Record.TAG_Employer_Last_Activity_Date__c} ),  {!$Record.TAG_Empl
         </scheduledPaths>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <subflows>
         <description>Find activities related to account or current record and registered last 30 days.</description>
         <name>Find_related_activity_for_account</name>
