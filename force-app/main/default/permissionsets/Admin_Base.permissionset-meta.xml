@@ -869,6 +869,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>JobPosting__c.TAG_EmploymentPlacement</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>NavTask__c.Employer</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
