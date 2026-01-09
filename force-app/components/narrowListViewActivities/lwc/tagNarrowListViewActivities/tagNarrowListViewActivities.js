@@ -138,16 +138,28 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
 
                 let title;
                 if (this.objectApiName === 'Event') {
-                    const start = item.StartDateTime
-                        ? new Date(item.StartDateTime).toLocaleString(undefined, {
-                              year: 'numeric',
-                              month: '2-digit',
-                              day: '2-digit',
-                              hour: '2-digit',
-                              minute: '2-digit'
-                          })
-                        : '';
+                    let start = '';
 
+                    if (item.IsAllDayEvent) {
+                        // All-day event - show only date
+                        start = item.StartDateTime
+                            ? new Date(item.StartDateTime).toLocaleDateString(undefined, {
+                                  year: 'numeric',
+                                  month: '2-digit',
+                                  day: '2-digit'
+                              })
+                            : '';
+                    } else {
+                        start = item.StartDateTime
+                            ? new Date(item.StartDateTime).toLocaleString(undefined, {
+                                  year: 'numeric',
+                                  month: '2-digit',
+                                  day: '2-digit',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                              })
+                            : '';
+                    }
                     title = `${start} - ${item.Subject || ''}`;
                 } else {
                     // Task
