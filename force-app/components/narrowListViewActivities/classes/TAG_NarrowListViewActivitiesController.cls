@@ -72,6 +72,7 @@ public with sharing class TAG_NarrowListViewActivitiesController {
                 ActivityDate,
                 StartDateTime,
                 EndDateTime,
+                IsAllDayEvent,
                 RelatedToAccount__c,
                 RelatedToAccount__r.Name
             FROM Event
