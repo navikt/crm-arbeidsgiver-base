@@ -5,7 +5,7 @@
     <formula>IF( 
 ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;), FALSE,
 IF( DATEVALUE(LastModifiedDate) &lt; TODAY() - 30, TRUE, 
-TAG_Employer_Last_Activity_Date__c &lt; TODAY()- 30 ) )</formula>
+TAG_Last_User_Update__c &lt; TODAY()- 30 ) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Quality Issue: Timeliness</label>
     <trackHistory>false</trackHistory>

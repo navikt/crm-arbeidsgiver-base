@@ -29,7 +29,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <inputAssignments>
-            <field>TAG_Employer_Last_Activity_Date__c</field>
+            <field>TAG_Last_User_Update__c</field>
             <value>
                 <elementReference>$Flow.CurrentDate</elementReference>
             </value>
