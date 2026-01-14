@@ -1,7 +1,7 @@
 <template>
     <lightning-card class="slds-var-p-bottom_small">
         <div slot="title">
-            <h2 class="slds-truncate slds-text-heading_small announcement__label">{title}</h2>
+            <h2 class="slds-truncate slds-text-heading_small announcement__h2">{title}</h2>
             <lightning-helptext
                 if:true={helpText}
                 class="slds-text-heading_small"
@@ -42,12 +42,12 @@
             </template>
             <ul class="slds-list_vertical-space">
                 <template if:true={displayRecordsFound} for:each={displayRecords} for:item="record">
-                    <li key={record.id} class="slds-item">
-                        <article class="slds-var-m-bottom_small slds-box slds-box_x-small">
+                    <li key={record.id} class="slds-var-m-bottom_small slds-item">
+                        <article class={record.articleClass}>
                             <header>
                                 <div class="slds-grid slds-align-middle slds-var-m-bottom_xx-small">
                                     <div class="slds-col slds-grid slds-has-flexi-truncate">
-                                        <span class="announcement__author slds-truncate" title={record.author}
+                                        <span class="announcement__item-author slds-truncate" title={record.author}
                                             ><lightning-icon
                                                 icon-name="utility:user"
                                                 size="xx-small"
@@ -63,7 +63,10 @@
                                                 size="xx-small"
                                                 class="slds-var-m-right_xx-small"
                                             ></lightning-icon
-                                            ><lightning-relative-date-time value={record.published}>
+                                            ><lightning-relative-date-time
+                                                value={record.published}
+                                                class={record.publishedClass}
+                                            >
                                             </lightning-relative-date-time
                                         ></span>
                                     </div>
@@ -85,7 +88,7 @@
                                 <div class="slds-col slds-var-m-bottom_xx-small">
                                     <h3
                                         if:true={record.title}
-                                        class="announcement__title slds-truncate"
+                                        class="announcement__item-title slds-truncate"
                                         title={record.title}
                                     >
                                         {record.title}
@@ -94,7 +97,7 @@
                                 <div class="slds-col">
                                     <lightning-formatted-rich-text
                                         value={record.text}
-                                        class="announcement__content slds-text-longform slds-line-clamp"
+                                        class="announcement__item-text slds-text-longform slds-line-clamp"
                                     ></lightning-formatted-rich-text>
 
                                     <lightning-formatted-url

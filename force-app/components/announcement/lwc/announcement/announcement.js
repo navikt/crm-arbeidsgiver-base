@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
+import getLastViewedDate from '@salesforce/apex/ListViewController.getListViewLastViewedDate';
 import hasArbeidsgiver_Manage_custom_notes from '@salesforce/customPermission/Arbeidsgiver_Announcements_View_admin_options';
 import NOTE_OBJECT from '@salesforce/schema/TAG_Announcement__c';
 
@@ -64,12 +65,30 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     get displayRecordsFound() {
         return this.displayRecords && this.displayRecords.length > 0;
     }
-
+    lastViewedDate = new Date();
     @track displayRecords = [];
+    @track listViewApiName = null; // Start med null, settes av getLastViewedDate
+
+    @wire(getLastViewedDate, { listViewName: '$LIST_VIEW_API_NAME' })
+    wiredListViewLastViewedDate({ error, data }) {
+        if (data) {
+            console.log('Last viewed date for list view', this.LIST_VIEW_API_NAME, ':', data);
+            this.lastViewedDate = new Date(data);
+            // Nå som lastViewedDate er hentet, aktiver getListRecordsByName
+            this.listViewApiName = this.LIST_VIEW_API_NAME;
+        } else if (error) {
+            console.error('Error fetching last viewed date for list view', this.LIST_VIEW_API_NAME, ':', error);
+
+            // Sett til Now for å unngå å markere alle som nye
+            this.lastViewedDate = new Date();
+            // Selv ved feil, aktiver getListRecordsByName
+            this.listViewApiName = this.LIST_VIEW_API_NAME;
+        }
+    }
 
     @wire(getListRecordsByName, {
         objectApiName: '$objectApiName',
-        listViewApiName: '$LIST_VIEW_API_NAME',
+        listViewApiName: '$listViewApiName',
         fields: '$listViewFields',
         pageSize: '$pageSize',
         sortBy: '$sortBy',
@@ -95,7 +114,7 @@ export default class Announcement extends NavigationMixin(LightningElement) {
         var urlLabel = url ? this.DEFAULT_LINK_LABEL : '';
         var text = this.abbriviateText(this.getFieldValue(record, TEXT.fieldApiName), this.MAX_TEXT_LENGTH);
         var publishDateField = this.getField(record, PUBLISH_DATE.fieldApiName);
-        var publishDateTime = publishDateField ? new Date(publishDateField.value) : null;
+        var publishedDate = publishDateField ? new Date(publishDateField.value) : null; // '2026-01-13T06:17:44.000Z'
         var publishDateDisplayValue = publishDateField ? publishDateField.displayValue : '';
 
         return {
@@ -104,12 +123,18 @@ export default class Announcement extends NavigationMixin(LightningElement) {
             url: url,
             urlLabel: urlLabel,
             text: text,
-            published: publishDateTime,
-            publishedTooltip: publishDateDisplayValue,
             author: this.getFieldValue(record, AUTHOR.fieldApiName),
-            canEdit: record.editable
+            canEdit: record.editable,
+            published: publishedDate,
+            publishedTooltip: publishDateDisplayValue,
+            publishedClass: this.isRecentlyPublished(publishedDate) ? this.recordRecentStyle : '',
+            articleClass: this.isPublishedSinceLastView(publishedDate) ? this.recordUnreadStyle : this.recordBaseStyle
         };
     }
+
+    recordBaseStyle = 'slds-box slds-box_x-small announcement__item';
+    recordRecentStyle = 'announcement__item--new';
+    recordUnreadStyle = this.recordBaseStyle + ' announcement__item--unread';
 
     // =========================
     // EVENT HANDLERS
@@ -209,5 +234,31 @@ export default class Announcement extends NavigationMixin(LightningElement) {
             return text;
         }
         return text.substring(0, maxLength) + '...';
+    }
+
+    /* Check if announcements is new since last component view by user*/
+    isPublishedSinceLastView(publishDate) {
+        if (!this.lastViewedDate) {
+            console.log('No last viewed date, returning false');
+            return false;
+        }
+        if (!publishDate) {
+            console.log('No publish date, returning false');
+            return false;
+        }
+        const bufferTime = 1 * 60 * 1000; // 1 minute buffer
+        const lastViewedWithBuffer = new Date(this.lastViewedDate.getTime() - bufferTime);
+        return publishDate >= lastViewedWithBuffer;
+    }
+
+    /* Check if announcements is recently posted, within 1 day ago */
+    isRecentlyPublished(publishDate) {
+        if (!publishDate) {
+            return false;
+        }
+        const now = new Date();
+        const timeDiff = now.getTime() - publishDate.getTime();
+        const daysDiff = timeDiff / (1000 * 3600 * 24);
+        return daysDiff <= 1; // Considered recent if within the last 1 day
     }
 }

@@ -1,19 +1,55 @@
-.announcement__author {
-    color: var(--slds-g-color-on-surface-2);
+.announcement__h2 {
+    /* Same as rich text areas */
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
 }
-.announcement__title {
+
+.announcement__item {
+    box-shadow: var(--slds-g-shadow-1);
+    border-color: var(--slds-g-color-border-1);
+}
+
+/* box-shadow: h v blur spread color */
+.announcement__item--unread {
+    border-color: var(--slds-g-color-info-1);
+    box-shadow: var(--slds-g-shadow-3);
+    animation: fadeToNormal 10s ease-out forwards;
+}
+
+@keyframes fadeToNormal {
+    0% {
+        border-color: var(--slds-g-color-info-1);
+        box-shadow: var(--slds-g-shadow-3);
+    }
+    100% {
+        border-color: var(--slds-g-color-border-1);
+        box-shadow: var(--slds-g-shadow-1);
+    }
+}
+
+.announcement__item-title {
     font-size: var(--slds-g-font-size-base, 0.875rem);
     font-weight: var(--slds-g-heading-font-weight, 700);
     color: var(--slds-g-color-on-surface-2);
 }
-.announcement__content {
+.announcement__item-text {
     font-size: var(--slds-g-font-size-base, 0.875rem);
     line-height: var(--slds-c-body-line-height, 1.5);
     color: var(--slds-g-color-on-surface-1);
 }
-.announcement__label {
-    /* Same as rich text areas */
-    font-size: 16px;
-    color: rgb(0, 0, 0);
+
+.announcement__item-author {
+    color: var(--slds-g-color-on-surface-2);
+}
+
+.announcement__item--new::after {
+    content: 'NY';
+    background: var(--slds-g-color-info-container-1);
+    color: var(--slds-g-color-on-info-1);
+    font-size: 0.7rem;
+    margin-left: var(--slds-g-spacing-var-3);
+    padding: 2px 6px;
+    border-radius: 8px;
     font-weight: bold;
 }
