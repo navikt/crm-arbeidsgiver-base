@@ -3,34 +3,9 @@
     <fullName>TAG_Quality_Issue_Timeliness__c</fullName>
     <deprecated>false</deprecated>
     <formula>IF( 
-    AND( 
-        ISPICKVAL(InclusionStage__c, &apos;Ny henvendelse&apos;), 
-        TAG_Age__c&gt;30 
-    ), 
-    TRUE, /*&apos;Ny henvendelse &gt; 30 dager&apos;*/
-    IF(
-        AND(
-            OR( 
-                ISPICKVAL(InclusionStage__c, &apos;Avklaring&apos;), 
-                ISPICKVAL(InclusionStage__c, &apos;Ferdig Avklart&apos;) 
-            ), 
-           LastActivityDate + 30  &gt;= TODAY()
-        ), 
-        FALSE, /*&apos;Har oppfølging på mulighet&apos;*/
-        IF(
-            AND(
-                OR(
-                    ISPICKVAL(InclusionStage__c, &apos;Avklaring&apos;), 
-                    ISPICKVAL(InclusionStage__c, &apos;Ferdig Avklart&apos;) 
-                ),
-                Account__r.LastActivityDate + 30  &gt;= TODAY()
-                    
-            ),
-            FALSE,/*&apos;Har oppfølging på konto&apos;*/  
-            NOT(ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;))/*&apos;Ingen oppfølging &gt; 30 dager&apos;*/
-        )
-    )
-)</formula>
+ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;), FALSE,
+IF( DATEVALUE(LastModifiedDate) &lt; TODAY() - 30, TRUE, 
+TAG_Employer_Last_Activity_Date__c &lt; TODAY()- 30 ) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Quality Issue: Timeliness</label>
     <trackHistory>false</trackHistory>
