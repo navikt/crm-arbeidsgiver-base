@@ -2,10 +2,18 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Quality_Issue_Timeliness__c</fullName>
     <deprecated>false</deprecated>
-    <formula>IF( 
-ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;), FALSE,
-IF( DATEVALUE(LastModifiedDate) &lt; TODAY() - 30, TRUE, 
-TAG_Last_User_Update__c &lt; TODAY()- 30 ) )</formula>
+    <formula>IF(
+    AND(
+        RecordType.DeveloperName  == &apos;Inclusion&apos;,
+        NOT( ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;) )
+    ),
+    IF(
+        DATEVALUE(LastModifiedDate) &lt; TODAY() - 30, 
+        TRUE,
+        TAG_Last_User_Update__c &lt; TODAY()- 30
+    ),
+    FALSE
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Quality Issue: Timeliness</label>
     <trackHistory>false</trackHistory>

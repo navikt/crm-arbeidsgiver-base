@@ -47,7 +47,7 @@
 /*  .. and update is not made by technincal team (Department 2990 - TEKNOLOGIAVDELINGEN) */
 &amp;&amp; {!$User.Department} != &apos;2990&apos;
 /* Stage is not closed  */
-&amp;&amp; ISPICKVAL({!$Record.InclusionStage__c}, &apos;Avsluttet&apos;)</filterFormula>
+&amp;&amp; NOT( ISPICKVAL({!$Record.InclusionStage__c}, &apos;Avsluttet&apos;) )</filterFormula>
         <object>CustomOpportunity__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>

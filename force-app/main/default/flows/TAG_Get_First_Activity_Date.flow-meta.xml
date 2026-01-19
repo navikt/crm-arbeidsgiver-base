@@ -216,6 +216,9 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         <nextValueConnector>
             <targetReference>Assign_first_event_date</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_output_values</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <loops>
         <name>Loop_filtered_tasks</name>
