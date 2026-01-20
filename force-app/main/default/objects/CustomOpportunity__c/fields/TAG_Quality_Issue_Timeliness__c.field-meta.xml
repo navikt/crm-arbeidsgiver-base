@@ -2,34 +2,17 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Quality_Issue_Timeliness__c</fullName>
     <deprecated>false</deprecated>
-    <formula>IF( 
-    AND( 
-        ISPICKVAL(InclusionStage__c, &apos;Ny henvendelse&apos;), 
-        TAG_Age__c&gt;30 
-    ), 
-    TRUE, /*&apos;Ny henvendelse &gt; 30 dager&apos;*/
+    <formula>IF(
+    AND(
+        RecordType.DeveloperName  == &apos;Inclusion&apos;,
+        NOT( ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;) )
+    ),
     IF(
-        AND(
-            OR( 
-                ISPICKVAL(InclusionStage__c, &apos;Avklaring&apos;), 
-                ISPICKVAL(InclusionStage__c, &apos;Ferdig Avklart&apos;) 
-            ), 
-           LastActivityDate + 30  &gt;= TODAY()
-        ), 
-        FALSE, /*&apos;Har oppfølging på mulighet&apos;*/
-        IF(
-            AND(
-                OR(
-                    ISPICKVAL(InclusionStage__c, &apos;Avklaring&apos;), 
-                    ISPICKVAL(InclusionStage__c, &apos;Ferdig Avklart&apos;) 
-                ),
-                Account__r.LastActivityDate + 30  &gt;= TODAY()
-                    
-            ),
-            FALSE,/*&apos;Har oppfølging på konto&apos;*/  
-            NOT(ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;))/*&apos;Ingen oppfølging &gt; 30 dager&apos;*/
-        )
-    )
+        DATEVALUE(LastModifiedDate) &lt; TODAY() - 30, 
+        TRUE,
+        TAG_Last_User_Update__c &lt; TODAY()- 30
+    ),
+    FALSE
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Quality Issue: Timeliness</label>
