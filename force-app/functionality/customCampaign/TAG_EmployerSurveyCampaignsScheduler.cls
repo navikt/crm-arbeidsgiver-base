@@ -13,16 +13,7 @@
  */
 
 public class TAG_EmployerSurveyCampaignsScheduler implements Schedulable {
-
-    // 0 0 0 30 1 ? * => 00:00 on January 30 every year
-    public static final String CRON = '0 0 0 30 1 ? *';
-
     public void execute(SchedulableContext sc) {
         Database.executeBatch(new TAG_EmployerSurveyCampaignsBatch(), 200);
-    }
-
-    // Helper to schedule programmatically
-    public static void scheduleJob() {
-        System.schedule('Annual NavUnit → Campaign', CRON, new TAG_EmployerSurveyCampaignsScheduler());
     }
 }
