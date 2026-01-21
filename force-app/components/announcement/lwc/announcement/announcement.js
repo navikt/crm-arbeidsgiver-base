@@ -13,7 +13,6 @@ import AUTHOR from '@salesforce/schema/TAG_Announcement__c.TAG_Author_Name__c';
 
 import ACTIVE from '@salesforce/schema/TAG_Announcement__c.TAG_Active__c';
 import PUBLISH_DATE from '@salesforce/schema/TAG_Announcement__c.TAG_Publish_Date__c';
-import UNPUBLISH_DATE from '@salesforce/schema/TAG_Announcement__c.TAG_Unpublish_Date__c';
 
 export default class Announcement extends NavigationMixin(LightningElement) {
     @api inputTitle;
@@ -28,15 +27,7 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     DEFAULT_PAGE_SIZE = 2;
 
     objectApiName = NOTE_OBJECT.objectApiName;
-    listViewFields = this.convertSchemaFieldToPath([
-        NAME,
-        TEXT,
-        LINK_URL,
-        AUTHOR,
-        PUBLISH_DATE,
-        UNPUBLISH_DATE,
-        ACTIVE
-    ]);
+    listViewFields = this.convertSchemaFieldToPath([NAME, TEXT, LINK_URL, AUTHOR, PUBLISH_DATE, ACTIVE]);
 
     get pageSize() {
         return this.inputNumberOfRecordsToShow || this.DEFAULT_PAGE_SIZE;
@@ -62,27 +53,33 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     get isNoteAdmin() {
         return hasArbeidsgiver_Manage_custom_notes;
     }
-    get displayRecordsFound() {
-        return this.displayRecords && this.displayRecords.length > 0;
+
+    get isEmptyState() {
+        return !this.displayRecords || this.displayRecords.length === 0;
     }
+    get isErrorState() {
+        return this.userErrorMessage !== null;
+    }
+
     lastViewedDate = new Date();
+    @track userErrorMessage = null;
     @track displayRecords = [];
     @track listViewApiName = null; // Start med null, settes av getLastViewedDate
 
     @wire(getLastViewedDate, { listViewName: '$LIST_VIEW_API_NAME' })
     wiredListViewLastViewedDate({ error, data }) {
         if (data) {
-            console.log('Last viewed date for list view', this.LIST_VIEW_API_NAME, ':', data);
+            this.userErrorMessage = null;
             this.lastViewedDate = new Date(data);
             // Nå som lastViewedDate er hentet, aktiver getListRecordsByName
             this.listViewApiName = this.LIST_VIEW_API_NAME;
         } else if (error) {
-            console.error('Error fetching last viewed date for list view', this.LIST_VIEW_API_NAME, ':', error);
-
-            // Sett til Now for å unngå å markere alle som nye
-            this.lastViewedDate = new Date();
-            // Selv ved feil, aktiver getListRecordsByName
-            this.listViewApiName = this.LIST_VIEW_API_NAME;
+            // console.error('Error fetching last viewed date:', error);
+            if (error.status === 500) {
+                this.userErrorMessage = 'Det oppstod en feil. Prøv igjen senere. Kontakt support om feilen vedvarer.';
+            } else {
+                this.userErrorMessage = 'Innlegg kan ikke vises akkurat nå. Feilen er registrert og vil bli undersøkt.';
+            }
         }
     }
 
@@ -95,11 +92,12 @@ export default class Announcement extends NavigationMixin(LightningElement) {
         where: '$whereClause'
     })
     wireResult(result) {
-        // console.log('result :', JSON.stringify(result, null, 2));
+        //console.log('result :', JSON.stringify(result, null, 2));
         if (result.data) {
+            this.userErrorMessage = null;
             this.displayRecords = result.data.records.map((record) => this.createDataItemFromRecord(record));
         } else if (result.error) {
-            console.error('Feil ved henting av records:', result.error);
+            this.userErrorMessage = 'Innlegg er ikke tilgjengelig for din bruker.';
             this.displayRecords = [];
         }
     }
@@ -109,13 +107,13 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     // =========================
 
     createDataItemFromRecord(record) {
-        var title = this.HIDE_NOTE_TITLE ? '' : this.getFieldValue(record, NAME.fieldApiName);
-        var url = this.getFieldValue(record, LINK_URL.fieldApiName);
-        var urlLabel = url ? this.DEFAULT_LINK_LABEL : '';
-        var text = this.abbriviateText(this.getFieldValue(record, TEXT.fieldApiName), this.MAX_TEXT_LENGTH);
-        var publishDateField = this.getField(record, PUBLISH_DATE.fieldApiName);
-        var publishedDate = publishDateField ? new Date(publishDateField.value) : null; // '2026-01-13T06:17:44.000Z'
-        var publishDateDisplayValue = publishDateField ? publishDateField.displayValue : '';
+        const title = this.HIDE_NOTE_TITLE ? '' : this.getFieldValue(record, NAME.fieldApiName);
+        const url = this.getFieldValue(record, LINK_URL.fieldApiName);
+        const urlLabel = url ? this.DEFAULT_LINK_LABEL : '';
+        const text = this.getFieldValue(record, TEXT.fieldApiName);
+        const publishDateField = this.getField(record, PUBLISH_DATE.fieldApiName);
+        const publishedDate = publishDateField ? new Date(publishDateField.value) : null; // '2026-01-13T06:17:44.000Z'
+        const publishDateDisplayValue = publishDateField ? publishDateField.displayValue : '';
 
         return {
             id: record.id,
@@ -200,24 +198,24 @@ export default class Announcement extends NavigationMixin(LightningElement) {
 
     getField(record, fieldName) {
         if (!fieldName) {
-            return '';
+            return null;
         }
         const fieldData = record.fields[fieldName];
         if (!fieldData) {
-            return '';
+            return null;
         }
         return fieldData;
     }
 
     getFieldValue(record, fieldName) {
         if (!fieldName) {
-            return '';
+            return null;
         }
         const fieldData = record.fields[fieldName];
         if (!fieldData) {
-            return '';
+            return null;
         }
-        return fieldData.displayValue ?? fieldData.value ?? '';
+        return fieldData.displayValue ?? fieldData.value ?? null;
     }
 
     convertSchemaFieldToPath(fieldsArray) {
@@ -226,24 +224,12 @@ export default class Announcement extends NavigationMixin(LightningElement) {
         });
     }
 
-    abbriviateText(text, maxLength) {
-        if (!maxLength || maxLength <= 0) {
-            return text;
-        }
-        if (text.length <= maxLength) {
-            return text;
-        }
-        return text.substring(0, maxLength) + '...';
-    }
-
     /* Check if announcements is new since last component view by user*/
     isPublishedSinceLastView(publishDate) {
         if (!this.lastViewedDate) {
-            console.log('No last viewed date, returning false');
             return false;
         }
         if (!publishDate) {
-            console.log('No publish date, returning false');
             return false;
         }
         const bufferTime = 1 * 60 * 1000; // 1 minute buffer

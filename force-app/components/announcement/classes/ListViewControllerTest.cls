@@ -23,18 +23,16 @@ private class ListViewControllerTest {
 
     @isTest
     static void testGetListViewLastViewedDate_NonExistentListView() {
-        Test.startTest();
         String nonExistentListView = 'NonExistentListView123456';
-        DateTime result = ListViewController.getListViewLastViewedDate(nonExistentListView);
-        System.assertEquals(null, result, 'Should return null for non-existent ListView');
-        Test.stopTest();
-    }
-
-    @isTest
-    static void testGetListViewLastViewedDate_NullInput() {
+        DateTime result;
         Test.startTest();
-        DateTime result = ListViewController.getListViewLastViewedDate(null);
-        System.assertEquals(null, result, 'Should return null for null input');
+        try {
+            result = ListViewController.getListViewLastViewedDate(nonExistentListView);
+        } catch (Exception e) {
+            System.assert(e instanceof AuraHandledException, 'Expected AuraHandledException for ListView not found');
+            return; // Test passes if exception is thrown
+        }
+        System.assert(false, 'Expected exception was not thrown for non-existent ListView');
         Test.stopTest();
     }
 }

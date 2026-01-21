@@ -31,17 +31,21 @@
             </lightning-button-icon>
         </lightning-button-group>
         <div class="slds-var-p-right_small slds-var-p-left_small">
-            <template if:false={displayRecordsFound}>
-                <div class="slds-var-m-top_medium slds-text-align_center slds-text-body_small slds-text-color_weak">
-                    Ingen poster å vise.
-                    <template if:true={isNoteAdmin}>
-                        <br />
-                        Klikk på plusstegnet øverst for å opprette en ny post.
-                    </template>
-                </div>
+            <template if:true={isEmptyState}>
+                <template if:true={isErrorState}> {userErrorMessage} </template>
+                <template if:false={isErrorState}>
+                    <div class="slds-var-m-top_medium slds-text-align_center slds-text-body_small slds-text-color_weak">
+                        Ingen poster å vise akkurat nå. Sjekk igjen senere.
+                        <template if:true={isNoteAdmin}>
+                            <br />
+                            Klikk på plusstegnet øverst for å opprette en ny post.
+                        </template>
+                    </div>
+                </template>
             </template>
+
             <ul class="slds-list_vertical-space">
-                <template if:true={displayRecordsFound} for:each={displayRecords} for:item="record">
+                <template if:false={isEmptyState} for:each={displayRecords} for:item="record">
                     <li key={record.id} class="slds-var-m-bottom_small slds-item">
                         <article class={record.articleClass}>
                             <header>
