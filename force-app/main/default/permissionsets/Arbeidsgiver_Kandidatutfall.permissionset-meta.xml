@@ -30,6 +30,11 @@
         <field>CandidateOutcome__c.TimeRegistered__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CandidateOutcome__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Kandidatutfall</label>
     <objectPermissions>

@@ -3,32 +3,32 @@
     <caseValues>
         <article>Definite</article>
         <plural>false</plural>
-        <value>Formidlingen</value>
+        <value>Kandidat utfallet</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>false</plural>
-        <value>Formidling</value>
+        <value>Kandidat utfall</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>false</plural>
-        <value>Formidling</value>
+        <value>Kandidat utfall</value>
     </caseValues>
     <caseValues>
         <article>Definite</article>
         <plural>true</plural>
-        <value>Formidlingene</value>
+        <value>Kandidat utfallene</value>
     </caseValues>
     <caseValues>
         <article>Indefinite</article>
         <plural>true</plural>
-        <value>Formidlinger</value>
+        <value>Kandidat utfall</value>
     </caseValues>
     <caseValues>
         <article>None</article>
         <plural>true</plural>
-        <value>Formidlinger</value>
+        <value>Kandidat utfall</value>
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
@@ -38,5 +38,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel>Formidlingnummer</nameFieldLabel>
+    <nameFieldLabel>Nummer</nameFieldLabel>
 </CustomObjectTranslation>
