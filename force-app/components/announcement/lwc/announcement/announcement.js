@@ -54,13 +54,11 @@ export default class Announcement extends NavigationMixin(LightningElement) {
         return hasArbeidsgiver_Manage_custom_notes;
     }
 
-    get isEmptyState() {
-        return !this.displayRecords || this.displayRecords.length === 0;
-    }
-    get isErrorState() {
-        return this.userErrorMessage !== null;
+    get showEmptyStateMessage() {
+        return !this.isLoading && !this.userErrorMessage && (!this.displayRecords || this.displayRecords.length === 0);
     }
 
+    isLoading = true;
     lastViewedDate = new Date();
     @track userErrorMessage = null;
     @track displayRecords = [];
@@ -80,6 +78,7 @@ export default class Announcement extends NavigationMixin(LightningElement) {
             } else {
                 this.userErrorMessage = 'Innlegg kan ikke vises akkurat nå. Feilen er registrert og vil bli undersøkt.';
             }
+            this.isLoading = false;
         }
     }
 
@@ -94,11 +93,13 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     wireResult(result) {
         //console.log('result :', JSON.stringify(result, null, 2));
         if (result.data) {
-            this.userErrorMessage = null;
             this.displayRecords = result.data.records.map((record) => this.createDataItemFromRecord(record));
+            this.userErrorMessage = null;
+            this.isLoading = false;
         } else if (result.error) {
             this.userErrorMessage = 'Innlegg er ikke tilgjengelig for din bruker.';
             this.displayRecords = [];
+            this.isLoading = false;
         }
     }
 
