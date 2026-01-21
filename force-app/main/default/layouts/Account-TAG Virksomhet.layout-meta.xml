@@ -307,6 +307,14 @@
         <fields>EndDate__c</fields>
         <relatedList>Workfare__c.Account__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>CandidateOutcomeLink__c</fields>
+        <fields>Type__c</fields>
+        <fields>Result__c</fields>
+        <fields>TimeRegistered__c</fields>
+        <fields>JobPosting__c</fields>
+        <relatedList>CandidateOutcome__c.Account__c</relatedList>
+    </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
@@ -314,7 +322,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hPw000009E46v</masterLabel>
+        <masterLabel>00hJX00000CLrPM</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
