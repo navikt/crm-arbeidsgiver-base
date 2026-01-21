@@ -32,14 +32,8 @@
         </lightning-button-group>
 
         <div class="slds-var-p-right_small slds-var-p-left_small">
-            <!-- Laster -->
-            <template if:true={isLoading}>
-                <div class="slds-align_absolute-center">
-                    <lightning-spinner alternative-text="Laster data..." size="small"></lightning-spinner>
-                </div>
-            </template>
             <ul class="slds-list_vertical-space">
-                <template if:false={isEmpty} for:each={displayRecords} for:item="record">
+                <template for:each={displayRecords} for:item="record">
                     <li key={record.id} class="slds-var-m-bottom_small slds-item">
                         <article class={record.articleClass}>
                             <header>
@@ -123,5 +117,11 @@
             </template>
             <template if:true={userErrorMessage}> {userErrorMessage} </template>
         </div>
+        <!-- Laster -->
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center">
+                <lightning-spinner alternative-text="Laster data..." size="small"></lightning-spinner>
+            </div>
+        </template>
     </lightning-card>
 </template>

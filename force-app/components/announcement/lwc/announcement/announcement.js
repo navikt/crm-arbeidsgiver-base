@@ -58,7 +58,7 @@ export default class Announcement extends NavigationMixin(LightningElement) {
         return !this.isLoading && !this.userErrorMessage && (!this.displayRecords || this.displayRecords.length === 0);
     }
 
-    isLoading = true;
+    @track isLoading = true;
     lastViewedDate = new Date();
     @track userErrorMessage = null;
     @track displayRecords = [];
