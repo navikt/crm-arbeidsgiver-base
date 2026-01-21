@@ -68,7 +68,11 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     wiredListViewLastViewedDate({ error, data }) {
         if (data) {
             this.userErrorMessage = null;
-            this.lastViewedDate = new Date(data);
+            try {
+                this.lastViewedDate = data == null ? new Date() : new Date(data);
+            } catch (e) {
+                console.error('Error parsing last viewed date:', e);
+            }
             // Nå som lastViewedDate er hentet, aktiver getListRecordsByName
             this.listViewApiName = this.LIST_VIEW_API_NAME;
         } else if (error) {
