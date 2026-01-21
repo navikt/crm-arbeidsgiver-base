@@ -74,6 +74,12 @@
                 <identifier>RecordTimeRegistered_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Account__c</fieldItem>
+                <identifier>RecordAccount__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-61f463db-3053-4dee-b77a-d6c4197f9d0c</name>
         <type>Facet</type>
     </flexiPageRegions>
