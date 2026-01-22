@@ -565,11 +565,20 @@
                     <name>inputHelpText</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>inputListViewApiName</name>
+                    <value>Teams_Alle_innlegg</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>inputNumberOfRecordsToShow</name>
                     <value>2</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>inputRecentThresholdHours</name>
+                    <value>24</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>inputTitle</name>
+                    <value>Bli med å påvirke Salesforce Arbeidsgiver</value>
                 </componentInstanceProperties>
                 <componentName>announcement</componentName>
                 <identifier>c_announcement</identifier>
