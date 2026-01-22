@@ -18,37 +18,23 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     @api inputTitle;
     @api inputHelpText;
     @api inputNumberOfRecordsToShow;
+    @api inputListViewApiName;
+    @api inputRecentThresholdHours;
 
     HIDE_NOTE_TITLE = false;
-    LIST_VIEW_API_NAME = 'Teams_Alle_innlegg';
     EXCLUDE_INACTIVE = true;
-    MAX_TEXT_LENGTH = 1000;
     DEFAULT_LINK_LABEL = 'Si din mening (åpner Teams)';
-    DEFAULT_PAGE_SIZE = 2;
 
     objectApiName = NOTE_OBJECT.objectApiName;
     listViewFields = this.convertSchemaFieldToPath([NAME, TEXT, LINK_URL, AUTHOR, PUBLISH_DATE, ACTIVE]);
+    sortBy = ['-' + PUBLISH_DATE.objectApiName + '.' + PUBLISH_DATE.fieldApiName];
+    whereClause = this.EXCLUDE_INACTIVE ? `{ TAG_Active__c: { eq: true } }` : null;
 
-    get pageSize() {
-        return this.inputNumberOfRecordsToShow || this.DEFAULT_PAGE_SIZE;
-    }
-    get sortBy() {
-        return ['-' + PUBLISH_DATE.objectApiName + '.' + PUBLISH_DATE.fieldApiName];
-    }
-    get whereClause() {
-        if (this.EXCLUDE_INACTIVE) {
-            return `{ TAG_Active__c: { eq: true } }`;
-        }
-        return null;
-    }
-
-    get title() {
-        return this.inputTitle || 'Bli med å påvirke Salesforce Arbeidsgiver';
-    }
-
-    get helpText() {
-        return this.inputHelpText || '';
-    }
+    @track isLoading = true;
+    lastViewedDate = new Date();
+    @track userErrorMessage = null;
+    @track displayRecords = [];
+    @track listViewApiName = null;
 
     get isNoteAdmin() {
         return hasArbeidsgiver_Manage_custom_notes;
@@ -57,31 +43,25 @@ export default class Announcement extends NavigationMixin(LightningElement) {
     get showEmptyStateMessage() {
         return !this.isLoading && !this.userErrorMessage && (!this.displayRecords || this.displayRecords.length === 0);
     }
+    get displayRecordsFound() {
+        return !this.isLoading && !this.userErrorMessage && this.displayRecords && this.displayRecords.length > 0;
+    }
 
-    @track isLoading = true;
-    lastViewedDate = new Date();
-    @track userErrorMessage = null;
-    @track displayRecords = [];
-    @track listViewApiName = null; // Start med null, settes av getLastViewedDate
+    @wire(getLastViewedDate, { listViewName: '$inputListViewApiName', sObjectType: '$objectApiName' })
+    wiredListViewLastViewedDate(result) {
+        this.userErrorMessage = null;
 
-    @wire(getLastViewedDate, { listViewName: '$LIST_VIEW_API_NAME' })
-    wiredListViewLastViewedDate({ error, data }) {
-        if (data) {
-            this.userErrorMessage = null;
+        if (result.data) {
             try {
-                this.lastViewedDate = data == null ? new Date() : new Date(data);
+                this.lastViewedDate = result.data.lastViewedDate == null ? null : new Date(result.data.lastViewedDate);
             } catch (e) {
                 console.error('Error parsing last viewed date:', e);
+                this.lastViewedDate = null;
             }
-            // Nå som lastViewedDate er hentet, aktiver getListRecordsByName
-            this.listViewApiName = this.LIST_VIEW_API_NAME;
-        } else if (error) {
-            // console.error('Error fetching last viewed date:', error);
-            if (error.status === 500) {
-                this.userErrorMessage = 'Det oppstod en feil. Prøv igjen senere. Kontakt support om feilen vedvarer.';
-            } else {
-                this.userErrorMessage = 'Innlegg kan ikke vises akkurat nå. Feilen er registrert og vil bli undersøkt.';
-            }
+            // Set listViewApiName to activate getListRecordsByName
+            this.listViewApiName = this.inputListViewApiName;
+        } else if (result.error) {
+            this.userErrorMessage = 'Det oppstod en feil. Prøv igjen senere. Kontakt support om feilen vedvarer.';
             this.isLoading = false;
         }
     }
@@ -90,12 +70,11 @@ export default class Announcement extends NavigationMixin(LightningElement) {
         objectApiName: '$objectApiName',
         listViewApiName: '$listViewApiName',
         fields: '$listViewFields',
-        pageSize: '$pageSize',
+        pageSize: '$inputNumberOfRecordsToShow',
         sortBy: '$sortBy',
         where: '$whereClause'
     })
     wireResult(result) {
-        //console.log('result :', JSON.stringify(result, null, 2));
         if (result.data) {
             this.displayRecords = result.data.records.map((record) => this.createDataItemFromRecord(record));
             this.userErrorMessage = null;
@@ -192,7 +171,7 @@ export default class Announcement extends NavigationMixin(LightningElement) {
                 actionName: 'list'
             },
             state: {
-                filterName: this.LIST_VIEW_API_NAME
+                filterName: this.inputListViewApiName
             }
         });
     }
@@ -244,12 +223,12 @@ export default class Announcement extends NavigationMixin(LightningElement) {
 
     /* Check if announcements is recently posted, within 1 day ago */
     isRecentlyPublished(publishDate) {
-        if (!publishDate) {
+        if (!publishDate || !this.inputRecentThresholdHours || this.inputRecentThresholdHours < 0) {
             return false;
         }
         const now = new Date();
         const timeDiff = now.getTime() - publishDate.getTime();
-        const daysDiff = timeDiff / (1000 * 3600 * 24);
-        return daysDiff <= 1; // Considered recent if within the last 1 day
+        const hoursDiff = timeDiff / (1000 * 3600);
+        return hoursDiff <= this.inputRecentThresholdHours; // Considered recent if within the last 24 hours
     }
 }

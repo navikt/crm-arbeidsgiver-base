@@ -1,24 +1,22 @@
 public with sharing class ListViewController {
     private static final LoggerUtility LOGGER = new LoggerUtility();
-
-    // select id, DeveloperName, LastReferencedDate, LastViewedDate  from ListView  where SobjectType ='TAG_Announcement__c'
     // Get LastViewedDate for ListView
     // Takes list view name as input and returns last viewed av datetime value
     @AuraEnabled(cacheable=true)
-    public static DateTime getListViewLastViewedDate(String listViewName) {
-        ListView lv = getListViewByName(listViewName);
+    public static LastViewedDateResponse getListViewLastViewedDate(String listViewName, String sObjectType) {
+        ListView lv = getListViewByName(listViewName, sObjectType);
         if (lv == null) {
             throw new AuraHandledException('ListView not found: ' + listViewName);
         }
-        return lv.LastViewedDate;
+        return new LastViewedDateResponse(true, lv.LastViewedDate);
     }
 
-    private static ListView getListViewByName(String listViewName) {
+    private static ListView getListViewByName(String listViewName, String sObjectType) {
         try {
             ListView lv = [
                 SELECT LastViewedDate
                 FROM ListView
-                WHERE DeveloperName = :listViewName
+                WHERE DeveloperName = :listViewName AND SobjectType = :sObjectType
                 LIMIT 1
             ];
             return lv;
@@ -26,7 +24,7 @@ public with sharing class ListViewController {
             LOGGER.logMessage(
                 LoggerUtility.LogLevel.Warning,
                 '',
-                listViewName,
+                listViewName + ' for sObjectType ' + sObjectType,
                 e.getMessage() +
                     ', meaning ListView ' +
                     listViewName +
@@ -39,4 +37,27 @@ public with sharing class ListViewController {
             return null;
         }
     }
+
+    public class LastViewedDateResponse {
+        @AuraEnabled
+        public Boolean isSuccess;
+        @AuraEnabled
+        public DateTime lastViewedDate;
+        public LastViewedDateResponse(Boolean isSuccess, DateTime lastViewedDate) {
+            this.isSuccess = isSuccess;
+            this.lastViewedDate = lastViewedDate;
+        }
+    }
+    /* --- IGNORE ---
+         // Mock responses for testing purposes
+        if (listViewName == 'mockError') {
+            throw new AuraHandledException('Simulated error for testing purposes.');
+        }
+        if (listViewName == 'mockViewedDateNull') {
+            return new LastViewedDateResponse(true, null);
+        }
+        if (listViewName == 'mockViewedDate') {
+            return new LastViewedDateResponse(true, DateTime.newInstance(2000, 6, 1, 0, 0, 0));
+        }
+    */
 }

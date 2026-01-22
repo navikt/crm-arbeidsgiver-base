@@ -3,6 +3,7 @@
     font-size: 16px;
     color: rgb(0, 0, 0);
     font-weight: bold;
+    padding-inline-end: var(--slds-g-spacing-1);
 }
 
 .announcement__item {

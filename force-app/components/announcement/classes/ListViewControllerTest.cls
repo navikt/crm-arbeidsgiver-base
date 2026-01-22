@@ -13,7 +13,7 @@ private class ListViewControllerTest {
         String listViewName = listViews[0].DeveloperName;
 
         Test.startTest();
-        DateTime result = ListViewController.getListViewLastViewedDate(listViewName);
+        ListViewController.getListViewLastViewedDate(listViewName, 'TAG_Announcement__c');
         Test.stopTest();
 
         // If we reach this point without exception, the test passes
@@ -24,10 +24,9 @@ private class ListViewControllerTest {
     @isTest
     static void testGetListViewLastViewedDate_NonExistentListView() {
         String nonExistentListView = 'NonExistentListView123456';
-        DateTime result;
         Test.startTest();
         try {
-            result = ListViewController.getListViewLastViewedDate(nonExistentListView);
+            ListViewController.getListViewLastViewedDate(nonExistentListView, 'TAG_Announcement__c');
         } catch (Exception e) {
             System.assert(e instanceof AuraHandledException, 'Expected AuraHandledException for ListView not found');
             return; // Test passes if exception is thrown

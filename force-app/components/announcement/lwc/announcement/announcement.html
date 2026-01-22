@@ -1,14 +1,16 @@
 <template>
     <lightning-card class="slds-var-p-bottom_small">
-        <div slot="title">
-            <h2 class="slds-truncate slds-text-heading_small announcement__h2">{title}</h2>
-            <lightning-helptext
-                if:true={helpText}
-                class="slds-text-heading_small"
-                icon-name="utility:info"
-                content={helpText}
-            >
-            </lightning-helptext>
+        <div slot="title" class="slds-grid">
+            <div class="slds-col slds-grid slds-has-flexi-truncate">
+                <h2 class="slds-truncate announcement__h2" title={inputTitle}>{inputTitle}</h2>
+                <lightning-helptext
+                    if:true={inputHelpText}
+                    style="font-size: 0px"
+                    icon-name="utility:info"
+                    content={inputHelpText}
+                >
+                </lightning-helptext>
+            </div>
         </div>
         <lightning-button-group slot="actions" if:true={isNoteAdmin}>
             <lightning-button-icon
@@ -32,80 +34,82 @@
         </lightning-button-group>
 
         <div class="slds-var-p-right_small slds-var-p-left_small">
-            <ul class="slds-list_vertical-space">
-                <template for:each={displayRecords} for:item="record">
-                    <li key={record.id} class="slds-var-m-bottom_small slds-item">
-                        <article class={record.articleClass}>
-                            <header>
-                                <div class="slds-grid slds-align-middle slds-var-m-bottom_xx-small">
-                                    <div class="slds-col slds-grid slds-has-flexi-truncate">
-                                        <span class="announcement__item-author slds-truncate" title={record.author}
-                                            ><lightning-icon
-                                                icon-name="utility:user"
-                                                size="xx-small"
-                                                class="slds-var-m-right_xx-small"
-                                            ></lightning-icon
-                                            >{record.author}</span
-                                        >
-                                        <span
-                                            class="slds-truncate slds-var-m-left_small"
-                                            title={record.publishedTooltip}
-                                            ><lightning-icon
-                                                icon-name="utility:date_time"
-                                                size="xx-small"
-                                                class="slds-var-m-right_xx-small"
-                                            ></lightning-icon
-                                            ><lightning-relative-date-time
-                                                value={record.published}
-                                                class={record.publishedClass}
+            <template if:true={displayRecordsFound}>
+                <ul class="slds-list_vertical-space">
+                    <template for:each={displayRecords} for:item="record">
+                        <li key={record.id} class="slds-var-m-bottom_small slds-item">
+                            <article class={record.articleClass}>
+                                <header>
+                                    <div class="slds-grid slds-align-middle slds-var-m-bottom_xx-small">
+                                        <div class="slds-col slds-grid slds-has-flexi-truncate">
+                                            <span class="announcement__item-author slds-truncate" title={record.author}
+                                                ><lightning-icon
+                                                    icon-name="utility:user"
+                                                    size="xx-small"
+                                                    class="slds-var-m-right_xx-small"
+                                                ></lightning-icon
+                                                >{record.author}</span
                                             >
-                                            </lightning-relative-date-time
-                                        ></span>
+                                            <span
+                                                class="slds-truncate slds-var-m-left_small"
+                                                title={record.publishedTooltip}
+                                                ><lightning-icon
+                                                    icon-name="utility:date_time"
+                                                    size="xx-small"
+                                                    class="slds-var-m-right_xx-small"
+                                                ></lightning-icon
+                                                ><lightning-relative-date-time
+                                                    value={record.published}
+                                                    class={record.publishedClass}
+                                                >
+                                                </lightning-relative-date-time
+                                            ></span>
+                                        </div>
+                                        <div class="slds-col_bump-right">
+                                            <lightning-button-icon
+                                                if:true={isNoteAdmin}
+                                                variant="bare"
+                                                alternative-text="Rediger"
+                                                icon-name="utility:edit"
+                                                tooltip="Rediger post"
+                                                data-record-id={record.id}
+                                                onclick={handleEditClick}
+                                            >
+                                            </lightning-button-icon>
+                                        </div>
                                     </div>
-                                    <div class="slds-col_bump-right">
-                                        <lightning-button-icon
-                                            if:true={isNoteAdmin}
-                                            variant="bare"
-                                            alternative-text="Rediger"
-                                            icon-name="utility:edit"
-                                            tooltip="Rediger post"
-                                            data-record-id={record.id}
-                                            onclick={handleEditClick}
+                                </header>
+                                <div class="slds-grid slds-grid_vertical slds-var-m-bottom_xx-small">
+                                    <div class="slds-col slds-var-m-bottom_xx-small">
+                                        <h3
+                                            if:true={record.title}
+                                            class="announcement__item-title slds-truncate"
+                                            title={record.title}
                                         >
-                                        </lightning-button-icon>
+                                            {record.title}
+                                        </h3>
+                                    </div>
+                                    <div class="slds-col">
+                                        <lightning-formatted-rich-text
+                                            value={record.text}
+                                            class="announcement__item-text slds-text-longform slds-line-clamp"
+                                        ></lightning-formatted-rich-text>
+
+                                        <lightning-formatted-url
+                                            class=""
+                                            if:true={record.url}
+                                            value={record.url}
+                                            label={record.urlLabel}
+                                            target="_blank"
+                                            tooltip={record.urlLabel}
+                                        ></lightning-formatted-url>
                                     </div>
                                 </div>
-                            </header>
-                            <div class="slds-grid slds-grid_vertical slds-var-m-bottom_xx-small">
-                                <div class="slds-col slds-var-m-bottom_xx-small">
-                                    <h3
-                                        if:true={record.title}
-                                        class="announcement__item-title slds-truncate"
-                                        title={record.title}
-                                    >
-                                        {record.title}
-                                    </h3>
-                                </div>
-                                <div class="slds-col">
-                                    <lightning-formatted-rich-text
-                                        value={record.text}
-                                        class="announcement__item-text slds-text-longform slds-line-clamp"
-                                    ></lightning-formatted-rich-text>
-
-                                    <lightning-formatted-url
-                                        class=""
-                                        if:true={record.url}
-                                        value={record.url}
-                                        label={record.urlLabel}
-                                        target="_blank"
-                                        tooltip={record.urlLabel}
-                                    ></lightning-formatted-url>
-                                </div>
-                            </div>
-                        </article>
-                    </li>
-                </template>
-            </ul>
+                            </article>
+                        </li>
+                    </template>
+                </ul>
+            </template>
             <template if:true={showEmptyStateMessage}>
                 <div class="slds-var-m-top_medium slds-text-align_center slds-text-body_small slds-text-color_weak">
                     Ingen poster å vise akkurat nå. Sjekk igjen senere.
