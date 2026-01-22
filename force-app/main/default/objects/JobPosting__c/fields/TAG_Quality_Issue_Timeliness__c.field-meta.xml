@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Quality_Issue_Timeliness__c</fullName>
-    <formula>IF(  UPPER(Source__c) = &apos;DIR&apos; &amp;&amp; NOT(ISBLANK( TAG_initial_activity_date__c )) &amp;&amp; TAG_initial_activity_date__c &gt;= DATEVALUE(CreatedDate)-7 &amp;&amp; TAG_initial_activity_date__c &lt;= DATEVALUE(CreatedDate)+7 , FALSE, TRUE)</formula>
+    <deprecated>false</deprecated>
+    <formula>IF(
+    UPPER(Source__c) = &apos;DIR&apos;, 
+    IF( 
+        AND( 
+            NOT(ISBLANK( TAG_initial_activity_date__c )), 
+            TAG_initial_activity_date__c &gt;= DATEVALUE(CreatedDate)-7,
+            TAG_initial_activity_date__c &lt;= DATEVALUE(CreatedDate)+7
+        ),   
+        FALSE,
+        TRUE
+    ),
+    FALSE
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Quality Issue: Timeliness</label>
     <trackTrending>false</trackTrending>

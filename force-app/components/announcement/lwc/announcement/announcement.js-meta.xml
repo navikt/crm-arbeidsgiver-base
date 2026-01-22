@@ -12,13 +12,16 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
-            <property name="inputTitle" label="Title" type="String" placeholder="" description=""
-                required="false" />
-            <property name="inputHelpText" label="Help Text" type="String" placeholder=""
+            <property name="inputTitle" label="Title" type="String" description=""
+                required="false" default="Bli med å påvirke Salesforce Arbeidsgiver" />
+            <property name="inputHelpText" label="Help Text" type="String"
                 description="" required="false" />
             <property name="inputNumberOfRecordsToShow" label="Number of Records to Show"
                 type="Integer" default="2" min="1" max="10" description="" required="false" />
-
+            <property name="inputListViewApiName" label="List View API Name" type="String" default="Teams_Alle_innlegg"
+                description="API Name of the List View to fetch announcements from." required="true" />
+            <property name="inputRecentThresholdHours" label="Recent Threshold Hours" type="Integer" default="24"
+                min="-1" max="168" description="Number of hours to consider an announcement as recent." required="false" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
