@@ -2,4 +2,16 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Utfall</label>
     <name>Result__c</name>
+    <picklistValues>
+        <masterLabel>Fått jobben</masterLabel>
+        <translation><!-- Fått jobben --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ikke presentert</masterLabel>
+        <translation><!-- Ikke presentert --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Presentert</masterLabel>
+        <translation><!-- Presentert --></translation>
+    </picklistValues>
 </CustomFieldTranslation>

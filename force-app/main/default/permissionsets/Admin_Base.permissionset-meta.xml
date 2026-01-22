@@ -105,6 +105,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.CandidateId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.CandidateListId__c</field>
         <readable>true</readable>
     </fieldPermissions>
