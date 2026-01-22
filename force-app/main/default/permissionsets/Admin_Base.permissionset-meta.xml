@@ -119,6 +119,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.TAG_UltimateSource__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Event.CRM_AccountOrgNumber__c</field>
         <readable>true</readable>
