@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Category__c</fullName>
-    <externalId>false</externalId>
     <label>Category</label>
-    <length>40</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>STILLING</fullName>
+                <default>false</default>
+                <label>Stilling</label>
+            </value>
+            <value>
+                <fullName>FORMIDLING</fullName>
+                <default>false</default>
+                <label>Formidling</label>
+            </value>
+            <value>
+                <fullName>JOBBMESSE</fullName>
+                <default>false</default>
+                <label>Jobbmesse</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>
