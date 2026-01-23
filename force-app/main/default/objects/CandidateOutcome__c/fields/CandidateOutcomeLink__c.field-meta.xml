@@ -3,9 +3,9 @@
     <fullName>CandidateOutcomeLink__c</fullName>
     <externalId>false</externalId>
     <formula>IF(
-NOT( ISBLANK( Result__c ) ),
-HYPERLINK(&quot;/lightning/r/CandidateOutcome__c/&quot; + Id + &quot;/view&quot;, Result__c,&quot;_self&quot;),
-HYPERLINK(&quot;/lightning/r/CandidateOutcome__c/&quot; + Id + &quot;/view&quot;, &quot;Se kandidat utfallet&quot;,&quot;_self&quot;)
+NOT( ISBLANK( TEXT(Category__c) ) ),
+HYPERLINK(&quot;/lightning/r/CandidateOutcome__c/&quot; + Id + &quot;/view&quot;, TEXT(Category__c),&quot;_self&quot;),
+HYPERLINK(&quot;/lightning/r/CandidateOutcome__c/&quot; + Id + &quot;/view&quot;, &quot;Se kandidatutfallet&quot;,&quot;_self&quot;)
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Candidate Outcome Link</label>
