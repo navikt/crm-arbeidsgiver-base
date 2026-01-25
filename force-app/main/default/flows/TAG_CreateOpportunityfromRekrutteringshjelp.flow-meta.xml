@@ -187,6 +187,12 @@
                 <elementReference>Get_Account.Name</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_UltimateSource__c</field>
+            <value>
+                <stringValue>Arbeidsplassen.no</stringValue>
+            </value>
+        </inputAssignments>
         <object>CustomOpportunity__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
@@ -293,6 +299,27 @@
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>REJECTED</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>STOPPED</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>DELETED</stringValue>
             </value>
         </filters>
         <object>JobPosting__c</object>
