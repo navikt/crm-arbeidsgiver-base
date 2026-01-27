@@ -28,6 +28,10 @@
                 <behavior>Edit</behavior>
                 <field>EngagementType__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Extent__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
