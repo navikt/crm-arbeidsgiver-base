@@ -69,6 +69,13 @@
                 <stringValue>Etterregistrering</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_existing_candidate_outcome.Extent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Extent__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_existing_Candidate_Outcome</targetReference>
         </connector>
@@ -269,6 +276,12 @@
             <field>EngagementType__c</field>
             <value>
                 <elementReference>$Record.EngagementType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Extent__c</field>
+            <value>
+                <elementReference>$Record.Extent__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
