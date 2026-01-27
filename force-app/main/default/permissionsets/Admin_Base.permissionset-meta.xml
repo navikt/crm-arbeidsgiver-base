@@ -120,6 +120,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.EngagementType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.JSONPayload__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -161,6 +166,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CandidateOutcome__c.TimeRegistered__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CandidateOutcome__c.Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
