@@ -70,46 +70,34 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TimeRegistered__c</fieldItem>
-                <identifier>RecordTimeRegistered_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
                 <fieldItem>Record.Account__c</fieldItem>
                 <identifier>RecordAccount__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Category__c</fieldItem>
                 <identifier>RecordCategory__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TimeRegistered__c</fieldItem>
+                <identifier>RecordTimeRegistered_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-61f463db-3053-4dee-b77a-d6c4197f9d0c</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.NavUnit__c</fieldItem>
-                <identifier>RecordNavUnit_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.NavIdent__c</fieldItem>
-                <identifier>RecordNavIdent_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -128,6 +116,36 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.JobPostingId__c</fieldItem>
                 <identifier>RecordJobPostingId_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.NavUnit__c</fieldItem>
+                <identifier>RecordNavUnit_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EngagementType__c</fieldItem>
+                <identifier>RecordEngagementType__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Title__c</fieldItem>
+                <identifier>RecordTitle__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-587ef782-bcce-4a4f-9e99-ae8073efbbc5</name>
