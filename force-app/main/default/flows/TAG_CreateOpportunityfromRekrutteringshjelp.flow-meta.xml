@@ -311,7 +311,7 @@
         <inputAssignments>
             <field>TimeRegistered__c</field>
             <value>
-                <elementReference>$Record.CreatedDate</elementReference>
+                <elementReference>$Record.Created__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

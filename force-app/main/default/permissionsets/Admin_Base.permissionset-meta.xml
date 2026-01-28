@@ -120,6 +120,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.Duplicate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.EngagementType__c</field>
         <readable>true</readable>
     </fieldPermissions>
