@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Set_duplicate_value_for_current_record</name>
+        <label>Set duplicate value for current record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Run_through_duplicate_list.Duplicate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_duplicate</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Store_time_registered</name>
+        <label>Store time registered</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>TimeRegisteredNewestValue</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Run_through_duplicate_list.TimeRegistered__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Run_through_duplicate_list</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Are_there_duplicates</name>
         <label>Are there duplicates?</label>
@@ -30,9 +62,45 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Is_newest_time_value</name>
+        <label>Is newest time value?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Set_duplicate_value_for_current_record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No not newest</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_newest</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Run_through_duplicate_list.TimeRegistered__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>TimeRegisteredNewestValue</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Store_time_registered</targetReference>
+            </connector>
+            <label>Yes is newest</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
+    <loops>
+        <name>Run_through_duplicate_list</name>
+        <label>Run through duplicate list</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_duplicate</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_newest_time_value</targetReference>
+        </nextValueConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -78,6 +146,8 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>CandidateOutcome__c</object>
+        <sortField>TimeRegistered__c</sortField>
+        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -123,6 +193,17 @@
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <description>Update current record record in loop with duplicate value</description>
+        <name>Update_duplicate</name>
+        <label>Update duplicate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Run_through_duplicate_list</targetReference>
+        </connector>
+        <inputReference>Run_through_duplicate_list</inputReference>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -147,6 +228,9 @@
         <label>Create Application Log</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Run_through_duplicate_list</targetReference>
+        </connector>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -197,4 +281,30 @@
             </value>
         </inputAssignments>
     </subflows>
+    <variables>
+        <name>currentItemFromSourceCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CandidateOutcome__c</objectType>
+    </variables>
+    <variables>
+        <name>currentItemFromSourceCollection_0</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CandidateOutcome__c</objectType>
+    </variables>
+    <variables>
+        <name>TimeRegisteredNewestValue</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <dateTimeValue>2016-01-01T05:00:00.000Z</dateTimeValue>
+        </value>
+    </variables>
 </Flow>
