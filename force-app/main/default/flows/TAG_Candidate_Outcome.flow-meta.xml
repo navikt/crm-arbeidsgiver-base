@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <assignments>
+        <name>Count_returned_records</name>
+        <label>Count returned records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>countedEmploymentPlacement</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_employment_placement_for_related_account</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_related_Account</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_duplicate_value_for_current_record</name>
         <label>Set duplicate value for current record</label>
         <locationX>0</locationX>
@@ -38,6 +54,9 @@
         <label>Are there duplicates?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_employment_placement_for_related_account</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -60,6 +79,31 @@
                 <targetReference>Create_Application_Log</targetReference>
             </connector>
             <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Job_Posting_an_Employment_Placement</name>
+        <label>Is Job Posting an Employment Placement?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Candidate_Outcome</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Employment Placement</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_Employment_Placement</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.TAG_EmploymentPlacement__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Application_Log_Emp_Placement</targetReference>
+            </connector>
+            <label>Yes is Employment Placement</label>
         </rules>
     </decisions>
     <decisions>
@@ -87,6 +131,31 @@
             <label>Yes is newest</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Which_Type_of_Candidate_Outcome</name>
+        <label>Which Type of Candidate Outcome?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_employment_placement_for_related_account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Etterregistrering</defaultConnectorLabel>
+        <rules>
+            <name>Stillingsoppdrag</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Stillingsoppdrag</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Job_Posting</targetReference>
+            </connector>
+            <label>Stillingsoppdrag</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
@@ -100,6 +169,9 @@
         <nextValueConnector>
             <targetReference>Is_newest_time_value</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_employment_placement_for_related_account</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -151,13 +223,49 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_employment_placement_for_related_account</name>
+        <label>Get employment placement for related account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Count_returned_records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account__r.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Result__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>FATT_JOBBEN</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Duplicate__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CandidateOutcome__c</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Job_Posting</name>
         <label>Get Job Posting</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Update_Candidate_Outcome</targetReference>
+            <targetReference>Is_Job_Posting_an_Employment_Placement</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -171,6 +279,22 @@
         <object>JobPosting__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Mark_record_as_duplicate</name>
+        <label>Mark record as duplicate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Candidate_Outcome</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Duplicate__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <recordUpdates>
         <name>Update_Candidate_Outcome</name>
         <label>Update Candidate Outcome</label>
@@ -204,18 +328,31 @@
         </connector>
         <inputReference>Run_through_duplicate_list</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_related_Account</name>
+        <label>Update related Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>TAG_NumberOfEmploymentPlacement__c</field>
+            <value>
+                <elementReference>countedEmploymentPlacement</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Account__r</inputReference>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Job_Posting</targetReference>
+            <targetReference>Which_Type_of_Candidate_Outcome</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Type__c</field>
-            <operator>EqualTo</operator>
+            <operator>IsNull</operator>
             <value>
-                <stringValue>Stillingsoppdrag</stringValue>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <object>CandidateOutcome__c</object>
@@ -281,6 +418,72 @@
             </value>
         </inputAssignments>
     </subflows>
+    <subflows>
+        <name>Create_Application_Log_Emp_Placement</name>
+        <label>Create Application Log Emp Placement</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Mark_record_as_duplicate</targetReference>
+        </connector>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>Flow - TAG Candidate Outcome</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Category</name>
+            <value>
+                <stringValue>CandidateOutcome</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Error encountered. Duplicate Candidate Outcomes, connected job posting is Employment Placement</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Reference_Object</name>
+            <value>
+                <stringValue>CandidateOutcome__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <name>countedEmploymentPlacement</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
     <variables>
         <name>currentItemFromSourceCollection</name>
         <dataType>SObject</dataType>
