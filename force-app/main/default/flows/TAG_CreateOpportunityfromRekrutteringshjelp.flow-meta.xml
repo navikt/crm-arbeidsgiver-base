@@ -257,9 +257,6 @@
         <label>Create Candidate Outcome record</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
-        </connector>
         <inputAssignments>
             <field>Account__c</field>
             <value>
@@ -519,9 +516,6 @@
         <label>Update existing Candidate Outcome</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
-        </connector>
         <inputReference>Get_existing_candidate_outcome</inputReference>
     </recordUpdates>
     <start>

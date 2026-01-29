@@ -75,6 +75,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.TAG_NumberOfEmploymentPlacement__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.TAG_Partner_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -111,6 +116,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CandidateOutcome__c.CandidateListId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CandidateOutcome__c.CandidateOutcomeLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
