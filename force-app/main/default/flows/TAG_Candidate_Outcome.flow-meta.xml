@@ -82,6 +82,38 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Are_there_existing_CO_related_to_same_JP</name>
+        <label>Are there existing CO related to same JP?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_employment_placement_for_related_account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NO existing CO</defaultConnectorLabel>
+        <rules>
+            <name>Yes_have_existing_CO</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>GetCandidateOutcomeRelatedtosameJP</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>GetCandidateOutcomeRelatedtosameJP</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Run_through_existing_CO_with_same_JP</targetReference>
+            </connector>
+            <label>Yes have existing CO</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Job_Posting_an_Employment_Placement</name>
         <label>Is Job Posting an Employment Placement?</label>
         <locationX>0</locationX>
@@ -137,7 +169,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Get_employment_placement_for_related_account</targetReference>
+            <targetReference>GetCandidateOutcomeRelatedtosameJP</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Etterregistrering</defaultConnectorLabel>
         <rules>
@@ -169,6 +201,17 @@
         <nextValueConnector>
             <targetReference>Is_newest_time_value</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_employment_placement_for_related_account</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Run_through_existing_CO_with_same_JP</name>
+        <label>Run through existing CO with same JP</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GetCandidateOutcomeRelatedtosameJP</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
         <noMoreValuesConnector>
             <targetReference>Get_employment_placement_for_related_account</targetReference>
         </noMoreValuesConnector>
@@ -279,6 +322,34 @@
         <object>JobPosting__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>GetCandidateOutcomeRelatedtosameJP</name>
+        <label>Get Candidate Outcome Related to same JP</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Are_there_existing_CO_related_to_same_JP</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>JobPostingId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.JobPostingId__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Duplicate__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CandidateOutcome__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Mark_record_as_duplicate</name>
         <label>Mark record as duplicate</label>
@@ -359,7 +430,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
