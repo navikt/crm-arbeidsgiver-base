@@ -152,7 +152,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>amountOfRecordsToLoad</name>
-                    <value>3</value>
+                    <value>25</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>buttonIsHidden</name>
@@ -185,6 +185,26 @@
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
                     <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>initialQueryLimit</name>
+                    <value>25</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>logEvent</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter1Label</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistFilter2Label</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showHideLabel</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>timelineParentField</name>
                 </componentInstanceProperties>
                 <componentName>timeline</componentName>
                 <identifier>timeline</identifier>
