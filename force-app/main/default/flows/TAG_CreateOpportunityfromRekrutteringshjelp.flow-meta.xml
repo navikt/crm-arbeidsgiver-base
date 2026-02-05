@@ -444,6 +444,13 @@
                 <elementReference>$Record.UUID__c</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Etterregistrering</stringValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>CandidateOutcome__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
