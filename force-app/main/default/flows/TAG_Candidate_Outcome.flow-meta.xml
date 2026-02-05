@@ -34,6 +34,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Set_duplicate_value_for_record</name>
+        <label>Set duplicate value for record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Run_through_existing_CO_with_same_JP.Duplicate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_duplicate_record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Store_time_registered</name>
         <label>Store time registered</label>
         <locationX>0</locationX>
@@ -114,6 +130,7 @@
         </rules>
     </decisions>
     <decisions>
+        <description>Checks if the Job Posting is an Employment Placement. If so, the triggering record is set as duplicate</description>
         <name>Is_Job_Posting_an_Employment_Placement</name>
         <label>Is Job Posting an Employment Placement?</label>
         <locationX>0</locationX>
@@ -212,6 +229,9 @@
         <locationY>0</locationY>
         <collectionReference>GetCandidateOutcomeRelatedtosameJP</collectionReference>
         <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_duplicate_value_for_record</targetReference>
+        </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Get_employment_placement_for_related_account</targetReference>
         </noMoreValuesConnector>
@@ -346,8 +366,17 @@
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Stillingsoppdrag</stringValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>CandidateOutcome__c</object>
+        <sortField>TimeRegistered__c</sortField>
+        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
@@ -400,6 +429,16 @@
         <inputReference>Run_through_duplicate_list</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Update_duplicate_record</name>
+        <label>Update duplicate record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Run_through_existing_CO_with_same_JP</targetReference>
+        </connector>
+        <inputReference>Run_through_existing_CO_with_same_JP</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_related_Account</name>
         <label>Update related Account</label>
         <locationX>0</locationX>
@@ -430,7 +469,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
