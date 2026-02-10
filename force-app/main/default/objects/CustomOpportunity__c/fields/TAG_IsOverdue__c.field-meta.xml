@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_IsOverdue__c</fullName>
+    <formula>IF( 
+   /* Already Resolved */
+   NOT(ISBLANK(TAG_Resolved_Date_Time__c)), 
+       TAG_Resolved_Date_Time__c &gt; TAG_DueDateTime__c ,
+
+   /* Still Open */
+       ISPICKVAL(InclusionStage__c, &quot;Ny Henvendelse&quot;) &amp;&amp; NOW() &gt; TAG_DueDateTime__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Overdue</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
