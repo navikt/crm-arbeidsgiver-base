@@ -63,7 +63,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_DueDateTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CustomOpportunity__c.TAG_IsMyMarketRegion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_IsOverdue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

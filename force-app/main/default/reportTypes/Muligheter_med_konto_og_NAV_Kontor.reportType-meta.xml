@@ -815,6 +815,16 @@
             <field>Spam__c</field>
             <table>CustomOpportunity__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_DueDateTime__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_IsOverdue__c</field>
+            <table>CustomOpportunity__c</table>
+        </columns>
         <masterLabel>Opportunities</masterLabel>
     </sections>
 </ReportType>

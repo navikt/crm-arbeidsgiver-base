@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Calculate_DueDateTime</name>
+        <label>Calculate DueDateTime</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>TAG_BusinessDaysHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Set_Due_DateTime</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>daysToAdd</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>startDateTime</name>
+            <value>
+                <elementReference>$Record.CreatedDate</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>TAG_BusinessDaysHandler</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Notify_new_owner_action</name>
         <label>Notify new owner action</label>
         <locationX>50</locationX>
-        <locationY>1367</locationY>
+        <locationY>1655</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -41,13 +68,15 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
     <assignments>
         <name>Add_Owner_to_notification</name>
         <label>Add Owner to notification</label>
         <locationX>50</locationX>
-        <locationY>1127</locationY>
+        <locationY>1439</locationY>
         <assignmentItems>
             <assignToReference>Assign_owner_to_notification</assignToReference>
             <operator>Add</operator>
@@ -63,7 +92,7 @@
         <name>Change_owner</name>
         <label>Change owner</label>
         <locationX>182</locationX>
-        <locationY>335</locationY>
+        <locationY>731</locationY>
         <defaultConnector>
             <targetReference>myRule_4</targetReference>
         </defaultConnector>
@@ -85,10 +114,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_it_created</name>
+        <label>Is it created?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Change_owner</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Updated</defaultConnectorLabel>
+        <rules>
+            <name>Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Calculate_DueDateTime</targetReference>
+            </connector>
+            <label>Created</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>myRule_4</name>
         <label>Account Added</label>
         <locationX>182</locationX>
-        <locationY>671</locationY>
+        <locationY>1031</locationY>
         <defaultConnector>
             <targetReference>Owner_is_changed</targetReference>
         </defaultConnector>
@@ -141,7 +195,7 @@
         <name>myRule_9</name>
         <label>Update resolved</label>
         <locationX>182</locationX>
-        <locationY>1583</locationY>
+        <locationY>1847</locationY>
         <defaultConnectorLabel>Update resolved false</defaultConnectorLabel>
         <rules>
             <name>Update_resolved_True</name>
@@ -163,7 +217,7 @@
         <name>Owner_is_changed</name>
         <label>Owner is changed</label>
         <locationX>182</locationX>
-        <locationY>1007</locationY>
+        <locationY>1331</locationY>
         <defaultConnector>
             <targetReference>myRule_9</targetReference>
         </defaultConnector>
@@ -237,7 +291,7 @@
         <name>Get_Custom_Notification_Record_ID</name>
         <label>Get Custom Notification Record ID</label>
         <locationX>50</locationX>
-        <locationY>1247</locationY>
+        <locationY>1547</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Notify_new_owner_action</targetReference>
@@ -258,7 +312,7 @@
         <name>myRule_1_A1</name>
         <label>Change owner</label>
         <locationX>50</locationX>
-        <locationY>455</locationY>
+        <locationY>839</locationY>
         <connector>
             <targetReference>myRule_4</targetReference>
         </connector>
@@ -274,7 +328,7 @@
         <name>myRule_4_A1</name>
         <label>Add Account to Contact</label>
         <locationX>50</locationX>
-        <locationY>791</locationY>
+        <locationY>1139</locationY>
         <connector>
             <targetReference>Owner_is_changed</targetReference>
         </connector>
@@ -290,7 +344,7 @@
         <name>myRule_9_A1</name>
         <label>Update resolved field</label>
         <locationX>50</locationX>
-        <locationY>1703</locationY>
+        <locationY>1955</locationY>
         <inputAssignments>
             <field>TAG_Resolved_Date_Time__c</field>
             <value>
@@ -299,11 +353,27 @@
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <name>Set_Due_DateTime</name>
+        <label>Set Due DateTime</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Change_owner</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>TAG_DueDateTime__c</field>
+            <value>
+                <elementReference>Calculate_DueDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <start>
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Change_owner</targetReference>
+            <targetReference>Is_it_created</targetReference>
         </connector>
         <object>CustomOpportunity__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
