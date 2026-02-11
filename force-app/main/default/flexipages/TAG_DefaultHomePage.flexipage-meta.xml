@@ -26,19 +26,19 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
-                    <value>Account__r.Name</value>
+                    <value>Sammendrag__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Åpne muligheter meldt inn via kontaktskjema for din Nav-enhet</value>
+                    <value>Nye henvendelser til din Nav-enhet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
-                    <value>custom:custom14</value>
+                    <value>custom:custom28</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listViewApiName</name>
-                    <value>TAG_Min_Nav_enhet_kontaktskjema_nye</value>
+                    <value>TAG_Min_Nav_enhet_nye_henvendelser</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
@@ -46,7 +46,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>
-                    <value>CustomOpportunity__c</value>
+                    <value>TAG_Inquiry__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageSize</name>
@@ -58,23 +58,23 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortBy</name>
-                    <value>-CreatedDate</value>
+                    <value>CreatedDate</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleFieldInput</name>
-                    <value>TAG_Link__c</value>
+                    <value>Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>titleText</name>
-                    <value>Kontaktskjema fra nav.no</value>
+                    <value>Nye henvendelser</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
-                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                    <value>{{DueDate__c}} &lt; TODAY &amp;&amp; {{Stage__c}} == &quot;Ny henvendelse&quot;</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
-                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                    <value>Svarfrist er passert</value>
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView2</identifier>

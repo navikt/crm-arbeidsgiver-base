@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NavUnit__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Nav Unit</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>NavUnit__c.isActiveUnit__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>NavUnit__c</referenceTo>
+    <relationshipLabel>Nav units (Henvendelser)</relationshipLabel>
+    <relationshipName>NavUnits_Henvendelser</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

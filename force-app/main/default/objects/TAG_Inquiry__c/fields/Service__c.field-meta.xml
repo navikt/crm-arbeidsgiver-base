@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Tjeneste</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>ActivityType__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Helse i arbeid</fullName>
+                <default>false</default>
+                <label>HelseIArbeid</label>
+            </value>
+            <value>
+                <fullName>Redusere sykefravær</fullName>
+                <default>false</default>
+                <label>Redusere sykefravær</label>
+            </value>
+            <value>
+                <fullName>Forbyggende arbeidsmiljøarbeid</fullName>
+                <default>false</default>
+                <label>Forebyggende arbeidsmiljø</label>
+            </value>
+            <value>
+                <fullName>Jobbmesser og møteplasser</fullName>
+                <default>false</default>
+                <label>Jobbmesser og møteplass</label>
+            </value>
+            <value>
+                <fullName>Rekrutteringsoppdrag</fullName>
+                <default>false</default>
+                <label>Rekruttering (uten virkemidler, inkl. oppfølging)</label>
+            </value>
+            <value>
+                <fullName>Informasjon om NAVs tjenester</fullName>
+                <default>false</default>
+                <label>Informasjon og relasjonsbygging</label>
+            </value>
+            <value>
+                <fullName>Inkluderende rekruttering</fullName>
+                <default>false</default>
+                <label>Inkludering (med virkemidler, inkl. oppfølging)</label>
+            </value>
+            <value>
+                <fullName>Permittering</fullName>
+                <default>false</default>
+                <label>Permittering</label>
+            </value>
+            <value>
+                <fullName>Masseoppsigelser</fullName>
+                <default>false</default>
+                <label>Oppsigelser</label>
+            </value>
+            <value>
+                <fullName>Tiltaksøkonomi</fullName>
+                <default>false</default>
+                <label>Tiltaksøkonomi</label>
+            </value>
+            <value>
+                <fullName>Lønnskompensasjon</fullName>
+                <default>false</default>
+                <label>Lønnskompensasjon</label>
+            </value>
+            <value>
+                <fullName>Generell sykefraværsoppfølging</fullName>
+                <default>false</default>
+                <label>Generell sykefraværsoppfølging</label>
+            </value>
+            <value>
+                <fullName>Ungdomsløftet</fullName>
+                <default>false</default>
+                <label>Ungdomsløftet</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Jobbmesser og møteplasser</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Rekrutteringsoppdrag</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <valueName>Informasjon om NAVs tjenester</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Inkluderende rekruttering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Tiltaksøkonomi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Ungdomsløftet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <valueName>Helse i arbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <valueName>Redusere sykefravær</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <valueName>Forbyggende arbeidsmiljøarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <valueName>Generell sykefraværsoppfølging</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

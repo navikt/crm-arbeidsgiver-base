@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClosedReason__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Lukket årsak</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Slett</fullName>
+                <default>false</default>
+                <label>Slett</label>
+            </value>
+            <value>
+                <fullName>Ikke kontakt - Forsøkt flere ganger</fullName>
+                <default>false</default>
+                <label>Ikke kontakt - Forsøkt flere ganger</label>
+            </value>
+            <value>
+                <fullName>Ikke kontakt - Ugyldig kontaktinfo</fullName>
+                <default>false</default>
+                <label>Ikke kontakt - Ugyldig kontaktinfo</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Opprettet mulighet</fullName>
+                <default>false</default>
+                <label>Kontaktet - Opprettet mulighet</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Avtalt møte</fullName>
+                <default>false</default>
+                <label>Kontaktet - Avtalt møte</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Informasjon gitt</fullName>
+                <default>false</default>
+                <label>Kontaktet - Informasjon gitt</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Ikke behov nå</fullName>
+                <default>false</default>
+                <label>Kontaktet - Ikke behov nå</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Henvist videre</fullName>
+                <default>false</default>
+                <label>Kontaktet - Henvist videre</label>
+            </value>
+            <value>
+                <fullName>Feilregistrering/duplikat</fullName>
+                <default>false</default>
+                <label>Feilregistrering/duplikat</label>
+            </value>
+            <value>
+                <fullName>Annet</fullName>
+                <default>false</default>
+                <label>Annet</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

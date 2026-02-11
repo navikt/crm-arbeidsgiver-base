@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Employer</fullName>
+    <active>true</active>
+    <description>Record type used for employer tasks.</description>
+    <label>Employer</label>
+    <picklistValues>
+        <picklist>ActivityType__c</picklist>
+        <values>
+            <fullName>Forebygge sykefravær og redusere frafall</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekruttere og inkludere</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ClosedReason__c</picklist>
+        <values>
+            <fullName>Annet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feilregistrering%2Fduplikat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ikke kontakt - Forsøkt flere ganger</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ikke kontakt - Ugyldig kontaktinfo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kontaktet - Avtalt møte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kontaktet - Henvist videre</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kontaktet - Ikke behov nå</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kontaktet - Informasjon gitt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kontaktet - Opprettet mulighet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Slett</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Service__c</picklist>
+        <values>
+            <fullName>Forbyggende arbeidsmiljøarbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Generell sykefraværsoppfølging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Helse i arbeid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Informasjon om NAVs tjenester</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inkluderende rekruttering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbmesser og møteplasser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lønnskompensasjon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Masseoppsigelser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Permittering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Redusere sykefravær</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekrutteringsoppdrag</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ungdomsløftet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Source__c</picklist>
+        <values>
+            <fullName>Arbeidsplassen%2Eno</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kontaktsenteret</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kontaktskjema</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stage__c</picklist>
+        <values>
+            <fullName>Fullført</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ny henvendelse</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Under arbeid</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

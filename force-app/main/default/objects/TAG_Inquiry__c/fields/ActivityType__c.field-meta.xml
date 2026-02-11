@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActivityType__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Tema</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Rekruttere og inkludere</fullName>
+                <default>false</default>
+                <label>Rekruttere og inkludere</label>
+            </value>
+            <value>
+                <fullName>Forebygge sykefravær og redusere frafall</fullName>
+                <default>false</default>
+                <label>Forebygge og redusere fravær</label>
+            </value>
+            <value>
+                <fullName>Generelt markedsarbeid</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Generelt markedsarbeid</label>
+            </value>
+            <value>
+                <fullName>Nedbemanne</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Nedbemanne</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
