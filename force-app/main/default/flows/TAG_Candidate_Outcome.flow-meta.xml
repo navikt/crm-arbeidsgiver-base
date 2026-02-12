@@ -106,6 +106,31 @@
             <label>Yes is newest</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Is_result_Not_Presented</name>
+        <label>Is result Not Presented?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Delete_triggering_record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Yes</defaultConnectorLabel>
+        <rules>
+            <name>No</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>IKKE_PRESENTERT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Job_Posting</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
@@ -142,6 +167,13 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_triggering_record</name>
+        <label>Delete triggering record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>$Record</inputReference>
+    </recordDeletes>
     <recordLookups>
         <name>Get_duplicate</name>
         <label>Get duplicate</label>
@@ -297,7 +329,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Job_Posting</targetReference>
+            <targetReference>Is_result_Not_Presented</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

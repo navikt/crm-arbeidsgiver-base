@@ -21,8 +21,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Type__c</fieldItem>
-                <identifier>RecordType_cField</identifier>
+                <fieldItem>Record.Category__c</fieldItem>
+                <identifier>RecordCategory__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -89,16 +89,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.NavUnit__c</fieldItem>
                 <identifier>RecordNavUnit_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Category__c</fieldItem>
-                <identifier>RecordCategory__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
