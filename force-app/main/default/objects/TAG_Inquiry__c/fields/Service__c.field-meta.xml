@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Service__c</fullName>
+    <description>Spesifikk tjeneste/undertema innenfor ActivityType__c. Settes automatisk av jobber/flows når mulig, ellers må bruker fylle ut manuelt. Verdier er dependent picklist basert på ActivityType__c. Brukes for detaljert rapportering på tjenestenivå. Påkrevd for å sikre korrekt tjenesteregistrering.</description>
     <deprecated>false</deprecated>
+    <inlineHelpText>Velg spesifikk tjeneste basert på valgt tema.</inlineHelpText>
     <label>Tjeneste</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

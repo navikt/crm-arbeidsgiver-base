@@ -2,6 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DueDate__c</fullName>
     <deprecated>false</deprecated>
+    <description>Frist for å svare på henvendelsen. Settes automatisk til 2 forretningsdager fra opprettelse. Kalkuleres av egen funksjon som tar hensyn til helligdager og helger. Brukes som grunnlag for Overdue__c-feltet.</description>
+    <inlineHelpText>Frist for å svare (2 forretningsdager fra opprettelse)</inlineHelpText>
     <label>Due Date</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

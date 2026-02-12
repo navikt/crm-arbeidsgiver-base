@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Urgent__c</fullName>
     <deprecated>false</deprecated>
+    <description>Visuell indikator som viser et oransje ikon når henvendelsen er markert som hastesak. Formelbasert: Viser oransje kvadrat-ikon når UrgentCheckbox__c = TRUE. Kun for visuell presentasjon - logikken ligger i UrgentCheckbox__c.</description>
     <externalId>false</externalId>
     <formula>IF(
 UrgentCheckbox__c = TRUE,

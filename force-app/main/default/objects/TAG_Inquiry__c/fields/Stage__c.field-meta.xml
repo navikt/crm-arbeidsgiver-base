@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Stage__c</fullName>
     <deprecated>false</deprecated>
-    <inlineHelpText>tbd</inlineHelpText>
+    <description>Henvendelsens status i arbeidsprosessen. Oppdateres manuelt av saksbehandler etter hvert som henvendelsen behandles. Typiske verdier: Ny henvendelse, Under behandling, Venter på informasjon, Lukket. Brukes i kanban-visninger og statusrapporter. Når satt til lukket status, skal ClosedReason__c fylles ut.</description>
+    <inlineHelpText>Oppdater status etter hvert som henvendelsen behandles</inlineHelpText>
     <label>Stage</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

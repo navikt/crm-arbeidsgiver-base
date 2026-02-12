@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>UltimateSource__c</fullName>
     <deprecated>false</deprecated>
+    <description>TODO: Uavklart formål - trenger utredning. Sannsynligvis ment for å spore den opprinnelige kilden gjennom flere systemer. Vurder om dette er duplikat av Source__c eller har egen verdi. Hvis ikke i bruk: Vurder sletting.</description>
     <externalId>false</externalId>
     <label>Ultimate Source</label>
     <length>20</length>

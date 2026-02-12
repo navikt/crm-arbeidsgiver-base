@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IsMyNavUnit__c</fullName>
+    <description>Sjekker om henvendelsen tilhører brukerens NAV-enhet. Kalkuleres automatisk basert på sammenligning mellom NavUnit__c og innlogget brukers NAV-enhet. Viktigste feltet for daglig oppfølging - brukes i Mine NAV-enhets henvendelser-visninger.</description>
     <deprecated>false</deprecated>
     <formula>$User.Department == NavUnit__r.INT_UnitNumber__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

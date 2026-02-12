@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OrganizationNameFromForm__c</fullName>
+    <description>Virksomhetsnavn slik det ble oppgitt i kontaktskjemaet. Settes automatisk ved innsendelse av kontaktskjema. Kan avvike fra Account.Name (f.eks. ved bruk av handelsnavn vs juridisk navn). Brukes for å kvalitetssikre at riktig virksomhet ble identifisert.</description>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <label>Organization Name From Form</label>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>RelatedJobPosting__c</fullName>
+    <description>Kobling til den konkrete stillingen det søkes rekrutteringshjelp til. Settes automatisk kun når henvendelsen kommer fra Arbeidsplassen.no. Arbeidsgiver klikker på Få hjelp til rekruttering på en stillingsannonse. Gir NAV-ansatt direkte tilgang til stillingsinformasjon for bedre veiledning.</description>
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
+    <inlineHelpText>Stillingsannonsen henvendelsen gjelder (settes automatisk fra Arbeidsplassen.no)</inlineHelpText>
     <label>Relatert stilling</label>
     <referenceTo>JobPosting__c</referenceTo>
     <relationshipLabel>Job Postings (Henvendelser)</relationshipLabel>

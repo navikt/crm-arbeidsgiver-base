@@ -3,6 +3,8 @@
     <fullName>Account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
+    <description>Arbeidsgiver henvendelsen gjelder. Kobler henvendelsen til riktig arbeidsgiver/virksomhet i systemet. Settes automatisk ved innsendelse av kontaktskjema basert på organisasjonsnummer, kan også settes manuelt for henvendelser fra andre kilder.</description>
+    <inlineHelpText>Arbeidsgivervirksomheten henvendelsen gjelder</inlineHelpText>
     <label>Account</label>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Accounts (Henvendelser)</relationshipLabel>

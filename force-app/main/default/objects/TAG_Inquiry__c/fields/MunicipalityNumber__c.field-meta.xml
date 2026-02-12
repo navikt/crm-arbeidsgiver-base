@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MunicipalityNumber__c</fullName>
+    <description>Kommunenummer for arbeidsgiverens virksomhet. Settes automatisk ved innsendelse av kontaktskjema basert på Account-data. Brukes primært for temaer Rekruttere og inkludere og Ungdomsløftet for å bestemme riktig NavUnit__c basert på geografisk plassering. Format: 4-sifret kommunenummer (SSB-standard).</description>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <label>Municipality Number</label>

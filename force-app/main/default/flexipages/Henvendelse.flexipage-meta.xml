@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Record page for arbeidsgiverhenvendelser. Viser kildebaserte seksjoner for Kontaktsenteret, Arbeidsplassen.no og Kontaktskjema.</description>
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>WebFormTheme__c</fullName>
+    <description>Tema-verdi mottatt direkte fra kontaktskjemaet på nav.no. Settes automatisk ved innsendelse av kontaktskjema. Brukes i flow for å mappe til standardiserte verdier i ActivityType__c og Service__c. Unngår direkte avhengighet til picklist-verdier i kontaktskjema. Mulige verdier: Forebygge sykefravær, Skal ansette, Ungdomsløftet.</description>
     <externalId>false</externalId>
+    <inlineHelpText>Systemfelt som inneholder innsenders valg i kontaktskjema</inlineHelpText>
     <label>Web Form Theme</label>
     <length>255</length>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

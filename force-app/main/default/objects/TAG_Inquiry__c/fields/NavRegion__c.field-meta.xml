@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NavRegion__c</fullName>
+    <description>NAV region henvendelsen er tilknyttet. Settes basert på NavUnit__c sin region. Brukes for å lage lister, rapporter og dashboards på regionnivå. Nivå over markedsregion i NAVs organisasjonshierarki.</description>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>NavUnit__r.INT_Region__c</formula>

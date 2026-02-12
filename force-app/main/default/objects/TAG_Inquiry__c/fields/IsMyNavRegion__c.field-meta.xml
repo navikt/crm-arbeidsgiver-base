@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IsMyNavRegion__c</fullName>
+    <description>Sjekker om henvendelsen tilhører brukerens NAV region. Kalkuleres automatisk basert på sammenligning mellom NavRegion__c og innlogget brukers region. Brukes for å lage regionale visninger og rapporter.</description>
     <deprecated>false</deprecated>
     <formula>AND(
 $User.Region__c ==  NavUnit__r.INT_Region__c,

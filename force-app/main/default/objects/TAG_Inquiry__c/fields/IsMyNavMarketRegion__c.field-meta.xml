@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IsMyNavMarketRegion__c</fullName>
+    <description>Sjekker om henvendelsen tilhører brukerens NAV markedsregion. Kalkuleres automatisk basert på sammenligning mellom NavMarketRegion__c og innlogget brukers markedsregion. Brukes for å lage dynamiske filtre i lister og rapporter.</description>
     <deprecated>false</deprecated>
     <formula>AND(
 LOWER($User.CRM_MarketRegion__c) = LOWER(NavUnit__r.MarketRegion__c),

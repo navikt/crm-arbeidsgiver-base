@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ResolvedDate__c</fullName>
+    <description>Tidspunkt når henvendelsen ble lukket/løst. TODO: Skal settes automatisk ved lukking av henvendelse (ikke implementert ennå). Brukes for å beregne gjennomsnittlig behandlingstid. Kritisk for KPI-rapportering og servicenivåanalyse.</description>
     <deprecated>false</deprecated>
-    <description>The date and time the task was resolved.</description>
     <label>Resolved Date</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

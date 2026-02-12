@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Contact__c</fullName>
+    <description>Kontaktperson for henvendelsen. Identifiserer hvilken person ved arbeidsgivervirksomheten som står bak henvendelsen. Settes automatisk ved innsendelse av kontaktskjema basert på e-postadresse, kan også settes manuelt for henvendelser fra andre kilder.</description>
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
+    <inlineHelpText>Kontaktperson hos arbeidsgiver for denne henvendelsen</inlineHelpText>
     <label>Contact</label>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Contacts (Henvendelser)</relationshipLabel>

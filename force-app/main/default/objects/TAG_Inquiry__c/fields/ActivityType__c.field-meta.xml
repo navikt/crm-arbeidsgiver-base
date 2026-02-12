@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ActivityType__c</fullName>
+    <description>Overordnet tema/kategori for henvendelsen. Settes automatisk av jobber/flows når mulig (f.eks. fra kontaktskjema), ellers må bruker fylle ut manuelt. Eksempler: Rekruttering, Sykefravær, Inkludering, Nedbemanning. Styrer hvilke tjenester (Service__c) som er tilgjengelige. Påkrevd felt for å sikre riktig routing og oppfølging.</description>
     <deprecated>false</deprecated>
+    <inlineHelpText>Velg hovedtema for henvendelsen. Styrer hvilke tjenester som er tilgjengelige.</inlineHelpText>
     <label>Tema</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

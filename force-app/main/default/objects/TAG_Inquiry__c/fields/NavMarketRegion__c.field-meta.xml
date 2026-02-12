@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NavMarketRegion__c</fullName>
+    <description>NAV markedsregion henvendelsen er tilknyttet. Settes basert på NavUnit__c sin markedsregion. Brukes for å lage lister, rapporter og dashboards på markedsregionnivå.</description>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>NavUnit__r.MarketRegion__c</formula>

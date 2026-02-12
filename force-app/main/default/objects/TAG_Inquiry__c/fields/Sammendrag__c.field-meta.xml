@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Sammendrag__c</fullName>
+    <description>Automatisk generert sammendrag av henvendelsen for listevisninger. Genereres automatisk basert på flere felt (f.eks. Account, Service__c, ActivityType__c). Maksimerer brukervennlighet i listevisninger med begrenset plass. Typisk format: [Virksomhetsnavn] - [Tema] - [Tjeneste].</description>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>/* Konto, kilde, når */
