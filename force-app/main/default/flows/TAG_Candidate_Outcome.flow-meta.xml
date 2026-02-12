@@ -34,22 +34,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Set_duplicate_value_for_record</name>
-        <label>Set duplicate value for record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>Run_through_existing_CO_with_same_JP.Duplicate__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_duplicate_record</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Store_time_registered</name>
         <label>Store time registered</label>
         <locationX>0</locationX>
@@ -92,67 +76,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Create_Application_Log</targetReference>
+                <targetReference>Run_through_duplicate_list</targetReference>
             </connector>
             <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Are_there_existing_CO_related_to_same_JP</name>
-        <label>Are there existing CO related to same JP?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Get_employment_placement_for_related_account</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>NO existing CO</defaultConnectorLabel>
-        <rules>
-            <name>Yes_have_existing_CO</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>GetCandidateOutcomeRelatedtosameJP</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>GetCandidateOutcomeRelatedtosameJP</leftValueReference>
-                <operator>IsEmpty</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Run_through_existing_CO_with_same_JP</targetReference>
-            </connector>
-            <label>Yes have existing CO</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <description>Checks if the Job Posting is an Employment Placement. If so, the triggering record is set as duplicate</description>
-        <name>Is_Job_Posting_an_Employment_Placement</name>
-        <label>Is Job Posting an Employment Placement?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Update_Candidate_Outcome</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Employment Placement</defaultConnectorLabel>
-        <rules>
-            <name>Yes_is_Employment_Placement</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_Job_Posting.TAG_EmploymentPlacement__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_Application_Log_Emp_Placement</targetReference>
-            </connector>
-            <label>Yes is Employment Placement</label>
         </rules>
     </decisions>
     <decisions>
@@ -180,31 +106,6 @@
             <label>Yes is newest</label>
         </rules>
     </decisions>
-    <decisions>
-        <name>Which_Type_of_Candidate_Outcome</name>
-        <label>Which Type of Candidate Outcome?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>GetCandidateOutcomeRelatedtosameJP</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Etterregistrering</defaultConnectorLabel>
-        <rules>
-            <name>Stillingsoppdrag</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Stillingsoppdrag</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Job_Posting</targetReference>
-            </connector>
-            <label>Stillingsoppdrag</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
@@ -217,20 +118,6 @@
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Is_newest_time_value</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Get_employment_placement_for_related_account</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>Run_through_existing_CO_with_same_JP</name>
-        <label>Run through existing CO with same JP</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <collectionReference>GetCandidateOutcomeRelatedtosameJP</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Set_duplicate_value_for_record</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Get_employment_placement_for_related_account</targetReference>
@@ -328,7 +215,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Is_Job_Posting_an_Employment_Placement</targetReference>
+            <targetReference>Update_Candidate_Outcome</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -342,59 +229,6 @@
         <object>JobPosting__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>GetCandidateOutcomeRelatedtosameJP</name>
-        <label>Get Candidate Outcome Related to same JP</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Are_there_existing_CO_related_to_same_JP</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>JobPostingId__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.JobPostingId__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Duplicate__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Stillingsoppdrag</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>CandidateOutcome__c</object>
-        <sortField>TimeRegistered__c</sortField>
-        <sortOrder>Desc</sortOrder>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordUpdates>
-        <name>Mark_record_as_duplicate</name>
-        <label>Mark record as duplicate</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Update_Candidate_Outcome</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Duplicate__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
     <recordUpdates>
         <name>Update_Candidate_Outcome</name>
         <label>Update Candidate Outcome</label>
@@ -410,9 +244,27 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>EngagementType__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.EngagementType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Extent__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>JobPosting__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Title__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Title__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -427,16 +279,6 @@
             <targetReference>Run_through_duplicate_list</targetReference>
         </connector>
         <inputReference>Run_through_duplicate_list</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_duplicate_record</name>
-        <label>Update duplicate record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Run_through_existing_CO_with_same_JP</targetReference>
-        </connector>
-        <inputReference>Run_through_existing_CO_with_same_JP</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Update_related_Account</name>
@@ -455,11 +297,11 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Which_Type_of_Candidate_Outcome</targetReference>
+            <targetReference>Get_Job_Posting</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Type__c</field>
+            <field>Category__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>false</booleanValue>
@@ -470,122 +312,6 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
-    <subflows>
-        <name>Create_Application_Log</name>
-        <label>Create Application Log</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Run_through_duplicate_list</targetReference>
-        </connector>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Candidate Outcome</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>CandidateOutcome</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Error</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error encountered. Duplicate Candidate Outcomes exist</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>CandidateOutcome__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>Create_Application_Log_Emp_Placement</name>
-        <label>Create Application Log Emp Placement</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Mark_record_as_duplicate</targetReference>
-        </connector>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Candidate Outcome</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-            <value>
-                <stringValue>CandidateOutcome</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Error</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error encountered. Duplicate Candidate Outcomes, connected job posting is Employment Placement</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>CandidateOutcome__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
     <variables>
         <name>countedEmploymentPlacement</name>
         <dataType>Number</dataType>

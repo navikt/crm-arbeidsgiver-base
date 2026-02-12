@@ -1,85 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
-    <assignments>
-        <name>Set_values_for_Candidate_Outcome</name>
-        <label>Set values for Candidate Outcome</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.Category__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>FORMIDLING</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.Account__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.EngagementType__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.EngagementType__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.JobPostingId__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.UUID__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.JobPosting__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.NavUnit__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Account__r.TAG_NavUnit__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.Result__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>FATT_JOBBEN</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.Title__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Title__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.Type__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Etterregistrering</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Get_existing_candidate_outcome.Extent__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Extent__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_existing_Candidate_Outcome</targetReference>
-        </connector>
-    </assignments>
     <decisions>
         <name>Are_there_Opportunities_already</name>
         <label>Are there Opportunities already?</label>
@@ -147,63 +68,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Existing_or_new_Candidate_Outcome</name>
-        <label>Existing or new Candidate Outcome?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Set_values_for_Candidate_Outcome</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Existing Candidate Outcome</defaultConnectorLabel>
-        <rules>
-            <name>New_Candidate_Outcome</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_existing_candidate_outcome</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_existing_candidate_outcome</leftValueReference>
-                <operator>IsBlank</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_Candidate_Outcome_record</targetReference>
-            </connector>
-            <label>New Candidate Outcome</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Employment_Placement</name>
-        <label>Is Employment Placement?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No Employment Placement is not true</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Employment_Placement_is_true</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.TAG_EmploymentPlacement__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_existing_candidate_outcome</targetReference>
-            </connector>
-            <label>Yes Employment Placement is true</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_there_Account</name>
         <label>Is there Account?</label>
         <locationX>0</locationX>
@@ -252,80 +116,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordCreates>
-        <name>Create_Candidate_Outcome_record</name>
-        <label>Create Candidate Outcome record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <inputAssignments>
-            <field>Account__c</field>
-            <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Category__c</field>
-            <value>
-                <stringValue>FORMIDLING</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>EngagementType__c</field>
-            <value>
-                <elementReference>$Record.EngagementType__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Extent__c</field>
-            <value>
-                <elementReference>$Record.Extent__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>JobPostingId__c</field>
-            <value>
-                <elementReference>$Record.UUID__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>JobPosting__c</field>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>NavUnit__c</field>
-            <value>
-                <elementReference>$Record.Account__r.TAG_NavUnit__r.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Result__c</field>
-            <value>
-                <stringValue>FATT_JOBBEN</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TimeRegistered__c</field>
-            <value>
-                <elementReference>$Record.Created__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Title__c</field>
-            <value>
-                <elementReference>$Record.Title__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Type__c</field>
-            <value>
-                <stringValue>Etterregistrering</stringValue>
-            </value>
-        </inputAssignments>
-        <object>CandidateOutcome__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
     <recordCreates>
         <name>Create_Opportunity</name>
         <label>Create Opportunity</label>
@@ -428,34 +218,6 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>Get_existing_candidate_outcome</name>
-        <label>Get existing candidate outcome</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Existing_or_new_Candidate_Outcome</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>JobPostingId__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.UUID__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Etterregistrering</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>CandidateOutcome__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Inclusion_Record_Type_Id</name>
         <label>Get Inclusion Record Type Id</label>
         <locationX>0</locationX>
@@ -518,20 +280,13 @@
         <object>CustomOpportunity__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordUpdates>
-        <name>Update_existing_Candidate_Outcome</name>
-        <label>Update existing Candidate Outcome</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <inputReference>Get_existing_candidate_outcome</inputReference>
-    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Employment_Placement</targetReference>
+            <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
         </connector>
-        <filterLogic>(1 AND 2 AND 3 AND 4 AND 5) OR 6</filterLogic>
+        <filterLogic>1 AND 2 AND 3 AND 4 AND 5</filterLogic>
         <filters>
             <field>Source__c</field>
             <operator>EqualTo</operator>
@@ -565,13 +320,6 @@
             <operator>NotEqualTo</operator>
             <value>
                 <stringValue>DELETED</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>TAG_EmploymentPlacement__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <object>JobPosting__c</object>
