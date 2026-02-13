@@ -115,6 +115,7 @@ assignPermission() {
     --name CRM_LoginFlow \
     --name TAG_Arbeidsgiver_Veillederapp \
     --name Arbeidsgiver_Beta_app \
+    --name Arbeidsgiver_Kandidatutfall \
     || { error $? '"sf org assign permset" command failed.'; }
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>All</fullName>
+    <fullName>Min_Nav_enhet_kand_utf_f_presentert</fullName>
     <columns>CandidateOutcomeLink__c</columns>
     <columns>Result__c</columns>
     <columns>Account__c</columns>
@@ -8,5 +8,15 @@
     <columns>NavUnit__c</columns>
     <columns>TimeRegistered__c</columns>
     <filterScope>Everything</filterScope>
-    <label>Alle kandidatutfall</label>
+    <filters>
+        <field>Result__c</field>
+        <operation>equals</operation>
+        <value>PRESENTERT</value>
+    </filters>
+    <filters>
+        <field>IsMyNavUnit__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Min Nav-enhet kand.utf presentert</label>
 </ListView>

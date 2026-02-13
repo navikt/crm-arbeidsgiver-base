@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <assignments>
+        <name>Count_loop_run</name>
+        <label>Count loop run</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>countLoop</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_newest_time_value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Count_returned_records</name>
         <label>Count returned records</label>
         <locationX>0</locationX>
@@ -34,19 +50,19 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Store_time_registered</name>
-        <label>Store time registered</label>
+        <name>Unset_duplicate_value_for_current_record</name>
+        <label>Unset duplicate value for current record</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>TimeRegisteredNewestValue</assignToReference>
+            <assignToReference>Run_through_duplicate_list.Duplicate__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Run_through_duplicate_list.TimeRegistered__c</elementReference>
+                <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Run_through_duplicate_list</targetReference>
+            <targetReference>Update_not_duplicate</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -94,14 +110,14 @@
             <name>Yes_is_newest</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Run_through_duplicate_list.TimeRegistered__c</leftValueReference>
-                <operator>GreaterThan</operator>
+                <leftValueReference>countLoop</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>TimeRegisteredNewestValue</elementReference>
+                    <numberValue>1.0</numberValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Store_time_registered</targetReference>
+                <targetReference>Unset_duplicate_value_for_current_record</targetReference>
             </connector>
             <label>Yes is newest</label>
         </rules>
@@ -142,7 +158,7 @@
         <collectionReference>Get_duplicate</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Is_newest_time_value</targetReference>
+            <targetReference>Count_loop_run</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Get_employment_placement_for_related_account</targetReference>
@@ -200,8 +216,8 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>CandidateOutcome__c</object>
-        <sortField>TimeRegistered__c</sortField>
-        <sortOrder>Desc</sortOrder>
+        <sortField>Result__c</sortField>
+        <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -313,6 +329,17 @@
         <inputReference>Run_through_duplicate_list</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <description>Update current record record in loop with duplicate value</description>
+        <name>Update_not_duplicate</name>
+        <label>Update not duplicate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Run_through_duplicate_list</targetReference>
+        </connector>
+        <inputReference>Run_through_duplicate_list</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_related_Account</name>
         <label>Update related Account</label>
         <locationX>0</locationX>
@@ -353,6 +380,17 @@
         <scale>0</scale>
     </variables>
     <variables>
+        <name>countLoop</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
         <name>currentItemFromSourceCollection</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -367,15 +405,5 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>CandidateOutcome__c</objectType>
-    </variables>
-    <variables>
-        <name>TimeRegisteredNewestValue</name>
-        <dataType>DateTime</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <dateTimeValue>2016-01-01T05:00:00.000Z</dateTimeValue>
-        </value>
     </variables>
 </Flow>
