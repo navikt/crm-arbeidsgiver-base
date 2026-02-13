@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Active__c</fullName>
+    <description>Checks if note is active based on publishing dates.</description>
+    <formula>IF(
+    ISBLANK (TAG_Publish_Date__c),
+    FALSE,
+    IF(
+        AND(
+            NOW()&gt;=TAG_Publish_Date__c,
+            OR(
+                NOW()&lt;= TAG_Unpublish_Date__c,
+                ISBLANK(TAG_Unpublish_Date__c) 
+            )
+        ),
+    TRUE,
+    FALSE
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Active</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

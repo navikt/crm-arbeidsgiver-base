@@ -96,7 +96,7 @@
         <expression>&quot;Henvendelse fra Arbeidsplassen.no: Arbeidsgiver ønsker rekrutteringshjelp i forbindelse med en konkret stilling (se lenke over). Vennligst kontakt arbeidsgiver på telefonnummer &quot; &amp; {!$Record.RecruitmentPhone__c} &amp; &quot;.&quot;</expression>
     </formulas>
     <interviewLabel>TAG Create Opportunity from Rekrutteringshjelp {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Create Opportunity from Rekrutteringshjelp</label>
+    <label>TAG Job Posting</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -185,6 +185,12 @@
             <field>TAG_OrganizationNameFromForm__c</field>
             <value>
                 <elementReference>Get_Account.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_UltimateSource__c</field>
+            <value>
+                <stringValue>Arbeidsplassen.no</stringValue>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
@@ -280,7 +286,7 @@
         <connector>
             <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>1 AND 2 AND 3 AND 4 AND 5</filterLogic>
         <filters>
             <field>Source__c</field>
             <operator>EqualTo</operator>
@@ -293,6 +299,27 @@
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>REJECTED</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>STOPPED</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>DELETED</stringValue>
             </value>
         </filters>
         <object>JobPosting__c</object>

@@ -349,7 +349,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>amountOfRecordsToLoad</name>
-                    <value>3</value>
+                    <value>25</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>amountOfRecordsToOpen</name>
@@ -389,6 +389,10 @@
                 <componentInstanceProperties>
                     <name>includeAmountInTitle</name>
                     <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>initialQueryLimit</name>
+                    <value>25</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>logEvent</name>

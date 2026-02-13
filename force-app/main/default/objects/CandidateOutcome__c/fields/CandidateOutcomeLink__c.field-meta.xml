@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CandidateOutcomeLink__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+NOT( ISBLANK( TEXT(Category__c) ) ),
+HYPERLINK(&quot;/lightning/r/CandidateOutcome__c/&quot; + Id + &quot;/view&quot;, TEXT(Category__c),&quot;_self&quot;),
+HYPERLINK(&quot;/lightning/r/CandidateOutcome__c/&quot; + Id + &quot;/view&quot;, &quot;Se kandidatutfallet&quot;,&quot;_self&quot;)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Candidate Outcome Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

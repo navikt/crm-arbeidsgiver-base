@@ -48,6 +48,50 @@
             </value>
         </assignmentItems>
     </assignments>
+    <assignments>
+        <name>Set_params_for_get_records</name>
+        <label>Set params for get records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>TaskRecordTypes</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>AG Oppgave</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>TaskRecordTypes</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>IA task</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>EventRecordTypes</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>AG Møte</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>EventRecordTypes</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>IA event</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>EventRecordTypes</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Arbeidsgivermøte</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Verify_input</targetReference>
+        </connector>
+    </assignments>
     <collectionProcessors>
         <name>Filter_events</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
@@ -172,6 +216,9 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         <nextValueConnector>
             <targetReference>Assign_first_event_date</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_output_values</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <loops>
         <name>Loop_filtered_tasks</name>
@@ -219,7 +266,7 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
             <isGoTo>true</isGoTo>
             <targetReference>Log_error</targetReference>
         </faultConnector>
-        <filterLogic>1 AND 2 AND 3 AND (4 OR 5) AND (6 OR 7)</filterLogic>
+        <filterLogic>1 AND 2 AND 3 AND 4 AND (5 OR 6)</filterLogic>
         <filters>
             <field>RelatedToAccount__c</field>
             <operator>EqualTo</operator>
@@ -243,16 +290,9 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         </filters>
         <filters>
             <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
+            <operator>In</operator>
             <value>
-                <stringValue>AG Møte</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>IA event</stringValue>
+                <elementReference>EventRecordTypes</elementReference>
             </value>
         </filters>
         <filters>
@@ -290,7 +330,7 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
             <isGoTo>true</isGoTo>
             <targetReference>Log_error</targetReference>
         </faultConnector>
-        <filterLogic>1 AND 2 AND 3 AND (4 OR 5) AND (6 OR 7)</filterLogic>
+        <filterLogic>1 AND 2 AND 3 AND 4 AND (5 OR 6)</filterLogic>
         <filters>
             <field>RelatedToAccount__c</field>
             <operator>EqualTo</operator>
@@ -314,16 +354,9 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         </filters>
         <filters>
             <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
+            <operator>In</operator>
             <value>
-                <stringValue>AG Møte</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>IA event</stringValue>
+                <elementReference>EventRecordTypes</elementReference>
             </value>
         </filters>
         <filters>
@@ -358,7 +391,7 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         <faultConnector>
             <targetReference>Log_error</targetReference>
         </faultConnector>
-        <filterLogic>1 AND 2 AND 3 AND (4 OR 5) AND (6 OR 7)</filterLogic>
+        <filterLogic>1 AND 2 AND 3 AND 4 AND (5 OR 6)</filterLogic>
         <filters>
             <field>RelatedToAccount__c</field>
             <operator>EqualTo</operator>
@@ -382,16 +415,9 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         </filters>
         <filters>
             <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
+            <operator>In</operator>
             <value>
-                <stringValue>AG Oppgave</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>IA task</stringValue>
+                <elementReference>TaskRecordTypes</elementReference>
             </value>
         </filters>
         <filters>
@@ -429,7 +455,7 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
             <isGoTo>true</isGoTo>
             <targetReference>Log_error</targetReference>
         </faultConnector>
-        <filterLogic>1 AND 2 AND 3 AND (4 OR 5) AND (6 OR 7)</filterLogic>
+        <filterLogic>1 AND 2 AND 3 AND 4 AND (5 OR 6)</filterLogic>
         <filters>
             <field>RelatedToAccount__c</field>
             <operator>EqualTo</operator>
@@ -453,16 +479,9 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         </filters>
         <filters>
             <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
+            <operator>In</operator>
             <value>
-                <stringValue>AG Oppgave</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>IA task</stringValue>
+                <elementReference>TaskRecordTypes</elementReference>
             </value>
         </filters>
         <filters>
@@ -489,7 +508,7 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Verify_input</targetReference>
+            <targetReference>Set_params_for_get_records</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -585,6 +604,13 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>EventRecordTypes</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <description>Oppgi userId dersom aktivitet skal filtreres på bruker</description>
         <name>ownerId</name>
         <dataType>String</dataType>
@@ -610,6 +636,13 @@ IF( ISBLANK({!activityType}), TRUE, CONTAINS( {!activityType}, TEXT( {!currentIt
         <name>taskDate</name>
         <dataType>Date</dataType>
         <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>TaskRecordTypes</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>

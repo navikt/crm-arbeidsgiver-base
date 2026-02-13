@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Quality_Issue_Timeliness__c</fullName>
-    <formula>OR( 
+    <deprecated>false</deprecated>
+    <formula>IF(
     AND(
-        TAG_Age__c &gt;=30, 
-        ISPICKVAL(InclusionStage__c, &quot;Ny henvendelse&quot;)
+        RecordType.DeveloperName  == &apos;Inclusion&apos;,
+        NOT( ISPICKVAL(InclusionStage__c, &apos;Avsluttet&apos;) )
     ),
-    AND(
-        TAG_Age__c &gt;=30,
-        OR(
-            ISPICKVAL(InclusionStage__c, &quot;Avklaring&quot;),
-            ISPICKVAL(InclusionStage__c, &quot;Ferdig Avklart&quot;)
-        ),
-        AND(
-            OR(
-                ISBLANK(TAG_Employer_Last_Activity_Date__c),
-                TAG_Employer_Last_Activity_Date__c + 30 &lt; TODAY()
-            ), 
-            OR(
-                ISBLANK(LastActivityDate),
-                LastActivityDate + 30 &lt; TODAY()
-            )
-        )
+    IF(
+        DATEVALUE(LastModifiedDate) &lt; TODAY() - 30, 
+        TRUE,
+        TAG_Last_User_Update__c &lt; TODAY()- 30
     ),
-    AND(
-        ISPICKVAL(InclusionStage__c, &quot;Avsluttet&quot;),
-        DATEVALUE(TAG_Resolved_Date_Time__c) &lt; TAG_Employer_Last_Activity_Date__c+30
-    )
+    FALSE
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Quality Issue: Timeliness</label>
