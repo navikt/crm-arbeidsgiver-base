@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Min_Nav_region_kand_utf_f_tt_jobben</fullName>
+    <columns>CandidateOutcomeLink__c</columns>
+    <columns>Result__c</columns>
+    <columns>Account__c</columns>
+    <columns>JobPosting__c</columns>
+    <columns>NavUnit__c</columns>
+    <columns>TimeRegistered__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Result__c</field>
+        <operation>equals</operation>
+        <value>FATT_JOBBEN</value>
+    </filters>
+    <filters>
+        <field>IsMyNavRegion__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Min Nav-region kand.utf fått jobben</label>
+</ListView>
