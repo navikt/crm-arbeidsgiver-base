@@ -27,15 +27,17 @@
                                     onpopoverlinkclick={handlePopoverLinkClick}
                                 >
                                     <span slot="body">
-                                        <template if:true={badge.isSingleRecord}>
-                                            <c-related-records-card-list
-                                                records={badge.relatedRecords}
-                                            ></c-related-records-card-list>
-                                        </template>
-                                        <template if:false={badge.isSingleRecord}>
-                                            <c-related-records-table records={badge.relatedRecords}>
-                                            </c-related-records-table>
-                                        </template>
+                                        <div class="slds-box slds-var-m-top_small">
+                                            <template if:true={badge.isSingleRecord}>
+                                                <c-related-records-card-list
+                                                    records={badge.relatedRecords}
+                                                ></c-related-records-card-list>
+                                            </template>
+                                            <template if:false={badge.isSingleRecord}>
+                                                <c-related-records-table records={badge.relatedRecords}>
+                                                </c-related-records-table>
+                                            </template>
+                                        </div>
                                     </span>
                                 </c-badge-popover>
 
