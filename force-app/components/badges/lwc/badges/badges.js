@@ -14,8 +14,8 @@ export default class Badges extends LightningElement {
     @track showPopover = false; // Control popover display
 
     // Popover size configuration - adjust as needed
-    maxTilesPerRow = 3; // Maximum number of record tiles per row to display in popover
-    tileWidth = 300; // Width of each record tile displayed in popover (including padding/margin)
+    maxTilesPerRow = 1; // Maximum number of record tiles per row to display in popover
+    tileWidth = 400; // Width of each record tile displayed in popover (including padding/margin)
 
     // Wire service to fetch badges
     @wire(createBadges, { recordId: '$recordId', keys: '$badgesToDisplay' })
@@ -30,7 +30,18 @@ export default class Badges extends LightningElement {
                 // create new property for popover width
                 return {
                     ...badge,
-                    popoverWidth: this.calculatePopoverWidth(badge.relatedRecords.length)
+                    popoverWidth: this.calculatePopoverWidth(badge.relatedRecords.length),
+                    isSingleRecord: badge.relatedRecords.length === 1,
+                    pageref: {
+                        type: 'standard__component',
+                        attributes: {
+                            componentName: 'c__badgePage'
+                        },
+                        state: {
+                            c__id: this.recordId,
+                            c__badge: badge.badgeKey
+                        }
+                    }
                 };
             });
             this.renderBadges = this.badges.length > 0; // Check if badges array is empty
@@ -53,23 +64,21 @@ export default class Badges extends LightningElement {
      */
     calculatePopoverWidth(recordCount) {
         var width = 0;
-        width = Math.min(recordCount * this.tileWidth, this.maxTilesPerRow * this.tileWidth);
+        if (recordCount === 1) {
+            width = this.tileWidth;
+        } else if (recordCount > 1) {
+            width = this.windowWidth;
+        }
         console.log('calculatePopoverWidth: ' + width);
         return width;
     }
 
-    /**
-     *
-     */
-    get popoverTileStyle() {
-        // adjust for 0.25rem padding/margin on each side
-        const maxTileWidth = this.tileWidth - this.remToPx(0.25) * 2;
-        console.log('maxTileWidth: ' + maxTileWidth);
-        const widthPercentage = Math.floor(100 / this.maxTilesPerRow);
-        return `width: ${widthPercentage}%; max-width: ${maxTileWidth}px;`;
-    }
-
     /* HELPERS */
+
+    // Get window size
+    get windowWidth() {
+        return window.innerWidth;
+    }
 
     get isMobile() {
         return FORM_FACTOR === 'Small';

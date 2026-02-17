@@ -17,63 +17,27 @@
                     <ul class="slds-list_horizontal slds-wrap">
                         <template for:each={badges} for:item="badge">
                             <li class="badge-wrapper slds-item slds-badge badge-neutral" key={badge.label}>
-                                <c-popover
+                                <c-badge-popover
+                                    pageref={badge.pageref}
                                     link-label={badge.label}
                                     link-url={badge.url}
                                     tooltip="Forhåndsvis"
                                     title="Forhåndsvis"
                                     popover-width={badge.popoverWidth}
+                                    onpopoverlinkclick={handlePopoverLinkClick}
                                 >
                                     <span slot="body">
-                                        <div class="slds-var-m-top_small">
-                                            <ul style="display: flex; flex-wrap: wrap" class="">
-                                                <template for:each={badge.relatedRecords} for:item="relatedRecord">
-                                                    <li
-                                                        class="slds-var-p-around_small record-list--item"
-                                                        key={relatedRecord.id}
-                                                        style={popoverTileStyle}
-                                                    >
-                                                        <lightning-tile
-                                                            label={relatedRecord.name}
-                                                            href={relatedRecord.link}
-                                                            type="media"
-                                                        >
-                                                            <lightning-icon
-                                                                slot="media"
-                                                                icon-name={relatedRecord.icon}
-                                                                size="x-small"
-                                                            ></lightning-icon>
-                                                            <dl class="slds-list_horizontal slds-wrap">
-                                                                <template
-                                                                    for:each={relatedRecord.fields}
-                                                                    for:item="field"
-                                                                >
-                                                                    <dt
-                                                                        key={field.label}
-                                                                        class="slds-item_label slds-text-color_weak slds-truncate"
-                                                                        title={field.label}
-                                                                    >
-                                                                        {field.label}:
-                                                                    </dt>
-                                                                    <dd
-                                                                        key={field.label}
-                                                                        class="slds-item_detail slds-truncate"
-                                                                        title={field.value}
-                                                                    >
-                                                                        <c-formatted-field
-                                                                            value={field.value}
-                                                                            type={field.type}
-                                                                        ></c-formatted-field>
-                                                                    </dd>
-                                                                </template>
-                                                            </dl>
-                                                        </lightning-tile>
-                                                    </li>
-                                                </template>
-                                            </ul>
-                                        </div>
+                                        <template if:true={badge.isSingleRecord}>
+                                            <c-related-records-card-list
+                                                records={badge.relatedRecords}
+                                            ></c-related-records-card-list>
+                                        </template>
+                                        <template if:false={badge.isSingleRecord}>
+                                            <c-related-records-table records={badge.relatedRecords}>
+                                            </c-related-records-table>
+                                        </template>
                                     </span>
-                                </c-popover>
+                                </c-badge-popover>
 
                                 <template if:true={badge.helpText}>
                                     <lightning-helptext content={badge.helpText}></lightning-helptext>
