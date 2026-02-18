@@ -9,5 +9,10 @@
     <columns>RelatedJobPosting__c</columns>
     <columns>NavUnit__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Is_Assigned__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
     <label>Min Nav-enhet nye henvendelser</label>
 </ListView>
