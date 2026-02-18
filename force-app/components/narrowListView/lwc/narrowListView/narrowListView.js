@@ -1,6 +1,7 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
 import { NavigationMixin } from 'lightning/navigation';
+import { refreshApex } from '@salesforce/apex';
 
 export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
@@ -22,18 +23,34 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     @api warningCriteriaInput; // = '{{TAG_Age__c}} > 1 && {{InclusionStage__c}} == "Ny henvendelse"';
     @api warningTextInput; // = 'Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.';
     @api sortBy; // = '-CreatedDate'; // Felt som brukes for å sortere records
-
+    @api quickActionsInput; // quickActionsInput = 'Tildel til meg:inqueryAssignmentToUser,Fjern tildeling:inqueryUnassignmentToUser';
+    @api enableEditAction;
     // State Properties
     error;
     records = [];
     isRefreshing = true;
+
     // Wire Results
     wiredListViewRecordsResult;
     nextPageToken;
     count;
 
     // Action Configuration
-    @track recordLevelActions = [{ id: 'record-edit-1', label: 'Rediger', value: 'edit' }];
+    RECORD_EDIT_ACTION = { label: 'Rediger', value: 'edit-1' };
+    HEADLESS_ACTION_PREFIX = 'custom-headless.';
+    headlessQuickActions = [];
+    quickActionComponentConstructors = [];
+    get recordLevelActions() {
+        var actions = [];
+        if (this.headlessQuickActions.length > 0) {
+            actions = actions.concat(this.headlessQuickActions);
+        }
+        if (this.enableEditAction) {
+            actions.push(this.RECORD_EDIT_ACTION);
+        }
+
+        return actions;
+    }
 
     get warningFields() {
         return this.extractMergeFields(this.warningCriteriaInput);
@@ -77,6 +94,10 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         return this.titleText + ' (' + this.count + ')';
     }
 
+    get hasQuickActionComponent() {
+        return this.quickActionComponentConstructors.length > 0;
+    }
+
     get paddedRecords() {
         const padded = [...this.records];
         const placeholdersNeeded = this.previewRecords - padded.length;
@@ -84,6 +105,44 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
             padded.push({ id: `placeholder-${i}`, isPlaceholder: true });
         }
         return padded;
+    }
+
+    // =========================
+    // LIFECYCLE
+    // =========================
+
+    async connectedCallback() {
+        // if quickActionsInput is provided, extract component names and dynamically import them
+        if (this.quickActionsInput) {
+            console.log('Parsing quickActionsInput:', this.quickActionsInput);
+            // format label1:componentName1, label2:componentName2
+            const labelComponentPairs = this.quickActionsInput.split(',').map((pair) => pair.trim());
+            const componentNames = labelComponentPairs.map((pair) => {
+                const [label, value] = pair.split(':').map((part) => part.trim());
+                return value;
+            });
+
+            if (componentNames.length > 0) {
+                // for each comoponent name, dynamically import the module and store the constructor
+                for (const componentName of componentNames) {
+                    try {
+                        const module = await import(`c/${componentName}`);
+                        // Add the imported module name and constructor to array
+                        this.quickActionComponentConstructors.push({
+                            name: componentName,
+                            constructor: module.default
+                        });
+                        this.headlessQuickActions.push({
+                            label: labelComponentPairs[0].split(':')[0].trim(),
+                            value: `${this.HEADLESS_ACTION_PREFIX}${componentName}`
+                        });
+                        console.log('Successfully loaded quick action component:', componentName);
+                    } catch (e) {
+                        console.error('Failed to load quick action component: ', componentName, ', error:', e);
+                    }
+                }
+            }
+        }
     }
 
     // =========================
@@ -122,20 +181,41 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
 
     handleRecordLevelAction(event) {
-        // Get the value of the selected action
-        const selectedItemValue = event.detail.value;
-        const recordId = event.target.dataset.recordId; // Hent recordId fra data attributtet
-
-        if (selectedItemValue === 'edit') {
-            // Håndter redigeringshandling
+        const selectedAction = event.detail.value;
+        const recordId = event.target.dataset.recordId;
+        console.log('Selected action:', selectedAction, 'for record:', recordId);
+        if (selectedAction === this.RECORD_EDIT_ACTION.value) {
             this.navigateToRecordEdit(recordId, this.objectApiName);
-        } else {
-            console.warn('Ukjent handling valgt:', selectedItemValue);
+        } else if (selectedAction.startsWith(this.HEADLESS_ACTION_PREFIX)) {
+            const actionName = selectedAction.substring(this.HEADLESS_ACTION_PREFIX.length);
+            console.log('Invoking headless action:', actionName, 'for record:', recordId);
+            this.isRefreshing = true; // Set isRefreshing to true when invoking quick action
+            this.invokeQuickAction(recordId, actionName);
         }
     }
 
     handleNewRecord() {
         this.navigateToRecordNew(this.objectApiName);
+    }
+
+    // =========================
+    // QUICK ACTION
+    // =========================
+
+    invokeQuickAction(recordId, actionName) {
+        console.log('Invoking quick action', actionName, 'for record', recordId);
+        const quickActionCmp = this.template.querySelector(`[data-id="${actionName}"]`);
+
+        if (quickActionCmp && typeof quickActionCmp.invoke === 'function') {
+            quickActionCmp.recordId = recordId;
+
+            quickActionCmp.addEventListener('success', () => this.refreshRecords());
+            quickActionCmp.invoke();
+        }
+    }
+
+    refreshRecords() {
+        refreshApex(this.wiredListViewRecordsResult);
     }
 
     // =========================

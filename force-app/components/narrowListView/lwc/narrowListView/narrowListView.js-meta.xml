@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>64.0</apiVersion>
+    <apiVersion>65.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Narrow ListView</masterLabel>
     <description>Display a list view for an object. Similar to standard list view component, but adapted to fit narrow columns.
@@ -10,26 +10,58 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__HomePage">
-            <property name="objectApiName" label="Object API Name" type="String" placeholder="CustomOpportunity__c" description="The API name of a supported object." required="true"  />
-            <property name="iconName" label="Object icon" type="String" placeholder="custom:custom14" />
-            <property name="listViewApiName" label="List View API Name" type="String" placeholder="TAG_Mine_pne_muligheter" description="The API name of a list view, such as AllAccounts." required="true"  />
-            <property name="newRecordButton" label="Show New Record Button" type="Boolean" default="false" />
-            <property name="altTextNewRecordButton" label="Alternative text New Record Button" type="String" description="Alternative text to pop-up when hover over button." />
-            
-            <property name="titleFieldInput" label="Primary field" type="String" placeholder="TAG_Link__c" description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
-            <property name="detailFieldInput" label="Secondary field" type="String" placeholder="Account__r.Name" description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sesnsitive fieldnames!" />
-            <property name="sortBy" label="Sort by field" type="String" placeholder="-CreatedDate" description="API name of the field to sort by. Use '-' prefix for descending order, for instance '-CreatedDate' will show newest first." />
+            <property name="objectApiName" label="Object API Name" type="String"
+                placeholder="CustomOpportunity__c" description="The API name of a supported object."
+                required="true" />
+            <property name="iconName" label="Object icon" type="String"
+                placeholder="custom:custom14" />
+            <property name="listViewApiName" label="List View API Name" type="String"
+                placeholder="TAG_Mine_pne_muligheter"
+                description="The API name of a list view, such as AllAccounts." required="true" />
+            <property name="newRecordButton" label="Show New Record Button" type="Boolean"
+                default="false" />
 
-            <property name="warningCriteriaInput" label="Warning icon: Display condition"  type="String" placeholder='{{TAG_Age__c}} > 1 AND {{InclusionStage__c}} == "Ny henvendelse"' description="Boolean expression using {{fieldName}} syntax for field references. Obs! CASE sesnsitive fieldnames!" />
-            <property name="warningTextInput" label="Warning icon: Tooltip"  type="String" placeholder='Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.' />
-             
-            <property name="titleText" label="Component: Heading"  type="String" placeholder="Mine muligheter" required="true" />
-            <property name="helpText" label="Component: Tooltip" type="String" placeholder="Dette er en hjelpetekst for komponentet."/>
-            
-            <property name="previewRecords" label="Number of records to display" type="Integer" default="4" required="true" description="Number of records to display" min="1" max="10" />
-            <property name="pageSize" label="Number of records to count" type="Integer" default="10"  required="true" min="1" max="2000" description="The number of list records to retrieve in order to display total count. If list contains more records than this number a + sign is displayed to indicate more records. Note that a high number can cause performance issues!" />
-            
-            
+            <property name="altTextNewRecordButton" label="Alternative text New Record Button"
+                type="String" description="Alternative text to pop-up when hover over button." />
+            <property name="enableEditAction" label="Enable Edit Action" type="Boolean"
+                default="true" />
+
+            <property name="quickActionsInput" label="Quick Actions"
+                type="String"
+            />
+            <property name="titleFieldInput" label="Primary field" type="String"
+                placeholder="TAG_Link__c"
+                description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
+            <property name="detailFieldInput" label="Secondary field" type="String"
+                placeholder="Account__r.Name"
+                description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sesnsitive fieldnames!" />
+            <property name="sortBy" label="Sort by field" type="String" placeholder="-CreatedDate"
+                description="API name of the field to sort by. Use '-' prefix for descending order, for instance '-CreatedDate' will show newest first." />
+
+            <property name="warningCriteriaInput" label="Warning icon: Display condition"
+                type="String"
+                placeholder='{{TAG_Age__c}} > 1 AND {{InclusionStage__c}} == "Ny henvendelse"'
+                description="Boolean expression using {{fieldName}} syntax for field references. Obs! CASE sesnsitive fieldnames!" />
+            <property name="warningTextInput" label="Warning icon: Tooltip" type="String"
+                placeholder='Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.' />
+
+            <property name="titleText" label="Component: Heading" type="String"
+                placeholder="Mine muligheter" required="true" />
+            <property name="helpText" label="Component: Tooltip" type="String"
+                placeholder="Dette er en hjelpetekst for komponentet." />
+
+            <property name="previewRecords" label="Number of records to display" type="Integer"
+                default="4" required="true" description="Number of records to display" min="1"
+                max="10" />
+            <property name="pageSize" label="Number of records to count" type="Integer" default="10"
+                required="true" min="1" max="2000"
+                description="The number of list records to retrieve in order to display total count. If list contains more records than this number a + sign is displayed to indicate more records. Note that a high number can cause performance issues!" />
+
+
         </targetConfig>
     </targetConfigs>
+
+    <capabilities>
+        <capability>lightning__dynamicComponent</capability>
+    </capabilities>
 </LightningComponentBundle>
