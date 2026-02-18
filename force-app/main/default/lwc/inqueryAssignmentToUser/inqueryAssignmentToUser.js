@@ -27,29 +27,23 @@ export default class InqueryAssignmentToUser extends LightningElement {
         }
 
         this.isExecuting = true;
-        await this.sleep(2000);
-        this.isExecuting = false;
-
-        const newOwnerId = currentUserId; // Get the current user's ID
-        this.updateRecordOwner(this.recordId, newOwnerId);
-        this.dispatchEvent(new CustomEvent('success'));
+        try {
+            const newOwnerId = currentUserId;
+            await this.updateRecordOwner(this.recordId, newOwnerId);
+            this.dispatchEvent(new CustomEvent('success'));
+        } catch (error) {
+            console.error('Error in inqueryAssignmentToUser:', error);
+        } finally {
+            this.isExecuting = false;
+        }
     }
 
-    sleep(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-    }
-
-    updateRecordOwner(recordId, newOwnerId) {
+    async updateRecordOwner(recordId, newOwnerId) {
         const fields = {};
         fields[ID_FIELD.fieldApiName] = recordId;
         fields[OWNER_FIELD.fieldApiName] = newOwnerId;
 
         const recordInput = { fields };
-        try {
-            updateRecord(recordInput);
-            console.log('Record owner updated successfully');
-        } catch (error) {
-            console.error('Error updating record owner:', error);
-        }
+        await updateRecord(recordInput);
     }
 }

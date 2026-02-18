@@ -38,19 +38,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     // Action Configuration
     RECORD_EDIT_ACTION = { label: 'Rediger', value: 'edit-1' };
     HEADLESS_ACTION_PREFIX = 'custom-headless.';
-    headlessQuickActions = [];
-    quickActionComponentConstructors = [];
-    get recordLevelActions() {
-        var actions = [];
-        if (this.headlessQuickActions.length > 0) {
-            actions = actions.concat(this.headlessQuickActions);
-        }
-        if (this.enableEditAction) {
-            actions.push(this.RECORD_EDIT_ACTION);
-        }
 
-        return actions;
-    }
+    importedActions = [];
+    recordLevelActions = [];
 
     get warningFields() {
         return this.extractMergeFields(this.warningCriteriaInput);
@@ -95,7 +85,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     }
 
     get hasQuickActionComponent() {
-        return this.quickActionComponentConstructors.length > 0;
+        return this.importedActions.length > 0;
     }
 
     get paddedRecords() {
@@ -112,37 +102,22 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
 
     async connectedCallback() {
-        // if quickActionsInput is provided, extract component names and dynamically import them
-        if (this.quickActionsInput) {
-            console.log('Parsing quickActionsInput:', this.quickActionsInput);
-            // format label1:componentName1, label2:componentName2
-            const labelComponentPairs = this.quickActionsInput.split(',').map((pair) => pair.trim());
-            const componentNames = labelComponentPairs.map((pair) => {
-                const [label, value] = pair.split(':').map((part) => part.trim());
-                return value;
-            });
+        const actionsToImport = this.processQuickActionsInput();
 
-            if (componentNames.length > 0) {
-                // for each comoponent name, dynamically import the module and store the constructor
-                for (const componentName of componentNames) {
-                    try {
-                        const module = await import(`c/${componentName}`);
-                        // Add the imported module name and constructor to array
-                        this.quickActionComponentConstructors.push({
-                            name: componentName,
-                            constructor: module.default
-                        });
-                        this.headlessQuickActions.push({
-                            label: labelComponentPairs[0].split(':')[0].trim(),
-                            value: `${this.HEADLESS_ACTION_PREFIX}${componentName}`
-                        });
-                        console.log('Successfully loaded quick action component:', componentName);
-                    } catch (e) {
-                        console.error('Failed to load quick action component: ', componentName, ', error:', e);
-                    }
-                }
+        for (const action of actionsToImport) {
+            try {
+                const module = await import(`c/${action.componentName}`);
+                this.importedActions.push({
+                    name: action.componentName,
+                    constructor: module.default,
+                    label: action.label
+                });
+            } catch (e) {
+                console.error('Failed to load quick action component:', action.componentName, e);
             }
         }
+
+        this.recordLevelActions = this.buildRecordLevelActions();
     }
 
     // =========================
@@ -188,8 +163,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
             this.navigateToRecordEdit(recordId, this.objectApiName);
         } else if (selectedAction.startsWith(this.HEADLESS_ACTION_PREFIX)) {
             const actionName = selectedAction.substring(this.HEADLESS_ACTION_PREFIX.length);
-            console.log('Invoking headless action:', actionName, 'for record:', recordId);
-            this.isRefreshing = true; // Set isRefreshing to true when invoking quick action
+
             this.invokeQuickAction(recordId, actionName);
         }
     }
@@ -208,14 +182,45 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
         if (quickActionCmp && typeof quickActionCmp.invoke === 'function') {
             quickActionCmp.recordId = recordId;
-
+            this.isRefreshing = true; // Set isRefreshing to true when invoking quick action
             quickActionCmp.addEventListener('success', () => this.refreshRecords());
+            quickActionCmp.addEventListener('error', () => (this.isRefreshing = false)); // Set isRefreshing to false if there's an error
+
             quickActionCmp.invoke();
         }
     }
 
     refreshRecords() {
         refreshApex(this.wiredListViewRecordsResult);
+    }
+
+    buildRecordLevelActions() {
+        const actions = this.importedActions.map((action) => ({
+            label: action.label,
+            value: `${this.HEADLESS_ACTION_PREFIX}${action.name}`
+        }));
+        if (this.enableEditAction) {
+            actions.push(this.RECORD_EDIT_ACTION);
+        }
+        console.log('Built record level actions:', JSON.stringify(actions, null, 2));
+        return actions;
+    }
+
+    processQuickActionsInput() {
+        // Expected input format: label1:componentName1, label2:componentName2
+        // return array of objects with label and value for each quick action
+        const actions = [];
+        if (!this.quickActionsInput) {
+            return actions;
+        }
+        const labelComponentPairs = this.quickActionsInput.split(',').map((pair) => pair.trim());
+        labelComponentPairs.forEach((pair) => {
+            const [label, value] = pair.split(':').map((part) => part.trim());
+            if (label && value) {
+                actions.push({ label: label, componentName: value });
+            }
+        });
+        return actions;
     }
 
     // =========================

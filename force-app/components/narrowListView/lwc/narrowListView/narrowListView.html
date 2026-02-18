@@ -107,7 +107,7 @@
     </lightning-card>
     <!-- Quick Action Components -->
     <template lwc:if={hasQuickActionComponent}>
-        <template for:each={quickActionComponentConstructors} for:item="component">
+        <template for:each={importedActions} for:item="component">
             <lwc:component key={component.name} lwc:is={component.constructor} data-id={component.name}></lwc:component>
         </template>
     </template>
