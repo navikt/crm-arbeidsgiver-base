@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Brukes for at bruker skal kunne sende henvendelse til annet kontor. Trigger screen flow.</description>
+    <flowDefinition>TAG_Henvendelse_Change_Nav_Unit</flowDefinition>
+    <label>Change Nav Unit</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>
