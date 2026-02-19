@@ -1,10 +1,9 @@
 import { LightningElement, api, wire } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
+import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { updateRecord } from 'lightning/uiRecordApi';
 import ID_FIELD from '@salesforce/schema/TAG_Inquiry__c.Id';
 import OWNER_FIELD from '@salesforce/schema/TAG_Inquiry__c.OwnerId';
 import QUEUEID_FIELD from '@salesforce/schema/TAG_Inquiry__c.NavUnit__r.CRM_QueueId__c';
-const FIELDS = [QUEUEID_FIELD];
 
 export default class InquiryUnassignment extends LightningElement {
     _recordId;
@@ -32,6 +31,9 @@ export default class InquiryUnassignment extends LightningElement {
         this.isExecuting = true;
         try {
             const newOwnerId = await this.getQueueId();
+            if (!newOwnerId) {
+                throw new Error('Queue ID is null or undefined');
+            }
             await this.updateRecordOwner(this.recordId, newOwnerId);
             this.dispatchEvent(new CustomEvent('success'));
         } catch (error) {
@@ -52,10 +54,10 @@ export default class InquiryUnassignment extends LightningElement {
         });
     }
 
-    @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
+    @wire(getRecord, { recordId: '$recordId', fields: [QUEUEID_FIELD] })
     wiredRecord(response) {
         if (response.data) {
-            this.queueId = response.data.fields.NavUnit__r.value.fields.CRM_QueueId__c.value;
+            this.queueId = getFieldValue(response.data, QUEUEID_FIELD); // record.fields.NavUnit__r.value.fields.CRM_QueueId__c.value;
             if (this._queueIdResolve) {
                 this._queueIdResolve(this.queueId);
                 this._queueIdResolve = null;

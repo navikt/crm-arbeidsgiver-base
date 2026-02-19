@@ -3,6 +3,9 @@ import { getListRecordsByName } from 'lightning/uiListsApi';
 import { NavigationMixin } from 'lightning/navigation';
 import { refreshApex } from '@salesforce/apex';
 
+import { publish, subscribe, MessageContext } from 'lightning/messageService';
+import NARROW_LIST_VIEW_CHANNEL from '@salesforce/messageChannel/NarrowListViewChannel__c';
+
 export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
     // PROPERTIES & GETTERS
@@ -29,6 +32,8 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     error;
     records = [];
     isRefreshing = true;
+
+    subscription = null;
 
     // Wire Results
     wiredListViewRecordsResult;
@@ -87,6 +92,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     get hasQuickActionComponent() {
         return this.importedActions.length > 0;
     }
+    get hasRecordLevelActions() {
+        return this.recordLevelActions.length > 0;
+    }
 
     get paddedRecords() {
         const padded = [...this.records];
@@ -118,6 +126,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         }
 
         this.recordLevelActions = this.buildRecordLevelActions();
+        this.subscribeToMessageChannel();
     }
 
     // =========================
@@ -151,6 +160,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         }
     }
 
+    @wire(MessageContext)
+    messageContext;
+
     // =========================
     // EVENT HANDLERS
     // =========================
@@ -158,7 +170,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     handleRecordLevelAction(event) {
         const selectedAction = event.detail.value;
         const recordId = event.target.dataset.recordId;
-        console.log('Selected action:', selectedAction, 'for record:', recordId);
+        //console.log('Selected action:', selectedAction, 'for record:', recordId);
         if (selectedAction === this.RECORD_EDIT_ACTION.value) {
             this.navigateToRecordEdit(recordId, this.objectApiName);
         } else if (selectedAction.startsWith(this.HEADLESS_ACTION_PREFIX)) {
@@ -172,26 +184,34 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         this.navigateToRecordNew(this.objectApiName);
     }
 
+    handleMessage(message) {
+        if (message.objectApiName === this.objectApiName) {
+            console.log('Received message for object:', message.objectApiName, 'Refreshing records...');
+            refreshApex(this.wiredListViewRecordsResult);
+        }
+    }
+
     // =========================
     // QUICK ACTION
     // =========================
 
     invokeQuickAction(recordId, actionName) {
-        console.log('Invoking quick action', actionName, 'for record', recordId);
+        //console.log('Invoking quick action', actionName, 'for record', recordId);
         const quickActionCmp = this.template.querySelector(`[data-id="${actionName}"]`);
 
         if (quickActionCmp && typeof quickActionCmp.invoke === 'function') {
             quickActionCmp.recordId = recordId;
             this.isRefreshing = true; // Set isRefreshing to true when invoking quick action
-            quickActionCmp.addEventListener('success', () => this.refreshRecords());
+            quickActionCmp.addEventListener('success', () => this.notifyChange());
             quickActionCmp.addEventListener('error', () => (this.isRefreshing = false)); // Set isRefreshing to false if there's an error
 
             quickActionCmp.invoke();
         }
     }
 
-    refreshRecords() {
-        refreshApex(this.wiredListViewRecordsResult);
+    notifyChange() {
+        publish(this.messageContext, NARROW_LIST_VIEW_CHANNEL, { objectApiName: this.objectApiName });
+        //refreshApex(this.wiredListViewRecordsResult);
     }
 
     buildRecordLevelActions() {
@@ -202,7 +222,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         if (this.enableEditAction) {
             actions.push(this.RECORD_EDIT_ACTION);
         }
-        console.log('Built record level actions:', JSON.stringify(actions, null, 2));
+        // console.log('Built record level actions:', JSON.stringify(actions, null, 2));
         return actions;
     }
 
@@ -473,5 +493,11 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
         // Return as string
         return value;
+    }
+
+    subscribeToMessageChannel() {
+        this.subscription = subscribe(this.messageContext, NARROW_LIST_VIEW_CHANNEL, (message) =>
+            this.handleMessage(message)
+        );
     }
 }
