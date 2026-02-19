@@ -32,6 +32,7 @@ export default class InquiryAssignmentToUser extends LightningElement {
             this.dispatchEvent(new CustomEvent('success'));
         } catch (error) {
             console.error('Error in inquiryAssignmentToUser:', error);
+            this.dispatchEvent(new CustomEvent('error'));
         } finally {
             this.isExecuting = false;
         }

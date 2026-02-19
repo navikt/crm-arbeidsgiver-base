@@ -14,5 +14,10 @@
         <operation>equals</operation>
         <value>0</value>
     </filters>
+    <filters>
+        <field>Stage__c</field>
+        <operation>equals</operation>
+        <value>Ny henvendelse</value>
+    </filters>
     <label>Min Nav-enhet nye henvendelser</label>
 </ListView>

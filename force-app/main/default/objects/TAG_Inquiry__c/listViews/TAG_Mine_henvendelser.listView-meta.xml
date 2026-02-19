@@ -9,5 +9,10 @@
     <columns>RelatedJobPosting__c</columns>
     <columns>NavUnit__c</columns>
     <filterScope>Mine</filterScope>
+    <filters>
+        <field>Stage__c</field>
+        <operation>equals</operation>
+        <value>Ny henvendelse,Under arbeid</value>
+    </filters>
     <label>Mine henvendelser</label>
 </ListView>
