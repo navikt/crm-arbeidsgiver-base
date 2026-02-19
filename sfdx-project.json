@@ -7,6 +7,18 @@
             "versionNumber": "1.656.0.NEXT",
             "dependencies": [
                 {
+                    "package": "platform-data-model",
+                    "versionNumber": "0.1.2.LATEST"
+                },
+                {
+                    "package": "custom-metadata-dao",
+                    "versionNumber": "0.1.2.LATEST"
+                },
+                {
+                    "package": "custom-permission-helper",
+                    "versionNumber": "0.1.2.LATEST"
+                },
+                {
                     "package": "crm-platform-base",
                     "versionNumber": "0.297.0.LATEST"
                 },
@@ -37,18 +49,6 @@
                 {
                     "package": "crm-henvendelse-base",
                     "versionNumber": "0.36.0.LATEST"
-                },
-                {
-                    "package": "platform-data-model",
-                    "versionNumber": "0.1.2.LATEST"
-                },
-                {
-                    "package": "custom-metadata-dao",
-                    "versionNumber": "0.1.2.LATEST"
-                },
-                {
-                    "package": "custom-permission-helper",
-                    "versionNumber": "0.1.2.LATEST"
                 },
                 {
                     "package": "feature-toggle",
