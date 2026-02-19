@@ -6,7 +6,7 @@ import OWNER_FIELD from '@salesforce/schema/TAG_Inquiry__c.OwnerId';
 import QUEUEID_FIELD from '@salesforce/schema/TAG_Inquiry__c.NavUnit__r.CRM_QueueId__c';
 const FIELDS = [QUEUEID_FIELD];
 
-export default class InqueryUnassignment extends LightningElement {
+export default class InquiryUnassignment extends LightningElement {
     _recordId;
     @api
     get recordId() {
@@ -25,7 +25,6 @@ export default class InqueryUnassignment extends LightningElement {
     _queueIdResolve = null;
 
     @api async invoke() {
-        console.log('Invoking InqueryUnassignment for recordId:', this.recordId);
         if (this.isExecuting) {
             return;
         }
@@ -36,7 +35,7 @@ export default class InqueryUnassignment extends LightningElement {
             await this.updateRecordOwner(this.recordId, newOwnerId);
             this.dispatchEvent(new CustomEvent('success'));
         } catch (error) {
-            console.error('Error in InqueryUnassignment:', error);
+            console.error('Error in InquiryUnassignment:', error);
             this.dispatchEvent(new CustomEvent('error'));
         } finally {
             this.isExecuting = false;

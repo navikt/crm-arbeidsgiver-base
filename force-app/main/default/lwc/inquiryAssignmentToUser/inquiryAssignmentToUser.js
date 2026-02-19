@@ -4,7 +4,7 @@ import ID_FIELD from '@salesforce/schema/TAG_Inquiry__c.Id';
 import OWNER_FIELD from '@salesforce/schema/TAG_Inquiry__c.OwnerId';
 import currentUserId from '@salesforce/user/Id';
 
-export default class InqueryAssignmentToUser extends LightningElement {
+export default class InquiryAssignmentToUser extends LightningElement {
     _recordId;
 
     @api
@@ -21,7 +21,6 @@ export default class InqueryAssignmentToUser extends LightningElement {
     isExecuting = false;
 
     @api async invoke() {
-        console.log('Invoking inqueryAssignmentToUser for recordId:', this.recordId);
         if (this.isExecuting) {
             return;
         }
@@ -32,7 +31,7 @@ export default class InqueryAssignmentToUser extends LightningElement {
             await this.updateRecordOwner(this.recordId, newOwnerId);
             this.dispatchEvent(new CustomEvent('success'));
         } catch (error) {
-            console.error('Error in inqueryAssignmentToUser:', error);
+            console.error('Error in inquiryAssignmentToUser:', error);
         } finally {
             this.isExecuting = false;
         }

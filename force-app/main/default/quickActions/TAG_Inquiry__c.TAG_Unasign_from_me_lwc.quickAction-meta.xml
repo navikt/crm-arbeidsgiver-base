@@ -2,7 +2,7 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionSubtype>Action</actionSubtype>
     <label>Unassign</label>
-    <lightningWebComponent>inqueryUnassignment</lightningWebComponent>
+    <lightningWebComponent>inquiryUnassignment</lightningWebComponent>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <type>LightningWebComponent</type>
 </QuickAction>

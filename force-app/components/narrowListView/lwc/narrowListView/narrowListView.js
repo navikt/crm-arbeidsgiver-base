@@ -23,7 +23,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     @api warningCriteriaInput; // = '{{TAG_Age__c}} > 1 && {{InclusionStage__c}} == "Ny henvendelse"';
     @api warningTextInput; // = 'Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.';
     @api sortBy; // = '-CreatedDate'; // Felt som brukes for å sortere records
-    @api quickActionsInput; // quickActionsInput = 'Tildel til meg:inqueryAssignmentToUser,Fjern tildeling:inqueryUnassignmentToUser';
+    @api quickActionsInput; // quickActionsInput = 'Tildel til meg:inquiryAssignmentToUser,Fjern tildeling:inquiryUnassignmentToUser';
     @api enableEditAction;
     // State Properties
     error;
