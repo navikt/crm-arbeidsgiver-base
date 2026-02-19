@@ -204,6 +204,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.TAG_DueDateTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.TAG_IsFromArticle__c</field>
         <readable>true</readable>
