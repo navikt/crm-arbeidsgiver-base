@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Min_Nav_enhet_Ag_henvendelser_nye</fullName>
+    <columns>TAG_Link__c</columns>
+    <columns>Account__c</columns>
+    <columns>InquiryCategory__c</columns>
+    <columns>Source__c</columns>
+    <columns>Profession__c</columns>
+    <columns>TAG_Age__c</columns>
+    <columns>InclusionStage__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>OwnerFullName__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>InclusionStage__c</field>
+        <operation>equals</operation>
+        <value>Ny henvendelse</value>
+    </filters>
+    <filters>
+        <field>Source__c</field>
+        <operation>equals</operation>
+        <value>Kontaktskjema,Arbeidsplassen</value>
+    </filters>
+    <filters>
+        <field>Is_My_NAV_Office__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Min Nav-enhet nye henvendelser fra AG</label>
+    <sharedTo>
+        <role>PO_Arbeidsgiver</role>
+    </sharedTo>
+</ListView>
