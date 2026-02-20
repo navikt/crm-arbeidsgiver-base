@@ -1,6 +1,10 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getListRecordsByName } from 'lightning/uiListsApi';
 import { NavigationMixin } from 'lightning/navigation';
+import { refreshApex } from '@salesforce/apex';
+
+import { publish, subscribe, MessageContext } from 'lightning/messageService';
+import NARROW_LIST_VIEW_CHANNEL from '@salesforce/messageChannel/NarrowListViewChannel__c';
 
 export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
@@ -22,18 +26,26 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     @api warningCriteriaInput; // = '{{TAG_Age__c}} > 1 && {{InclusionStage__c}} == "Ny henvendelse"';
     @api warningTextInput; // = 'Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.';
     @api sortBy; // = '-CreatedDate'; // Felt som brukes for å sortere records
-
+    @api quickActionsInput; // quickActionsInput = 'Tildel til meg:inquiryAssignmentToUser,Fjern tildeling:inquiryUnassignmentToUser';
+    @api enableEditAction;
     // State Properties
     error;
     records = [];
     isRefreshing = true;
+
+    subscription = null;
+
     // Wire Results
     wiredListViewRecordsResult;
     nextPageToken;
     count;
 
     // Action Configuration
-    @track recordLevelActions = [{ id: 'record-edit-1', label: 'Rediger', value: 'edit' }];
+    RECORD_EDIT_ACTION = { label: 'Rediger', value: 'edit-1' };
+    HEADLESS_ACTION_PREFIX = 'custom-headless.';
+
+    importedActions = [];
+    recordLevelActions = [];
 
     get warningFields() {
         return this.extractMergeFields(this.warningCriteriaInput);
@@ -77,6 +89,13 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         return this.titleText + ' (' + this.count + ')';
     }
 
+    get hasQuickActionComponent() {
+        return this.importedActions.length > 0;
+    }
+    get hasRecordLevelActions() {
+        return this.recordLevelActions.length > 0;
+    }
+
     get paddedRecords() {
         const padded = [...this.records];
         const placeholdersNeeded = this.previewRecords - padded.length;
@@ -84,6 +103,30 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
             padded.push({ id: `placeholder-${i}`, isPlaceholder: true });
         }
         return padded;
+    }
+
+    // =========================
+    // LIFECYCLE
+    // =========================
+
+    async connectedCallback() {
+        const actionsToImport = this.processQuickActionsInput();
+
+        for (const action of actionsToImport) {
+            try {
+                const module = await import(`c/${action.componentName}`);
+                this.importedActions.push({
+                    name: action.componentName,
+                    constructor: module.default,
+                    label: action.label
+                });
+            } catch (e) {
+                console.error('Failed to load quick action component:', action.componentName, e);
+            }
+        }
+
+        this.recordLevelActions = this.buildRecordLevelActions();
+        this.subscribeToMessageChannel();
     }
 
     // =========================
@@ -117,25 +160,87 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         }
     }
 
+    @wire(MessageContext)
+    messageContext;
+
     // =========================
     // EVENT HANDLERS
     // =========================
 
     handleRecordLevelAction(event) {
-        // Get the value of the selected action
-        const selectedItemValue = event.detail.value;
-        const recordId = event.target.dataset.recordId; // Hent recordId fra data attributtet
-
-        if (selectedItemValue === 'edit') {
-            // Håndter redigeringshandling
+        const selectedAction = event.detail.value;
+        const recordId = event.target.dataset.recordId;
+        //console.log('Selected action:', selectedAction, 'for record:', recordId);
+        if (selectedAction === this.RECORD_EDIT_ACTION.value) {
             this.navigateToRecordEdit(recordId, this.objectApiName);
-        } else {
-            console.warn('Ukjent handling valgt:', selectedItemValue);
+        } else if (selectedAction.startsWith(this.HEADLESS_ACTION_PREFIX)) {
+            const actionName = selectedAction.substring(this.HEADLESS_ACTION_PREFIX.length);
+
+            this.invokeQuickAction(recordId, actionName);
         }
     }
 
     handleNewRecord() {
         this.navigateToRecordNew(this.objectApiName);
+    }
+
+    handleMessage(message) {
+        if (message.objectApiName === this.objectApiName) {
+            console.log('Received message for object:', message.objectApiName, 'Refreshing records...');
+            refreshApex(this.wiredListViewRecordsResult);
+        }
+    }
+
+    // =========================
+    // QUICK ACTION
+    // =========================
+
+    invokeQuickAction(recordId, actionName) {
+        //console.log('Invoking quick action', actionName, 'for record', recordId);
+        const quickActionCmp = this.template.querySelector(`[data-id="${actionName}"]`);
+
+        if (quickActionCmp && typeof quickActionCmp.invoke === 'function') {
+            quickActionCmp.recordId = recordId;
+            this.isRefreshing = true; // Set isRefreshing to true when invoking quick action
+            quickActionCmp.addEventListener('success', () => this.notifyChange());
+            quickActionCmp.addEventListener('error', () => (this.isRefreshing = false)); // Set isRefreshing to false if there's an error
+
+            quickActionCmp.invoke();
+        }
+    }
+
+    notifyChange() {
+        publish(this.messageContext, NARROW_LIST_VIEW_CHANNEL, { objectApiName: this.objectApiName });
+        //refreshApex(this.wiredListViewRecordsResult);
+    }
+
+    buildRecordLevelActions() {
+        const actions = this.importedActions.map((action) => ({
+            label: action.label,
+            value: `${this.HEADLESS_ACTION_PREFIX}${action.name}`
+        }));
+        if (this.enableEditAction) {
+            actions.push(this.RECORD_EDIT_ACTION);
+        }
+        // console.log('Built record level actions:', JSON.stringify(actions, null, 2));
+        return actions;
+    }
+
+    processQuickActionsInput() {
+        // Expected input format: label1:componentName1, label2:componentName2
+        // return array of objects with label and value for each quick action
+        const actions = [];
+        if (!this.quickActionsInput) {
+            return actions;
+        }
+        const labelComponentPairs = this.quickActionsInput.split(',').map((pair) => pair.trim());
+        labelComponentPairs.forEach((pair) => {
+            const [label, value] = pair.split(':').map((part) => part.trim());
+            if (label && value) {
+                actions.push({ label: label, componentName: value });
+            }
+        });
+        return actions;
     }
 
     // =========================
@@ -388,5 +493,11 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
         // Return as string
         return value;
+    }
+
+    subscribeToMessageChannel() {
+        this.subscription = subscribe(this.messageContext, NARROW_LIST_VIEW_CHANNEL, (message) =>
+            this.handleMessage(message)
+        );
     }
 }

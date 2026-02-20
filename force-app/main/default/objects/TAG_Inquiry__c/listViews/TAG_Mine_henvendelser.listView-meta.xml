@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_Min_Nav_enhet_nye_henvendelser</fullName>
+    <fullName>TAG_Mine_henvendelser</fullName>
     <columns>NAME</columns>
     <columns>Account__c</columns>
     <columns>Source__c</columns>
@@ -8,16 +8,11 @@
     <columns>ActivityType__c</columns>
     <columns>RelatedJobPosting__c</columns>
     <columns>NavUnit__c</columns>
-    <filterScope>Everything</filterScope>
-    <filters>
-        <field>Is_Assigned__c</field>
-        <operation>equals</operation>
-        <value>0</value>
-    </filters>
+    <filterScope>Mine</filterScope>
     <filters>
         <field>Stage__c</field>
         <operation>equals</operation>
-        <value>Ny henvendelse</value>
+        <value>Ny henvendelse,Under arbeid</value>
     </filters>
-    <label>Min Nav-enhet nye henvendelser</label>
+    <label>Mine henvendelser</label>
 </ListView>

@@ -67,17 +67,17 @@
                                         </lightning-helptext>
                                         <!-- Record actions -->
                                         <lightning-button-menu
-                                            if:true={newRecordButton}
+                                            if:true={hasRecordLevelActions}
                                             variant="bare"
                                             alternative-text="Action"
                                             onselect={handleRecordLevelAction}
                                             data-record-id={record.id}>
                                             <template for:each={recordLevelActions} for:item="action">
                                                 <lightning-menu-item
-                                                    key={action.label}
-                                                    data-action-id={action.id}
+                                                    key={action.id}
                                                     label={action.label}
-                                                    value={action.value}>
+                                                    value={action.value}
+                                                >
                                                 </lightning-menu-item>
                                             </template>
                                         </lightning-button-menu>
@@ -105,4 +105,10 @@
             </div>
         </template>
     </lightning-card>
+    <!-- Quick Action Components -->
+    <template lwc:if={hasQuickActionComponent}>
+        <template for:each={importedActions} for:item="component">
+            <lwc:component key={component.name} lwc:is={component.constructor} data-id={component.name}></lwc:component>
+        </template>
+    </template>
 </template>

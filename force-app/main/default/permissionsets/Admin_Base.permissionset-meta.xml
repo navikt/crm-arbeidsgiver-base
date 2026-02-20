@@ -699,6 +699,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_Inquiry__c.Is_Assigned__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>TAG_Inquiry__c.Message__c</field>
         <readable>true</readable>
