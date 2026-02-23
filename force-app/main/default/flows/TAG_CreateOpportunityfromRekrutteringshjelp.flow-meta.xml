@@ -112,60 +112,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Has_status_stopped_and_correct_rec_type</name>
-        <label>Has status stopped and correct rec.type?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Get_related_candidate_outcome</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Yes is correct</defaultConnectorLabel>
-        <rules>
-            <name>Status_not_stopped_and_correct_rec_type</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>STOPPED</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.RecordType.Name</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Employment Placement</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Set_record_type_to_Master</targetReference>
-            </connector>
-            <label>Status not stopped and correct rec.type</label>
-        </rules>
-        <rules>
-            <name>Status_stopped_and_wrong_rec_type</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>STOPPED</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.RecordType.Name</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Employment Placement</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Set_record_type_to_Employment_Placement</targetReference>
-            </connector>
-            <label>Status stopped and wrong rec.type</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_recruitment_assistance</name>
         <label>Is recruitment assistance?</label>
         <locationX>0</locationX>
@@ -224,6 +170,60 @@
                 <targetReference>Get_Inclusion_Record_Type_Id</targetReference>
             </connector>
             <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Record_type_and_status_correct</name>
+        <label>Record type and status correct?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_related_candidate_outcome</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Correct status and record type</defaultConnectorLabel>
+        <rules>
+            <name>Status_not_stopped_and_correct_record_type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Employment Placement</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_record_type_to_Master</targetReference>
+            </connector>
+            <label>Status not stopped and correct record type</label>
+        </rules>
+        <rules>
+            <name>Status_stopped_and_wrong_record_type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Employment Placement</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_record_type_to_Employment_Placement</targetReference>
+            </connector>
+            <label>Status stopped and wrong record type</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -372,7 +372,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Has_status_stopped_and_correct_rec_type</targetReference>
+            <targetReference>Record_type_and_status_correct</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
