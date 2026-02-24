@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Assign_values_for_candidate_outcome</name>
+        <label>Assign values for candidate outcome</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.EngagementType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.EngagementType__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Extent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Extent__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.JobPosting__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Title__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Title__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_candidate_outcome</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Are_there_Opportunities_already</name>
         <label>Are there Opportunities already?</label>
@@ -68,6 +112,45 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_recruitment_assistance</name>
+        <label>Is recruitment assistance?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Employer_Placement_record_id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not recruitment assistance</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_recruitment_assistance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Source__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Stillingsregistrering</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecruitmentAssistance__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
+            </connector>
+            <label>Yes is recruitment assistance</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_there_Account</name>
         <label>Is there Account?</label>
         <locationX>0</locationX>
@@ -89,6 +172,60 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Record_type_and_status_correct</name>
+        <label>Record type and status correct?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_related_candidate_outcome</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Correct status and record type</defaultConnectorLabel>
+        <rules>
+            <name>Status_not_stopped_and_correct_record_type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Employment Placement</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_record_type_to_Master</targetReference>
+            </connector>
+            <label>Status not stopped and correct record type</label>
+        </rules>
+        <rules>
+            <name>Status_stopped_and_wrong_record_type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Employment Placement</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_record_type_to_Employment_Placement</targetReference>
+            </connector>
+            <label>Status stopped and wrong record type</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>NotesWithTlfNumber</name>
@@ -97,6 +234,17 @@
     </formulas>
     <interviewLabel>TAG Create Opportunity from Rekrutteringshjelp {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Job Posting</label>
+    <loops>
+        <name>Run_through_candidate_outcome_list</name>
+        <label>Run through candidate outcome list</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_related_candidate_outcome</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_values_for_candidate_outcome</targetReference>
+        </nextValueConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -218,6 +366,27 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Employer_Placement_record_id</name>
+        <label>Get Employer Placement record id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Record_type_and_status_correct</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Employment Placement</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Inclusion_Record_Type_Id</name>
         <label>Get Inclusion Record Type Id</label>
         <locationX>0</locationX>
@@ -280,39 +449,88 @@
         <object>CustomOpportunity__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_related_candidate_outcome</name>
+        <label>Get related candidate outcome</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Run_through_candidate_outcome_list</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>JobPostingId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.UUID__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CandidateOutcome__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_record_type_to_Employment_Placement</name>
+        <label>Set record type to Employment Placement</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_related_candidate_outcome</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Get_Employer_Placement_record_id.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_record_type_to_Master</name>
+        <label>Set record type to Master</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_related_candidate_outcome</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_candidate_outcome</name>
+        <label>Update candidate outcome</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Run_through_candidate_outcome_list</targetReference>
+        </connector>
+        <inputReference>Run_through_candidate_outcome_list</inputReference>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
+            <targetReference>Is_recruitment_assistance</targetReference>
         </connector>
-        <filterLogic>1 AND 2 AND 3 AND 4 AND 5</filterLogic>
-        <filters>
-            <field>Source__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Stillingsregistrering</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecruitmentAssistance__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterLogic>1 AND 2</filterLogic>
         <filters>
             <field>Status__c</field>
             <operator>NotEqualTo</operator>
             <value>
                 <stringValue>REJECTED</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <stringValue>STOPPED</stringValue>
             </value>
         </filters>
         <filters>
