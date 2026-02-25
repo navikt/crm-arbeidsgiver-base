@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NavUnit__c</fullName>
-    <description>NAV-enhet som har ansvar for å følge opp henvendelsen. Settes initialt automatisk basert på arbeidsgivers geografiske adresse/kommune. For Rekruttere og inkludere og Ungdomsløftet: Lokal NAV-enhet. For Forebygge sykefravær: Regional IA-enhet. Kan endres manuelt dersom bruker ønsker å sende henvendelsen til et annet kontor.</description>
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
+    <description>NAV-enhet som har ansvar for å følge opp henvendelsen. Settes initialt automatisk basert på arbeidsgivers geografiske adresse/kommune. For Rekruttere og inkludere og Ungdomsløftet: Lokal NAV-enhet. For Forebygge sykefravær: Regional IA-enhet. Kan endres manuelt dersom bruker ønsker å sende henvendelsen til et annet kontor.</description>
     <inlineHelpText>Velg NAV-enhet som skal følge opp henvendelsen. Settes automatisk ved opprettelse.</inlineHelpText>
     <label>Nav Unit</label>
     <lookupFilter>
@@ -19,6 +19,7 @@
     <relationshipLabel>Nav units (Henvendelser)</relationshipLabel>
     <relationshipName>NavUnits_Henvendelser</relationshipName>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

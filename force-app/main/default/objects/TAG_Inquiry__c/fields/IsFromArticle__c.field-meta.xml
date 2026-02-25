@@ -5,6 +5,7 @@
     <deprecated>false</deprecated>
     <description>Indikerer om henvendelsen kommer fra en artikkel på nav.no. Settes automatisk til true ved innsendelse av kontaktskjema dersom bruker kommer fra en artikkel. Brukes i analyser og rapporter for å evaluere innholdseffektivitet.</description>
     <label>Is From Article</label>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
