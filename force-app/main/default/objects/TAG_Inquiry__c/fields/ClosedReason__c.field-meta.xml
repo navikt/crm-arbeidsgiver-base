@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ClosedReason__c</fullName>
-    <description>Årsak til hvorfor henvendelsen ble lukket og henvendelsens utfall. Må fylles ut når Stage__c settes til Lukket eller tilsvarende sluttstatus. Brukes i rapporter for å analysere henvendelsesutfall og effektivitet.</description>
     <deprecated>false</deprecated>
+    <description>Årsak til hvorfor henvendelsen ble lukket og henvendelsens utfall. Må fylles ut når Stage__c settes til Lukket eller tilsvarende sluttstatus. Brukes i rapporter for å analysere henvendelsesutfall og effektivitet.</description>
     <inlineHelpText>Velg årsak til lukking av henvendelsen. Påkrevd ved avslutning.</inlineHelpText>
-    <label>Lukket årsak</label>
+    <label>Resultat</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

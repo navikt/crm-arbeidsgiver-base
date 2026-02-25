@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Message__c</fullName>
-    <description>Fritekstfelt med arbeidsgivers beskrivelse av hva henvendelsen gjelder. Fylles ut av arbeidsgiver ved innsendelse av kontaktskjema eller manuelt av NAV-ansatt for henvendelser fra andre kanaler. Brukes av saksbehandler for å forstå henvendelsen og gi riktig veiledning.</description>
     <deprecated>false</deprecated>
+    <description>Beskriv hva henvendelsen gjelder.</description>
     <inlineHelpText>Beskriv hva henvendelsen gjelder. Unngå personopplysninger.</inlineHelpText>
     <label>Melding</label>
     <length>32768</length>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>
     <visibleLines>6</visibleLines>

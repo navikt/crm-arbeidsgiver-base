@@ -2,8 +2,8 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <decisions>
-        <name>Are_there_Nav_Task_already</name>
-        <label>Are there Nav Task already?</label>
+        <name>Are_there_inquiry_already</name>
+        <label>Are there inquiry already?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>Yes</defaultConnectorLabel>
@@ -91,9 +91,9 @@
     </decisions>
     <environments>Default</environments>
     <formulas>
-        <name>NavTaskTitle</name>
+        <name>InquiryTitle</name>
         <dataType>String</dataType>
-        <expression>&apos;Rekrutteringshjelp - &apos; &amp; {!Get_Account.Name}</expression>
+        <expression>&apos;Ønsker rekrutteringshjelp til &apos; &amp; {!$Record.ProfessionCategory__c}</expression>
     </formulas>
     <formulas>
         <name>NotesWithTlfNumber</name>
@@ -122,8 +122,8 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>Create_Nav_Task</name>
-        <label>Create Nav Task</label>
+        <name>Create_Inquiry</name>
+        <label>Create Inquiry</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <inputAssignments>
@@ -147,7 +147,7 @@
         <inputAssignments>
             <field>Name</field>
             <value>
-                <elementReference>NavTaskTitle</elementReference>
+                <elementReference>InquiryTitle</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -251,7 +251,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Are_there_Nav_Task_already</targetReference>
+            <targetReference>Are_there_inquiry_already</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -272,7 +272,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Nav_Task</targetReference>
+            <targetReference>Create_Inquiry</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
