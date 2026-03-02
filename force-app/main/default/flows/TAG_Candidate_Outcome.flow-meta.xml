@@ -142,7 +142,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Job_Posting</targetReference>
+                <targetReference>Get_account</targetReference>
             </connector>
             <label>No</label>
         </rules>
@@ -190,6 +190,27 @@
         <locationY>0</locationY>
         <inputReference>$Record</inputReference>
     </recordDeletes>
+    <recordLookups>
+        <name>Get_account</name>
+        <label>Get account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Job_Posting</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_OrganizationNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.JobPosting__r.OrganizationNumber__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <name>Get_duplicate</name>
         <label>Get duplicate</label>
@@ -288,7 +309,7 @@
         <inputAssignments>
             <field>Account__c</field>
             <value>
-                <elementReference>Get_Job_Posting.Account__r.Id</elementReference>
+                <elementReference>Get_account.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
