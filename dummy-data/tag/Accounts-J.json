@@ -9,7 +9,10 @@
             "INT_Industry__c": "Generell offentlig administrasjon",
             "INT_IndustryCode__c": "84.110",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "INT_OrganizationNumber__c": "960507878"
+            "INT_OrganizationNumber__c": "960507878",
+            "CRM_AccountType__c": "J",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         }
     ]
 }

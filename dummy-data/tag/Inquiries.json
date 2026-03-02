@@ -1,0 +1,32 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "TAG_Inquiry__c",
+                "referenceId": "TAG_Inquiry__cRef1"
+            },
+            "Name": "Rekrutteringshjelp",
+            "Account__c": "@AccountRef17",
+            "ActivityType__c": "Rekruttere og inkludere",
+            "Service__c": "Rekrutteringsoppdrag",
+            "Message__c": "Henvendelse fra Arbeidsplassen.no: Arbeidsgiver ønsker rekrutteringshjelp i forbindelse med en konkret stilling (se lenke over). Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "NavUnit__c": "@NavUnit__cRef1",
+            "RelatedJobPosting__c": "@JobPosting__cRef1",
+            "Source__c": "Arbeidsplassen.no",
+            "Stage__c": "Ny henvendelse"
+        },
+        {
+            "attributes": {
+                "type": "TAG_Inquiry__c",
+                "referenceId": "TAG_Inquiry__cRef2"
+            },
+            "Name": "Rekruttere og inkludere",
+            "Account__c": "@AccountRef17",
+            "WebFormTheme__c": "Rekruttere og inkludere",
+            "NavUnit__c": "@NavUnit__cRef1",
+            "Source__c": "Kontaktskjema",
+            "Stage__c": "Ny henvendelse",
+            "Contact__c": "@ContactRef1"
+        }
+    ]
+}
