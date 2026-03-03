@@ -142,9 +142,91 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_account</targetReference>
+                <targetReference>Get_Job_Posting</targetReference>
             </connector>
             <label>No</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_job_posting_found</name>
+        <label>Was job posting found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_duplicate</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No job posting found</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_related_to_Account</name>
+            <conditionLogic>(1 OR 2) AND (3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.OrganizationNumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.OrganizationNumber__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.UUID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.UUID__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_account</targetReference>
+            </connector>
+            <label>Yes and related to Account</label>
+        </rules>
+        <rules>
+            <name>Yes_and_not_related_to_Account</name>
+            <conditionLogic>(1 OR 2) AND (3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.OrganizationNumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.OrganizationNumber__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.UUID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Job_Posting.UUID__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Candidate_Outcome_without_Account</targetReference>
+            </connector>
+            <label>Yes and not related to Account</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -197,14 +279,14 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Job_Posting</targetReference>
+            <targetReference>Update_Candidate_Outcome_with_Account</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>INT_OrganizationNumber__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.JobPosting__r.OrganizationNumber__c</elementReference>
+                <elementReference>Get_Job_Posting.OrganizationNumber__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -284,7 +366,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Update_Candidate_Outcome</targetReference>
+            <targetReference>Was_job_posting_found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -299,8 +381,8 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Candidate_Outcome</name>
-        <label>Update Candidate Outcome</label>
+        <name>Update_Candidate_Outcome_with_Account</name>
+        <label>Update Candidate Outcome with Account</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
@@ -312,6 +394,40 @@
                 <elementReference>Get_account.Id</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>EngagementType__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.EngagementType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Extent__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>JobPosting__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Title__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Title__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Candidate_Outcome_without_Account</name>
+        <label>Update Candidate Outcome without Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_duplicate</targetReference>
+        </connector>
         <inputAssignments>
             <field>EngagementType__c</field>
             <value>
