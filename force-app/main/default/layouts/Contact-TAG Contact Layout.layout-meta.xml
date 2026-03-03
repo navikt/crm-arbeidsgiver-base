@@ -194,8 +194,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Source__c</fields>
         <fields>Account__c</fields>
-        <fields>Inquiry_Category_2__c</fields>
         <fields>InclusionStage__c</fields>
         <relatedList>CustomOpportunity__c.Contact__c</relatedList>
         <sortField>InclusionStage__c</sortField>
@@ -231,7 +231,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hQJ000007Q3xq</masterLabel>
+        <masterLabel>00hJX00000DLElc</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
