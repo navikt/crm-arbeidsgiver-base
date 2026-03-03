@@ -196,7 +196,7 @@
         <defaultConnector>
             <targetReference>Get_related_candidate_outcome</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Status and account is correct</defaultConnectorLabel>
+        <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
             <name>Status_is_stopped_and_account_is_not_null</name>
             <conditionLogic>1 AND (2 OR 3)</conditionLogic>
