@@ -196,7 +196,7 @@
         <defaultConnector>
             <targetReference>Get_related_candidate_outcome</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Status and account is correct</defaultConnectorLabel>
+        <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
             <name>Status_is_stopped_and_account_is_not_null</name>
             <conditionLogic>1 AND (2 OR 3)</conditionLogic>
@@ -228,7 +228,7 @@
         </rules>
         <rules>
             <name>Status_not_stopped_and_account_is_null</name>
-            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3) AND (4 OR 5)</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Status__c</leftValueReference>
                 <operator>NotEqualTo</operator>
@@ -248,6 +248,20 @@
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.OrganizationNumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.OrganizationNumber__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
