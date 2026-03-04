@@ -124,7 +124,7 @@
     </values>
     <values>
         <field>SObjectRelatedUserId__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Contact__c</value>
     </values>
     <values>
         <field>SObjectSubtitle__c</field>
@@ -152,19 +152,19 @@
     </values>
     <values>
         <field>SubtitleFutureEnglish__c</field>
-        <value xsi:type="xsd:string">will reply to inquiry</value>
+        <value xsi:type="xsd:string">is responding to inquiry</value>
     </values>
     <values>
         <field>SubtitleFutureNorwegian__c</field>
-        <value xsi:type="xsd:string">skal svare ut henvendelsen</value>
+        <value xsi:type="xsd:string">følger opp henvendelse</value>
     </values>
     <values>
         <field>SubtitlePastEnglish__c</field>
-        <value xsi:type="xsd:string">recieved inquiry</value>
+        <value xsi:type="xsd:string">responded to inquiry</value>
     </values>
     <values>
         <field>SubtitlePastNorwegian__c</field>
-        <value xsi:type="xsd:string">mottok henvendelsen</value>
+        <value xsi:type="xsd:string">fulgte opp henvendelse</value>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionEng__c</field>
