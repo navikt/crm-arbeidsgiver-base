@@ -163,12 +163,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>RecordTypeId</field>
-            <value>
-                <elementReference>Get_employer_Record_Type_Id.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>RelatedJobPosting__c</field>
             <value>
                 <elementReference>$Record.Id</elementReference>
@@ -297,7 +291,7 @@
             <field>Source__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Stillingsregistrering</stringValue>
+                <stringValue>Arbeidsplassen.no</stringValue>
             </value>
         </filters>
         <filters>
