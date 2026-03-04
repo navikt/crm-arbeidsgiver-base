@@ -185,7 +185,7 @@
         <type>Flexipage</type>
         <pageOrSobjectType>TemporaryLayoff__c</pageOrSobjectType>
     </actionOverrides>
-        <actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>TAG_Event_Record_Page</content>
@@ -203,7 +203,7 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Event</pageOrSobjectType>
     </actionOverrides>
-     <actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>TAG_Task_Record_Page</content>
@@ -312,11 +312,10 @@
     <tabs>standard-Event</tabs>
     <tabs>CustomOpportunity__c</tabs>
     <tabs>Contract__c</tabs>
-    <tabs>NavTask__c</tabs>
+    <tabs>TAG_Inquiry__c</tabs>
     <tabs>NavUnit__c</tabs>
     <tabs>CustomCampaign__c</tabs>
     <tabs>CustomCampaignMember__c</tabs>
-    <tabs>TAG_Inquiry__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Arbeidsgiver_UtilityBar</utilityBar>
 </CustomApplication>
