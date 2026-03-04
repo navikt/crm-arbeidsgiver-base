@@ -2,10 +2,6 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Record page for arbeidsgiverhenvendelser. Viser kildebaserte seksjoner for Kontaktsenteret, Arbeidsplassen.no og Kontaktskjema.</description>
     <flexiPageRegions>
-        <name>header</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -30,10 +26,20 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
+                            <value>TAG_Inquiry__c.TAG_CloseInquiry</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>TAG_Inquiry__c.TAG_Close_Inquiry_Create_Opportunity</value>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_Inquiry__c.TAG_Assign_to_me_lwc</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.Is_Assigned__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>false</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>TAG_Inquiry__c.TAG_Unasign_from_me_lwc</value>
@@ -65,6 +71,10 @@
                 <identifier>record_flexipage_dynamicHighlights</identifier>
             </componentInstance>
         </itemInstances>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <name>subheader</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -119,8 +129,8 @@
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.Source__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Arbeidsplassen.no</rightValue>
+                        <operator>NE</operator>
+                        <rightValue>Kontaktsenteret</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
