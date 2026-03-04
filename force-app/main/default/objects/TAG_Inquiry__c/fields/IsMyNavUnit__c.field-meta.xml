@@ -3,7 +3,7 @@
     <fullName>IsMyNavUnit__c</fullName>
     <deprecated>false</deprecated>
     <description>Sjekker om henvendelsen tilhører brukerens NAV-enhet. Kalkuleres automatisk basert på sammenligning mellom NavUnit__c og innlogget brukers NAV-enhet. Viktigste feltet for daglig oppfølging - brukes i Mine NAV-enhets henvendelser-visninger.</description>
-    <formula>$User.Department == NavUnit__r.INT_UnitNumber__c</formula>
+    <formula>IF( ISBLANK($User.Department), FALSE, $User.Department == NavUnit__r.INT_UnitNumber__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My NAV Unit</label>
     <trackHistory>false</trackHistory>

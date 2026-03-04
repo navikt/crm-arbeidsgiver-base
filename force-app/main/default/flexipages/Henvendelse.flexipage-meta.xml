@@ -126,13 +126,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Message__c</fieldItem>
                 <identifier>RecordMessage_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Source__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Kontaktsenteret</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c4b22a99-dd04-41e4-aba9-876d9d435f67</name>

@@ -3,10 +3,7 @@
     <fullName>IsMyNavMarketRegion__c</fullName>
     <deprecated>false</deprecated>
     <description>Sjekker om henvendelsen tilhører brukerens NAV markedsregion. Kalkuleres automatisk basert på sammenligning mellom NavMarketRegion__c og innlogget brukers markedsregion. Brukes for å lage dynamiske filtre i lister og rapporter.</description>
-    <formula>AND(
-LOWER($User.CRM_MarketRegion__c) = LOWER(NavUnit__r.MarketRegion__c),
- RecordType.DeveloperName =&quot;Employer&quot;
-)</formula>
+    <formula>LOWER($User.CRM_MarketRegion__c) = LOWER(NavUnit__r.MarketRegion__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My Nav Market Region</label>
     <trackHistory>false</trackHistory>
