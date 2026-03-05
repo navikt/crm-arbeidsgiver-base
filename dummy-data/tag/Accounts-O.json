@@ -8,10 +8,13 @@
             "Name": "IKT FOLLO",
             "INT_Industry__c": "Generell offentlig administrasjon",
             "INT_IndustryCode__c": "84.110",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507886",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -21,10 +24,13 @@
             "Name": "SKI KOMMUNE LEVEKÅR",
             "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
             "INT_IndustryCode__c": "84.120",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507887",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -34,10 +40,13 @@
             "Name": "SKI KOMMUNE OPPVEKST",
             "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
             "INT_IndustryCode__c": "84.120",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507888",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -47,10 +56,13 @@
             "Name": "SKI KOMMUNE PLEIE- OG OMSORGSETATEN",
             "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
             "INT_IndustryCode__c": "84.120",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507889",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -60,10 +72,13 @@
             "Name": "SKI KOMMUNE BARNEHAGESEKSJONEN",
             "INT_Industry__c": "Offentlig administrasjon tilknyttet helsestell, sosial virksomhet, undervisning, kirke, kultur og miljøvern",
             "INT_IndustryCode__c": "84.120",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507890",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -73,10 +88,13 @@
             "Name": "SKI KOMMUNESKOGER",
             "INT_Industry__c": "Avvirkning",
             "INT_IndustryCode__c": "02.200",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507891",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -86,10 +104,13 @@
             "Name": "NAV TOLKETJENESTEN I FOLLO",
             "INT_Industry__c": "Oversettelses- og tolkevirksomhet",
             "INT_IndustryCode__c": "74.300",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507892",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -99,10 +120,13 @@
             "Name": "SKI KOMMUNE ADMINISTRASJON",
             "INT_Industry__c": "Generell offentlig administrasjon",
             "INT_IndustryCode__c": "84.110",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507893",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         },
         {
             "attributes": {
@@ -112,10 +136,13 @@
             "Name": "FOLLO BARNEVERNVAKT",
             "INT_Industry__c": "Barneverntjenester",
             "INT_IndustryCode__c": "88.991",
-            "INT_OrganizationNumber__c": "960507878",
+            "INT_OrganizationNumber__c": "960507894",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
-            "ParentId": "@AccountRef15"
+            "ParentId": "@AccountRef15",
+            "CRM_AccountType__c": "O",
+            "INT_RegionNumber__c": "30",
+            "TAG_NavUnit__c": "@NavUnit__cRef1"
         }
     ]
 }

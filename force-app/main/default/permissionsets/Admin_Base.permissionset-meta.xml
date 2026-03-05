@@ -209,6 +209,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.TAG_Inquiry__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CustomOpportunity__c.TAG_IsFromArticle__c</field>
         <readable>true</readable>
@@ -1214,10 +1219,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>TAG_Inquiry__c.Employer</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Task.ArbeidsgiverTask</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -1228,5 +1229,9 @@
     <tabSettings>
         <tab>CandidateOutcome__c</tab>
         <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>TAG_Inquiry__c</tab>
+        <visibility>Available</visibility>
     </tabSettings>
 </PermissionSet>

@@ -3,10 +3,7 @@
     <fullName>IsMyNavRegion__c</fullName>
     <deprecated>false</deprecated>
     <description>Sjekker om henvendelsen tilhører brukerens NAV region. Kalkuleres automatisk basert på sammenligning mellom NavRegion__c og innlogget brukers region. Brukes for å lage regionale visninger og rapporter.</description>
-    <formula>AND(
-$User.Region__c ==  NavUnit__r.INT_Region__c,
-RecordType.DeveloperName =&quot;Employer&quot;
-)</formula>
+    <formula>UPPER($User.Region__c) == UPPER( NavUnit__r.INT_Region__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is My Nav Region</label>
     <trackHistory>false</trackHistory>

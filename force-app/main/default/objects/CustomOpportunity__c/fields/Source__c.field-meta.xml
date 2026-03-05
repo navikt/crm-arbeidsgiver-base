@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Source__c</fullName>
+    <deprecated>false</deprecated>
     <description>Legg inn hvor henvendelsen kom fra</description>
-    <externalId>false</externalId>
     <inlineHelpText>Hvor muligheten kommer fra. Innkomne henvendelser fra nav.no markeres med &apos;Kontaktskjema&apos;.</inlineHelpText>
     <label>Source</label>
     <required>false</required>
@@ -47,6 +47,11 @@
                 <fullName>Arbeidsplassen</fullName>
                 <default>false</default>
                 <label>Arbeidsplassen.no</label>
+            </value>
+            <value>
+                <fullName>Konvertert fra henvendelse</fullName>
+                <default>false</default>
+                <label>Konvertert fra henvendelse</label>
             </value>
         </valueSetDefinition>
     </valueSet>
