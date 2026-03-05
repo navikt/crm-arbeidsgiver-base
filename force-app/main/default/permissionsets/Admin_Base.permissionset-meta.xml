@@ -675,6 +675,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>TAG_Inquiry__c.ClosedAfterDueDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>TAG_Inquiry__c.ClosedReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -691,6 +696,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>TAG_Inquiry__c.DueDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TAG_Inquiry__c.InquiryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -765,6 +775,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>TAG_Inquiry__c.RecievedDateTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>TAG_Inquiry__c.RegionNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -775,12 +790,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>TAG_Inquiry__c.ResolvedDate__c</field>
+        <field>TAG_Inquiry__c.ResolutionTimeInBusinessDays__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>TAG_Inquiry__c.ResolvedDays__c</field>
+        <editable>true</editable>
+        <field>TAG_Inquiry__c.ResolvedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -801,21 +816,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>TAG_Inquiry__c.Stage__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>TAG_Inquiry__c.UltimateSource__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>TAG_Inquiry__c.UrgentCheckbox__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TAG_Inquiry__c.Urgent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

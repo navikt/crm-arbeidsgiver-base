@@ -93,7 +93,7 @@
     <formulas>
         <name>InquiryTitle</name>
         <dataType>String</dataType>
-        <expression>&apos;Ønsker rekrutteringshjelp til &apos; &amp; {!$Record.ProfessionCategory__c}</expression>
+        <expression>&apos;Ønsker rekrutteringshjelp til stilling&apos;</expression>
     </formulas>
     <formulas>
         <name>NotesWithTlfNumber</name>
