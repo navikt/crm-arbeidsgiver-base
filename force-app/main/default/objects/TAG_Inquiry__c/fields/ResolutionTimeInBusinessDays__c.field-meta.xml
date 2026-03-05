@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ResolvedDays__c</fullName>
-    <deprecated>false</deprecated>
-    <description>Beregner antall dager fra opprettelse til løsning. ToDo: Bør ta hensyn til arbeidsdager for å ha nytte.</description>
+    <fullName>ResolutionTimeInBusinessDays__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>Sjekk om dette er nødvendig. 
+Krever apex lignende TAG_BusinessDaysHandler, som beregner antall dager mellom 2 datoer.</description>
     <externalId>false</externalId>
-    <formula>Datevalue(ResolvedDate__c) - datevalue(CreatedDate)</formula>
-    <label>Resolved Days</label>
+    <label>Resolution Time In Business Days</label>
     <precision>18</precision>
     <required>false</required>
-    <scale>0</scale>
+    <scale>2</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>

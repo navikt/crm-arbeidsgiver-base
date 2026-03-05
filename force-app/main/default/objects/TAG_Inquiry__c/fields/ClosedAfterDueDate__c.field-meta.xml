@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClosedAfterDueDate__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Set to TRUE if due date was already passed when inquiry was closed,</description>
+    <label>Lukket etter svarfrist</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
