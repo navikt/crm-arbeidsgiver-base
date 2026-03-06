@@ -704,11 +704,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>TAG_Inquiry__c.IsFromArticle__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>TAG_Inquiry__c.IsMyNavMarketRegion__c</field>
         <readable>true</readable>
@@ -739,11 +734,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>TAG_Inquiry__c.NAV_Task__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>TAG_Inquiry__c.NavMarketRegion__c</field>
         <readable>true</readable>
@@ -764,11 +754,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>TAG_Inquiry__c.OrganizationNameFromForm__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>TAG_Inquiry__c.Overdue__c</field>
         <readable>true</readable>
@@ -786,11 +771,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>TAG_Inquiry__c.RelatedJobPosting__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>TAG_Inquiry__c.ResolutionTimeInBusinessDays__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
