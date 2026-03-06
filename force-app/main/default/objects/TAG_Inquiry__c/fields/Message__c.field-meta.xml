@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Message__c</fullName>
-    <deprecated>false</deprecated>
-    <description>Beskriv hva henvendelsen gjelder.</description>
+    <description>Melding fra avsender. Hovedinnholdet i henvendelsen.</description>
     <inlineHelpText>Beskriv hva henvendelsen gjelder. Unngå personopplysninger.</inlineHelpText>
     <label>Hva gjelder det?</label>
     <length>32768</length>

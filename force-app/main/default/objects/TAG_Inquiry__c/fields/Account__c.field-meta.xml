@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <deprecated>false</deprecated>
-    <description>Arbeidsgiver henvendelsen gjelder. Kobler henvendelsen til riktig arbeidsgiver/virksomhet i systemet. Settes automatisk ved innsendelse av kontaktskjema basert på organisasjonsnummer, kan også settes manuelt for henvendelser fra andre kilder.</description>
+    <description>Arbeidsgiver henvendelsen gjelder. Kobler henvendelsen til riktig arbeidsgiver/virksomhet i systemet.</description>
     <inlineHelpText>Arbeidsgivervirksomheten henvendelsen gjelder</inlineHelpText>
     <label>Account</label>
     <referenceTo>Account</referenceTo>

@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NoPersonInformation__c</fullName>
     <defaultValue>false</defaultValue>
-    <deprecated>false</deprecated>
-    <description>Markør for at det ikke er skrevet personinformasjon i fritekstfelt. Foreløpig ikke i bruk i produksjon. Skal krysses av dersom man skriver fritekst i Message__c uten personopplysninger. Tenkt brukt for å styre tilgangskontroll og logging (GDPR-compliance).</description>
+    <description>Markør for at det ikke er skrevet personinformasjon i fritekstfelt. Skal krysses av dersom man skriver fritekst.</description>
     <label>No Person Information</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
