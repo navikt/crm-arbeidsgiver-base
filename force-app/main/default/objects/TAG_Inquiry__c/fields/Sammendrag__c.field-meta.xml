@@ -3,7 +3,7 @@
     <fullName>Sammendrag__c</fullName>
     <description>Automatisk generert sammendrag av henvendelsen for listevisninger. Brukes foir brukervennlighet i listevisninger med begrenset plass.</description>
     <externalId>false</externalId>
-    <formula>CASE(Stage__c, 
+    <formula>CASE(Status__c, 
     &apos;Ny henvendelse&apos;, 
         IF(
             Is_Assigned__c, 

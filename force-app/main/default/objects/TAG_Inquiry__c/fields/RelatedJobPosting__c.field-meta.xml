@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Kobling til den konkrete stillingen det søkes rekrutteringshjelp til. Settes automatisk kun når henvendelsen kommer fra Arbeidsplassen.no.</description>
     <inlineHelpText>Stillingsannonsen henvendelsen gjelder (settes automatisk fra Arbeidsplassen.no)</inlineHelpText>
-    <label>Relatert stilling</label>
+    <label>Related Job Posting</label>
     <referenceTo>JobPosting__c</referenceTo>
     <relationshipLabel>Job Postings (Henvendelser)</relationshipLabel>
     <relationshipName>JobPostings_Henvendelser</relationshipName>

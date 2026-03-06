@@ -2,8 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ClosingComment__c</fullName>
     <description>Samtalereferat eller notat. Kan legges inn manuelt av brukeren når saken lukkes.</description>
-    <label>Referat</label>
-    <length>32768</length>
+    <inlineHelpText>Maks 500 tegn. Ingen personopplysninger</inlineHelpText>
+    <label>Closing Comment</label>
+    <length>500</length>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>

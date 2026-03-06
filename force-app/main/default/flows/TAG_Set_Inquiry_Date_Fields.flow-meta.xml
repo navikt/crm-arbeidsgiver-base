@@ -198,7 +198,7 @@
             </value>
         </filters>
         <filters>
-            <field>Stage__c</field>
+            <field>Status__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Fullført</stringValue>

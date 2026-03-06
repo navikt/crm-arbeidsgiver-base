@@ -3,7 +3,7 @@
     <fullName>ClosedReason__c</fullName>
     <description>Årsak til hvorfor henvendelsen ble lukket og henvendelsens utfall. Må fylles ut når Stage__c settes til Lukket eller tilsvarende sluttstatus. Brukes i rapporter for å analysere henvendelsesutfall og effektivitet.</description>
     <inlineHelpText>Velg årsak til lukking av henvendelsen. Påkrevd ved avslutning.</inlineHelpText>
-    <label>Resultat</label>
+    <label>Closed Reason</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

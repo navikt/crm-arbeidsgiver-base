@@ -3,7 +3,7 @@
     <fullName>Overdue__c</fullName>
     <description>Indikerer at svarfristen (DueDate__c) har passert uten at henvendelsen er lukket.</description>
     <formula>AND(
-OR( ISPICKVAL(Stage__c,&quot;Ny henvendelse&quot;), ISPICKVAL(Stage__c,&quot;Under arbeid&quot;)),
+OR( ISPICKVAL(Status__c,&quot;Ny henvendelse&quot;), ISPICKVAL(Status__c,&quot;Under arbeid&quot;)),
 DueDate__c &lt; TODAY()
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

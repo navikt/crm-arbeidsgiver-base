@@ -14,7 +14,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>recordId.Stage__c</assignToReference>
+            <assignToReference>recordId.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Ny henvendelse</stringValue>
@@ -44,7 +44,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>recordId.Stage__c</assignToReference>
+            <assignToReference>recordId.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Ny henvendelse</stringValue>
