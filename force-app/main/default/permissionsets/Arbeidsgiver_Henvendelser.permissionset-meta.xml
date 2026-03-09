@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>InquiryAssignmentController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Tilgang til å se og oppdatere henvendelser fra arbeidsgivere</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomOpportunity__c.TAG_EmployerInquiry__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.Account__c</field>
@@ -33,7 +42,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>EmployerInquiry__c.IsMyNavMarketRegion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmployerInquiry__c.IsMyNavRegion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmployerInquiry__c.IsMyNavUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmployerInquiry__c.Is_Assigned__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>EmployerInquiry__c.Message__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmployerInquiry__c.MunicipalityNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -59,6 +93,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.RelatedJobPosting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmployerInquiry__c.Sammendrag__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

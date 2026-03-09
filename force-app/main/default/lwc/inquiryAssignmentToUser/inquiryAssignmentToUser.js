@@ -1,8 +1,6 @@
 import { LightningElement, api } from 'lwc';
-import { updateRecord } from 'lightning/uiRecordApi';
-import ID_FIELD from '@salesforce/schema/EmployerInquiry__c.Id';
-import OWNER_FIELD from '@salesforce/schema/EmployerInquiry__c.OwnerId';
-import currentUserId from '@salesforce/user/Id';
+import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
+import assignToCurrentUser from '@salesforce/apex/InquiryAssignmentController.assignToCurrentUser';
 
 export default class InquiryAssignmentToUser extends LightningElement {
     _recordId;
@@ -27,8 +25,9 @@ export default class InquiryAssignmentToUser extends LightningElement {
 
         this.isExecuting = true;
         try {
-            const newOwnerId = currentUserId;
-            await this.updateRecordOwner(this.recordId, newOwnerId);
+            console.log('Assigning record', this.recordId, 'to current user');
+            await assignToCurrentUser({ recordId: this.recordId });
+            await notifyRecordUpdateAvailable([{ recordId: this.recordId }]);
             this.dispatchEvent(new CustomEvent('success'));
         } catch (error) {
             console.error('Error in inquiryAssignmentToUser:', error);
@@ -36,14 +35,5 @@ export default class InquiryAssignmentToUser extends LightningElement {
         } finally {
             this.isExecuting = false;
         }
-    }
-
-    async updateRecordOwner(recordId, newOwnerId) {
-        const fields = {};
-        fields[ID_FIELD.fieldApiName] = recordId;
-        fields[OWNER_FIELD.fieldApiName] = newOwnerId;
-
-        const recordInput = { fields };
-        await updateRecord(recordInput);
     }
 }
