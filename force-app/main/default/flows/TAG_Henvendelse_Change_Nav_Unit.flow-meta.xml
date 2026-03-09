@@ -180,7 +180,7 @@
         </fields>
         <fields>
             <name>Selection_summary</name>
-            <fieldText>&lt;p&gt;Når du trykker på lagre vil henvendelsen sendes til &lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!Selected_Nav_Unit.recordName}&lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Status vil settes til &lt;strong&gt;{!recordId.Stage__c} &lt;/strong&gt;og om noen er tildelt denne henvendelsen så vil de fjernes&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Når du trykker på lagre vil henvendelsen sendes til &lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!Selected_Nav_Unit.recordName}&lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Status vil settes til &lt;strong&gt;{!recordId.Status__c} &lt;/strong&gt;og om noen er tildelt denne henvendelsen så vil de fjernes&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
