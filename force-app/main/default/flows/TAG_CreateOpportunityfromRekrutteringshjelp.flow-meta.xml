@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Add_candidate_outcome_record_to_collection</name>
+        <label>Add candidate outcome record to collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CandidateOutcomeCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Run_through_candidate_outcome_list</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Run_through_candidate_outcome_list</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_values_for_candidate_outcome</name>
+        <label>Assign values for candidate outcome</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.EngagementType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.EngagementType__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Extent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Extent__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.JobPosting__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Title__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Title__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_candidate_outcome_record_to_collection</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Are_there_Opportunities_already</name>
         <label>Are there Opportunities already?</label>
@@ -68,6 +128,149 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_recruitment_assistance</name>
+        <label>Is recruitment assistance?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Is_status_stopped</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not recruitment assistance</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_recruitment_assistance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Source__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Stillingsregistrering</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecruitmentAssistance__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
+            </connector>
+            <label>Yes is recruitment assistance</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_related_candidate_outcome_list_empty</name>
+        <label>Is related candidate outcome list empty?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Yes list is empty</defaultConnectorLabel>
+        <rules>
+            <name>No_list_has_records</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_related_candidate_outcome</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Run_through_candidate_outcome_list</targetReference>
+            </connector>
+            <label>No list has records</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_status_stopped</name>
+        <label>Is status stopped?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_related_candidate_outcome</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
+        <rules>
+            <name>Status_is_stopped_and_account_is_not_null</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Remove_account_from_job_posting</targetReference>
+            </connector>
+            <label>Status is stopped and account is not null</label>
+        </rules>
+        <rules>
+            <name>Status_not_stopped_and_account_is_null</name>
+            <conditionLogic>1 AND (2 OR 3) AND (4 OR 5)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>STOPPED</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.OrganizationNumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.OrganizationNumber__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_related_account</targetReference>
+            </connector>
+            <label>Status not stopped and account is null</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_there_Account</name>
         <label>Is there Account?</label>
         <locationX>0</locationX>
@@ -97,6 +300,20 @@
     </formulas>
     <interviewLabel>TAG Create Opportunity from Rekrutteringshjelp {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Job Posting</label>
+    <loops>
+        <name>Run_through_candidate_outcome_list</name>
+        <label>Run through candidate outcome list</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_related_candidate_outcome</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_values_for_candidate_outcome</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_candidate_outcome</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -280,39 +497,106 @@
         <object>CustomOpportunity__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_related_account</name>
+        <label>Get related account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_account_to_job_posting</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_OrganizationNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.OrganizationNumber__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_related_candidate_outcome</name>
+        <label>Get related candidate outcome</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_related_candidate_outcome_list_empty</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>JobPostingId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.UUID__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CandidateOutcome__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Add_account_to_job_posting</name>
+        <label>Add account to job posting</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_related_candidate_outcome</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>Get_related_account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Remove_account_from_job_posting</name>
+        <label>Remove account from job posting</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_related_candidate_outcome</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_candidate_outcome</name>
+        <label>Update candidate outcome</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>CandidateOutcomeCollection</inputReference>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
+            <targetReference>Is_recruitment_assistance</targetReference>
         </connector>
-        <filterLogic>1 AND 2 AND 3 AND 4 AND 5</filterLogic>
-        <filters>
-            <field>Source__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Stillingsregistrering</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecruitmentAssistance__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterLogic>1 AND 2</filterLogic>
         <filters>
             <field>Status__c</field>
             <operator>NotEqualTo</operator>
             <value>
                 <stringValue>REJECTED</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <stringValue>STOPPED</stringValue>
             </value>
         </filters>
         <filters>
@@ -327,4 +611,12 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>CandidateOutcomeCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CandidateOutcome__c</objectType>
+    </variables>
 </Flow>
