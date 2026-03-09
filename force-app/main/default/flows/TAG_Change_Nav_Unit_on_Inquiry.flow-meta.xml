@@ -56,7 +56,7 @@
     </assignments>
     <description>Brukes for at bruker skal kunne sende henvendelse til annet kontor. Endrer til valgt Nav enhet, endrer eier til kø og setter status til Ny igjen.</description>
     <environments>Default</environments>
-    <interviewLabel>TAG Henvendelse Assignmen {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>TAG Change Nav Unit on Inquiry {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Change Nav Unit on Inquiry</label>
     <processMetadataValues>
         <name>BuilderType</name>
