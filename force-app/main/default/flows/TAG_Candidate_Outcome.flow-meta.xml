@@ -98,6 +98,45 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_Nav_unit_null</name>
+        <label>Is Nav unit null?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_duplicate</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Nav_unit_is_null</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.NavUnitNumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.NavUnit__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.NavUnit__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Nav_unit</targetReference>
+            </connector>
+            <label>Yes Nav unit is null</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_newest_time_value</name>
         <label>Is newest time value?</label>
         <locationX>0</locationX>
@@ -153,7 +192,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Get_duplicate</targetReference>
+            <targetReference>Is_Nav_unit_null</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No job posting found</defaultConnectorLabel>
         <rules>
@@ -380,13 +419,50 @@
         <object>JobPosting__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Nav_unit</name>
+        <label>Get Nav unit</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Nav_unit_for_candidate_outcome</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_UnitNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.NavUnitNumber__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>NavUnit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_Nav_unit_for_candidate_outcome</name>
+        <label>Set Nav unit for candidate outcome</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_duplicate</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>NavUnit__c</field>
+            <value>
+                <elementReference>Get_Nav_unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <recordUpdates>
         <name>Update_Candidate_Outcome_with_Account</name>
         <label>Update Candidate Outcome with Account</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_duplicate</targetReference>
+            <targetReference>Is_Nav_unit_null</targetReference>
         </connector>
         <inputAssignments>
             <field>Account__c</field>
@@ -426,7 +502,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_duplicate</targetReference>
+            <targetReference>Is_Nav_unit_null</targetReference>
         </connector>
         <inputAssignments>
             <field>EngagementType__c</field>
