@@ -107,19 +107,6 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.NAV_Task__r.CRM_ConversationNote__c</fieldItem>
-                <identifier>RecordNAV_Task_rCRM_ConversationNote_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Source__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Kontaktsenteret</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>readonly</value>
@@ -206,7 +193,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Stage__c</fieldItem>
+                <fieldItem>Record.Status__c</fieldItem>
                 <identifier>RecordStage_cField</identifier>
             </fieldInstance>
         </itemInstances>

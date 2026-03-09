@@ -89,7 +89,7 @@
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true"/>
         <object xsi:nil="true"/>
-        <picklistField>Stage__c</picklistField>
+        <picklistField>Status__c</picklistField>
         <picklistObject>TAG_Inquiry__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
@@ -175,7 +175,7 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Stage__c</field>
+            <field>Status__c</field>
             <value>
                 <elementReference>Status</elementReference>
             </value>

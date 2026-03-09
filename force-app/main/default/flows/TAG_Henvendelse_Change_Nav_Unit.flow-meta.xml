@@ -14,7 +14,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>recordId.Stage__c</assignToReference>
+            <assignToReference>recordId.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Ny henvendelse</stringValue>
@@ -44,7 +44,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>recordId.Stage__c</assignToReference>
+            <assignToReference>recordId.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Ny henvendelse</stringValue>
@@ -118,7 +118,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>ErrorMessage</name>
-            <fieldText>&lt;h2&gt;Kunne ikke lagre endringene&lt;/h2&gt;&lt;p&gt;Vi forsøkte å lagre endringen, men systemet returnerte en feilmelding.&lt;/p&gt;&lt;p&gt;Dette kan være et midlertidig problem, så prøv gjerne igjen.&lt;/p&gt;&lt;p&gt;Hvis feilen dukker opp flere ganger, kontakt support og oppgi følgende:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-family: tahoma; font-size: 12px;&quot;&gt;FaultMessage: &lt;/span&gt;&lt;span style=&quot;font-family: tahoma; font-size: 12px;&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: tahoma;&quot;&gt;RecordId: {!recordId.Id}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: tahoma;&quot;&gt;Input values: {!&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-family: tahoma;&quot;&gt;recordId&lt;/span&gt;&lt;span style=&quot;font-family: tahoma;&quot;&gt;.NavUnit__c}, {!recordId.Stage__c}, {!recordId.OwnerId}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;h2&gt;Kunne ikke lagre endringene&lt;/h2&gt;&lt;p&gt;Vi forsøkte å lagre endringen, men systemet returnerte en feilmelding.&lt;/p&gt;&lt;p&gt;Dette kan være et midlertidig problem, så prøv gjerne igjen.&lt;/p&gt;&lt;p&gt;Hvis feilen dukker opp flere ganger, kontakt support og oppgi følgende:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-family: tahoma; font-size: 12px;&quot;&gt;FaultMessage: &lt;/span&gt;&lt;span style=&quot;font-family: tahoma; font-size: 12px;&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: tahoma;&quot;&gt;RecordId: {!recordId.Id}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: tahoma;&quot;&gt;Input values: {!&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-family: tahoma;&quot;&gt;recordId&lt;/span&gt;&lt;span style=&quot;font-family: tahoma;&quot;&gt;.NavUnit__c}, {!recordId.Status__c}, {!recordId.OwnerId}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -180,7 +180,7 @@
         </fields>
         <fields>
             <name>Selection_summary</name>
-            <fieldText>&lt;p&gt;Når du trykker på lagre vil henvendelsen sendes til &lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!Selected_Nav_Unit.recordName}&lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Status vil settes til &lt;strong&gt;{!recordId.Stage__c} &lt;/strong&gt;og om noen er tildelt denne henvendelsen så vil de fjernes&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Når du trykker på lagre vil henvendelsen sendes til &lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!Selected_Nav_Unit.recordName}&lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Status vil settes til &lt;strong&gt;{!recordId.Status__c} &lt;/strong&gt;og om noen er tildelt denne henvendelsen så vil de fjernes&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>

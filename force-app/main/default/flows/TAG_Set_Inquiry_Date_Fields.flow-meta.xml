@@ -121,14 +121,14 @@
             <name>Stage_was_updated_to_resolved</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <leftValueReference>$Record.Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Fullført</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <leftValueReference>$Record.Status__c</leftValueReference>
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -198,7 +198,7 @@
             </value>
         </filters>
         <filters>
-            <field>Stage__c</field>
+            <field>Status__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Fullført</stringValue>

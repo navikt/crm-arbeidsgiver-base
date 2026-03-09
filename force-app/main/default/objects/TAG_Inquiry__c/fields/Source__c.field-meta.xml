@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Source__c</fullName>
-    <deprecated>false</deprecated>
-    <description>Kanal/kilde henvendelsen kom fra. Settes automatisk av jobber/flows som oppretter henvendelsen. Mulige verdier: Kontaktskjema (fra nav.no), Arbeidsplassen.no (fra stillingsannonse), Kontaktsenteret (fra AG-telefonen). Brukes i rapporter for kanalanalyse og effektivitetsmåling.</description>
+    <description>Kanal/kilde henvendelsen kom fra. Settes automatisk av jobber/flows som oppretter henvendelsen.</description>
     <inlineHelpText>Hvilken kanal henvendelsen kom fra (settes automatisk)</inlineHelpText>
     <label>Source</label>
     <required>false</required>

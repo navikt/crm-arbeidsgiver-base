@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Velg årsak til lukking av henvendelsen. Påkrevd ved avslutning.</help>
+    <label>Resultat</label>
+    <name>ClosedReason__c</name>
+    <picklistValues>
+        <masterLabel>Annet</masterLabel>
+        <translation><!-- Annet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Feilregistrering/duplikat</masterLabel>
+        <translation><!-- Feilregistrering/duplikat --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ikke kontakt - Forsøkt flere ganger</masterLabel>
+        <translation><!-- Ikke kontakt - Forsøkt flere ganger --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ikke kontakt - Ugyldig kontaktinfo</masterLabel>
+        <translation><!-- Ikke kontakt - Ugyldig kontaktinfo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kontaktet - Avtalt møte</masterLabel>
+        <translation><!-- Kontaktet - Avtalt møte --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kontaktet - Henvist videre</masterLabel>
+        <translation><!-- Kontaktet - Henvist videre --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kontaktet - Ikke behov nå</masterLabel>
+        <translation><!-- Kontaktet - Ikke behov nå --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kontaktet - Informasjon gitt</masterLabel>
+        <translation><!-- Kontaktet - Informasjon gitt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kontaktet - Opprettet mulighet</masterLabel>
+        <translation><!-- Kontaktet - Opprettet mulighet --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
