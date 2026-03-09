@@ -5,7 +5,7 @@ export default class TimelineInquiryDetails extends LightningElement {
     @api recordId;
     @api logEvent;
 
-    sObjectType = 'TAG_Inquiry__c';
+    sObjectType = 'EmployerInquiry__c';
 
     /*
     Not needed when using lightning-record-form, but can be used for custom rendering if needed

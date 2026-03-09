@@ -1,9 +1,9 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { updateRecord } from 'lightning/uiRecordApi';
-import ID_FIELD from '@salesforce/schema/TAG_Inquiry__c.Id';
-import OWNER_FIELD from '@salesforce/schema/TAG_Inquiry__c.OwnerId';
-import QUEUEID_FIELD from '@salesforce/schema/TAG_Inquiry__c.NavUnit__r.CRM_QueueId__c';
+import ID_FIELD from '@salesforce/schema/EmployerInquiry__c.Id';
+import OWNER_FIELD from '@salesforce/schema/EmployerInquiry__c.OwnerId';
+import QUEUEID_FIELD from '@salesforce/schema/EmployerInquiry__c.NavUnit__r.CRM_QueueId__c';
 
 export default class InquiryUnassignment extends LightningElement {
     _recordId;

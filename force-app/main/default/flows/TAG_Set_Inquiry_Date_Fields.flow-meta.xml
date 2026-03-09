@@ -211,7 +211,7 @@
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>

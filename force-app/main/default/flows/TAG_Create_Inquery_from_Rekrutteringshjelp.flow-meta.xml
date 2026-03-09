@@ -89,6 +89,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <description>Oppretter henvendelse når arbeidsgiver ønsker bistand i forbindelse med en stilling registrert på arbeidsplassen.no</description>
     <environments>Default</environments>
     <formulas>
         <name>InquiryTitle</name>
@@ -186,7 +187,7 @@
                 <stringValue>Ny henvendelse</stringValue>
             </value>
         </inputAssignments>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
@@ -231,7 +232,7 @@
             <field>SobjectType</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>TAG_Inquiry__c</stringValue>
+                <stringValue>EmployerInquiry__c</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -256,7 +257,7 @@
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>

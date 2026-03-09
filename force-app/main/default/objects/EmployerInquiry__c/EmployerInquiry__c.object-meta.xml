@@ -143,7 +143,6 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>Custom_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <description>Representerer henvendelser fra arbeidsgivere til NAV</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -155,13 +154,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Henvendelse</label>
+    <label>Employer Inquiry</label>
     <nameField>
-        <label>Henvendelse</label>
+        <label>Employer Inquiry</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Henvendelser</pluralLabel>
+    <pluralLabel>Employer Inquiries</pluralLabel>
     <searchLayouts>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
         <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
@@ -173,5 +172,6 @@
         <searchResultsAdditionalFields>ActivityType__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

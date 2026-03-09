@@ -6,7 +6,6 @@
     <inlineHelpText>Stillingsannonsen henvendelsen gjelder (settes automatisk fra Arbeidsplassen.no)</inlineHelpText>
     <label>Related Job Posting</label>
     <referenceTo>JobPosting__c</referenceTo>
-    <relationshipLabel>Job Postings (Henvendelser)</relationshipLabel>
     <relationshipName>JobPostings_Henvendelser</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

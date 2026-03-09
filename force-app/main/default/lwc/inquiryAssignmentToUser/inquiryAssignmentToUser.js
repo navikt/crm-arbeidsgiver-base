@@ -1,7 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import { updateRecord } from 'lightning/uiRecordApi';
-import ID_FIELD from '@salesforce/schema/TAG_Inquiry__c.Id';
-import OWNER_FIELD from '@salesforce/schema/TAG_Inquiry__c.OwnerId';
+import ID_FIELD from '@salesforce/schema/EmployerInquiry__c.Id';
+import OWNER_FIELD from '@salesforce/schema/EmployerInquiry__c.OwnerId';
 import currentUserId from '@salesforce/user/Id';
 
 export default class InquiryAssignmentToUser extends LightningElement {

@@ -50,7 +50,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>opportunity.TAG_Inquiry__c</assignToReference>
+            <assignToReference>opportunity.TAG_EmployerInquiry__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>recordId.Id</elementReference>
@@ -75,14 +75,14 @@
             <elementReference>opportunity.Result__c</elementReference>
         </value>
     </choices>
-    <description>Used in quick action on TAG_Inquiry__c to convert inquiry to custom opportunity. Relevant fields from the inquiry are copied to the new opportunity. The inquiry reference is stored as lookup field on opportunity. Exceptions on create and update elements will display error messages to user.</description>
+    <description>Used in quick action on EmployerInquiry__c to convert inquiry to custom opportunity. Relevant fields from the inquiry are copied to the new opportunity. The inquiry reference is stored as lookup field on opportunity. Exceptions on create and update elements will display error messages to user.</description>
     <dynamicChoiceSets>
         <name>InquiryResultChices</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true"/>
         <object xsi:nil="true"/>
         <picklistField>ClosedReason__c</picklistField>
-        <picklistObject>TAG_Inquiry__c</picklistObject>
+        <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>InquiryStatuses</name>
@@ -90,7 +90,7 @@
         <displayField xsi:nil="true"/>
         <object xsi:nil="true"/>
         <picklistField>Status__c</picklistField>
-        <picklistObject>TAG_Inquiry__c</picklistObject>
+        <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
@@ -110,7 +110,7 @@
 &amp;&apos;,INT_MunicipalityNumber__c=&apos;&amp;{!opportunity.INT_MunicipalityNumber__c}
 &amp;&apos;,Source__c=&apos;&amp;TEXT({!opportunity.Source__c})
 &amp;&apos;,InclusionStage__c=&apos;&amp;TEXT({!opportunity.InclusionStage__c})
-&amp;&apos;,TAG_Inquiry__c=&apos;&amp;{!opportunity.TAG_Inquiry__c}</expression>
+&amp;&apos;,TAG_EmployerInquiry__c=&apos;&amp;{!opportunity.TAG_EmployerInquiry__c}</expression>
     </formulas>
     <interviewLabel>TAG Close Inquiry &amp; Create Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Close Inquiry &amp; Create Opportunity</label>
@@ -180,7 +180,7 @@
                 <elementReference>Status</elementReference>
             </value>
         </inputAssignments>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
     </recordUpdates>
     <screens>
         <name>CreateOpportunityFaultScreen</name>
@@ -566,6 +566,6 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>TAG_Inquiry__c</objectType>
+        <objectType>EmployerInquiry__c</objectType>
     </variables>
 </Flow>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Record page for arbeidsgiverhenvendelser. Viser kildebaserte seksjoner for Kontaktsenteret, Arbeidsplassen.no og Kontaktskjema.</description>
+    <description>Record page for arbeidsgiverhenvendelser.</description>
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -26,13 +26,13 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>TAG_Inquiry__c.TAG_CloseInquiry</value>
+                            <value>EmployerInquiry__c.TAG_CloseInquiry</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Inquiry__c.TAG_Close_Inquiry_Create_Opportunity</value>
+                            <value>EmployerInquiry__c.TAG_Close_Inquiry_Create_Opportunity</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Inquiry__c.TAG_Assign_to_me_lwc</value>
+                            <value>EmployerInquiry__c.TAG_Assign_to_me_lwc</value>
                             <visibilityRule>
                                 <criteria>
                                     <leftValue>{!Record.Is_Assigned__c}</leftValue>
@@ -42,10 +42,10 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Inquiry__c.TAG_Unasign_from_me_lwc</value>
+                            <value>EmployerInquiry__c.TAG_Unasign_from_me_lwc</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>TAG_Inquiry__c.Change_Nav_Unit</value>
+                            <value>EmployerInquiry__c.Change_Nav_Unit</value>
                         </valueListItems>
                         <valueListItems>
                             <value>ChangeOwnerOne</value>
@@ -412,7 +412,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
-                    <value>TAG_Inquiry__c.Id</value>
+                    <value>EmployerInquiry__c.Id</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListApiName</name>
@@ -466,8 +466,8 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Henvendelse</masterLabel>
-    <sobjectType>TAG_Inquiry__c</sobjectType>
+    <masterLabel>Employer Inquiry</masterLabel>
+    <sobjectType>EmployerInquiry__c</sobjectType>
     <template>
         <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
         <properties>

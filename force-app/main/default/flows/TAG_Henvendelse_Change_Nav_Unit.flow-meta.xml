@@ -57,7 +57,7 @@
     <description>Brukes for at bruker skal kunne sende henvendelse til annet kontor. Endrer til valgt Nav enhet, endrer eier til kø og setter status til Ny igjen.</description>
     <environments>Default</environments>
     <interviewLabel>TAG Henvendelse Assignmen {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>TAG Henvendelse Change Nav Unit</label>
+    <label>TAG Change Nav Unit on Inquiry</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -159,7 +159,7 @@
             <inputParameters>
                 <name>objectApiName</name>
                 <value>
-                    <stringValue>TAG_Inquiry__c</stringValue>
+                    <stringValue>EmployerInquiry__c</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -217,6 +217,6 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>TAG_Inquiry__c</objectType>
+        <objectType>EmployerInquiry__c</objectType>
     </variables>
 </Flow>

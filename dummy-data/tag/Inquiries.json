@@ -2,8 +2,8 @@
     "records": [
         {
             "attributes": {
-                "type": "TAG_Inquiry__c",
-                "referenceId": "TAG_Inquiry__cRef1"
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef1"
             },
             "Name": "Ønsker rekrutteringshjelp til stilling",
             "Account__c": "@AccountRef17",
@@ -17,8 +17,8 @@
         },
         {
             "attributes": {
-                "type": "TAG_Inquiry__c",
-                "referenceId": "TAG_Inquiry__cRef2"
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef2"
             },
             "Name": "Ønsker hjelp til å rekruttere og inkludere arbeidstakere",
             "Account__c": "@AccountRef17",
@@ -31,8 +31,8 @@
         },
         {
             "attributes": {
-                "type": "TAG_Inquiry__c",
-                "referenceId": "TAG_Inquiry__cRef3"
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef3"
             },
             "Name": "Ønsker å bidra til ungdomsløftet",
             "Account__c": "@AccountRef17",
@@ -45,8 +45,8 @@
         },
         {
             "attributes": {
-                "type": "TAG_Inquiry__c",
-                "referenceId": "TAG_Inquiry__cRef4"
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef4"
             },
             "Name": "Ønsker hjelp til å forebygge sykefravær",
             "Account__c": "@AccountRef17",

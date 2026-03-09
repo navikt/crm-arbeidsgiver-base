@@ -218,7 +218,7 @@
                 <stringValue>Kontaktskjema</stringValue>
             </value>
         </filters>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>

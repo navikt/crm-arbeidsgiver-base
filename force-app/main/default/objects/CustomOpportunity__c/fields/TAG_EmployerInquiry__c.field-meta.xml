@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_Inquiry__c</fullName>
+    <fullName>TAG_EmployerInquiry__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Settes ved konvertering av henvendelse til mulighet for å spore kilde</description>
-    <label>Inquiry</label>
-    <referenceTo>TAG_Inquiry__c</referenceTo>
+    <label>Employer Inquiry</label>
+    <referenceTo>EmployerInquiry__c</referenceTo>
     <relationshipLabel>Custom Opportunities</relationshipLabel>
     <relationshipName>Custom_Opportunities</relationshipName>
     <required>false</required>
