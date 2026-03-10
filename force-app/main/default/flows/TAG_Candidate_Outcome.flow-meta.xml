@@ -356,10 +356,17 @@
                 <elementReference>$Record.JobPostingId__c</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>Result__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>FATT_JOBBEN</stringValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>CandidateOutcome__c</object>
-        <sortField>Result__c</sortField>
-        <sortOrder>Asc</sortOrder>
+        <sortField>TimeRegistered__c</sortField>
+        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -483,6 +490,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>JobPostingStatus__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Status__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>JobPosting__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Id</elementReference>
@@ -514,6 +527,12 @@
             <field>Extent__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>JobPostingStatus__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Status__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
