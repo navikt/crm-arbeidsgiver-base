@@ -75,6 +75,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.TAG_NumberOfEmploymentPlacementPresented__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.TAG_NumberOfEmploymentPlacement__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -190,7 +195,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.OrganizationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.Result__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CandidateOutcome__c.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -201,6 +216,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CandidateOutcome__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CandidateOutcome__c.TriggerUpdate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

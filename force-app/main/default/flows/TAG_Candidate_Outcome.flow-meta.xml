@@ -18,6 +18,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Count_returned_presented_records</name>
+        <label>Count returned presented records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>countedPresentedEmploymentPlacement</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_presented_empl_plac_for_related_account</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_related_Account_with_Presented_emp_plac</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Count_returned_records</name>
         <label>Count returned records</label>
         <locationX>0</locationX>
@@ -71,7 +87,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Get_employment_placement_for_related_account</targetReference>
+            <targetReference>Get_presented_empl_plac_for_related_account</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -103,7 +119,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Get_duplicate</targetReference>
+            <targetReference>What_category</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -268,6 +284,83 @@
             <label>Yes and not related to Account</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>What_category</name>
+        <label>What category?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>What_result</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Formidling</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Category__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FORMIDLING</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_type_etterregistrering</targetReference>
+            </connector>
+            <label>Formidling</label>
+        </rules>
+        <rules>
+            <name>Stilling</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Category__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>STILLING</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_type</targetReference>
+            </connector>
+            <label>Stilling</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>What_result</name>
+        <label>What result?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Presented</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>PRESENTERT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_duplicate</targetReference>
+            </connector>
+            <label>Presented</label>
+        </rules>
+        <rules>
+            <name>Got_the_job</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FATT_JOBBEN</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_employment_placement_for_related_account</targetReference>
+            </connector>
+            <label>Got the job</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
@@ -282,7 +375,7 @@
             <targetReference>Count_loop_run</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Get_employment_placement_for_related_account</targetReference>
+            <targetReference>Get_presented_empl_plac_for_related_account</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -358,9 +451,9 @@
         </filters>
         <filters>
             <field>Result__c</field>
-            <operator>NotEqualTo</operator>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue>FATT_JOBBEN</stringValue>
+                <stringValue>PRESENTERT</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -447,18 +540,86 @@
         <object>NavUnit__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_presented_empl_plac_for_related_account</name>
+        <label>Get presented empl.plac for related account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Count_returned_presented_records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account__r.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Result__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>PRESENTERT</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Duplicate__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CandidateOutcome__c</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Set_Nav_unit_for_candidate_outcome</name>
         <label>Set Nav unit for candidate outcome</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_duplicate</targetReference>
+            <targetReference>What_category</targetReference>
         </connector>
         <inputAssignments>
             <field>NavUnit__c</field>
             <value>
                 <elementReference>Get_Nav_unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_type</name>
+        <label>Set type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_result</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>Stillingsoppdrag</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_type_etterregistrering</name>
+        <label>Set type etterregistrering</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_result</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>Etterregistrering</stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -502,6 +663,18 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>OrganizationNumber__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.OrganizationNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Source__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Source__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Title__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Title__c</elementReference>
@@ -539,6 +712,18 @@
             <field>JobPosting__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OrganizationNumber__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.OrganizationNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Source__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Source__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -584,6 +769,19 @@
         </inputAssignments>
         <inputReference>$Record.Account__r</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_related_Account_with_Presented_emp_plac</name>
+        <label>Update related Account with Presented emp.plac</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>TAG_NumberOfEmploymentPlacementPresented__c</field>
+            <value>
+                <elementReference>countedPresentedEmploymentPlacement</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Account__r</inputReference>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -605,6 +803,14 @@
     <status>Active</status>
     <variables>
         <name>countedEmploymentPlacement</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>countedPresentedEmploymentPlacement</name>
         <dataType>Number</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
