@@ -77,7 +77,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CandidateOutcome__c.OrganizationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CandidateOutcome__c.Result__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CandidateOutcome__c.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -88,6 +98,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CandidateOutcome__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CandidateOutcome__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
