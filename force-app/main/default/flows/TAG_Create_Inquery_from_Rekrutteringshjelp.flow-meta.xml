@@ -128,19 +128,19 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <inputAssignments>
-            <field>Account__c</field>
+            <field>TAG_Account__c</field>
             <value>
                 <elementReference>$Record.Account__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>ActivityType__c</field>
+            <field>TAG_ActivityType__c</field>
             <value>
                 <stringValue>Rekruttere og inkludere</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Message__c</field>
+            <field>TAG_Message__c</field>
             <value>
                 <elementReference>NotesWithTlfNumber</elementReference>
             </value>
@@ -152,7 +152,7 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>NavUnit__c</field>
+            <field>TAG_NavUnit__c</field>
             <value>
                 <elementReference>Get_Nav_Unit.Id</elementReference>
             </value>
@@ -164,25 +164,25 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>RelatedJobPosting__c</field>
+            <field>TAG_RelatedJobPosting__c</field>
             <value>
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Service__c</field>
+            <field>TAG_Service__c</field>
             <value>
                 <stringValue>Rekrutteringsoppdrag</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Source__c</field>
+            <field>TAG_Source__c</field>
             <value>
                 <stringValue>Arbeidsplassen.no</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Status__c</field>
+            <field>TAG_Status__c</field>
             <value>
                 <stringValue>Ny henvendelse</stringValue>
             </value>
@@ -250,7 +250,7 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>RelatedJobPosting__c</field>
+            <field>TAG_RelatedJobPosting__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.Id</elementReference>

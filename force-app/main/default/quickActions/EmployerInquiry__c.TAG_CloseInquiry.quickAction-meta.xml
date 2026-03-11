@@ -2,7 +2,7 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Enkel dialog for å lukke henvendelsen</description>
     <fieldOverrides>
-        <field>Status__c</field>
+        <field>TAG_Status__c</field>
         <literalValue>Fullført</literalValue>
     </fieldOverrides>
     <label>Lukk henvendelse</label>
@@ -12,21 +12,21 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Status__c</field>
+                <field>TAG_Status__c</field>
                 <uiBehavior>Readonly</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>ClosedReason__c</field>
+                <field>TAG_ClosedReason__c</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>ClosingComment__c</field>
+                <field>TAG_ClosingComment__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
-        <quickActionLayoutColumns/>
+        <quickActionLayoutColumns />
     </quickActionLayout>
     <successMessage>Henvendelsen er fullført!</successMessage>
     <type>Update</type>

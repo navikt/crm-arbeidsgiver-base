@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>66.0</apiVersion>
     <assignments>
         <description>Fyller ut verdier på mulighet før den vises i screen</description>
@@ -11,28 +12,28 @@
             <assignToReference>opportunity.Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.Account__c</elementReference>
+                <elementReference>recordId.TAG_Account__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>opportunity.Contact__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.Contact__c</elementReference>
+                <elementReference>recordId.TAG_Contact__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>opportunity.TAG_NavUnit__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.NavUnit__c</elementReference>
+                <elementReference>recordId.TAG_NavUnit__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>opportunity.INT_MunicipalityNumber__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.MunicipalityNumber__c</elementReference>
+                <elementReference>recordId.TAG_MunicipalityNumber__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -79,24 +80,24 @@
     <dynamicChoiceSets>
         <name>InquiryResultChices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
-        <picklistField>ClosedReason__c</picklistField>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>TAG_ClosedReason__c</picklistField>
         <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>InquiryStatuses</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
-        <picklistField>Status__c</picklistField>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>TAG_Status__c</picklistField>
         <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
         <name>ActivityTypeToOpportunityCategoryMapping</name>
         <dataType>String</dataType>
-        <expression>CASE( TEXT({!recordId.ActivityType__c}),
+        <expression>CASE( TEXT({!recordId.TAG_ActivityType__c}),
 &apos;Rekruttere og inkludere&apos;, &apos;Skal ansette&apos;,
 &apos;Forebygge sykefravær og redusere frafall&apos;, &apos;Forebygge sykefravær&apos;,
 &apos;&apos;)</expression>
@@ -163,19 +164,19 @@
             </value>
         </filters>
         <inputAssignments>
-            <field>ClosedReason__c</field>
+            <field>TAG_ClosedReason__c</field>
             <value>
                 <elementReference>CloseReason</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>ClosingComment__c</field>
+            <field>TAG_ClosingComment__c</field>
             <value>
                 <elementReference>ClosingComment</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Status__c</field>
+            <field>TAG_Status__c</field>
             <value>
                 <elementReference>Status</elementReference>
             </value>
@@ -212,12 +213,17 @@
         </fields>
         <fields>
             <name>CreateOpportunityFaultMessage2</name>
-            <fieldText>&lt;p&gt;Henvendelsen ble lukket, men vi kunne desverre ikke opprette ny mulighet.&lt;/p&gt;&lt;p&gt;Du kan opprette mulighet manuelt via denne linken:&lt;strong&gt; &lt;/strong&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!Ny_mulighet_link}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Henvendelsen ble lukket, men vi kunne desverre ikke opprette ny
+                mulighet.&lt;/p&gt;&lt;p&gt;Du kan opprette mulighet manuelt via denne
+                linken:&lt;strong&gt; &lt;/strong&gt;&lt;strong style=&quot;background-color:
+                rgb(255, 255, 255);&quot;&gt;{!Ny_mulighet_link}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
             <name>CreateOpportunityFaultMessage3</name>
-            <fieldText>&lt;p&gt;Tekniske detaljer:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: courier; font-size: 11px;&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Tekniske detaljer:&lt;/p&gt;&lt;p&gt;&lt;span
+                style=&quot;font-family: courier; font-size:
+                11px;&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -284,7 +290,7 @@
                 <fields>
                     <name>ClosingComment</name>
                     <defaultValue>
-                        <stringValue>{!recordId.ClosingComment__c}</stringValue>
+                        <stringValue>{!recordId.TAG_ClosingComment__c}</stringValue>
                     </defaultValue>
                     <fieldText>Referat</fieldText>
                     <fieldType>LargeTextArea</fieldType>

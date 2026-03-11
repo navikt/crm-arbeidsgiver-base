@@ -30,12 +30,12 @@
                             <visibilityRule>
                                 <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
                                 <criteria>
-                                    <leftValue>{!Record.Is_Assigned__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -46,12 +46,12 @@
                             <visibilityRule>
                                 <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
                                 <criteria>
-                                    <leftValue>{!Record.Is_Assigned__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -62,12 +62,12 @@
                             <visibilityRule>
                                 <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
-                                    <leftValue>{!Record.Is_Assigned__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>false</rightValue>
                                 </criteria>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
@@ -78,12 +78,12 @@
                             <visibilityRule>
                                 <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
-                                    <leftValue>{!Record.Is_Assigned__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
@@ -93,7 +93,7 @@
                             <value>EmployerInquiry__c.Change_Nav_Unit</value>
                             <visibilityRule>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
@@ -104,12 +104,12 @@
                             <visibilityRule>
                                 <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
                                 <criteria>
-                                    <leftValue>{!Record.Is_Assigned__c}</leftValue>
+                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -147,7 +147,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Account__c</fieldItem>
+                <fieldItem>Record.TAG_Account__c</fieldItem>
                 <identifier>RecordAccount_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -157,13 +157,13 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Contact__c</fieldItem>
+                <fieldItem>Record.TAG_Contact__c</fieldItem>
                 <identifier>RecordContact_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Contact__r.TAG_MobileEmail__c</fieldItem>
+                <fieldItem>Record.TAG_Contact__r.TAG_MobileEmail__c</fieldItem>
                 <identifier>RecordContact_rTAG_MobileEmail_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -173,7 +173,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Message__c</fieldItem>
+                <fieldItem>Record.TAG_Message__c</fieldItem>
                 <identifier>RecordMessage_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -187,8 +187,8 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.RecievedDateTime__c</fieldItem>
-                <identifier>RecordRecievedDateTime__cField</identifier>
+                <fieldItem>Record.TAG_RecievedDateTime__c</fieldItem>
+                <identifier>RecordTAG_RecievedDateTime__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -197,7 +197,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Source__c</fieldItem>
+                <fieldItem>Record.TAG_Source__c</fieldItem>
                 <identifier>RecordTAG_Source_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -207,7 +207,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.ActivityType__c</fieldItem>
+                <fieldItem>Record.TAG_ActivityType__c</fieldItem>
                 <identifier>RecordCRM_Theme_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -217,7 +217,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Service__c</fieldItem>
+                <fieldItem>Record.TAG_Service__c</fieldItem>
                 <identifier>RecordCRM_SubTheme_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -255,7 +255,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Status__c</fieldItem>
+                <fieldItem>Record.TAG_Status__c</fieldItem>
                 <identifier>RecordStage_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -275,7 +275,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.ClosingComment__c</fieldItem>
+                <fieldItem>Record.TAG_ClosingComment__c</fieldItem>
                 <identifier>RecordClosingComment_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -289,7 +289,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.DueDate__c</fieldItem>
+                <fieldItem>Record.TAG_DueDate__c</fieldItem>
                 <identifier>RecordCRM_DueDate_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -299,7 +299,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.NavUnit__c</fieldItem>
+                <fieldItem>Record.TAG_NavUnit__c</fieldItem>
                 <identifier>RecordCRM_NavUnit_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -309,7 +309,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.ClosedReason__c</fieldItem>
+                <fieldItem>Record.TAG_ClosedReason__c</fieldItem>
                 <identifier>RecordTAG_ClosedReason_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -383,25 +383,25 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.RelatedJobPosting__r.Extent__c</fieldItem>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.Extent__c</fieldItem>
                 <identifier>RecordTAG_JobPosting_rExtent_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.RelatedJobPosting__r.EngagementType__c</fieldItem>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.EngagementType__c</fieldItem>
                 <identifier>RecordTAG_JobPosting_rEngagementType_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.RelatedJobPosting__r.Link_to_position__c</fieldItem>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.Link_to_position__c</fieldItem>
                 <identifier>RecordTAG_JobPosting_rLink_to_position_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.RelatedJobPosting__r.Linkt_to_Rekrutteringsbistand__c</fieldItem>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.Linkt_to_Rekrutteringsbistand__c</fieldItem>
                 <identifier>RecordTAG_JobPosting_rLinkt_to_Rekrutteringsbistand_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -411,7 +411,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.RelatedJobPosting__c</fieldItem>
+                <fieldItem>Record.TAG_RelatedJobPosting__c</fieldItem>
                 <identifier>RecordTAG_JobPosting_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -451,7 +451,7 @@
                 <identifier>flexipage_fieldSection2</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Source__c}</leftValue>
+                        <leftValue>{!Record.TAG_Source__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Arbeidsplassen.no</rightValue>
                     </criteria>
@@ -518,7 +518,7 @@
                 <identifier>lst_dynamicRelatedList</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.ClosedReason__c}</leftValue>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Kontaktet - Opprettet mulighet</rightValue>
                     </criteria>

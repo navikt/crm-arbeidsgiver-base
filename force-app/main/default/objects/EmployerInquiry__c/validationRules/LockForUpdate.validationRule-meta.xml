@@ -10,9 +10,9 @@ Er fullført og status er ikke endret, andre felt er endret = true</description>
     <errorConditionFormula>/* Hvis status endres skal den ikke endres fra Fullført.
 Hvis status er Fullført og uendret skal de andre feltene ikke kunne endres. */
 IF( 
-ISCHANGED(Status__c), 
-TEXT(PRIORVALUE(Status__c)) ==&apos;Fullført&apos;,
-TEXT(Status__c) == &apos;Fullført&apos; &amp;&amp; NOT(ISCHANGED(Status__c)) &amp;&amp; OR( ISCHANGED(ClosingComment__c), ISCHANGED(ClosedReason__c) ) &amp;&amp;  NOT($Permission.Arbeidsgiver_Endre_fullf_rt_henvendelse )
+ISCHANGED(TAG_Status__c), 
+TEXT(PRIORVALUE(TAG_Status__c)) ==&apos;Fullført&apos;,
+TEXT(TAG_Status__c) == &apos;Fullført&apos; &amp;&amp; NOT(ISCHANGED(TAG_Status__c)) &amp;&amp; OR( ISCHANGED(TAG_ClosingComment__c), ISCHANGED(TAG_ClosedReason__c) ) &amp;&amp;  NOT($Permission.Arbeidsgiver_Endre_fullf_rt_henvendelse )
 )</errorConditionFormula>
     <errorMessage>Det er ikke mulig å redigere henvendelsen etter lukking. Kontakt support om du har behov for å gjøre endringer.</errorMessage>
 </ValidationRule>

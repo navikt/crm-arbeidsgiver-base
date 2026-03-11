@@ -239,142 +239,142 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.Account__c</field>
+        <field>EmployerInquiry__c.TAG_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.ActivityType__c</field>
+        <field>EmployerInquiry__c.TAG_ActivityType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.ClosedAfterDueDate__c</field>
+        <field>EmployerInquiry__c.TAG_ClosedAfterDueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.ClosedReason__c</field>
+        <field>EmployerInquiry__c.TAG_ClosedReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.ClosingComment__c</field>
+        <field>EmployerInquiry__c.TAG_ClosingComment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.Contact__c</field>
+        <field>EmployerInquiry__c.TAG_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.DueDate__c</field>
+        <field>EmployerInquiry__c.TAG_DueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.InquiryDate__c</field>
+        <field>EmployerInquiry__c.TAG_InquiryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.IsMyNavMarketRegion__c</field>
+        <field>EmployerInquiry__c.TAG_IsMyNavMarketRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.IsMyNavRegion__c</field>
+        <field>EmployerInquiry__c.TAG_IsMyNavRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.IsMyNavUnit__c</field>
+        <field>EmployerInquiry__c.TAG_IsMyNavUnit__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.Is_Assigned__c</field>
+        <field>EmployerInquiry__c.TAG_Is_Assigned__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.Message__c</field>
+        <field>EmployerInquiry__c.TAG_Message__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.MunicipalityNumber__c</field>
+        <field>EmployerInquiry__c.TAG_MunicipalityNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.NavMarketRegion__c</field>
+        <field>EmployerInquiry__c.TAG_NavMarketRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.NavRegion__c</field>
+        <field>EmployerInquiry__c.TAG_NavRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.NavUnit__c</field>
+        <field>EmployerInquiry__c.TAG_NavUnit__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.NoPersonInformation__c</field>
+        <field>EmployerInquiry__c.TAG_NoPersonInformation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.Overdue__c</field>
+        <field>EmployerInquiry__c.TAG_Overdue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.RecievedDateTime__c</field>
+        <field>EmployerInquiry__c.TAG_RecievedDateTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.RegionNumber__c</field>
+        <field>EmployerInquiry__c.TAG_RegionNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.RelatedJobPosting__c</field>
+        <field>EmployerInquiry__c.TAG_RelatedJobPosting__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.ResolvedDate__c</field>
+        <field>EmployerInquiry__c.TAG_ResolvedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.Sammendrag__c</field>
+        <field>EmployerInquiry__c.TAG_Sammendrag__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.Service__c</field>
+        <field>EmployerInquiry__c.TAG_Service__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.Source__c</field>
+        <field>EmployerInquiry__c.TAG_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.Status__c</field>
+        <field>EmployerInquiry__c.TAG_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.WebFormTheme__c</field>
+        <field>EmployerInquiry__c.TAG_WebFormTheme__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Velg hovedtema for henvendelsen. Styrer hvilke tjenester som er tilgjengelige. --></help>
+    <label><!-- Tema --></label>
+    <name>TAG_ActivityType__c</name>
+    <picklistValues>
+        <masterLabel>Forebygge og redusere fravær</masterLabel>
+        <translation><!-- Forebygge og redusere fravær --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rekruttere og inkludere</masterLabel>
+        <translation><!-- Rekruttere og inkludere --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

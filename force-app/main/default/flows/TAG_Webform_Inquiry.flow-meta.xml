@@ -7,14 +7,14 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.ActivityType__c</assignToReference>
+            <assignToReference>$Record.TAG_ActivityType__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Rekruttere og inkludere</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.Service__c</assignToReference>
+            <assignToReference>$Record.TAG_Service__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Ungdomsløftet</stringValue>
@@ -28,7 +28,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.Message__c</assignToReference>
+            <assignToReference>$Record.TAG_Message__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>webMessageYouth</elementReference>
@@ -44,7 +44,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.ActivityType__c</assignToReference>
+            <assignToReference>$Record.TAG_ActivityType__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Forebygge sykefravær og redusere frafall</stringValue>
@@ -58,7 +58,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.Message__c</assignToReference>
+            <assignToReference>$Record.TAG_Message__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>webMessageSickLeave</elementReference>
@@ -74,7 +74,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.ActivityType__c</assignToReference>
+            <assignToReference>$Record.TAG_ActivityType__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Rekruttere og inkludere</stringValue>
@@ -88,7 +88,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.Message__c</assignToReference>
+            <assignToReference>$Record.TAG_Message__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>webMessageInclude</elementReference>
@@ -108,14 +108,14 @@
             <name>web_prevent_sickleave</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.WebFormTheme__c</leftValueReference>
+                <leftValueReference>$Record.TAG_WebFormTheme__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Forebygge sykefravær</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Source__c</leftValueReference>
+                <leftValueReference>$Record.TAG_Source__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Kontaktskjema</stringValue>
@@ -130,14 +130,14 @@
             <name>web_inclusion</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.WebFormTheme__c</leftValueReference>
+                <leftValueReference>$Record.TAG_WebFormTheme__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Skal ansette</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Source__c</leftValueReference>
+                <leftValueReference>$Record.TAG_Source__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Kontaktskjema</stringValue>
@@ -152,14 +152,14 @@
             <name>web_youth_employment</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.WebFormTheme__c</leftValueReference>
+                <leftValueReference>$Record.TAG_WebFormTheme__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Ungdomsløftet</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Source__c</leftValueReference>
+                <leftValueReference>$Record.TAG_Source__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Kontaktskjema</stringValue>
@@ -212,7 +212,7 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Source__c</field>
+            <field>TAG_Source__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Kontaktskjema</stringValue>
@@ -263,17 +263,17 @@
     <textTemplates>
         <name>webMessageInclude</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å rekruttere og inkludere arbeidstakere. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.Contact__r.MobilePhone}.</text>
+        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å rekruttere og inkludere arbeidstakere. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.TAG_Contact__r.MobilePhone}.</text>
     </textTemplates>
     <textTemplates>
         <name>webMessageSickLeave</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.Contact__r.MobilePhone}.</text>
+        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.TAG_Contact__r.MobilePhone}.</text>
     </textTemplates>
     <textTemplates>
         <name>webMessageYouth</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker å bidra til ungdomsløftet. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.Contact__r.MobilePhone}.</text>
+        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker å bidra til ungdomsløftet. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.TAG_Contact__r.MobilePhone}.</text>
     </textTemplates>
     <variables>
         <name>SelectedTheme</name>

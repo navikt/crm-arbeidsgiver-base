@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Employer_Inquiry_Compact_Layout</fullName>
-    <fields>Sammendrag__c</fields>
-    <fields>Status__c</fields>
-    <fields>ActivityType__c</fields>
+    <fields>TAG_Sammendrag__c</fields>
+    <fields>TAG_Status__c</fields>
+    <fields>TAG_ActivityType__c</fields>
     <label>Employer Inquiry Compact Layout</label>
 </CompactLayout>

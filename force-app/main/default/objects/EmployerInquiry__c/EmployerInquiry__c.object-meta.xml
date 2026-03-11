@@ -141,7 +141,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>Custom_Compact_Layout</compactLayoutAssignment>
+    <compactLayoutAssignment>Employer_Inquiry_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Representerer henvendelser fra arbeidsgivere til NAV</description>
     <enableActivities>true</enableActivities>
@@ -168,8 +168,8 @@
         <excludedStandardButtons>Import</excludedStandardButtons>
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
-        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>ActivityType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_ActivityType__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
