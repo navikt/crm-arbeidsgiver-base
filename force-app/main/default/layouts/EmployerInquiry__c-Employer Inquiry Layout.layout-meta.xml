@@ -41,11 +41,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>TAG_ActivityType__c</field>
+                <field>TAG_Theme__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>TAG_Service__c</field>
+                <field>TAG_SubTheme__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

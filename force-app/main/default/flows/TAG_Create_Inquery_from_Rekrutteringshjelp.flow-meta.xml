@@ -128,33 +128,9 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <inputAssignments>
-            <field>TAG_Account__c</field>
-            <value>
-                <elementReference>$Record.Account__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_ActivityType__c</field>
-            <value>
-                <stringValue>Rekruttere og inkludere</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_Message__c</field>
-            <value>
-                <elementReference>NotesWithTlfNumber</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Name</field>
             <value>
                 <elementReference>InquiryTitle</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_NavUnit__c</field>
-            <value>
-                <elementReference>Get_Nav_Unit.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -164,15 +140,27 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_RelatedJobPosting__c</field>
+            <field>TAG_Account__c</field>
             <value>
-                <elementReference>$Record.Id</elementReference>
+                <elementReference>$Record.Account__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_Service__c</field>
+            <field>TAG_Message__c</field>
             <value>
-                <stringValue>Rekrutteringsoppdrag</stringValue>
+                <elementReference>NotesWithTlfNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NavUnit__c</field>
+            <value>
+                <elementReference>Get_Nav_Unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_RelatedJobPosting__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -185,6 +173,18 @@
             <field>TAG_Status__c</field>
             <value>
                 <stringValue>Ny henvendelse</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_SubTheme__c</field>
+            <value>
+                <stringValue>Rekrutteringsoppdrag</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Theme__c</field>
+            <value>
+                <stringValue>Rekruttere og inkludere</stringValue>
             </value>
         </inputAssignments>
         <object>EmployerInquiry__c</object>

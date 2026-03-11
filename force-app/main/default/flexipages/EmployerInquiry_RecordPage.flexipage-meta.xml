@@ -207,7 +207,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_ActivityType__c</fieldItem>
+                <fieldItem>Record.TAG_Theme__c</fieldItem>
                 <identifier>RecordCRM_Theme_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -217,7 +217,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Service__c</fieldItem>
+                <fieldItem>Record.TAG_SubTheme__c</fieldItem>
                 <identifier>RecordCRM_SubTheme_cField</identifier>
             </fieldInstance>
         </itemInstances>

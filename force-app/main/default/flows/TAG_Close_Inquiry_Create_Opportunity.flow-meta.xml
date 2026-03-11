@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Flow xmlns="http://soap.sforce.com/2006/04/metadata"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>66.0</apiVersion>
     <assignments>
         <description>Fyller ut verdier på mulighet før den vises i screen</description>
@@ -80,16 +79,16 @@
     <dynamicChoiceSets>
         <name>InquiryResultChices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>TAG_ClosedReason__c</picklistField>
         <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>InquiryStatuses</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>TAG_Status__c</picklistField>
         <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
@@ -97,7 +96,7 @@
     <formulas>
         <name>ActivityTypeToOpportunityCategoryMapping</name>
         <dataType>String</dataType>
-        <expression>CASE( TEXT({!recordId.TAG_ActivityType__c}),
+        <expression>CASE( TEXT({!recordId.TAG_Theme__c}),
 &apos;Rekruttere og inkludere&apos;, &apos;Skal ansette&apos;,
 &apos;Forebygge sykefravær og redusere frafall&apos;, &apos;Forebygge sykefravær&apos;,
 &apos;&apos;)</expression>

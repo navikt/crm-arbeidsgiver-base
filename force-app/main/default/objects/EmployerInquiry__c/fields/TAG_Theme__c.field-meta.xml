@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_ActivityType__c</fullName>
+    <fullName>TAG_Theme__c</fullName>
     <description>Overordnet tema/kategori for henvendelsen. Settes automatisk av jobber/flows når mulig (f.eks. fra kontaktskjema), ellers må bruker fylle ut manuelt.</description>
-    <inlineHelpText>Velg hovedtema for henvendelsen. Styrer hvilke tjenester som er tilgjengelige.</inlineHelpText>
-    <label>Tema</label>
+    <inlineHelpText>Velg hovedtema for henvendelsen. Styrer tilgjengelige undertema.</inlineHelpText>
+    <label>Theme</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
@@ -20,19 +20,7 @@
             <value>
                 <fullName>Forebygge sykefravær og redusere frafall</fullName>
                 <default>false</default>
-                <label>Forebygge og redusere fravær</label>
-            </value>
-            <value>
-                <fullName>Generelt markedsarbeid</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Generelt markedsarbeid</label>
-            </value>
-            <value>
-                <fullName>Nedbemanne</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Nedbemanne</label>
+                <label>Forebygge sykefravær og redusere frafall</label>
             </value>
         </valueSetDefinition>
     </valueSet>

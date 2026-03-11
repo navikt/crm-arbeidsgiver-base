@@ -162,6 +162,7 @@
     </nameField>
     <pluralLabel>Employer Inquiries</pluralLabel>
     <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
         <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
@@ -169,7 +170,6 @@
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <searchResultsAdditionalFields>TAG_Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>TAG_ActivityType__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>

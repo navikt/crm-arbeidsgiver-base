@@ -7,14 +7,14 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.TAG_ActivityType__c</assignToReference>
+            <assignToReference>$Record.TAG_Theme__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Rekruttere og inkludere</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.TAG_Service__c</assignToReference>
+            <assignToReference>$Record.TAG_SubTheme__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Ungdomsløftet</stringValue>
@@ -44,7 +44,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.TAG_ActivityType__c</assignToReference>
+            <assignToReference>$Record.TAG_Theme__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Forebygge sykefravær og redusere frafall</stringValue>
@@ -74,7 +74,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.TAG_ActivityType__c</assignToReference>
+            <assignToReference>$Record.TAG_Theme__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Rekruttere og inkludere</stringValue>

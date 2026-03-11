@@ -17,11 +17,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.TAG_ActivityType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_ClosedReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -101,11 +96,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>EmployerInquiry__c.TAG_Service__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.TAG_Source__c</field>
         <readable>true</readable>
@@ -113,6 +103,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_SubTheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_Theme__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
