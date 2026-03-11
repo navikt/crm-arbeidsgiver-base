@@ -203,6 +203,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Presented_or_hired</name>
+        <label>Presented or hired?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Candidate_Outcome_presented</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Presented</defaultConnectorLabel>
+        <rules>
+            <name>Hired</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FATT_JOBBEN</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Candidate_Outcome_hired</targetReference>
+            </connector>
+            <label>Hired</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Was_job_posting_found</name>
         <label>Was job posting found?</label>
         <locationX>0</locationX>
@@ -319,7 +344,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Set_type</targetReference>
+                <targetReference>Set_type_stillingsoppdrag</targetReference>
             </connector>
             <label>Stilling</label>
         </rules>
@@ -411,7 +436,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Update_Candidate_Outcome_with_Account</targetReference>
+            <targetReference>Presented_or_hired</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -593,22 +618,6 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Set_type</name>
-        <label>Set type</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>What_result</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Type__c</field>
-            <value>
-                <stringValue>Stillingsoppdrag</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <name>Set_type_etterregistrering</name>
         <label>Set type etterregistrering</label>
         <locationX>0</locationX>
@@ -625,8 +634,24 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Candidate_Outcome_with_Account</name>
-        <label>Update Candidate Outcome with Account</label>
+        <name>Set_type_stillingsoppdrag</name>
+        <label>Set type stillingsoppdrag</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_result</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>Stillingsoppdrag</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Candidate_Outcome_hired</name>
+        <label>Update Candidate Outcome hired</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
@@ -634,6 +659,64 @@
         </connector>
         <inputAssignments>
             <field>Account__c</field>
+            <value>
+                <elementReference>Get_account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EngagementType__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.EngagementType__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Extent__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>JobPostingStatus__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Status__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>JobPosting__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OrganizationNumber__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.OrganizationNumber__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Source__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Source__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Title__c</field>
+            <value>
+                <elementReference>Get_Job_Posting.Title__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Candidate_Outcome_presented</name>
+        <label>Update Candidate Outcome presented</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Nav_unit_null</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account2__c</field>
             <value>
                 <elementReference>Get_account.Id</elementReference>
             </value>
@@ -800,7 +883,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>countedEmploymentPlacement</name>
         <dataType>Number</dataType>
