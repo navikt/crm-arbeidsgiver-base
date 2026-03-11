@@ -348,11 +348,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>EmployerInquiry__c.TAG_Sammendrag__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_Source__c</field>
         <readable>true</readable>
@@ -365,6 +360,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_SubTheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmployerInquiry__c.TAG_Summary__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
