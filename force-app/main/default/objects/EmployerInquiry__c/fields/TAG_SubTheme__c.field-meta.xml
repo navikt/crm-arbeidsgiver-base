@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_SubTheme__c</fullName>
+    <description>Settes automatisk av jobber/flows når mulig, ellers må bruker fylle ut manuelt. Verdier er dependent picklist basert på tema. Brukes for detaljert rapportering.</description>
+    <label>Sub Theme</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>TAG_Theme__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Redusere sykefravær</fullName>
+                <default>false</default>
+                <label>Redusere sykefravær</label>
+            </value>
+            <value>
+                <fullName>Jobbmesser og møteplass</fullName>
+                <default>false</default>
+                <label>Jobbmesser og møteplass</label>
+            </value>
+            <value>
+                <fullName>Rekruttering uten virkemidler</fullName>
+                <default>false</default>
+                <label>Rekruttering (uten virkemidler, inkl. oppfølging)</label>
+            </value>
+            <value>
+                <fullName>Informasjon og relasjonsbygging</fullName>
+                <default>false</default>
+                <label>Informasjon og relasjonsbygging</label>
+            </value>
+            <value>
+                <fullName>Inkludering med virkemidler</fullName>
+                <default>false</default>
+                <label>Inkludering (med virkemidler, inkl. oppfølging)</label>
+            </value>
+            <value>
+                <fullName>Ungdomsløftet</fullName>
+                <default>false</default>
+                <label>Ungdomsløftet</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Jobbmesser og møteplass</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Rekruttering uten virkemidler</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Informasjon og relasjonsbygging</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Inkludering med virkemidler</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rekruttere og inkludere</controllingFieldValue>
+            <valueName>Ungdomsløftet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Forebygge sykefravær og redusere frafall</controllingFieldValue>
+            <valueName>Redusere sykefravær</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>
