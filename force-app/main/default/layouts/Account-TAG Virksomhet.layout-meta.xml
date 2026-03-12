@@ -195,21 +195,6 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <excludeButtons>NewEvent</excludeButtons>
-        <excludeButtons>NewTask</excludeButtons>
-        <fields>TASK.SUBJECT</fields>
-        <fields>Date__c</fields>
-        <fields>TAG_ActivityType__c</fields>
-        <fields>ACTIVITY_SUBTYPE</fields>
-        <fields>TAG_Status__c</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <relatedList>Activity.RelatedToAccount__c</relatedList>
-        <sortField>Date__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>TAG_Link__c</fields>
         <fields>EngagementType__c</fields>
@@ -226,6 +211,28 @@
         <fields>TAG_Age__c</fields>
         <fields>Position_in_Rekrutteringsbistand__c</fields>
         <relatedList>CustomOpportunity__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>CandidateOutcomeLink__c</fields>
+        <fields>Result__c</fields>
+        <fields>TimeRegistered__c</fields>
+        <fields>JobPosting__c</fields>
+        <relatedList>CandidateOutcome__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>CandidateOutcomeLink__c</fields>
+        <fields>Result__c</fields>
+        <fields>TimeRegistered__c</fields>
+        <fields>JobPosting__c</fields>
+        <relatedList>CandidateOutcome__c.Account2__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>StartDate__c</fields>
+        <fields>EndDate__c</fields>
+        <relatedList>Workfare__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -254,6 +261,21 @@
         <fields>Status__c</fields>
         <fields>UserNavIdent__c</fields>
         <relatedList>DialogueMeeting__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>NewEvent</excludeButtons>
+        <excludeButtons>NewTask</excludeButtons>
+        <fields>TASK.SUBJECT</fields>
+        <fields>Date__c</fields>
+        <fields>TAG_ActivityType__c</fields>
+        <fields>ACTIVITY_SUBTYPE</fields>
+        <fields>TAG_Status__c</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <fields>TASK.WHAT_NAME</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <relatedList>Activity.RelatedToAccount__c</relatedList>
+        <sortField>Date__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>TAG_Link__c</fields>
@@ -301,28 +323,6 @@
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>RelatedHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Type__c</fields>
-        <fields>Status__c</fields>
-        <fields>StartDate__c</fields>
-        <fields>EndDate__c</fields>
-        <relatedList>Workfare__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>CandidateOutcomeLink__c</fields>
-        <fields>Result__c</fields>
-        <fields>TimeRegistered__c</fields>
-        <fields>JobPosting__c</fields>
-        <relatedList>CandidateOutcome__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>CandidateOutcomeLink__c</fields>
-        <fields>Result__c</fields>
-        <fields>TimeRegistered__c</fields>
-        <fields>JobPosting__c</fields>
-        <relatedList>CandidateOutcome__c.Account2__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
