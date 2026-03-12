@@ -1,13 +1,21 @@
 @IsTest
 private class InquiryAssignmentControllerTest {
+    @TestSetup
+    static void makeData() {
+        Group groupNavUnit1 = new Group(Name = 'NAV Test Unit 1', Type = 'Queue');
+        insert groupNavUnit1;
+
+        QueuesObject qoNavUnit1 = new QueueSObject(QueueID = groupNavUnit1.id, SObjectType = 'EmployerInquiry__c');
+        insert qoNavUnit1;
+    }
+
     @IsTest
     static void getQueueIdForInquiry_returnsQueueId() {
-        Group testQueue = [SELECT Id FROM Group WHERE Type = 'Queue' LIMIT 1];
-
+        Group testGroup = [SELECT Id FROM Group WHERE Name = 'NAV Test Unit 1' AND Type = 'Queue' LIMIT 1];
         NavUnit__c navUnit = new NavUnit__c(
-            Name = 'NAV Test Unit 2',
+            Name = 'NAV Test Unit 1',
             INT_UnitNumber__c = '9997',
-            CRM_QueueId__c = testQueue.Id
+            CRM_QueueId__c = testGroup.Id
         );
         insert navUnit;
 
@@ -15,10 +23,10 @@ private class InquiryAssignmentControllerTest {
         insert inquiry;
 
         Test.startTest();
-        String queueId = InquiryAssignmentController.getQueueIdForInquiry(inquiry.Id);
+        String resultQueueId = InquiryAssignmentController.getQueueIdForInquiry(inquiry.Id);
         Test.stopTest();
 
-        System.assertEquals(String.valueOf(testQueue.Id), queueId, 'Should return the NavUnit queue ID');
+        System.assertEquals(String.valueOf(testGroup.Id), resultQueueId, 'Should return the NavUnit queue ID');
     }
 
     @IsTest
