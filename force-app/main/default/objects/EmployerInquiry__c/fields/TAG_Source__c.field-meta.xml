@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Source__c</fullName>
+    <description>Kanal/kilde henvendelsen kom fra. Settes automatisk av jobber/flows som oppretter henvendelsen.</description>
+    <inlineHelpText>Hvilken kanal henvendelsen kom fra (settes automatisk)</inlineHelpText>
+    <label>Source</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Kontaktsenteret</fullName>
+                <default>false</default>
+                <label>Kontaktsenteret</label>
+            </value>
+            <value>
+                <fullName>Kontaktskjema</fullName>
+                <default>false</default>
+                <label>Kontaktskjema</label>
+            </value>
+            <value>
+                <fullName>Arbeidsplassen.no</fullName>
+                <default>false</default>
+                <label>Arbeidsplassen.no</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
