@@ -40,7 +40,8 @@
                 "referenceId": "AccountRef12"
             },
             "Name": "LANGHUS BO- OG SERVICESENTER",
-            "INT_Industry__c": "87.102 Somatiske sykehjem; 88.101  Hjemmehjelp; 86.901 Hjemmesykepleie",
+            "INT_Industry__c": "Somatiske sykehjem",
+            "INT_IndustryCode__c": "87.102",
             "INT_OrganizationNumber__c": "960507881",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",
@@ -56,7 +57,8 @@
                 "referenceId": "AccountRef13"
             },
             "Name": "SKI KOMMUNE BESTILLERKONTORET",
-            "INT_Industry__c": "88.101 Hjemmehjelp; 87.101; Somatiske spesialsykehjem; 86.904 Annen forebyggende helsetjeneste",
+            "INT_Industry__c": "Hjemmehjelp",
+            "INT_IndustryCode__c": "88.101",
             "INT_OrganizationNumber__c": "960507882",
             "INT_OrganizationalStructure__c": "BEDR",
             "RecordTypeId": "$R{RecordType.Account.Employer}",

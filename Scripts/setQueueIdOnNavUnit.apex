@@ -1,5 +1,5 @@
 List<String> testDataUnitNames = new List<String>{'NAV Alna'};
-List<QueueSobject> queues = [SELECT Queue.Name, Queue.Id FROM QueueSobject WHERE SobjectType = 'TAG_Inquiry__c' AND Queue.Name IN :testDataUnitNames];
+List<QueueSobject> queues = [SELECT Queue.Name, Queue.Id FROM QueueSobject WHERE SobjectType = 'EmployerInquiry__c' AND Queue.Name IN :testDataUnitNames];
 
 Map<String, Id> queueNameToIdMap = new Map<String, Id>();
 for(QueueSobject q : queues) {

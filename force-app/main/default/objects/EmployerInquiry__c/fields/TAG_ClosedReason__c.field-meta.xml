@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_ClosedReason__c</fullName>
+    <description>Årsak til hvorfor henvendelsen ble lukket og henvendelsens utfall. Må fylles ut når Stage__c settes til Lukket eller tilsvarende sluttstatus. Brukes i rapporter for å analysere henvendelsesutfall og effektivitet.</description>
+    <inlineHelpText>Velg årsak til lukking av henvendelsen. Påkrevd ved avslutning.</inlineHelpText>
+    <label>Closed Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ikke kontakt - Forsøkt flere ganger</fullName>
+                <default>false</default>
+                <label>Ikke kontakt - Forsøkt flere ganger</label>
+            </value>
+            <value>
+                <fullName>Ikke kontakt - Ugyldig kontaktinfo</fullName>
+                <default>false</default>
+                <label>Ikke kontakt - Ugyldig kontaktinfo</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Opprettet mulighet</fullName>
+                <default>false</default>
+                <label>Kontaktet - Opprettet mulighet</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Avtalt møte</fullName>
+                <default>false</default>
+                <label>Kontaktet - Avtalt møte</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Informasjon gitt</fullName>
+                <default>false</default>
+                <label>Kontaktet - Informasjon gitt</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Ikke behov nå</fullName>
+                <default>false</default>
+                <label>Kontaktet - Ikke behov nå</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Henvist videre</fullName>
+                <default>false</default>
+                <label>Kontaktet - Henvist videre</label>
+            </value>
+            <value>
+                <fullName>Feilregistrering/duplikat</fullName>
+                <default>false</default>
+                <label>Feilregistrering/duplikat</label>
+            </value>
+            <value>
+                <fullName>Annet</fullName>
+                <default>false</default>
+                <label>Annet</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

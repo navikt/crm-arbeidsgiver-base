@@ -11,28 +11,28 @@
             <assignToReference>opportunity.Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.Account__c</elementReference>
+                <elementReference>recordId.TAG_Account__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>opportunity.Contact__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.Contact__c</elementReference>
+                <elementReference>recordId.TAG_Contact__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>opportunity.TAG_NavUnit__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.NavUnit__c</elementReference>
+                <elementReference>recordId.TAG_NavUnit__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>opportunity.INT_MunicipalityNumber__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>recordId.MunicipalityNumber__c</elementReference>
+                <elementReference>recordId.TAG_MunicipalityNumber__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -50,7 +50,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>opportunity.TAG_Inquiry__c</assignToReference>
+            <assignToReference>opportunity.TAG_EmployerInquiry__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>recordId.Id</elementReference>
@@ -75,28 +75,28 @@
             <elementReference>opportunity.Result__c</elementReference>
         </value>
     </choices>
-    <description>Used in quick action on TAG_Inquiry__c to convert inquiry to custom opportunity. Relevant fields from the inquiry are copied to the new opportunity. The inquiry reference is stored as lookup field on opportunity. Exceptions on create and update elements will display error messages to user.</description>
+    <description>Used in quick action on EmployerInquiry__c to convert inquiry to custom opportunity. Relevant fields from the inquiry are copied to the new opportunity. The inquiry reference is stored as lookup field on opportunity. Exceptions on create and update elements will display error messages to user.</description>
     <dynamicChoiceSets>
         <name>InquiryResultChices</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true"/>
         <object xsi:nil="true"/>
-        <picklistField>ClosedReason__c</picklistField>
-        <picklistObject>TAG_Inquiry__c</picklistObject>
+        <picklistField>TAG_ClosedReason__c</picklistField>
+        <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>InquiryStatuses</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true"/>
         <object xsi:nil="true"/>
-        <picklistField>Status__c</picklistField>
-        <picklistObject>TAG_Inquiry__c</picklistObject>
+        <picklistField>TAG_Status__c</picklistField>
+        <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
         <name>ActivityTypeToOpportunityCategoryMapping</name>
         <dataType>String</dataType>
-        <expression>CASE( TEXT({!recordId.ActivityType__c}),
+        <expression>CASE( TEXT({!recordId.TAG_Theme__c}),
 &apos;Rekruttere og inkludere&apos;, &apos;Skal ansette&apos;,
 &apos;Forebygge sykefravær og redusere frafall&apos;, &apos;Forebygge sykefravær&apos;,
 &apos;&apos;)</expression>
@@ -110,7 +110,7 @@
 &amp;&apos;,INT_MunicipalityNumber__c=&apos;&amp;{!opportunity.INT_MunicipalityNumber__c}
 &amp;&apos;,Source__c=&apos;&amp;TEXT({!opportunity.Source__c})
 &amp;&apos;,InclusionStage__c=&apos;&amp;TEXT({!opportunity.InclusionStage__c})
-&amp;&apos;,TAG_Inquiry__c=&apos;&amp;{!opportunity.TAG_Inquiry__c}</expression>
+&amp;&apos;,TAG_EmployerInquiry__c=&apos;&amp;{!opportunity.TAG_EmployerInquiry__c}</expression>
     </formulas>
     <interviewLabel>TAG Close Inquiry &amp; Create Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Close Inquiry &amp; Create Opportunity</label>
@@ -163,24 +163,24 @@
             </value>
         </filters>
         <inputAssignments>
-            <field>ClosedReason__c</field>
+            <field>TAG_ClosedReason__c</field>
             <value>
                 <elementReference>CloseReason</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>ClosingComment__c</field>
+            <field>TAG_ClosingComment__c</field>
             <value>
                 <elementReference>ClosingComment</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Status__c</field>
+            <field>TAG_Status__c</field>
             <value>
                 <elementReference>Status</elementReference>
             </value>
         </inputAssignments>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
     </recordUpdates>
     <screens>
         <name>CreateOpportunityFaultScreen</name>
@@ -212,12 +212,17 @@
         </fields>
         <fields>
             <name>CreateOpportunityFaultMessage2</name>
-            <fieldText>&lt;p&gt;Henvendelsen ble lukket, men vi kunne desverre ikke opprette ny mulighet.&lt;/p&gt;&lt;p&gt;Du kan opprette mulighet manuelt via denne linken:&lt;strong&gt; &lt;/strong&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!Ny_mulighet_link}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Henvendelsen ble lukket, men vi kunne desverre ikke opprette ny
+                mulighet.&lt;/p&gt;&lt;p&gt;Du kan opprette mulighet manuelt via denne
+                linken:&lt;strong&gt; &lt;/strong&gt;&lt;strong style=&quot;background-color:
+                rgb(255, 255, 255);&quot;&gt;{!Ny_mulighet_link}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
             <name>CreateOpportunityFaultMessage3</name>
-            <fieldText>&lt;p&gt;Tekniske detaljer:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: courier; font-size: 11px;&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Tekniske detaljer:&lt;/p&gt;&lt;p&gt;&lt;span
+                style=&quot;font-family: courier; font-size:
+                11px;&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -284,7 +289,7 @@
                 <fields>
                     <name>ClosingComment</name>
                     <defaultValue>
-                        <stringValue>{!recordId.ClosingComment__c}</stringValue>
+                        <stringValue>{!recordId.TAG_ClosingComment__c}</stringValue>
                     </defaultValue>
                     <fieldText>Referat</fieldText>
                     <fieldType>LargeTextArea</fieldType>
@@ -566,6 +571,6 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>TAG_Inquiry__c</objectType>
+        <objectType>EmployerInquiry__c</objectType>
     </variables>
 </Flow>

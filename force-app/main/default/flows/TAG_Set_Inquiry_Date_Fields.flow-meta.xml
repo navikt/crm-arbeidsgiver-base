@@ -20,7 +20,7 @@
         <inputParameters>
             <name>startDateTime</name>
             <value>
-                <elementReference>$Record.RecievedDateTime__c</elementReference>
+                <elementReference>$Record.TAG_RecievedDateTime__c</elementReference>
             </value>
         </inputParameters>
         <nameSegment>TAG_BusinessDaysHandler</nameSegment>
@@ -34,7 +34,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.RecievedDateTime__c</assignToReference>
+            <assignToReference>$Record.TAG_RecievedDateTime__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>RecievedOrCreatedDate</elementReference>
@@ -50,7 +50,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.DueDate__c</assignToReference>
+            <assignToReference>$Record.TAG_DueDate__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Calculate_Due_Datetime</elementReference>
@@ -66,14 +66,14 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.ResolvedDate__c</assignToReference>
+            <assignToReference>$Record.TAG_ResolvedDate__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.ClosedAfterDueDate__c</assignToReference>
+            <assignToReference>$Record.TAG_ClosedAfterDueDate__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>ClosedAfterDueDate</elementReference>
@@ -96,7 +96,7 @@
             <name>Due_date_is_blank</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.DueDate__c</leftValueReference>
+                <leftValueReference>$Record.TAG_DueDate__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -121,14 +121,14 @@
             <name>Stage_was_updated_to_resolved</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Status__c</leftValueReference>
+                <leftValueReference>$Record.TAG_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Fullført</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Status__c</leftValueReference>
+                <leftValueReference>$Record.TAG_Status__c</leftValueReference>
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -145,12 +145,12 @@
     <formulas>
         <name>ClosedAfterDueDate</name>
         <dataType>Boolean</dataType>
-        <expression>{!$Record.DueDate__c} &lt; {!$Flow.CurrentDate}</expression>
+        <expression>{!$Record.TAG_DueDate__c} &lt; {!$Flow.CurrentDate}</expression>
     </formulas>
     <formulas>
         <name>RecievedOrCreatedDate</name>
         <dataType>DateTime</dataType>
-        <expression>IF( ISBLANK({!$Record.RecievedDateTime__c}), {!$Record.CreatedDate}, {!$Record.RecievedDateTime__c} )</expression>
+        <expression>IF( ISBLANK({!$Record.TAG_RecievedDateTime__c}), {!$Record.CreatedDate}, {!$Record.TAG_RecievedDateTime__c} )</expression>
     </formulas>
     <interviewLabel>TAG Set Inquiry Date Fields {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Set Inquiry Date Fields</label>
@@ -191,27 +191,27 @@
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
-            <field>DueDate__c</field>
+            <field>TAG_DueDate__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
         <filters>
-            <field>Status__c</field>
+            <field>TAG_Status__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Fullført</stringValue>
             </value>
         </filters>
         <filters>
-            <field>RecievedDateTime__c</field>
+            <field>TAG_RecievedDateTime__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>

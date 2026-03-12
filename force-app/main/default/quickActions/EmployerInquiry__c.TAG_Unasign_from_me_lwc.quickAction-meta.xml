@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionSubtype>Action</actionSubtype>
+    <description>Endrer eier til Nav enhet (basert på feltet CRM_QueueId__c på relatert Nav enhet)</description>
+    <label>Legg i kø</label>
+    <lightningWebComponent>inquiryUnassignment</lightningWebComponent>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>LightningWebComponent</type>
+</QuickAction>

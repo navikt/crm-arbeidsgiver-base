@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Henvendelsen</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+        <value>Henvendelse</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+        <value>Henvendelse</value>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Henvendelsene</value>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>true</plural>
+        <value>Henvendelser</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+        <value>Henvendelser</value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <nameFieldLabel><!-- Employer Inquiry --></nameFieldLabel>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Endre Nav-enhet</label>
+        <name>Change_Nav_Unit</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Jeg følger opp!</label>
+        <name>TAG_Assign_to_me_lwc</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Lukk henvendelse</label>
+        <name>TAG_CloseInquiry</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Lukk og opprett mulighet</label>
+        <name>TAG_Close_Inquiry_Create_Opportunity</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Fjern tildeling</label>
+        <name>TAG_Unasign_from_me_lwc</name>
+    </quickActions>
+</CustomObjectTranslation>

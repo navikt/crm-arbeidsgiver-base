@@ -2,31 +2,99 @@
     "records": [
         {
             "attributes": {
-                "type": "TAG_Inquiry__c",
-                "referenceId": "TAG_Inquiry__cRef1"
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef1"
             },
-            "Name": "Rekrutteringshjelp",
-            "Account__c": "@AccountRef17",
-            "ActivityType__c": "Rekruttere og inkludere",
-            "Service__c": "Rekrutteringsoppdrag",
-            "Message__c": "Henvendelse fra Arbeidsplassen.no: Arbeidsgiver ønsker rekrutteringshjelp i forbindelse med en konkret stilling (se lenke over). Vennligst kontakt arbeidsgiver på telefonnummer xxx",
-            "NavUnit__c": "@NavUnit__cRef1",
-            "RelatedJobPosting__c": "@JobPosting__cRef1",
-            "Source__c": "Arbeidsplassen.no",
-            "Stage__c": "Ny henvendelse"
+            "Name": "Ønsker rekrutteringshjelp til stilling",
+            "TAG_Account__c": "@AccountRef17",
+            "TAG_Message__c": "Henvendelse fra Arbeidsplassen.no: Arbeidsgiver ønsker rekrutteringshjelp i forbindelse med en konkret stilling (se lenke over). Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "TAG_NavUnit__c": "@NavUnit__cRef1",
+            "TAG_RelatedJobPosting__c": "@JobPosting__cRef1",
+            "TAG_Source__c": "Arbeidsplassen.no",
+            "TAG_Status__c": "Ny henvendelse"
         },
         {
             "attributes": {
-                "type": "TAG_Inquiry__c",
-                "referenceId": "TAG_Inquiry__cRef2"
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef2"
             },
-            "Name": "Rekruttere og inkludere",
-            "Account__c": "@AccountRef17",
-            "WebFormTheme__c": "Rekruttere og inkludere",
-            "NavUnit__c": "@NavUnit__cRef1",
-            "Source__c": "Kontaktskjema",
-            "Stage__c": "Ny henvendelse",
-            "Contact__c": "@ContactRef1"
+            "Name": "Ønsker hjelp til å rekruttere og inkludere arbeidstakere",
+            "TAG_Account__c": "@AccountRef17",
+            "TAG_WebFormTheme__c": "Skal ansette",
+            "TAG_Message__c": "Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å rekruttere og inkludere arbeidstakere. Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "TAG_NavUnit__c": "@NavUnit__cRef1",
+            "TAG_Source__c": "Kontaktskjema",
+            "TAG_Status__c": "Ny henvendelse",
+            "TAG_Contact__c": "@ContactRef1"
+        },
+        {
+            "attributes": {
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef3"
+            },
+            "Name": "Ønsker å bidra til ungdomsløftet",
+            "TAG_Account__c": "@AccountRef17",
+            "TAG_WebFormTheme__c": "Ungdomsløftet",
+            "TAG_Message__c": "Henvendelse via kontaktskjema: Arbeidsgiver ønsker å bidra til ungdomsløftet. Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "TAG_NavUnit__c": "@NavUnit__cRef1",
+            "TAG_Source__c": "Kontaktskjema",
+            "TAG_Status__c": "Ny henvendelse",
+            "TAG_Contact__c": "@ContactRef2"
+        },
+        {
+            "attributes": {
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef4"
+            },
+            "Name": "Ønsker hjelp til å forebygge sykefravær",
+            "TAG_Account__c": "@AccountRef17",
+            "TAG_WebFormTheme__c": "Forebygge sykefravær",
+            "TAG_Message__c": "Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "TAG_NavUnit__c": "@NavUnit__cRef1",
+            "TAG_Source__c": "Kontaktskjema",
+            "TAG_Status__c": "Ny henvendelse",
+            "TAG_Contact__c": "@ContactRef3"
+        },
+        {
+            "attributes": {
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef5"
+            },
+            "Name": "Ønsker hjelp til å forebygge sykefravær",
+            "TAG_Account__c": "@AccountRef2",
+            "TAG_WebFormTheme__c": "Forebygge sykefravær",
+            "TAG_Message__c": "Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "TAG_NavUnit__c": "@NavUnit__cRef1",
+            "TAG_Source__c": "Kontaktskjema",
+            "TAG_Status__c": "Ny henvendelse",
+            "TAG_Contact__c": "@ContactRef4"
+        },
+        {
+            "attributes": {
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef6"
+            },
+            "Name": "Ønsker hjelp til å forebygge sykefravær",
+            "TAG_Account__c": "@AccountRef12",
+            "TAG_WebFormTheme__c": "Forebygge sykefravær",
+            "TAG_Message__c": "Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "TAG_NavUnit__c": "@NavUnit__cRef1",
+            "TAG_Source__c": "Kontaktskjema",
+            "TAG_Status__c": "Ny henvendelse",
+            "TAG_Contact__c": "@ContactRef6"
+        },
+        {
+            "attributes": {
+                "type": "EmployerInquiry__c",
+                "referenceId": "EmployerInquiry__cRef7"
+            },
+            "Name": "Ønsker rekrutteringshjelp til stilling",
+            "TAG_Account__c": "@AccountRef12",
+            "TAG_Message__c": "Henvendelse fra Arbeidsplassen.no: Arbeidsgiver ønsker rekrutteringshjelp i forbindelse med en konkret stilling (se lenke over). Vennligst kontakt arbeidsgiver på telefonnummer xxx",
+            "TAG_NavUnit__c": "@NavUnit__cRef1",
+            "TAG_RelatedJobPosting__c": "@JobPosting__cRef7",
+            "TAG_Source__c": "Arbeidsplassen.no",
+            "TAG_Status__c": "Ny henvendelse"
         }
     ]
 }

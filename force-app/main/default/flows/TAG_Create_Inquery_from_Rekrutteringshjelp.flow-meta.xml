@@ -89,6 +89,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <description>Oppretter henvendelse når arbeidsgiver ønsker bistand i forbindelse med en stilling registrert på arbeidsplassen.no</description>
     <environments>Default</environments>
     <formulas>
         <name>InquiryTitle</name>
@@ -127,33 +128,9 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <inputAssignments>
-            <field>Account__c</field>
-            <value>
-                <elementReference>$Record.Account__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>ActivityType__c</field>
-            <value>
-                <stringValue>Rekruttere og inkludere</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Message__c</field>
-            <value>
-                <elementReference>NotesWithTlfNumber</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Name</field>
             <value>
                 <elementReference>InquiryTitle</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>NavUnit__c</field>
-            <value>
-                <elementReference>Get_Nav_Unit.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -163,30 +140,54 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>RelatedJobPosting__c</field>
+            <field>TAG_Account__c</field>
+            <value>
+                <elementReference>$Record.Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Message__c</field>
+            <value>
+                <elementReference>NotesWithTlfNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NavUnit__c</field>
+            <value>
+                <elementReference>Get_Nav_Unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_RelatedJobPosting__c</field>
             <value>
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Service__c</field>
-            <value>
-                <stringValue>Rekrutteringsoppdrag</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Source__c</field>
+            <field>TAG_Source__c</field>
             <value>
                 <stringValue>Arbeidsplassen.no</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Status__c</field>
+            <field>TAG_Status__c</field>
             <value>
                 <stringValue>Ny henvendelse</stringValue>
             </value>
         </inputAssignments>
-        <object>TAG_Inquiry__c</object>
+        <inputAssignments>
+            <field>TAG_SubTheme__c</field>
+            <value>
+                <stringValue>Rekrutteringsoppdrag</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Theme__c</field>
+            <value>
+                <stringValue>Rekruttere og inkludere</stringValue>
+            </value>
+        </inputAssignments>
+        <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
@@ -231,7 +232,7 @@
             <field>SobjectType</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>TAG_Inquiry__c</stringValue>
+                <stringValue>EmployerInquiry__c</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -249,14 +250,14 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>RelatedJobPosting__c</field>
+            <field>TAG_RelatedJobPosting__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>TAG_Inquiry__c</object>
+        <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
