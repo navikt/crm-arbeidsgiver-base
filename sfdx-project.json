@@ -65,6 +65,10 @@
                 {
                     "package": "crm-platform-oppgave",
                     "versionNumber": "0.65.0.LATEST"
+                },
+                {
+                    "package": "crm-henvendelse",
+                    "versionNumber": "0.201.0.LATEST"
                 }
             ]
         }
@@ -88,7 +92,8 @@
         "crm-journal-utilities": "0Ho2o000000fxXkCAI",
         "crm-thread-view": "0Ho7U000000000zSAA",
         "crm-platform-oppgave": "0Ho2o000000fxXzCAI",
-        "crm-henvendelse-base": "0Ho7U000000000kSAA"
+        "crm-henvendelse-base": "0Ho7U000000000kSAA",
+        "crm-henvendelse": "0Ho2o000000fxXfCAI"
     },
     "packageKeyConfig": {
         "platform-data-model": false,
