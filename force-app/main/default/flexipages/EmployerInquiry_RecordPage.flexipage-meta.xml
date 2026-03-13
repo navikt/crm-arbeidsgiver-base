@@ -145,7 +145,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Account__c</fieldItem>
                 <identifier>RecordAccount_cField</identifier>
@@ -155,7 +155,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Contact__c</fieldItem>
                 <identifier>RecordContact_cField2</identifier>
@@ -287,10 +287,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_DueDate__c</fieldItem>
-                <identifier>RecordCRM_DueDate_cField</identifier>
+                <fieldItem>Record.TAG_IsOverdue__c</fieldItem>
+                <identifier>RecordTAG_IsOverdue__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>

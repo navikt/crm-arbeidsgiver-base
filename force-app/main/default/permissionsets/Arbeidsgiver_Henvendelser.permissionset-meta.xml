@@ -52,6 +52,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>EmployerInquiry__c.TAG_IsOverdue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>EmployerInquiry__c.TAG_Is_Assigned__c</field>
         <readable>true</readable>
     </fieldPermissions>

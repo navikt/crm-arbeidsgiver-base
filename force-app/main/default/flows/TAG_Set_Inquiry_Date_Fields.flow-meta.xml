@@ -29,6 +29,22 @@
     </actionCalls>
     <apiVersion>66.0</apiVersion>
     <assignments>
+        <name>Set_assigned_date</name>
+        <label>Set assigned date</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.TAG_AssignedDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Should_set_resolved_date</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_inquiry_details</name>
         <label>Set inquiry details</label>
         <locationX>0</locationX>
@@ -57,7 +73,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Should_set_resolved_date</targetReference>
+            <targetReference>Should_set_assign_date</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -89,7 +105,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Should_set_resolved_date</targetReference>
+            <targetReference>Should_set_assign_date</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -106,6 +122,38 @@
                 <targetReference>Calculate_Due_Datetime</targetReference>
             </connector>
             <label>Due date is blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Should_set_assign_date</name>
+        <label>Should set assign date?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Should_set_resolved_date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Inquiry_was_assigned_to_user</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_Is_Assigned__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_AssignedDate__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_assigned_date</targetReference>
+            </connector>
+            <label>Inquiry was assigned to user (first time)</label>
         </rules>
     </decisions>
     <decisions>
@@ -206,6 +254,13 @@
         </filters>
         <filters>
             <field>TAG_RecievedDateTime__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_AssignedDate__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>true</booleanValue>
