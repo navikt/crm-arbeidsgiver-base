@@ -60,7 +60,7 @@
                 },
                 {
                     "package": "crm-journal-utilities",
-                    "versionNumber": "0.51.0.LATEST"
+                    "versionNumber": "0.54.0.LATEST"
                 },
                 {
                     "package": "crm-platform-oppgave",
@@ -69,6 +69,14 @@
                 {
                     "package": "crm-henvendelse",
                     "versionNumber": "0.201.0.LATEST"
+                },
+                {
+                    "package": "crm-shared-user-notification",
+                    "versionNumber": "0.27.0.LATEST"
+                },
+                {
+                    "package": "crm-community-base",
+                    "versionNumber": "0.140.0.LATEST"
                 }
             ]
         }
@@ -93,7 +101,9 @@
         "crm-thread-view": "0Ho7U000000000zSAA",
         "crm-platform-oppgave": "0Ho2o000000fxXzCAI",
         "crm-henvendelse-base": "0Ho7U000000000kSAA",
-        "crm-henvendelse": "0Ho2o000000fxXfCAI"
+        "crm-henvendelse": "0Ho2o000000fxXfCAI",
+        "crm-shared-user-notification": "0Ho2o000000fxY4CAI",
+        "crm-community-base": "0Ho2o0000008OSzCAM"
     },
     "packageKeyConfig": {
         "platform-data-model": false,
