@@ -31,6 +31,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Type__c</fieldItem>
+                <identifier>RecordType_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Category__c</fieldItem>
                 <identifier>RecordCategory__cField</identifier>
             </fieldInstance>
@@ -89,6 +99,30 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Account__c</fieldItem>
                 <identifier>RecordAccount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Result__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FATT_JOBBEN</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Account2__c</fieldItem>
+                <identifier>RecordAccount2_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Result__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>PRESENTERT</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-47a39769-6a61-458d-b47f-4f77b14a1e84</name>

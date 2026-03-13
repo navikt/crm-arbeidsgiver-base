@@ -110,6 +110,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.Account2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
