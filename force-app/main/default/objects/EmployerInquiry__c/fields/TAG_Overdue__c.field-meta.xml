@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Overdue__c</fullName>
+    <description>Indikerer at svarfristen (DueDate__c) har passert uten at henvendelsen er lukket.</description>
+    <formula>AND(
+OR( ISPICKVAL(TAG_Status__c,&quot;Ny henvendelse&quot;), ISPICKVAL(TAG_Status__c,&quot;Under arbeid&quot;)),
+TAG_DueDate__c &lt; TODAY()
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Overdue</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
