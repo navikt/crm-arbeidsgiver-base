@@ -78,7 +78,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
-                    <value>{{TAG_DueDate__c}} &lt; TODAY</value>
+                    <value>{{TAG_Overdue__c}}</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
@@ -279,7 +279,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
-                    <value>TAG_Summary__c</value>
+                    <value>TAG_Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableEditAction</name>
@@ -331,7 +331,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
-                    <value>{{TAG_DueDate__c}} &lt; TODAY</value>
+                    <value>{{TAG_Overdue__c}}</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>

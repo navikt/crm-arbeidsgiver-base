@@ -33,6 +33,10 @@
                 <behavior>Readonly</behavior>
                 <field>TAG_Message__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TAG_IsOverdue__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
