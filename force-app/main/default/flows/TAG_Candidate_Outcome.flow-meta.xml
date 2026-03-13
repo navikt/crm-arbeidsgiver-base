@@ -658,6 +658,12 @@
             <targetReference>Is_Nav_unit_null</targetReference>
         </connector>
         <inputAssignments>
+            <field>Account2__c</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Account__c</field>
             <value>
                 <elementReference>Get_account.Id</elementReference>
@@ -719,6 +725,12 @@
             <field>Account2__c</field>
             <value>
                 <elementReference>Get_account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <stringValue></stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>

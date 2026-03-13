@@ -57,6 +57,34 @@
                 <elementReference>$Record.Title__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Account2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.JobPostingStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Status__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.OrganizationNumber__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OrganizationNumber__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Source__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Source__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_candidate_outcome_record_to_collection</targetReference>
         </connector>
@@ -99,6 +127,34 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>$Record.Title__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.OrganizationNumber__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OrganizationNumber__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.JobPostingStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Status__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Source__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Source__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -596,7 +652,7 @@
         <connector>
             <targetReference>Is_related_candidate_outcome_list_empty</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>1 AND (2 OR 3)</filterLogic>
         <filters>
             <field>JobPostingId__c</field>
             <operator>EqualTo</operator>
@@ -606,6 +662,13 @@
         </filters>
         <filters>
             <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Account2__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue></stringValue>
