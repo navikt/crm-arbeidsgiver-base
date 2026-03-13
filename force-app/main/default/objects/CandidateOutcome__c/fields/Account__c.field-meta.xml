@@ -4,15 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <label>Account</label>
-    <lookupFilter>
-        <active>true</active>
-        <filterItems>
-            <field>$Source.Result__c</field>
-            <operation>equals</operation>
-            <value>FATT_JOBBEN</value>
-        </filterItems>
-        <isOptional>false</isOptional>
-    </lookupFilter>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Candidate Outcome</relationshipLabel>
     <relationshipName>Candidate_Outcome</relationshipName>

@@ -4,15 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <description>A second lookup field to Account so that two separate related lists can be put on the Account layout</description>
     <label>Account2</label>
-    <lookupFilter>
-        <active>true</active>
-        <filterItems>
-            <field>$Source.Result__c</field>
-            <operation>equals</operation>
-            <value>PRESENTERT</value>
-        </filterItems>
-        <isOptional>false</isOptional>
-    </lookupFilter>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Candidate Outcome (Account2)</relationshipLabel>
     <relationshipName>Candidate_Outcome1</relationshipName>
