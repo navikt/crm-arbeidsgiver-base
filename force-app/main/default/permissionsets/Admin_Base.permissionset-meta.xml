@@ -75,6 +75,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.TAG_NumberOfEmploymentPlacementPresented__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.TAG_NumberOfEmploymentPlacement__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -101,6 +106,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ArenaActivity__c.TimeStampFromMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CandidateOutcome__c.Account2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -155,6 +165,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.JobPostingStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.JobPosting__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -185,7 +200,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.OrganizationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.Result__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CandidateOutcome__c.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -196,6 +221,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CandidateOutcome__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CandidateOutcome__c.TriggerUpdate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
