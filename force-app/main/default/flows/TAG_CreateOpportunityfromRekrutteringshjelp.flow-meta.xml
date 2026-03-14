@@ -652,7 +652,7 @@
         <connector>
             <targetReference>Is_related_candidate_outcome_list_empty</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3)</filterLogic>
+        <filterLogic>1 AND 2 AND 3</filterLogic>
         <filters>
             <field>JobPostingId__c</field>
             <operator>EqualTo</operator>
