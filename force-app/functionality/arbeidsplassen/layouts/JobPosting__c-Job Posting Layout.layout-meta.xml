@@ -107,10 +107,9 @@
     </platformActionList>
     <relatedLists>
         <fields>CandidateOutcomeLink__c</fields>
-        <fields>Type__c</fields>
         <fields>Result__c</fields>
-        <fields>EngagementType__c</fields>
         <fields>TimeRegistered__c</fields>
+        <fields>NavUnit__c</fields>
         <relatedList>CandidateOutcome__c.JobPosting__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -119,7 +118,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hRR00000Bggj5</masterLabel>
+        <masterLabel>00hS800000Ad9U8</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

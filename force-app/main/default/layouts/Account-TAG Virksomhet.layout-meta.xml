@@ -317,6 +317,13 @@
         <fields>JobPosting__c</fields>
         <relatedList>CandidateOutcome__c.Account__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>CandidateOutcomeLink__c</fields>
+        <fields>Result__c</fields>
+        <fields>TimeRegistered__c</fields>
+        <fields>JobPosting__c</fields>
+        <relatedList>CandidateOutcome__c.Account2__c</relatedList>
+    </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
@@ -324,7 +331,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hJX00000DLElb</masterLabel>
+        <masterLabel>00hS800000Ad9UG</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

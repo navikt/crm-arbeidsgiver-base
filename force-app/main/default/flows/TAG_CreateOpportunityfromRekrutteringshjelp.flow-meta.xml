@@ -18,8 +18,8 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_values_for_candidate_outcome</name>
-        <label>Assign values for candidate outcome</label>
+        <name>Assign_values_for_hired</name>
+        <label>Assign values for hired</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
@@ -55,6 +55,106 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>$Record.Title__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Account2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.JobPostingStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Status__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.OrganizationNumber__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OrganizationNumber__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Source__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Source__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_candidate_outcome_record_to_collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_values_for_presented</name>
+        <label>Assign values for presented</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Account2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.EngagementType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.EngagementType__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Extent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Extent__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.JobPosting__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Title__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Title__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.OrganizationNumber__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OrganizationNumber__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.JobPostingStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Status__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Run_through_candidate_outcome_list.Source__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Source__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -292,6 +392,31 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>What_result</name>
+        <label>What result?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_values_for_presented</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Presented</defaultConnectorLabel>
+        <rules>
+            <name>Hired</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Run_through_candidate_outcome_list.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FATT_JOBBEN</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_values_for_hired</targetReference>
+            </connector>
+            <label>Hired</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>NotesWithTlfNumber</name>
@@ -308,7 +433,7 @@
         <collectionReference>Get_related_candidate_outcome</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Assign_values_for_candidate_outcome</targetReference>
+            <targetReference>What_result</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_candidate_outcome</targetReference>
@@ -533,13 +658,6 @@
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.UUID__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Account__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue></stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
