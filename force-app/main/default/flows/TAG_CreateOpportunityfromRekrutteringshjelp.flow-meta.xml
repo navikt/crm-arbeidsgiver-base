@@ -652,26 +652,12 @@
         <connector>
             <targetReference>Is_related_candidate_outcome_list_empty</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3)</filterLogic>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>JobPostingId__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.UUID__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Account__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue></stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Account2__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue></stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
