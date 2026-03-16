@@ -3,9 +3,11 @@ import Toast from 'lightning/toast';
 import { updateRecord } from 'lightning/uiRecordApi';
 import ID_FIELD from '@salesforce/schema/EmployerInquiry__c.Id';
 import OWNER_FIELD from '@salesforce/schema/EmployerInquiry__c.OwnerId';
+
+import STATUS_FIELD from '@salesforce/schema/EmployerInquiry__c.TAG_Status__c';
 import currentUserId from '@salesforce/user/Id';
-// import assignToCurrentUser from '@salesforce/apex/InquiryAssignmentController.assignToCurrentUser';
-//import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
+
+const WORKING_STATUS = 'Følges opp';
 
 export default class InquiryAssignmentToUser extends LightningElement {
     _recordId;
@@ -57,7 +59,7 @@ export default class InquiryAssignmentToUser extends LightningElement {
         const fields = {};
         fields[ID_FIELD.fieldApiName] = recordId;
         fields[OWNER_FIELD.fieldApiName] = newOwnerId;
-
+        fields[STATUS_FIELD.fieldApiName] = WORKING_STATUS;
         const recordInput = { fields };
         await updateRecord(recordInput);
     }

@@ -54,7 +54,7 @@
             <assignToReference>$Record.Name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Ønsker hjelp til å forebygge sykefravær</stringValue>
+                <stringValue>Ønsker hjelp til å forebygge eller redusere sykefravær</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -111,7 +111,7 @@
                 <leftValueReference>$Record.TAG_WebFormTheme__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Forebygge sykefravær</stringValue>
+                    <stringValue>Forebygge og redusere fravær</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -133,7 +133,7 @@
                 <leftValueReference>$Record.TAG_WebFormTheme__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Skal ansette</stringValue>
+                    <stringValue>Rekruttere og inkludere</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -268,7 +268,7 @@
     <textTemplates>
         <name>webMessageSickLeave</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.TAG_Contact__r.MobilePhone}.</text>
+        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge eller redusere sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.TAG_Contact__r.MobilePhone}.</text>
     </textTemplates>
     <textTemplates>
         <name>webMessageYouth</name>
