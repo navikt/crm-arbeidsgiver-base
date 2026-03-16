@@ -18,71 +18,15 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_values_for_hired</name>
-        <label>Assign values for hired</label>
+        <name>Assign_values_not_null</name>
+        <label>Assign value not null</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Account__c</assignToReference>
+            <assignToReference>Run_through_candidate_outcome_list.TriggerUpdate__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.EngagementType__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.EngagementType__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Extent__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Extent__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.JobPosting__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Title__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Title__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Account2__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue></stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.JobPostingStatus__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Status__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.OrganizationNumber__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.OrganizationNumber__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Source__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Source__c</elementReference>
+                <stringValue>1</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -90,71 +34,15 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_values_for_presented</name>
-        <label>Assign values for presented</label>
+        <name>Assign_values_null</name>
+        <label>Assign value null</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Account2__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.EngagementType__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.EngagementType__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Extent__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Extent__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.JobPosting__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Title__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Title__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Account__c</assignToReference>
+            <assignToReference>Run_through_candidate_outcome_list.TriggerUpdate__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue></stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.OrganizationNumber__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.OrganizationNumber__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.JobPostingStatus__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Status__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.Source__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Source__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -393,28 +281,35 @@
         </rules>
     </decisions>
     <decisions>
-        <name>What_result</name>
-        <label>What result?</label>
+        <name>What_value_is_trigger_Update</name>
+        <label>What value is triggerUpdate?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Assign_values_for_presented</targetReference>
+            <targetReference>Assign_values_not_null</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Presented</defaultConnectorLabel>
+        <defaultConnectorLabel>Null</defaultConnectorLabel>
         <rules>
-            <name>Hired</name>
+            <name>Not_null</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Run_through_candidate_outcome_list.Result__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Run_through_candidate_outcome_list.TriggerUpdate__c</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue>FATT_JOBBEN</stringValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Run_through_candidate_outcome_list.TriggerUpdate__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_values_for_hired</targetReference>
+                <targetReference>Assign_values_null</targetReference>
             </connector>
-            <label>Hired</label>
+            <label>Not null</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -433,7 +328,7 @@
         <collectionReference>Get_related_candidate_outcome</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>What_result</targetReference>
+            <targetReference>What_value_is_trigger_Update</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_candidate_outcome</targetReference>
