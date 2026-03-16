@@ -28,6 +28,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     @api sortBy; // = '-CreatedDate'; // Felt som brukes for å sortere records
     @api quickActionsInput; // quickActionsInput = 'Tildel til meg:inquiryAssignmentToUser,Fjern tildeling:inquiryUnassignmentToUser';
     @api enableEditAction;
+
     // State Properties
     error;
     records = [];

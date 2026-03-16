@@ -20,15 +20,12 @@
                 description="The API name of a list view, such as AllAccounts." required="true" />
             <property name="newRecordButton" label="Show New Record Button" type="Boolean"
                 default="false" />
-
             <property name="altTextNewRecordButton" label="Alternative text New Record Button"
                 type="String" description="Alternative text to pop-up when hover over button." />
             <property name="enableEditAction" label="Enable Edit Action" type="Boolean"
-                default="true" />
+                default="false" />
+            <property name="quickActionsInput" label="Quick Actions" type="String" />
 
-            <property name="quickActionsInput" label="Quick Actions"
-                type="String"
-            />
             <property name="titleFieldInput" label="Primary field" type="String"
                 placeholder="TAG_Link__c"
                 description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
