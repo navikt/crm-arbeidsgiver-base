@@ -87,6 +87,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_RecievedDateTime__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_Source__c</field>
             <value>
                 <stringValue>Kontaktsenteret</stringValue>
