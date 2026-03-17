@@ -583,10 +583,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Account__c</field>
+            <field>Account2__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
+                <elementReference>$Record.Account2__r.Id</elementReference>
             </value>
         </filters>
         <filters>
