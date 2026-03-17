@@ -7,11 +7,11 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Type__c</fieldItem>
-                <identifier>RecordType_cField2</identifier>
+                <fieldItem>Record.CandidateOutcomeLink__c</fieldItem>
+                <identifier>RecordCandidateOutcomeLink_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-afb09399-b336-42ac-ac14-9298a227d778</name>
+        <name>Facet-a94b44b3-86bc-45e6-9203-acf8c093e714</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -22,7 +22,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Name</fieldItem>
-                <identifier>RecordNameField</identifier>
+                <identifier>RecordNameField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -42,7 +42,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Category__c</fieldItem>
-                <identifier>RecordCategory__cField</identifier>
+                <identifier>RecordCategory_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -65,7 +65,7 @@
                 <identifier>RecordTimeRegistered_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-d7c0d212-8988-48af-854a-6eb974e2ab1e</name>
+        <name>Facet-273bf6ad-c083-4989-adcf-350ae5871c64</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -77,11 +77,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>primaryField</name>
-                    <value>Facet-afb09399-b336-42ac-ac14-9298a227d778</value>
+                    <value>Facet-a94b44b3-86bc-45e6-9203-acf8c093e714</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>secondaryFields</name>
-                    <value>Facet-d7c0d212-8988-48af-854a-6eb974e2ab1e</value>
+                    <value>Facet-273bf6ad-c083-4989-adcf-350ae5871c64</value>
                 </componentInstanceProperties>
                 <componentName>record_flexipage:dynamicHighlights</componentName>
                 <identifier>record_flexipage_dynamicHighlights</identifier>
@@ -311,7 +311,7 @@
     <masterLabel>Candidate Outcome Record Page</masterLabel>
     <sobjectType>CandidateOutcome__c</sobjectType>
     <template>
-        <name>flexipage:recordHomeSimpleViewTemplate</name>
+        <name>flexipage:recordHomeSingleColTemplateDesktop</name>
         <properties>
             <name>enablePageActionConfig</name>
             <value>false</value>
