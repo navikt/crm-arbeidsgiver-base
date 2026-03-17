@@ -69,6 +69,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_DueDate__c</field>
+            <value>
+                <elementReference>Calculate_Due_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_Message__c</field>
             <value>
                 <elementReference>Text.conversationNote</elementReference>
