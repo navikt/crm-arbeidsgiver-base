@@ -667,6 +667,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>IsJobPostingFound__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>JobPostingStatus__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Status__c</elementReference>
@@ -728,6 +734,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>IsJobPostingFound__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>JobPostingStatus__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Status__c</elementReference>
@@ -777,6 +789,12 @@
             <field>Extent__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsJobPostingFound__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
