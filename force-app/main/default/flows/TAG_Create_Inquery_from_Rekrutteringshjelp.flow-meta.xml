@@ -178,7 +178,7 @@
         <inputAssignments>
             <field>TAG_SubTheme__c</field>
             <value>
-                <stringValue>Rekrutteringsoppdrag</stringValue>
+                <stringValue></stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -288,13 +288,6 @@
             <targetReference>Created_or_updated_to_RecruitmentAssistance</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
-        <filters>
-            <field>Source__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Arbeidsplassen.no</stringValue>
-            </value>
-        </filters>
         <filters>
             <field>RecruitmentAssistance__c</field>
             <operator>EqualTo</operator>

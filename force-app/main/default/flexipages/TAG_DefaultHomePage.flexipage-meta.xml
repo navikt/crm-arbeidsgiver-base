@@ -287,7 +287,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Innkommende henvendelser fra arbeidsgivere via kontaktskjema, Arbeidsplassen.no eller Arbeidsgivertelefonen. Viser henvendelser tildelt deg med status «Ny henvendelse» eller «Under arbeid», sortert med eldste først.</value>
+                    <value>Innkommende henvendelser fra arbeidsgivere via kontaktskjema, Arbeidsplassen.no eller Arbeidsgivertelefonen. Viser henvendelser tildelt deg med status «Ny henvendelse» eller «Følges opp», sortert med eldste først.</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -315,7 +315,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>quickActionsInput</name>
-                    <value>Legg i kø:inquiryUnassignment</value>
+                    <value>Send tilbake til kontorbenk:inquiryUnassignment</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>sortBy</name>

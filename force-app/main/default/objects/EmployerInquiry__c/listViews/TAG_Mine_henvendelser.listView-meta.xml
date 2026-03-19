@@ -13,7 +13,7 @@
     <filters>
         <field>TAG_Status__c</field>
         <operation>equals</operation>
-        <value>Ny henvendelse,Under arbeid</value>
+        <value>Ny henvendelse,Følges opp</value>
     </filters>
     <label>Mine henvendelser til oppfølging</label>
 </ListView>

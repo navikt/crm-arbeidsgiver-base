@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_InquiryDate__c</fullName>
     <description>Brukes for å sortere henvendelser i tidslinjen basert på svarfrist e,ler dato lukket</description>
-    <formula>IF(ISBLANK(TAG_ResolvedDate__c),  TAG_DueDate__c,  DATEVALUE(TAG_ResolvedDate__c))</formula>
+    <formula>IF(ISBLANK(TAG_ResolvedDate__c), IF(TAG_Overdue__c, TODAY(), TAG_DueDate__c ), DATEVALUE(TAG_ResolvedDate__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>InquiryDate</label>
     <required>false</required>
