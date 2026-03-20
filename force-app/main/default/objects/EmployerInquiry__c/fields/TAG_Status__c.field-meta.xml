@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Status__c</fullName>
+    <deprecated>false</deprecated>
     <description>Henvendelsens status i arbeidsprosessen. Oppdateres manuelt av saksbehandler etter hvert som henvendelsen behandles.</description>
     <inlineHelpText>Oppdater status etter hvert som henvendelsen behandles</inlineHelpText>
     <label>Status</label>
@@ -18,9 +19,9 @@
                 <label>Ny henvendelse</label>
             </value>
             <value>
-                <fullName>Under arbeid</fullName>
+                <fullName>Følges opp</fullName>
                 <default>false</default>
-                <label>Under arbeid</label>
+                <label>Følges opp</label>
             </value>
             <value>
                 <fullName>Fullført</fullName>

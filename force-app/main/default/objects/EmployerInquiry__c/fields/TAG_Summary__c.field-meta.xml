@@ -14,7 +14,7 @@
             ) ,
             &apos;Ingen følger opp ennå..&apos;   
         ) + &apos; (svarfrist &apos; + TEXT(TAG_DueDate__c)+&apos;)&apos;,
-    &apos;Under arbeid&apos;, 
+    &apos;Følges opp&apos;, 
         IF(
             OwnerId ==  $User.Id,
             &apos;Du følger opp denne&apos;, 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TAG_ResolvedDate__c</fullName>
-    <description>Tidspunkt når henvendelsen ble lukket/løst. Settes av flow når henvendelsen lukkes.</description>
-    <label>Resolved Date</label>
+    <fullName>TAG_AssignedDate__c</fullName>
+    <description>Tidspunkt henvendelsen ble tildelt bruker.</description>
+    <label>Assigned Date</label>
     <required>false</required>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>

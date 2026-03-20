@@ -29,6 +29,10 @@
                     <value>Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>helpText</name>
                     <value>Åpne henvendelser meldt inn via kontaktskjema og arbeidsplassen.no for din Nav-enhet</value>
                 </componentInstanceProperties>
@@ -92,6 +96,10 @@
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
                     <value>CRM_Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
@@ -158,6 +166,10 @@
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
                     <value>Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
@@ -244,6 +256,10 @@
                     <value>Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>helpText</name>
                     <value>Nyeste åpne mulighetene som tilhører din Nav-region</value>
                 </componentInstanceProperties>
@@ -326,6 +342,10 @@
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
                     <value>Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
@@ -511,6 +531,10 @@
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
                     <value>INT_OrganizationNumber__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
