@@ -6,11 +6,6 @@
     </classAccesses>
     <description>Tilgang til å se og oppdatere henvendelser fra arbeidsgivere</description>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>CustomOpportunity__c.TAG_EmployerInquiry__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.TAG_Account__c</field>
         <readable>true</readable>

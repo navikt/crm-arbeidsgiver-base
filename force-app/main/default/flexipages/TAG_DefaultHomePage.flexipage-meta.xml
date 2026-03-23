@@ -26,11 +26,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
-                    <value>TAG_Account__r.Name</value>
+                    <value>Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableEditAction</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
@@ -92,6 +92,71 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>CRM_Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Nye oppgaver, som er sendt fra Arbeidsgivertelefonen, til din Nav-enhet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom45</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>TAG_Min_Nav_enhet_innkommende_oppgaver_nye</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>NavTask__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>-CreatedDate</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Oppgaver fra Arbeidsgivertelefonen</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                    <value>{{CRM_DueDate__c}} &lt; TODAY &amp;&amp; {{CRM_Status__c}} == &quot;Ny&quot;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                    <value>Oppgavens forfallsdato er passert.</value>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView3</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>row1col2</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -108,7 +173,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableEditAction</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
@@ -196,7 +261,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableEditAction</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
@@ -279,7 +344,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
-                    <value>TAG_Account__r.Name</value>
+                    <value>Account__r.Name</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableEditAction</name>
@@ -473,11 +538,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
-                    <value>Account__r.Name</value>
+                    <value>INT_OrganizationNumber__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableEditAction</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>

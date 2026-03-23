@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <assignments>
+        <name>Count_duplicate_records</name>
+        <label>Count duplicate records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>countedDuplicates</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_duplicate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Are_there_duplicates</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Count_loop_run</name>
         <label>Count loop run</label>
         <locationX>0</locationX>
@@ -86,32 +102,15 @@
         <label>Are there duplicates?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Get_presented_empl_plac_for_related_account</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_duplicate</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>countedDuplicates</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_duplicate</leftValueReference>
-                <operator>IsEmpty</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.TriggerUpdate__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>3</stringValue>
+                    <numberValue>2.0</numberValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -210,6 +209,28 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_result_presented</name>
+        <label>Is result presented?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Presented</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>PRESENTERT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_duplicate</targetReference>
+            </connector>
+            <label>Presented</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Presented_or_hired</name>
         <label>Presented or hired?</label>
         <locationX>0</locationX>
@@ -245,7 +266,7 @@
         <defaultConnectorLabel>No job posting found</defaultConnectorLabel>
         <rules>
             <name>Yes_is_related_to_Account</name>
-            <conditionLogic>(1 OR 2) AND (3 OR 4)</conditionLogic>
+            <conditionLogic>1 AND 2 AND 3 AND 4</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Job_Posting.OrganizationNumber__c</leftValueReference>
                 <operator>IsNull</operator>
@@ -281,7 +302,7 @@
         </rules>
         <rules>
             <name>Yes_and_not_related_to_Account</name>
-            <conditionLogic>(1 OR 2) AND (3 OR 4)</conditionLogic>
+            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Job_Posting.OrganizationNumber__c</leftValueReference>
                 <operator>IsNull</operator>
@@ -322,7 +343,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>What_result</targetReference>
+            <targetReference>Is_result_presented</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -356,43 +377,6 @@
             <label>Stilling</label>
         </rules>
     </decisions>
-    <decisions>
-        <name>What_result</name>
-        <label>What result?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Presented</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Result__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>PRESENTERT</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_duplicate</targetReference>
-            </connector>
-            <label>Presented</label>
-        </rules>
-        <rules>
-            <name>Got_the_job</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Result__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>FATT_JOBBEN</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_employment_placement_for_related_account</targetReference>
-            </connector>
-            <label>Got the job</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
@@ -406,9 +390,6 @@
         <nextValueConnector>
             <targetReference>Count_loop_run</targetReference>
         </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Get_presented_empl_plac_for_related_account</targetReference>
-        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -464,7 +445,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Are_there_duplicates</targetReference>
+            <targetReference>Count_duplicate_records</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -583,10 +564,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Account__c</field>
+            <field>Account2__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Account__r.Id</elementReference>
+                <elementReference>$Record.Account2__r.Id</elementReference>
             </value>
         </filters>
         <filters>
@@ -630,7 +611,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>What_result</targetReference>
+            <targetReference>Is_result_presented</targetReference>
         </connector>
         <inputAssignments>
             <field>Type__c</field>
@@ -646,7 +627,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>What_result</targetReference>
+            <targetReference>Is_result_presented</targetReference>
         </connector>
         <inputAssignments>
             <field>Type__c</field>
@@ -662,13 +643,10 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Nav_unit_null</targetReference>
+            <targetReference>Get_employment_placement_for_related_account</targetReference>
         </connector>
         <inputAssignments>
             <field>Account2__c</field>
-            <value>
-                <stringValue></stringValue>
-            </value>
         </inputAssignments>
         <inputAssignments>
             <field>Account__c</field>
@@ -686,6 +664,12 @@
             <field>Extent__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsJobPostingFound__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -726,7 +710,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Nav_unit_null</targetReference>
+            <targetReference>Get_presented_empl_plac_for_related_account</targetReference>
         </connector>
         <inputAssignments>
             <field>Account2__c</field>
@@ -736,9 +720,6 @@
         </inputAssignments>
         <inputAssignments>
             <field>Account__c</field>
-            <value>
-                <stringValue></stringValue>
-            </value>
         </inputAssignments>
         <inputAssignments>
             <field>EngagementType__c</field>
@@ -750,6 +731,12 @@
             <field>Extent__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsJobPostingFound__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -802,6 +789,12 @@
             <field>Extent__c</field>
             <value>
                 <elementReference>Get_Job_Posting.Extent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsJobPostingFound__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -863,6 +856,9 @@
         <label>Update related Account</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Nav_unit_null</targetReference>
+        </connector>
         <inputAssignments>
             <field>TAG_NumberOfEmploymentPlacement__c</field>
             <value>
@@ -876,6 +872,9 @@
         <label>Update related Account with Presented emp.plac</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Nav_unit_null</targetReference>
+        </connector>
         <inputAssignments>
             <field>TAG_NumberOfEmploymentPlacementPresented__c</field>
             <value>
@@ -903,6 +902,17 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>countedDuplicates</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
     <variables>
         <name>countedEmploymentPlacement</name>
         <dataType>Number</dataType>
