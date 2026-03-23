@@ -32,4 +32,19 @@
     </caseValues>
     <gender>Masculine</gender>
     <nameFieldLabel><!-- Employer Inquiry --></nameFieldLabel>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Jeg følger opp!</label>
+        <name>TAG_Assign_to_me_lwc</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Lukk henvendelse</label>
+        <name>TAG_CloseInquiry</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Fjern tildeling</label>
+        <name>TAG_Unasign_from_me_lwc</name>
+    </quickActions>
 </CustomObjectTranslation>

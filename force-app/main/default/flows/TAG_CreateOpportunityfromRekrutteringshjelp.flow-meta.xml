@@ -1,54 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
-    <assignments>
-        <name>Add_candidate_outcome_record_to_collection</name>
-        <label>Add candidate outcome record to collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>CandidateOutcomeCollection</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Run_through_candidate_outcome_list</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Run_through_candidate_outcome_list</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_values_not_null</name>
-        <label>Assign value not null</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.TriggerUpdate__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>1</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_candidate_outcome_record_to_collection</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_values_null</name>
-        <label>Assign value null</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>Run_through_candidate_outcome_list.TriggerUpdate__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue></stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_candidate_outcome_record_to_collection</targetReference>
-        </connector>
-    </assignments>
     <decisions>
         <name>Are_there_Opportunities_already</name>
         <label>Are there Opportunities already?</label>
@@ -155,35 +107,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_related_candidate_outcome_list_empty</name>
-        <label>Is related candidate outcome list empty?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>Yes list is empty</defaultConnectorLabel>
-        <rules>
-            <name>No_list_has_records</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_related_candidate_outcome</leftValueReference>
-                <operator>IsEmpty</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Run_through_candidate_outcome_list</targetReference>
-            </connector>
-            <label>No list has records</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_status_stopped</name>
         <label>Is status stopped?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Get_related_candidate_outcome</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
             <name>Status_is_stopped_and_account_is_not_null</name>
@@ -280,38 +207,6 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <decisions>
-        <name>What_value_is_trigger_Update</name>
-        <label>What value is triggerUpdate?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Assign_values_not_null</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Null</defaultConnectorLabel>
-        <rules>
-            <name>Not_null</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Run_through_candidate_outcome_list.TriggerUpdate__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Run_through_candidate_outcome_list.TriggerUpdate__c</leftValueReference>
-                <operator>IsBlank</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_values_null</targetReference>
-            </connector>
-            <label>Not null</label>
-        </rules>
-    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>NotesWithTlfNumber</name>
@@ -320,20 +215,6 @@
     </formulas>
     <interviewLabel>TAG Create Opportunity from Rekrutteringshjelp {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Job Posting</label>
-    <loops>
-        <name>Run_through_candidate_outcome_list</name>
-        <label>Run through candidate outcome list</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <collectionReference>Get_related_candidate_outcome</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>What_value_is_trigger_Update</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Update_candidate_outcome</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -538,35 +419,11 @@
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>Get_related_candidate_outcome</name>
-        <label>Get related candidate outcome</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Is_related_candidate_outcome_list_empty</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>JobPostingId__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.UUID__c</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>CandidateOutcome__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <recordUpdates>
         <name>Add_account_to_job_posting</name>
         <label>Add account to job posting</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_related_candidate_outcome</targetReference>
-        </connector>
         <inputAssignments>
             <field>Account__c</field>
             <value>
@@ -580,9 +437,6 @@
         <label>Remove account from job posting</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_related_candidate_outcome</targetReference>
-        </connector>
         <inputAssignments>
             <field>Account__c</field>
             <value>
@@ -590,13 +444,6 @@
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_candidate_outcome</name>
-        <label>Update candidate outcome</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <inputReference>CandidateOutcomeCollection</inputReference>
     </recordUpdates>
     <start>
         <locationX>0</locationX>
