@@ -319,14 +319,14 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>headerUserAffiliation</name>
-                    <value>User</value>
+                    <value>Hidden</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showWelcomeMessage</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentName>tagUserOfficeHeader</componentName>
-                <identifier>c_tagUserOfficeHeader2</identifier>
+                <identifier>c_tagUserOfficeHeader4</identifier>
             </componentInstance>
         </itemInstances>
         <name>header2</name>
@@ -652,6 +652,20 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>headerUserAffiliation</name>
+                    <value>User</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showWelcomeMessage</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>tagUserOfficeHeader</componentName>
+                <identifier>c_tagUserOfficeHeader2</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>header4</name>
         <type>Region</type>
     </flexiPageRegions>
