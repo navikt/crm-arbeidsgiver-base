@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_ClosedReason__c</fullName>
-    <description>Årsak til hvorfor henvendelsen ble lukket og henvendelsens utfall. Må fylles ut når Stage__c settes til Lukket eller tilsvarende sluttstatus. Brukes i rapporter for å analysere henvendelsesutfall og effektivitet.</description>
+    <deprecated>false</deprecated>
+    <description>Rekkefølge og verdier i liste er avklart med brukergruppe (ikke sorter om!).
+Årsak til hvorfor henvendelsen ble lukket og henvendelsens utfall. Må fylles ut når Stage__c settes til Lukket eller tilsvarende sluttstatus. Brukes i rapporter for å analysere henvendelsesutfall og effektivitet.</description>
     <inlineHelpText>Velg årsak til lukking av henvendelsen. Påkrevd ved avslutning.</inlineHelpText>
     <label>Closed Reason</label>
     <required>false</required>
@@ -13,49 +15,54 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Ikke kontakt - Forsøkt flere ganger</fullName>
+                <fullName>Utforsker samarbeid videre</fullName>
                 <default>false</default>
-                <label>Ikke kontakt - Forsøkt flere ganger</label>
+                <label>Utforsker samarbeid videre</label>
             </value>
             <value>
-                <fullName>Ikke kontakt - Ugyldig kontaktinfo</fullName>
+                <fullName>Starter tiltakssamarbeid</fullName>
                 <default>false</default>
-                <label>Ikke kontakt - Ugyldig kontaktinfo</label>
+                <label>Starter tiltakssamarbeid</label>
             </value>
             <value>
-                <fullName>Kontaktet - Opprettet mulighet</fullName>
+                <fullName>Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag)</fullName>
                 <default>false</default>
-                <label>Kontaktet - Opprettet mulighet</label>
+                <label>Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag)</label>
             </value>
             <value>
-                <fullName>Kontaktet - Avtalt møte</fullName>
+                <fullName>Skal delta på jobbmesse eller rekrutteringstreff</fullName>
                 <default>false</default>
-                <label>Kontaktet - Avtalt møte</label>
+                <label>Skal delta på jobbmesse eller rekrutteringstreff</label>
             </value>
             <value>
-                <fullName>Kontaktet - Informasjon gitt</fullName>
+                <fullName>Nav skal gi rekrutteringshjelp</fullName>
                 <default>false</default>
-                <label>Kontaktet - Informasjon gitt</label>
+                <label>Nav skal gi rekrutteringshjelp</label>
             </value>
             <value>
-                <fullName>Kontaktet - Ikke behov nå</fullName>
+                <fullName>Fikk rådgivning/svar på det de lurte på</fullName>
                 <default>false</default>
-                <label>Kontaktet - Ikke behov nå</label>
+                <label>Fikk rådgivning/svar på det de lurte på</label>
             </value>
             <value>
-                <fullName>Kontaktet - Henvist videre</fullName>
+                <fullName>Kontaktes av noen andre i Nav</fullName>
                 <default>false</default>
-                <label>Kontaktet - Henvist videre</label>
+                <label>Kontaktes av noen andre i Nav</label>
             </value>
             <value>
-                <fullName>Feilregistrering/duplikat</fullName>
+                <fullName>Ble veiledet til selvbetjening / prøve selv</fullName>
                 <default>false</default>
-                <label>Feilregistrering/duplikat</label>
+                <label>Ble veiledet til selvbetjening / prøve selv</label>
             </value>
             <value>
-                <fullName>Annet</fullName>
+                <fullName>Ikke aktuelt / Nav skal ikke bistå</fullName>
                 <default>false</default>
-                <label>Annet</label>
+                <label>Ikke aktuelt / Nav skal ikke bistå</label>
+            </value>
+            <value>
+                <fullName>Fikk ikke tak i arbeidsgiveren</fullName>
+                <default>false</default>
+                <label>Fikk ikke tak i arbeidsgiveren</label>
             </value>
         </valueSetDefinition>
     </valueSet>
