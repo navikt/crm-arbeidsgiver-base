@@ -27,6 +27,14 @@ export default class TagUserOfficeHeader extends LightningElement {
         return this.headerUserAffiliation === 'Nav region';
     }
 
+    get isCustom() {
+        return !this.isUser && !this.isNavOffice && !this.isNavRegion && !this.isHidden;
+    }
+
+    get isHidden() {
+        return this.headerUserAffiliation === 'Hidden';
+    }
+
     get fullName() {
         const data = this.userRecord.data;
         if (data) {
@@ -43,5 +51,9 @@ export default class TagUserOfficeHeader extends LightningElement {
     get regionName() {
         const data = this.userRecord.data;
         return data ? data.fields.Region__c.value : '';
+    }
+
+    get customTitle() {
+        return this.headerUserAffiliation;
     }
 }
