@@ -4,6 +4,8 @@ import ID_FIELD from '@salesforce/schema/EmployerInquiry__c.Id';
 import OWNER_FIELD from '@salesforce/schema/EmployerInquiry__c.OwnerId';
 import Toast from 'lightning/toast';
 import getQueueIdForInquiry from '@salesforce/apex/InquiryAssignmentController.getQueueIdForInquiry';
+import STATUS_FIELD from '@salesforce/schema/EmployerInquiry__c.TAG_Status__c';
+const WORKING_STATUS = 'Ny henvendelse';
 
 export default class InquiryUnassignment extends LightningElement {
     _recordId;
@@ -53,6 +55,7 @@ export default class InquiryUnassignment extends LightningElement {
         const fields = {};
         fields[ID_FIELD.fieldApiName] = recordId;
         fields[OWNER_FIELD.fieldApiName] = newOwnerId;
+        fields[STATUS_FIELD.fieldApiName] = WORKING_STATUS;
 
         const recordInput = { fields };
         console.log('Updating record with input:', recordInput);

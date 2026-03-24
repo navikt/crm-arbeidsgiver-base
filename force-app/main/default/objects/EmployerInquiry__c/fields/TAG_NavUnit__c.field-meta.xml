@@ -7,12 +7,18 @@
     <label>Nav Unit</label>
     <lookupFilter>
         <active>true</active>
+        <errorMessage>Nav-enhet er ikke gyldig for henvendelsen.</errorMessage>
         <filterItems>
             <field>NavUnit__c.isActiveUnit__c</field>
             <operation>equals</operation>
             <value>True</value>
         </filterItems>
-        <isOptional>true</isOptional>
+        <filterItems>
+            <field>NavUnit__c.CRM_QueueId__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </filterItems>
+        <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>NavUnit__c</referenceTo>
     <relationshipName>NavUnits_Henvendelser</relationshipName>
