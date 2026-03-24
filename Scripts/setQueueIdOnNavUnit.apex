@@ -1,4 +1,4 @@
-List<String> testDataUnitNames = new List<String>{'NAV Alna'};
+List<String> testDataUnitNames = new List<String>{'NAV Alna', 'NAV Kristiansand', 'NAV Bærum', 'NAV Arbeidslivssenter Vest-Viken', 'NAV Arbeidslivssenter Oslo', 'NAV Arbeidslivssenter Agder'};
 List<QueueSobject> queues = [SELECT Queue.Name, Queue.Id FROM QueueSobject WHERE SobjectType = 'EmployerInquiry__c' AND Queue.Name IN :testDataUnitNames];
 
 Map<String, Id> queueNameToIdMap = new Map<String, Id>();
