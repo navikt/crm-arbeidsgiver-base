@@ -4,39 +4,43 @@
     <label>Resultat</label>
     <name>TAG_ClosedReason__c</name>
     <picklistValues>
-        <masterLabel>Annet</masterLabel>
-        <translation><!-- Annet --></translation>
+        <masterLabel>Ble veiledet til selvbetjening / prøve selv</masterLabel>
+        <translation><!-- Ble veiledet til selvbetjening / prøve selv --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Feilregistrering/duplikat</masterLabel>
-        <translation><!-- Feilregistrering/duplikat --></translation>
+        <masterLabel>Fikk ikke tak i arbeidsgiveren</masterLabel>
+        <translation><!-- Fikk ikke tak i arbeidsgiveren --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Ikke kontakt - Forsøkt flere ganger</masterLabel>
-        <translation><!-- Ikke kontakt - Forsøkt flere ganger --></translation>
+        <masterLabel>Fikk rådgivning/svar på det de lurte på</masterLabel>
+        <translation><!-- Fikk rådgivning/svar på det de lurte på --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Ikke kontakt - Ugyldig kontaktinfo</masterLabel>
-        <translation><!-- Ikke kontakt - Ugyldig kontaktinfo --></translation>
+        <masterLabel>Ikke aktuelt / Nav skal ikke bistå</masterLabel>
+        <translation><!-- Ikke aktuelt / Nav skal ikke bistå --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Kontaktet - Avtalt møte</masterLabel>
-        <translation><!-- Kontaktet - Avtalt møte --></translation>
+        <masterLabel>Kontaktes av noen andre i Nav</masterLabel>
+        <translation><!-- Kontaktes av noen andre i Nav --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Kontaktet - Henvist videre</masterLabel>
-        <translation><!-- Kontaktet - Henvist videre --></translation>
+        <masterLabel>Nav skal gi rekrutteringshjelp</masterLabel>
+        <translation><!-- Nav skal gi rekrutteringshjelp --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Kontaktet - Ikke behov nå</masterLabel>
-        <translation><!-- Kontaktet - Ikke behov nå --></translation>
+        <masterLabel>Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag)</masterLabel>
+        <translation><!-- Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag) --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Kontaktet - Informasjon gitt</masterLabel>
-        <translation><!-- Kontaktet - Informasjon gitt --></translation>
+        <masterLabel>Skal delta på jobbmesse eller rekrutteringstreff</masterLabel>
+        <translation><!-- Skal delta på jobbmesse eller rekrutteringstreff --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Kontaktet - Opprettet mulighet</masterLabel>
-        <translation><!-- Kontaktet - Opprettet mulighet --></translation>
+        <masterLabel>Starter tiltakssamarbeid</masterLabel>
+        <translation><!-- Starter tiltakssamarbeid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Utforsker samarbeid videre</masterLabel>
+        <translation><!-- Utforsker samarbeid videre --></translation>
     </picklistValues>
 </CustomFieldTranslation>
