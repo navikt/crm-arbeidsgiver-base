@@ -11,6 +11,7 @@
     <columns>TAG_Resolved_Date_Time__c</columns>
     <columns>TAG_Response_Days__c</columns>
     <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Is_My_NAV_Office__c</field>
