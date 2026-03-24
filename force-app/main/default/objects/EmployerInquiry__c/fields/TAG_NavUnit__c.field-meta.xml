@@ -18,7 +18,7 @@
             <operation>notEqual</operation>
             <value></value>
         </filterItems>
-        <isOptional>false</isOptional>
+        <isOptional>true</isOptional>
     </lookupFilter>
     <referenceTo>NavUnit__c</referenceTo>
     <relationshipName>NavUnits_Henvendelser</relationshipName>
