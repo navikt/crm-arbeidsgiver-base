@@ -6,6 +6,7 @@
     <columns>InclusionStage__c</columns>
     <columns>OwnerFullName__c</columns>
     <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Is_My_NAV_Office__c</field>
