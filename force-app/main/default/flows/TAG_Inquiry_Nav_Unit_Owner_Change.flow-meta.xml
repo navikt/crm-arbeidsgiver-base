@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <customErrors>
+        <name>Kan_ikke_endre_eirer_til_Nav_enhet</name>
+        <label>Kan ikke endre eirer til Nav enhet</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>Kan ikke endre Eier-felt. Hvis du vil sende henvendelsen til et annet kontor så oppdater feltet &quot;Nav-enhet&quot;.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Oppdatering_feilet</name>
+        <label>Oppdatering feilet</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>Oppdatering av Nav-enhet og eier feilet.
+Feilmelding: {!$Flow.FaultMessage}</errorMessage>
+            <fieldSelection>TAG_NavUnit__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Ugyldig_Nav_enhet</name>
+        <label>Ugyldig Nav-enhet</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>Valgt Nav-enhet er ikke gyldig. Nav-enhet må være aktiv og være konfigurert med benk-funksjon.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Is_valid_Nav_unit</name>
+        <label>Is valid Nav unit?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Ugyldig_Nav_enhet</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_NavUnit__r.CRM_QueueId__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_NavUnit__r.isActiveUnit__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Inquiry</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Validate</name>
+        <label>Validate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Related_NavUnit_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_NavUnit__r.CRM_QueueId__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_NavUnit__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_valid_Nav_unit</targetReference>
+            </connector>
+            <label>Related NavUnit changed</label>
+        </rules>
+        <rules>
+            <name>OwnerId_changed_and_does_not_match_nav_unit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.TAG_NavUnit__r.CRM_QueueId__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_Is_Assigned__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Kan_ikke_endre_eirer_til_Nav_enhet</targetReference>
+            </connector>
+            <label>OwnerId changed and does not match nav unit</label>
+        </rules>
+    </decisions>
+    <description>Updates owner to queue when Nav Unit is changed. Forces owner change to queue to be performed throught changing related Nav Unit. Triggers when Nav Unit or Owner is changed.</description>
+    <environments>Default</environments>
+    <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Inquiry Nav Unit Owner Change</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Inquiry</name>
+        <label>Update Inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Oppdatering_feilet</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.TAG_NavUnit__r.CRM_QueueId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>Ny henvendelse</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Validate</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND 3 AND 4</filterLogic>
+        <filters>
+            <field>TAG_NavUnit__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>OwnerId</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_NavUnit__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Fullført</stringValue>
+            </value>
+        </filters>
+        <object>EmployerInquiry__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

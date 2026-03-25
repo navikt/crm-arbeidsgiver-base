@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Screen flow som oppretter mulighet og lukker henvendelse.</description>
-    <flowDefinition>TAG_Close_Inquiry_Create_Opportunity</flowDefinition>
-    <label>Lukk og opprett mulighet</label>
-    <optionsCreateFeedItem>false</optionsCreateFeedItem>
-    <type>Flow</type>
-</QuickAction>
