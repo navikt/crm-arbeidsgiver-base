@@ -2,38 +2,6 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <assignments>
-        <name>Count_duplicate_records</name>
-        <label>Count duplicate records</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>countedDuplicates</assignToReference>
-            <operator>AssignCount</operator>
-            <value>
-                <elementReference>Get_duplicate</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Are_there_duplicates</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Count_loop_run</name>
-        <label>Count loop run</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>countLoop</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_newest_time_value</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Count_returned_presented_records</name>
         <label>Count returned presented records</label>
         <locationX>0</locationX>
@@ -65,60 +33,6 @@
             <targetReference>Update_related_Account</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <name>Set_duplicate_value_for_current_record</name>
-        <label>Set duplicate value for current record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>Run_through_duplicate_list.Duplicate__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_duplicate</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Unset_duplicate_value_for_current_record</name>
-        <label>Unset duplicate value for current record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>Run_through_duplicate_list.Duplicate__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_not_duplicate</targetReference>
-        </connector>
-    </assignments>
-    <decisions>
-        <name>Are_there_duplicates</name>
-        <label>Are there duplicates?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>countedDuplicates</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>2.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Run_through_duplicate_list</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
     <decisions>
         <name>Is_Nav_unit_null</name>
         <label>Is Nav unit null?</label>
@@ -159,31 +73,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_newest_time_value</name>
-        <label>Is newest time value?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Set_duplicate_value_for_current_record</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No not newest</defaultConnectorLabel>
-        <rules>
-            <name>Yes_is_newest</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>countLoop</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>1.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Unset_duplicate_value_for_current_record</targetReference>
-            </connector>
-            <label>Yes is newest</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_result_Not_Presented</name>
         <label>Is result Not Presented?</label>
         <locationX>0</locationX>
@@ -206,28 +95,6 @@
                 <targetReference>Get_Job_Posting</targetReference>
             </connector>
             <label>No</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_result_presented</name>
-        <label>Is result presented?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Presented</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Result__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>PRESENTERT</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_duplicate</targetReference>
-            </connector>
-            <label>Presented</label>
         </rules>
     </decisions>
     <decisions>
@@ -342,9 +209,6 @@
         <label>What category?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Is_result_presented</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Formidling</name>
@@ -376,21 +240,25 @@
             </connector>
             <label>Stilling</label>
         </rules>
+        <rules>
+            <name>Jobbmesse</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Category__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>JOBBMESSE</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_type_jobbmesse</targetReference>
+            </connector>
+            <label>Jobbmesse</label>
+        </rules>
     </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
-    <loops>
-        <name>Run_through_duplicate_list</name>
-        <label>Run through duplicate list</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <collectionReference>Get_duplicate</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Count_loop_run</targetReference>
-        </nextValueConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -436,43 +304,6 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Account</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_duplicate</name>
-        <label>Get duplicate</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Count_duplicate_records</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>CandidateId__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.CandidateId__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>JobPostingId__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.JobPostingId__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Result__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>PRESENTERT</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>CandidateOutcome__c</object>
-        <sortField>TimeRegistered__c</sortField>
-        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -610,9 +441,6 @@
         <label>Set type etterregistrering</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Is_result_presented</targetReference>
-        </connector>
         <inputAssignments>
             <field>Type__c</field>
             <value>
@@ -622,13 +450,23 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Set_type_jobbmesse</name>
+        <label>Set type jobbmesse</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>Jobbmesse</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Set_type_stillingsoppdrag</name>
         <label>Set type stillingsoppdrag</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Is_result_presented</targetReference>
-        </connector>
         <inputAssignments>
             <field>Type__c</field>
             <value>
@@ -828,28 +666,6 @@
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <description>Update current record record in loop with duplicate value</description>
-        <name>Update_duplicate</name>
-        <label>Update duplicate</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Run_through_duplicate_list</targetReference>
-        </connector>
-        <inputReference>Run_through_duplicate_list</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <description>Update current record record in loop with duplicate value</description>
-        <name>Update_not_duplicate</name>
-        <label>Update not duplicate</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Run_through_duplicate_list</targetReference>
-        </connector>
-        <inputReference>Run_through_duplicate_list</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Update_related_Account</name>
