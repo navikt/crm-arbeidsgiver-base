@@ -208,6 +208,10 @@ insertingTestData() {
     echo ""
 }
 
+runPostInstallScripts() {
+    sf apex run --file ./scripts/setQueueIdOnNavUnit.apex || { error $? '"sf apex run" failed for "setQueueIdOnNavUnit.apex".'; }
+}
+
 openOrg() {
     if [[ -n $npm_config_open_in ]]; then
         sf org open --browser "$npm_config_open_in" --path "lightning/app/c__TAG_NAV_default" || { error $? '"sf org open" command failed.'; }
@@ -267,7 +271,7 @@ operations=(
     deployingMetadata
     assignPermission
     insertingTestData
-    #runPostInstallScripts
+    runPostInstallScripts
     #publishCommunity
     openOrg
 )

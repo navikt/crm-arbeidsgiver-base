@@ -47,6 +47,30 @@
             "MobilePhone": "22123132",
             "TAG_Informed__c": true,
             "AccountId": "@AccountRef17"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef5"
+            },
+            "Email": "knut.knutsen@testepost.no",
+            "FirstName": "Knut",
+            "LastName": "Knutsen",
+            "MobilePhone": "22123155",
+            "TAG_Informed__c": true,
+            "AccountId": "@AccountRef2"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef6"
+            },
+            "Email": "lars.larsen@testepost.no",
+            "FirstName": "Lars",
+            "LastName": "Larsen",
+            "MobilePhone": "22123166",
+            "TAG_Informed__c": true,
+            "AccountId": "@AccountRef12"
         }
     ]
 }
