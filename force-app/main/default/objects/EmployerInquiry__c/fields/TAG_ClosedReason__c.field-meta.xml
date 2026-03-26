@@ -64,6 +64,60 @@
                 <default>false</default>
                 <label>Fikk ikke tak i arbeidsgiveren</label>
             </value>
+            <value>
+                <fullName>Annet</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Annet</label>
+            </value>
+            <value>
+                <fullName>Feilregistrering/duplikat</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Feilregistrering/duplikat</label>
+            </value>
+            <value>
+                <fullName>Ikke kontakt - Forsøkt flere ganger</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ikke kontakt - Forsøkt flere ganger</label>
+            </value>
+            <value>
+                <fullName>Ikke kontakt - Ugyldig kontaktinfo</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ikke kontakt - Ugyldig kontaktinfo</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Avtalt møte</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Kontaktet - Avtalt møte</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Henvist videre</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Kontaktet - Henvist videre</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Ikke behov nå</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Kontaktet - Ikke behov nå</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Informasjon gitt</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Kontaktet - Informasjon gitt</label>
+            </value>
+            <value>
+                <fullName>Kontaktet - Opprettet mulighet</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Kontaktet - Opprettet mulighet</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
