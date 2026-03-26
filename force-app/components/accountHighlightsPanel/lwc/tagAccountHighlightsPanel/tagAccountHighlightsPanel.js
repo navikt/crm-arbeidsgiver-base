@@ -56,7 +56,7 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
     /** Generated URL for parent account navigation */
     parentAccountUrl;
 
-    /** shows number of employees */
+    /** Shows number of employees */
     numEmployees;
 
     // ========== Constants ==========
@@ -93,7 +93,10 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
         }
     }
 
-      /** Get the number of employees */
+    /**
+     * Fetches the number of employees from Apex controller method
+     * @param {Object} result - Wire service result containing error or data
+     */
     @wire(getEmployees, { recordId: '$recordId' })
     emloyees(result) {
         if (result.data) {

@@ -1,4 +1,4 @@
-public without sharing class TAG_AccountHighlightsPanelController {
+public with sharing class TAG_AccountHighlightsPanelController {
     @AuraEnabled(cacheable=true)
     public static String getEmployees(Id recordId) {
         List<Account> acc = [
