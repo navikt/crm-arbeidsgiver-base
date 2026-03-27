@@ -72,6 +72,13 @@
                 <elementReference>Calculate_Due_Datetime</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.TAG_DueDateTime__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Calculate_Due_Datetime</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Should_set_assign_date</targetReference>
         </connector>
@@ -112,7 +119,7 @@
             <name>Due_date_is_blank</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.TAG_DueDate__c</leftValueReference>
+                <leftValueReference>$Record.TAG_DueDateTime__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -239,7 +246,7 @@
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
-            <field>TAG_DueDate__c</field>
+            <field>TAG_DueDateTime__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>true</booleanValue>
