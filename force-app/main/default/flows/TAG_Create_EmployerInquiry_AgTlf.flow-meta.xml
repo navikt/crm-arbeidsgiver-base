@@ -30,6 +30,66 @@
             <name>output</name>
         </outputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Toast_Created_Note</name>
+        <label>Toast Created Note</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>c:fcFlowToaster</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>success</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Du har opprettet et samtalenotat</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>c:fcFlowToaster</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Toast_Created_Task</name>
+        <label>Toast Created Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>c:fcFlowToaster</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>success</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Du har opprettet en oppgave</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>c:fcFlowToaster</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>66.0</apiVersion>
     <assignments>
         <name>Save_text_from_conversation_note</name>
@@ -198,6 +258,9 @@ NULL
         <label>Create Conversation Note (EmployerInquiry)</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Toast_Created_Note</targetReference>
+        </connector>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -296,6 +359,9 @@ NULL
         <label>Create EmployerInquiry</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Toast_Created_Task</targetReference>
+        </connector>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -726,7 +792,7 @@ NULL
         </fields>
         <fields>
             <name>navArbeidslivssenterNameDisplay</name>
-            <fieldText>&lt;p&gt;Ved &quot;Forebygge sykefravær og redusere frafall&quot; er anbefalt Nav-enhet for denne arbeidsgiveren: {!navUnitArbeidslivsenterName}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Ved &quot;Forebygge sykefravær og redusere frafall&quot; er anbefalt Nav-enhet for denne arbeidsgiveren: &lt;strong&gt;{!navUnitArbeidslivsenterName}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
