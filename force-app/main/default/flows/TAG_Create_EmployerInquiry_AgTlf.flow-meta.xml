@@ -792,7 +792,7 @@ NULL
         </fields>
         <fields>
             <name>navArbeidslivssenterNameDisplay</name>
-            <fieldText>&lt;p&gt;Ved &quot;Forebygge sykefravær og redusere frafall&quot; er anbefalt Nav-enhet for denne arbeidsgiveren: {!navUnitArbeidslivsenterName}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Ved &quot;Forebygge sykefravær og redusere frafall&quot; er anbefalt Nav-enhet for denne arbeidsgiveren: &lt;strong&gt;{!navUnitArbeidslivsenterName}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
