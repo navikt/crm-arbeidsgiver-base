@@ -4,7 +4,7 @@
             "path": "force-app",
             "default": true,
             "package": "crm-arbeidsgiver-base",
-            "versionNumber": "1.677.0.NEXT",
+            "versionNumber": "1.678.0.NEXT",
             "dependencies": [
                 {
                     "package": "platform-data-model",
@@ -74,7 +74,7 @@
                     "package": "crm-community-base",
                     "versionNumber": "0.140.0.LATEST"
                 },
-                                {
+                {
                     "package": "crm-henvendelse",
                     "versionNumber": "0.201.0.LATEST"
                 }
