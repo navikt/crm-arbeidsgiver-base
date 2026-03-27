@@ -211,6 +211,12 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_ClosedReason__c</field>
+            <value>
+                <stringValue>Fikk rådgivning/svar på det de lurte på</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_DueDateTime__c</field>
             <value>
                 <elementReference>dueDateTime</elementReference>
