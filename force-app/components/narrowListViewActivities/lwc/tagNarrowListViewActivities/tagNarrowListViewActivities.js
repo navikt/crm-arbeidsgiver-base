@@ -174,7 +174,8 @@ export default class TagNarrowListViewActivities extends NavigationMixin(Lightni
                     relatedObject: item.What?.Type,
                     titleLink: `/lightning/r/${this.objectApiName}/${item.Id}/view`,
                     detailLine: this.getSObjectFieldValue(item, this.detailFieldInput),
-                    showWarning: isOverdue
+                    showWarning: isOverdue,
+                    rowClass: 'slds-item' + (isOverdue ? ' warning-row' : '')
                 };
             });
         } else if (error) {

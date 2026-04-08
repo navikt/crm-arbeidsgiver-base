@@ -1,8 +1,16 @@
-
-.recordText{
-    line-height:1.5;
+.recordText {
+    line-height: 1.5;
 }
 
-.placeholder-text{
-   min-height: calc(var(--slds-g-font-size-base) * 1.5 * 2);
+.listViewBody {
+    padding-inline-end: var(--slds-g-spacing-1);
+    padding-inline-start: var(--slds-g-spacing-1);
+}
+
+.warning-row {
+    background-color: var(--slds-g-color-error-base-90, #fddde3);
+}
+
+.placeholder-text {
+    min-height: calc(var(--slds-g-font-size-base) * 1.5 * 2);
 }
