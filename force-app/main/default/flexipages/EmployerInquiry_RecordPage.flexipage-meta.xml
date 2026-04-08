@@ -237,6 +237,23 @@
                 <identifier>RecordClosingComment_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_NoPersonInformationClosingComment__c</fieldItem>
+                <identifier>RecordTAG_NoPersonInformationClosingComment_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-eabf801d-6551-4c23-897f-463d7bc1eeed</name>
         <type>Facet</type>
     </flexiPageRegions>

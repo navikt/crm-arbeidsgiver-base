@@ -323,6 +323,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_IsConversationNote__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.TAG_IsMyNavMarketRegion__c</field>
         <readable>true</readable>
@@ -370,6 +375,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_NavUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_NoPersonInformationClosingComment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1377,6 +1387,6 @@
     </tabSettings>
     <tabSettings>
         <tab>EmployerInquiry__c</tab>
-        <visibility>Available</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
