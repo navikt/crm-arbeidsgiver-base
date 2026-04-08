@@ -111,6 +111,12 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldItem>Record.TAG_Account__r.OrganizationNumberFormula__c</fieldItem>
+                <identifier>RecordTAG_Account_rOrganizationNumberFormula_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
