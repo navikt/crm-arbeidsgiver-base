@@ -714,8 +714,8 @@ NULL
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
-            <name>Frist</name>
-            <dataType>DateTime</dataType>
+            <name>DueDate</name>
+            <dataType>Date</dataType>
             <defaultValue>
                 <elementReference>dueDateTime</elementReference>
             </defaultValue>
