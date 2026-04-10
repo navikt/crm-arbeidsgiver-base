@@ -13,12 +13,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_IsConversationNote__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_Message__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_RecievedDateTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_ResolvedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
