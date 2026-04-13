@@ -304,12 +304,14 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     // =========================
 
     createDataItemFromRecord(record) {
+        const showWarning = this.shouldShowWarning(record);
         return {
             id: record.id,
             title: this.getFieldValue(record, this.titleFieldInput),
             titleLink: '/lightning/r/' + record.apiName + '/' + record.id + '/view',
             detailLine: this.getFieldValue(record, this.detailFieldInput),
-            showWarning: this.shouldShowWarning(record)
+            showWarning: showWarning,
+            rowClass: 'slds-item' + (showWarning ? ' warning-row' : '')
         };
     }
 
