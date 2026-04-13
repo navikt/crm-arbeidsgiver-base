@@ -74,7 +74,7 @@
     </values>
     <values>
         <field>CustomComponent__c</field>
-        <value xsi:type="xsd:string">timelineInquiryDetails</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>CustomView__c</field>
@@ -82,7 +82,7 @@
     </values>
     <values>
         <field>ExpandedFieldsToDisplay__c</field>
-        <value xsi:nil="true" />
+        <value xsi:type="xsd:string">TAG_Summary__c, TAG_Status__c</value>
     </values>
     <values>
         <field>Filter_Shown__c</field>
@@ -126,11 +126,11 @@
     </values>
     <values>
         <field>SObjectRelatedUserId__c</field>
-        <value xsi:type="xsd:string">TAG_Contact__c</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SObjectSubtitle__c</field>
-        <value xsi:nil="true" />
+        <value xsi:type="xsd:string">TAG_Summary__c</value>
     </values>
     <values>
         <field>SObjectTitle__c</field>
@@ -154,26 +154,26 @@
     </values>
     <values>
         <field>SubtitleFutureEnglish__c</field>
-        <value xsi:type="xsd:string">is responding to inquiry</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SubtitleFutureNorwegian__c</field>
-        <value xsi:type="xsd:string">følger opp henvendelse</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SubtitlePastEnglish__c</field>
-        <value xsi:type="xsd:string">responded to inquiry</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SubtitlePastNorwegian__c</field>
-        <value xsi:type="xsd:string">fulgte opp henvendelse</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionEng__c</field>
-        <value xsi:type="xsd:string">from</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>SubtitleRelatedUserPrepositionNor__c</field>
-        <value xsi:type="xsd:string">fra</value>
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>
