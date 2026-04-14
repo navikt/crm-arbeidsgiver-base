@@ -82,7 +82,7 @@
     </values>
     <values>
         <field>ExpandedFieldsToDisplay__c</field>
-        <value xsi:type="xsd:string">TAG_Summary__c, TAG_Status__c</value>
+        <value xsi:type="xsd:string">TAG_Summary__c, TAG_ClosingComment__c</value>
     </values>
     <values>
         <field>Filter_Shown__c</field>
