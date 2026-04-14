@@ -82,7 +82,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
-                    <value>Svarfrist er passert</value>
+                    <value>Har ligget i 2 virkedager</value>
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView2</identifier>
@@ -94,6 +94,9 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>detailFieldInput</name>
                     <value>Account__r.Name</value>
@@ -131,6 +134,9 @@
                     <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>quickActionsInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>sortBy</name>
                     <value>-CreatedDate</value>
                 </componentInstanceProperties>
@@ -144,11 +150,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
-                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                    <value>{{TAG_IsOverdue__c}}</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
-                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                    <value>Har ligget i 2 virkedager</value>
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView5</identifier>
@@ -201,6 +207,9 @@
                     <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>quickActionsInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>sortBy</name>
                     <value>-CreatedDate</value>
                 </componentInstanceProperties>
@@ -214,11 +223,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
-                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                    <value>{{TAG_IsOverdue__c}}</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
-                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                    <value>Har ligget i 2 virkedager</value>
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView6</identifier>
@@ -395,6 +404,9 @@
                     <value>4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>quickActionsInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>sortBy</name>
                     <value>-CreatedDate</value>
                 </componentInstanceProperties>
@@ -408,11 +420,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
-                    <value>{{TAG_Age__c}} &gt; 1 &amp;&amp; {{InclusionStage__c}} == &quot;Ny henvendelse&quot;</value>
+                    <value>{{TAG_IsOverdue__c}}</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
-                    <value>Denne oppføringen er eldre enn 1 dag og er i &quot;Ny henvendelse&quot; stadiet.</value>
+                    <value>Har ligget i 2 virkedager</value>
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView</identifier>
@@ -615,7 +627,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningTextInput</name>
-                    <value>Svarfrist er passert</value>
+                    <value>Har ligget i 2 virkedager</value>
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView7</identifier>
