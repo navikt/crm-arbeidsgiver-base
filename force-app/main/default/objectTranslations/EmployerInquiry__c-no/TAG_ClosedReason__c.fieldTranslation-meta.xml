@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <help>Velg årsak til lukking av henvendelsen. Påkrevd ved avslutning.</help>
-    <label>Resultat</label>
+    <label>Hva skjer videre?</label>
     <name>TAG_ClosedReason__c</name>
     <picklistValues>
         <masterLabel>Ble veiledet til selvbetjening / prøve selv</masterLabel>

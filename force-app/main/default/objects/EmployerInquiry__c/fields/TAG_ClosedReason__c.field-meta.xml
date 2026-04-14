@@ -15,9 +15,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Utforsker samarbeid videre</fullName>
+                <fullName>Utforsker samarbeid videre / oppfølging planlagt</fullName>
                 <default>false</default>
-                <label>Utforsker samarbeid videre</label>
+                <label>Utforsker samarbeid videre / oppfølging planlagt</label>
             </value>
             <value>
                 <fullName>Starter tiltakssamarbeid</fullName>
@@ -25,19 +25,19 @@
                 <label>Starter tiltakssamarbeid</label>
             </value>
             <value>
-                <fullName>Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag)</fullName>
+                <fullName>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</fullName>
                 <default>false</default>
-                <label>Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag)</label>
+                <label>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</label>
             </value>
             <value>
-                <fullName>Skal delta på jobbmesse eller rekrutteringstreff</fullName>
+                <fullName>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</fullName>
                 <default>false</default>
-                <label>Skal delta på jobbmesse eller rekrutteringstreff</label>
+                <label>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</label>
             </value>
             <value>
-                <fullName>Nav skal gi rekrutteringshjelp</fullName>
+                <fullName>Skal delta på jobbmesse / rekrutteringstreff</fullName>
                 <default>false</default>
-                <label>Nav skal gi rekrutteringshjelp</label>
+                <label>Skal delta på jobbmesse / rekrutteringstreff</label>
             </value>
             <value>
                 <fullName>Fikk rådgivning/svar på det de lurte på</fullName>
@@ -117,6 +117,30 @@
                 <default>false</default>
                 <isActive>false</isActive>
                 <label>Kontaktet - Opprettet mulighet</label>
+            </value>
+            <value>
+                <fullName>Nav skal gi rekrutteringshjelp</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Nav skal gi rekrutteringshjelp</label>
+            </value>
+            <value>
+                <fullName>Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Skal ansette med bistand fra Nav (direktemeldt stilling/reservert oppdrag)</label>
+            </value>
+            <value>
+                <fullName>Skal delta på jobbmesse eller rekrutteringstreff</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Skal delta på jobbmesse eller rekrutteringstreff</label>
+            </value>
+            <value>
+                <fullName>Utforsker samarbeid videre</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Utforsker samarbeid videre</label>
             </value>
         </valueSetDefinition>
     </valueSet>
