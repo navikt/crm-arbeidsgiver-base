@@ -5,9 +5,9 @@
     <externalId>false</externalId>
     <formula>IF(
         TAG_Overdue__c,
-        IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 10, 10) +&apos; &apos;+  TEXT(TAG_DueDate__c) ,
-        TEXT(TAG_DueDate__c)
-    )</formula>
+        IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 10, 10) +&apos; &apos;, &apos;&apos;        
+    ) &amp;
+MID(TEXT(TAG_DueDate__c), 9, 2) + &apos;.&apos; + MID(TEXT(TAG_DueDate__c), 6, 2) + &apos;.&apos; + LEFT(TEXT(TAG_DueDate__c), 4)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Due/Overdue</label>
     <required>false</required>

@@ -9,19 +9,24 @@
             TAG_Is_Assigned__c, 
             IF(
                 OwnerId ==  $User.Id,
-                &apos;Du følger opp denne&apos;, 
-                Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName +&apos; følger opp denne&apos;
+                &apos;Du følger opp henvendelsen.&apos;, 
+                Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName +&apos; følger opp henvendelsen.&apos;
             ) ,
             &apos;Ingen følger opp ennå..&apos;   
-        ) + &apos; (svarfrist &apos; + TEXT(TAG_DueDate__c)+&apos;)&apos;,
+        ) + &apos; (svarfrist &apos; + MID(TEXT(TAG_DueDate__c), 9, 2) + &apos;.&apos; + MID(TEXT(TAG_DueDate__c), 6, 2) + &apos;.&apos; + LEFT(TEXT(TAG_DueDate__c), 4) +&apos;)&apos;,
     &apos;Følges opp&apos;, 
         IF(
             OwnerId ==  $User.Id,
-            &apos;Du følger opp denne&apos;, 
-            Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName +&apos; følger opp denne&apos;
-        ) + &apos; (svarfrist &apos; + TEXT(TAG_DueDate__c)+&apos;)&apos;,
-    &apos;Fullført&apos;,
-        &apos;Resultat: &apos; + TEXT( TAG_ClosedReason__c ),
+            &apos;Du følger opp henvendelsen.&apos;, 
+            Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName +&apos; følger opp henvendelsen.&apos;
+        ) + &apos; (svarfrist &apos; + MID(TEXT(TAG_DueDate__c), 9, 2) + &apos;.&apos; + MID(TEXT(TAG_DueDate__c), 6, 2) + &apos;.&apos; + LEFT(TEXT(TAG_DueDate__c), 4) +&apos;)&apos;,
+    &apos;Fullført&apos;, 
+IF(
+            OwnerId ==  $User.Id,
+            &apos;Du fulgte opp henvendelsen.&apos;, 
+            Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName +&apos; fulgte opp henvendelsen.&apos;
+        )+
+        &apos; Resultat: &apos;+TEXT( TAG_ClosedReason__c ),
 &apos;&apos;)</formula>
     <label>Summary</label>
     <required>false</required>
