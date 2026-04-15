@@ -283,7 +283,7 @@
         <connector>
             <targetReference>Has_active_IA_Case</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>1 AND (2 OR 3)</filterLogic>
         <filters>
             <field>Account__c</field>
             <operator>EqualTo</operator>
@@ -296,6 +296,13 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>VI_BISTÅR</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CaseStatus__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>AKTIV</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
