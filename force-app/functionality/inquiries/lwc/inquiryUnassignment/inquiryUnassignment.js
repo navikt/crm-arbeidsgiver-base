@@ -58,7 +58,6 @@ export default class InquiryUnassignment extends LightningElement {
         fields[STATUS_FIELD.fieldApiName] = WORKING_STATUS;
 
         const recordInput = { fields };
-        console.log('Updating record with input:', recordInput);
         await updateRecord(recordInput);
     }
 }
