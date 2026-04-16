@@ -575,11 +575,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableEditAction</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Innkommende henvendelser fra arbeidsgivere via kontaktskjema, Arbeidsplassen.no eller Arbeidsgivertelefonen. Viser henvendelser tildelt deg med status «Ny henvendelse» eller «Følges opp», sortert med eldste først.</value>
+                    <value>Henvendelser du følger opp, sortert med eldste først.</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -663,7 +663,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Nyttige rapporter&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002ewox2AA/view?queryScope=userFolders&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Mine aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(0, 0, 0);&quot;&gt;﻿&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Nyttige rapporter&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002ewox2AA/view?queryScope=userFolders&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(1, 118, 211);&quot;&gt;Mine aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;﻿&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Nyttige lister&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;/lightning/o/EmployerInquiry__c/list?filterName=TAG_Henvendelser_som_f_lges_opp&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Henvendelser som følges opp&lt;/a&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText</identifier>
