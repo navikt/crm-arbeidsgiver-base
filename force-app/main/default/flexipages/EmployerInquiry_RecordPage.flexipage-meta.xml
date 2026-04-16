@@ -28,16 +28,10 @@
                         <valueListItems>
                             <value>EmployerInquiry__c.TAG_CloseInquiry</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
