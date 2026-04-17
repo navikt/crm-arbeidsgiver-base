@@ -34,7 +34,6 @@ export default class InquiryAssignmentToUser extends LightningElement {
         try {
             const newOwnerId = currentUserId;
             await this.updateRecordOwner(this.recordId, newOwnerId);
-            // await notifyRecordUpdateAvailable([{ recordId: this.recordId }]);
 
             Toast.show({
                 label: 'Henvendelsen er nå tildelt deg',

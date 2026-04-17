@@ -16,7 +16,7 @@
             slot="actions"
             variant="border"
             alternative-text={altTextNewRecordButton}
-            title="Opprett ny mulighet"
+            title={altTextNewRecordButton}
             onclick={handleNewRecord}
             icon-name="utility:add"
             size="small"
@@ -24,7 +24,7 @@
         </lightning-button-icon>
 
         <div slot="footer">
-            <lightning-button variant="base" label="Se alle" class="slds-text-link" onclick={navigateToListView}>
+            <lightning-button variant="base" label="Se alle" class="slds-text-link" onclick={handleListLinkClick}>
             </lightning-button>
         </div>
 
@@ -54,7 +54,7 @@
                                             <a
                                                 href={record.titleLink}
                                                 data-record-id={record.id}
-                                                onclick={navigateToRecord}
+                                                onclick={handleRecordClick}
                                             >
                                                 {record.title}
                                             </a>
@@ -89,7 +89,7 @@
                                             >
                                                 <template for:each={recordLevelActions} for:item="action">
                                                     <lightning-menu-item
-                                                        key={action.id}
+                                                        key={action.value}
                                                         label={action.label}
                                                         value={action.value}
                                                     >
@@ -124,7 +124,13 @@
     <!-- Quick Action Components -->
     <template lwc:if={hasQuickActionComponent}>
         <template for:each={importedActions} for:item="component">
-            <lwc:component key={component.name} lwc:is={component.constructor} data-id={component.name}></lwc:component>
+            <lwc:component
+                key={component.name}
+                lwc:is={component.constructor}
+                data-id={component.name}
+                onsuccess={handleQuickActionSuccess}
+                onerror={handleQuickActionError}
+            ></lwc:component>
         </template>
     </template>
 </template>
