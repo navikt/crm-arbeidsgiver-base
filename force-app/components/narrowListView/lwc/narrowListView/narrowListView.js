@@ -39,7 +39,6 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     records = [];
     isRefreshing = true;
     subscription = null;
-    _hasNavigatedAway = false;
 
     // Wire Results
     wiredListViewRecordsResult;
@@ -131,12 +130,15 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
             }
         }
         this.recordLevelActions = this.buildRecordLevelActions();
+
         // Subscribe to messages from other components
-        this.subscribeToMessageChannel();
+        this.subscription = subscribe(this.messageContext, NARROW_LIST_VIEW_CHANNEL, (message) =>
+            this.handleMessage(message)
+        );
+
         // Listen for popstate events to detect when user navigates back to this component
         this._popstateCallback = () => {
             if (this.wiredListViewRecordsResult) {
-                console.debug('Detected popstate event, refreshing data');
                 refreshApex(this.wiredListViewRecordsResult);
             }
         };
@@ -159,7 +161,6 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         sortBy: '$sortField'
     })
     wiredListViewRecords(result) {
-        this.isRefreshing = true;
         this.wiredListViewRecordsResult = result;
         if (result.data) {
             this.records = result.data.records
@@ -192,8 +193,11 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
             this.navigateToRecordEdit(recordId, this.objectApiName);
         } else if (selectedAction.startsWith(this.HEADLESS_ACTION_PREFIX)) {
             const actionName = selectedAction.substring(this.HEADLESS_ACTION_PREFIX.length);
-
-            this.invokeQuickAction(recordId, actionName);
+            const quickActionCmp = this.template.querySelector(`[data-id="${actionName}"]`);
+            if (quickActionCmp && typeof quickActionCmp.invoke === 'function') {
+                quickActionCmp.recordId = recordId;
+                quickActionCmp.invoke();
+            }
         }
     }
 
@@ -204,46 +208,34 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     // Trigges på innkommende meldinger i message channel. Oppdaterer listen når det skjer endringer
     handleMessage(message) {
         const objectToRefresh = message.objectApiName;
-        this.refreshListsWithObjectApiName(objectToRefresh);
+        if (this.objectApiName != null && objectToRefresh != null && objectToRefresh === this.objectApiName) {
+            this.isRefreshing = true;
+            refreshApex(this.wiredListViewRecordsResult);
+        }
     }
 
     handleRecordClick(event) {
         event.preventDefault();
-        this.storeObjectApiNameInNavigationCache();
         const recordId = event.target.dataset.recordId;
         this.navigateToRecord(recordId);
     }
 
     handleListLinkClick(event) {
         event.preventDefault();
-        this.storeObjectApiNameInNavigationCache();
         this.navigateToListView();
     }
 
     handleQuickActionSuccess() {
-        this.notifyChange();
+        this.isRefreshing = true;
+        publish(this.messageContext, NARROW_LIST_VIEW_CHANNEL, { objectApiName: this.objectApiName });
     }
     handleQuickActionError() {
         this.isRefreshing = false;
     }
 
     // =========================
-    // QUICK ACTION
+    // QUICK ACTION METHODS
     // =========================
-
-    invokeQuickAction(recordId, actionName) {
-        const quickActionCmp = this.template.querySelector(`[data-id="${actionName}"]`);
-
-        if (quickActionCmp && typeof quickActionCmp.invoke === 'function') {
-            quickActionCmp.recordId = recordId;
-            quickActionCmp.invoke();
-        }
-    }
-
-    notifyChange() {
-        console.debug('Publishing message to notify change for objectApiName:', this.objectApiName);
-        publish(this.messageContext, NARROW_LIST_VIEW_CHANNEL, { objectApiName: this.objectApiName });
-    }
 
     buildRecordLevelActions() {
         const actions = this.importedActions.map((action) => ({
@@ -256,9 +248,9 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
         return actions;
     }
 
+    /* Returns array of objects with label and value for each quick action. 
+    Expected input format: label1:componentName1, label2:componentName2 */
     processQuickActionsInput() {
-        // Expected input format: label1:componentName1, label2:componentName2
-        // return array of objects with label and value for each quick action
         const actions = [];
         if (!this.quickActionsInput) {
             return actions;
@@ -523,23 +515,5 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
         // Return as string
         return value;
-    }
-
-    subscribeToMessageChannel() {
-        this.subscription = subscribe(this.messageContext, NARROW_LIST_VIEW_CHANNEL, (message) =>
-            this.handleMessage(message)
-        );
-    }
-
-    storeObjectApiNameInNavigationCache() {
-        this._hasNavigatedAway = true;
-    }
-
-    refreshListsWithObjectApiName(objectApiName) {
-        console.debug('Received message to refresh lists with objectApiName:', objectApiName);
-        if (this.objectApiName != null && objectApiName != null && objectApiName === this.objectApiName) {
-            this.isRefreshing = true;
-            refreshApex(this.wiredListViewRecordsResult);
-        }
     }
 }

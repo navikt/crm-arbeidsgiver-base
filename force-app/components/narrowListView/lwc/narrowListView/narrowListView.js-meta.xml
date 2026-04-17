@@ -28,10 +28,10 @@
 
             <property name="titleFieldInput" label="Primary field" type="String"
                 placeholder="TAG_Link__c"
-                description="Use field API name. Obs! CASE sesnsitive fieldnames! " required="true" />
+                description="Use field API name. Obs! CASE sensitive fieldnames! " required="true" />
             <property name="detailFieldInput" label="Secondary field" type="String"
                 placeholder="Account__r.Name"
-                description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sesnsitive fieldnames!" />
+                description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sensitive fieldnames!" />
             <property name="sortBy" label="Sort by field" type="String" placeholder="-CreatedDate"
                 description="API name of the field to sort by. Use '-' prefix for descending order, for instance '-CreatedDate' will show newest first." />
 
