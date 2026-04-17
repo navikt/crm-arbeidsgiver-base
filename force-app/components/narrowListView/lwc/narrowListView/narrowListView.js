@@ -393,22 +393,11 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
      */
     evaluateBooleanExpression(expression) {
         expression = expression.trim();
-        // Split by AND/OR operators while preserving them
-        const tokens = expression.split(/(\s+&&\s+|\s+\|\|\s+|\s+AND\s+|\s+OR\s+)/i);
-        // Evaluate first comparison
-        let result = this.evaluateComparison(tokens[0]);
-
-        for (let i = 1; i < tokens.length; i += 2) {
-            const operator = tokens[i].trim().toUpperCase();
-            const nextComparison = this.evaluateComparison(tokens[i + 1]);
-
-            if (operator === '&&' || operator === 'AND') {
-                result = result && nextComparison;
-            } else if (operator === '||' || operator === 'OR') {
-                result = result || nextComparison;
-            }
-        }
-        return result;
+        const orSegments = expression.split(/\s+(?:\|\||OR)\s+/i);
+        return orSegments.some((segment) => {
+            const andSegments = segment.split(/\s+(?:&&|AND)\s+/i);
+            return andSegments.every((comparison) => this.evaluateComparison(comparison));
+        });
     }
 
     /**
