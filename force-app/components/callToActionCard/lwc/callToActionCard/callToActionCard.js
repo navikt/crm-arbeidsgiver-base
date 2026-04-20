@@ -1,6 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 
-export default class NextBestActionCard extends LightningElement {
+export default class CallToActionCard extends LightningElement {
 
     @api recordId;
     @api cardTitle   = 'Title';
