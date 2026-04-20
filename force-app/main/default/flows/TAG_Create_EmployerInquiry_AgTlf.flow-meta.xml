@@ -178,7 +178,9 @@
             <label>No</label>
         </rules>
     </decisions>
-    <description>Screen flow to create Employer inquiry for NKS Arbeidsgiver Telefon</description>
+    <description>Screen flow som brukes av NKS Arbeidsgiver Telefon (kontaktsenteret) for å opprette henvendelser (EmployerInquiry__c) under en telefonsamtale. Flowen dekker to behov:
+- Samtalenotat: Dokumenterer samtaler som ble løst umiddelbart (f.eks. rådgivning). Opprettes som fullført henvendelse for statistikk og historikk med innlogget bruker som eier.
+- Oppgave til lokalt kontor: Når veilederen ikke kan løse saken selv, sendes den som oppgave til Nav-enhet. Eier settes til Nav-enhetens kø, status ny henvendelse og svarfrist på 2 dager.</description>
     <dynamicChoiceSets>
         <name>SubthemeChoiceSet</name>
         <dataType>Picklist</dataType>

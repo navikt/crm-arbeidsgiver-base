@@ -116,7 +116,11 @@ Feilmelding: {!$Flow.FaultMessage}</errorMessage>
             <label>OwnerId changed and does not match nav unit</label>
         </rules>
     </decisions>
-    <description>Updates owner to queue when Nav Unit is changed. Forces owner change to queue to be performed throught changing related Nav Unit. Triggers when Nav Unit or Owner is changed.</description>
+    <description>Kjører når Nav-enhet (TAG_NavUnit__c) eller Eier (OwnerId) endres og henvendelsen ikke er fullført. 
+Flowen sikrer at:
+- Felt for Eier og Nav-enhet holdes synkroniserte.
+- Kun gyldige (aktive, kø-konfigurerte) Nav-enheter kan velges.
+- Status resettes slik at det nye kontoret ser henvendelsen som ny.</description>
     <environments>Default</environments>
     <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Inquiry Nav Unit Owner Change</label>

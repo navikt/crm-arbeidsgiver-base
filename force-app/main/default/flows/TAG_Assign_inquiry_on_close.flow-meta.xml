@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>66.0</apiVersion>
-    <description>Oppdaterer eier til gjeldende bruker når henvendelse lukkes.</description>
+    <description>Når en henvendelse settes til status &quot;Fullført&quot; og eies av en kø så oppdaterer flowen eier (OwnerId) til den innloggede brukeren.
+Flowen sikrer sporbarhet på hvem som løste henvendelsen og fjerner ferdigbehandlede henvendelser fra køen.</description>
     <environments>Default</environments>
     <interviewLabel>TAG Inquiry {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Assign inquiry on close</label>

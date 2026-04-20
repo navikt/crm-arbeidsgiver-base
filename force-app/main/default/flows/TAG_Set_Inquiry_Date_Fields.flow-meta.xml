@@ -195,7 +195,10 @@
             <label>Stage was updated to resolved</label>
         </rules>
     </decisions>
-    <description>Setter Due Date, Resolved Date og andre felt relevante for prosess og måling</description>
+    <description>Flowen vedlikeholder dato- og tidsfelt som brukes til prosess-styring og måling:
+- Setter 2-dagers frist på nye henvendelser (TAG_DueDate__c / TAG_DueDateTime__c): Beregnes via Apex-klassen TAG_BusinessDaysHandler som legger til 2 virkedager fra mottatt-dato.
+- Tildelt-dato (TAG_AssignedDate__c): Settes til nåværende tidspunkt første gang henvendelsen tildeles en bruker (TAG_Is_Assigned__c = true og dato er blank). Måler tid fra mottak til noen begynner å jobbe med henvendelsen.
+- Løst-dato (TAG_ResolvedDate__c) og fristbrudd (TAG_ClosedAfterDueDate__c): Når status endres til &quot;Fullført&quot;, settes løst-dato og det beregnes om henvendelsen ble lukket etter fristen. Gir grunnlag for KPI-er og etterlevelse av servicemål.</description>
     <environments>Default</environments>
     <formulas>
         <name>ClosedAfterDueDate</name>
