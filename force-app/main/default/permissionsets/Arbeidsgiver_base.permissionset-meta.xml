@@ -618,11 +618,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.CRM_NumberOfEmployeesFormula__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.CRM_NumberOfEmployeesGrouped__c</field>
         <readable>true</readable>
     </fieldPermissions>
