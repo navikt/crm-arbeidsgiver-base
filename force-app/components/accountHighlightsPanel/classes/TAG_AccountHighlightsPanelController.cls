@@ -10,7 +10,8 @@ public with sharing class TAG_AccountHighlightsPanelController {
             WHERE Id = :recordId
         ];
 
-        if (acc[0].INT_HasEmployees__c == true && acc[0].NumberOfEmployees < 5) {
+        if ((acc[0].INT_HasEmployees__c == true && acc[0].NumberOfEmployees < 5) || 
+            (acc[0].INT_HasEmployees__c == true && acc[0].NumberOfEmployees == null)) {
             return '1-4';      
         } else if (acc[0].INT_HasEmployees__c == true && acc[0].NumberOfEmployees >= 5) {
             return String.valueOf(acc[0].NumberOfEmployees);
