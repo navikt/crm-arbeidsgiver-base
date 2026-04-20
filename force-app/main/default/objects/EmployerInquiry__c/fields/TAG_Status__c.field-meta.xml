@@ -28,6 +28,12 @@
                 <default>false</default>
                 <label>Fullført</label>
             </value>
+            <value>
+                <fullName>Under arbeid</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Under arbeid</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

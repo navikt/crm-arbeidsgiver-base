@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_NoPersonInformationClosingComment__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Krysses av for å bekrefte at det ikke er skrevet personlig infromasjon i fritekstfelt for resultat.</description>
+    <inlineHelpText>Bekreft at det ikke er notert opplysninger som kan knyttes til en enkeltperson/bruker.</inlineHelpText>
+    <label>No Person Information (Closing Comment)</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

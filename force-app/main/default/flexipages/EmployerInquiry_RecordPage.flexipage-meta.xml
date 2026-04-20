@@ -28,16 +28,10 @@
                         <valueListItems>
                             <value>EmployerInquiry__c.TAG_CloseInquiry</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -107,6 +101,12 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Account__c</fieldItem>
                 <identifier>RecordAccount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.TAG_Account__r.OrganizationNumberFormula__c</fieldItem>
+                <identifier>RecordTAG_Account_rOrganizationNumberFormula_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -235,6 +235,23 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_ClosingComment__c</fieldItem>
                 <identifier>RecordClosingComment_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_NoPersonInformationClosingComment__c</fieldItem>
+                <identifier>RecordTAG_NoPersonInformationClosingComment_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-eabf801d-6551-4c23-897f-463d7bc1eeed</name>

@@ -27,6 +27,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>EmployerInquiry__c.TAG_DueDateTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>EmployerInquiry__c.TAG_DueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -68,6 +73,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_NavUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_NoPersonInformationClosingComment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
