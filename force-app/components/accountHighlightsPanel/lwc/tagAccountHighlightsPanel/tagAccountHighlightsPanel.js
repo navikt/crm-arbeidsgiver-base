@@ -17,7 +17,7 @@ import MAIN_INDUSTRY_FIELD from '@salesforce/schema/Account.CRM_MainIndustry__c'
 import SECTOR_FIELD from '@salesforce/schema/Account.TAG_Sector__c';
 import REGISTRATION_YEAR_FIELD from '@salesforce/schema/Account.CRM_RegistrationYear__c';
 import PROFF_FIELD from '@salesforce/schema/Account.TAG_Proff_no__c';
-import EMPLOYEES_FORMULA_FIELD from '@salesforce/schema/Account.CRM_NumberOfEmployeesFormula__c';
+import getEmployees from '@salesforce/apex/TAG_AccountHighlightsPanelController.getEmployees';
 import PARENT_ID from '@salesforce/schema/Account.ParentId';
 import PARENT_NAME_FIELD from '@salesforce/schema/Account.Parent.Name';
 
@@ -29,7 +29,6 @@ const ACCOUNT_FIELDS = [
     SECTOR_FIELD,
     REGISTRATION_YEAR_FIELD,
     PROFF_FIELD,
-    EMPLOYEES_FORMULA_FIELD,
     PARENT_ID,
     PARENT_NAME_FIELD
 ];
@@ -56,6 +55,9 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
 
     /** Generated URL for parent account navigation */
     parentAccountUrl;
+
+    /** Shows number of employees */
+    numEmployees;
 
     // ========== Constants ==========
     PARENT_ACCOUNT_LABEL_NO = 'Overordnet konto';
@@ -91,6 +93,19 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
         }
     }
 
+    /**
+     * Fetches the number of employees from Apex controller method
+     * @param {Object} result - Wire service result containing error or data
+     */
+    @wire(getEmployees, { recordId: '$recordId' })
+    emloyees(result) {
+        if (result.data) {
+            this.numEmployees = result.data;
+        } else if (result.error) {
+            console.error('Error fetching number of employees:', result.error);
+        }
+    } 
+
     // ========== Getter Methods for Account Fields ==========
     /**
      * Returns organization number field data
@@ -123,11 +138,6 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
     /** Proff number field data */
     get proffNo() {
         return this.getFieldData(PROFF_FIELD);
-    }
-
-    /** Number of employees formula field data */
-    get numberOfEmployeesFormula() {
-        return this.getFieldData(EMPLOYEES_FORMULA_FIELD);
     }
 
     /**
