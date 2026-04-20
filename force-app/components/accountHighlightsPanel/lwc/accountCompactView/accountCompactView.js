@@ -12,7 +12,7 @@ import ACCOUNT_NAME from '@salesforce/schema/Account.Name';
 import ORG_FORMULA_FIELD from '@salesforce/schema/Account.OrganizationNumberFormula__c';
 import MAIN_INDUSTRY_FIELD from '@salesforce/schema/Account.CRM_MainIndustry__c';
 import REGISTRATION_YEAR_FIELD from '@salesforce/schema/Account.CRM_RegistrationYear__c';
-import EMPLOYEES_FORMULA_FIELD from '@salesforce/schema/Account.CRM_NumberOfEmployeesFormula__c';
+import getEmployees from '@salesforce/apex/TAG_AccountHighlightsPanelController.getEmployees';
 import PARENT_ID from '@salesforce/schema/Account.ParentId';
 import PARENT_NAME_FIELD from '@salesforce/schema/Account.Parent.Name';
 
@@ -22,7 +22,6 @@ const ACCOUNT_FIELDS = [
     ORG_FORMULA_FIELD,
     MAIN_INDUSTRY_FIELD,
     REGISTRATION_YEAR_FIELD,
-    EMPLOYEES_FORMULA_FIELD,
     PARENT_ID,
     PARENT_NAME_FIELD
 ];
@@ -30,7 +29,7 @@ const ACCOUNT_FIELDS = [
 /**
  * AccountCompactView - Component for displaying account information in a compact layout format
  * Similar to the standard Salesforce Account Compact Layout
- * Displays key account fields like organization number, industry, employees, and parent account
+ * Displays key account fields like organization number, industry, and parent account
  */
 export default class AccountCompactView extends NavigationMixin(LightningElement) {
     // ========== Public Properties ==========
@@ -49,6 +48,9 @@ export default class AccountCompactView extends NavigationMixin(LightningElement
 
     /** Loading state indicator */
     isLoading = false;
+    
+    /** Shows number of employees */
+    numEmployees;
 
     // ========== Constants ==========
     /** Label for parent account field (hardcoded since standard label is unavailable in this context) */
@@ -72,6 +74,19 @@ export default class AccountCompactView extends NavigationMixin(LightningElement
             console.error('Error loading account:', error);
         }
     }
+
+     /**
+     * Fetches the number of employees from Apex controller method
+     * @param {Object} result - Wire service result containing error or data
+     */
+    @wire(getEmployees, { recordId: '$recordId' })
+    emloyees(result) {
+        if (result.data) {
+            this.numEmployees = result.data;
+        } else if (result.error) {
+            console.error('Error fetching number of employees:', result.error);
+        }
+    } 
 
     /**
      * Fetches Account object metadata for field labels
@@ -109,14 +124,6 @@ export default class AccountCompactView extends NavigationMixin(LightningElement
      */
     get mainIndustry() {
         return this.getFieldData(MAIN_INDUSTRY_FIELD);
-    }
-
-    /**
-     * Returns number of employees field data
-     * @returns {Object} Object containing value and label
-     */
-    get numberOfEmployees() {
-        return this.getFieldData(EMPLOYEES_FORMULA_FIELD);
     }
 
     /**
