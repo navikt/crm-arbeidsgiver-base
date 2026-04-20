@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Is_Assigned__c</fullName>
-    <description>Sjekker om Owner er kø eller bruker. Brukes til diverse logikk.</description>
+    <description>Sjekker om Owner er bruker (true) eller kø (false). Brukes i flows (tildeling ved lukking, Nav-enhet-bytte, dato-setting), listevisninger og Summary-feltet.</description>
     <formula>IF(ISBLANK(Owner:User.Id), FALSE, TRUE)</formula>
     <label>Is Assigned</label>
     <trackHistory>false</trackHistory>

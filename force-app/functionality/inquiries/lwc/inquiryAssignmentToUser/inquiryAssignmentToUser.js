@@ -1,3 +1,6 @@
+// Tildeler henvendelsen til innlogget bruker og setter status til "Følges opp".
+// Brukes som headless action-knapp på EmployerInquiry record page.
+// Avhengigheter: EmployerInquiry__c (Id, OwnerId, TAG_Status__c)
 import { LightningElement, api } from 'lwc';
 import Toast from 'lightning/toast';
 import { updateRecord } from 'lightning/uiRecordApi';
