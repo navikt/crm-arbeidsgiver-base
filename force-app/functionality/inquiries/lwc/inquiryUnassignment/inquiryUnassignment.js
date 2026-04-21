@@ -1,3 +1,6 @@
+// Fjerner tildeling fra bruker og legger henvendelsen tilbake i Nav-enhetens kø. Setter status til "Ny henvendelse".
+// Brukes som headless action-knapp på EmployerInquiry record page.
+// Avhengigheter: InquiryAssignmentController.getQueueIdForInquiry, EmployerInquiry__c (Id, OwnerId, TAG_Status__c)
 import { LightningElement, api } from 'lwc';
 import { updateRecord } from 'lightning/uiRecordApi';
 import ID_FIELD from '@salesforce/schema/EmployerInquiry__c.Id';

@@ -171,7 +171,11 @@
             <label>web+youth employment</label>
         </rules>
     </decisions>
-    <description>Setter tittel og melding på henvendelser opprettet via kontaktskjema</description>
+    <description>Når en henvendelse opprettes fra kontaktskjemaet (TAG_Source__c = &quot;Kontaktskjema&quot;), beriker flowen posten med tittel, tema og en standardmelding basert på valgt webskjema-tema.
+Flowen oversetter webskjema-temaet til feltverdier (tittel, tema, melding) slik at:
+- Tittel viser hva henvendelsen gjelder uten å åpne detaljer
+- Bruker ser en handlingsrettet melding med telefonnummer å ringe
+- Henvendelsen kategoriseres med tema/undertema for rapportering</description>
     <environments>Default</environments>
     <interviewLabel>TAG Webform Inquiry {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Webform Inquiry</label>

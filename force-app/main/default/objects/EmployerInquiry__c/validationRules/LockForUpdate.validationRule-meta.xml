@@ -2,11 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>LockForUpdate</fullName>
     <active>true</active>
-    <description>Låser record for endring dersom den er lukket.
-Ikke fullført til fullført = false
-Fullført til ikke fullført = true
-
-Er fullført og status er ikke endret, andre felt er endret = true</description>
+    <description>Låser henvendelsen etter lukking. Unntak: brukere med tillatelsen Arbeidsgiver_Endre_fullf_rt_henvendelse kan redigere TAG_ClosingComment__c. Sikrer dataintegritet - ullførte henvendelser skal være uendret for rapportering og sporbarhet.</description>
     <errorConditionFormula>/* Hvis status endres skal den ikke endres fra Fullført.
 Hvis status er Fullført og uendret skal de andre feltene ikke kunne endres. */
 IF( 

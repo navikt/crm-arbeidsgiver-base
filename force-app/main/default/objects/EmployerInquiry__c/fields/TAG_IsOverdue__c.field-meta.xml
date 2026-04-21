@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_IsOverdue__c</fullName>
-    <description>Viser ikon dersom svarfrist er passert</description>
+    <description>Viser svarfrist formatert som dato, med rødt ikon dersom fristen er passert. Brukes i listevisninger og record pages.</description>
     <externalId>false</externalId>
     <formula>IF(
         TAG_Overdue__c,
