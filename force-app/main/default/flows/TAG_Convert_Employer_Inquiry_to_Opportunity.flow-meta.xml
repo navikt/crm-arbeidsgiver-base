@@ -80,6 +80,10 @@
         <label>Create opportunity arbeidsplassen</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <assignRecordIdToReference>OpportunityRecordId</assignRecordIdToReference>
+        <connector>
+            <targetReference>CreateOpportunity</targetReference>
+        </connector>
         <inputAssignments>
             <field>Account__c</field>
             <value>
@@ -100,11 +104,26 @@
         </inputAssignments>
         <inputAssignments>
             <field>InquiryCategory__c</field>
+            <value>
+                <stringValue>Skal ansette</stringValue>
+            </value>
         </inputAssignments>
         <inputAssignments>
             <field>Source__c</field>
             <value>
                 <elementReference>Get_employer_inquiry.TAG_Source__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_EmployerInquiry__c</field>
+            <value>
+                <elementReference>Get_employer_inquiry.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_JobPosting__c</field>
+            <value>
+                <elementReference>Get_employer_inquiry.TAG_RelatedJobPosting__r.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -114,13 +133,16 @@
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
         <name>Create_opportunity_kontaktsenteret</name>
         <label>Create opportunity kontaktsenteret</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <assignRecordIdToReference>OpportunityRecordId</assignRecordIdToReference>
+        <connector>
+            <targetReference>CreateOpportunity</targetReference>
+        </connector>
         <inputAssignments>
             <field>Account__c</field>
             <value>
@@ -141,11 +163,20 @@
         </inputAssignments>
         <inputAssignments>
             <field>InquiryCategory__c</field>
+            <value>
+                <stringValue>Skal ansette</stringValue>
+            </value>
         </inputAssignments>
         <inputAssignments>
             <field>Source__c</field>
             <value>
                 <elementReference>Get_employer_inquiry.TAG_Source__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_EmployerInquiry__c</field>
+            <value>
+                <elementReference>Get_employer_inquiry.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -155,13 +186,16 @@
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
         <name>Create_opportunity_kontaktskjema</name>
         <label>Create opportunity kontaktskjema</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <assignRecordIdToReference>OpportunityRecordId</assignRecordIdToReference>
+        <connector>
+            <targetReference>CreateOpportunity</targetReference>
+        </connector>
         <inputAssignments>
             <field>Account__c</field>
             <value>
@@ -182,11 +216,20 @@
         </inputAssignments>
         <inputAssignments>
             <field>InquiryCategory__c</field>
+            <value>
+                <stringValue>Skal ansette</stringValue>
+            </value>
         </inputAssignments>
         <inputAssignments>
             <field>Source__c</field>
             <value>
                 <elementReference>Get_employer_inquiry.TAG_Source__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_EmployerInquiry__c</field>
+            <value>
+                <elementReference>Get_employer_inquiry.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -196,7 +239,6 @@
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
         <name>Get_employer_inquiry</name>
@@ -219,6 +261,37 @@
         <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <screens>
+        <name>CreateOpportunity</name>
+        <label>Create opportunity</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>NavigateToOpportunity</name>
+            <extensionName>c:fcFlowRecordNavigator</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>CustomOpportunity__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>OpportunityRecordId</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -226,7 +299,14 @@
             <targetReference>Get_employer_inquiry</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
+    <variables>
+        <name>OpportunityRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>recordId</name>
         <dataType>String</dataType>

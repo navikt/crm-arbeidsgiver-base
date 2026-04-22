@@ -461,6 +461,28 @@
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Klikk her</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Ønsker du å opprette en ny mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Opprett mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Convert_Employer_Inquiry_to_Opportunity</value>
+                </componentInstanceProperties>
+                <componentName>nextBestActionCard</componentName>
+                <identifier>c_nextBestActionCard</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
