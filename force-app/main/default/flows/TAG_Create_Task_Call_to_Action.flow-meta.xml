@@ -26,6 +26,12 @@
                 <elementReference>Emne</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>urlLink</name>
+            <value>
+                <elementReference>urlTask</elementReference>
+            </value>
+        </inputParameters>
         <nameSegment>c:fcFlowToaster</nameSegment>
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -66,6 +72,11 @@ IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Inkludering med virkem
 NULL
 ))))</expression>
     </formulas>
+    <formulas>
+        <name>urlTask</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Enterprise_Server_URL_260}, FIND(&quot;.com&quot;, {!$Api.Enterprise_Server_URL_260}) + 3) &amp; &quot;/lightning/r/Task/&quot; &amp; {!taskRecordId} &amp; &quot;/view&quot;</expression>
+    </formulas>
     <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Create Task Call to Action</label>
     <processMetadataValues>
@@ -92,6 +103,7 @@ NULL
         <label>Create Task</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <assignRecordIdToReference>taskRecordId</assignRecordIdToReference>
         <connector>
             <targetReference>Toast_for_created_Task</targetReference>
         </connector>
@@ -192,7 +204,6 @@ NULL
             </value>
         </inputAssignments>
         <object>Task</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
         <name>Get_Employer_Inquiry</name>
@@ -410,14 +421,6 @@ NULL
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
-                <fields>
-                    <name>Emne</name>
-                    <dataType>String</dataType>
-                    <fieldText>Emne</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -491,6 +494,47 @@ NULL
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>InstillingerDetaljer</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;Oppfølging&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Opprett_Oppgave_Section3</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Opprett_Oppgave_Section3_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Emne</name>
+                    <dataType>String</dataType>
+                    <fieldText>Emne</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Opprett_Oppgave_Section3_Column2</name>
+                <fieldType>Region</fieldType>
                 <fields>
                     <name>Kanal</name>
                     <choiceReferences>TypeChoices</choiceReferences>
@@ -533,15 +577,10 @@ NULL
             </validationRule>
         </fields>
         <fields>
-            <name>InstillingerDetaljer</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;Oppfølging&lt;/strong&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Opprett_Oppgave_Section3</name>
+            <name>Opprett_Oppgave_Section4</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Opprett_Oppgave_Section3_Column1</name>
+                <name>Opprett_Oppgave_Section4_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Status</name>
@@ -594,6 +633,9 @@ NULL
                     <name>Prioritet</name>
                     <choiceReferences>PriorityChoices</choiceReferences>
                     <dataType>String</dataType>
+                    <defaultValue>
+                        <stringValue>Normal</stringValue>
+                    </defaultValue>
                     <fieldText>Prioritet</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -608,7 +650,7 @@ NULL
                 <isRequired>false</isRequired>
             </fields>
             <fields>
-                <name>Opprett_Oppgave_Section3_Column2</name>
+                <name>Opprett_Oppgave_Section4_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Forfallsdato</name>
@@ -672,6 +714,13 @@ NULL
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>taskRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>
