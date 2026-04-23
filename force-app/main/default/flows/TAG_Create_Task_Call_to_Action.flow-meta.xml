@@ -156,6 +156,12 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_EmployerInquiry__c</field>
+            <value>
+                <elementReference>EmployerInquiry.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_NoPersonInformation__c</field>
             <value>
                 <elementReference>Ingen_brukeropplysninger</elementReference>
@@ -360,6 +366,44 @@ NULL
                         <name>recordId</name>
                         <value>
                             <elementReference>Get_Employer_Inquiry.TAG_Contact__c</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>EmployerInquiry</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Henvendelse</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>Task</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>disabled</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>recordId</name>
+                        <value>
+                            <elementReference>Get_Employer_Inquiry.Id</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>TAG_EmployerInquiry__c</stringValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
