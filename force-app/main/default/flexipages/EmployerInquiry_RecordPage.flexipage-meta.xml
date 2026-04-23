@@ -487,6 +487,78 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; color: rgb(0, 0, 0);&quot;&gt;Forslag til videreoppfølging&lt;/span&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ikke aktuelt / Nav skal ikke bistå</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Lag en oppfølgingsoppgave</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Legg inn at du har planer om å kontakte denne arbeidsgiver senere - det kan være nyttig informasjon for en kollega, og du får en påminnelse senere så du ikke glemmer det! Lag en oppfølgingsoppgave</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Skal du kontakte arbeidsgiveren igjen senere?</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Create_Task_Call_to_Action</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ikke aktuelt / Nav skal ikke bistå</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-47291a8c-3b4b-40a8-a55f-f85f01f5f4a6</value>
                 </componentInstanceProperties>
