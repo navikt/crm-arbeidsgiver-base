@@ -1,0 +1,898 @@
+{
+    "canChangeRunningUser": false,
+    "canUseStickyFilter": true,
+    "chartTheme": "dark",
+    "colorPalette": "unity",
+    "components": [
+        {
+            "chartTheme": null,
+            "componentData": 0,
+            "footer": null,
+            "header": "Henvendelser % besvart innen 2 virkedager",
+            "id": "01aba000000GrTNAA0",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA2"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": null,
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "breakPoints": [
+                        {
+                            "aggregateName": "FORMULA2",
+                            "breaks": [
+                                {
+                                    "color": "f47c7c",
+                                    "lowerBound": null,
+                                    "upperBound": 70
+                                },
+                                {
+                                    "color": "ffda94",
+                                    "lowerBound": 70,
+                                    "upperBound": 80
+                                },
+                                {
+                                    "color": "d3f4cd",
+                                    "lowerBound": 80,
+                                    "upperBound": null
+                                }
+                            ]
+                        }
+                    ],
+                    "decimalPrecision": 0,
+                    "displayUnits": "auto",
+                    "metricLabel": "(siste 30 dager)",
+                    "showRange": false
+                },
+                "visualizationType": "Metric"
+            },
+            "reportId": "00Oba000003Fvh2EAC",
+            "title": "(siste 30 dager)",
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 1,
+            "footer": null,
+            "header": "Henvendelser % besvart innen 2 virkedager",
+            "id": "01aba000000Gti5AAC",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA2"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "EmployerInquiry__c.TAG_ResolvedDate__c",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    }
+                ],
+                "maxRows": null,
+                "reportFormat": "MATRIX",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "axisRange": {
+                        "max": 100,
+                        "min": null,
+                        "rangeType": "manual"
+                    },
+                    "decimalPrecision": 0,
+                    "displayUnits": "auto",
+                    "groupByType": "none",
+                    "legendPosition": "Bottom",
+                    "referenceLineColors": ["#d3f4cd"],
+                    "referenceLineValues": [80],
+                    "showValues": true,
+                    "sortLegendValues": true
+                },
+                "visualizationType": "Line"
+            },
+            "reportId": "00Oba000003FqNxEAK",
+            "title": "(trend 13mnd)",
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 2,
+            "footer": null,
+            "header": "Rekrutteringshjelp - % besvart innen 2 virkedager",
+            "id": "01aba000000GsyvAAC",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA2"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": null,
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "breakPoints": [
+                        {
+                            "aggregateName": "FORMULA2",
+                            "breaks": [
+                                {
+                                    "color": "f47c7c",
+                                    "lowerBound": null,
+                                    "upperBound": 70
+                                },
+                                {
+                                    "color": "ffda94",
+                                    "lowerBound": 70,
+                                    "upperBound": 80
+                                },
+                                {
+                                    "color": "d3f4cd",
+                                    "lowerBound": 80,
+                                    "upperBound": null
+                                }
+                            ]
+                        }
+                    ],
+                    "decimalPrecision": 0,
+                    "displayUnits": "auto",
+                    "metricLabel": "(siste 30 dager)",
+                    "showRange": false
+                },
+                "visualizationType": "Metric"
+            },
+            "reportId": "00Oba000003GkmjEAC",
+            "title": "(siste 30 dager)",
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 3,
+            "footer": null,
+            "header": "Henvendelser pr kilde % besvart innen 2 virkedager",
+            "id": "01aba000000GrRlAAK",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA2"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "EmployerInquiry__c.TAG_ResolvedDate__c",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    },
+                    {
+                        "inheritedReportSort": null,
+                        "name": "EmployerInquiry__c.TAG_Source__c",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    }
+                ],
+                "maxRows": null,
+                "reportFormat": "MATRIX",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "axisRange": {
+                        "max": 100,
+                        "min": null,
+                        "rangeType": "manual"
+                    },
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "groupByType": "grouped",
+                    "legendPosition": "Right",
+                    "referenceLineColors": ["#d3f4cd"],
+                    "referenceLineValues": [80],
+                    "showValues": false,
+                    "sortLegendValues": true
+                },
+                "visualizationType": "Line"
+            },
+            "reportId": "00Oba000003FqNxEAK",
+            "title": "(trend 13mnd)",
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 4,
+            "footer": null,
+            "header": "Kontaktskjema - % besvart innen 2 virkedager",
+            "id": "01aba000000Gt0XAAS",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA1"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": null,
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "breakPoints": [
+                        {
+                            "aggregateName": "FORMULA1",
+                            "breaks": [
+                                {
+                                    "color": "f47c7c",
+                                    "lowerBound": null,
+                                    "upperBound": 70
+                                },
+                                {
+                                    "color": "ffda94",
+                                    "lowerBound": 70,
+                                    "upperBound": 80
+                                },
+                                {
+                                    "color": "d3f4cd",
+                                    "lowerBound": 80,
+                                    "upperBound": null
+                                }
+                            ]
+                        }
+                    ],
+                    "decimalPrecision": 0,
+                    "displayUnits": "auto",
+                    "metricLabel": "(siste 30 dager)",
+                    "showRange": false
+                },
+                "visualizationType": "Metric"
+            },
+            "reportId": "00Oba000003GgODEA0",
+            "title": "(siste 30 dager)",
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 5,
+            "footer": null,
+            "header": "Arbeidsgivertelefonen - % besvart innen 2 virkedager",
+            "id": "01aba000000Gt0YAAS",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA2"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": null,
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "breakPoints": [
+                        {
+                            "aggregateName": "FORMULA2",
+                            "breaks": [
+                                {
+                                    "color": "f47c7c",
+                                    "lowerBound": null,
+                                    "upperBound": 70
+                                },
+                                {
+                                    "color": "ffda94",
+                                    "lowerBound": 70,
+                                    "upperBound": 80
+                                },
+                                {
+                                    "color": "d3f4cd",
+                                    "lowerBound": 80,
+                                    "upperBound": null
+                                }
+                            ]
+                        }
+                    ],
+                    "decimalPrecision": 0,
+                    "displayUnits": "auto",
+                    "metricLabel": "(siste 30 dager)",
+                    "showRange": false
+                },
+                "visualizationType": "Metric"
+            },
+            "reportId": "00Oba000003GmN7EAK",
+            "title": "(siste 30 dager)",
+            "type": "Report"
+        },
+        {
+            "chartTheme": "light",
+            "componentData": 6,
+            "footer": null,
+            "header": "Rekrutteringshjelp og Kontaktskjema - % påbegynt før frist",
+            "id": "01aba000000Gtf4AAC",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA2"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "CUST_CREATED_DATE",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    },
+                    {
+                        "inheritedReportSort": null,
+                        "name": "CustomOpportunity__c.Source__c",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    }
+                ],
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "axisRange": {
+                        "max": 100,
+                        "min": null,
+                        "rangeType": "manual"
+                    },
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "groupByType": "grouped",
+                    "legendPosition": "Right",
+                    "referenceLineColors": ["#d3f4cd"],
+                    "referenceLineValues": [80],
+                    "showValues": false,
+                    "sortLegendValues": true
+                },
+                "visualizationType": "Line"
+            },
+            "reportId": "00Oba000003GoiIEAS",
+            "title": "Historisk trend",
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 7,
+            "footer": null,
+            "header": "Muligheter uten oppdatering (opprettet siste 13 mnd)",
+            "id": "01aba000000GrOfAAK",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA1"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": null,
+                "maxRows": null,
+                "reportFormat": "MATRIX",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "breakPoints": [
+                        {
+                            "aggregateName": "FORMULA1",
+                            "breaks": [
+                                {
+                                    "color": "d3f4cd",
+                                    "lowerBound": null,
+                                    "upperBound": 5
+                                },
+                                {
+                                    "color": "ffda94",
+                                    "lowerBound": 5,
+                                    "upperBound": 11
+                                },
+                                {
+                                    "color": "f47c7c",
+                                    "lowerBound": 11,
+                                    "upperBound": null
+                                }
+                            ]
+                        }
+                    ],
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "metricLabel": "Ikke oppdatert siste 30 dager",
+                    "showRange": true
+                },
+                "visualizationType": "Metric"
+            },
+            "reportId": "00Oba000003FwmkEAC",
+            "title": "Ikke oppdatert siste 30 dager",
+            "type": "Report"
+        },
+        {
+            "chartTheme": "light",
+            "componentData": 8,
+            "footer": null,
+            "header": "Nav-oppgaver - % løst etter frist",
+            "id": "01aba000000GrOmAAK",
+            "lastModifiedDate": "2026-04-24T12:29:21Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "FORMULA1"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "CUST_CREATED_DATE",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    }
+                ],
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "axisRange": {
+                        "max": 100,
+                        "min": null,
+                        "rangeType": "manual"
+                    },
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "groupByType": "none",
+                    "legendPosition": "Bottom",
+                    "referenceLineColors": ["#d3f4cd"],
+                    "referenceLineValues": [80],
+                    "showValues": true,
+                    "sortLegendValues": true
+                },
+                "visualizationType": "Line"
+            },
+            "reportId": "00Oba000003GuVxEAK",
+            "title": "Historisk trend",
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": null,
+            "footer": null,
+            "header": null,
+            "id": "01aba000000GrOgAAK",
+            "lastModifiedDate": "2026-04-24T12:29:21Z",
+            "properties": {
+                "content": {
+                    "additionalInfo": null,
+                    "richTextContent": "[{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\",\"bold\":true},\"insert\":\"Målinger er relatert til våre mål!\"},{\"attributes\":{\"align\":\"center\"},\"insert\":\"\\n\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\"Øke kvalitet og verdi av arbeidsgiverinformasjon ved å forenkle input av data og forbedre output av data.\"},{\"attributes\":{\"align\":\"left\"},\"insert\":\"\\n\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\"K1 : Øke devis enig oppfattet \"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\",\"bold\":true},\"insert\":\"oversikt\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\" 2%​\"},{\"attributes\":{\"align\":\"left\"},\"insert\":\"\\n\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\"K2 : Øke delvis enig oppfattet \"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\",\"bold\":true},\"insert\":\"relevans\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\" 2%​\"},{\"attributes\":{\"align\":\"left\"},\"insert\":\"\\n\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\"K3 : Øke delvis enig oppfattet \"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\",\"bold\":true},\"insert\":\"korrekthet\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\" 3%​\"},{\"attributes\":{\"align\":\"left\"},\"insert\":\"\\n\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\"K4 : Øke delvis enig oppfatningen av \"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\",\"bold\":true},\"insert\":\"oppdatert\"},{\"attributes\":{\"size\":\"16px\",\"color\":\"#ffffff\"},\"insert\":\" data 5%​\"},{\"attributes\":{\"align\":\"left\"},\"insert\":\"\\n\"}]"
+                },
+                "visualizationType": "RichText"
+            },
+            "reportId": null,
+            "title": null,
+            "type": "Dashboard"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 9,
+            "footer": null,
+            "header": "Åpne henvendelser",
+            "id": "01aba000000GrYDAA0",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "RowCount"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "EmployerInquiry__c.TAG_Source__c",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    }
+                ],
+                "maxRows": 10,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "combineSmallGroups": false,
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "legendPosition": "Right",
+                    "showPercentages": true,
+                    "showTotal": true,
+                    "showValues": true,
+                    "sortLegendValues": false
+                },
+                "visualizationType": "Donut"
+            },
+            "reportId": "00Oba000003FrNLEA0",
+            "title": null,
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 10,
+            "footer": null,
+            "header": "Henvendelser resultat pr kilde (siste 13 mnd)",
+            "id": "01aba000000GrmjAAC",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "RowCount"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "EmployerInquiry__c.TAG_Source__c",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    },
+                    {
+                        "inheritedReportSort": null,
+                        "name": "EmployerInquiry__c.TAG_ClosedReason__c",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    }
+                ],
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "aggregateVisualizationInfos": [
+                        {
+                            "axis": "Y",
+                            "visualizationType": "Column"
+                        }
+                    ],
+                    "axisRange": {
+                        "max": null,
+                        "min": null,
+                        "rangeType": "auto"
+                    },
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "groupByType": "stacked100",
+                    "legendPosition": "Right",
+                    "referenceLineColors": [],
+                    "referenceLineValues": [],
+                    "showValues": false,
+                    "sortLegendValues": false
+                },
+                "visualizationType": "Column"
+            },
+            "reportId": "00Oba000003FzPdEAK",
+            "title": null,
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 11,
+            "footer": null,
+            "header": "Henvendelse \"Lukket\" vs \"Jeg følger opp!\"",
+            "id": "01aba000000GsKbAAK",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "RowCount"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "CDF1",
+                        "sortAggregate": null,
+                        "sortOrder": "Asc"
+                    }
+                ],
+                "maxRows": 6,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "visualizationProperties": {
+                    "combineSmallGroups": false,
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "legendPosition": "Right",
+                    "showPercentages": true,
+                    "showTotal": false,
+                    "showValues": false,
+                    "sortLegendValues": false
+                },
+                "visualizationType": "Donut"
+            },
+            "reportId": "00Oba000003G5A6EAK",
+            "title": null,
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 12,
+            "footer": null,
+            "header": "Top 5 åpne og forfalte henvendelser",
+            "id": "01aba000000GrmkAAC",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "s!EmployerInquiry__c.TAG_Overdue__c"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "EmployerInquiry__c.TAG_NavUnit__c",
+                        "sortAggregate": "s!EmployerInquiry__c.TAG_Overdue__c",
+                        "sortOrder": "Desc"
+                    }
+                ],
+                "maxRows": null,
+                "reportFormat": "SUMMARY",
+                "sort": null,
+                "useReportChart": false,
+                "useReportTableSetting": false,
+                "visualizationProperties": {
+                    "breakPoints": [],
+                    "decimalPrecision": -1,
+                    "displayUnits": "auto",
+                    "flexTableType": "summary",
+                    "showChatterPhotos": false,
+                    "tableColumns": [
+                        {
+                            "column": "EmployerInquiry__c.TAG_NavUnit__c",
+                            "showSubTotal": false,
+                            "showTotal": false,
+                            "type": "grouping"
+                        },
+                        {
+                            "column": "s!EmployerInquiry__c.TAG_Overdue__c",
+                            "showSubTotal": false,
+                            "showTotal": false,
+                            "type": "aggregate"
+                        }
+                    ]
+                },
+                "visualizationType": "FlexTable"
+            },
+            "reportId": "00Oba000003FrNLEA0",
+            "title": null,
+            "type": "Report"
+        },
+        {
+            "chartTheme": null,
+            "componentData": 13,
+            "footer": null,
+            "header": "Fullførte henvendelser vs Aktiviteter og Muligheter",
+            "id": "01aba000000GwEYAA0",
+            "lastModifiedDate": "2026-04-24T12:29:20Z",
+            "properties": {
+                "aggregates": [
+                    {
+                        "name": "B0#RowCount"
+                    },
+                    {
+                        "name": "B1#RowCount"
+                    },
+                    {
+                        "name": "B2#RowCount"
+                    }
+                ],
+                "autoSelectColumns": false,
+                "drillUrl": null,
+                "filterColumns": [],
+                "groupings": [
+                    {
+                        "inheritedReportSort": null,
+                        "name": "ACCTRECORDTYPE",
+                        "sortAggregate": null,
+                        "sortOrder": null
+                    }
+                ],
+                "maxRows": null,
+                "reportFormat": "MULTI_BLOCK",
+                "sort": null,
+                "useReportChart": true,
+                "visualizationProperties": {
+                    "aggregateVisualizationInfos": [
+                        {
+                            "axis": "Y",
+                            "visualizationType": "Column"
+                        },
+                        {
+                            "axis": "Y",
+                            "visualizationType": "Column"
+                        },
+                        {
+                            "axis": "Y",
+                            "visualizationType": "Column"
+                        }
+                    ],
+                    "axisRange": {
+                        "max": null,
+                        "min": null,
+                        "rangeType": "auto"
+                    },
+                    "decimalPrecision": null,
+                    "displayUnits": "auto",
+                    "groupByType": "none",
+                    "legendPosition": "Right",
+                    "referenceLineColors": [],
+                    "referenceLineValues": [],
+                    "showValues": true,
+                    "sortLegendValues": false
+                },
+                "visualizationType": "Column"
+            },
+            "reportId": "00Oba000003Hsv9EAC",
+            "title": null,
+            "type": "Report"
+        }
+    ],
+    "dashboardType": "SpecifiedUser",
+    "description": null,
+    "developerName": "JOmAiFDQjPFOuWBVYZcNtMEELLUZfp",
+    "filters": [],
+    "flexTableImplementation": "REPORT_INSTANCE",
+    "folderId": "00l0E000000tL50QAE",
+    "folderName": "Arbeidsgiver admin",
+    "id": "01Zba000000D8PZEA0",
+    "layout": {
+        "components": [
+            {
+                "colspan": 3,
+                "column": 0,
+                "row": 0,
+                "rowspan": 6
+            },
+            {
+                "colspan": 4,
+                "column": 3,
+                "row": 0,
+                "rowspan": 10
+            },
+            {
+                "colspan": 3,
+                "column": 0,
+                "row": 6,
+                "rowspan": 6
+            },
+            {
+                "colspan": 4,
+                "column": 3,
+                "row": 10,
+                "rowspan": 11
+            },
+            {
+                "colspan": 3,
+                "column": 0,
+                "row": 12,
+                "rowspan": 6
+            },
+            {
+                "colspan": 3,
+                "column": 0,
+                "row": 18,
+                "rowspan": 6
+            },
+            {
+                "colspan": 4,
+                "column": 3,
+                "row": 21,
+                "rowspan": 7
+            },
+            {
+                "colspan": 3,
+                "column": 0,
+                "row": 24,
+                "rowspan": 6
+            },
+            {
+                "colspan": 4,
+                "column": 3,
+                "row": 28,
+                "rowspan": 7
+            },
+            {
+                "colspan": 3,
+                "column": 0,
+                "row": 30,
+                "rowspan": 6
+            },
+            {
+                "colspan": 3,
+                "column": 7,
+                "row": 0,
+                "rowspan": 9
+            },
+            {
+                "colspan": 5,
+                "column": 7,
+                "row": 9,
+                "rowspan": 9
+            },
+            {
+                "colspan": 2,
+                "column": 7,
+                "row": 18,
+                "rowspan": 9
+            },
+            {
+                "colspan": 2,
+                "column": 10,
+                "row": 0,
+                "rowspan": 9
+            },
+            {
+                "colspan": 3,
+                "column": 9,
+                "row": 18,
+                "rowspan": 9
+            }
+        ],
+        "gridLayout": true,
+        "numColumns": 12,
+        "rowHeight": 36
+    },
+    "maxFilterOptions": 50,
+    "name": "2026 målinger (T1)",
+    "owner": {
+        "displayName": "Silje Olsen",
+        "id": "0050E00000FTf06QAD"
+    },
+    "runningUser": {
+        "displayName": "Silje Olsen",
+        "id": "0050E00000FTf06QAD"
+    }
+}

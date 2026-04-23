@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>CDF1:SUM / RowCount</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>% løst før frist</masterLabel>
+        <scale>1</scale>
+    </aggregates>
+    <columns>
+        <field>CDF1</field>
+    </columns>
+    <columns>
+        <field>NavTask__c.ResolvedDate__c</field>
+    </columns>
+    <columns>
+        <field>NavTask__c.CRM_DueDate__c</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>IF( DATEVALUE(NavTask__c.ResolvedDate__c) &gt; NavTask__c.CRM_DueDate__c, 1, 0)</calculatedFormula>
+        <dataType>Double</dataType>
+        <developerName>CDF1</developerName>
+        <label>Er løst før frist</label>
+        <scale>0</scale>
+    </customDetailFormulas>
+    <description>Historisk trend for Nav-oppgaver, før overgang til henvendelser</description>
+    <filter>
+        <criteriaItems>
+            <column>NavTask__c.CRM_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Fullført</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>NavTask__c.Employer</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>CUST_CREATED_DATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Nav-oppgaver frist - trend</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$NavTask__c@NavTask__c.CRM_NavUnit__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <endDate>2026-04-01</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2025-03-01</startDate>
+    </timeFrameFilter>
+</Report>
