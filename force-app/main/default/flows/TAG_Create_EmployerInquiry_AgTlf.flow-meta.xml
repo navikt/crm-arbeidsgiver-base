@@ -205,7 +205,7 @@
   ISPICKVAL({!OutcomeThemeScreen}, &quot;Rekruttere og inkludere&quot;),
   &quot;Ønsker hjelp til å rekruttere og inkludere arbeidstakere&quot;,
   IF(
-    ISPICKVAL({!OutcomeThemeScreen}, &quot;Forebygge sykefravær og redusere frafall&quot;),
+    ISPICKVAL({!OutcomeThemeScreen}, &quot;Forebygge og redusere fravær&quot;),
     &quot;Ønsker hjelp til å forebygge og redusere sykefravær&quot;,
     &quot;&quot;
   )
