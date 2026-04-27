@@ -1,11 +1,10 @@
 import { LightningElement, api, track } from 'lwc';
 
 export default class CallToActionCard extends LightningElement {
-
     @api recordId;
-    @api cardTitle   = 'Title';
-    @api cardText    = 'Add a description for next best action.';
-    @api buttonLabel = 'Create record';
+    @api cardTitle = 'Title';
+    @api cardText = 'Add a description for next best action.';
+    @api buttonLabel;
     @api flowApiName;
 
     @track showFlowModal = false;
@@ -20,9 +19,7 @@ export default class CallToActionCard extends LightningElement {
         requestAnimationFrame(() => {
             const flowCmp = this.template.querySelector('lightning-flow');
             if (flowCmp) {
-                flowCmp.startFlow(this.flowApiName, [
-                    { name: 'recordId', type: 'String', value: this.recordId }
-                ]);
+                flowCmp.startFlow(this.flowApiName, [{ name: 'recordId', type: 'String', value: this.recordId }]);
             }
         });
     }

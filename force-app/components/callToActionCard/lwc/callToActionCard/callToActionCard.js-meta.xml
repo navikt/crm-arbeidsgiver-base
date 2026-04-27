@@ -8,11 +8,12 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property name="cardTitle"   type="String"  label="Title" default="Title" />
-            <property name="cardText"    type="String"  label="Description" default="Add a description for next best action." />
-            <property name="buttonLabel" type="String"  label="Button label" default="Create record" />
-            <property name="flowApiName" type="String"  label="Screen Flow API Name"
+            <property name="cardTitle" type="String" label="Title" default="Title" />
+            <property name="cardText" type="String" label="Description"
+                default="Add a description for next best action." />
+            <property name="buttonLabel" type="String" label="Button label" />
+            <property name="flowApiName" type="String" label="Screen Flow API Name"
                 description="API name of the Screen Flow to launch. The flow must have an input variable named 'recordId'." />
         </targetConfig>
-     </targetConfigs>
+    </targetConfigs>
 </LightningComponentBundle>
