@@ -69,8 +69,17 @@
 IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Rekruttering uten virkemidler&quot;, &quot;Rekrutteringsoppdrag&quot;,
 IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Informasjon og relasjonsbygging&quot;, &quot;Informasjon om NAVs tjenester&quot;,
 IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Inkludering med virkemidler&quot;, &quot;Inkluderende rekruttering&quot;,
+IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Redusere sykefravær&quot;, &quot;Informasjon om NAVs tjenester&quot;,
 NULL
-))))</expression>
+)))))</expression>
+    </formulas>
+    <formulas>
+        <name>picklistThemeFormula</name>
+        <dataType>String</dataType>
+        <expression>IF( TEXT({!Get_Employer_Inquiry.TAG_Theme__c}) = &quot;Rekruttere og inkludere&quot;, &quot;Rekruttere og inkludere&quot;,
+IF( TEXT({!Get_Employer_Inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere fravær&quot;, &quot;Forebygge sykefravær og redusere frafall&quot;,
+NULL
+))</expression>
     </formulas>
     <formulas>
         <name>urlTask</name>
@@ -481,7 +490,7 @@ NULL
                     <inputParameters>
                         <name>topValue</name>
                         <value>
-                            <elementReference>Get_Employer_Inquiry.TAG_Theme__c</elementReference>
+                            <elementReference>picklistThemeFormula</elementReference>
                         </value>
                     </inputParameters>
                     <inputParameters>
