@@ -267,7 +267,7 @@
 IF( {!TjenesteRekruttere} = &quot;Rekruttering (uten virkemidler, inkl. oppfølging)&quot;, &quot;Rekrutteringsoppdrag&quot;,
 IF( {!TjenesteRekruttere} = &quot;Inkludering (med virkemidler, inkl. oppfølging)&quot;, &quot;Inkluderende rekruttering&quot;,
 IF( {!TjenesteRekruttere} = &quot;Informasjon og relasjonsbygging&quot;, &quot;Informasjon om NAVs tjenester&quot;,
-IF( {!TjenesteRekruttere} = &quot;Jobbutvikling (Jobbspesialist)&quot;, &quot;	IPS Jobbutvikling&quot;,
+IF( {!TjenesteRekruttere} = &quot;Jobbutvikling (Jobbspesialist)&quot;, &quot;IPS Jobbutvikling&quot;,
 IF( {!TjenesteRekruttere} = &quot;Jobbstøtte (Jobbspesialist)&quot;, &quot;IPS Jobbstøtte&quot;,
 null
 ))))))</expression>
@@ -275,13 +275,10 @@ null
     <formulas>
         <name>picklistFormula</name>
         <dataType>String</dataType>
-        <expression>IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Jobbmesser og møteplass&quot;, &quot;Jobbmesser og møteplasser&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Rekruttering uten virkemidler&quot;, &quot;Rekrutteringsoppdrag&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Informasjon og relasjonsbygging&quot;, &quot;Informasjon om NAVs tjenester&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Inkludering med virkemidler&quot;, &quot;Inkluderende rekruttering&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Redusere sykefravær&quot;, &quot;Informasjon om NAVs tjenester&quot;,
-NULL
-)))))</expression>
+        <expression>IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Rekruttering uten virkemidler&quot;, &quot;Rekruttering (uten virkemidler, inkl. oppfølging)&quot;,
+IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Inkludering med virkemidler&quot;, &quot;Inkludering (med virkemidler, inkl. oppfølging)&quot;,
+TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c})
+))</expression>
     </formulas>
     <formulas>
         <name>picklistThemeFormula</name>
@@ -661,7 +658,7 @@ NULL
                     <choiceReferences>Jobbst_tte_Jobbspesialist</choiceReferences>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <elementReference>Get_Employer_Inquiry.TAG_SubTheme__c</elementReference>
+                        <elementReference>picklistFormula</elementReference>
                     </defaultValue>
                     <fieldText>Tjeneste</fieldText>
                     <fieldType>DropdownBox</fieldType>
@@ -812,6 +809,10 @@ NULL
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(231, 8, 8);&quot;&gt;Sluttidspunkt må være senere enn starttidspunkt.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression>{!Slutt} &gt;= {!Start}</formulaExpression>
+                    </validationRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
