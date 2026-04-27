@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
+        <name>Error_Creating_Task</name>
+        <label>Error Creating Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>c:fcFlowToaster</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Det oppstod en feil under opprettelse av oppgaven. Kontakt systemadministrator.</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>c:fcFlowToaster</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Toast_for_created_Task</name>
         <label>Toast for created Task</label>
         <locationX>0</locationX>
@@ -37,6 +61,140 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Assign_Forebygge_og_redusere_frav_r</name>
+        <label>Assign Forebygge og redusere fravær</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>themeToCreateTask</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Forebygge sykefravær og redusere frafall</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>subThemeToCreateTask</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Informasjon om NAVs tjenester</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Task</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Rekruttere_og_inkludere</name>
+        <label>Assign Rekruttere og inkludere</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>themeToCreateTask</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Rekruttere og inkludere</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>subThemeToCreateTask</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>apiNameSubThemeTask</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Task</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>Informasjon_og_relasjonsbygging</name>
+        <choiceText>Informasjon og relasjonsbygging</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Informasjon og relasjonsbygging</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Inkludering_med_virkemidler_inkl_oppf_lging</name>
+        <choiceText>Inkludering (med virkemidler, inkl. oppfølging)</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Inkludering (med virkemidler, inkl. oppfølging)</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Jobbmesser_og_m_teplass</name>
+        <choiceText>Jobbmesser og møteplass</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Jobbmesser og møteplass</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Jobbst_tte_Jobbspesialist</name>
+        <choiceText>Jobbstøtte (Jobbspesialist)</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Jobbstøtte (Jobbspesialist)</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Jobbutvikling_Jobbspesialist</name>
+        <choiceText>Jobbutvikling (Jobbspesialist)</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Jobbutvikling (Jobbspesialist)</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Rekruttering_uten_virkemidler_inkl_oppf_lging</name>
+        <choiceText>Rekruttering (uten virkemidler, inkl. oppfølging)</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Rekruttering (uten virkemidler, inkl. oppfølging)</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Which_Theme</name>
+        <label>Which Theme?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Error_Creating_Task</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Ingen</defaultConnectorLabel>
+        <rules>
+            <name>Rekruttere_og_inkludere</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Tema</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rekruttere og inkludere</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Rekruttere_og_inkludere</targetReference>
+            </connector>
+            <label>Rekruttere og inkludere</label>
+        </rules>
+        <rules>
+            <name>Forebygge_og_redusere_frav_r</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Tema</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Forebygge og redusere fravær</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Forebygge_og_redusere_frav_r</targetReference>
+            </connector>
+            <label>Forebygge og redusere fravær</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <name>PriorityChoices</name>
         <dataType>Picklist</dataType>
@@ -54,6 +212,14 @@
         <picklistObject>Task</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
+        <name>taskChoiceSet</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>TAG_Theme__c</picklistField>
+        <picklistObject>EmployerInquiry__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
         <name>TypeChoices</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true"/>
@@ -63,15 +229,24 @@
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
+        <name>apiNameSubThemeTask</name>
+        <dataType>String</dataType>
+        <expression>IF( {!TjenesteRekruttere} = &quot;Jobbmesser og møteplasser&quot;, &quot;Jobbmesser og møteplass&quot;,
+IF( {!TjenesteRekruttere} = &quot;Rekruttering (uten virkemidler, inkl. oppfølging)&quot;, &quot;Rekrutteringsoppdrag&quot;,
+IF( {!TjenesteRekruttere} = &quot;Inkludering (med virkemidler, inkl. oppfølging)&quot;, &quot;Inkluderende rekruttering&quot;,
+IF( {!TjenesteRekruttere} = &quot;Informasjon og relasjonsbygging&quot;, &quot;Informasjon om NAVs tjenester&quot;,
+IF( {!TjenesteRekruttere} = &quot;Jobbutvikling (Jobbspesialist)&quot;, &quot;IPS Jobbutvikling&quot;,
+IF( {!TjenesteRekruttere} = &quot;Jobbstøtte (Jobbspesialist)&quot;, &quot;IPS Jobbstøtte&quot;,
+null
+))))))</expression>
+    </formulas>
+    <formulas>
         <name>picklistFormula</name>
         <dataType>String</dataType>
-        <expression>IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Jobbmesser og møteplass&quot;, &quot;Jobbmesser og møteplasser&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Rekruttering uten virkemidler&quot;, &quot;Rekrutteringsoppdrag&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Informasjon og relasjonsbygging&quot;, &quot;Informasjon om NAVs tjenester&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Inkludering med virkemidler&quot;, &quot;Inkluderende rekruttering&quot;,
-IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Redusere sykefravær&quot;, &quot;Informasjon om NAVs tjenester&quot;,
-NULL
-)))))</expression>
+        <expression>IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Rekruttering uten virkemidler&quot;, &quot;Rekruttering (uten virkemidler, inkl. oppfølging)&quot;,
+IF( TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c}) = &quot;Inkludering med virkemidler&quot;, &quot;Inkludering (med virkemidler, inkl. oppfølging)&quot;,
+TEXT({!Get_Employer_Inquiry.TAG_SubTheme__c})
+))</expression>
     </formulas>
     <formulas>
         <name>picklistThemeFormula</name>
@@ -173,7 +348,7 @@ NULL
         <inputAssignments>
             <field>TAG_ActivityType__c</field>
             <value>
-                <elementReference>TemaUndertema.topValue</elementReference>
+                <elementReference>themeToCreateTask</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -191,7 +366,7 @@ NULL
         <inputAssignments>
             <field>TAG_service__c</field>
             <value>
-                <elementReference>TemaUndertema.middleValue</elementReference>
+                <elementReference>subThemeToCreateTask</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -265,7 +440,7 @@ NULL
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Create_Task</targetReference>
+            <targetReference>Which_Theme</targetReference>
         </connector>
         <fields>
             <name>Detaljer_fra_henvendelse</name>
@@ -442,66 +617,63 @@ NULL
                 <name>Opprett_Oppgave_Section2_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>TemaUndertema</name>
-                    <extensionName>flowruntime:dependentPicklists</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>dependencyWrapperApiName</name>
-                        <value>
-                            <stringValue>Task</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>topPicklistApiName</name>
-                        <value>
-                            <stringValue>TAG_ActivityType__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>middlePicklistApiName</name>
-                        <value>
-                            <stringValue>TAG_service__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>topLabel</name>
-                        <value>
-                            <stringValue>Tema</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>topRequired</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>middleLabel</name>
-                        <value>
-                            <stringValue>Tjeneste</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>middleRequired</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>topValue</name>
-                        <value>
-                            <elementReference>picklistThemeFormula</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>middleValue</name>
-                        <value>
-                            <elementReference>picklistFormula</elementReference>
-                        </value>
-                    </inputParameters>
+                    <name>Tema</name>
+                    <choiceReferences>taskChoiceSet</choiceReferences>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>Get_Employer_Inquiry.TAG_Theme__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Tema</fieldText>
+                    <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>TjenesteRekruttere</name>
+                    <choiceReferences>Jobbmesser_og_m_teplass</choiceReferences>
+                    <choiceReferences>Rekruttering_uten_virkemidler_inkl_oppf_lging</choiceReferences>
+                    <choiceReferences>Informasjon_og_relasjonsbygging</choiceReferences>
+                    <choiceReferences>Inkludering_med_virkemidler_inkl_oppf_lging</choiceReferences>
+                    <choiceReferences>Jobbutvikling_Jobbspesialist</choiceReferences>
+                    <choiceReferences>Jobbst_tte_Jobbspesialist</choiceReferences>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>picklistFormula</elementReference>
+                    </defaultValue>
+                    <fieldText>Tjeneste</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Tema</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>Rekruttere og inkludere</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>TjenesteFoirebyge</name>
+                    <choiceReferences>Informasjon_og_relasjonsbygging</choiceReferences>
+                    <dataType>String</dataType>
+                    <defaultSelectedChoiceReference>Informasjon_og_relasjonsbygging</defaultSelectedChoiceReference>
+                    <fieldText>Tjeneste</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Tema</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>Forebygge og redusere fravær</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -726,7 +898,21 @@ NULL
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>subThemeToCreateTask</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>taskRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>themeToCreateTask</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
