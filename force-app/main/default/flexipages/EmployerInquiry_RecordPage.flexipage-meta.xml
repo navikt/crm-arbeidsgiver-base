@@ -646,7 +646,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 20px; font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;;&quot;&gt;Avtalte dere videre oppfølging?&lt;/span&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; color: rgb(0, 0, 0); font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;;&quot;&gt;Forslag til videre oppfølging&lt;/span&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText2</identifier>
@@ -706,6 +706,56 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Legg inn et møte</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Legg inn at du skal ha et møte med denne arbeidsgiveren - det kan være nyttig informasjon for en kollega, og du får en påminnelse senere så du ikke glemmer det!</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Avtalte dere et møte?</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Create_Event_Call_to_Action</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard6</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ikke aktuelt / Nav skal ikke bistå</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ble veiledet til selvbetjening / prøve selv</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
