@@ -465,7 +465,7 @@
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
-        <name>Facet-97bf0ca9-b95f-4aa0-a31a-b3272a674788</name>
+        <name>Facet-8e2439d7-a025-442e-8c5a-b24779862add</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -473,21 +473,17 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-97bf0ca9-b95f-4aa0-a31a-b3272a674788</value>
+                    <value>Facet-8e2439d7-a025-442e-8c5a-b24779862add</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Anbefalt handling</value>
+                    <name>title</name>
+                    <value>Anbefalt handling nå</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>name</name>
-                    <value>accordionSection1</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordionSection</componentName>
-                <identifier>flexipage_accordionSection2</identifier>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-6a65589f-f44f-4c69-b0e3-39cc83e3181c</name>
+        <name>Facet-c374b42c-f9ee-424f-b207-cc817f373e28</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -594,11 +590,11 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>accordionSections</name>
-                    <value>Facet-6a65589f-f44f-4c69-b0e3-39cc83e3181c</value>
+                    <name>tabs</name>
+                    <value>Facet-c374b42c-f9ee-424f-b207-cc817f373e28</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:accordion</componentName>
-                <identifier>flexipage_accordion2</identifier>
+                <componentName>flexipage:tabset</componentName>
+                <identifier>flexipage_tabset</identifier>
                 <visibilityRule>
                     <booleanFilter>1 OR 2 OR 3</booleanFilter>
                     <criteria>
