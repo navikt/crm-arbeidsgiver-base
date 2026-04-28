@@ -109,6 +109,13 @@
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
+        <name>ThemeSelection</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Rekruttere og inkludere&quot;, &quot;Skal ansette&quot;,
+IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere fravær&quot;, &quot;Forebygge sykefravær&quot;,
+ null ))</expression>
+    </formulas>
+    <formulas>
         <name>ValidateProfessionValue</name>
         <dataType>Boolean</dataType>
         <expression>IF(LEN({!Yrke}) &lt; 26, true, false)</expression>
@@ -209,6 +216,12 @@
                 <elementReference>Ingen_brukeropplysninger</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Service__c</field>
+            <value>
+                <elementReference>Get_employer_inquiry.TAG_SubTheme__c</elementReference>
+            </value>
+        </inputAssignments>
         <object>CustomOpportunity__c</object>
     </recordCreates>
     <recordCreates>
@@ -280,6 +293,12 @@
                 <elementReference>Ingen_brukeropplysninger</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Service__c</field>
+            <value>
+                <elementReference>Get_employer_inquiry.TAG_SubTheme__c</elementReference>
+            </value>
+        </inputAssignments>
         <object>CustomOpportunity__c</object>
     </recordCreates>
     <recordCreates>
@@ -349,6 +368,12 @@
             <field>TAG_No_person_information__c</field>
             <value>
                 <elementReference>Ingen_brukeropplysninger</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Service__c</field>
+            <value>
+                <elementReference>Get_employer_inquiry.TAG_SubTheme__c</elementReference>
             </value>
         </inputAssignments>
         <object>CustomOpportunity__c</object>
@@ -617,7 +642,10 @@
                     <name>Tema</name>
                     <choiceReferences>ThemeChoices</choiceReferences>
                     <dataType>String</dataType>
-                    <fieldText>Tema</fieldText>
+                    <defaultValue>
+                        <elementReference>ThemeSelection</elementReference>
+                    </defaultValue>
+                    <fieldText>Kategori</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
