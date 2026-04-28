@@ -488,54 +488,6 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>buttonLabel</name>
-                    <value>Opprett mulighet</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>cardText</name>
-                    <value>Har du oppdaget en mulighet som også kan være nyttig for kollegaene dine å vite om? Del den med kollegene dine og hjelp flere med å komme i jobb.</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>cardTitle</name>
-                    <value>Opprett en mulighet</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>flowApiName</name>
-                    <value>TAG_Convert_Employer_Inquiry_to_Opportunity</value>
-                </componentInstanceProperties>
-                <componentName>callToActionCard</componentName>
-                <identifier>c_callToActionCard</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-635146a1-a8dc-4d9b-840d-b0acc53b4826</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-635146a1-a8dc-4d9b-840d-b0acc53b4826</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Forslag til videre oppfølging</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>name</name>
-                    <value>accordionSection1</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:accordionSection</componentName>
-                <identifier>flexipage_accordionSection</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-a6fe791b-0caf-49ff-a4aa-a90494a29685</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.TAG_RelatedJobPosting__r.Extent__c</fieldItem>
                 <identifier>RecordTAG_JobPosting_rExtent_cField</identifier>
@@ -618,11 +570,50 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>accordionSections</name>
-                    <value>Facet-a6fe791b-0caf-49ff-a4aa-a90494a29685</value>
+                    <name>decorate</name>
+                    <value>false</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:accordion</componentName>
-                <identifier>flexipage_accordion</identifier>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;; color: rgb(0, 0, 0);&quot;&gt;Anbefalt handling nå&lt;/span&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText3</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Utforsker samarbeid videre / oppfølging planlagt</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Starter tiltakssamarbeid</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Opprett mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Har du oppdaget en mulighet som også kan være nyttig for kollegaene dine å vite om? Del den med kollegene dine og hjelp flere med å komme i jobb.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Opprett en mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Convert_Employer_Inquiry_to_Opportunity</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard</identifier>
                 <visibilityRule>
                     <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
