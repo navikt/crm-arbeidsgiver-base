@@ -181,6 +181,12 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Assigned.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Profession__c</field>
             <value>
                 <elementReference>Yrke</elementReference>
@@ -264,6 +270,12 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Assigned.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Profession__c</field>
             <value>
                 <elementReference>Yrke</elementReference>
@@ -338,6 +350,12 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
             <field>Notes__c</field>
             <value>
                 <elementReference>Kommentarer</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Assigned.recordId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -435,7 +453,7 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>DetailsRightSide</name>
-                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Henvendelse: &lt;/strong&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;{!Get_employer_inquiry.TAG_Message__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;﻿Samtalereferat:&amp;nbsp;&lt;/strong&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Get_employer_inquiry.TAG_ClosingComment__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;﻿Lukkeårsak:&amp;nbsp;&lt;/strong&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Get_employer_inquiry.TAG_ClosedReason__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                 </fields>
                 <inputParameters>
@@ -535,6 +553,44 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
+                <fields>
+                    <name>EmployerInquiry</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>TAG_EmployerInquiry__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Henvendelse</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>CustomOpportunity__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>disabled</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>recordId</name>
+                        <value>
+                            <elementReference>Get_employer_inquiry.Id</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -579,19 +635,19 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
                 <fields>
-                    <name>EmployerInquiry</name>
+                    <name>Assigned</name>
                     <extensionName>flowruntime:lookup</extensionName>
                     <fieldType>ComponentInstance</fieldType>
                     <inputParameters>
                         <name>fieldApiName</name>
                         <value>
-                            <stringValue>TAG_EmployerInquiry__c</stringValue>
+                            <stringValue>LastModifiedById</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
                         <name>label</name>
                         <value>
-                            <stringValue>Henvendelse</stringValue>
+                            <stringValue>Tildelt</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -601,15 +657,15 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
                         </value>
                     </inputParameters>
                     <inputParameters>
-                        <name>disabled</name>
+                        <name>recordId</name>
                         <value>
-                            <booleanValue>true</booleanValue>
+                            <elementReference>$User.Id</elementReference>
                         </value>
                     </inputParameters>
                     <inputParameters>
-                        <name>recordId</name>
+                        <name>required</name>
                         <value>
-                            <elementReference>Get_employer_inquiry.Id</elementReference>
+                            <booleanValue>true</booleanValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
