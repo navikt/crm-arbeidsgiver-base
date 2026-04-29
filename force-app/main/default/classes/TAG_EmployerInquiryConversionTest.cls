@@ -7,6 +7,7 @@ private class TAG_EmployerInquiryConversionTest {
         TAG_TestDataFactory.createUserWithPermset(
             TEST_USER_LAST_NAME,
             new List<String>{
+                'Arbeidsgiver_base',
                 'Arbeidsgiver_NavTask',
                 'Arbeidsgiver_opportunity',
                 'Arbeidsgiver_Henvendelser',
@@ -15,22 +16,96 @@ private class TAG_EmployerInquiryConversionTest {
         );
 
         System.runAs(new User(Id = UserInfo.getUserId())) {
-            List<Account> accounts = TAG_TestDataFactory.createAccounts(1);
-            Account acc = accounts[0];
-
             NavUnit__c navUnit = new NavUnit__c(Name = 'NAV Test Unit', INT_UnitNumber__c = '9999');
             insert navUnit;
 
-            NavTask__c navTask = new NavTask__c(
-                CRM_Account__c = acc.Id,
-                CRM_NavUnit__c = navUnit.Id,
-                CRM_Theme__c = 'Rekruttere og inkludere',
-                CRM_SubTheme__c = 'Rekrutteringsoppdrag',
-                CRM_DueDate__c = Date.today().addDays(7),
-                CRM_ConversationNote__c = 'Testnotat',
-                CRM_AdditionalInformation__c = 'Ekstra info'
+            List<Account> arbeidsgiverUserAccounts = new List<Account>();
+            arbeidsgiverUserAccounts.add(
+                new Account(
+                    Name = 'TestAccount0',
+                    INT_OrganizationNumber__c = '9000000001',
+                    INT_MunicipalityNumber__c = '3301',
+                    NumberOfWorkfare__c = 5
+                )
             );
-            insert navTask;
+            arbeidsgiverUserAccounts.add(
+                new Account(
+                    Name = 'TestAccount1',
+                    INT_OrganizationNumber__c = '9000000002',
+                    INT_MunicipalityNumber__c = '3301',
+                    TAG_Partner_Status__c = null,
+                    NumberOfWorkfare__c = 0
+                )
+            );
+            insert arbeidsgiverUserAccounts;
+            Id navTaskRecordTypeId = Schema.SObjectType.NavTask__c.getRecordTypeInfosByDeveloperName()
+                .get('Employer')
+                .getRecordTypeId();
+
+            List<NavTask__c> navTasks = new List<NavTask__c>();
+            navTasks.add(
+                new NavTask__c(
+                    Name = 'Test Nav Task 1',
+                    RecordTypeId = navTaskRecordTypeId,
+                    CRM_Status__c = 'Ny',
+                    CRM_Account__c = arbeidsgiverUserAccounts[0].Id,
+                    CRM_NavUnit__c = navUnit.Id,
+                    CRM_Theme__c = 'Forebygge sykefravær og redusere frafall',
+                    CRM_SubTheme__c = 'Redusere sykefravær',
+                    CRM_DueDate__c = Date.today().addDays(2),
+                    CRM_ConversationNote__c = 'Testnotat',
+                    CRM_AdditionalInformation__c = 'Ekstra info'
+                )
+            );
+            navTasks.add(
+                new NavTask__c(
+                    Name = 'Test Nav Task 2',
+                    RecordTypeId = navTaskRecordTypeId,
+                    CRM_Status__c = 'Ny',
+                    CRM_Account__c = arbeidsgiverUserAccounts[0].Id,
+                    CRM_NavUnit__c = navUnit.Id,
+                    CRM_Theme__c = 'Rekruttere og inkludere',
+                    CRM_SubTheme__c = 'Rekrutteringsoppdrag',
+                    CRM_DueDate__c = Date.today().addDays(2),
+                    CRM_ConversationNote__c = 'Testnotat',
+                    CRM_AdditionalInformation__c = 'Ekstra info'
+                )
+            );
+            navTasks.add(
+                new NavTask__c(
+                    Name = 'Test Nav Task 3',
+                    RecordTypeId = navTaskRecordTypeId,
+                    CRM_Status__c = 'Ny',
+                    CRM_Account__c = arbeidsgiverUserAccounts[0].Id,
+                    CRM_NavUnit__c = navUnit.Id,
+                    CRM_Theme__c = 'Rekruttere og inkludere',
+                    CRM_SubTheme__c = null,
+                    CRM_DueDate__c = Date.today().addDays(2),
+                    CRM_ConversationNote__c = 'Testnotat',
+                    CRM_AdditionalInformation__c = 'Ekstra info'
+                )
+            );
+            insert navTasks;
+
+            Id inclusionRtId = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName()
+                .get('Inclusion')
+                .getRecordTypeId();
+
+            List<CustomOpportunity__c> opps = new List<CustomOpportunity__c>();
+            opps.add(
+                new CustomOpportunity__c(
+                    Account__c = arbeidsgiverUserAccounts[0].Id,
+                    TAG_NavUnit__c = navUnit.Id,
+                    Source__c = 'Arbeidsplassen',
+                    InquiryCategory__c = 'Skal ansette',
+                    InclusionStage__c = 'Ny henvendelse',
+                    RecordTypeId = inclusionRtId,
+                    INT_MunicipalityNumber__c = '0101',
+                    Notes__c = 'Testmelding',
+                    TAG_DueDateTime__c = DateTime.now().addDays(2)
+                )
+            );
+            insert opps;
         }
     }
 
@@ -51,7 +126,12 @@ private class TAG_EmployerInquiryConversionTest {
 
     @IsTest
     static void convertNavTasks() {
-        NavTask__c navTask = [SELECT Id, Name, CRM_Account__c, CRM_NavUnit__c, CRM_DueDate__c FROM NavTask__c LIMIT 1];
+        NavTask__c navTask = [
+            SELECT Id, Name, CRM_Account__c, CRM_NavUnit__c, CRM_DueDate__c
+            FROM NavTask__c
+            WHERE Name = 'Test Nav Task 2'
+            LIMIT 1
+        ];
         User testUser = getTestUser();
 
         Test.startTest();
@@ -59,7 +139,7 @@ private class TAG_EmployerInquiryConversionTest {
             List<TAG_EmployerInquiryConversion.ConversionResult> results = TAG_EmployerInquiryConversion.convertAllToEmployerInquiries(
                 new List<TAG_EmployerInquiryConversion.ConversionRequest>{ createRequest(true, false) }
             );
-            System.assertEquals(1, results[0].successCount);
+            System.assertEquals(3, results[0].successCount);
             System.assertEquals(0, results[0].errorCount);
         }
         Test.stopTest();
@@ -77,6 +157,7 @@ private class TAG_EmployerInquiryConversionTest {
                 TAG_SubTheme__c,
                 TAG_Converted_NAV_Task__c
             FROM EmployerInquiry__c
+            WHERE TAG_Converted_NAV_Task__c = :navTask.Id
             LIMIT 1
         ];
         System.assertEquals(navTask.Name, inquiry.Name);
@@ -94,27 +175,11 @@ private class TAG_EmployerInquiryConversionTest {
 
     @IsTest
     static void convertOpportunities() {
-        Account acc = [SELECT Id FROM Account LIMIT 1];
-        NavUnit__c navUnit = [SELECT Id FROM NavUnit__c LIMIT 1];
-        List<Contact> contacts = TAG_TestDataFactory.createContacts(new List<Account>{ acc }, 1);
-
-        Id inclusionRtId = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName()
-            .get('Inclusion')
-            .getRecordTypeId();
-
-        CustomOpportunity__c opp = new CustomOpportunity__c(
-            Account__c = acc.Id,
-            Contact__c = contacts[0].Id,
-            TAG_NavUnit__c = navUnit.Id,
-            Source__c = 'Kontaktskjema',
-            InquiryCategory__c = 'Forebygge sykefravær',
-            InclusionStage__c = 'Ny henvendelse',
-            RecordTypeId = inclusionRtId,
-            Notes__c = 'Testmelding',
-            INT_MunicipalityNumber__c = '0101',
-            TAG_DueDateTime__c = Datetime.now().addDays(5)
-        );
-        insert opp;
+        CustomOpportunity__c opp = [
+            SELECT Id, Account__c, Contact__c, TAG_NavUnit__c
+            FROM CustomOpportunity__c
+            LIMIT 1
+        ];
 
         User testUser = getTestUser();
 
@@ -145,13 +210,13 @@ private class TAG_EmployerInquiryConversionTest {
             WHERE TAG_Converted_Custom_Opportunity__c = :opp.Id
             LIMIT 1
         ];
-        System.assertEquals(acc.Id, inquiry.TAG_Account__c);
-        System.assertEquals(contacts[0].Id, inquiry.TAG_Contact__c);
-        System.assertEquals(navUnit.Id, inquiry.TAG_NavUnit__c);
+        System.assertEquals(opp.Account__c, inquiry.TAG_Account__c);
+        System.assertEquals(opp.Contact__c, inquiry.TAG_Contact__c);
+        System.assertEquals(opp.TAG_NavUnit__c, inquiry.TAG_NavUnit__c);
         System.assertEquals(opp.Id, inquiry.TAG_Converted_Custom_Opportunity__c);
         System.assertEquals('Ny henvendelse', inquiry.TAG_Status__c);
-        System.assertEquals('Kontaktskjema', inquiry.TAG_Source__c);
-        System.assertEquals('Forebygge og redusere fravær', inquiry.TAG_Theme__c);
+        System.assertEquals('Arbeidsplassen.no', inquiry.TAG_Source__c);
+        System.assertEquals('Rekruttere og inkludere', inquiry.TAG_Theme__c);
         System.assertEquals(null, inquiry.TAG_SubTheme__c);
         System.assertEquals('Testmelding', inquiry.TAG_Message__c);
         System.assertNotEquals(null, inquiry.TAG_DueDate__c);
@@ -160,23 +225,6 @@ private class TAG_EmployerInquiryConversionTest {
 
     @IsTest
     static void convertBoth() {
-        Account acc = [SELECT Id FROM Account LIMIT 1];
-        NavUnit__c navUnit = [SELECT Id FROM NavUnit__c LIMIT 1];
-
-        Id inclusionRtId = Schema.SObjectType.CustomOpportunity__c.getRecordTypeInfosByDeveloperName()
-            .get('Inclusion')
-            .getRecordTypeId();
-
-        insert new CustomOpportunity__c(
-            Account__c = acc.Id,
-            TAG_NavUnit__c = navUnit.Id,
-            Source__c = 'Arbeidsplassen',
-            InquiryCategory__c = 'Skal ansette',
-            InclusionStage__c = 'Ny henvendelse',
-            RecordTypeId = inclusionRtId,
-            INT_MunicipalityNumber__c = '0101'
-        );
-
         User testUser = getTestUser();
 
         Test.startTest();
@@ -184,7 +232,7 @@ private class TAG_EmployerInquiryConversionTest {
             List<TAG_EmployerInquiryConversion.ConversionResult> results = TAG_EmployerInquiryConversion.convertAllToEmployerInquiries(
                 new List<TAG_EmployerInquiryConversion.ConversionRequest>{ createRequest(true, true) }
             );
-            System.assertEquals(2, results[0].successCount);
+            System.assertEquals(4, results[0].successCount);
             System.assertEquals(0, results[0].errorCount);
             System.assert(results[0].errorMessages.isEmpty());
         }
