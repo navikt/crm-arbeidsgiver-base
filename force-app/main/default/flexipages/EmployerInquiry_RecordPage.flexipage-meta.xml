@@ -385,6 +385,100 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.Extent__c</fieldItem>
+                <identifier>RecordTAG_JobPosting_rExtent_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.EngagementType__c</fieldItem>
+                <identifier>RecordTAG_JobPosting_rEngagementType_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.Link_to_position__c</fieldItem>
+                <identifier>RecordTAG_JobPosting_rLink_to_position_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.TAG_RelatedJobPosting__r.Linkt_to_Rekrutteringsbistand__c</fieldItem>
+                <identifier>RecordTAG_JobPosting_rLinkt_to_Rekrutteringsbistand_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_RelatedJobPosting__c</fieldItem>
+                <identifier>RecordTAG_JobPosting_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-f515a13e-9f8b-448f-9160-c2dbf4293914</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-f515a13e-9f8b-448f-9160-c2dbf4293914</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-47291a8c-3b4b-40a8-a55f-f85f01f5f4a6</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;; color: rgb(0, 0, 0);&quot;&gt;Anbefalt handling nå&lt;/span&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText3</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Utforsker samarbeid videre / oppfølging planlagt</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Starter tiltakssamarbeid</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>buttonLabel</name>
@@ -461,135 +555,6 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-8e2439d7-a025-442e-8c5a-b24779862add</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-8e2439d7-a025-442e-8c5a-b24779862add</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Anbefalt handling nå</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>flexipage_tab2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-c374b42c-f9ee-424f-b207-cc817f373e28</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.TAG_RelatedJobPosting__r.Extent__c</fieldItem>
-                <identifier>RecordTAG_JobPosting_rExtent_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.TAG_RelatedJobPosting__r.EngagementType__c</fieldItem>
-                <identifier>RecordTAG_JobPosting_rEngagementType_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.TAG_RelatedJobPosting__r.Link_to_position__c</fieldItem>
-                <identifier>RecordTAG_JobPosting_rLink_to_position_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.TAG_RelatedJobPosting__r.Linkt_to_Rekrutteringsbistand__c</fieldItem>
-                <identifier>RecordTAG_JobPosting_rLinkt_to_Rekrutteringsbistand_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_RelatedJobPosting__c</fieldItem>
-                <identifier>RecordTAG_JobPosting_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-f515a13e-9f8b-448f-9160-c2dbf4293914</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-f515a13e-9f8b-448f-9160-c2dbf4293914</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-47291a8c-3b4b-40a8-a55f-f85f01f5f4a6</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>tabs</name>
-                    <value>Facet-c374b42c-f9ee-424f-b207-cc817f373e28</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tabset</componentName>
-                <identifier>flexipage_tabset</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;; color: rgb(0, 0, 0);&quot;&gt;Anbefalt handling nå&lt;/span&gt;&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText3</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Utforsker samarbeid videre / oppfølging planlagt</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Starter tiltakssamarbeid</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
