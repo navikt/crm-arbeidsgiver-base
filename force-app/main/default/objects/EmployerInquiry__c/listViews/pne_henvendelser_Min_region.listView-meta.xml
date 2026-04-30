@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pne_henvendelser_Min_region</fullName>
+    <columns>TAG_IsOverdue__c</columns>
+    <columns>NAME</columns>
+    <columns>TAG_Account__c</columns>
+    <columns>TAG_Source__c</columns>
+    <columns>TAG_Status__c</columns>
+    <columns>TAG_RecievedDateTime__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>TAG_NavUnit__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>TAG_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Fullført</value>
+    </filters>
+    <filters>
+        <field>TAG_IsMyNavRegion__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Åpne henvendelser - Min region</label>
+    <sharedTo>
+        <role>PO_Arbeidsgiver</role>
+    </sharedTo>
+</ListView>
