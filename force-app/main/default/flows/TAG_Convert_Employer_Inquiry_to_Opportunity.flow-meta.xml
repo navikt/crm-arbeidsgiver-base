@@ -193,6 +193,12 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Get_opportunity_record_type.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Source__c</field>
             <value>
                 <stringValue>Arbeidsplassen</stringValue>
@@ -282,6 +288,12 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Get_opportunity_record_type.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Source__c</field>
             <value>
                 <elementReference>Get_employer_inquiry.TAG_Source__c</elementReference>
@@ -365,6 +377,12 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Get_opportunity_record_type.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Source__c</field>
             <value>
                 <elementReference>Get_employer_inquiry.TAG_Source__c</elementReference>
@@ -403,7 +421,7 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>CreateOpportunity</targetReference>
+            <targetReference>Get_opportunity_record_type</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -415,6 +433,27 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>EmployerInquiry__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_opportunity_record_type</name>
+        <label>Get opportunity record type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>CreateOpportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Inclusion</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <screens>
