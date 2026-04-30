@@ -1,3 +1,6 @@
+// Henter kø-ID for en henvendelses Nav-enhet, slik at henvendelsen kan legges tilbake i køen (fjerne tildeling).
+// Kalles fra LWC: inquiryUnassignment
+// Avhengigheter: EmployerInquiry__c.TAG_NavUnit__c -> NavUnit__c.CRM_QueueId__c
 public with sharing class InquiryAssignmentController {
     @AuraEnabled
     public static String getQueueIdForInquiry(Id recordId) {

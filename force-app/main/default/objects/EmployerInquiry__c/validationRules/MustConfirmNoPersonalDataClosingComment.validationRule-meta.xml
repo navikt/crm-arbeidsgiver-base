@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MustConfirmNoPersonalDataClosingComment</fullName>
     <active>true</active>
-    <description>Om ClosingComment er fylt ut må brukeren også krysse av for at det ikke er persondata i teksten.</description>
+    <description>Krever bekreftelse på fravær av persondata. Dersom TAG_ClosingComment__c er fylt ut, må brukeren krysse av at det ikke inneholder opplysning.</description>
     <errorConditionFormula>AND( 
  NOT( ISBLANK( TAG_ClosingComment__c ) ), 
  NOT( TAG_NoPersonInformationClosingComment__c ) 

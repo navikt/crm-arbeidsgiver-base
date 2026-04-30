@@ -6,6 +6,11 @@
     </classAccesses>
     <description>Tilgang til å se og oppdatere henvendelser fra arbeidsgivere</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CustomOpportunity__c.TAG_EmployerInquiry__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_Account__c</field>
         <readable>true</readable>
@@ -127,6 +132,15 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Henvendelser</label>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>CustomOpportunity__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

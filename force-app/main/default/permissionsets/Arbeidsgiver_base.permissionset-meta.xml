@@ -437,6 +437,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>TAG_AccountHighlightsPanelController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TAG_AccountTypeHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -614,11 +618,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.CRM_MainIndustry__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.CRM_NumberOfEmployeesFormula__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1038,6 +1037,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.TAG_EmployerInquiry__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.TAG_IACaseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1209,6 +1213,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_CompletedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.TAG_EmployerInquiry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

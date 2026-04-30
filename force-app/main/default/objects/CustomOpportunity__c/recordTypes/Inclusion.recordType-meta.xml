@@ -2056,6 +2056,33 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>TAG_Service__c</picklist>
+        <values>
+            <fullName>Informasjon og relasjonsbygging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inkludering med virkemidler</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jobbmesser og møteplass</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Redusere sykefravær</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekruttering uten virkemidler</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ungdomsløftet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>WorkEnvironment__c</picklist>
         <values>
             <fullName>Andre former for tilrettelegging</fullName>

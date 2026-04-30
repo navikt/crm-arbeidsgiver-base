@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Min_Nav_enhet_nye_henvendelser</fullName>
+    <columns>TAG_IsOverdue__c</columns>
     <columns>NAME</columns>
     <columns>TAG_Account__c</columns>
     <columns>TAG_Source__c</columns>
     <columns>TAG_Status__c</columns>
-    <columns>TAG_IsOverdue__c</columns>
     <columns>TAG_NavUnit__c</columns>
     <filterScope>Everything</filterScope>
     <filters>

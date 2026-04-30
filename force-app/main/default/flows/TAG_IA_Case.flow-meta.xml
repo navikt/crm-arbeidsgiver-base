@@ -9,14 +9,7 @@
         <defaultConnectorLabel>Not status We Assist</defaultConnectorLabel>
         <rules>
             <name>Status_is_We_Assist</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.CaseStatus__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>VI_BISTÅR</stringValue>
-                </rightValue>
-            </conditions>
+            <conditionLogic>1 AND 2 AND (3 OR 4)</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.CaseOwnerNavIdent__c</leftValueReference>
                 <operator>IsNull</operator>
@@ -29,6 +22,20 @@
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CaseStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>AKTIV</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CaseStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>VI_BISTÅR</stringValue>
                 </rightValue>
             </conditions>
             <connector>

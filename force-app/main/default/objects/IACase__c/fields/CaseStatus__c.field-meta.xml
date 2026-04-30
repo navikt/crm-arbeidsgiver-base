@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CaseStatus__c</fullName>
-    <externalId>false</externalId>
+    <deprecated>false</deprecated>
     <label>Case Status</label>
     <required>false</required>
     <trackHistory>true</trackHistory>
@@ -55,6 +55,21 @@
                 <fullName>SLETTET</fullName>
                 <default>false</default>
                 <label>SLETTET</label>
+            </value>
+            <value>
+                <fullName>VURDERT</fullName>
+                <default>false</default>
+                <label>VURDERT</label>
+            </value>
+            <value>
+                <fullName>AKTIV</fullName>
+                <default>false</default>
+                <label>AKTIV</label>
+            </value>
+            <value>
+                <fullName>AVSLUTTET</fullName>
+                <default>false</default>
+                <label>AVSLUTTET</label>
             </value>
         </valueSetDefinition>
     </valueSet>

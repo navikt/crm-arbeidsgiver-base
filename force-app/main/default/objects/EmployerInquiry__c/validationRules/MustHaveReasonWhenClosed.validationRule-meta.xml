@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MustHaveReasonWhenClosed</fullName>
+    <active>true</active>
+    <description>Krever sluttkode ved lukking. Når status settes til &quot;Fullført&quot; må feltet &quot;Hva skjer videre?&quot; (TAG_ClosedReason__c) være fylt ut.</description>
+    <errorConditionFormula>AND( ISPICKVAL(TAG_ClosedReason__c, &quot;&quot;),  ISPICKVAL(TAG_Status__c, &apos;Fullført&apos;) )</errorConditionFormula>
+    <errorMessage>Sluttkode mangler. 
+Fyll ut feltet &quot;Hva skjer videre?&quot; før du lukker henvendelsen.</errorMessage>
+</ValidationRule>

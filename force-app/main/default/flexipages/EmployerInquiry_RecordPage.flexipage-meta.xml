@@ -28,16 +28,10 @@
                         <valueListItems>
                             <value>EmployerInquiry__c.TAG_CloseInquiry</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -442,6 +436,286 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;; color: rgb(0, 0, 0);&quot;&gt;Anbefalt handling nå&lt;/span&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText3</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Utforsker samarbeid videre / oppfølging planlagt</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Starter tiltakssamarbeid</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Når virksomheten skal ansette med bistand fra Nav er neste steg i prosessen å opprette et stillingsoppdrag i Rekrutteringsbistand. Der oppretter du stillingsannonse (direktemeldt stilling) og kan administrere jobbsøkere og dele informasjon med arbeidsgiver.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Opprett et stillingsoppdrag i Rekrutteringsbistand</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard3</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Hvis virksomheten skal få rekrutteringhjelp så er neste steg å gjøre nødvendige oppdateringer på den eksisterende stillingen som ligger ute på Arbeidsplassen. no. Dette gjøres i Rekrutteringsbistand.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Gjør nødvendige endringer på stillingen</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Når virksomheten skal ansette med bistand fra Nav er neste steg i prosessen å opprette et stillingsoppdrag i Rekrutteringsbistand. Der oppretter du stillingsannonse (direktemeldt stilling) og kan administrere jobbsøkere og dele informasjon med arbeidsgiver.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Meld arbeidsgiver på jobbmesse / rekrutteringstreff</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard5</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Opprett mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Har du oppdaget en mulighet som også kan være nyttig for kollegaene dine å vite om? Del den med kollegene dine og hjelp flere med å komme i jobb.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Opprett en mulighet</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Convert_Employer_Inquiry_to_Opportunity</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Utforsker samarbeid videre / oppfølging planlagt</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Starter tiltakssamarbeid</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; color: rgb(0, 0, 0); font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;;&quot;&gt;Forslag til videre oppfølging&lt;/span&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ikke aktuelt / Nav skal ikke bistå</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Lag en oppfølgingsoppgave</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Legg inn at du har planer om å kontakte denne arbeidsgiver senere - det kan være nyttig informasjon for en kollega, og du får en påminnelse senere så du ikke glemmer det! Lag en oppfølgingsoppgave</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Skal du kontakte arbeidsgiveren igjen senere?</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Create_Task_Call_to_Action</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ikke aktuelt / Nav skal ikke bistå</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Legg inn et møte</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Legg inn at du skal ha et møte med denne arbeidsgiveren - det kan være nyttig informasjon for en kollega, og du får en påminnelse senere så du ikke glemmer det!</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Avtalte dere et møte?</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Create_Event_Call_to_Action</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard6</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ikke aktuelt / Nav skal ikke bistå</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Ble veiledet til selvbetjening / prøve selv</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_Summary__c</fullName>
-    <description>Automatisk generert sammendrag av henvendelsen for listevisninger. Brukes foir brukervennlighet i listevisninger med begrenset plass.</description>
+    <description>Viser et kort sammendrag basert på status og andre kriterier. Brukes for å komprimerer informasjonen som vises i tidslinjen.</description>
     <externalId>false</externalId>
-    <formula>CASE(TAG_Status__c, 
-    &apos;Ny henvendelse&apos;, 
-        IF(
-            TAG_Is_Assigned__c, 
-            IF(
-                OwnerId ==  $User.Id,
-                &apos;Du følger opp denne&apos;, 
-                Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName +&apos; følger opp denne&apos;
-            ) ,
-            &apos;Ingen følger opp ennå..&apos;   
-        ) + &apos; (svarfrist &apos; + TEXT(TAG_DueDate__c)+&apos;)&apos;,
-    &apos;Følges opp&apos;, 
-        IF(
-            OwnerId ==  $User.Id,
-            &apos;Du følger opp denne&apos;, 
-            Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName +&apos; følger opp denne&apos;
-        ) + &apos; (svarfrist &apos; + TEXT(TAG_DueDate__c)+&apos;)&apos;,
-    &apos;Fullført&apos;,
-        &apos;Resultat: &apos; + TEXT( TAG_ClosedReason__c ),
-&apos;&apos;)</formula>
+    <formula>IF(NOT(ISPICKVAL(TAG_Status__c, &apos;Fullført&apos;)),
+    IF(NOT(TAG_Is_Assigned__c),
+        &apos;Ingen følger opp ennå..&apos;,
+        IF(OwnerId ==  $User.Id,
+            &apos;Du&apos;,
+            Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName
+        ) 
+        + &apos; følger opp henvendelsen&apos;
+    )
+    + IF(TAG_Overdue__c,
+        &apos; (&apos;+ TEXT(TODAY()-TAG_DueDate__c) +&apos; dager forbi frist)&apos;,
+        &apos;&apos;
+    )
+    ,
+    IF(OwnerId ==  $User.Id,
+        &apos;Du&apos;,
+        Owner:User.FirstName +&apos; &apos;+ Owner:User.LastName
+    ) 
+    + &apos; fulgte opp henvendelsen - &apos; + TEXT( TAG_ClosedReason__c )
+)</formula>
     <label>Summary</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

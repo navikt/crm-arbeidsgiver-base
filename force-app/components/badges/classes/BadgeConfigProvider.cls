@@ -64,7 +64,7 @@ public with sharing class BadgeConfigProvider {
             'columns' => 'Name, Status__c, StartDate__c,EndDate__c, Link__c',
             'objectApiName' => 'IACooperation__c',
             'lookupField' => 'Account__c',
-            'queryFilter' => 'Status__c = \'AKTIV\' AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VI_BISTÅR\'))'
+            'queryFilter' => 'Status__c = \'AKTIV\' AND (IACase__r.CaseStatus__c IN (\'NY\', \'VURDERES\', \'KONTAKTES\', \'KARTLEGGES\', \'VURDERT\', \'AKTIV\', \'VI_BISTÅR\'))'
         },
         // Ifbm overgang til nytt rammeverk for avtaler vises badge for strategisk partner avtaler med enten
         //  TAG_Type_Partner__c lik Strategisk Partner, eller TAG_Category__c lik Stategisk partner.

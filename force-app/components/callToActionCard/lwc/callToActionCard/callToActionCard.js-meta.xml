@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="cardTitle" type="String" label="Title" default="Title" />
+            <property name="cardText" type="String" label="Description"
+                default="Add a description for next best action." />
+            <property name="buttonLabel" type="String" label="Button label" />
+            <property name="flowApiName" type="String" label="Screen Flow API Name"
+                description="API name of the Screen Flow to launch. The flow must have an input variable named 'recordId'." />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

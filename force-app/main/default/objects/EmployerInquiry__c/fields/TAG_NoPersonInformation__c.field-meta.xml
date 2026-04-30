@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TAG_NoPersonInformation__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>Markør for at det ikke er skrevet personinformasjon i fritekstfelt. Skal krysses av dersom man skriver fritekst.</description>
+    <description>Bekreftelse på at det ikke er skrevet personopplysninger i meldingsfeltet (TAG_Message__c). Må krysses av ved opprettelse av henvendelse med fritekst.</description>
     <label>No Person Information</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
