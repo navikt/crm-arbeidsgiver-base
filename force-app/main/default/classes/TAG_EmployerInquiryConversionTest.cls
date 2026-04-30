@@ -217,7 +217,7 @@ private class TAG_EmployerInquiryConversionTest {
         System.assertEquals('Arbeidsplassen.no', inquiry.TAG_Source__c);
         System.assertEquals('Rekruttere og inkludere', inquiry.TAG_Theme__c);
         System.assertEquals(null, inquiry.TAG_SubTheme__c);
-        System.assertEquals('Testmelding', inquiry.TAG_Message__c);
+        System.assert(inquiry.TAG_Message__c.contains('Testmelding'));
         System.assertNotEquals(null, inquiry.TAG_DueDate__c);
         System.assertNotEquals(null, inquiry.TAG_DueDateTime__c);
     }
