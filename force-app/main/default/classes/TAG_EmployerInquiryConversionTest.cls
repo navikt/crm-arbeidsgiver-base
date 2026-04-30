@@ -15,7 +15,7 @@ private class TAG_EmployerInquiryConversionTest {
             }
         );
 
-        System.runAs(new User(Id = UserInfo.getUserId())) {
+        System.runAs(getTestUser()) {
             NavUnit__c navUnit = new NavUnit__c(Name = 'NAV Test Unit', INT_UnitNumber__c = '9999');
             insert navUnit;
 
@@ -126,24 +126,24 @@ private class TAG_EmployerInquiryConversionTest {
 
     @IsTest
     static void convertNavTasks() {
+        User testUser = getTestUser();
+        List<TAG_EmployerInquiryConversion.ConversionResult> results;
+        Test.startTest();
+        System.runAs(testUser) {
+            results = TAG_EmployerInquiryConversion.convertAllToEmployerInquiries(
+                new List<TAG_EmployerInquiryConversion.ConversionRequest>{ createRequest(true, false) }
+            );
+        }
+        Test.stopTest();
+
+        System.assertEquals(3, results[0].successCount);
+        System.assertEquals(0, results[0].errorCount);
         NavTask__c navTask = [
             SELECT Id, Name, CRM_Account__c, CRM_NavUnit__c, CRM_DueDate__c
             FROM NavTask__c
             WHERE Name = 'Test Nav Task 2'
             LIMIT 1
         ];
-        User testUser = getTestUser();
-
-        Test.startTest();
-        System.runAs(testUser) {
-            List<TAG_EmployerInquiryConversion.ConversionResult> results = TAG_EmployerInquiryConversion.convertAllToEmployerInquiries(
-                new List<TAG_EmployerInquiryConversion.ConversionRequest>{ createRequest(true, false) }
-            );
-            System.assertEquals(3, results[0].successCount);
-            System.assertEquals(0, results[0].errorCount);
-        }
-        Test.stopTest();
-
         EmployerInquiry__c inquiry = [
             SELECT
                 Name,
@@ -175,24 +175,23 @@ private class TAG_EmployerInquiryConversionTest {
 
     @IsTest
     static void convertOpportunities() {
+        User testUser = getTestUser();
+        List<TAG_EmployerInquiryConversion.ConversionResult> results;
+        Test.startTest();
+        System.runAs(testUser) {
+            results = TAG_EmployerInquiryConversion.convertAllToEmployerInquiries(
+                new List<TAG_EmployerInquiryConversion.ConversionRequest>{ createRequest(false, true) }
+            );
+        }
+        Test.stopTest();
+
+        System.assertEquals(1, results[0].successCount);
+        System.assertEquals(0, results[0].errorCount);
         CustomOpportunity__c opp = [
             SELECT Id, Account__c, Contact__c, TAG_NavUnit__c
             FROM CustomOpportunity__c
             LIMIT 1
         ];
-
-        User testUser = getTestUser();
-
-        Test.startTest();
-        System.runAs(testUser) {
-            List<TAG_EmployerInquiryConversion.ConversionResult> results = TAG_EmployerInquiryConversion.convertAllToEmployerInquiries(
-                new List<TAG_EmployerInquiryConversion.ConversionRequest>{ createRequest(false, true) }
-            );
-            System.assertEquals(1, results[0].successCount);
-            System.assertEquals(0, results[0].errorCount);
-        }
-        Test.stopTest();
-
         EmployerInquiry__c inquiry = [
             SELECT
                 TAG_Account__c,
