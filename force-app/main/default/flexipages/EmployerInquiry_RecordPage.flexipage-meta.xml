@@ -449,7 +449,7 @@
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText3</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -474,6 +474,16 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fikk ikke tak i arbeidsgiveren</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -512,7 +522,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>cardText</name>
-                    <value>Hvis virksomheten skal få rekrutteringhjelp så er neste steg å gjøre nødvendige oppdateringer på den eksisterende stillingen som ligger ute på Arbeidsplassen. no. Dette gjøres i Rekrutteringsbistand.</value>
+                    <value>Hvis virksomheten skal få rekrutteringhjelp så er neste steg å gjøre nødvendige oppdateringer på den eksisterende stillingen som ligger ute på Arbeidsplassen.no. Dette gjøres i Rekrutteringsbistand.</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>cardTitle</name>
@@ -602,12 +612,12 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 20px; color: rgb(0, 0, 0); font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;;&quot;&gt;Forslag til videre oppfølging&lt;/span&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-family: system-ui, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;; color: rgb(0, 0, 0); font-size: 20px;&quot;&gt;Avtalte dere videre oppfølging?&lt;/span&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_Status__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -622,6 +632,16 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk ikke tak i arbeidsgiveren</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -647,7 +667,7 @@
                 <componentName>callToActionCard</componentName>
                 <identifier>c_callToActionCard2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_Status__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -662,6 +682,46 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Send oppfølgingsoppgave</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Siden arbeidsgiver skal kontaktes av noen andre i Nav, blir neste steg å gi beskjed til kollegaen din. Du kan opprette en oppgave til dem, som de vil få i sin oppgaveliste på Hjem-skjermen. De får også et varsel i Salesforce Arbeidsgiver. OBS: Dersom du vet at kollegaen din sjeldent bruker Salesforce kan det være lurt å sende dem en e-post eller Teams-melding i tillegg for å være sikker på at de får beskjeden.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Gi kollegaen din beskjed</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Create_Task_Call_to_Action</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard7</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fullført</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -687,7 +747,7 @@
                 <componentName>callToActionCard</componentName>
                 <identifier>c_callToActionCard6</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_Status__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -712,6 +772,11 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Ble veiledet til selvbetjening / prøve selv</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk ikke tak i arbeidsgiveren</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

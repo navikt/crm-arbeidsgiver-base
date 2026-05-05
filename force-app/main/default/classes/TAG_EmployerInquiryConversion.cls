@@ -35,7 +35,8 @@ public with sharing class TAG_EmployerInquiryConversion {
         'Skal ansette' => 'Rekruttere og inkludere',
         'Forebygge sykefravær' => 'Forebygge og redusere fravær',
         'Ungdomsløftet' => 'Rekruttere og inkludere',
-        'Tiltak' => null
+        'Tiltak' => null,
+        'Rekrutteringshjelp' => 'Rekruttere og inkludere'
     };
     // For CustomOpportunity__c InquiryCategory__c to EmployerInquiry__c TAG_SubTheme__c
     private static final Map<string, string> OPPORTUNITY_TO_INQUIRY_SUBTHEME = new Map<string, string>{
@@ -127,7 +128,9 @@ public with sharing class TAG_EmployerInquiryConversion {
                 CRM_SubTheme__c,
                 CRM_Theme__c,
                 OwnerId,
-                CreatedDate
+                CreatedDate,
+                CRM_Comments__c,
+                CRM_NoPersonInformation__c
             FROM NavTask__c
             WHERE
                 CRM_Status__c = 'Ny'
@@ -158,7 +161,9 @@ public with sharing class TAG_EmployerInquiryConversion {
                 TAG_OrganizationNameFromForm__c,
                 TAG_UltimateSource__c,
                 TAG_DueDateTime__c,
-                CreatedDate
+                CreatedDate,
+                Profession__c,
+                Position_in_Rekrutteringsbistand__c
             FROM CustomOpportunity__c
             WHERE
                 RecordType.Name = 'Inclusion'
@@ -178,8 +183,13 @@ public with sharing class TAG_EmployerInquiryConversion {
             employerInquiry.OwnerId = navTask.OwnerId;
             employerInquiry.Name = navTask.Name;
             employerInquiry.TAG_Account__c = navTask.CRM_Account__c;
-            employerInquiry.TAG_Message__c = 'Samtalereferat: ' + navTask.CRM_ConversationNote__c;
-            employerInquiry.TAG_Message__c += '\nOppgave til NAV-enhet: ' + navTask.CRM_AdditionalInformation__c;
+            employerInquiry.TAG_Message__c = 'Omgjort fra innkommende oppgave.';
+            if (navTask.CRM_ConversationNote__c != null) {
+                employerInquiry.TAG_Message__c += '\nSamtalereferat: ' + navTask.CRM_ConversationNote__c;
+            }
+            if (navTask.CRM_AdditionalInformation__c != null) {
+                employerInquiry.TAG_Message__c += '\nOppgave til NAV-enhet: ' + navTask.CRM_AdditionalInformation__c;
+            }
             employerInquiry.TAG_DueDate__c = navTask.CRM_DueDate__c;
             employerInquiry.TAG_DueDateTime__c = navTask.CRM_DueDate__c != null
                 ? Datetime.newInstance(
@@ -197,6 +207,9 @@ public with sharing class TAG_EmployerInquiryConversion {
             employerInquiry.TAG_Theme__c = NAVTASK_TO_INQUIRY_THEME.get(navTask.CRM_Theme__c);
             employerInquiry.TAG_Source__c = NAVTASK_TO_INQUIRY_SOURCE;
             employerInquiry.TAG_RecievedDateTime__c = navTask.CreatedDate;
+            employerInquiry.TAG_ClosingComment__c = navTask.CRM_Comments__c;
+            employerInquiry.TAG_NoPersonInformation__c = true;
+            employerInquiry.TAG_NoPersonInformationClosingComment__c = navTask.CRM_NoPersonInformation__c;
             employerInquiries.add(employerInquiry);
         }
         return employerInquiries;
@@ -214,10 +227,22 @@ public with sharing class TAG_EmployerInquiryConversion {
             employerInquiry.TAG_Account__c = opp.Account__c;
             employerInquiry.TAG_Contact__c = opp.Contact__c;
             employerInquiry.TAG_Status__c = 'Ny henvendelse';
-            employerInquiry.TAG_Message__c = opp.Notes__c;
+
+            employerInquiry.TAG_Message__c = 'Omgjort fra mulighet.';
+            if (opp.Notes__c != null) {
+                employerInquiry.TAG_Message__c += '\nKort beskrivelse av oppdraget og resultat: ' + opp.Notes__c;
+            }
+            if (opp.Profession__c != null) {
+                employerInquiry.TAG_Message__c += '\nYrke: ' + opp.Profession__c;
+            }
+            if (opp.Position_in_Rekrutteringsbistand__c != null) {
+                employerInquiry.TAG_Message__c +=
+                    '\nPosisjon i rekrutteringsbistand: ' + opp.Position_in_Rekrutteringsbistand__c;
+            }
             employerInquiry.TAG_NoPersonInformation__c = opp.TAG_No_person_information__c;
             employerInquiry.TAG_NavUnit__c = opp.TAG_NavUnit__c;
             employerInquiry.TAG_RelatedJobPosting__c = opp.TAG_JobPosting__c;
+            employerInquiry.TAG_RecievedDateTime__c = opp.CreatedDate;
             employerInquiry.TAG_DueDateTime__c = opp.TAG_DueDateTime__c;
             employerInquiry.TAG_DueDate__c = opp.TAG_DueDateTime__c != null
                 ? Date.newInstance(
@@ -229,6 +254,7 @@ public with sharing class TAG_EmployerInquiryConversion {
             employerInquiry.TAG_Source__c = OPPORTUNITY_TO_INQUIRY_SOURCE.get(opp.Source__c);
             employerInquiry.TAG_Theme__c = OPPORTUNITY_TO_INQUIRY_THEME.get(opp.InquiryCategory__c);
             employerInquiry.TAG_SubTheme__c = OPPORTUNITY_TO_INQUIRY_SUBTHEME.get(opp.InquiryCategory__c);
+
             employerInquiries.add(employerInquiry);
         }
         return employerInquiries;

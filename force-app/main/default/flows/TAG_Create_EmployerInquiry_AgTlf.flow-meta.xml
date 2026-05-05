@@ -206,7 +206,7 @@
   &quot;Ønsker hjelp til å rekruttere og inkludere arbeidstakere&quot;,
   IF(
     ISPICKVAL({!OutcomeThemeScreen}, &quot;Forebygge og redusere fravær&quot;),
-    &quot;Ønsker hjelp til å forebygge og redusere sykefravær&quot;,
+    &quot;Ønsker hjelp til å forebygge og redusere fravær&quot;,
     &quot;&quot;
   )
 )</expression>
