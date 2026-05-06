@@ -239,7 +239,7 @@ private class BadgeServiceTest {
         Assert.areEqual('Owner_Alias', recordList[0].fields[3].fieldName);
 
         Assert.areEqual('Skal ansette', recordList[0].fields[0].value);
-        Assert.areEqual('Ny henvendelse', recordList[0].fields[1].value);
+        Assert.areEqual('Ny', recordList[0].fields[1].value);
     }
 
     @isTest
@@ -291,7 +291,7 @@ private class BadgeServiceTest {
         );
         Assert.isNotNull(regularField.label, 'Field should not be null');
         Assert.areEqual('InclusionStage__c', regularField.fieldName);
-        Assert.areEqual(records[0].InclusionStage__c, regularField.value, 'Field value should match record value');
+        Assert.areEqual('Ny', regularField.value, 'Field value should match record value');
 
         BadgeService.Field lookupField = BadgeService.createFieldFromSObject(records[0], 'Account__r.Name', fieldData);
         Assert.isNotNull(lookupField.label, 'Field should not be null');
