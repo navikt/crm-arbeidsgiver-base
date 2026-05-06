@@ -2,28 +2,6 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <decisions>
-        <name>Are_there_Opportunities_already</name>
-        <label>Are there Opportunities already?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>Yes</defaultConnectorLabel>
-        <rules>
-            <name>No</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_Opportunity</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Account</targetReference>
-            </connector>
-            <label>No</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Created_or_updated_to_RecruitmentAssistance</name>
         <label>Created or updated to RecruitmentAssistance</label>
         <locationX>0</locationX>
@@ -62,7 +40,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Opportunity</targetReference>
+                <targetReference>Get_Existing_Inquiry</targetReference>
             </connector>
             <label>Updated to Rekrutteringshjelp True</label>
         </rules>
@@ -202,11 +180,34 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Inclusion_Record_Type_Id</targetReference>
+                <targetReference>Get_Nav_Unit</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Record_found</name>
+        <label>Record found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Yes</defaultConnectorLabel>
+        <rules>
+            <name>No</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Existing_Inquiry</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Account</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+    </decisions>
+    <description>Oppretter henvendelse ved ønske om rekruteringsbistand.</description>
     <environments>Default</environments>
     <formulas>
         <name>NotesWithTlfNumber</name>
@@ -235,32 +236,14 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>Create_Opportunity</name>
-        <label>Create Opportunity</label>
+        <name>Create_Inquiry</name>
+        <label>Create Inquiry</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <inputAssignments>
-            <field>Account__c</field>
+            <field>Name</field>
             <value>
-                <elementReference>$Record.Account__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>InclusionStage__c</field>
-            <value>
-                <stringValue>Ny henvendelse</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>InquiryCategory__c</field>
-            <value>
-                <stringValue>Rekrutteringshjelp</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Notes__c</field>
-            <value>
-                <elementReference>NotesWithTlfNumber</elementReference>
+                <stringValue>Ønsker rekrutteringshjelp til stilling</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -270,21 +253,15 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>RecordTypeId</field>
+            <field>TAG_Account__c</field>
             <value>
-                <elementReference>Get_Inclusion_Record_Type_Id.Id</elementReference>
+                <elementReference>$Record.Account__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Source__c</field>
+            <field>TAG_Message__c</field>
             <value>
-                <stringValue>Arbeidsplassen</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_JobPosting__c</field>
-            <value>
-                <elementReference>$Record.Id</elementReference>
+                <elementReference>NotesWithTlfNumber</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -294,24 +271,30 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_No_person_information__c</field>
+            <field>TAG_RelatedJobPosting__c</field>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>$Record.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_OrganizationNameFromForm__c</field>
-            <value>
-                <elementReference>Get_Account.Name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_UltimateSource__c</field>
+            <field>TAG_Source__c</field>
             <value>
                 <stringValue>Arbeidsplassen.no</stringValue>
             </value>
         </inputAssignments>
-        <object>CustomOpportunity__c</object>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>Ny henvendelse</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Theme__c</field>
+            <value>
+                <stringValue>Rekruttere og inkludere</stringValue>
+            </value>
+        </inputAssignments>
+        <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
@@ -336,24 +319,24 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>Get_Inclusion_Record_Type_Id</name>
-        <label>Get Inclusion Record Type Id</label>
+        <name>Get_Existing_Inquiry</name>
+        <label>Get Existing Inquiry</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Nav_Unit</targetReference>
+            <targetReference>Record_found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Name</field>
+            <field>TAG_RelatedJobPosting__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Inclusion</stringValue>
+                <elementReference>$Record.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>RecordType</object>
+        <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -363,7 +346,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Opportunity</targetReference>
+            <targetReference>Create_Inquiry</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -375,27 +358,6 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>NavUnit__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Opportunity</name>
-        <label>Get Opportunity</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Are_there_Opportunities_already</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>TAG_JobPosting__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>CustomOpportunity__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
