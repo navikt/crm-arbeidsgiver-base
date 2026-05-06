@@ -136,6 +136,7 @@ public with sharing class TAG_EmployerInquiryConversion {
                 CRM_Status__c = 'Ny'
                 AND Recordtype.Name = 'Employer'
                 AND CreatedDate >= :createdOnOrAfter
+                AND Owner.Type != 'User'
                 AND Id NOT IN (SELECT TAG_Converted_NAV_Task__c FROM EmployerInquiry__c)
             LIMIT 5000
         ];
@@ -167,9 +168,11 @@ public with sharing class TAG_EmployerInquiryConversion {
             FROM CustomOpportunity__c
             WHERE
                 RecordType.Name = 'Inclusion'
-                AND InclusionStage__c = 'Ny henvendelse'
+                AND (InclusionStage__c = 'Ny henvendelse'
+                OR InclusionStage__c = 'Ny')
                 AND Source__c IN ('Kontaktskjema', 'Arbeidsplassen')
                 AND CreatedDate >= :createdOnOrAfter
+                AND Owner.Type != 'User'
                 AND Id NOT IN (SELECT TAG_Converted_Custom_Opportunity__c FROM EmployerInquiry__c)
             LIMIT 5000
         ];
