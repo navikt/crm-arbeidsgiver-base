@@ -449,7 +449,7 @@
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText3</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -474,6 +474,16 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Fikk ikke tak i arbeidsgiveren</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -607,7 +617,7 @@
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_Status__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -622,6 +632,16 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Fikk rådgivning/svar på det de lurte på</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Fikk ikke tak i arbeidsgiveren</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Kontaktes av noen andre i Nav</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
