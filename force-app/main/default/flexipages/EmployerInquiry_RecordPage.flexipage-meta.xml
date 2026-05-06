@@ -26,16 +26,6 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>EmployerInquiry__c.TAG_CloseInquiry</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
-                                    <operator>NE</operator>
-                                    <rightValue>Fullført</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
                             <value>EmployerInquiry__c.TAG_Assign_to_me_lwc</value>
                             <visibilityRule>
                                 <booleanFilter>1 AND 2</booleanFilter>
@@ -60,6 +50,16 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Fullført</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>EmployerInquiry__c.TAG_CloseInquiry</value>
+                            <visibilityRule>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
