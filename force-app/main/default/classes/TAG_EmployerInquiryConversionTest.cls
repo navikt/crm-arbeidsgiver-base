@@ -14,6 +14,21 @@ private class TAG_EmployerInquiryConversionTest {
                 'Admin_Base'
             }
         );
+        Group testGroup = new Group(Name = 'test group', Type = 'Queue');
+        insert testGroup;
+
+        QueueSObject testQueueNavTask = new QueueSObject(QueueID = testGroup.id, SObjectType = 'NavTask__c');
+        insert testQueueNavTask;
+        QueueSObject testQueueOpportunity = new QueueSObject(
+            QueueID = testGroup.id,
+            SObjectType = 'CustomOpportunity__c'
+        );
+        insert testQueueOpportunity;
+        QueueSObject testQueueEmployerInquiry = new QueueSObject(
+            QueueID = testGroup.id,
+            SObjectType = 'EmployerInquiry__c'
+        );
+        insert testQueueEmployerInquiry;
 
         System.runAs(getTestUser()) {
             NavUnit__c navUnit = new NavUnit__c(Name = 'NAV Test Unit', INT_UnitNumber__c = '9999');
@@ -54,7 +69,8 @@ private class TAG_EmployerInquiryConversionTest {
                     CRM_SubTheme__c = 'Redusere sykefravær',
                     CRM_DueDate__c = Date.today().addDays(2),
                     CRM_ConversationNote__c = 'Testnotat',
-                    CRM_AdditionalInformation__c = 'Ekstra info'
+                    CRM_AdditionalInformation__c = 'Ekstra info',
+                    OwnerId = testGroup.Id
                 )
             );
             navTasks.add(
@@ -68,7 +84,23 @@ private class TAG_EmployerInquiryConversionTest {
                     CRM_SubTheme__c = 'Rekrutteringsoppdrag',
                     CRM_DueDate__c = Date.today().addDays(2),
                     CRM_ConversationNote__c = 'Testnotat',
-                    CRM_AdditionalInformation__c = 'Ekstra info'
+                    CRM_AdditionalInformation__c = 'Ekstra info',
+                    OwnerId = testGroup.Id
+                )
+            );
+            navTasks.add(
+                new NavTask__c(
+                    Name = 'Test Nav Task 3',
+                    RecordTypeId = navTaskRecordTypeId,
+                    CRM_Status__c = 'Ny',
+                    CRM_Account__c = arbeidsgiverUserAccounts[0].Id,
+                    CRM_NavUnit__c = navUnit.Id,
+                    CRM_Theme__c = 'Rekruttere og inkludere',
+                    CRM_SubTheme__c = null,
+                    CRM_DueDate__c = Date.today().addDays(2),
+                    CRM_ConversationNote__c = 'Testnotat',
+                    CRM_AdditionalInformation__c = 'Ekstra info',
+                    OwnerId = testGroup.Id
                 )
             );
             navTasks.add(
@@ -92,6 +124,20 @@ private class TAG_EmployerInquiryConversionTest {
                 .getRecordTypeId();
 
             List<CustomOpportunity__c> opps = new List<CustomOpportunity__c>();
+            opps.add(
+                new CustomOpportunity__c(
+                    Account__c = arbeidsgiverUserAccounts[0].Id,
+                    TAG_NavUnit__c = navUnit.Id,
+                    Source__c = 'Arbeidsplassen',
+                    InquiryCategory__c = 'Skal ansette',
+                    InclusionStage__c = 'Ny henvendelse',
+                    RecordTypeId = inclusionRtId,
+                    INT_MunicipalityNumber__c = '0101',
+                    Notes__c = 'Testmelding',
+                    TAG_DueDateTime__c = DateTime.now().addDays(2),
+                    OwnerId = testGroup.Id
+                )
+            );
             opps.add(
                 new CustomOpportunity__c(
                     Account__c = arbeidsgiverUserAccounts[0].Id,
