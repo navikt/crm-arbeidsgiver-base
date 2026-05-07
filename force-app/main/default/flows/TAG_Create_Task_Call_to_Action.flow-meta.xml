@@ -231,7 +231,7 @@
     <formulas>
         <name>apiNameSubThemeTask</name>
         <dataType>String</dataType>
-        <expression>IF( {!TjenesteRekruttere} = &quot;Jobbmesser og møteplasser&quot;, &quot;Jobbmesser og møteplass&quot;,
+        <expression>IF( {!TjenesteRekruttere} = &quot;Jobbmesser og møteplass&quot;, &quot;Jobbmesser og møteplass&quot;,
 IF( {!TjenesteRekruttere} = &quot;Rekruttering (uten virkemidler, inkl. oppfølging)&quot;, &quot;Rekrutteringsoppdrag&quot;,
 IF( {!TjenesteRekruttere} = &quot;Inkludering (med virkemidler, inkl. oppfølging)&quot;, &quot;Inkluderende rekruttering&quot;,
 IF( {!TjenesteRekruttere} = &quot;Informasjon og relasjonsbygging&quot;, &quot;Informasjon om NAVs tjenester&quot;,
