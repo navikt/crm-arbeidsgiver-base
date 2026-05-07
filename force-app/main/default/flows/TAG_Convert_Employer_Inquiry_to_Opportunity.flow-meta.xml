@@ -779,6 +779,9 @@ IF(TEXT({!Get_employer_inquiry.TAG_Theme__c}) = &quot;Forebygge og redusere frav
                     <fieldText>Steg</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isDisabled>
+                        <booleanValue>true</booleanValue>
+                    </isDisabled>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
