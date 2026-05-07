@@ -26,16 +26,6 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>EmployerInquiry__c.TAG_CloseInquiry</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
-                                    <operator>NE</operator>
-                                    <rightValue>Fullført</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
                             <value>EmployerInquiry__c.TAG_Assign_to_me_lwc</value>
                             <visibilityRule>
                                 <booleanFilter>1 AND 2</booleanFilter>
@@ -60,6 +50,16 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.TAG_Status__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Fullført</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>EmployerInquiry__c.TAG_CloseInquiry</value>
+                            <visibilityRule>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
@@ -473,7 +473,7 @@
                     <criteria>
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
+                        <rightValue>Skal delta på jobbmesse</rightValue>
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
@@ -549,11 +549,11 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>cardText</name>
-                    <value>Når virksomheten skal ansette med bistand fra Nav er neste steg i prosessen å opprette et stillingsoppdrag i Rekrutteringsbistand. Der oppretter du stillingsannonse (direktemeldt stilling) og kan administrere jobbsøkere og dele informasjon med arbeidsgiver.</value>
+                    <value>Når virksomheter skal delta på jobbmesse så opprettes denne i Rekrutteringsbistand.</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>cardTitle</name>
-                    <value>Meld arbeidsgiver på jobbmesse / rekrutteringstreff</value>
+                    <value>Opprett en jobbmesse</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>flowApiName</name>
@@ -564,7 +564,7 @@
                     <criteria>
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Skal delta på jobbmesse / rekrutteringstreff</rightValue>
+                        <rightValue>Skal delta på jobbmesse</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
