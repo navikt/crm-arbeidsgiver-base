@@ -40,7 +40,7 @@
     </assignments>
     <assignments>
         <description>Forebygge sykefravær og redusere frafall
-Ønsker hjelp til å forebygge eller redusere sykefravær</description>
+Ønsker hjelp til å forebygge eller redusere fravær</description>
         <name>Help_prevent_sickleave</name>
         <label>Help prevent sickleave</label>
         <locationX>0</locationX>
@@ -56,7 +56,7 @@
             <assignToReference>$Record.Name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Ønsker hjelp til å forebygge eller redusere sykefravær</stringValue>
+                <stringValue>Ønsker hjelp til å forebygge eller redusere fravær</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -274,7 +274,7 @@ Flowen oversetter webskjema-temaet til feltverdier (tittel, tema, melding) slik 
     <textTemplates>
         <name>webMessageSickLeave</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge eller redusere sykefravær. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.TAG_Contact__r.MobilePhone}.</text>
+        <text>Henvendelse via kontaktskjema: Arbeidsgiver ønsker hjelp til å forebygge eller redusere fravær. Vennligst kontakt arbeidsgiver på telefonnummer {!$Record.TAG_Contact__r.MobilePhone}.</text>
     </textTemplates>
     <textTemplates>
         <name>webMessageYouth</name>
