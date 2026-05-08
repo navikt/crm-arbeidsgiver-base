@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <customErrors>
+        <name>error</name>
+        <label>error</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>Ikke lov å slette</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Check_admin</name>
+        <label>Check admin</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>error</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>is_admin</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$User.Username</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>silje.olsen@nav.no</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$User.Username</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>andre.colle@nav.no</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$User.Username</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>piotr.szostak@nav.no</stringValue>
+                </rightValue>
+            </conditions>
+            <label>is admin</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>TAG Employer Inquiry No Delete {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Employer Inquiry No Delete</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_admin</targetReference>
+        </connector>
+        <object>EmployerInquiry__c</object>
+        <recordTriggerType>Delete</recordTriggerType>
+        <triggerType>RecordBeforeDelete</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
