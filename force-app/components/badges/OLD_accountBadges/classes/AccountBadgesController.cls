@@ -267,6 +267,7 @@ public with sharing class AccountBadgesController {
             for (TAG_BadgeConfiguration__mdt rc : [
                 SELECT DeveloperName, Value__c
                 FROM TAG_BadgeConfiguration__mdt
+                LIMIT 100
             ]) {
                 reportIdMap.put(rc.DeveloperName, rc.Value__c);
             }
