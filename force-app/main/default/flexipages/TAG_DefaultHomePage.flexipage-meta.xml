@@ -633,23 +633,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;h2&gt;&lt;span style=&quot;color: rgb(46, 46, 46); font-size:
-                        16px;&quot;&gt;Nyttige rapporter&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
-                        href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002ewox2AA/view?queryScope=userFolders&quot;
-                        rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;
-                        style=&quot;color: rgb(2, 80, 217); font-size: 13px;&quot;&gt;Mine
-                        aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a
-                        href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000003ZHAj2AO/view&quot;
-                        rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;
-                        style=&quot;color: rgb(2, 80, 217); font-size: 13px;&quot;&gt;Alle
-                        henvendelser - Mitt
-                        kontor&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;h2&gt;&lt;span
-                        style=&quot;color: rgb(46, 46, 46); font-size: 16px;&quot;&gt;Nyttige
-                        lister&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
-                        href=&quot;/lightning/o/EmployerInquiry__c/list?filterName=TAG_Henvendelser_som_f_lges_opp&quot;
-                        rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;
-                        style=&quot;font-size: 13px; color: rgb(2, 80, 217);&quot;&gt;Henvendelser
-                        som følges opp - Mitt kontor&lt;/a&gt;&lt;/p&gt;</value>
+                    <value>&lt;h2&gt;&lt;span style=&quot;font-size: 16px; color: rgb(46, 46, 46);&quot;&gt;Nyttige rapporter&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000002ewox2AA/view?queryScope=userFolders&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 13px; color: rgb(2, 80, 217);&quot;&gt;Mine aktiviteter siste 90 dager&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://navdialog.lightning.force.com/lightning/r/Report/00OQC000003ZHAj2AO/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 13px; color: rgb(2, 80, 217);&quot;&gt;Alle henvendelser - Mitt kontor&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;h2&gt;&lt;span style=&quot;font-size: 16px; color: rgb(46, 46, 46);&quot;&gt;Nyttige lister&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;/lightning/o/EmployerInquiry__c/list?filterName=TAG_Henvendelser_som_f_lges_opp&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(2, 80, 217); font-size: 13px;&quot;&gt;Henvendelser som følges opp - Mitt kontor&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;/lightning/o/EmployerInquiry__c/list?filterName=pne_henvendelser_Min_region&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(2, 80, 217); font-size: 13px;&quot;&gt;Åpne henvendelser - Min region&lt;/a&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText2</identifier>
