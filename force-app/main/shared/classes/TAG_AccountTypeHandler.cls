@@ -37,6 +37,7 @@ global class TAG_AccountTypeHandler extends MyTriggers {
         for (OrganizationalStructureMap__mdt structure : [
             SELECT DeveloperName, AccountType__c
             FROM OrganizationalStructureMap__mdt
+            LIMIT 100
         ]) {
             String structureCode = structure.DeveloperName;
             if (structureCode == 'null') {
