@@ -14,7 +14,7 @@ public without sharing class ReportRelocation_Scheduler implements Schedulable {
 
   private List<ReportRelocationMap__mdt> getFolderRelocationMdt() {
     List<ReportRelocationMap__mdt> metadata = new List<ReportRelocationMap__mdt>();
-    metadata = [SELECT Id, TopLevelReportFolder__c, RelocationFolder__c FROM ReportRelocationMap__mdt];
+        metadata = [SELECT Id, TopLevelReportFolder__c, RelocationFolder__c FROM ReportRelocationMap__mdt LIMIT 100];
 
     return metadata;
   }
