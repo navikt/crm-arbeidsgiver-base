@@ -37,7 +37,11 @@ public without sharing class TAG_BusinessDaysHandler {
 
     private static Set<Date> getHolidayDates() {
         Set<Date> dates = new Set<Date>();
-        for (Holiday h : [SELECT ActivityDate, RecurrenceType, RecurrenceMonthOfYear, RecurrenceDayOfMonth, RecurrenceStartDate FROM Holiday]) {
+        for (Holiday h : [
+            SELECT ActivityDate, RecurrenceType, RecurrenceMonthOfYear, RecurrenceDayOfMonth, RecurrenceStartDate
+            FROM Holiday
+            WHERE ActivityDate > 2022-01-01
+        ]) {
             if (h.RecurrenceType == 'RecursYearly') {
                 // Add this year's occurrence
                 Date thisYear = Date.newInstance(System.today().year(), h.ActivityDate.month(), h.ActivityDate.day());
