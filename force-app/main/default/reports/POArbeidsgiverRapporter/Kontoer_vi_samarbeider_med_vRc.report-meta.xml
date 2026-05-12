@@ -76,18 +76,25 @@ IF(ISPICKVAL(Account.TAG_Partner_Status__c, &apos;Strategisk partner&apos;),&apo
             <value>Account.Employer</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Account.TAG_IsDeleted__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>equals</operator>
-            <value>0</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Account.TAG_Partner_Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>Strategisk Partner,Samarbeidspartner</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.CRM_AccountType__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>B</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.IsDeletedEmployer__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

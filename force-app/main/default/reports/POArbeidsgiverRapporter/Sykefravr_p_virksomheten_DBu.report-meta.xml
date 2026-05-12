@@ -66,9 +66,16 @@
         <criteriaItems>
             <column>Absence__c.CRM_AbsenceCategory__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>VIRKSOMHET</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_ACC_RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Account.Employer</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
