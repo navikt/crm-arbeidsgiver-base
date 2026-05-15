@@ -213,26 +213,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Status__c</fieldItem>
-                <identifier>RecordStage_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.OwnerId</fieldItem>
-                <identifier>RecordOwnerIdField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.TAG_ClosingComment__c</fieldItem>
                 <identifier>RecordClosingComment_cField</identifier>
             </fieldInstance>
@@ -245,13 +225,26 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_NoPersonInformationClosingComment__c</fieldItem>
                 <identifier>RecordTAG_NoPersonInformationClosingComment_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_Status__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fullført</rightValue>
-                    </criteria>
-                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_ClosedReason__c</fieldItem>
+                <identifier>RecordTAG_ClosedReason_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Status__c</fieldItem>
+                <identifier>RecordStage_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-eabf801d-6551-4c23-897f-463d7bc1eeed</name>
@@ -282,17 +275,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_ClosedReason__c</fieldItem>
-                <identifier>RecordTAG_ClosedReason_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Fullført</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.OwnerId</fieldItem>
+                <identifier>RecordOwnerIdField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-337de186-18b8-43f8-b75c-0eb1eff4a0ed</name>
