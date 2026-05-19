@@ -36,10 +36,10 @@
         border-radius: 0;
         margin-top: 0;
         margin-bottom: 0;
-        background: white;
+        background: var(--slds-g-color-surface-1);
     }
     .headerLeft {
-        background: white;
+        background: var(--slds-g-color-surface-1);
         margin-left: 0 !important;
         margin-right: 0 !important;
         margin-top: 0 !important;
@@ -49,7 +49,7 @@
         border-radius: 0.25rem;
     }
     .headerToggleAction {
-        background: white;
+        background: var(--slds-g-color-surface-1);
         padding-left: 0;
         border: none;
         box-shadow: none;
@@ -88,14 +88,14 @@
     color: #7e7e7e;
 }
 
-.slds-table thead tr>th:first-child,
-.slds-table tbody tr>td:first-child {
+.slds-table thead tr > th:first-child,
+.slds-table tbody tr > td:first-child {
     padding-left: 1rem !important;
 }
 
 .slds-popover_medium .slds-popover__header {
     background-color: #f3f2f2;
-        /* Slight grey for the header */
+    /* Slight grey for the header */
     border-bottom: 1px solid #dddbda;
 }
 
@@ -103,12 +103,39 @@
     padding: 1rem;
 }
 
-.slds-table[data-clickable="true"] tbody tr:hover td:first-child .slds-truncate {
-    text-decoration: underline;
-    color: var(--lwc-colorTextLinkHover);
+/* Keyboard focus indicator for clickable rows */
+.slds-table[data-clickable='true'] tbody tr:focus,
+.slds-table[data-clickable='true'] tbody tr:focus-visible {
+    outline: var(--slds-g-sizing-border-2) solid var(--slds-g-color-border-accent-1);
+    outline-offset: -2px;
 }
 
-.slds-table[data-clickable="true"] tbody tr td:first-child .slds-truncate {
-    color: var(--lwc-colorTextLink);
+.slds-table[data-clickable='true'] tbody tr:hover td:first-child .slds-truncate,
+.slds-table[data-clickable='true'] tbody tr:focus td:first-child .slds-truncate {
+    text-decoration: underline;
+    color: var(--slds-g-color-accent-2);
+}
+
+.slds-table[data-clickable='true'] tbody tr td:first-child .slds-truncate {
+    color: var(--slds-g-color-accent-1);
     text-decoration: none;
-  }
+}
+
+.firstCell {
+}
+
+.popoverTrigger {
+    opacity: 0;
+    transition: opacity 0.1s ease-in;
+}
+
+/* Vis knappen når noe inni cellen får fokus, eller når musen er over */
+.firstCell:focus-within .popoverTrigger {
+    opacity: 1;
+}
+
+/* Knappen skal alltid være synlig når den selv har fokus */
+.popoverTrigger:focus,
+.popoverTrigger:focus-visible {
+    opacity: 1;
+}

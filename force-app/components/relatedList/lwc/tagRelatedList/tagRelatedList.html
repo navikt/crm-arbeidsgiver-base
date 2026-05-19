@@ -25,55 +25,35 @@
             </h3>
             <!-- Right Group: New Record Button -->
             <template if:true={showNewRecordButton}>
-                <lightning-button 
-                    label={newRecordButtonLabel} 
-                    variant="brand" 
+                <lightning-button
+                    label={newRecordButtonLabel}
+                    variant="brand"
                     onclick={handleNewRecord}
-                    class="newRecordButton slds-m-left_small">
+                    class="newRecordButton slds-m-left_small"
+                >
                 </lightning-button>
             </template>
         </div>
-        
+
         <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
         <template if:true={showRecords}>
-            <!-- MOBILE VIEW -->
-            <template if:true={isMobile}>
-                <ul class="slds-has-dividers_bottom-space" hidden={ariaHidden} data-id="accordionContent">
-                    <template for:each={recordListMobile} for:item="record">
-                        <li class="slds-item" key={record.Id}>
-                            <lightning-tile label={record.title} href={record.link}>
-                                <dl class="slds-list_horizontal slds-wrap">
-                                    <template for:each={record.recordFields} for:item="field">
-                                        <dt
-                                            key={field.label}
-                                            class="slds-item_label slds-text-color_weak slds-truncate"
-                                            title={field.customFieldLabel}
-                                        >
-                                            {field.customFieldLabel}:
-                                        </dt>
-                                        <dd
-                                            key={field.label}
-                                            class="slds-item_detail slds-truncate"
-                                            title={field.value}
-                                        >
-                                            {field.value}
-                                        </dd>
-                                    </template>
-                                </dl>
-                            </lightning-tile>
-                        </li>
-                    </template>
-                </ul>
-            </template>
             <!-- DESKTOP VIEW -->
             <template if:false={isMobile}>
-                <div style="overflow:auto; max-height: {maxHeight}em;" hidden={ariaHidden} data-id="accordionContent">
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
+                <div style={scrollableStyle} hidden={ariaHidden} data-id="accordionContent">
+                    <table
+                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal"
+                        data-clickable={clickableRows}
+                        style="table-layout: fixed"
+                    >
                         <thead>
                             <tr class="slds-line-height_reset">
                                 <template for:each={fieldLabels} for:item="label">
                                     <th key={label.value} scope="col" style={label.headerStyle}>
-                                        <div style="display: flex; align-items: center; height: 100%; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title={label.value}>
+                                        <div
+                                            class="slds-truncate"
+                                            style="display: flex; align-items: center; height: 100%; font-size: 0.75rem"
+                                            title={label.value}
+                                        >
                                             {label.value}
                                         </div>
                                     </th>
@@ -83,21 +63,69 @@
                         <tbody>
                             <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
                                 <template if:true={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-contact-id={record.ContactId} data-value={rowIndex} class={record.rowClass} onclick={handleRowClick} style="cursor: pointer"
-                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
+                                    <tr
+                                        key={record.Id}
+                                        data-record-id={record.Id}
+                                        data-contact-id={record.ContactId}
+                                        data-value={rowIndex}
+                                        class={record.rowClass}
+                                        aria-label={record.title}
+                                    >
                                         <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label} style="max-width: 33%">
-                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
+                                            <td key={field.label}>
+                                                <template if:true={field.isFirst}>
+                                                    <div class="firstCell">
+                                                        <div class="slds-truncate" title={field.value}>
+                                                            <a
+                                                                href={record.link}
+                                                                data-record-id={record.Id}
+                                                                onmouseenter={handleMouseEnter}
+                                                                onmouseleave={handleMouseLeave}
+                                                                onclick={handleRowClick}
+                                                            >
+                                                                {field.value}
+                                                            </a>
+                                                        </div>
+                                                        <lightning-button-icon
+                                                            icon-name="utility:info"
+                                                            alternative-text="Vis detaljer for {record.title}"
+                                                            onclick={handleOpenPopover}
+                                                            data-record-id={record.Id}
+                                                            class="popoverTrigger"
+                                                            size="xx-small"
+                                                            variant="bare"
+                                                        ></lightning-button-icon>
+                                                    </div>
+                                                </template>
+                                                <template if:false={field.isFirst}>
+                                                    <div class="slds-truncate">{field.value}</div>
+                                                </template>
                                             </td>
                                         </template>
                                     </tr>
                                 </template>
                                 <template if:false={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-contact-id={record.ContactId} data-value={rowIndex} class={record.rowClass}
-                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
+                                    <tr
+                                        key={record.Id}
+                                        data-record-id={record.Id}
+                                        data-contact-id={record.ContactId}
+                                        data-value={rowIndex}
+                                        class={record.rowClass}
+                                        onmouseenter={handleMouseEnter}
+                                        onmouseleave={handleMouseLeave}
+                                    >
                                         <template for:each={record.recordFields} for:item="field">
                                             <td key={field.label} style="max-width: 33%">
-                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
+                                                <div
+                                                    style="
+                                                        white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                    "
+                                                    class="slds-truncate slds-cell-wrap"
+                                                >
+                                                    {field.value}
+                                                </div>
                                             </td>
                                         </template>
                                     </tr>
@@ -105,16 +133,47 @@
                             </template>
                         </tbody>
                     </table>
-                </div> 
-            </template>              
+                </div>
+            </template>
+            <!-- MOBILE VIEW -->
+            <template if:true={isMobile}>
+                <ul class="slds-has-dividers_bottom-space" hidden={ariaHidden} data-id="accordionContent">
+                    <template for:each={displayedRecords} for:item="record">
+                        <li class="slds-item" key={record.Id}>
+                            <lightning-tile label={record.title} href={record.link}>
+                                <dl class="slds-list_horizontal slds-wrap">
+                                    <template for:each={record.recordFields} for:item="field">
+                                        <template if:false={field.isFirst}>
+                                            <dt
+                                                key={field.label}
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title={field.customFieldLabel}
+                                            >
+                                                {field.customFieldLabel}:
+                                            </dt>
+                                            <dd
+                                                key={field.label}
+                                                class="slds-item_detail slds-truncate"
+                                                title={field.value}
+                                            >
+                                                {field.value}
+                                            </dd>
+                                        </template>
+                                    </template>
+                                </dl>
+                            </lightning-tile>
+                        </li>
+                    </template>
+                </ul>
+            </template>
         </template>
 
         <template if:true={showPopover}>
-            <div 
-                class="slds-popover slds-nubbin_top slds-popover_medium" 
-                style={popoverStyle} 
-                role="dialog" 
-                onmouseenter={handlePopoverEnter} 
+            <div
+                class="slds-popover slds-nubbin_top slds-popover_medium"
+                style={popoverStyle}
+                role="dialog"
+                onmouseenter={handlePopoverEnter}
                 onmouseleave={handleMouseLeave}
             >
                 <!-- Popover Header -->
@@ -124,9 +183,7 @@
                             <lightning-icon icon-name={iconToUse} size="small"></lightning-icon>
                         </div>
                         <div class="slds-media__body">
-                            <h2 id="popover-heading" class="slds-text-heading_small slds-hyphenate">
-                                {popoverTitle}
-                            </h2>
+                            <h2 id="popover-heading" class="slds-text-heading_small slds-hyphenate">{popoverTitle}</h2>
                         </div>
                     </div>
                 </div>
@@ -145,17 +202,24 @@
         <!-- Modal with embedded screenflow -->
         <template if:true={showFlowModal}>
             <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
-                <div class="slds-modal__container" style="width: 900px; max-width: 95%;">
+                <div class="slds-modal__container" style="width: 900px; max-width: 95%">
                     <header class="slds-modal__header">
-                        <button class="slds-button slds-button_icon slds-modal__close" title="Avbryt og lukk" onclick={handleCloseFlowModal}>
-                            <lightning-icon icon-name="utility:close" alternative-text="lukk" size="small"></lightning-icon>
+                        <button
+                            class="slds-button slds-button_icon slds-modal__close"
+                            title="Avbryt og lukk"
+                            onclick={handleCloseFlowModal}
+                        >
+                            <lightning-icon
+                                icon-name="utility:close"
+                                alternative-text="lukk"
+                                size="small"
+                            ></lightning-icon>
                             <span class="slds-assistive-text">Lukk</span>
                         </button>
                     </header>
 
                     <div class="slds-modal__content slds-p-around_medium">
-                        <lightning-flow onstatuschange={handleFlowStatusChange}>
-                        </lightning-flow>
+                        <lightning-flow onstatuschange={handleFlowStatusChange}> </lightning-flow>
                     </div>
                 </div>
             </section>

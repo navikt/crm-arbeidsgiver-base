@@ -204,42 +204,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         return records;
     }
 
-    get recordListMobile() {
-        let customFieldLabels = this.columnLabels ? this.columnLabels.replace(/\s/g, '').split(',') : [];
-        const records = this.listRecords;
-        if (records && records.length > 0) {
-            try {
-                // Create a new list by mapping over the original records
-                const newRecordsList = records.map((record) => {
-                    // Ensure fields array exists and has at least one element
-                    if (record.recordFields && record.recordFields.length > 0) {
-                        const fieldsCopy = [...record.recordFields];
-                        // Combine customFieldLabels with fieldsCopy by adding customFieldLabel to each field
-                        fieldsCopy.forEach((field, index) => {
-                            if (customFieldLabels[index]) {
-                                field.customFieldLabel = customFieldLabels[index];
-                            }
-                        });
-
-                        const firstField = fieldsCopy.shift(); // Remove the first field
-
-                        return {
-                            ...record,
-                            title: firstField.value,
-                            recordFields: fieldsCopy,
-                            link: `/lightning/r/${record.Id}/view`
-                        };
-                    }
-                    // Return the record as-is if fields are empty or undefined
-                    return { ...record };
-                });
-                return newRecordsList;
-            } catch (error) {
-                console.error('Error processing recordListMobile:', error);
-                return [];
-            }
+    buildRecordLink(record) {
+        // AccountContactRelation skal navigere til Contact, ikke AccountContactRelation
+        if (this.relatedObjectApiName === 'AccountContactRelation' && record.ContactId) {
+            return `/lightning/r/Contact/${record.ContactId}/view`;
         }
-        return [];
+        return `/lightning/r/${this.relatedObjectApiName}/${record.Id}/view`;
     }
 
     get displayedFieldList() {
@@ -293,11 +263,13 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                         }
                         recordFields.push({
                             label: key,
-                            value: this.convertBoolean(rawValue)
+                            value: this.convertBoolean(rawValue),
+                            isFirst: index === 0
                         });
                     }
                 });
-
+                const title = recordFields[0]?.value ?? '';
+                const link = this.buildRecordLink(dataRecord);
                 let rowClass = 'slds-hint-parent';
                 if (isInactive) {
                     rowClass += ' inactiveRow';
@@ -307,7 +279,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                     Id: dataRecord.Id,
                     ContactId: this.resolve('ContactId', dataRecord) || dataRecord.ContactId,
                     isInactive: isInactive,
-                    rowClass: rowClass
+                    rowClass: rowClass,
+                    title: title,
+                    link: link
                 });
             });
         }
@@ -408,6 +382,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     handleMouseEnter(event) {
+        console.log('Mouse entered row with recordId:', event.currentTarget.dataset.recordId);
         const recordId = event.currentTarget.dataset.recordId;
         const rect = event.currentTarget.getBoundingClientRect();
         this.popoverPosition = {
@@ -430,6 +405,13 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handlePopoverEnter() {
         // Prevent hiding when entering the popover
         window.clearTimeout(this.hideTimer);
+    }
+
+    handleOpenPopover(event) {
+        event.stopPropagation();
+        const recordId = event.currentTarget.dataset.recordId;
+        this.popoverRecordData = this.relatedRecords.find((rec) => rec.Id === recordId);
+        this.showPopover = true;
     }
 
     // Getter to combine displayedFields with additional popoverFields
