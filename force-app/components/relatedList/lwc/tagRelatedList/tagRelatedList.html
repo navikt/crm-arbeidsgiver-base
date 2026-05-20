@@ -74,26 +74,28 @@
                                         <template for:each={record.recordFields} for:item="field">
                                             <td key={field.label}>
                                                 <template if:true={field.isFirst}>
-                                                    <div class="firstCell">
-                                                        <div class="slds-truncate" title={field.value}>
-                                                            <a
-                                                                href={record.link}
-                                                                data-record-id={record.Id}
-                                                                onmouseenter={handleMouseEnter}
-                                                                onmouseleave={handleMouseLeave}
-                                                                onclick={handleRowClick}
-                                                            >
-                                                                {field.value}
-                                                            </a>
-                                                        </div>
+                                                    <div class="slds-grid firstCell">
+                                                        <a
+                                                            class="slds-truncate"
+                                                            title={field.value}
+                                                            href={record.link}
+                                                            data-record-id={record.Id}
+                                                            onmouseenter={handleMouseEnter}
+                                                            onmouseleave={handleMouseLeave}
+                                                            onclick={handleRowClick}
+                                                        >
+                                                            {field.value}
+                                                        </a>
+
                                                         <lightning-button-icon
-                                                            icon-name="utility:info"
+                                                            icon-name="utility:preview"
                                                             alternative-text="Vis detaljer for {record.title}"
                                                             onclick={handleOpenPopover}
                                                             data-record-id={record.Id}
                                                             class="popoverTrigger"
-                                                            size="xx-small"
+                                                            size="x-small"
                                                             variant="bare"
+                                                            aria-expanded={record.isPopoverOpen}
                                                         ></lightning-button-icon>
                                                     </div>
                                                 </template>
@@ -178,6 +180,17 @@
             >
                 <!-- Popover Header -->
                 <div class="slds-popover__header">
+                    <button
+                        class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close"
+                        onclick={handleClosePopoverClick}
+                        title="Lukk"
+                    >
+                        <lightning-icon
+                            icon-name="utility:close"
+                            size="xx-small"
+                            alternative-text="Lukk"
+                        ></lightning-icon>
+                    </button>
                     <div class="slds-media slds-media_center slds-has-flexi-truncate">
                         <div class="slds-media__figure">
                             <lightning-icon icon-name={iconToUse} size="small"></lightning-icon>

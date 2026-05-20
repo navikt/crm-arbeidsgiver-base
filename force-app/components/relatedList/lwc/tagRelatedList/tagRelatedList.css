@@ -127,15 +127,26 @@
 .popoverTrigger {
     opacity: 0;
     transition: opacity 0.1s ease-in;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(1px 1px 1px 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
 }
 
 /* Vis knappen når noe inni cellen får fokus, eller når musen er over */
 .firstCell:focus-within .popoverTrigger {
     opacity: 1;
+    clip: auto;
+    clip-path: none;
+    position: relative;
 }
 
 /* Knappen skal alltid være synlig når den selv har fokus */
 .popoverTrigger:focus,
 .popoverTrigger:focus-visible {
     opacity: 1;
+    clip: auto;
+    clip-path: none;
+    position: relative;
 }

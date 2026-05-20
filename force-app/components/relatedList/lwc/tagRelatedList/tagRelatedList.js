@@ -46,9 +46,35 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     flowApiName = 'TAG_Create_New_Contact_Screen';
 
+    _lastTriggerEl;
+
     connectedCallback() {
         this.wireFields = [this.objectApiName + '.Id'];
         this.getList();
+
+        this._escapeHandler = (e) => {
+            if (e.key === 'Escape' && this.showPopover) {
+                this.closePopover();
+                this._restoreFocus();
+            }
+        };
+        this._outsideClickHandler = (e) => {
+            if (!this.showPopover) return;
+            const popoverEl = this.template.querySelector('.slds-popover');
+            const isInsidePopover = popoverEl && popoverEl.contains(e.target);
+            const isOnTrigger = e.target.closest && e.target.closest('.popoverTrigger');
+            if (!isInsidePopover && !isOnTrigger) {
+                this.closePopover();
+            }
+        };
+        document.addEventListener('keydown', this._escapeHandler);
+        document.addEventListener('click', this._outsideClickHandler);
+    }
+    disconnectedCallback() {
+        document.removeEventListener('keydown', this._escapeHandler);
+        document.removeEventListener('click', this._outsideClickHandler);
+        window.clearTimeout(this.hoverTimer);
+        window.clearTimeout(this.hideTimer);
     }
 
     get relatedObjectNames() {
@@ -198,10 +224,15 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     // Compute records to display based on whether the list is expanded or collapsed
     get displayedRecords() {
         const records = this.listRecords;
-        if (!this.isExpanded && records.length > this.collapsedCount) {
-            return records.slice(0, this.collapsedCount);
-        }
-        return records;
+        const sliced =
+            !this.isExpanded && records.length > this.collapsedCount
+                ? records.slice(0, this.collapsedCount)
+                : records;
+        const openId = this.showPopover ? this.popoverRecordData?.Id : null;
+        return sliced.map((record) => ({
+            ...record,
+            isPopoverOpen: record.Id === openId
+        }));
     }
 
     buildRecordLink(record) {
@@ -410,10 +441,37 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     handleOpenPopover(event) {
         event.stopPropagation();
         const recordId = event.currentTarget.dataset.recordId;
+        if (this.showPopover && this.popoverRecordData?.Id === recordId) {
+            this.closePopover();
+            return;
+        }
+        this._lastTriggerEl = event.currentTarget;
+        const rect = event.currentTarget.getBoundingClientRect();
+        this.popoverPosition = {
+            top: rect.top + 2,
+            left: rect.left + 2
+        };
         this.popoverRecordData = this.relatedRecords.find((rec) => rec.Id === recordId);
         this.showPopover = true;
     }
 
+    handleClosePopoverClick() {
+        this.closePopover();
+        this._restoreFocus();
+    }
+
+    closePopover() {
+        window.clearTimeout(this.hoverTimer);
+        window.clearTimeout(this.hideTimer);
+        this.showPopover = false;
+    }
+
+    _restoreFocus() {
+        if (this._lastTriggerEl && typeof this._lastTriggerEl.focus === 'function') {
+            this._lastTriggerEl.focus();
+        }
+        this._lastTriggerEl = null;
+    }
     // Getter to combine displayedFields with additional popoverFields
     get combinedPopoverFields() {
         return this.apexFieldList;
