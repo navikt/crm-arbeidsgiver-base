@@ -10,9 +10,6 @@ import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import FORM_FACTOR from '@salesforce/client/formFactor';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
-    hoverTimer;
-    hideTimer;
-
     @api recordId;
     @api objectApiName;
     @api listTitle; // Title of the list.
@@ -38,9 +35,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     @track relatedRecords;
     @track isExpanded = false; // Accordion state
-    @track popoverRecordData; // Holds the record data for the hovered row
-    @track showPopover = false; // Flag to conditionally display popover
-    @track popoverPosition = { top: 0, left: 0 };
     @track teamMemberRoleMapping;
 
     flowApiName = 'TAG_Create_New_Contact_Screen';
@@ -53,35 +47,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         return [{ name: 'recordId', type: 'String', value: this.recordId }];
     }
 
-    _lastTriggerEl;
-
     connectedCallback() {
         this.wireFields = [this.objectApiName + '.Id'];
         this.getList();
-
-        this._escapeHandler = (e) => {
-            if (e.key === 'Escape' && this.showPopover) {
-                this.closePopover();
-                this._restoreFocus();
-            }
-        };
-        this._outsideClickHandler = (e) => {
-            if (!this.showPopover) return;
-            const popoverEl = this.template.querySelector('.slds-popover');
-            const isInsidePopover = popoverEl && popoverEl.contains(e.target);
-            const isOnTrigger = e.target.closest && e.target.closest('.popoverTrigger');
-            if (!isInsidePopover && !isOnTrigger) {
-                this.closePopover();
-            }
-        };
-        document.addEventListener('keydown', this._escapeHandler);
-        document.addEventListener('click', this._outsideClickHandler);
-    }
-    disconnectedCallback() {
-        document.removeEventListener('keydown', this._escapeHandler);
-        document.removeEventListener('click', this._outsideClickHandler);
-        window.clearTimeout(this.hoverTimer);
-        window.clearTimeout(this.hideTimer);
     }
 
     get relatedObjectNames() {
@@ -194,10 +162,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         });
     }
 
-    get flowInputVar() {
-        return [{ name: 'recordId', type: 'String', value: this.recordId }];
-    }
-
     handleNewRecord(event) {
         // Prevent the header's onclick from firing
         event.stopPropagation();
@@ -226,13 +190,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     // Compute records to display based on whether the list is expanded or collapsed
     get displayedRecords() {
         const records = this.listRecords;
-        const sliced =
-            !this.isExpanded && records.length > this.collapsedCount ? records.slice(0, this.collapsedCount) : records;
-        const openId = this.showPopover ? this.popoverRecordData?.Id : null;
-        return sliced.map((record) => ({
-            ...record,
-            isPopoverOpen: record.Id === openId
-        }));
+        return !this.isExpanded && records.length > this.collapsedCount
+            ? records.slice(0, this.collapsedCount)
+            : records;
     }
 
     buildRecordLink(record) {
@@ -311,6 +271,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 }
                 returnRecords.push({
                     recordFields: recordFields,
+                    popoverFields: this._computePopoverFields(dataRecord),
+                    popoverTitle: title,
+                    popoverIcon: this.iconToUse,
                     Id: dataRecord.Id,
                     ContactId: this.resolve('ContactId', dataRecord) || dataRecord.ContactId,
                     isInactive: isInactive,
@@ -416,87 +379,16 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         }, obj || {});
     }
 
-    handleMouseEnter(event) {
-        const recordId = event.currentTarget.dataset.recordId;
-        const rect = event.currentTarget.getBoundingClientRect();
-        this.popoverPosition = {
-            top: rect.top + 2,
-            left: rect.left + 2
-        };
-        this.hoverTimer = window.setTimeout(() => {
-            this.popoverRecordData = this.relatedRecords.find((rec) => rec.Id === recordId);
-            this.showPopover = true;
-        }, 1000);
-    }
-
-    handleMouseLeave() {
-        window.clearTimeout(this.hoverTimer);
-        this.hideTimer = window.setTimeout(() => {
-            this.showPopover = false;
-        }, 200); // Delay closing popover to allow mouse movement
-    }
-
-    handlePopoverEnter() {
-        // Prevent hiding when entering the popover
-        window.clearTimeout(this.hideTimer);
-    }
-
-    handleOpenPopover(event) {
-        event.stopPropagation();
-        const recordId = event.currentTarget.dataset.recordId;
-        if (this.showPopover && this.popoverRecordData?.Id === recordId) {
-            this.closePopover();
-            return;
-        }
-        this._lastTriggerEl = event.currentTarget;
-        const rect = event.currentTarget.getBoundingClientRect();
-        this.popoverPosition = {
-            top: rect.top + 2,
-            left: rect.left + 2
-        };
-        this.popoverRecordData = this.relatedRecords.find((rec) => rec.Id === recordId);
-        this.showPopover = true;
-    }
-
-    handleClosePopoverClick() {
-        this.closePopover();
-        this._restoreFocus();
-    }
-
-    closePopover() {
-        window.clearTimeout(this.hoverTimer);
-        window.clearTimeout(this.hideTimer);
-        this.showPopover = false;
-    }
-
-    _restoreFocus() {
-        if (this._lastTriggerEl && typeof this._lastTriggerEl.focus === 'function') {
-            this._lastTriggerEl.focus();
-        }
-        this._lastTriggerEl = null;
-    }
-    // Getter to combine displayedFields with additional popoverFields
-    get combinedPopoverFields() {
-        return this.apexFieldList;
-    }
-
-    // Getter to prepare an array of objects with localized field labels and values from the hovered record
-    get popoverFieldValues() {
-        if (!this.popoverRecordData || !this.objectInfo.data) {
+    _computePopoverFields(dataRecord) {
+        if (!this.objectInfo || !this.objectInfo.data) {
             return [];
         }
-
-        const fieldsToShow = (this.combinedPopoverFields || []).filter((f) => {
-            return f !== 'ContactId' && f !== 'Id';
-        });
-
+        const fieldsToShow = (this.apexFieldList || []).filter((f) => f !== 'ContactId' && f !== 'Id');
         return fieldsToShow.map((fieldApiName) => {
             let fieldLabel;
-
             if (fieldApiName.includes('.')) {
-                let [relationship, childField] = fieldApiName.split('.');
-
-                if (this.relatedObjectMetadata[relationship] && this.relatedObjectMetadata[relationship][childField]) {
+                const [relationship, childField] = fieldApiName.split('.');
+                if (this.relatedObjectMetadata?.[relationship]?.[childField]) {
                     fieldLabel = this.relatedObjectMetadata[relationship][childField].label;
                 } else {
                     fieldLabel = childField;
@@ -504,8 +396,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             } else {
                 fieldLabel = this.objectInfo.data.fields[fieldApiName]?.label || fieldApiName;
             }
-
-            let rawValue = this.resolve(fieldApiName, this.popoverRecordData);
+            let rawValue = this.resolve(fieldApiName, dataRecord);
             if (
                 fieldApiName === 'TeamMemberRole' &&
                 this.teamMemberRoleMapping &&
@@ -513,45 +404,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             ) {
                 rawValue = this.teamMemberRoleMapping[rawValue];
             }
-
             return {
                 apiName: fieldLabel,
                 value: this.convertBoolean(rawValue)
             };
         });
-    }
-
-    // Getter for popover style
-    get popoverStyle() {
-        if (this.popoverPosition) {
-            // Get the host element's bounding rectangle
-            const containerRect = this.template.host.getBoundingClientRect();
-            // Compute coordinates relative to the host container
-            const relativeLeft = this.popoverPosition.left - containerRect.left;
-            const relativeTop = this.popoverPosition.top - containerRect.top;
-            // Add a vertical offset (+20px) and change the transform to not shift upward
-            return `position: absolute; 
-                    top: ${relativeTop + 20}px; 
-                    left: ${relativeLeft}px; 
-                    z-index: 1000; 
-                    transform: translate(0, 0);`;
-        }
-        return '';
-    }
-
-    get popoverTitle() {
-        if (
-            this.popoverRecordData &&
-            this.displayedFieldList &&
-            this.displayedFieldList.length > 0 &&
-            this.objectInfo.data
-        ) {
-            // Get the first field's API name from the displayedFields array
-            let firstFieldApiName = this.displayedFieldList[0];
-            let fieldValue = this.resolve(firstFieldApiName, this.popoverRecordData);
-            return `${fieldValue}`;
-        }
-        return '';
     }
 
     get iconToUse() {

@@ -93,16 +93,6 @@
     padding-left: 1rem !important;
 }
 
-.slds-popover_medium .slds-popover__header {
-    background-color: #f3f2f2;
-    /* Slight grey for the header */
-    border-bottom: 1px solid #dddbda;
-}
-
-.slds-popover_medium .slds-popover__body {
-    padding: 1rem;
-}
-
 .slds-table[data-clickable='true'] tbody tr:hover td:first-child .slds-truncate {
     text-decoration: underline;
     color: var(--lwc-colorTextLinkHover);
@@ -113,32 +103,18 @@
     text-decoration: none;
 }
 
-.firstCell {
+.popoverHeader {
+    background-color: #f3f2f2;
+    padding: 0.5rem 0.75rem;
+    margin-top: var(--slds-g-spacing-1);
 }
 
-.popoverTrigger {
-    opacity: 0;
-    transition: opacity 0.1s ease-in;
-    position: absolute;
-    top: 0;
-    left: 0;
-    clip: rect(1px 1px 1px 1px);
-    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+.popoverBody {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--slds-g-radius-border-2, 0.5rem);
+    background-color: white;
 }
 
-/* Vis knappen når noe inni cellen får fokus, eller når musen er over */
-.firstCell:focus-within .popoverTrigger {
-    opacity: 1;
-    clip: auto;
-    clip-path: none;
-    position: relative;
-}
-
-/* Knappen skal alltid være synlig når den selv har fokus */
-.popoverTrigger:focus,
-.popoverTrigger:focus-visible {
-    opacity: 1;
-    clip: auto;
-    clip-path: none;
-    position: relative;
+.popoverBody p {
+    margin-bottom: 0.25rem;
 }

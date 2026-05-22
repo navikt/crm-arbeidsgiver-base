@@ -86,43 +86,58 @@
                                     <template for:each={record.recordFields} for:item="field">
                                         <template if:true={field.isFirst}>
                                             <th scope="row" key={field.fieldName}>
-                                                <div class="slds-grid firstCell">
-                                                    <template if:true={clickableRows}
-                                                        ><a
-                                                            class="slds-truncate"
-                                                            title={field.value}
-                                                            href={record.link}
-                                                            data-record-id={record.Id}
-                                                            onmouseenter={handleMouseEnter}
-                                                            onmouseleave={handleMouseLeave}
-                                                            onclick={handleRowClick}
-                                                        >
-                                                            {field.value}
-                                                        </a></template
-                                                    >
-
-                                                    <template if:false={clickableRows}>
-                                                        <div
-                                                            class="slds-truncate"
-                                                            title={field.value}
-                                                            data-record-id={record.Id}
-                                                            onmouseenter={handleMouseEnter}
-                                                            onmouseleave={handleMouseLeave}
-                                                        >
-                                                            {field.value}
-                                                        </div>
-                                                    </template>
-
-                                                    <lightning-button-icon
+                                                <div class="firstCell">
+                                                    <c-popover
+                                                        link-label={field.value}
+                                                        link-url={record.link}
+                                                        title={record.popoverTitle}
                                                         icon-name="utility:preview"
-                                                        alternative-text="Vis detaljer"
-                                                        onclick={handleOpenPopover}
-                                                        data-record-id={record.Id}
-                                                        class="popoverTrigger"
-                                                        size="x-small"
-                                                        variant="bare"
-                                                        aria-expanded={record.isPopoverOpen}
-                                                    ></lightning-button-icon>
+                                                    >
+                                                        <span slot="body">
+                                                            <div class="popoverHeader">
+                                                                <div
+                                                                    class="slds-media slds-media_center slds-has-flexi-truncate"
+                                                                >
+                                                                    <div class="slds-media__figure">
+                                                                        <lightning-icon
+                                                                            icon-name={record.popoverIcon}
+                                                                            size="small"
+                                                                        ></lightning-icon>
+                                                                    </div>
+                                                                    <div class="slds-media__body">
+                                                                        <h3
+                                                                            class="slds-text-heading_small slds-hyphenate slds-text-color_default"
+                                                                        >
+                                                                            {record.popoverTitle}
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="popoverBody slds-text-color_default">
+                                                                <dl class="slds-list_horizontal slds-wrap">
+                                                                    <template
+                                                                        for:each={record.popoverFields}
+                                                                        for:item="fieldObj"
+                                                                    >
+                                                                        <dt
+                                                                            key={fieldObj.apiName}
+                                                                            class="slds-item_label slds-text-color_weak slds-truncate"
+                                                                            title={fieldObj.apiName}
+                                                                        >
+                                                                            {fieldObj.apiName}:
+                                                                        </dt>
+                                                                        <dd
+                                                                            key={fieldObj.apiName}
+                                                                            class="slds-item_detail slds-truncate"
+                                                                            title={fieldObj.value}
+                                                                        >
+                                                                            {fieldObj.value}
+                                                                        </dd>
+                                                                    </template>
+                                                                </dl>
+                                                            </div>
+                                                        </span>
+                                                    </c-popover>
                                                 </div>
                                             </th>
                                         </template>
@@ -171,48 +186,5 @@
                 </ul>
             </template>
         </template>
-
-        <template if:true={showPopover}>
-            <div
-                class="slds-popover slds-nubbin_top slds-popover_medium"
-                style={popoverStyle}
-                role="dialog"
-                onmouseenter={handlePopoverEnter}
-                onmouseleave={handleMouseLeave}
-            >
-                <!-- Popover Header -->
-                <div class="slds-popover__header">
-                    <button
-                        class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close"
-                        onclick={handleClosePopoverClick}
-                        title="Lukk"
-                    >
-                        <lightning-icon
-                            icon-name="utility:close"
-                            size="xx-small"
-                            alternative-text="Lukk"
-                        ></lightning-icon>
-                    </button>
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__figure">
-                            <lightning-icon icon-name={iconToUse} size="small"></lightning-icon>
-                        </div>
-                        <div class="slds-media__body">
-                            <h2 id="popover-heading" class="slds-text-heading_small slds-hyphenate">{popoverTitle}</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Popover Body -->
-                <div class="slds-popover__body">
-                    <template for:each={popoverFieldValues} for:item="fieldObj">
-                        <p key={fieldObj.apiName} class="slds-truncate">
-                            <strong>{fieldObj.apiName}:</strong> {fieldObj.value}
-                        </p>
-                    </template>
-                </div>
-            </div>
-        </template>
-
     </article>
 </template>
