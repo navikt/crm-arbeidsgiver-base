@@ -417,7 +417,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     handleMouseEnter(event) {
-        console.log('Mouse entered row with recordId:', event.currentTarget.dataset.recordId);
         const recordId = event.currentTarget.dataset.recordId;
         const rect = event.currentTarget.getBoundingClientRect();
         this.popoverPosition = {
