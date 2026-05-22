@@ -225,9 +225,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     get displayedRecords() {
         const records = this.listRecords;
         const sliced =
-            !this.isExpanded && records.length > this.collapsedCount
-                ? records.slice(0, this.collapsedCount)
-                : records;
+            !this.isExpanded && records.length > this.collapsedCount ? records.slice(0, this.collapsedCount) : records;
         const openId = this.showPopover ? this.popoverRecordData?.Id : null;
         return sliced.map((record) => ({
             ...record,
@@ -279,6 +277,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 }
 
                 let recordFields = [];
+                const columnLabelList = this.columnLabels ? this.columnLabels.split(',').map((l) => l.trim()) : [];
                 this.displayedFieldList.forEach((key, index) => {
                     if (key !== 'Id') {
                         let rawValue = this.resolve(key, dataRecord);
@@ -293,7 +292,8 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                             rawValue = this.inactivePrefix + ' ' + rawValue;
                         }
                         recordFields.push({
-                            label: key,
+                            label: columnLabelList[index] ?? key,
+                            fieldName: key,
                             value: this.convertBoolean(rawValue),
                             isFirst: index === 0
                         });
@@ -304,6 +304,8 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 let rowClass = 'slds-hint-parent';
                 if (isInactive) {
                     rowClass += ' inactiveRow';
+                } else {
+                    rowClass += ' row';
                 }
                 returnRecords.push({
                     recordFields: recordFields,

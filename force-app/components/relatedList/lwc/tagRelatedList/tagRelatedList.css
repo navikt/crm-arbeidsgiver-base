@@ -79,13 +79,12 @@
 
 /* Inactive row styling: light grey background and grey text */
 .inactiveRow {
-    background-color: #f4f6f9 !important;
-    color: #7e7e7e !important;
+    background-color: var(--slds-g-color-neutral-base-95);
+    color: var(--slds-g-color-neutral-base-30);
 }
-
-/* Also force text inside inactive rows to appear grey */
-.inactiveRow .slds-truncate {
-    color: #7e7e7e;
+.row {
+    background-color: var(--slds-g-color-neutral-base-100);
+    color: var(--slds-g-color-neutral-base-40);
 }
 
 .slds-table thead tr > th:first-child,
@@ -101,24 +100,6 @@
 
 .slds-popover_medium .slds-popover__body {
     padding: 1rem;
-}
-
-/* Keyboard focus indicator for clickable rows */
-.slds-table[data-clickable='true'] tbody tr:focus,
-.slds-table[data-clickable='true'] tbody tr:focus-visible {
-    outline: var(--slds-g-sizing-border-2) solid var(--slds-g-color-border-accent-1);
-    outline-offset: -2px;
-}
-
-.slds-table[data-clickable='true'] tbody tr:hover td:first-child .slds-truncate,
-.slds-table[data-clickable='true'] tbody tr:focus td:first-child .slds-truncate {
-    text-decoration: underline;
-    color: var(--slds-g-color-accent-2);
-}
-
-.slds-table[data-clickable='true'] tbody tr td:first-child .slds-truncate {
-    color: var(--slds-g-color-accent-1);
-    text-decoration: none;
 }
 
 .firstCell {

@@ -72,7 +72,7 @@
                                         aria-label={record.title}
                                     >
                                         <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label}>
+                                            <td key={field.fieldName}>
                                                 <template if:true={field.isFirst}>
                                                     <div class="slds-grid firstCell">
                                                         <a
@@ -117,7 +117,7 @@
                                         onmouseleave={handleMouseLeave}
                                     >
                                         <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label} style="max-width: 33%">
+                                            <td key={field.fieldName} style="max-width: 33%">
                                                 <div
                                                     style="
                                                         white-space: nowrap;
@@ -147,14 +147,14 @@
                                     <template for:each={record.recordFields} for:item="field">
                                         <template if:false={field.isFirst}>
                                             <dt
-                                                key={field.label}
+                                                key={field.fieldName}
                                                 class="slds-item_label slds-text-color_weak slds-truncate"
-                                                title={field.customFieldLabel}
+                                                title={field.label}
                                             >
-                                                {field.customFieldLabel}:
+                                                {field.label}:
                                             </dt>
                                             <dd
-                                                key={field.label}
+                                                key={field.fieldName}
                                                 class="slds-item_detail slds-truncate"
                                                 title={field.value}
                                             >
