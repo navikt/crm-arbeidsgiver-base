@@ -42,9 +42,16 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @track showPopover = false; // Flag to conditionally display popover
     @track popoverPosition = { top: 0, left: 0 };
     @track teamMemberRoleMapping;
-    @track showFlowModal = false;
 
     flowApiName = 'TAG_Create_New_Contact_Screen';
+
+    get useFlowForNewRecord() {
+        return this.relatedObjectApiName === 'Contact' || this.relatedObjectApiName === 'AccountContactRelation';
+    }
+
+    get flowInputVariables() {
+        return [{ name: 'recordId', type: 'String', value: this.recordId }];
+    }
 
     _lastTriggerEl;
 
@@ -187,42 +194,31 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         });
     }
 
+    get flowInputVar() {
+        return [{ name: 'recordId', type: 'String', value: this.recordId }];
+    }
+
     handleNewRecord(event) {
         // Prevent the header's onclick from firing
         event.stopPropagation();
 
-        if (this.relatedObjectApiName === 'Contact' || this.relatedObjectApiName === 'AccountContactRelation') {
-            this.showFlowModal = true;
-            requestAnimationFrame(() => {
-                const flowCmp = this.template.querySelector('lightning-flow');
-                if (flowCmp) {
-                    flowCmp.startFlow(this.flowApiName, [{ name: 'recordId', type: 'String', value: this.recordId }]);
-                }
-            });
-        } else {
-            const defaultValues = encodeDefaultFieldValues({
-                [this.relationField]: this.recordId
-            });
-            this[NavigationMixin.Navigate]({
-                type: 'standard__objectPage',
-                attributes: {
-                    objectApiName: this.relatedObjectApiName,
-                    actionName: 'new'
-                },
-                state: {
-                    defaultFieldValues: defaultValues
-                }
-            });
-        }
-    }
-
-    handleCloseFlowModal() {
-        this.showFlowModal = false;
+        const defaultValues = encodeDefaultFieldValues({
+            [this.relationField]: this.recordId
+        });
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: this.relatedObjectApiName,
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: defaultValues
+            }
+        });
     }
 
     handleFlowStatusChange(event) {
         if (event.detail.status === 'FINISHED' || event.detail.status === 'FINISHED_SCREEN') {
-            this.showFlowModal = false;
             this.getList();
         }
     }
