@@ -90,6 +90,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         return Array.from(related);
     }
 
+    get listDescription() {
+        const count = this.relatedRecords ? this.relatedRecords.length : 0;
+        const title = this.listTitle ?? 'relaterte poster';
+        return `Tabell med ${count} rader: ${title}`;
+    }
+
     @wire(getObjectInfos, { objectApiNames: '$relatedObjectNames' })
     wiredRelatedObjectInfos({ data, error }) {
         if (data) {

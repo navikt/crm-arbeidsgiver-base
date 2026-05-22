@@ -36,10 +36,10 @@
         border-radius: 0;
         margin-top: 0;
         margin-bottom: 0;
-        background: var(--slds-g-color-surface-1);
+        background: white;
     }
     .headerLeft {
-        background: var(--slds-g-color-surface-1);
+        background: white;
         margin-left: 0 !important;
         margin-right: 0 !important;
         margin-top: 0 !important;
@@ -49,7 +49,7 @@
         border-radius: 0.25rem;
     }
     .headerToggleAction {
-        background: var(--slds-g-color-surface-1);
+        background: white;
         padding-left: 0;
         border: none;
         box-shadow: none;
@@ -79,12 +79,13 @@
 
 /* Inactive row styling: light grey background and grey text */
 .inactiveRow {
-    background-color: var(--slds-g-color-neutral-base-95);
-    color: var(--slds-g-color-neutral-base-30);
+    background-color: #f4f6f9 !important;
+    color: #7e7e7e !important;
 }
-.row {
-    background-color: var(--slds-g-color-neutral-base-100);
-    color: var(--slds-g-color-neutral-base-40);
+
+/* Also force text inside inactive rows to appear grey */
+.inactiveRow .slds-truncate {
+    color: #7e7e7e;
 }
 
 .slds-table thead tr > th:first-child,
@@ -100,6 +101,16 @@
 
 .slds-popover_medium .slds-popover__body {
     padding: 1rem;
+}
+
+.slds-table[data-clickable='true'] tbody tr:hover td:first-child .slds-truncate {
+    text-decoration: underline;
+    color: var(--lwc-colorTextLinkHover);
+}
+
+.slds-table[data-clickable='true'] tbody tr td:first-child .slds-truncate {
+    color: var(--lwc-colorTextLink);
+    text-decoration: none;
 }
 
 .firstCell {

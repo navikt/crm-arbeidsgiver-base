@@ -44,6 +44,7 @@
                         class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal"
                         data-clickable={clickableRows}
                         style="table-layout: fixed"
+                        aria-label={listDescription}
                     >
                         <thead>
                             <tr class="slds-line-height_reset">
@@ -62,20 +63,19 @@
                         </thead>
                         <tbody>
                             <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
-                                <template if:true={clickableRows}>
-                                    <tr
-                                        key={record.Id}
-                                        data-record-id={record.Id}
-                                        data-contact-id={record.ContactId}
-                                        data-value={rowIndex}
-                                        class={record.rowClass}
-                                        aria-label={record.title}
-                                    >
-                                        <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.fieldName}>
-                                                <template if:true={field.isFirst}>
-                                                    <div class="slds-grid firstCell">
-                                                        <a
+                                <tr
+                                    key={record.Id}
+                                    data-record-id={record.Id}
+                                    data-contact-id={record.ContactId}
+                                    data-value={rowIndex}
+                                    class={record.rowClass}
+                                >
+                                    <template for:each={record.recordFields} for:item="field">
+                                        <template if:true={field.isFirst}>
+                                            <th scope="row" key={field.fieldName}>
+                                                <div class="slds-grid firstCell">
+                                                    <template if:true={clickableRows}
+                                                        ><a
                                                             class="slds-truncate"
                                                             title={field.value}
                                                             href={record.link}
@@ -85,53 +85,42 @@
                                                             onclick={handleRowClick}
                                                         >
                                                             {field.value}
-                                                        </a>
+                                                        </a></template
+                                                    >
 
-                                                        <lightning-button-icon
-                                                            icon-name="utility:preview"
-                                                            alternative-text="Vis detaljer for {record.title}"
-                                                            onclick={handleOpenPopover}
+                                                    <template if:false={clickableRows}>
+                                                        <div
+                                                            class="slds-truncate"
+                                                            title={field.value}
                                                             data-record-id={record.Id}
-                                                            class="popoverTrigger"
-                                                            size="x-small"
-                                                            variant="bare"
-                                                            aria-expanded={record.isPopoverOpen}
-                                                        ></lightning-button-icon>
-                                                    </div>
-                                                </template>
-                                                <template if:false={field.isFirst}>
-                                                    <div class="slds-truncate">{field.value}</div>
-                                                </template>
-                                            </td>
-                                        </template>
-                                    </tr>
-                                </template>
-                                <template if:false={clickableRows}>
-                                    <tr
-                                        key={record.Id}
-                                        data-record-id={record.Id}
-                                        data-contact-id={record.ContactId}
-                                        data-value={rowIndex}
-                                        class={record.rowClass}
-                                        onmouseenter={handleMouseEnter}
-                                        onmouseleave={handleMouseLeave}
-                                    >
-                                        <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.fieldName} style="max-width: 33%">
-                                                <div
-                                                    style="
-                                                        white-space: nowrap;
-                                                        overflow: hidden;
-                                                        text-overflow: ellipsis;
-                                                    "
-                                                    class="slds-truncate slds-cell-wrap"
-                                                >
-                                                    {field.value}
+                                                            onmouseenter={handleMouseEnter}
+                                                            onmouseleave={handleMouseLeave}
+                                                        >
+                                                            {field.value}
+                                                        </div>
+                                                    </template>
+
+                                                    <lightning-button-icon
+                                                        icon-name="utility:preview"
+                                                        alternative-text="Vis detaljer"
+                                                        onclick={handleOpenPopover}
+                                                        data-record-id={record.Id}
+                                                        class="popoverTrigger"
+                                                        size="x-small"
+                                                        variant="bare"
+                                                        aria-expanded={record.isPopoverOpen}
+                                                    ></lightning-button-icon>
                                                 </div>
+                                            </th>
+                                        </template>
+
+                                        <template if:false={field.isFirst}>
+                                            <td key={field.fieldName} title={field.value}>
+                                                <div class="slds-truncate">{field.value}</div>
                                             </td>
                                         </template>
-                                    </tr>
-                                </template>
+                                    </template>
+                                </tr>
                             </template>
                         </tbody>
                     </table>
