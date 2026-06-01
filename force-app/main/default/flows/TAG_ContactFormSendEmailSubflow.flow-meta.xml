@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_return_value</name>
+        <label>Set return value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>emailScheduled</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>wasEmailScheduled</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Sender bekreftelse til innsender av kontaktskjema. Konvertert fra Apex.
+Tar EmployerInquiry record som input.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>templateName</name>
+        <dataType>String</dataType>
+        <expression>IF({!CreatedEmployerInquiryRecord.TAG_WebFormTheme__c} = &apos;Forebygge og redusere fravær&apos;, &apos;kontaktskjemaSykefravaerReceipt&apos;, &apos;kontaktskjemaRekrutteringReceipt&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>wasEmailScheduled</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(
+ISBLANK({!Draft_email.Id})
+)</expression>
+    </formulas>
+    <interviewLabel>TAG {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG ContactFormSendEmailSubflow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Konvertert fra Apex:
+public static EmailQueue__c generateDraftEmailReceipt(EmployerInquiry__c inquiry) {
+        String templateName = inquiry.TAG_WebFormTheme__c == TAG_ContactForm.THEME_FOREBYGGE_SYKEFRAVAER_LABEL
+            ? &apos;kontaktskjemaSykefravaerReceipt&apos;
+            : &apos;kontaktskjemaRekrutteringReceipt&apos;;
+        
+EmailQueue__c email = new EmailQueue__c();
+        email.TemplateName__c = templateName;
+        email.TargetObjectId__c = inquiry.TAG_Contact__c;
+        email.WhatId__c = inquiry.Id;
+        email.Priority__c = &apos;5&apos;;
+        email.Status__c = &apos;Queued&apos;;
+        email.SaveAsActivity__c = true;</description>
+        <name>Draft_email</name>
+        <label>Draft email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_return_value</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Priority__c</field>
+            <value>
+                <stringValue>5</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SaveAsActivity__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Queued</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TargetObjectId__c</field>
+            <value>
+                <elementReference>CreatedEmployerInquiryRecord.TAG_Contact__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TemplateName__c</field>
+            <value>
+                <elementReference>templateName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId__c</field>
+            <value>
+                <elementReference>CreatedEmployerInquiryRecord.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EmailQueue__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Draft_email</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Henvendelsen det skal sendes kvitering for</description>
+        <name>CreatedEmployerInquiryRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmployerInquiry__c</objectType>
+    </variables>
+    <variables>
+        <name>emailScheduled</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
