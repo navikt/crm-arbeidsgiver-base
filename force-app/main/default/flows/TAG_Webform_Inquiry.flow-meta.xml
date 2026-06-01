@@ -2,6 +2,54 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>66.0</apiVersion>
     <assignments>
+        <name>Assign_Arbeidslivsenter_as_owner_of_the_EmployerInquiry</name>
+        <label>Assign Arbeidslivsenter as owner of the EmployerInquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Arbeidslivsenter_Nav_enhet.CRM_QueueId__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_existing_contact_to_Employer_Inquiry</name>
+        <label>Assign existing contact to Employer Inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.TAG_Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Duplicate_Contacts.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Determine_source_and_topic</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_new_contact_to_Employer_inquiry</name>
+        <label>Assign new contact to Employer inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.TAG_Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Create_new_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Determine_source_and_topic</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Contribute_to_employment_of_youth</name>
         <label>Contribute to employment of youth</label>
         <locationX>0</locationX>
@@ -67,7 +115,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Inquiry</targetReference>
+            <targetReference>Get_Arbeidslivsenter_Nav_enhet</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -98,6 +146,29 @@
         </assignmentItems>
         <connector>
             <targetReference>Update_Inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Account_and_NavUnit_to_Employer_Iniquiry</name>
+        <label>Set Account and NavUnit to Employer Iniquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.TAG_Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_from_WebForm.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_from_WebForm.TAG_NavUnit__r.CRM_QueueId__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Duplicate_Contacts</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -173,12 +244,108 @@
             <label>web+youth employment</label>
         </rules>
     </decisions>
-    <description>Når en henvendelse opprettes fra kontaktskjemaet (TAG_Source__c = &quot;Kontaktskjema&quot;), beriker flowen posten med tittel, tema og en standardmelding basert på valgt webskjema-tema.
-Flowen oversetter webskjema-temaet til feltverdier (tittel, tema, melding) slik at:
-- Tittel viser hva henvendelsen gjelder uten å åpne detaljer
-- Bruker ser en handlingsrettet melding med telefonnummer å ringe
-- Henvendelsen kategoriseres med tema/undertema for rapportering</description>
+    <decisions>
+        <name>Is_there_Account</name>
+        <label>Is there Account?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Application_Log_for_wrong_org_nr</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Cannot find Arbeidsgiver</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Account_from_WebForm</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Account_and_NavUnit_to_Employer_Iniquiry</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_there_Contact_already</name>
+        <label>Is there Contact already?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_new_Contact</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesContact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Duplicate_Contacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_existing_contact_to_Employer_Inquiry</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Når en henvendelse opprettes fra kontaktskjemaet (TAG_Source__c = &quot;Kontaktskjema&quot;), opprettes den først som en enkel post uten alle nødvendige data og koblinger.
+Etter at personvernsårbarheten ble oppdaget 28.05.2026, ble logikken flyttet fra Apex til denne trigger-flowen.
+Flowen finner og setter riktig:
+Konto (hvis organisasjonsnummeret er feil, opprettes det en Application Log-post)
+Kontakt (ved behov opprettes en ny kontakt)
+Beriker henvendelsen med tema, undertema og melding
+Setter riktig Nav-enhet/eier basert på konto, Nav region og tema</description>
     <environments>Default</environments>
+    <formulas>
+        <name>FirstName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  CONTAINS(TRIM({!$Record.TAG_WebFormContactName__c}), &quot; &quot;),
+  LEFT(
+    TRIM({!$Record.TAG_WebFormContactName__c}),
+    FIND(&quot; &quot;, TRIM({!$Record.TAG_WebFormContactName__c})) - 1
+  ),
+  &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>LastName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  CONTAINS(TRIM({!$Record.TAG_WebFormContactName__c}), &quot; &quot;),
+  TRIM(
+    RIGHT(
+      TRIM({!$Record.TAG_WebFormContactName__c}),
+      LEN(TRIM({!$Record.TAG_WebFormContactName__c})) - FIND(&quot; &quot;, TRIM({!$Record.TAG_WebFormContactName__c}))
+    )
+  ),
+  TRIM({!$Record.TAG_WebFormContactName__c})
+)</expression>
+    </formulas>
+    <formulas>
+        <name>navUnitArbeidslivsenterName</name>
+        <dataType>String</dataType>
+        <expression>IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Øst-Viken&quot;, &quot;NAV Arbeidslivssenter Øst-Viken&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Oslo&quot;, &quot;NAV Arbeidslivssenter Oslo&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Innlandet&quot;, &quot;NAV Arbeidslivssenter Innlandet&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Vest-Viken&quot;, &quot;NAV Arbeidslivssenter Vest-Viken&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Vestfold og Telemark&quot;, &quot;NAV Arbeid og helse Vestfold og Telemark&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Agder&quot;, &quot;NAV Arbeidslivssenter Agder&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Rogaland&quot;, &quot;NAV Arbeidslivssenter Rogaland&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Vestland&quot;, &quot;NAV Arbeidslivssenter Vestland&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Møre og Romsdal&quot;, &quot;NAV Arbeidslivssenter Møre og Romsdal&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Nordland&quot;, &quot;NAV Arbeidslivssenter Nordland&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Troms og Finnmark&quot;, &quot;NAV Arbeidslivssenter Troms og Finnmark&quot;,
+IF({!Get_Account_from_WebForm.NAV_Region__c} = &quot;Trøndelag&quot;, &quot;NAV Arbeidslivssenter Trøndelag&quot;,
+NULL
+))))))))))))</expression>
+    </formulas>
     <interviewLabel>TAG Webform Inquiry {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Webform Inquiry</label>
     <processMetadataValues>
@@ -200,6 +367,116 @@ Flowen oversetter webskjema-temaet til feltverdier (tittel, tema, melding) slik 
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_new_Contact</name>
+        <label>Create new Contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_new_contact_to_Employer_inquiry</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>Get_Account_from_WebForm.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email</field>
+            <value>
+                <elementReference>$Record.TAG_WebFormContactEmail__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>FirstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>LastName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>MobilePhone</field>
+            <value>
+                <elementReference>$Record.TAG_WebFormContactPhone__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Informed__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Account_from_WebForm</name>
+        <label>Get Account from WebForm</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_there_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_OrganizationNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.TAG_WebFormAccountOrgNr__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Arbeidslivsenter_Nav_enhet</name>
+        <label>Get Arbeidslivsenter Nav-enhet</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Arbeidslivsenter_as_owner_of_the_EmployerInquiry</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>navUnitArbeidslivsenterName</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>NavUnit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Duplicate_Contacts</name>
+        <label>Get Duplicate Contacts</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_there_Contact_already</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Email</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.TAG_WebFormContactEmail__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Inquiry</name>
         <label>Update Inquiry</label>
@@ -214,7 +491,7 @@ Flowen oversetter webskjema-temaet til feltverdier (tittel, tema, melding) slik 
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Determine_source_and_topic</targetReference>
+            <targetReference>Get_Account_from_WebForm</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -228,7 +505,47 @@ Flowen oversetter webskjema-temaet til feltverdier (tittel, tema, melding) slik 
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
+    <subflows>
+        <name>Create_Application_Log_for_wrong_org_nr</name>
+        <label>Create Application Log for wrong OrgNr</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Determine_source_and_topic</targetReference>
+        </connector>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <stringValue>Org Nr oppgitt i Kontaktskjema er feil</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <stringValue>Innsendt kontaktskjema inneholder feil organisasjonsnummer. Vennligst sjekk arbeidsgivernavnet lagret i TAG_WebFormAccountName__c, og sett riktig arbeidsgiver og Nav-enhet manuelt.</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ReferenceID</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <subflows>
         <name>Log_error</name>
         <label>Log error</label>
