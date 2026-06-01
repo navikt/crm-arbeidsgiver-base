@@ -409,7 +409,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_WebFormAccountOrgNr__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_WebFormContactEmail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_WebFormContactName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_WebFormTheme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.WebFormContactPhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
