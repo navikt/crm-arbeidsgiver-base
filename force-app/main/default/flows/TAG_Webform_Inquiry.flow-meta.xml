@@ -505,7 +505,7 @@ NULL
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Create_Application_Log_for_wrong_org_nr</name>
         <label>Create Application Log for wrong OrgNr</label>
