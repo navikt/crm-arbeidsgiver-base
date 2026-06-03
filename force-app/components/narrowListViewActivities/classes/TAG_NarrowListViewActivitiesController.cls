@@ -17,16 +17,6 @@ public with sharing class TAG_NarrowListViewActivitiesController {
 
     @AuraEnabled(cacheable=true)
     public static TaskListResult fetchOpenTasks(Integer limitSize) {
-        // total count of open Tasks for current user
-        AggregateResult agg = [
-            SELECT count(Id) cnt
-            FROM Task
-            WHERE OwnerId = :UserInfo.getUserId()
-            AND IsClosed = false
-        ];
-
-        Integer total = (Integer)agg.get('cnt');
-
         List<Task> tasks = [
             SELECT 
                 Id,
@@ -47,7 +37,8 @@ public with sharing class TAG_NarrowListViewActivitiesController {
             LIMIT :limitSize
         ];
 
-        // package into wrapper
+        Integer total = tasks.size();
+
         TaskListResult result = new TaskListResult();
         result.records = tasks;
         result.count   = total;
@@ -102,7 +93,7 @@ public with sharing class TAG_NarrowListViewActivitiesController {
     public static List<RecordTypeDto> getIaRecordTypeIds() {
         List<RecordTypeDto> out = new List<RecordTypeDto>();
         for (RecordType rt : [
-            SELECT Id, DeveloperName, SObjectType
+            SELECT Id, DeveloperName
             FROM RecordType
             WHERE SObjectType IN ('Task','Event')
               AND DeveloperName IN ('IA_task','IA_event')
