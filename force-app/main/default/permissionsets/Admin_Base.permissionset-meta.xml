@@ -219,6 +219,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CandidateOutcome__c.RecruitmentEventId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CandidateOutcome__c.Result__c</field>
         <readable>true</readable>
     </fieldPermissions>
