@@ -1,4 +1,4 @@
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import getRelatedList from '@salesforce/apex/TAG_RelatedListController.getRelatedList';
 import { NavigationMixin } from 'lightning/navigation';
 import { getRecord } from 'lightning/uiRecordApi';
@@ -22,9 +22,9 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api filterConditions; // Optional filter conditions.
     @api headerColor; // Header background color.
     @api dynamicUpdate = false; // Auto-refresh flag.
-    @api maxHeight = 20; // Max height in em.
+    @api maxHeight; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api clickableRows; // Enable row click navigation.
-    @api wireFields;
+    @api wireFields; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api collapsedCount = 0; // Number of records to show when collapsed
     @api popoverFields; //Popover additional fields (comma separated)
     @api showNewRecordButton;
@@ -33,9 +33,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api iconNamePopover;
     @api inactivePrefix;
 
-    @track relatedRecords;
-    @track isExpanded = false; // Accordion state
-    @track teamMemberRoleMapping;
+    relatedRecords;
+    isExpanded = false; // Accordion state
+    teamMemberRoleMapping;
+    errorMessage;
+    _wireFields;
 
     flowApiName = 'TAG_Create_New_Contact_Screen';
 
@@ -48,7 +50,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     connectedCallback() {
-        this.wireFields = [this.objectApiName + '.Id'];
+        this._wireFields = [this.objectApiName + '.Id'];
         this.getList();
     }
 
@@ -87,11 +89,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     objectInfo;
 
     // Wire to refresh the list when the parent record changes
-    @wire(getRecord, { recordId: '$recordId', fields: '$wireFields' })
-    getaccountRecord({ data, error }) {
+    @wire(getRecord, { recordId: '$recordId', fields: '$_wireFields' })
+    getaccountRecord({ data }) {
         if (data && this.dynamicUpdate === true) {
             this.getList();
-        } else if (error) {
         }
     }
 
@@ -99,14 +100,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         recordTypeId: '012000000000000AAA',
         fieldApiName: TEAM_MEMBER_ROLE_FIELD
     })
-    wiredTeamMemberRolePicklist({ data, error }) {
+    wiredTeamMemberRolePicklist({ data }) {
         if (data) {
             this.teamMemberRoleMapping = data.values.reduce((acc, entry) => {
                 acc[entry.value] = entry.label;
                 return acc;
             }, {});
-        } else if (error) {
-            console.error('Error fetching picklist values for TeamMemberRole:', error);
         }
     }
 
@@ -121,9 +120,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         })
             .then((data) => {
                 this.relatedRecords = data && data.length > 0 ? data : null;
+                this.errorMessage = undefined;
             })
             .catch((error) => {
-                console.log('An error occurred: ' + JSON.stringify(error, null, 2));
+                this.relatedRecords = null;
+                this.errorMessage = error?.body?.message || 'Kunne ikke hente relaterte poster.';
             });
     }
 
@@ -345,12 +346,15 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     get showRecords() {
         return this.relatedRecords && this.relatedRecords.length > 0 && this.isExpanded;
     }
+    get showEmptyState() {
+        return (!this.relatedRecords || this.relatedRecords.length === 0) && this.isExpanded && !this.hasError;
+    }
+
+    get emptyStateMessage() {
+        return 'Ingen relaterte poster funnet.';
+    }
 
     resolve(path, obj) {
-        if (typeof path !== 'string') {
-            throw new Error('Path must be a string');
-        }
-
         return path.split('.').reduce(function (prev, curr) {
             return prev ? prev[curr] : null;
         }, obj || {});
@@ -403,10 +407,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     get isMobile() {
         return FORM_FACTOR === 'Small';
     }
-    get isDesktop() {
-        return FORM_FACTOR === 'Large';
-    }
-    get ariaHidden() {
+    get isCollapsed() {
         return !this.isExpanded;
+    }
+    get hasError() {
+        return Boolean(this.errorMessage);
     }
 }

@@ -46,7 +46,9 @@ public with sharing class TAG_RelatedListController {
 
         SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, returnList);
         if (!decision.getModifiedIndexes().isEmpty()) {
-            throw new AuraHandledException('Data was stripped');
+            throw new AuraHandledException(
+                'Du mangler tilgang til noen av feltene i relaterte poster. Kontakt administratoren for å få tilgang.'
+            );
         }
 
         return returnList;
@@ -66,12 +68,12 @@ public with sharing class TAG_RelatedListController {
             fieldNames == null ||
             fieldNames.isEmpty()
         ) {
-            throw new AuraHandledException('Missing required parameters');
+            throw new AuraHandledException('Manglende påkrevde parametere');
         }
         if (String.isNotBlank(filterConditions)) {
             Matcher m = FILTER_PATTERN.matcher(filterConditions.trim());
             if (!m.matches()) {
-                throw new AuraHandledException('Invalid filter syntax. Expected: <field> <operator> <value>');
+                throw new AuraHandledException('Ugyldig filter-syntaks. Forventet: <felt> <operator> <verdi>');
             }
         }
     }

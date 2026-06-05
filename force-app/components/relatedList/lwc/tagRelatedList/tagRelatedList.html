@@ -49,10 +49,21 @@
         </div>
 
         <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
-        <template if:true={showRecords}>
-            <!-- DESKTOP VIEW -->
-            <template if:false={isMobile}>
-                <div hidden={ariaHidden} data-id="accordionContent">
+        <div id="accordionContent" hidden={isCollapsed} role="region" aria-label={listTitle}>
+            <template if:true={hasError}>
+                <div class="slds-var-p-around_small slds-text-align_center slds-text-color_error" role="alert">
+                    {errorMessage}
+                </div>
+            </template>
+            <template if:true={showEmptyState}>
+                <div class="slds-var-p-around_small slds-text-align_center slds-text-color_weak">
+                    <p class="slds-m-bottom_none">{emptyStateMessage}</p>
+                </div>
+            </template>
+
+            <template if:true={showRecords}>
+                <!-- DESKTOP VIEW -->
+                <template if:false={isMobile}>
                     <table
                         class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal"
                         data-clickable={clickableRows}
@@ -152,39 +163,40 @@
                             </template>
                         </tbody>
                     </table>
-                </div>
-            </template>
-            <!-- MOBILE VIEW -->
-            <template if:true={isMobile}>
-                <ul class="slds-has-dividers_bottom-space" hidden={ariaHidden} data-id="accordionContent">
-                    <template for:each={displayedRecords} for:item="record">
-                        <li class="slds-item" key={record.Id}>
-                            <lightning-tile label={record.title} href={record.link}>
-                                <dl class="slds-list_horizontal slds-wrap">
-                                    <template for:each={record.recordFields} for:item="field">
-                                        <template if:false={field.isFirst}>
-                                            <dt
-                                                key={field.fieldName}
-                                                class="slds-item_label slds-text-color_weak slds-truncate"
-                                                title={field.label}
-                                            >
-                                                {field.label}:
-                                            </dt>
-                                            <dd
-                                                key={field.fieldName}
-                                                class="slds-item_detail slds-truncate"
-                                                title={field.value}
-                                            >
-                                                {field.value}
-                                            </dd>
+                </template>
+
+                <!-- MOBILE VIEW -->
+                <template if:true={isMobile}>
+                    <ul class="slds-has-dividers_bottom-space" aria-label={listDescription}>
+                        <template for:each={displayedRecords} for:item="record">
+                            <li class="slds-item" key={record.Id}>
+                                <lightning-tile label={record.title} href={record.link}>
+                                    <dl class="slds-list_horizontal slds-wrap">
+                                        <template for:each={record.recordFields} for:item="field">
+                                            <template if:false={field.isFirst}>
+                                                <dt
+                                                    key={field.fieldName}
+                                                    class="slds-item_label slds-text-color_weak slds-truncate"
+                                                    title={field.label}
+                                                >
+                                                    {field.label}:
+                                                </dt>
+                                                <dd
+                                                    key={field.fieldName}
+                                                    class="slds-item_detail slds-truncate"
+                                                    title={field.value}
+                                                >
+                                                    {field.value}
+                                                </dd>
+                                            </template>
                                         </template>
-                                    </template>
-                                </dl>
-                            </lightning-tile>
-                        </li>
-                    </template>
-                </ul>
+                                    </dl>
+                                </lightning-tile>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
             </template>
-        </template>
+        </div>
     </article>
 </template>
