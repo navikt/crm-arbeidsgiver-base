@@ -18,7 +18,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api displayedFields = null;
     @api relatedObjectApiName; // Related object name.
     @api relationField; // Lookup/master-detail field name.
-    @api parentRelationField; // Parent relationship field in the junction.
+    @api parentRelationField; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api filterConditions; // Optional filter conditions.
     @api headerColor; // Header background color.
     @api dynamicUpdate = false; // Auto-refresh flag.
@@ -117,8 +117,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             parentId: this.recordId,
             objectApiName: this.relatedObjectApiName,
             relationField: this.relationField,
-            parentRelationField: this.parentRelationField,
-            parentObjectApiName: this.objectApiName,
             filterConditions: this.filterConditions
         })
             .then((data) => {
@@ -136,19 +134,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     get chevronIcon() {
         return this.isExpanded ? 'utility:chevrondown' : 'utility:chevronright';
-    }
-
-    // Handle row click event if clickableRows is enabled
-    handleRowClick(event) {
-        const recordId = event.currentTarget.dataset.recordId;
-        if (this.relatedObjectApiName === 'AccountContactRelation') {
-            const contactId = event.currentTarget.dataset.contactId;
-            if (contactId) {
-                this.navigateToRecord(contactId, 'Contact');
-            }
-        } else {
-            this.navigateToRecord(recordId, this.relatedObjectApiName);
-        }
     }
 
     navigateToRecord(recordId, objectApiName) {
@@ -304,14 +289,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             return 'background-color: white;';
         }
         return this.headerColor ? `background-color: ${this.headerColor};` : '';
-    }
-
-    get tableHeaderStyle() {
-        return `width: 100%; max-height: ${this.maxHeight}em`;
-    }
-
-    get scrollableStyle() {
-        return `max-height: ${this.maxHeight}em`;
     }
 
     // Prepare column labels array for rendering the header row
