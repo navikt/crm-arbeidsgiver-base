@@ -89,7 +89,7 @@
             <property
                 name="dynamicUpdate"
                 label="Dynamic Update"
-                description="Set to true if an update to the parent record should trigger a list refresh"
+                description="Deprecated: kept for backwards compatibility with existing FlexiPages. No longer used."
                 type="Boolean"
                 default="false"
             />

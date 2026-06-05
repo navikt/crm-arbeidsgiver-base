@@ -1,7 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import getRelatedList from '@salesforce/apex/TAG_RelatedListController.getRelatedList';
 import { NavigationMixin } from 'lightning/navigation';
-import { getRecord } from 'lightning/uiRecordApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
@@ -21,7 +20,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api parentRelationField; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api filterConditions; // Optional filter conditions.
     @api headerColor; // Header background color.
-    @api dynamicUpdate = false; // Auto-refresh flag.
+    @api dynamicUpdate = false; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api maxHeight; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api clickableRows; // Enable row click navigation.
     @api wireFields; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
@@ -37,7 +36,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     isExpanded = false; // Accordion state
     teamMemberRoleMapping;
     errorMessage;
-    _wireFields;
 
     flowApiName = 'TAG_Create_New_Contact_Screen';
 
@@ -50,7 +48,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     }
 
     connectedCallback() {
-        this._wireFields = [this.objectApiName + '.Id'];
         this.getList();
     }
 
@@ -87,14 +84,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     @wire(getObjectInfo, { objectApiName: '$relatedObjectApiName' })
     objectInfo;
-
-    // Wire to refresh the list when the parent record changes
-    @wire(getRecord, { recordId: '$recordId', fields: '$_wireFields' })
-    getaccountRecord({ data }) {
-        if (data && this.dynamicUpdate === true) {
-            this.getList();
-        }
-    }
 
     @wire(getPicklistValues, {
         recordTypeId: '012000000000000AAA',
