@@ -27,31 +27,37 @@ public with sharing class TAG_RelatedListController {
         String relationField,
         String filterConditions
     ) {
-        validateInput(fieldNames, parentId, objectApiName, relationField, filterConditions);
+        try {
+            validateInput(fieldNames, parentId, objectApiName, relationField, filterConditions);
 
-        String whereClause = String.isNotBlank(filterConditions) ? filterConditions.trim() + ' AND ' : '';
-        whereClause += relationField + ' = :parentId';
+            String whereClause = String.isNotBlank(filterConditions) ? filterConditions.trim() + ' AND ' : '';
+            whereClause += relationField + ' = :parentId';
 
-        String query =
-            'SELECT ' +
-            String.join(fieldNames, ', ') +
-            ' FROM ' +
-            objectApiName +
-            ' WHERE ' +
-            whereClause +
-            ' ORDER BY Id DESC LIMIT ' +
-            QUERY_LIMIT;
+            String query =
+                'SELECT ' +
+                String.join(fieldNames, ', ') +
+                ' FROM ' +
+                objectApiName +
+                ' WHERE ' +
+                whereClause +
+                ' ORDER BY Id DESC LIMIT ' +
+                QUERY_LIMIT;
 
-        List<sObject> returnList = Database.query(query);
+            List<sObject> returnList = Database.query(query);
 
-        SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, returnList);
-        if (!decision.getModifiedIndexes().isEmpty()) {
-            throw new AuraHandledException(
-                'Du mangler tilgang til noen av feltene i relaterte poster. Kontakt administratoren for å få tilgang.'
-            );
+            SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, returnList);
+            if (!decision.getModifiedIndexes().isEmpty()) {
+                throw new TAG_RelatedListControllerException(
+                    'Du mangler tilgang til noen av feltene i relaterte poster. Kontakt administratoren for å få tilgang.'
+                );
+            }
+
+            return returnList;
+        } catch (TAG_RelatedListControllerException e) {
+            throw toAuraException(e.getMessage());
+        } catch (Exception e) {
+            throw toAuraException('Feil ved innhenting av relaterte poster');
         }
-
-        return returnList;
     }
 
     private static void validateInput(
@@ -68,13 +74,24 @@ public with sharing class TAG_RelatedListController {
             fieldNames == null ||
             fieldNames.isEmpty()
         ) {
-            throw new AuraHandledException('Manglende påkrevde parametere');
+            throw new TAG_RelatedListControllerException('Manglende påkrevde parametere');
         }
         if (String.isNotBlank(filterConditions)) {
             Matcher m = FILTER_PATTERN.matcher(filterConditions.trim());
             if (!m.matches()) {
-                throw new AuraHandledException('Ugyldig filter-syntaks. Forventet: <felt> <operator> <verdi>');
+                throw new TAG_RelatedListControllerException(
+                    'Ugyldig filter-syntaks. Forventet: <felt> <operator> <verdi>'
+                );
             }
         }
+    }
+
+    private static AuraHandledException toAuraException(String userMessage) {
+        AuraHandledException e = new AuraHandledException(userMessage);
+        e.setMessage(userMessage);
+        return e;
+    }
+
+    public class TAG_RelatedListControllerException extends Exception {
     }
 }

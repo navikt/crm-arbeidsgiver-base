@@ -63,6 +63,7 @@ private class TAG_RelatedListControllerTest {
             insert con;
         }
     }
+
     @isTest
     static void testGetRelatedList_ReturnContacts() {
         Account acct = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
@@ -73,16 +74,19 @@ private class TAG_RelatedListControllerTest {
         String relationField = 'AccountId';
         String filterConditions = 'TAG_Informed__c = true';
 
-        Test.startTest();
-        List<SObject> results = TAG_RelatedListController.getRelatedList(
-            fieldNames,
-            parentId,
-            objectApiName,
-            relationField,
-            filterConditions
-        );
-        Test.stopTest();
-
+        User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<SObject> results;
+        System.runAs(arbeidsgiverUser) {
+            Test.startTest();
+            results = TAG_RelatedListController.getRelatedList(
+                fieldNames,
+                parentId,
+                objectApiName,
+                relationField,
+                filterConditions
+            );
+            Test.stopTest();
+        }
         System.assertEquals(1, results.size(), 'Expected exactly one Contact under TestAccount0.');
 
         Contact fetchedCon = (Contact) results[0];
@@ -115,16 +119,19 @@ private class TAG_RelatedListControllerTest {
         String relationField = 'Account__c';
         String filterConditions = 'InquiryCategory__c = \'Skal ansette\'';
 
-        Test.startTest();
-        List<SObject> oppResults = TAG_RelatedListController.getRelatedList(
-            fieldNames,
-            parentId,
-            objectApiName,
-            relationField,
-            filterConditions
-        );
-        Test.stopTest();
-
+        User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<SObject> oppResults;
+        System.runAs(arbeidsgiverUser) {
+            Test.startTest();
+            oppResults = TAG_RelatedListController.getRelatedList(
+                fieldNames,
+                parentId,
+                objectApiName,
+                relationField,
+                filterConditions
+            );
+            Test.stopTest();
+        }
         System.assertEquals(
             3,
             oppResults.size(),
@@ -145,20 +152,24 @@ private class TAG_RelatedListControllerTest {
             );
         }
     }
+
     @isTest
     static void testGetRelatedList_NoFilter_ReturnsAllChildren() {
         Account acct = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
 
-        Test.startTest();
-        List<SObject> results = TAG_RelatedListController.getRelatedList(
-            new List<String>{ 'Id', 'Name', 'Account__c' },
-            acct.Id,
-            'CustomOpportunity__c',
-            'Account__c',
-            null
-        );
-        Test.stopTest();
-
+        User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<SObject> results;
+        System.runAs(arbeidsgiverUser) {
+            Test.startTest();
+            results = TAG_RelatedListController.getRelatedList(
+                new List<String>{ 'Id', 'Name', 'Account__c' },
+                acct.Id,
+                'CustomOpportunity__c',
+                'Account__c',
+                null
+            );
+            Test.stopTest();
+        }
         System.assertEquals(
             3,
             results.size(),
@@ -166,17 +177,32 @@ private class TAG_RelatedListControllerTest {
         );
     }
 
-    /**
-     * Format-validering: filterConditions må matche "<felt> <operator> <verdi>"
-     * eksakt. Alle disse er gyldig SOQL eller deler av SOQL, men passer ikke
-     * det støttede konfigurasjonsformatet og skal avvises med en tydelig feil
-     * til admin.
-     *
-     * Dette er IKKE en injection-test. SOQL-grammatikken (krav om eksplisitte
-     * parenteser ved AND/OR-blanding, ingen statement-separators, ingen UNION)
-     * gjør struktur-injection praktisk talt umulig så lenge parent-betingelsen
-     * ANDes inn som bind-variabel.
-     */
+    @isTest
+    static void testGetRelatedList_Bulk() {
+        Account acct = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
+
+        List<Contact> bulkContacts = new List<Contact>();
+        for (Integer i = 0; i < 200; i++) {
+            bulkContacts.add(new Contact(LastName = 'Bulk' + i, AccountId = acct.Id, TAG_Informed__c = true));
+        }
+        insert bulkContacts;
+
+        User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<SObject> results;
+        System.runAs(arbeidsgiverUser) {
+            Test.startTest();
+            results = TAG_RelatedListController.getRelatedList(
+                new List<String>{ 'Id', 'LastName', 'AccountId' },
+                acct.Id,
+                'Contact',
+                'AccountId',
+                'TAG_Informed__c = true'
+            );
+            Test.stopTest();
+        }
+        System.assertEquals(201, results.size(), 'Expected all bulk-inserted contacts to be returned.');
+    }
+
     @isTest
     static void testGetRelatedList_InvalidFilterFormat_Throws() {
         Account acct = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
@@ -198,7 +224,6 @@ private class TAG_RelatedListControllerTest {
 
         Test.startTest();
         for (String badFilter : invalidFilters.keySet()) {
-            Boolean threw = false;
             try {
                 TAG_RelatedListController.getRelatedList(
                     new List<String>{ 'Id' },
@@ -207,84 +232,61 @@ private class TAG_RelatedListControllerTest {
                     'AccountId',
                     badFilter
                 );
+                Assert.fail('Expected exception for filter with ' + invalidFilters.get(badFilter) + ': ' + badFilter);
             } catch (AuraHandledException e) {
-                threw = true;
+                Assert.areEqual('Ugyldig filter-syntaks. Forventet: <felt> <operator> <verdi>', e.getMessage());
             }
-            System.assert(
-                threw,
-                'Expected filter to be rejected (' + invalidFilters.get(badFilter) + '): ' + badFilter
-            );
         }
         Test.stopTest();
     }
 
     @isTest
     static void testGetRelatedList_MissingParentId_Throws() {
-        Boolean threw = false;
         try {
             TAG_RelatedListController.getRelatedList(new List<String>{ 'Id' }, null, 'Contact', 'AccountId', null);
+            Assert.fail('Forventet exception');
         } catch (AuraHandledException e) {
-            threw = true;
+            Assert.areEqual('Manglende påkrevde parametere', e.getMessage());
         }
-        System.assert(threw, 'Expected AuraHandledException when parentId is null.');
     }
 
     @isTest
     static void testGetRelatedList_EmptyFieldList_Throws() {
         Account acct = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
 
-        Boolean threw = false;
         try {
             TAG_RelatedListController.getRelatedList(new List<String>(), acct.Id, 'Contact', 'AccountId', null);
+            Assert.fail('Forventet exception');
         } catch (AuraHandledException e) {
-            threw = true;
+            Assert.areEqual('Manglende påkrevde parametere', e.getMessage());
         }
-        System.assert(threw, 'Expected AuraHandledException when fieldNames is empty.');
     }
 
-    /**
-     * Bulk-test: verifiser at metoden returnerer mange rader uten å treffe
-     * governor limits. LIMIT 2000 i klassen begrenser øvre tak.
-     */
     @isTest
-    static void testGetRelatedList_Bulk() {
+    static void testGetRelatedList_BlockedByFLS_Throws() {
         Account acct = [SELECT Id FROM Account WHERE Name = 'TestAccount0' LIMIT 1];
+        List<String> fieldNames = new List<String>{ 'Id', 'FirstName', 'LastName', 'GenderIdentity' };
+        Id parentId = acct.Id;
+        String objectApiName = 'Contact';
 
-        List<Contact> bulkContacts = new List<Contact>();
-        for (Integer i = 0; i < 200; i++) {
-            bulkContacts.add(new Contact(LastName = 'Bulk' + i, AccountId = acct.Id, TAG_Informed__c = true));
-        }
-        insert bulkContacts;
-
-        Test.startTest();
-        List<SObject> results = TAG_RelatedListController.getRelatedList(
-            new List<String>{ 'Id', 'LastName', 'AccountId' },
-            acct.Id,
-            'Contact',
-            'AccountId',
-            'TAG_Informed__c = true'
-        );
-        Test.stopTest();
-
-        // 200 nye Bulk-kontakter + 1 fra @testSetup
-        System.assertEquals(201, results.size(), 'Expected all bulk-inserted contacts to be returned.');
-    }
-
-    @isTest
-    static void tmpTest() {
-        List<Contact> contacts = new List<Contact>();
-        for (Integer i = 0; i < 50; i++) {
-            String randomNumber = String.valueOf(Math.round(Math.random() * 10000)).rightPad(8, '0');
-            contacts.add(
-                new Contact(
-                    AccountId = '001JX00001DWZ1hYAH',
-                    FirstName = 'test' + i,
-                    LastName = 'test',
-                    Email = i + 'testmail@example.com',
-                    MobilePhone = randomNumber
-                )
+        User arbeidsgiverUser = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER USER' LIMIT 1];
+        List<SObject> results;
+        System.runAs(arbeidsgiverUser) {
+            Assert.isFalse(
+                Schema.sObjectType.Contact.fields.GenderIdentity.isAccessible(),
+                'Test user should not have access to GenderIdentity field.'
             );
+            Test.startTest();
+            try {
+                TAG_RelatedListController.getRelatedList(fieldNames, parentId, objectApiName, 'AccountId', null);
+                Assert.fail('Expected exception due to FLS: GenderIdentity is not accessible to the running user.');
+            } catch (AuraHandledException e) {
+                Assert.areEqual(
+                    'Du mangler tilgang til noen av feltene i relaterte poster. Kontakt administratoren for å få tilgang.',
+                    e.getMessage()
+                );
+            }
+            Test.stopTest();
         }
-        insert contacts;
     }
 }
