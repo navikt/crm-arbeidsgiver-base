@@ -26,6 +26,10 @@ lightning-icon {
     /* Allow clicks to pass through wrapper to reach popover content or backdrop */
     pointer-events: none;
 }
+.cmp-popover__body-wrapper {
+    border-radius: var(--slds-g-radius-border-2, 0.5rem);
+    margin-top: var(--slds-g-spacing-1);
+}
 
 /* Trigger button (icon button) - hidden by default, shown on focus */
 .cmp-popover__trigger-button {
