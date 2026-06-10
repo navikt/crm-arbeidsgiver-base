@@ -134,7 +134,7 @@ private without sharing class AccountMessagesController_Test {
         ];
         Assert.areEqual(
             null,
-            AccountMessagesController.findRelatedAccount(bankruptAccount.Id, 'XYZ'),
+            AccountMessagesController.findRelatedAccount('test', 'XYZ'),
             'Should handle missing related accounts'
         );
 
