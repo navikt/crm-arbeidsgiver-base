@@ -19,7 +19,7 @@ export default class TagRecordForm extends LightningElement {
     CARD_STYLE_LARGE = 'slds-card__body slds-card__body_inner';
     SECTION_STYLE_LARGE = 'slds-section';
     SECTION_STYLE_LARGE_OPEN = this.SECTION_STYLE_LARGE + ' slds-is-open';
-    H3_STYLE_LARGE = 'slds-section__title slds-p-around_xx-small slds-theme_shade h3-large';
+    H3_STYLE_LARGE = 'slds-section__title slds-theme_shade h3-large';
     BUTTON_STYLE_LARGE = 'slds-button slds-section__title-action';
     // CSS to mimic standard field section component in mobile app
     CARD_STYLE_SMALL = ''; // No style on mobile
