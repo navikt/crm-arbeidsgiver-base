@@ -2,22 +2,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 0.25rem;
+    border: var(--slds-g-sizing-border-1) solid transparent;
+    border-radius: var(--slds-g-radius-border-2);
 }
 
 .chevronIcon {
-    /* fill: #706e6b;  Salesforce grey */
     align-self: center;
+    margin-inline-end: var(--slds-g-spacing-2);
 }
 
 .headerLeft {
-    display: flex;
-    align-items: center;
-    border-radius: 0.25rem;
     font-size: var(--slds-g-font-scale-var-3);
     line-height: 1.875rem;
-    border: var(--slds-g-sizing-border-1) solid transparent;
 }
+
 .headerToggleAction {
     display: flex;
     align-items: center;
@@ -83,16 +81,12 @@
     color: #7e7e7e !important;
 }
 
-/* Also force text inside inactive rows to appear grey */
+/* Also force text inside inactive rows to appear grey 
 .inactiveRow .slds-truncate {
     color: #7e7e7e;
 }
-
-.slds-table thead tr > th:first-child,
-.slds-table tbody tr > td:first-child {
-    padding-left: 1rem !important;
-}
-
+*/
+/*
 .slds-table[data-clickable='true'] tbody tr:hover td:first-child .slds-truncate {
     text-decoration: underline;
     color: var(--lwc-colorTextLinkHover);
@@ -102,7 +96,7 @@
     color: var(--lwc-colorTextLink);
     text-decoration: none;
 }
-
+*/
 .popoverHeader {
     background-color: #f3f2f2;
     padding: 0.5rem 0.75rem;

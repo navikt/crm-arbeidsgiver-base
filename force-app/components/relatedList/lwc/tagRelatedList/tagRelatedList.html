@@ -3,11 +3,11 @@
         <!-- HEADER WITH TOGGLE AND "NEW RECORD" BUTTON -->
         <div class="headerContainer slds-has-flexi-truncate" style={headerBackground}>
             <!-- Left Group: Icon, Title, Toggle Icon -->
-            <h3 class="headerLeft slds-var-p-around_xx-small slds-has-flexi-truncate">
+            <h3 class="headerLeft slds-has-flexi-truncate">
                 <button
                     type="button"
                     onclick={toggleAccordion}
-                    class="slds-button slds-has-flexi-truncate headerToggleAction"
+                    class="slds-button slds-truncate headerToggleAction"
                     aria-controls="accordionContent"
                     aria-expanded={isExpanded}
                 >
@@ -18,8 +18,7 @@
                             class="headerIcon slds-m-right_x-small"
                         ></lightning-icon>
                     </template>
-                    <lightning-icon icon-name={chevronIcon} size="x-small" class="chevronIcon slds-m-right_xx-small">
-                    </lightning-icon>
+                    <lightning-icon icon-name={chevronIcon} size="x-small" class="chevronIcon"> </lightning-icon>
                     <span class="slds-truncate" title={cardTitle}> {cardTitle} </span>
                 </button>
             </h3>
@@ -33,7 +32,7 @@
                         flow-api-name={flowApiName}
                         flow-input-variables={flowInputVariables}
                         onstatuschange={handleFlowStatusChange}
-                        class="newRecordButton slds-m-left_small"
+                        class="newRecordButton"
                     ></c-tag-flow-modal-button>
                 </template>
                 <template if:false={useFlowForNewRecord}>
@@ -41,7 +40,7 @@
                         label={newRecordButtonLabel}
                         variant="brand"
                         onclick={handleNewRecord}
-                        class="newRecordButton slds-m-left_small"
+                        class="newRecordButton"
                     >
                     </lightning-button>
                 </template>
@@ -65,22 +64,17 @@
                 <!-- DESKTOP VIEW -->
                 <template if:false={isMobile}>
                     <table
-                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal"
+                        class="slds-table slds-table_bordered slds-table_fixed-layout"
                         data-clickable={clickableRows}
                         style="table-layout: fixed"
                         aria-label={listDescription}
+                        role="grid"
                     >
                         <thead>
                             <tr class="slds-line-height_reset">
                                 <template for:each={fieldLabels} for:item="label">
-                                    <th key={label.value} scope="col" style={label.headerStyle}>
-                                        <div
-                                            class="slds-truncate"
-                                            style="display: flex; align-items: center; height: 100%; font-size: 0.75rem"
-                                            title={label.value}
-                                        >
-                                            {label.value}
-                                        </div>
+                                    <th key={label.value} scope="col">
+                                        <div class="slds-truncate" title={label.value}>{label.value}</div>
                                     </th>
                                 </template>
                             </tr>
