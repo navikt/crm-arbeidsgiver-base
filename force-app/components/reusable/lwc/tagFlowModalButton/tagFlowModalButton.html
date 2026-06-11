@@ -1,0 +1,54 @@
+<template>
+    <lightning-button
+        label={buttonLabel}
+        variant={buttonVariant}
+        icon-name={buttonIconName}
+        icon-position={buttonIconPosition}
+        title={buttonTitle}
+        onclick={openModal}
+        class="triggerButton"
+    >
+    </lightning-button>
+
+    <template if:true={isOpen}>
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-modal="true"
+            aria-labelledby="flow-modal-heading"
+            class="slds-modal slds-fade-in-open"
+            onkeydown={handleKeyDown}
+        >
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button
+                        class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Lukk"
+                        onclick={closeModal}
+                        data-id="focus-trap-start"
+                    >
+                        <lightning-icon
+                            icon-name="utility:close"
+                            alternative-text="Lukk"
+                            size="small"
+                            variant="inverse"
+                        ></lightning-icon>
+                        <span class="slds-assistive-text">Lukk</span>
+                    </button>
+                    <h1 id="flow-modal-heading" class="slds-modal__title slds-hyphenate">{modalHeading}</h1>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-flow
+                        flow-api-name={flowApiName}
+                        flow-input-variables={flowInputVariables}
+                        onstatuschange={handleStatusChange}
+                    >
+                    </lightning-flow>
+                    <div data-id="focus-trap-end" tabindex="0" class="slds-assistive-text"></div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" onclick={handleBackdropClick}></div>
+    </template>
+</template>

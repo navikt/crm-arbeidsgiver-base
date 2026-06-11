@@ -5,6 +5,7 @@ public with sharing class AccountMessagesController {
     public static AccountMessagesWrapper getData(String recordId) {
         AccountMessagesWrapper wrapper = new AccountMessagesWrapper();
         Account account;
+        Account sourceAccount;
 
         // Try to get account from database. Return null if no account was found. If an exception is thrown, log it and return null.
         try {
@@ -12,6 +13,7 @@ public with sharing class AccountMessagesController {
             if (account == null) {
                 return null;
             }
+            sourceAccount = account.ParentId == null ? account : account.Parent;
         } catch (Exception e) {
             logError(recordId, e);
             LOGGER.publish();
@@ -20,7 +22,7 @@ public with sharing class AccountMessagesController {
         // Try-catch for insolvent message. If an exception is thrown it is logged, but the method continues.
         try {
             if (isBusinessInsolvent(account)) {
-                wrapper = convertAccountHistoryToWrapper(account.ParentId == null ? account : account.Parent);
+                wrapper = convertAccountHistoryToWrapper(sourceAccount);
             }
         } catch (Exception e) {
             logError(recordId, e);
@@ -49,7 +51,9 @@ public with sharing class AccountMessagesController {
         List<Account> currentAccount = [
             SELECT
                 Id,
+                Name,
                 ParentId,
+                Parent.Name,
                 Parent.INT_IsBankrupt__c,
                 Parent.INT_IsInForcedSettlementOrResolution__c,
                 INT_IsBankrupt__c,
@@ -69,9 +73,8 @@ public with sharing class AccountMessagesController {
     }
 
     @TestVisible
-    private static Account findRelatedAccount(Id accountId, String value) {
-        Account currentAccount = [SELECT Name FROM Account WHERE Id = :accountId LIMIT 1][0];
-        String newAccountName = currentAccount.Name + value;
+    private static Account findRelatedAccount(String accountName, String value) {
+        String newAccountName = accountName + value;
         List<Account> newAccount = [
             SELECT Id, Name
             FROM Account
@@ -99,15 +102,18 @@ public with sharing class AccountMessagesController {
     @TestVisible
     private static AccountMessagesWrapper convertAccountHistoryToWrapper(Account account) {
         String value = 'Denne virksomheten er ';
+        String relatedAccountSuffix;
         Account relatedAccount;
-        String relatedAccountId;
         if (account.INT_IsBankrupt__c == true) {
-            relatedAccount = findRelatedAccount(account.Id, ' KONKURSBO');
+            relatedAccountSuffix = ' KONKURSBO';
             value = value + 'konkurs';
         }
         if (account.INT_IsInForcedSettlementOrResolution__c) {
-            relatedAccount = findRelatedAccount(account.Id, ' TVANGSAVVIKLINGSBO');
+            relatedAccountSuffix = ' TVANGSAVVIKLINGSBO';
             value = value + 'under tvangsavvikling';
+        }
+        if (relatedAccountSuffix != null) {
+            relatedAccount = findRelatedAccount(account.Name, relatedAccountSuffix);
         }
         return new AccountMessagesWrapper(relatedAccount?.id, value);
     }
