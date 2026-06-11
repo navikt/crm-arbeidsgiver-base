@@ -125,6 +125,22 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.RecruitmentEventId__c</fieldItem>
+                <identifier>RecordRecruitmentEventId_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecruitmentEventId__c}</leftValue>
+                        <operator>NE</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-47a39769-6a61-458d-b47f-4f77b14a1e84</name>
         <type>Facet</type>
     </flexiPageRegions>
