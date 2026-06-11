@@ -3,11 +3,11 @@
         <!-- HEADER WITH TOGGLE AND "NEW RECORD" BUTTON -->
         <div class="headerContainer slds-has-flexi-truncate" style={headerBackground}>
             <!-- Left Group: Icon, Title, Toggle Icon -->
-            <h3 class="headerLeft slds-var-p-around_xx-small slds-has-flexi-truncate">
+            <h3 class="headerLeft slds-has-flexi-truncate">
                 <button
                     type="button"
                     onclick={toggleAccordion}
-                    class="slds-button slds-has-flexi-truncate headerToggleAction"
+                    class="slds-button slds-truncate headerToggleAction"
                     aria-controls="accordionContent"
                     aria-expanded={isExpanded}
                 >
@@ -18,149 +18,179 @@
                             class="headerIcon slds-m-right_x-small"
                         ></lightning-icon>
                     </template>
-                    <lightning-icon icon-name={chevronIcon} size="x-small" class="chevronIcon slds-m-right_xx-small">
-                    </lightning-icon>
+                    <lightning-icon icon-name={chevronIcon} size="x-small" class="chevronIcon"> </lightning-icon>
                     <span class="slds-truncate" title={cardTitle}> {cardTitle} </span>
                 </button>
             </h3>
             <!-- Right Group: New Record Button -->
             <template if:true={showNewRecordButton}>
-                <lightning-button 
-                    label={newRecordButtonLabel} 
-                    variant="brand" 
-                    onclick={handleNewRecord}
-                    class="newRecordButton slds-m-left_small">
-                </lightning-button>
+                <template if:true={useFlowForNewRecord}>
+                    <c-tag-flow-modal-button
+                        button-label={newRecordButtonLabel}
+                        button-variant="brand"
+                        modal-heading={newRecordButtonLabel}
+                        flow-api-name={flowApiName}
+                        flow-input-variables={flowInputVariables}
+                        onstatuschange={handleFlowStatusChange}
+                        class="newRecordButton"
+                    ></c-tag-flow-modal-button>
+                </template>
+                <template if:false={useFlowForNewRecord}>
+                    <lightning-button
+                        label={newRecordButtonLabel}
+                        variant="brand"
+                        onclick={handleNewRecord}
+                        class="newRecordButton"
+                    >
+                    </lightning-button>
+                </template>
             </template>
         </div>
-        
+
         <!-- TABLE RENDERED BASED ON EXPANSION STATE -->
-        <template if:true={showRecords}>
-            <!-- MOBILE VIEW -->
-            <template if:true={isMobile}>
-                <ul class="slds-has-dividers_bottom-space" hidden={ariaHidden} data-id="accordionContent">
-                    <template for:each={recordListMobile} for:item="record">
-                        <li class="slds-item" key={record.Id}>
-                            <lightning-tile label={record.title} href={record.link}>
-                                <dl class="slds-list_horizontal slds-wrap">
-                                    <template for:each={record.recordFields} for:item="field">
-                                        <dt
-                                            key={field.label}
-                                            class="slds-item_label slds-text-color_weak slds-truncate"
-                                            title={field.customFieldLabel}
-                                        >
-                                            {field.customFieldLabel}:
-                                        </dt>
-                                        <dd
-                                            key={field.label}
-                                            class="slds-item_detail slds-truncate"
-                                            title={field.value}
-                                        >
-                                            {field.value}
-                                        </dd>
-                                    </template>
-                                </dl>
-                            </lightning-tile>
-                        </li>
-                    </template>
-                </ul>
+        <div id="accordionContent" hidden={isCollapsed} role="region" aria-label={listTitle}>
+            <template if:true={hasError}>
+                <div class="slds-var-p-around_small slds-text-align_center slds-text-color_error" role="alert">
+                    {errorMessage}
+                </div>
             </template>
-            <!-- DESKTOP VIEW -->
-            <template if:false={isMobile}>
-                <div style="overflow:auto; max-height: {maxHeight}em;" hidden={ariaHidden} data-id="accordionContent">
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked-horizontal" data-clickable={clickableRows} style="table-layout: fixed; width: 100%;">
+            <template if:true={showEmptyState}>
+                <div class="slds-var-p-around_small slds-text-align_center slds-text-color_weak">
+                    <p class="slds-m-bottom_none">{emptyStateMessage}</p>
+                </div>
+            </template>
+
+            <template if:true={showRecords}>
+                <!-- DESKTOP VIEW -->
+                <template if:false={isMobile}>
+                    <table
+                        class="slds-table slds-table_bordered slds-table_fixed-layout"
+                        data-clickable={clickableRows}
+                        style="table-layout: fixed"
+                        aria-label={listDescription}
+                        role="grid"
+                    >
                         <thead>
                             <tr class="slds-line-height_reset">
                                 <template for:each={fieldLabels} for:item="label">
-                                    <th key={label.value} scope="col" style={label.headerStyle}>
-                                        <div style="display: flex; align-items: center; height: 100%; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title={label.value}>
-                                            {label.value}
-                                        </div>
+                                    <th key={label.value} scope="col">
+                                        <div class="slds-truncate" title={label.value}>{label.value}</div>
                                     </th>
                                 </template>
                             </tr>
                         </thead>
                         <tbody>
                             <template for:each={displayedRecords} for:item="record" for:index="rowIndex">
-                                <template if:true={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-contact-id={record.ContactId} data-value={rowIndex} class={record.rowClass} onclick={handleRowClick} style="cursor: pointer"
-                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
-                                        <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label} style="max-width: 33%">
-                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
+                                <tr
+                                    key={record.Id}
+                                    data-record-id={record.Id}
+                                    data-contact-id={record.ContactId}
+                                    data-value={rowIndex}
+                                    class={record.rowClass}
+                                >
+                                    <template for:each={record.recordFields} for:item="field">
+                                        <template if:true={field.isFirst}>
+                                            <th scope="row" key={field.fieldName}>
+                                                <div class="firstCell">
+                                                    <c-popover
+                                                        link-label={field.value}
+                                                        link-url={record.link}
+                                                        title={record.popoverTitle}
+                                                        icon-name="utility:preview"
+                                                    >
+                                                        <span slot="body">
+                                                            <div class="popoverHeader">
+                                                                <div
+                                                                    class="slds-media slds-media_center slds-has-flexi-truncate"
+                                                                >
+                                                                    <div class="slds-media__figure">
+                                                                        <lightning-icon
+                                                                            icon-name={record.popoverIcon}
+                                                                            size="small"
+                                                                        ></lightning-icon>
+                                                                    </div>
+                                                                    <div class="slds-media__body">
+                                                                        <h3
+                                                                            class="slds-text-heading_small slds-hyphenate slds-text-color_default"
+                                                                        >
+                                                                            {record.popoverTitle}
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="popoverBody slds-text-color_default">
+                                                                <dl class="slds-list_horizontal slds-wrap">
+                                                                    <template
+                                                                        for:each={record.popoverFields}
+                                                                        for:item="fieldObj"
+                                                                    >
+                                                                        <dt
+                                                                            key={fieldObj.apiName}
+                                                                            class="slds-item_label slds-text-color_weak slds-truncate"
+                                                                            title={fieldObj.apiName}
+                                                                        >
+                                                                            {fieldObj.apiName}:
+                                                                        </dt>
+                                                                        <dd
+                                                                            key={fieldObj.apiName}
+                                                                            class="slds-item_detail slds-truncate"
+                                                                            title={fieldObj.value}
+                                                                        >
+                                                                            {fieldObj.value}
+                                                                        </dd>
+                                                                    </template>
+                                                                </dl>
+                                                            </div>
+                                                        </span>
+                                                    </c-popover>
+                                                </div>
+                                            </th>
+                                        </template>
+
+                                        <template if:false={field.isFirst}>
+                                            <td key={field.fieldName} title={field.value}>
+                                                <div class="slds-truncate">{field.value}</div>
                                             </td>
                                         </template>
-                                    </tr>
-                                </template>
-                                <template if:false={clickableRows}>
-                                    <tr key={record.Id} data-record-id={record.Id} data-contact-id={record.ContactId} data-value={rowIndex} class={record.rowClass}
-                                        onmouseenter={handleMouseEnter} onmouseleave={handleMouseLeave}>
-                                        <template for:each={record.recordFields} for:item="field">
-                                            <td key={field.label} style="max-width: 33%">
-                                                <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="slds-truncate slds-cell-wrap">{field.value}</div>
-                                            </td>
-                                        </template>
-                                    </tr>
-                                </template>
+                                    </template>
+                                </tr>
                             </template>
                         </tbody>
                     </table>
-                </div> 
-            </template>              
-        </template>
+                </template>
 
-        <template if:true={showPopover}>
-            <div 
-                class="slds-popover slds-nubbin_top slds-popover_medium" 
-                style={popoverStyle} 
-                role="dialog" 
-                onmouseenter={handlePopoverEnter} 
-                onmouseleave={handleMouseLeave}
-            >
-                <!-- Popover Header -->
-                <div class="slds-popover__header">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__figure">
-                            <lightning-icon icon-name={iconToUse} size="small"></lightning-icon>
-                        </div>
-                        <div class="slds-media__body">
-                            <h2 id="popover-heading" class="slds-text-heading_small slds-hyphenate">
-                                {popoverTitle}
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Popover Body -->
-                <div class="slds-popover__body">
-                    <template for:each={popoverFieldValues} for:item="fieldObj">
-                        <p key={fieldObj.apiName} class="slds-truncate">
-                            <strong>{fieldObj.apiName}:</strong> {fieldObj.value}
-                        </p>
-                    </template>
-                </div>
-            </div>
-        </template>
-
-        <!-- Modal with embedded screenflow -->
-        <template if:true={showFlowModal}>
-            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
-                <div class="slds-modal__container" style="width: 900px; max-width: 95%;">
-                    <header class="slds-modal__header">
-                        <button class="slds-button slds-button_icon slds-modal__close" title="Avbryt og lukk" onclick={handleCloseFlowModal}>
-                            <lightning-icon icon-name="utility:close" alternative-text="lukk" size="small"></lightning-icon>
-                            <span class="slds-assistive-text">Lukk</span>
-                        </button>
-                    </header>
-
-                    <div class="slds-modal__content slds-p-around_medium">
-                        <lightning-flow onstatuschange={handleFlowStatusChange}>
-                        </lightning-flow>
-                    </div>
-                </div>
-            </section>
-
-            <div class="slds-backdrop slds-backdrop_open"></div>
-        </template>
+                <!-- MOBILE VIEW -->
+                <template if:true={isMobile}>
+                    <ul class="slds-has-dividers_bottom-space" aria-label={listDescription}>
+                        <template for:each={displayedRecords} for:item="record">
+                            <li class="slds-item" key={record.Id}>
+                                <lightning-tile label={record.title} href={record.link}>
+                                    <dl class="slds-list_horizontal slds-wrap">
+                                        <template for:each={record.recordFields} for:item="field">
+                                            <template if:false={field.isFirst}>
+                                                <dt
+                                                    key={field.fieldName}
+                                                    class="slds-item_label slds-text-color_weak slds-truncate"
+                                                    title={field.label}
+                                                >
+                                                    {field.label}:
+                                                </dt>
+                                                <dd
+                                                    key={field.fieldName}
+                                                    class="slds-item_detail slds-truncate"
+                                                    title={field.value}
+                                                >
+                                                    {field.value}
+                                                </dd>
+                                            </template>
+                                        </template>
+                                    </dl>
+                                </lightning-tile>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </template>
+        </div>
     </article>
 </template>

@@ -1,7 +1,6 @@
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import getRelatedList from '@salesforce/apex/TAG_RelatedListController.getRelatedList';
 import { NavigationMixin } from 'lightning/navigation';
-import { getRecord } from 'lightning/uiRecordApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
@@ -10,9 +9,6 @@ import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import FORM_FACTOR from '@salesforce/client/formFactor';
 
 export default class TagRelatedList extends NavigationMixin(LightningElement) {
-    hoverTimer;
-    hideTimer;
-
     @api recordId;
     @api objectApiName;
     @api listTitle; // Title of the list.
@@ -21,13 +17,13 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api displayedFields = null;
     @api relatedObjectApiName; // Related object name.
     @api relationField; // Lookup/master-detail field name.
-    @api parentRelationField; // Parent relationship field in the junction.
+    @api parentRelationField; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api filterConditions; // Optional filter conditions.
     @api headerColor; // Header background color.
-    @api dynamicUpdate = false; // Auto-refresh flag.
-    @api maxHeight = 20; // Max height in em.
+    @api dynamicUpdate = false; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
+    @api maxHeight; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api clickableRows; // Enable row click navigation.
-    @api wireFields;
+    @api wireFields; // Deprecated: kept for backwards compatibility with deployed FlexiPages. No longer used.
     @api collapsedCount = 0; // Number of records to show when collapsed
     @api popoverFields; //Popover additional fields (comma separated)
     @api showNewRecordButton;
@@ -36,18 +32,22 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @api iconNamePopover;
     @api inactivePrefix;
 
-    @track relatedRecords;
-    @track isExpanded = false; // Accordion state
-    @track popoverRecordData; // Holds the record data for the hovered row
-    @track showPopover = false; // Flag to conditionally display popover
-    @track popoverPosition = { top: 0, left: 0 };
-    @track teamMemberRoleMapping;
-    @track showFlowModal = false;
+    relatedRecords;
+    isExpanded = false; // Accordion state
+    teamMemberRoleMapping;
+    errorMessage;
 
     flowApiName = 'TAG_Create_New_Contact_Screen';
 
+    get useFlowForNewRecord() {
+        return this.relatedObjectApiName === 'Contact' || this.relatedObjectApiName === 'AccountContactRelation';
+    }
+
+    get flowInputVariables() {
+        return [{ name: 'recordId', type: 'String', value: this.recordId }];
+    }
+
     connectedCallback() {
-        this.wireFields = [this.objectApiName + '.Id'];
         this.getList();
     }
 
@@ -62,6 +62,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             }
         });
         return Array.from(related);
+    }
+
+    get listDescription() {
+        const count = this.relatedRecords ? this.relatedRecords.length : 0;
+        const title = this.listTitle ?? 'relaterte poster';
+        return `Tabell med ${count} rader: ${title}`;
     }
 
     @wire(getObjectInfos, { objectApiNames: '$relatedObjectNames' })
@@ -79,27 +85,16 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     @wire(getObjectInfo, { objectApiName: '$relatedObjectApiName' })
     objectInfo;
 
-    // Wire to refresh the list when the parent record changes
-    @wire(getRecord, { recordId: '$recordId', fields: '$wireFields' })
-    getaccountRecord({ data, error }) {
-        if (data && this.dynamicUpdate === true) {
-            this.getList();
-        } else if (error) {
-        }
-    }
-
     @wire(getPicklistValues, {
         recordTypeId: '012000000000000AAA',
         fieldApiName: TEAM_MEMBER_ROLE_FIELD
     })
-    wiredTeamMemberRolePicklist({ data, error }) {
+    wiredTeamMemberRolePicklist({ data }) {
         if (data) {
             this.teamMemberRoleMapping = data.values.reduce((acc, entry) => {
                 acc[entry.value] = entry.label;
                 return acc;
             }, {});
-        } else if (error) {
-            console.error('Error fetching picklist values for TeamMemberRole:', error);
         }
     }
 
@@ -110,15 +105,15 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             parentId: this.recordId,
             objectApiName: this.relatedObjectApiName,
             relationField: this.relationField,
-            parentRelationField: this.parentRelationField,
-            parentObjectApiName: this.objectApiName,
             filterConditions: this.filterConditions
         })
             .then((data) => {
                 this.relatedRecords = data && data.length > 0 ? data : null;
+                this.errorMessage = undefined;
             })
             .catch((error) => {
-                console.log('An error occurred: ' + JSON.stringify(error, null, 2));
+                this.relatedRecords = null;
+                this.errorMessage = error?.body?.message || 'Kunne ikke hente relaterte poster.';
             });
     }
 
@@ -129,19 +124,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     get chevronIcon() {
         return this.isExpanded ? 'utility:chevrondown' : 'utility:chevronright';
-    }
-
-    // Handle row click event if clickableRows is enabled
-    handleRowClick(event) {
-        const recordId = event.currentTarget.dataset.recordId;
-        if (this.relatedObjectApiName === 'AccountContactRelation') {
-            const contactId = event.currentTarget.dataset.contactId;
-            if (contactId) {
-                this.navigateToRecord(contactId, 'Contact');
-            }
-        } else {
-            this.navigateToRecord(recordId, this.relatedObjectApiName);
-        }
     }
 
     navigateToRecord(recordId, objectApiName) {
@@ -159,38 +141,23 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
         // Prevent the header's onclick from firing
         event.stopPropagation();
 
-        if (this.relatedObjectApiName === 'Contact' || this.relatedObjectApiName === 'AccountContactRelation') {
-            this.showFlowModal = true;
-            requestAnimationFrame(() => {
-                const flowCmp = this.template.querySelector('lightning-flow');
-                if (flowCmp) {
-                    flowCmp.startFlow(this.flowApiName, [{ name: 'recordId', type: 'String', value: this.recordId }]);
-                }
-            });
-        } else {
-            const defaultValues = encodeDefaultFieldValues({
-                [this.relationField]: this.recordId
-            });
-            this[NavigationMixin.Navigate]({
-                type: 'standard__objectPage',
-                attributes: {
-                    objectApiName: this.relatedObjectApiName,
-                    actionName: 'new'
-                },
-                state: {
-                    defaultFieldValues: defaultValues
-                }
-            });
-        }
-    }
-
-    handleCloseFlowModal() {
-        this.showFlowModal = false;
+        const defaultValues = encodeDefaultFieldValues({
+            [this.relationField]: this.recordId
+        });
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: this.relatedObjectApiName,
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: defaultValues
+            }
+        });
     }
 
     handleFlowStatusChange(event) {
         if (event.detail.status === 'FINISHED' || event.detail.status === 'FINISHED_SCREEN') {
-            this.showFlowModal = false;
             this.getList();
         }
     }
@@ -198,48 +165,17 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     // Compute records to display based on whether the list is expanded or collapsed
     get displayedRecords() {
         const records = this.listRecords;
-        if (!this.isExpanded && records.length > this.collapsedCount) {
-            return records.slice(0, this.collapsedCount);
-        }
-        return records;
+        return !this.isExpanded && records.length > this.collapsedCount
+            ? records.slice(0, this.collapsedCount)
+            : records;
     }
 
-    get recordListMobile() {
-        let customFieldLabels = this.columnLabels ? this.columnLabels.replace(/\s/g, '').split(',') : [];
-        const records = this.listRecords;
-        if (records && records.length > 0) {
-            try {
-                // Create a new list by mapping over the original records
-                const newRecordsList = records.map((record) => {
-                    // Ensure fields array exists and has at least one element
-                    if (record.recordFields && record.recordFields.length > 0) {
-                        const fieldsCopy = [...record.recordFields];
-                        // Combine customFieldLabels with fieldsCopy by adding customFieldLabel to each field
-                        fieldsCopy.forEach((field, index) => {
-                            if (customFieldLabels[index]) {
-                                field.customFieldLabel = customFieldLabels[index];
-                            }
-                        });
-
-                        const firstField = fieldsCopy.shift(); // Remove the first field
-
-                        return {
-                            ...record,
-                            title: firstField.value,
-                            recordFields: fieldsCopy,
-                            link: `/lightning/r/${record.Id}/view`
-                        };
-                    }
-                    // Return the record as-is if fields are empty or undefined
-                    return { ...record };
-                });
-                return newRecordsList;
-            } catch (error) {
-                console.error('Error processing recordListMobile:', error);
-                return [];
-            }
+    buildRecordLink(record) {
+        // AccountContactRelation skal navigere til Contact, ikke AccountContactRelation
+        if (this.relatedObjectApiName === 'AccountContactRelation' && record.ContactId) {
+            return `/lightning/r/Contact/${record.ContactId}/view`;
         }
-        return [];
+        return `/lightning/r/${this.relatedObjectApiName}/${record.Id}/view`;
     }
 
     get displayedFieldList() {
@@ -278,6 +214,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                 }
 
                 let recordFields = [];
+                const columnLabelList = this.columnLabels ? this.columnLabels.split(',').map((l) => l.trim()) : [];
                 this.displayedFieldList.forEach((key, index) => {
                     if (key !== 'Id') {
                         let rawValue = this.resolve(key, dataRecord);
@@ -292,22 +229,32 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
                             rawValue = this.inactivePrefix + ' ' + rawValue;
                         }
                         recordFields.push({
-                            label: key,
-                            value: this.convertBoolean(rawValue)
+                            label: columnLabelList[index] ?? key,
+                            fieldName: key,
+                            value: this.convertBoolean(rawValue),
+                            isFirst: index === 0
                         });
                     }
                 });
-
+                const title = recordFields[0]?.value ?? '';
+                const link = this.buildRecordLink(dataRecord);
                 let rowClass = 'slds-hint-parent';
                 if (isInactive) {
                     rowClass += ' inactiveRow';
+                } else {
+                    rowClass += ' row';
                 }
                 returnRecords.push({
                     recordFields: recordFields,
+                    popoverFields: this._computePopoverFields(dataRecord),
+                    popoverTitle: title,
+                    popoverIcon: this.iconToUse,
                     Id: dataRecord.Id,
                     ContactId: this.resolve('ContactId', dataRecord) || dataRecord.ContactId,
                     isInactive: isInactive,
-                    rowClass: rowClass
+                    rowClass: rowClass,
+                    title: title,
+                    link: link
                 });
             });
         }
@@ -332,14 +279,6 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             return 'background-color: white;';
         }
         return this.headerColor ? `background-color: ${this.headerColor};` : '';
-    }
-
-    get tableHeaderStyle() {
-        return `width: 100%; max-height: ${this.maxHeight}em`;
-    }
-
-    get scrollableStyle() {
-        return `max-height: ${this.maxHeight}em`;
     }
 
     // Prepare column labels array for rendering the header row
@@ -396,64 +335,30 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     get showRecords() {
         return this.relatedRecords && this.relatedRecords.length > 0 && this.isExpanded;
     }
+    get showEmptyState() {
+        return (!this.relatedRecords || this.relatedRecords.length === 0) && this.isExpanded && !this.hasError;
+    }
+
+    get emptyStateMessage() {
+        return 'Ingen relaterte poster funnet.';
+    }
 
     resolve(path, obj) {
-        if (typeof path !== 'string') {
-            throw new Error('Path must be a string');
-        }
-
         return path.split('.').reduce(function (prev, curr) {
             return prev ? prev[curr] : null;
         }, obj || {});
     }
 
-    handleMouseEnter(event) {
-        const recordId = event.currentTarget.dataset.recordId;
-        const rect = event.currentTarget.getBoundingClientRect();
-        this.popoverPosition = {
-            top: rect.top + 2,
-            left: rect.left + 2
-        };
-        this.hoverTimer = window.setTimeout(() => {
-            this.popoverRecordData = this.relatedRecords.find((rec) => rec.Id === recordId);
-            this.showPopover = true;
-        }, 1000);
-    }
-
-    handleMouseLeave() {
-        window.clearTimeout(this.hoverTimer);
-        this.hideTimer = window.setTimeout(() => {
-            this.showPopover = false;
-        }, 200); // Delay closing popover to allow mouse movement
-    }
-
-    handlePopoverEnter() {
-        // Prevent hiding when entering the popover
-        window.clearTimeout(this.hideTimer);
-    }
-
-    // Getter to combine displayedFields with additional popoverFields
-    get combinedPopoverFields() {
-        return this.apexFieldList;
-    }
-
-    // Getter to prepare an array of objects with localized field labels and values from the hovered record
-    get popoverFieldValues() {
-        if (!this.popoverRecordData || !this.objectInfo.data) {
+    _computePopoverFields(dataRecord) {
+        if (!this.objectInfo || !this.objectInfo.data) {
             return [];
         }
-
-        const fieldsToShow = (this.combinedPopoverFields || []).filter((f) => {
-            return f !== 'ContactId' && f !== 'Id';
-        });
-
+        const fieldsToShow = (this.apexFieldList || []).filter((f) => f !== 'ContactId' && f !== 'Id');
         return fieldsToShow.map((fieldApiName) => {
             let fieldLabel;
-
             if (fieldApiName.includes('.')) {
-                let [relationship, childField] = fieldApiName.split('.');
-
-                if (this.relatedObjectMetadata[relationship] && this.relatedObjectMetadata[relationship][childField]) {
+                const [relationship, childField] = fieldApiName.split('.');
+                if (this.relatedObjectMetadata?.[relationship]?.[childField]) {
                     fieldLabel = this.relatedObjectMetadata[relationship][childField].label;
                 } else {
                     fieldLabel = childField;
@@ -461,8 +366,7 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             } else {
                 fieldLabel = this.objectInfo.data.fields[fieldApiName]?.label || fieldApiName;
             }
-
-            let rawValue = this.resolve(fieldApiName, this.popoverRecordData);
+            let rawValue = this.resolve(fieldApiName, dataRecord);
             if (
                 fieldApiName === 'TeamMemberRole' &&
                 this.teamMemberRoleMapping &&
@@ -470,45 +374,11 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             ) {
                 rawValue = this.teamMemberRoleMapping[rawValue];
             }
-
             return {
                 apiName: fieldLabel,
                 value: this.convertBoolean(rawValue)
             };
         });
-    }
-
-    // Getter for popover style
-    get popoverStyle() {
-        if (this.popoverPosition) {
-            // Get the host element's bounding rectangle
-            const containerRect = this.template.host.getBoundingClientRect();
-            // Compute coordinates relative to the host container
-            const relativeLeft = this.popoverPosition.left - containerRect.left;
-            const relativeTop = this.popoverPosition.top - containerRect.top;
-            // Add a vertical offset (+20px) and change the transform to not shift upward
-            return `position: absolute; 
-                    top: ${relativeTop + 20}px; 
-                    left: ${relativeLeft}px; 
-                    z-index: 1000; 
-                    transform: translate(0, 0);`;
-        }
-        return '';
-    }
-
-    get popoverTitle() {
-        if (
-            this.popoverRecordData &&
-            this.displayedFieldList &&
-            this.displayedFieldList.length > 0 &&
-            this.objectInfo.data
-        ) {
-            // Get the first field's API name from the displayedFields array
-            let firstFieldApiName = this.displayedFieldList[0];
-            let fieldValue = this.resolve(firstFieldApiName, this.popoverRecordData);
-            return `${fieldValue}`;
-        }
-        return '';
     }
 
     get iconToUse() {
@@ -526,10 +396,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
     get isMobile() {
         return FORM_FACTOR === 'Small';
     }
-    get isDesktop() {
-        return FORM_FACTOR === 'Large';
-    }
-    get ariaHidden() {
+    get isCollapsed() {
         return !this.isExpanded;
+    }
+    get hasError() {
+        return Boolean(this.errorMessage);
     }
 }
