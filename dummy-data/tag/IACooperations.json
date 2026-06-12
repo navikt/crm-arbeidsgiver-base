@@ -1,0 +1,32 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "IACooperation__c",
+                "referenceId": "IACooperation__cRef1"
+            },
+            "Name": "IA Samarbeid",
+            "Account__c": "@AccountRef17",
+            "CooperationId__c": "101",
+            "Status__c": "AKTIV",
+            "StartDate__c": "2026-01-01",
+            "EndDate__c": "2026-06-01",
+            "PlanId__c": "15bb64dc-26bd-57f8-a198-32134818116f",
+            "PlanStatus__c": "AKTIV"
+        },
+        {
+            "attributes": {
+                "type": "IACooperation__c",
+                "referenceId": "IACooperation__cRef2"
+            },
+            "Name": "IA Samarbeid 2",
+            "Account__c": "@AccountRef17",
+            "CooperationId__c": "102",
+            "Status__c": "AKTIV",
+            "StartDate__c": "2026-06-01",
+            "EndDate__c": "2026-12-01",
+            "PlanId__c": "1d58e56d-b9b0-56a0-9d4a-48c210536232",
+            "PlanStatus__c": "AKTIV"
+        }
+    ]
+}

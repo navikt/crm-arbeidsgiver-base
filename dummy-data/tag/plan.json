@@ -46,5 +46,11 @@
         "saveRefs": false,
         "resolveRefs": true,
         "files": ["Inquiries.json"]
+    },
+    {
+        "sobject": "IACooperation__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": ["IACooperations.json"]
     }
 ]

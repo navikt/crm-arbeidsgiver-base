@@ -1,0 +1,109 @@
+<aura:component implements="lightning:appHomeTemplate" access="public">
+    <aura:attribute name="header1" type="Aura.Component[]" />
+    <aura:attribute name="row1col1" type="Aura.Component[]" />
+    <aura:attribute name="row1col2" type="Aura.Component[]" />
+    <aura:attribute name="row1col3" type="Aura.Component[]" />
+    <aura:attribute name="row2col1" type="Aura.Component[]" />
+    <aura:attribute name="row2col2" type="Aura.Component[]" />
+    <aura:attribute name="row2col3" type="Aura.Component[]" />
+
+    <!-- Additional attributes for the second header and rows, if needed in the future   
+    <aura:attribute name="header2" type="Aura.Component[]" />
+    <aura:attribute name="row3col1" type="Aura.Component[]" />
+    <aura:attribute name="row3col2" type="Aura.Component[]" />
+    <aura:attribute name="row3col3" type="Aura.Component[]" />
+    <aura:attribute name="row4col1" type="Aura.Component[]" />
+    <aura:attribute name="row4col2" type="Aura.Component[]" />
+    <aura:attribute name="row4col3" type="Aura.Component[]" />
+
+    <aura:attribute name="header3" type="Aura.Component[]" />
+    <aura:attribute name="row5col1" type="Aura.Component[]" />
+    <aura:attribute name="row5col2" type="Aura.Component[]" />
+    <aura:attribute name="row5col3" type="Aura.Component[]" />
+    <aura:attribute name="row6col1" type="Aura.Component[]" />
+    <aura:attribute name="row6col2" type="Aura.Component[]" />
+    <aura:attribute name="row6col3" type="Aura.Component[]" />
+    -->
+
+    <div class="slds-grid slds-wrap slds-var-p-bottom_small">
+        <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_small">
+            {! v.header1 }
+            <div class="slds-grid slds-wrap slds-gutters_direct-xx-small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+                    {! v.row1col1 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                    {! v.row1col2 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-large-size_2-of-12">
+                    {! v.row1col3 }
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters_direct-xx-small slds-var-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+                    {! v.row2col1 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                    {! v.row2col2 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-large-size_2-of-12">
+                    {! v.row2col3 }
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional sections for the second header and rows, if needed in the future 
+        <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_small">
+            {! v.header2 }
+            <div class="slds-grid slds-wrap slds-gutters_direct-xx-small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+                    {! v.row3col1 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                    {! v.row3col2 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-large-size_2-of-12">
+                    {! v.row3col3 }
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters_direct-xx-small slds-var-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+                    {! v.row4col1 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                    {! v.row4col2 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-large-size_2-of-12">
+                    {! v.row4col3 }
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_small">
+            {! v.header3 }
+            <div class="slds-grid slds-wrap slds-gutters_direct-xx-small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+                    {! v.row5col1 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                    {! v.row5col2 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-large-size_2-of-12">
+                    {! v.row5col3 }
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters_direct-xx-small slds-var-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+                    {! v.row6col1 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                    {! v.row6col2 }
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-large-size_2-of-12">
+                    {! v.row6col3 }
+                </div>
+            </div>
+        </div>
+        -->
+    </div>
+</aura:component>
