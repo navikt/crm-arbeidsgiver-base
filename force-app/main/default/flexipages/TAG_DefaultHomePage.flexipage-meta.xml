@@ -160,6 +160,82 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>TAG_Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Innkommende henvendelser fra arbeidsgivere via kontaktskjema, Arbeidsplassen.no eller Arbeidsgivertelefonen. Viser henvendelser for ditt fylke som ikke er tildelt, sortert med eldste først.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom28</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>pne_henvendelser_Min_region</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>EmployerInquiry__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>quickActionsInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>TAG_RecievedDateTime__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Henvendelser mitt fylke</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                    <value>{{TAG_Overdue__c}}</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                    <value>Har ligget i 2 virkedager</value>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row1col3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>header3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
                     <value>Opprett ny mulighet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -221,53 +297,6 @@
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView6</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>row1col3</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>headerUserAffiliation</name>
-                    <value>Nytt i Salesforce</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showWelcomeMessage</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentName>tagUserOfficeHeader</componentName>
-                <identifier>c_tagUserOfficeHeader4</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>header3</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>inputHelpText</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>inputListViewApiName</name>
-                    <value>Teams_Alle_innlegg</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>inputNumberOfRecordsToShow</name>
-                    <value>2</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>inputRecentThresholdHours</name>
-                    <value>96</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>inputTitle</name>
-                    <value>Bli med å påvirke Salesforce Arbeidsgiver</value>
-                </componentInstanceProperties>
-                <componentName>announcement</componentName>
-                <identifier>c_announcement5</identifier>
             </componentInstance>
         </itemInstances>
         <name>row1col4</name>
@@ -661,6 +690,31 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>inputHelpText</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inputListViewApiName</name>
+                    <value>Teams_Alle_innlegg</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inputNumberOfRecordsToShow</name>
+                    <value>2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inputRecentThresholdHours</name>
+                    <value>96</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>inputTitle</name>
+                    <value>Bli med å påvirke Salesforce Arbeidsgiver</value>
+                </componentInstanceProperties>
+                <componentName>announcement</componentName>
+                <identifier>c_announcement5</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>row3col4</name>
         <type>Region</type>
     </flexiPageRegions>

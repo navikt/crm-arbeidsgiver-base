@@ -36,31 +36,27 @@
                 </div>
             </div>
         </div>
-        <!-- Top middle section -->
-        <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
+        <!-- Top right section -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
             <!-- Header row -->
             <div class="slds-col slds-size_1-of-1">{! v.header2 }</div>
-            <!-- 1 column -->
+            <!-- 2 columns -->
             <div class="slds-grid slds-wrap slds-gutters_direct-x-small">
                 <div
-                    class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_1-of-1 slds-p-bottom_small"
+                    class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_small"
                 >
                     {! v.row1col3 }
                 </div>
-            </div>
-        </div>
-        <!-- Top right section -->
-        <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
-            <!-- Header row -->
-            <div class="slds-col slds-size_1-of-1">{! v.header3 }</div>
-            <!-- 1 column -->
-            <div class="slds-grid slds-wrap slds-gutters_direct-x-small">
                 <div
-                    class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_1-of-1 slds-p-bottom_small"
+                    class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_small"
                 >
                     {! v.row1col4 }
                 </div>
             </div>
+        </div>
+        <!-- Hidden regions (retained because the template is global/in use) -->
+        <div class="slds-hide">
+            {! v.header3 }
         </div>
         <!-- Bottom section -->
         <div class="slds-col slds-size_1-of-1">
