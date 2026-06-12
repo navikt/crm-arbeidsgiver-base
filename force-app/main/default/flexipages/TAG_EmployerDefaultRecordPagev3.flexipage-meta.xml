@@ -426,6 +426,10 @@
                 <identifier>force_relatedListQuickLinksContainer</identifier>
             </componentInstance>
         </itemInstances>
+        <name>Facet-17c28b92-336f-4f1d-b2ed-4312f50b1d0d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -451,40 +455,58 @@
                 <identifier>flexipage_reportChart</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-baa46d14-c329-4021-9ff9-1cf0b5847157</name>
+        <name>Facet-110465c5-2934-4645-9253-61544b6d7921</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>active</name>
-                    <value>true</value>
-                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-baa46d14-c329-4021-9ff9-1cf0b5847157</value>
+                    <value>Facet-17c28b92-336f-4f1d-b2ed-4312f50b1d0d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>title</name>
+                    <name>label</name>
                     <value>Alle aktiviteter</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>flexipage_tab</identifier>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection--9k1j5rtwzq6</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-d7cbfd9b-0440-4ce0-b5a5-7e02c0bd0888</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-110465c5-2934-4645-9253-61544b6d7921</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Vis sykefravær i graf</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection1</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-1f2b5d61-7645-45d8-babd-f9a37cef53eb</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>tabs</name>
-                    <value>Facet-d7cbfd9b-0440-4ce0-b5a5-7e02c0bd0888</value>
+                    <name>accordionSections</name>
+                    <value>Facet-1f2b5d61-7645-45d8-babd-f9a37cef53eb</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:tabset</componentName>
-                <identifier>flexipage_tabset2</identifier>
+                <componentName>flexipage:accordion</componentName>
+                <identifier>flexipage_accordion</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>

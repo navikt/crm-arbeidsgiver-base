@@ -70,15 +70,23 @@
         <fields>InquiryCategory__c</fields>
         <fields>Source__c</fields>
         <fields>InclusionStage__c</fields>
+        <fields>LAST_UPDATE</fields>
         <relatedList>CustomOpportunity__c.TAG_NavUnit__c</relatedList>
+        <sortField>LAST_UPDATE</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>CRM_Account__c</fields>
-        <fields>CRM_Theme__c</fields>
-        <fields>CRM_Status__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>NavTask__c.CRM_NavUnit__c</relatedList>
+        <fields>TAG_Account__c</fields>
+        <fields>TAG_Source__c</fields>
+        <fields>TAG_IsOverdue__c</fields>
+        <fields>TAG_Status__c</fields>
+        <fields>TAG_ClosedReason__c</fields>
+        <relatedList>EmployerInquiry__c.TAG_NavUnit__c</relatedList>
+        <sortField>TAG_IsOverdue__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -87,8 +95,12 @@
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
         <relatedList>CustomCampaign__c.NAV_Unit__c</relatedList>
+        <sortField>StartDate__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Type__c</fields>
         <fields>Status__c</fields>
@@ -96,19 +108,44 @@
         <fields>EndDate__c</fields>
         <fields>Link__c</fields>
         <relatedList>Workfare__c.NavUnit__c</relatedList>
+        <sortField>StartDate__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>MeetingTime__c</fields>
         <fields>Status__c</fields>
         <relatedList>DialogueMeeting__c.NavUnit__c</relatedList>
+        <sortField>MeetingTime__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>CandidateOutcomeLink__c</fields>
         <fields>Result__c</fields>
         <fields>TimeRegistered__c</fields>
         <fields>JobPosting__c</fields>
+        <fields>Title__c</fields>
+        <fields>Extent__c</fields>
+        <fields>EngagementType__c</fields>
         <relatedList>CandidateOutcome__c.NavUnit__c</relatedList>
+        <sortField>TimeRegistered__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>CRM_Account__c</fields>
+        <fields>CRM_Theme__c</fields>
+        <fields>CRM_Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>NavTask__c.CRM_NavUnit__c</relatedList>
+        <sortField>CREATED_DATE</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
