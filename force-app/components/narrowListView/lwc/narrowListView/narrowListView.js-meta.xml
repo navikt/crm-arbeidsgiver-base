@@ -7,19 +7,17 @@
     </description>
     <targets>
         <target>lightning__HomePage</target>
-        <target>lightning__AppPage</target>
     </targets>
     <targetConfigs>
-        <targetConfig targets="lightning__HomePage,lightning__AppPage">
+        <targetConfig targets="lightning__HomePage">
             <property name="objectApiName" label="Object API Name" type="String"
                 placeholder="CustomOpportunity__c" description="The API name of a supported object."
-                required="true" default="CustomOpportunity__c" />
+                required="true" />
             <property name="iconName" label="Object icon" type="String"
                 placeholder="custom:custom14" />
             <property name="listViewApiName" label="List View API Name" type="String"
                 placeholder="TAG_Mine_pne_muligheter"
-                description="The API name of a list view, such as AllAccounts." required="true"
-                default="TAG_Mine_pne_muligheter" />
+                description="The API name of a list view, such as AllAccounts." required="true" />
             <property name="newRecordButton" label="Show New Record Button" type="Boolean"
                 default="false" />
             <property name="altTextNewRecordButton" label="Alternative text New Record Button"
@@ -30,8 +28,7 @@
 
             <property name="titleFieldInput" label="Primary field" type="String"
                 placeholder="TAG_Link__c"
-                description="Use field API name. Obs! CASE sensitive fieldnames! "
-                default="TAG_Link__c" />
+                description="Use field API name. Obs! CASE sensitive fieldnames! " required="true" />
             <property name="detailFieldInput" label="Secondary field" type="String"
                 placeholder="Account__r.Name"
                 description="Use field API name. For lookup fields use SOQL notation relation_name.fieldname, for instance Account__r.Name (max 1 relation level). Obs! CASE sensitive fieldnames!" />
@@ -46,7 +43,7 @@
                 placeholder='Denne oppføringen er eldre enn 1 dag og er i "Ny henvendelse" stadiet.' />
 
             <property name="titleText" label="Component: Heading" type="String"
-                placeholder="Mine muligheter" required="true" default="Mine muligheter" />
+                placeholder="Mine muligheter" required="true" />
             <property name="helpText" label="Component: Tooltip" type="String"
                 placeholder="Dette er en hjelpetekst for komponentet." />
 
