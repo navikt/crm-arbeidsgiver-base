@@ -15,4 +15,8 @@
     <description>Tilgang til Arbeidsgiver Beta appen</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Arbeidsgiver - Beta app</label>
+    <tabSettings>
+        <tab>TAG_PipelineProcessDashboard</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
 </PermissionSet>
