@@ -8,21 +8,20 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>Donut</chartType>
+        <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>false</expandOthers>
-        <groupingColumn>EmployerInquiry__c.TAG_Source__c</groupingColumn>
-        <legendPosition>Bottom</legendPosition>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>FK_NAME</groupingColumn>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>true</showAxisLabels>
+        <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
-        <showTotal>true</showTotal>
+        <showTotal>false</showTotal>
         <showValues>true</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
-        <title>Antall åpne henv. pr kilde og totalt</title>
+        <title>Åpne mer enn 2 dager, pr. kontor</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
@@ -30,18 +29,21 @@
         <field>CUST_NAME</field>
     </columns>
     <columns>
-        <field>EmployerInquiry__c.TAG_Account__c</field>
+        <field>EmployerInquiry__c.TAG_NavRegion__c</field>
     </columns>
     <columns>
         <field>EmployerInquiry__c.TAG_Status__c</field>
     </columns>
     <columns>
+        <field>EmployerInquiry__c.TAG_Source__c</field>
+    </columns>
+    <columns>
         <field>EmployerInquiry__c.TAG_RecievedDateTime__c</field>
     </columns>
     <columns>
-        <field>EmployerInquiry__c.TAG_IsOverdue__c</field>
+        <field>CUST_OWNER_NAME</field>
     </columns>
-    <description>Viser alle åpne henvendelser for ditt kontor, gruppert på kilde.</description>
+    <description>Viser henvendelser for din region som ikke er fullført innen fristen på 2 virkedager, gruppert på Nav kontor.</description>
     <filter>
         <criteriaItems>
             <column>EmployerInquiry__c.TAG_Status__c</column>
@@ -51,7 +53,14 @@
             <value>Ny henvendelse,Følges opp</value>
         </criteriaItems>
         <criteriaItems>
-            <column>EmployerInquiry__c.TAG_IsMyNavUnit__c</column>
+            <column>EmployerInquiry__c.TAG_IsMyNavRegion__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>EmployerInquiry__c.TAG_Overdue__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
@@ -61,11 +70,14 @@
     </filter>
     <format>Summary</format>
     <groupingsDown>
+        <aggregateType>RowCount</aggregateType>
         <dateGranularity>Day</dateGranularity>
-        <field>EmployerInquiry__c.TAG_Source__c</field>
-        <sortOrder>Asc</sortOrder>
+        <field>FK_NAME</field>
+        <sortByName>RowCount</sortByName>
+        <sortOrder>Desc</sortOrder>
+        <sortType>Aggregate</sortType>
     </groupingsDown>
-    <name>DIR-Åpne henv. - kontor</name>
+    <name>DIR-Forfalte henv. - region</name>
     <params>
         <name>co</name>
         <value>1</value>

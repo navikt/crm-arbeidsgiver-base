@@ -20,20 +20,14 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingSortProperties>
-                    <groupingSorts>
-                        <groupingLevel>g1</groupingLevel>
-                        <sortOrder>a</sortOrder>
-                    </groupingSorts>
-                </groupingSortProperties>
-                <header>Åpne henvendelser - kontor</header>
-                <legendPosition>Bottom</legendPosition>
-                <report>TAGHenvendelserLeder/DIRpne_henv_kontor_iUh</report>
+                <groupingSortProperties/>
+                <header>Forfalte henvendelser - kontor</header>
+                <report>TAGHenvendelserLeder/DIRForfalte_henvkontor_XUB</report>
                 <showPercentage>false</showPercentage>
                 <showPicturesOnCharts>false</showPicturesOnCharts>
-                <showValues>true</showValues>
+                <showValues>false</showValues>
                 <sortBy>RowLabelAscending</sortBy>
-                <title>Antall åpne henv. pr kilde og totalt</title>
+                <title>Åpne mer enn 2 dager, pr. kilde</title>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -92,20 +86,14 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingSortProperties>
-                    <groupingSorts>
-                        <groupingLevel>g1</groupingLevel>
-                        <sortOrder>a</sortOrder>
-                    </groupingSorts>
-                </groupingSortProperties>
-                <header>Åpne henvendelser - region</header>
-                <legendPosition>Bottom</legendPosition>
-                <report>TAGHenvendelserLeder/DIRpne_henv_region_ywS</report>
+                <groupingSortProperties/>
+                <header>Forfalte henvendelser - region</header>
+                <report>TAGHenvendelserLeder/DIRForfalte_henv_region_ILS</report>
                 <showPercentage>false</showPercentage>
                 <showPicturesOnCharts>false</showPicturesOnCharts>
-                <showValues>true</showValues>
+                <showValues>false</showValues>
                 <sortBy>RowLabelAscending</sortBy>
-                <title>Antall åpne henv. pr Nav kontor</title>
+                <title>Åpne mer enn 2 dager, pr. kontor</title>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>8</rowIndex>
