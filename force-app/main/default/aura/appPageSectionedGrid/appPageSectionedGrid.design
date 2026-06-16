@@ -1,0 +1,27 @@
+<design:component label="App: Sectioned Grid with Header">
+    <flexipage:template>
+        <flexipage:region name="header1" label="First section header" defaultWidth="XLARGE" />
+        <flexipage:region name="row1col1" label="First section - Top left" defaultWidth="MEDIUM" />
+        <flexipage:region name="row1col2" label="First section - Top center" defaultWidth="MEDIUM" />
+        <flexipage:region name="row1col3" label="First section - Top right" defaultWidth="MEDIUM" />
+        <flexipage:region name="row2col1" label="First section - Bottom left" defaultWidth="MEDIUM" />
+        <flexipage:region name="row2col2" label="First section - Bottom center" defaultWidth="MEDIUM" />
+        <flexipage:region name="row2col3" label="First section - Bottom right" defaultWidth="MEDIUM" />
+        <!-- Additional attributes for the second header and rows, if needed in the future 
+        <flexipage:region name="header2" label="Second section header" defaultWidth="XLARGE" />
+        <flexipage:region name="row3col1" label="Second section - Top left" defaultWidth="MEDIUM" />
+        <flexipage:region name="row3col2" label="Second section - Top center" defaultWidth="MEDIUM" />
+        <flexipage:region name="row3col3" label="Second section - Top right" defaultWidth="MEDIUM" />
+        <flexipage:region name="row4col1" label="Second section - Bottom left" defaultWidth="MEDIUM" />
+        <flexipage:region name="row4col2" label="Second section - Bottom center" defaultWidth="MEDIUM" />
+        <flexipage:region name="row4col3" label="Second section - Bottom right" defaultWidth="MEDIUM" />
+        <flexipage:region name="header3" label="Third section header" defaultWidth="XLARGE" />
+        <flexipage:region name="row5col1" label="Third section - Top left" defaultWidth="MEDIUM" />
+        <flexipage:region name="row5col2" label="Third section - Top center" defaultWidth="MEDIUM" />
+        <flexipage:region name="row5col3" label="Third section - Top right" defaultWidth="MEDIUM" />
+        <flexipage:region name="row6col1" label="Third section - Bottom left" defaultWidth="MEDIUM" />
+        <flexipage:region name="row6col2" label="Third section - Bottom center" defaultWidth="MEDIUM" />
+        <flexipage:region name="row6col3" label="Third section - Bottom right" defaultWidth="MEDIUM" />
+          -->
+    </flexipage:template>
+</design:component>
