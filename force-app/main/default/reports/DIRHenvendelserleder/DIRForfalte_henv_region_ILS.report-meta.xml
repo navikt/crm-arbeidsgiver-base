@@ -55,7 +55,7 @@
         <criteriaItems>
             <column>EmployerInquiry__c.TAG_IsMyNavRegion__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
+            <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
         </criteriaItems>
