@@ -30,7 +30,7 @@
     <columns>
         <field>CUST_NAME</field>
     </columns>
-    <description>Viser utfall av henvendelser for ditt kontor de siste 12 månedene, gruppert på kilde.</description>
+    <description>Viser utfall av henvendelser for din region de siste 12 månedene, gruppert på kilde.</description>
     <filter>
         <criteriaItems>
             <column>EmployerInquiry__c.TAG_Status__c</column>
@@ -49,14 +49,14 @@
         <criteriaItems>
             <column>EmployerInquiry__c.TAG_ClosedReason__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
+            <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Utforsker samarbeid videre / oppfølging planlagt,Starter tiltakssamarbeid,Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand),Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no),Fikk rådgivning/svar på det de lurte på,Kontaktes av noen andre i Nav,Ble veiledet til selvbetjening / prøve selv,Ikke aktuelt / Nav skal ikke bistå,Fikk ikke tak i arbeidsgiveren</value>
+            <value>Utforsker samarbeid videre / oppfølging planlagt,Starter tiltakssamarbeid,Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand),Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no),Skal delta på jobbmesse,Fikk rådgivning/svar på det de lurte på,Kontaktes av noen andre i Nav,Ble veiledet til selvbetjening / prøve selv,Ikke aktuelt / Nav skal ikke bistå,Fikk ikke tak i arbeidsgiveren</value>
         </criteriaItems>
         <criteriaItems>
-            <column>EmployerInquiry__c.TAG_IsMyNavUnit__c</column>
+            <column>EmployerInquiry__c.TAG_IsMyNavRegion__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
+            <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
         </criteriaItems>
@@ -73,7 +73,7 @@
         <field>EmployerInquiry__c.TAG_Source__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>DIR - Løste henv. - kontor</name>
+    <name>DIR-Løste henv. - region</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -82,7 +82,7 @@
     <scope>organization</scope>
     <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
+    <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>EmployerInquiry__c.TAG_RecievedDateTime__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
