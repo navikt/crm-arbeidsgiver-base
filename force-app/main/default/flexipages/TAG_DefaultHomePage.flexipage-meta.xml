@@ -171,7 +171,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>helpText</name>
-                    <value>Innkommende henvendelser fra arbeidsgivere via kontaktskjema, Arbeidsplassen.no eller Arbeidsgivertelefonen. Viser henvendelser for din region som ikke er tildelt, sortert med eldste først.</value>
+                    <value>Innkommende henvendelser fra arbeidsgivere via kontaktskjema, Arbeidsplassen.no eller Arbeidsgivertelefonen. Viser henvendelser for din Nav-region som ikke er tildelt, sortert med eldste først.</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -222,6 +222,36 @@
                 </componentInstanceProperties>
                 <componentName>narrowListView</componentName>
                 <identifier>c_narrowListView3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>componentName</name>
+                    <value>Henvendelser min region</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>floatRight</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>followUpMessage</name>
+                    <value>Takk!</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>page</name>
+                    <value>Home</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>question</name>
+                    <value>Er det nyttig for deg å se hele regionen?</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>thankYouMessage</name>
+                    <value>Takk!</value>
+                </componentInstanceProperties>
+                <componentName>requestUserFeedback</componentName>
+                <identifier>c_requestUserFeedback</identifier>
             </componentInstance>
         </itemInstances>
         <name>row1col3</name>
