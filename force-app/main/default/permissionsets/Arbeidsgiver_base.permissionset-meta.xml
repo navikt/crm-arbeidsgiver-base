@@ -449,6 +449,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>TAG_FeedbackHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TAG_NarrowListViewActivitiesController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -583,6 +587,10 @@
     <customPermissions>
         <enabled>true</enabled>
         <name>Arbeidsgiver</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Arbeidsgiver_Se_sp_rsm_l_fra_In_App_Feedback</name>
     </customPermissions>
     <description>Standard tilgang for ansatte som jobber med arbeidsgivere. Gir tilgang til Account, Contact, Activities og Nav Unit</description>
     <fieldPermissions>
