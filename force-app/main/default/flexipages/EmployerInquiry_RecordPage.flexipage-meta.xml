@@ -353,7 +353,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;Henvendelser markert som fullført og kan bare endres av administrator. Om du har behov for å endre den så kan du &lt;a href=&quot;https://jira.adeo.no/plugins/servlet/desk/portal/541/create/3442&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;opprette en sak i Porten.&lt;/a&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;Henvendelser markert som fullført kan bare endres av administrator. Om du har behov for å endre den så kan du &lt;a href=&quot;https://jira.adeo.no/plugins/servlet/desk/portal/541/create/3442&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;opprette en sak i Porten.&lt;/a&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText</identifier>
@@ -524,6 +524,33 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Når virksomheter skal delta på rekrutteringstreff så er neste steg å opprette et rekrutteringstreff i Rekrutteringsbistand, og invitere arbeidsgiver til treffet.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Skal delta på rekrutteringstreff</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard8</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal delta på rekrutteringstreff</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
