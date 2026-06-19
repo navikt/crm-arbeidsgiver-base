@@ -196,6 +196,16 @@
             <field>TAG_EmploymentPlacement__c</field>
             <table>JobPosting__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NavIdent__c</field>
+            <table>JobPosting__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NavEmployeeName__c</field>
+            <table>JobPosting__c</table>
+        </columns>
         <masterLabel>Job Postings</masterLabel>
     </sections>
     <sections>
