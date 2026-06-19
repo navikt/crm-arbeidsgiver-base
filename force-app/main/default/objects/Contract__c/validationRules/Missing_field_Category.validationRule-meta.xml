@@ -4,9 +4,9 @@
     <active>true</active>
     <description>Regel som hindrer at status settes til godkjent før alle nødvendige detaljer er fylt ut.</description>
     <errorConditionFormula>RecordType.DeveloperName = &quot;EmployerAgreement&quot; &amp;&amp;
-OR(ISCHANGED(TAG_Status__c), ISCHANGED(TAG_Category__c) ) &amp;&amp;
+OR( ISNEW(), ISCHANGED(TAG_Status__c), ISCHANGED(TAG_Category__c) ) &amp;&amp;
 ISPICKVAL(TAG_Status__c, &quot;Godkjent&quot;) &amp;&amp;
- ISPICKVAL( TAG_Category__c,&quot;&quot; )</errorConditionFormula>
+ISPICKVAL( TAG_Category__c,&quot;&quot; )</errorConditionFormula>
     <errorDisplayField>TAG_Category__c</errorDisplayField>
     <errorMessage>Avtaletype må fylles ut før avtalen kan settes til &quot;Godkjent&quot;.</errorMessage>
 </ValidationRule>
