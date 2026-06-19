@@ -283,6 +283,25 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;&lt;strong&gt;Denne rollen kan ikke brukes.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Av hensyn til personvern kan vi ikke registrere kontaktpersoner med roller som tillitsvalgt eller fagforeningsrepresentant. Velg en annen rolle.&lt;/p&gt;</errorMessage>
+                        <formulaExpression>/* OBS! Remember to also update validation rule*/
+
+NOT(
+    OR(
+        LOWER( LEFT( SUBSTITUTE( {!Rolle_i_bedriften}, &quot; &quot;, &quot;&quot;), 9 ) ) = &quot;tillitsva&quot;,
+        LOWER( LEFT( SUBSTITUTE( {!Rolle_i_bedriften}, &quot; &quot;, &quot;&quot;), 14 ) ) = &quot;hovedtillitsva&quot;,
+        LOWER( LEFT( SUBSTITUTE( {!Rolle_i_bedriften}, &quot; &quot;, &quot;&quot;), 13 ) ) = &quot;varatillitsva&quot;,
+        CONTAINS( SUBSTITUTE( LOWER( {!Rolle_i_bedriften} ), &quot; &quot;, &quot;&quot;), &quot;fagforening&quot; ),
+        LOWER( {!Rolle_i_bedriften} ) = &quot;tv&quot;,
+        LOWER( {!Rolle_i_bedriften} ) = &quot;htv&quot;,
+        LOWER( {!Rolle_i_bedriften} ) = &quot;ftv&quot;,
+        LOWER( LEFT( {!Rolle_i_bedriften}, 3 ) ) = &quot;tv &quot;,
+        LOWER( LEFT( {!Rolle_i_bedriften}, 4 ) ) = &quot;htv &quot;,
+        LOWER( LEFT( {!Rolle_i_bedriften}, 4 ) ) = &quot;ftv &quot;
+    )
+)</formulaExpression>
+                    </validationRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>

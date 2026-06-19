@@ -4,7 +4,7 @@
     <active>true</active>
     <description>Regel som hindrer at status settes til godkjent før alle nødvendige detaljer er fylt ut.</description>
     <errorConditionFormula>RecordType.DeveloperName = &quot;EmployerAgreement&quot; &amp;&amp;
-OR( ISCHANGED(TAG_Status__c), ISCHANGED(TAG_Contact__c)) &amp;&amp;
+OR( ISNEW(), ISCHANGED(TAG_Status__c), ISCHANGED(TAG_Contact__c)) &amp;&amp;
 ISPICKVAL(TAG_Status__c, &quot;Godkjent&quot;) &amp;&amp;
    ISBLANK( TAG_Contact__c )</errorConditionFormula>
     <errorDisplayField>TAG_Contact__c</errorDisplayField>
