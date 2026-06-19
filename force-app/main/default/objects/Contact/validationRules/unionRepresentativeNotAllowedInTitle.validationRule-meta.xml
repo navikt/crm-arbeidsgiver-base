@@ -4,7 +4,8 @@
     <active>true</active>
     <errorConditionFormula>/* OBS! Remember to also update input validation in flow &quot;TAG Create New Contact (Screen)&quot; */
 
-AND(
+AND( 
+ Account.RecordType.DeveloperName = &quot;Employer&quot;,
     OR(
         ISCHANGED(Title),
         ISNEW()
