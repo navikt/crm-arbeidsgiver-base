@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>unionRepresentativeNotAllowedInTitle</fullName>
+    <active>true</active>
+    <errorConditionFormula>/* OBS! Remember to also update input validation in flow &quot;TAG Create New Contact (Screen)&quot; */
+
+AND(
+    OR(
+        ISCHANGED(Title),
+        ISNEW()
+    ),
+    OR(
+        LOWER( LEFT( SUBSTITUTE( Title, &quot; &quot;, &quot;&quot;), 9 ) ) = &quot;tillitsva&quot;,
+        LOWER( LEFT( SUBSTITUTE( Title, &quot; &quot;, &quot;&quot;), 14 ) ) = &quot;hovedtillitsva&quot;,
+        LOWER( LEFT( SUBSTITUTE( Title, &quot; &quot;, &quot;&quot;), 13 ) ) = &quot;varatillitsva&quot;,
+        CONTAINS( SUBSTITUTE( LOWER( Title ), &quot; &quot;, &quot;&quot;), &quot;fagforening&quot; ),
+        LOWER( Title ) = &quot;tv&quot;,
+        LOWER( Title ) = &quot;htv&quot;,
+        LOWER( Title ) = &quot;ftv&quot;,
+        LOWER( LEFT( Title, 3 ) ) = &quot;tv &quot;,
+        LOWER( LEFT( Title, 4 ) ) = &quot;htv &quot;,
+        LOWER( LEFT( Title, 4 ) ) = &quot;ftv &quot;
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Title</errorDisplayField>
+    <errorMessage>Denne rollen kan ikke brukes.
+
+Av hensyn til personvern kan vi ikke registrere kontaktpersoner med roller som tillitsvalgt eller fagforeningsrepresentant. Velg en annen rolle.</errorMessage>
+</ValidationRule>
