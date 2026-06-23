@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type2__c</fullName>
+    <description>Skygge-felt som lagrer verdiene fra Type-feltet. I Type-feltet lagres ikke verdi dersom virksomheten har færre en 5 ansatte. Men verdien lagres i dette feltet, som brukerne ikke har tilagng til</description>
+    <externalId>false</externalId>
+    <label>Type2</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
