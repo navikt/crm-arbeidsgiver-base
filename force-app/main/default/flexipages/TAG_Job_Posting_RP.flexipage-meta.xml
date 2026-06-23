@@ -290,6 +290,23 @@
                 <identifier>RecordKeywords_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.NavEmployeeName__c</fieldItem>
+                <identifier>RecordNavEmployeeName_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Source__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>DIR</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-b5101a9f-47fa-4503-8b80-7f2b14d07e21</name>
         <type>Facet</type>
     </flexiPageRegions>
