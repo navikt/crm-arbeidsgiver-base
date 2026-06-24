@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
     <assignments>
+        <name>Add_record_to_collection</name>
+        <label>Add record to collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>WorkfareCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Run_through_workfares</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Run_through_workfares</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_values_less_than_5</name>
         <label>Assign values less than 5</label>
         <locationX>0</locationX>
@@ -10,11 +26,11 @@
             <assignToReference>Run_through_workfares.Type__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue></stringValue>
+                <stringValue>Ikke tilgjengelig</stringValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Workfare_less_than_5</targetReference>
+            <targetReference>Add_record_to_collection</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -30,7 +46,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_workfare_more_than_5</targetReference>
+            <targetReference>Add_record_to_collection</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -100,6 +116,9 @@
         <nextValueConnector>
             <targetReference>How_many_employees</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_workfare</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -146,9 +165,9 @@
         </filters>
         <filters>
             <field>Type__c</field>
-            <operator>IsNull</operator>
+            <operator>NotEqualTo</operator>
             <value>
-                <booleanValue>false</booleanValue>
+                <stringValue>Ikke tilgjengelig</stringValue>
             </value>
         </filters>
         <filters>
@@ -160,9 +179,9 @@
         </filters>
         <filters>
             <field>Type__c</field>
-            <operator>IsNull</operator>
+            <operator>EqualTo</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <stringValue>Ikke tilgjengelig</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -170,24 +189,11 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Workfare_less_than_5</name>
-        <label>Update Workfare less than 5</label>
+        <name>Update_workfare</name>
+        <label>Update workfare</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Run_through_workfares</targetReference>
-        </connector>
-        <inputReference>Run_through_workfares</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_workfare_more_than_5</name>
-        <label>Update workfare more than 5</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Run_through_workfares</targetReference>
-        </connector>
-        <inputReference>Run_through_workfares</inputReference>
+        <inputReference>WorkfareCollection</inputReference>
     </recordUpdates>
     <start>
         <locationX>0</locationX>
@@ -215,4 +221,12 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>WorkfareCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Workfare__c</objectType>
+    </variables>
 </Flow>
