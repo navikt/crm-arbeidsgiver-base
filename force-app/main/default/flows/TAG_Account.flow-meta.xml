@@ -58,6 +58,35 @@
             <label>Less than 5 employees</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Were_workfares_found</name>
+        <label>Were workfares found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Run_through_workfares</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Found workfare</defaultConnectorLabel>
+        <rules>
+            <name>No_workfare_found</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Workfares</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Workfares</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>No workfare found</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>TAG Account {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Account</label>
@@ -98,7 +127,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Run_through_workfares</targetReference>
+            <targetReference>Were_workfares_found</targetReference>
         </connector>
         <filterLogic>1 AND (2 AND 3) OR (4 AND 5)</filterLogic>
         <filters>
