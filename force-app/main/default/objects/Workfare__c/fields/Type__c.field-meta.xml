@@ -51,6 +51,11 @@
                 <default>false</default>
                 <label>Varig tilrettelagt arbeid i ordinær virksomhet</label>
             </value>
+            <value>
+                <fullName>Ikke tilgjengelig</fullName>
+                <default>false</default>
+                <label>Ikke tilgjengelig</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
