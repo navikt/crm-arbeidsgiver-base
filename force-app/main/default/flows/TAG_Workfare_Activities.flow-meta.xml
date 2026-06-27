@@ -4,8 +4,8 @@
     <assignments>
         <name>Assign_workfare_details</name>
         <label>Assign workfare details</label>
-        <locationX>506</locationX>
-        <locationY>647</locationY>
+        <locationX>902</locationX>
+        <locationY>755</locationY>
         <assignmentItems>
             <assignToReference>Get_workfare.Account__c</assignToReference>
             <operator>Assign</operator>
@@ -48,8 +48,73 @@
                 <stringValue>EKSPERTBISTAND</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.Type2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Ekspertbistand</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_workfare</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_workfare_details_less_than_5_emp</name>
+        <label>Assign workfare details less than 5 emp</label>
+        <locationX>374</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>Get_workfare.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.EndDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.DateTo__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.NavIdent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.CaseWorkerNavIdent__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.StartDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.DateFrom__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ConvertStatus</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Ikke tilgjengelig</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_workfare.Type2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Ekspertbistand</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_workfare_less_than_5_emp</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -58,7 +123,7 @@
         <locationX>176</locationX>
         <locationY>323</locationY>
         <defaultConnector>
-            <targetReference>Is_updated_or_created</targetReference>
+            <targetReference>Get_workfare</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Has account</defaultConnectorLabel>
         <rules>
@@ -77,18 +142,25 @@
     <decisions>
         <name>Is_updated_or_created</name>
         <label>Is updated or created?</label>
-        <locationX>374</locationX>
-        <locationY>431</locationY>
+        <locationX>770</locationX>
+        <locationY>647</locationY>
         <defaultConnector>
-            <targetReference>Get_workfare</targetReference>
+            <targetReference>Assign_workfare_details</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Updated</defaultConnectorLabel>
         <rules>
             <name>Created</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>IsRecordNew</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Get_workfare</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_workfare</leftValueReference>
+                <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
@@ -97,6 +169,63 @@
                 <targetReference>Create_workfare</targetReference>
             </connector>
             <label>Created</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_updated_or_created_less_than_5_emp</name>
+        <label>Is updated or created less than 5 emp?</label>
+        <locationX>242</locationX>
+        <locationY>647</locationY>
+        <defaultConnector>
+            <targetReference>Assign_workfare_details_less_than_5_emp</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Is updated</defaultConnectorLabel>
+        <rules>
+            <name>Is_created</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_workfare</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_workfare</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_workfare_less_than_5_emp</targetReference>
+            </connector>
+            <label>Is created</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Number_of_employees_is_less_than_5</name>
+        <label>Number of employees is less than 5?</label>
+        <locationX>506</locationX>
+        <locationY>539</locationY>
+        <defaultConnector>
+            <targetReference>Is_updated_or_created</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No more than 5</defaultConnectorLabel>
+        <rules>
+            <name>Yes_less_than_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>EmployerHasLessThan5Employees</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_updated_or_created_less_than_5_emp</targetReference>
+            </connector>
+            <label>Yes less than 5</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -111,6 +240,11 @@
 &apos;AVSLUTTET&apos;, &apos;AVSLUTTET&apos;, 
 &apos;ANNULLERT&apos;
 )</expression>
+    </formulas>
+    <formulas>
+        <name>EmployerHasLessThan5Employees</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!$Record.Account__r.NumberOfEmployees} &lt; 5, true, false)</expression>
     </formulas>
     <formulas>
         <name>IsRecordNew</name>
@@ -141,8 +275,8 @@
     <recordCreates>
         <name>Create_workfare</name>
         <label>Create workfare</label>
-        <locationX>242</locationX>
-        <locationY>539</locationY>
+        <locationX>638</locationX>
+        <locationY>755</locationY>
         <inputAssignments>
             <field>Account__c</field>
             <value>
@@ -180,9 +314,71 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Type2__c</field>
+            <value>
+                <stringValue>Ekspertbistand</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Type__c</field>
             <value>
                 <stringValue>EKSPERTBISTAND</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Workfare__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_workfare_less_than_5_emp</name>
+        <label>Create workfare less than 5 emp</label>
+        <locationX>110</locationX>
+        <locationY>755</locationY>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>$Record.Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EndDate__c</field>
+            <value>
+                <elementReference>$Record.DateTo__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>KafkaId__c</field>
+            <value>
+                <elementReference>$Record.KafkaId__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>NavIdent__c</field>
+            <value>
+                <elementReference>$Record.CaseWorkerNavIdent__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StartDate__c</field>
+            <value>
+                <elementReference>$Record.DateFrom__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <elementReference>ConvertStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type2__c</field>
+            <value>
+                <stringValue>Ekspertbistand</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>Ikke tilgjengelig</stringValue>
             </value>
         </inputAssignments>
         <object>Workfare__c</object>
@@ -192,10 +388,10 @@
         <name>Get_workfare</name>
         <label>Get workfare</label>
         <locationX>506</locationX>
-        <locationY>539</locationY>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assign_workfare_details</targetReference>
+            <targetReference>Number_of_employees_is_less_than_5</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -212,8 +408,15 @@
     <recordUpdates>
         <name>Update_workfare</name>
         <label>Update workfare</label>
-        <locationX>506</locationX>
-        <locationY>755</locationY>
+        <locationX>902</locationX>
+        <locationY>863</locationY>
+        <inputReference>Get_workfare</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_workfare_less_than_5_emp</name>
+        <label>Update workfare less than 5 emp</label>
+        <locationX>374</locationX>
+        <locationY>863</locationY>
         <inputReference>Get_workfare</inputReference>
     </recordUpdates>
     <start>
