@@ -42,6 +42,13 @@
                     <elementReference>TimestampNow</elementReference>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.AktivitetStatuskode__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>FULLF</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Update_Ekspertbistand</targetReference>
             </connector>
