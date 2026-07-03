@@ -754,7 +754,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>JobPosting__c.JanzzCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>JobPosting__c.JanzzName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>JobPosting__c.JobPoster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>JobPosting__c.JobTitle__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -850,6 +865,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>JobPosting__c.UUID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>JobPosting__c.WorkLanguage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
