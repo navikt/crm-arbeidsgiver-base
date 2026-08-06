@@ -67,6 +67,16 @@
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
+                        <valueListItems>
+                            <value>EmployerInquiry__c.Change_Account</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.AccountType__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>J</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -89,6 +99,27 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(240, 9, 9); font-size: 22px;&quot;&gt;Varsel&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Denne henvendelsen er registrert på en J-enhet. Henvendelser skal som hovedregel registreres på B-enhet. Dersom du ønsker å endre til B-enhet kan du klikke på knappen &quot;Endre konto&quot; i øvre høyre hjørne&lt;/span&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.AccountType__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>J</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
         <name>subheader</name>
         <type>Region</type>
     </flexiPageRegions>
