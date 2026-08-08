@@ -184,17 +184,15 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value/>
+                <value>
+                    <stringValue>Id</stringValue>
+                </value>
             </inputParameters>
             <inputParameters>
                 <name>columns</name>
                 <value>
                     <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-6134&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;sortable&quot;:false,&quot;label&quot;:&quot;Account Name&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
                 </value>
-            </inputParameters>
-            <inputParameters>
-                <name>columnReferences</name>
-                <value/>
             </inputParameters>
             <inputParameters>
                 <name>isShowSearchBar</name>
