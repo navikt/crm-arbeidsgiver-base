@@ -10,7 +10,7 @@
             <assignToReference>Get_employer_inquiry.TAG_Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Child_Account_Table.firstSelectedRow.Id</elementReference>
+                <elementReference>Selected_child_account</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -53,7 +53,7 @@
         <name>SelectedAccount1</name>
         <collectionReference>Get_child_accounts</collectionReference>
         <dataType>String</dataType>
-        <displayField>Id</displayField>
+        <displayField>Name</displayField>
         <object>Account</object>
         <valueField>Id</valueField>
     </dynamicChoiceSets>
@@ -152,70 +152,13 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>Child_Account_Table</name>
-            <dataTypeMappings>
-                <typeName>T</typeName>
-                <typeValue>Account</typeValue>
-            </dataTypeMappings>
-            <extensionName>flowruntime:datatable</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <stringValue>Bedriftsenheter</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>selectionMode</name>
-                <value>
-                    <stringValue>SINGLE_SELECT</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>minRowSelection</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>maxRowSelection</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>tableData</name>
-                <value>
-                    <elementReference>Get_child_accounts</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>keyField</name>
-                <value>
-                    <stringValue>Id</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>columns</name>
-                <value>
-                    <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-6134&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;sortable&quot;:false,&quot;label&quot;:&quot;Account Name&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>isShowSearchBar</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>shouldDisplayLabel</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
+            <name>Selected_child_account</name>
+            <choiceReferences>SelectedAccount1</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Bedriftsenhet</fieldText>
+            <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
