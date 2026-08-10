@@ -96,6 +96,13 @@
                 <elementReference>Get_employer_inquiry.TAG_Account__r.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>CRM_AccountType__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>B</stringValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -141,7 +148,7 @@
         </connector>
         <fields>
             <name>SelectChildAccountText</name>
-            <fieldText>&lt;p&gt;Velg en bedriftsenhet&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Velg en bedriftsenhet&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -184,10 +191,7 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Account&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;Get_child_accounts&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>columns</name>
@@ -197,10 +201,7 @@
             </inputParameters>
             <inputParameters>
                 <name>columnReferences</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Account&quot;,&quot;fieldReferences&quot;:[&quot;Name&quot;],&quot;elementReference&quot;:&quot;Get_child_accounts&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>isShowSearchBar</name>

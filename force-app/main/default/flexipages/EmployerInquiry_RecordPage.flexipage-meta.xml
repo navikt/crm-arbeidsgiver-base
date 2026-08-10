@@ -70,10 +70,16 @@
                         <valueListItems>
                             <value>EmployerInquiry__c.Change_Account</value>
                             <visibilityRule>
+                                <booleanFilter>1 OR 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.AccountType__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>J</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.AccountType__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>O</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -107,15 +113,21 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(240, 9, 9); font-size: 22px;&quot;&gt;Varsel&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Denne henvendelsen er registrert på en J-enhet. Henvendelser skal som hovedregel registreres på B-enhet. Dersom du ønsker å endre til B-enhet kan du klikke på knappen &quot;Endre konto&quot; i øvre høyre hjørne&lt;/span&gt;&lt;/p&gt;</value>
+                    <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 26px; color: rgb(240, 9, 9);&quot;&gt;Varsel&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Denne henvendelsen er registrert på en overordnet enhet (J-enhet eller O-enhet). Henvendelser skal som hovedregel registreres på underenhet (B-enhet). Dersom du ønsker å endre til B-enhet kan du klikke på knappen &quot;Endre konto&quot; i øvre høyre hjørne&lt;/span&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText4</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.AccountType__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>J</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.AccountType__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>O</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
