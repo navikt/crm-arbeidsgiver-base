@@ -191,7 +191,9 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value/>
+                <value>
+                    <stringValue>Id</stringValue>
+                </value>
             </inputParameters>
             <inputParameters>
                 <name>columns</name>
