@@ -1,3 +1,2 @@
-import { registerSa11yMatcher } from '@sa11y/jest';
-
-registerSa11yMatcher();
+import { setup } from '@sa11y/jest';
+setup();
