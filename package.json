@@ -2,8 +2,8 @@
     "private": true,
     "scripts": {
         "lint": "npm run lint:lwc && npm run lint:aura",
-        "lint:lwc": "eslint **/lwc/**",
-        "lint:aura": "eslint **/aura/**",
+        "lint:lwc": "eslint --no-error-on-unmatched-pattern \"**/lwc/**/*.js\"",
+        "lint:aura": "eslint --no-error-on-unmatched-pattern \"**/aura/**/*.js\"",
         "test": "npm run lint && npm run test:unit",
         "test:unit": "sfdx-lwc-jest",
         "test:unit:watch": "sfdx-lwc-jest --watch",
@@ -21,19 +21,23 @@
         "npm": ">= 6.5.0"
     },
     "devDependencies": {
-        "@prettier/plugin-xml": "^0.13.0",
-        "@sa11y/jest": "^0.2.1",
-        "@salesforce/eslint-config-lwc": "^0.9.0",
-        "@salesforce/eslint-plugin-aura": "^1.4.0",
-        "@salesforce/sfdx-lwc-jest": "^7.1.2",
-        "eslint": "^7.19.0",
+        "@lwc/eslint-plugin-lwc": "^3.1.0",
+        "@prettier/plugin-xml": "^3.4.1",
+        "@sa11y/jest": "^8.0.28",
+        "@salesforce/eslint-config-lwc": "^4.1.2",
+        "@salesforce/eslint-plugin-aura": "^3.0.0",
+        "@salesforce/eslint-plugin-lightning": "^2.0.0",
+        "@salesforce/sfdx-lwc-jest": "^7.9.0",
+        "eslint": "^9.29.0",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-jest": "^28.14.0",
         "eslint-config-prettier": "^7.2.0",
         "husky": "^8.0.3",
-        "jest-canvas-mock": "^2.3.0",
-        "lint-staged": "^13.2.1",
-        "prettier": "^3.0.0",
-        "prettier-plugin-apex": "^2.1.0",
-        "semver": "^7.3.4"
+        "jest-canvas-mock": "^2.5.8",
+        "lint-staged": "^16.1.2",
+        "prettier": "^3.9.6",
+        "prettier-plugin-apex": "^2.3.0",
+        "semver": "^7.8.5"
     },
     "husky": {
         "hooks": {
