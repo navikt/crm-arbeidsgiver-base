@@ -34,6 +34,11 @@
     <nameFieldLabel>Henvendelse</nameFieldLabel>
     <quickActions>
         <aspect>Master</aspect>
+        <label>Endre konto</label>
+        <name>Change_Account</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
         <label>Jeg følger opp!</label>
         <name>TAG_Assign_to_me_lwc</name>
     </quickActions>

@@ -116,6 +116,7 @@ assignPermission() {
     --name TAG_Arbeidsgiver_Veillederapp \
     --name Arbeidsgiver_Beta_app \
     --name Arbeidsgiver_Kandidatutfall \
+    --name Arbeidsgiver_Henvendelser \
     || { error $? '"sf org assign permset" command failed.'; }
 }
 
