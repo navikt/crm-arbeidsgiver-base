@@ -148,18 +148,19 @@
         </connector>
         <fields>
             <name>SelectChildAccountText</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Velg en bedriftsenhet&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 22px; color: rgb(240, 9, 9);&quot;&gt;OBS&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Denne henvendelsen er registrert på en overordnet enhet (J-enhet eller O-enhet). Henvendelser skal som hovedregel registreres på underenhet (B-enhet). Om mulig velg en B-enhet i nedtreksmenyen nedenfor.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
             <name>Selected_child_account</name>
             <choiceReferences>SelectedAccount1</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Bedriftsenhet</fieldText>
+            <fieldText>Bedriftsenheter</fieldText>
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
+        <nextOrFinishButtonLabel>Lagre</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
