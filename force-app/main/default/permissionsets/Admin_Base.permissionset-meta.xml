@@ -1521,4 +1521,8 @@
         <tab>TemporaryLayoff__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ManageDynamicDashboards</name>
+    </userPermissions>
 </PermissionSet>
