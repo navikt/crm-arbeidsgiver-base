@@ -124,6 +124,22 @@
             <targetReference>Opprett_et_samtalenotat</targetReference>
         </connector>
     </assignments>
+    <choices>
+        <name>Forebygge_og_redusere_sykefrav_r</name>
+        <choiceText>Forebygge og redusere sykefravær</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Forebygge og redusere sykefravær</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Rekruttere_og_inkludere</name>
+        <choiceText>Rekruttere og inkludere</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Rekruttere og inkludere</stringValue>
+        </value>
+    </choices>
     <decisions>
         <name>Is_it_Task_to_local_NavUnit</name>
         <label>Is it Task to local NavUnit?</label>
@@ -640,6 +656,42 @@ NULL
                 <assignToReference>OutcomeSubThemeScreen</assignToReference>
                 <name>middleValue</name>
             </outputParameters>
+        </fields>
+        <fields>
+            <name>PicklistTheme</name>
+            <choiceReferences>Rekruttere_og_inkludere</choiceReferences>
+            <choiceReferences>Forebygge_og_redusere_sykefrav_r</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Tema2</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>employerInquiry.Owner:User.Email</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>andre.colle@nav.no</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>employerInquiry.Applies_to_Youth_Pledge__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>PicklistTheme</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference>Forebygge_og_redusere_sykefrav_r</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Text</name>
