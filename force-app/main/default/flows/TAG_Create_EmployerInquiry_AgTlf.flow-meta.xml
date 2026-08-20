@@ -92,6 +92,54 @@
     </actionCalls>
     <apiVersion>66.0</apiVersion>
     <assignments>
+        <name>Assign_sub_theme</name>
+        <label>Assign sub theme</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>OutcomeSubThemeScreen</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Ungdomsløftet</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_it_Task_to_local_NavUnit</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_sub_theme_recruitment</name>
+        <label>Assign sub theme recruitment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>OutcomeSubThemeScreen</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Informasjon og relasjonsbygging</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_it_Task_to_local_NavUnit</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_sub_theme_sickleave</name>
+        <label>Assign sub theme sickleave</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>OutcomeSubThemeScreen</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Redusere sykefravær</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_it_Task_to_local_NavUnit</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Save_text_from_conversation_note</name>
         <label>Save text from conversation note</label>
         <locationX>0</locationX>
@@ -103,8 +151,22 @@
                 <elementReference>Text.conversationNote</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OutcomeThemeScreen</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PicklistTheme</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OutcomeYouthPledge</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Gjelder_ungdomsloftet</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
-            <targetReference>Is_it_Task_to_local_NavUnit</targetReference>
+            <targetReference>Is_youth_pledge</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -194,6 +256,53 @@
             <label>No</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Is_youth_pledge</name>
+        <label>Is youth  pledge?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_sub_theme_sickleave</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not youth pledge - sickleave</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_youth_pledge</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>OutcomeYouthPledge</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>OutcomeThemeScreen</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Rekruttere_og_inkludere</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_sub_theme</targetReference>
+            </connector>
+            <label>Yes is youth pledge</label>
+        </rules>
+        <rules>
+            <name>Not_youth_pledge_recruitment</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>OutcomeThemeScreen</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Rekruttere_og_inkludere</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_sub_theme_recruitment</targetReference>
+            </connector>
+            <label>Not youth pledge - recruitment</label>
+        </rules>
+    </decisions>
     <description>Screen flow som brukes av NKS Arbeidsgiver Telefon (kontaktsenteret) for å opprette henvendelser (EmployerInquiry__c) under en telefonsamtale. Flowen dekker to behov:
 - Samtalenotat: Dokumenterer samtaler som ble løst umiddelbart (f.eks. rådgivning). Opprettes som fullført henvendelse for statistikk og historikk med innlogget bruker som eier.
 - Oppgave til lokalt kontor: Når veilederen ikke kan løse saken selv, sendes den som oppgave til Nav-enhet. Eier settes til Nav-enhetens kø, status ny henvendelse og svarfrist på 2 dager.</description>
@@ -279,6 +388,12 @@ NULL
         <connector>
             <targetReference>Toast_Created_Note</targetReference>
         </connector>
+        <inputAssignments>
+            <field>Applies_to_Youth_Pledge__c</field>
+            <value>
+                <elementReference>OutcomeYouthPledge</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -380,6 +495,12 @@ NULL
         <connector>
             <targetReference>Toast_Created_Task</targetReference>
         </connector>
+        <inputAssignments>
+            <field>Applies_to_Youth_Pledge__c</field>
+            <value>
+                <elementReference>OutcomeYouthPledge</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -589,106 +710,30 @@ NULL
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>DependantPicklist</name>
-            <extensionName>flowruntime:dependentPicklists</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>topLabel</name>
-                <value>
-                    <stringValue>Tema</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>dependencyWrapperApiName</name>
-                <value>
-                    <stringValue>EmployerInquiry__c</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>topPicklistApiName</name>
-                <value>
-                    <stringValue>TAG_Theme__c</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>middlePicklistApiName</name>
-                <value>
-                    <stringValue>TAG_SubTheme__c</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>topRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>middleLabel</name>
-                <value>
-                    <stringValue>Tjeneste</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>middleRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>topValue</name>
-                <value>
-                    <elementReference>OutcomeThemeScreen</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>middleValue</name>
-                <value>
-                    <elementReference>OutcomeSubThemeScreen</elementReference>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>OutcomeThemeScreen</assignToReference>
-                <name>topValue</name>
-            </outputParameters>
-            <outputParameters>
-                <assignToReference>OutcomeSubThemeScreen</assignToReference>
-                <name>middleValue</name>
-            </outputParameters>
-        </fields>
-        <fields>
             <name>PicklistTheme</name>
             <choiceReferences>Rekruttere_og_inkludere</choiceReferences>
             <choiceReferences>Forebygge_og_redusere_sykefrav_r</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Tema2</fieldText>
+            <fieldText>Tema</fieldText>
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>employerInquiry.Owner:User.Email</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <stringValue>andre.colle@nav.no</stringValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
         </fields>
         <fields>
-            <fieldType>ObjectProvided</fieldType>
+            <name>Gjelder_ungdomsloftet</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Gjelder ungdomsløftet?</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;Huk av boksen til venstre dersom henvendelsen gjelder ungdomsløftet&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>employerInquiry.Applies_to_Youth_Pledge__c</objectFieldReference>
+            <isRequired>true</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
                     <leftValueReference>PicklistTheme</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
-                        <elementReference>Forebygge_og_redusere_sykefrav_r</elementReference>
+                        <elementReference>Rekruttere_og_inkludere</elementReference>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -829,12 +874,74 @@ NULL
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
             <visibilityRule>
-                <conditionLogic>1</conditionLogic>
+                <conditionLogic>and</conditionLogic>
                 <conditions>
                     <leftValueReference>Task_toggle.value</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>PicklistTheme</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference>Rekruttere_og_inkludere</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>NavEnhetNALS</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>TAG_NavUnit__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Nav-enhet</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>EmployerInquiry__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>maxValues</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>accountNavArbeidslivssenterId</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Task_toggle.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>PicklistTheme</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference>Forebygge_og_redusere_sykefrav_r</elementReference>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -859,6 +966,7 @@ NULL
                 </conditions>
             </visibilityRule>
         </fields>
+        <nextOrFinishButtonLabel>Lagre</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -954,6 +1062,16 @@ NULL
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>OutcomeYouthPledge</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>recordId</name>
