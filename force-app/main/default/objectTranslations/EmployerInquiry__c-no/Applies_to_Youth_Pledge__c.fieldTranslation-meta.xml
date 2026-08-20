@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Gjelder ungdomsløftet</label>
+    <help><!-- Huk av boksen dersom arbeidsgiveren ønsker å bidra til ungdomsløftet --></help>
+    <label>Gjelder ungdomsløftet?</label>
     <name>Applies_to_Youth_Pledge__c</name>
 </CustomFieldTranslation>

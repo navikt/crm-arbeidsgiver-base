@@ -724,7 +724,7 @@ NULL
             <dataType>Boolean</dataType>
             <fieldText>Gjelder ungdomsløftet?</fieldText>
             <fieldType>InputField</fieldType>
-            <helpText>&lt;p&gt;Huk av boksen til venstre dersom henvendelsen gjelder ungdomsløftet&lt;/p&gt;</helpText>
+            <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Huk av boksen dersom arbeidsgiveren ønsker å bidra til ungdomsløftet&lt;/span&gt;&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <visibilityRule>
@@ -950,21 +950,6 @@ NULL
             <name>errorNavUnitDisplay</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!errorNavUnit}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>navArbeidslivssenterNameDisplay</name>
-            <fieldText>&lt;p&gt;Ved &quot;Forebygge sykefravær og redusere frafall&quot; er anbefalt Nav-enhet for denne arbeidsgiveren: &lt;strong&gt;{!navUnitArbeidslivsenterName}&lt;/strong&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>Task_toggle.value</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
         </fields>
         <nextOrFinishButtonLabel>Lagre</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
