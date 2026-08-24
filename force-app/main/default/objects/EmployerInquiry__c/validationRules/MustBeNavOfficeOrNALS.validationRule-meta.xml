@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>MustBeNavOfficeOrNALS</fullName>
-    <active>false</active>
-    <errorConditionFormula>OR( TAG_NavUnit__r.isActiveUnit__c = false, 
-			AND(TAG_NavUnit__r.INT_UnitType__c != &apos;LOKAL&apos;,TAG_NavUnit__r.INT_UnitType__c != &apos;ALS&apos;))</errorConditionFormula>
-    <errorMessage>Henvendelsen kan kun sendes til aktive lokale Nav kontorer eller Arbeidslivssentere.</errorMessage>
-</ValidationRule>
