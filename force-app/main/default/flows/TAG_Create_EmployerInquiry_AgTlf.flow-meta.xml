@@ -202,6 +202,14 @@
             <stringValue>Rekruttere og inkludere</stringValue>
         </value>
     </choices>
+    <choices>
+        <name>Ungdomsloftet</name>
+        <choiceText>Ønsker å bidra til ungdomsløftet</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <elementReference>Gjelder_ungdomsloftet</elementReference>
+        </value>
+    </choices>
     <decisions>
         <name>Is_it_Task_to_local_NavUnit</name>
         <label>Is it Task to local NavUnit?</label>
@@ -327,14 +335,15 @@
         <name>EnquiryTitleBasedOnTheme</name>
         <dataType>String</dataType>
         <expression>IF(
-  ISPICKVAL({!OutcomeThemeScreen}, &quot;Rekruttere og inkludere&quot;),
+  AND(ISPICKVAL({!OutcomeThemeScreen}, &quot;Rekruttere og inkludere&quot;),{!Gjelder_ungdomsloftet} = true),
+  &quot;Ønsker å bidra til ungdomsløftet&quot;,
+     IF(
+AND(ISPICKVAL({!OutcomeThemeScreen}, &quot;Rekruttere og inkludere&quot;),{!Gjelder_ungdomsloftet} = false),
   &quot;Ønsker hjelp til å rekruttere og inkludere arbeidstakere&quot;,
   IF(
     ISPICKVAL({!OutcomeThemeScreen}, &quot;Forebygge og redusere fravær&quot;),
     &quot;Ønsker hjelp til å forebygge og redusere fravær&quot;,
-    &quot;&quot;
-  )
-)</expression>
+    &quot;&quot; )))</expression>
     </formulas>
     <formulas>
         <name>LastTextOrSavedText</name>
@@ -496,12 +505,6 @@ NULL
             <targetReference>Toast_Created_Task</targetReference>
         </connector>
         <inputAssignments>
-            <field>Applies_to_Youth_Pledge__c</field>
-            <value>
-                <elementReference>OutcomeYouthPledge</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Name</field>
             <value>
                 <elementReference>EnquiryTitleBasedOnTheme</elementReference>
@@ -577,6 +580,12 @@ NULL
             <field>TAG_Theme__c</field>
             <value>
                 <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_YouthPledge__c</field>
+            <value>
+                <elementReference>Ungdomsloftet</elementReference>
             </value>
         </inputAssignments>
         <object>EmployerInquiry__c</object>

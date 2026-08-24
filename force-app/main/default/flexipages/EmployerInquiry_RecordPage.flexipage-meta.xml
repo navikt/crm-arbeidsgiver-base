@@ -206,11 +206,11 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Applies_to_Youth_Pledge__c</fieldItem>
-                <identifier>RecordApplies_to_Youth_Pledge_cField</identifier>
+                <fieldItem>Record.TAG_YouthPledge__c</fieldItem>
+                <identifier>RecordTAG_YouthPledge_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <leftValue>{!Record.AccountType__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Rekruttere og inkludere</rightValue>
                     </criteria>
