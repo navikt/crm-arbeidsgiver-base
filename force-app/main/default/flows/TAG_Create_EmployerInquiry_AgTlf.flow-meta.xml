@@ -103,6 +103,13 @@
                 <stringValue>Ungdomsløftet</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OutcomeYouthPledgeScreen</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Ønsker å bidra til ungdomsløftet</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Is_it_Task_to_local_NavUnit</targetReference>
         </connector>
@@ -200,14 +207,6 @@
         <dataType>String</dataType>
         <value>
             <stringValue>Rekruttere og inkludere</stringValue>
-        </value>
-    </choices>
-    <choices>
-        <name>Ungdomsloftet</name>
-        <choiceText>Ønsker å bidra til ungdomsløftet</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <elementReference>Gjelder_ungdomsloftet</elementReference>
         </value>
     </choices>
     <decisions>
@@ -398,12 +397,6 @@ NULL
             <targetReference>Toast_Created_Note</targetReference>
         </connector>
         <inputAssignments>
-            <field>Applies_to_Youth_Pledge__c</field>
-            <value>
-                <elementReference>OutcomeYouthPledge</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Name</field>
             <value>
                 <stringValue>Telefonsamtale NKS</stringValue>
@@ -491,6 +484,12 @@ NULL
             <field>TAG_Theme__c</field>
             <value>
                 <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_YouthPledge__c</field>
+            <value>
+                <elementReference>OutcomeYouthPledgeScreen</elementReference>
             </value>
         </inputAssignments>
         <object>EmployerInquiry__c</object>
@@ -585,7 +584,7 @@ NULL
         <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
-                <elementReference>Ungdomsloftet</elementReference>
+                <elementReference>OutcomeYouthPledgeScreen</elementReference>
             </value>
         </inputAssignments>
         <object>EmployerInquiry__c</object>
@@ -1066,6 +1065,13 @@ NULL
         <value>
             <booleanValue>false</booleanValue>
         </value>
+    </variables>
+    <variables>
+        <name>OutcomeYouthPledgeScreen</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>recordId</name>
