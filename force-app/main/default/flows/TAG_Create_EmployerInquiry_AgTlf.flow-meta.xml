@@ -194,11 +194,11 @@
         </connector>
     </assignments>
     <choices>
-        <name>Forebygge_og_redusere_sykefrav_r</name>
-        <choiceText>Forebygge og redusere sykefravær</choiceText>
+        <name>Forebygge_og_redusere_fravar</name>
+        <choiceText>Forebygge og redusere fravær</choiceText>
         <dataType>String</dataType>
         <value>
-            <stringValue>Forebygge og redusere sykefravær</stringValue>
+            <stringValue>Forebygge og redusere fravær</stringValue>
         </value>
     </choices>
     <choices>
@@ -720,7 +720,7 @@ NULL
         <fields>
             <name>PicklistTheme</name>
             <choiceReferences>Rekruttere_og_inkludere</choiceReferences>
-            <choiceReferences>Forebygge_og_redusere_sykefrav_r</choiceReferences>
+            <choiceReferences>Forebygge_og_redusere_fravar</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Tema</fieldText>
             <fieldType>DropdownBox</fieldType>
@@ -949,7 +949,7 @@ NULL
                     <leftValueReference>PicklistTheme</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
-                        <elementReference>Forebygge_og_redusere_sykefrav_r</elementReference>
+                        <stringValue>Forebygge og redusere fravær</stringValue>
                     </rightValue>
                 </conditions>
             </visibilityRule>
