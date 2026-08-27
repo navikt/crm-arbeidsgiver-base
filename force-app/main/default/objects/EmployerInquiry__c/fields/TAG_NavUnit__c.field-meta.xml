@@ -7,7 +7,7 @@
     <label>Nav Unit</label>
     <lookupFilter>
         <active>true</active>
-        <errorMessage>Nav-enhet er ikke gyldig for henvendelsen.</errorMessage>
+        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
         <filterItems>
             <field>NavUnit__c.isActiveUnit__c</field>
             <operation>equals</operation>
@@ -18,9 +18,20 @@
             <operation>notEqual</operation>
             <value></value>
         </filterItems>
+        <filterItems>
+            <field>NavUnit__c.INT_UnitType__c</field>
+            <operation>equals</operation>
+            <value>ALS</value>
+        </filterItems>
+        <filterItems>
+            <field>NavUnit__c.INT_UnitType__c</field>
+            <operation>equals</operation>
+            <value>LOKAL</value>
+        </filterItems>
         <isOptional>true</isOptional>
     </lookupFilter>
     <referenceTo>NavUnit__c</referenceTo>
+    <relationshipLabel>Employer Inquiries</relationshipLabel>
     <relationshipName>NavUnits_Henvendelser</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

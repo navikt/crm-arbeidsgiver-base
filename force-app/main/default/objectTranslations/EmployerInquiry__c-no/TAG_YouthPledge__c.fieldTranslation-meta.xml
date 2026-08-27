@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Dersom arbeidsgiveren ønsker å bidra til ungdomsløftet, kan du velge &quot;Ønsker å bidra til ungdomsløftet&quot; i dette feltet --></help>
+    <label>Ungdomsløftet</label>
+    <name>TAG_YouthPledge__c</name>
+    <picklistValues>
+        <masterLabel>Ønsker å bidra til ungdomsløftet</masterLabel>
+        <translation><!-- Ønsker å bidra til ungdomsløftet --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

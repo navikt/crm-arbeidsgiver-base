@@ -204,10 +204,17 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_SubTheme__c</fieldItem>
-                <identifier>RecordCRM_SubTheme_cField</identifier>
+                <fieldItem>Record.TAG_YouthPledge__c</fieldItem>
+                <identifier>RecordTAG_YouthPledge_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekruttere og inkludere</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-a149498f-870e-47f7-b359-500c7e259a80</name>
