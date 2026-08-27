@@ -61,8 +61,68 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
+        <name>Toast_Created_Note_NALS</name>
+        <label>Toast Created Note NALS</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>c:fcFlowToaster</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>success</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Du har opprettet et samtalenotat</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>c:fcFlowToaster</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Toast_Created_Task</name>
         <label>Toast Created Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>c:fcFlowToaster</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>success</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Du har opprettet en oppgave</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>c:fcFlowToaster</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Toast_Created_Task_NALS</name>
+        <label>Toast Created Task NALS</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <actionName>c:fcFlowToaster</actionName>
@@ -143,7 +203,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Is_it_Task_to_local_NavUnit</targetReference>
+            <targetReference>Is_it_Task_to_NALS</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -173,7 +233,24 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Is_youth_pledge</targetReference>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_NALS_error</name>
+        <label>Set NALS error</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>errorNavUnit</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Valgt Nav-enhet &quot;{!NavUnitName}&quot; kan foreløpig ikke motta oppgaver i Salesforce. Vennligst velg en annen Nav-enhet.</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Opprett_et_samtalenotat</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -210,6 +287,35 @@
         </value>
     </choices>
     <decisions>
+        <name>Is_it_queue_for_NALS</name>
+        <label>Is it queue for NALS?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_EmployerInquiry_NALS</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_queue_for_NALS</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>NavUnitQueue</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>NavUnitQueue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_NALS_error</targetReference>
+            </connector>
+            <label>No queue for NALS</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_it_Task_to_local_NavUnit</name>
         <label>Is it Task to local NavUnit?</label>
         <locationX>0</locationX>
@@ -232,6 +338,31 @@
                 <targetReference>Get_Nav_Unit</targetReference>
             </connector>
             <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_it_Task_to_NALS</name>
+        <label>Is it Task to NALS?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Conversation_Note_NALS</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_task_to_NALS</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Task_toggle.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_NALS</targetReference>
+            </connector>
+            <label>Yes is task to NALS</label>
         </rules>
     </decisions>
     <decisions>
@@ -264,16 +395,16 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_youth_pledge</name>
-        <label>Is youth  pledge?</label>
+        <name>What_kind_of_inquiry</name>
+        <label>What kind of inquiry?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
             <targetReference>Assign_sub_theme_sickleave</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Not youth pledge - sickleave</defaultConnectorLabel>
+        <defaultConnectorLabel>Sickleave</defaultConnectorLabel>
         <rules>
-            <name>Yes_is_youth_pledge</name>
+            <name>Youth_pledge</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>OutcomeYouthPledge</leftValueReference>
@@ -292,10 +423,10 @@
             <connector>
                 <targetReference>Assign_sub_theme</targetReference>
             </connector>
-            <label>Yes is youth pledge</label>
+            <label>Youth pledge</label>
         </rules>
         <rules>
-            <name>Not_youth_pledge_recruitment</name>
+            <name>Recruitment</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>OutcomeThemeScreen</leftValueReference>
@@ -307,7 +438,7 @@
             <connector>
                 <targetReference>Assign_sub_theme_recruitment</targetReference>
             </connector>
-            <label>Not youth pledge - recruitment</label>
+            <label>Recruitment</label>
         </rules>
     </decisions>
     <description>Screen flow som brukes av NKS Arbeidsgiver Telefon (kontaktsenteret) for å opprette henvendelser (EmployerInquiry__c) under en telefonsamtale. Flowen dekker to behov:
@@ -496,6 +627,113 @@ NULL
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
+        <name>Create_Conversation_Note_NALS</name>
+        <label>Create Conversation Note NALS</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Toast_Created_Note_NALS</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <stringValue>Telefonsamtale NKS</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Account__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_ClosedReason__c</field>
+            <value>
+                <stringValue>Fikk rådgivning/svar på det de lurte på</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_DueDateTime__c</field>
+            <value>
+                <elementReference>dueDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_DueDate__c</field>
+            <value>
+                <elementReference>dueDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_IsConversationNote__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Message__c</field>
+            <value>
+                <elementReference>Text.conversationNote</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NavUnit__c</field>
+            <value>
+                <elementReference>accountNavArbeidslivssenterId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NoPersonInformation__c</field>
+            <value>
+                <elementReference>Ingen_brukeropplysninger</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_RecievedDateTime__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_ResolvedDate__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Source__c</field>
+            <value>
+                <stringValue>Kontaktsenteret</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>Fullført</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_SubTheme__c</field>
+            <value>
+                <elementReference>OutcomeSubThemeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Theme__c</field>
+            <value>
+                <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_YouthPledge__c</field>
+            <value>
+                <elementReference>OutcomeYouthPledgeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EmployerInquiry__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
         <name>Create_EmployerInquiry</name>
         <label>Create EmployerInquiry</label>
         <locationX>0</locationX>
@@ -590,6 +828,101 @@ NULL
         <object>EmployerInquiry__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordCreates>
+        <name>Create_EmployerInquiry_NALS</name>
+        <label>Create EmployerInquiry NALS</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Toast_Created_Task_NALS</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>EnquiryTitleBasedOnTheme</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>NavUnitQueue</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Account__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_DueDateTime__c</field>
+            <value>
+                <elementReference>dueDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_DueDate__c</field>
+            <value>
+                <elementReference>dueDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Message__c</field>
+            <value>
+                <elementReference>Text.conversationNote</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NavUnit__c</field>
+            <value>
+                <elementReference>NavEnhetNALS.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_NoPersonInformation__c</field>
+            <value>
+                <elementReference>Ingen_brukeropplysninger</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_RecievedDateTime__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Source__c</field>
+            <value>
+                <stringValue>Kontaktsenteret</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>Ny henvendelse</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_SubTheme__c</field>
+            <value>
+                <elementReference>OutcomeSubThemeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Theme__c</field>
+            <value>
+                <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_YouthPledge__c</field>
+            <value>
+                <elementReference>OutcomeYouthPledgeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EmployerInquiry__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <name>Get_Account_Info</name>
         <label>Get Account Info</label>
@@ -615,6 +948,33 @@ NULL
         <outputAssignments>
             <assignToReference>accountNavUnitId</assignToReference>
             <field>TAG_NavUnit__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_NALS</name>
+        <label>Get NALS</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_it_queue_for_NALS</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>NavEnhetNALS.recordId</elementReference>
+            </value>
+        </filters>
+        <object>NavUnit__c</object>
+        <outputAssignments>
+            <assignToReference>NavUnitQueue</assignToReference>
+            <field>CRM_QueueId__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>NavUnitName</assignToReference>
+            <field>Name</field>
         </outputAssignments>
     </recordLookups>
     <recordLookups>
