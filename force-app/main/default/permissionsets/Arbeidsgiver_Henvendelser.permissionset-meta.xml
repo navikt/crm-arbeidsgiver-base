@@ -52,11 +52,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.TAG_DiscussedWithEmployeeRepresentative__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>EmployerInquiry__c.TAG_DueDateTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
