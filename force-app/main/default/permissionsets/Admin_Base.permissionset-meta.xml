@@ -339,6 +339,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_DiscussedWithEmployeeRepresentative__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_DueDateTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -440,6 +445,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_WebFormContactPhone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_WebFormContactedEmployeeRep__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
