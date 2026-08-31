@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_DiscussedWithEmployeeRepresentative__c</fullName>
+    <defaultValue>&quot;Ikke aktuelt&quot;</defaultValue>
+    <inlineHelpText>Innsender av kontaktskjema blir spurt om hen har snakket med en ansattrepresentant om forebygging av sykefravær. Svaret Ja/Nei vises her.</inlineHelpText>
+    <label>Discussed with employee representative?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ja</fullName>
+                <default>false</default>
+                <label>Ja</label>
+            </value>
+            <value>
+                <fullName>Nei</fullName>
+                <default>false</default>
+                <label>Nei</label>
+            </value>
+            <value>
+                <fullName>Ikke aktuelt</fullName>
+                <default>false</default>
+                <label>Ikke aktuelt</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
