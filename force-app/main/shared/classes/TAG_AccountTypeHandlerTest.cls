@@ -90,8 +90,8 @@ private class TAG_AccountTypeHandlerTest {
         System.assertEquals('J', savedAccounts[2].CRM_AccountType__c, 'AS accountype should be J');
         System.assertEquals('J', savedAccounts[3].CRM_AccountType__c, 'ASA accountype should be J');
         System.assertEquals('B', savedAccounts[4].CRM_AccountType__c, 'BEDR accountype should be B');
-        System.assertEquals('B', savedAccounts[5].CRM_AccountType__c, 'FKF accountype should be B');
-        System.assertEquals('B', savedAccounts[6].CRM_AccountType__c, 'KF accountype should be B');
+        System.assertEquals('O', savedAccounts[5].CRM_AccountType__c, 'FKF accountype should be O');
+        System.assertEquals('O', savedAccounts[6].CRM_AccountType__c, 'KF accountype should be O');
         System.assertEquals('O', savedAccounts[7].CRM_AccountType__c, 'ORGL accountype should be O');
         System.assertEquals('J', savedAccounts[8].CRM_AccountType__c, 'UTLA accountype should be J');
         System.assertEquals(
@@ -174,10 +174,10 @@ private class TAG_AccountTypeHandlerTest {
         System.assertEquals('J', savedAccounts[35].CRM_AccountType__c, 'ASA accountype should be J');
         System.assertEquals('B', savedAccounts[40].CRM_AccountType__c, 'BEDR accountype should be B');
         System.assertEquals('B', savedAccounts[49].CRM_AccountType__c, 'BEDR accountype should be B');
-        System.assertEquals('B', savedAccounts[50].CRM_AccountType__c, 'FKF accountype should be B');
-        System.assertEquals('B', savedAccounts[57].CRM_AccountType__c, 'FKF accountype should be B');
-        System.assertEquals('B', savedAccounts[60].CRM_AccountType__c, 'KF accountype should be B');
-        System.assertEquals('B', savedAccounts[69].CRM_AccountType__c, 'KF accountype should be B');
+        System.assertEquals('O', savedAccounts[50].CRM_AccountType__c, 'FKF accountype should be O');
+        System.assertEquals('O', savedAccounts[57].CRM_AccountType__c, 'FKF accountype should be O');
+        System.assertEquals('O', savedAccounts[60].CRM_AccountType__c, 'KF accountype should be O');
+        System.assertEquals('O', savedAccounts[69].CRM_AccountType__c, 'KF accountype should be O');
         System.assertEquals('O', savedAccounts[70].CRM_AccountType__c, 'ORGL accountype should be O');
         System.assertEquals('O', savedAccounts[79].CRM_AccountType__c, 'ORGL accountype should be O');
         System.assertEquals('J', savedAccounts[80].CRM_AccountType__c, 'UTLA accountype should be J');
