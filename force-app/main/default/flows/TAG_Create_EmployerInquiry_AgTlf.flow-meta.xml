@@ -262,7 +262,7 @@
             <assignToReference>errorNavUnit</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Valgt Nav-enhet &quot;{!NavUnitName}&quot; kan foreløpig ikke motta oppgaver i Salesforce. Vennligst velg en annen Nav-enhet.</stringValue>
+                <stringValue>Feltet Nav-enhet er enten blankt eller inneholder en Nav-enhet som ikke er aktiv i Salesforce Arbeidsgiver.</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -1090,7 +1090,7 @@ NULL
         <fields>
             <name>Gjelder_ungdomsloftet</name>
             <dataType>Boolean</dataType>
-            <fieldText>Ønsker å bidra til ungdomsløftet?</fieldText>
+            <fieldText>Ungdomsløftet</fieldText>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Huk av boksen dersom arbeidsgiveren ønsker å bidra til ungdomsløftet&lt;/span&gt;&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
