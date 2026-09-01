@@ -3,7 +3,7 @@
     <apiVersion>64.0</apiVersion>
     <assignments>
         <name>Set_Tidligere_Ansatt</name>
-        <label>Set Tidligere Ansatt</label>
+        <label>Set Inaktiv</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
@@ -149,7 +149,7 @@
             <inputParameters>
                 <name>message</name>
                 <value>
-                    <stringValue>Kontakten er nå markert som tidligere ansatt</stringValue>
+                    <stringValue>Kontakten er nå markert som inaktiv</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>

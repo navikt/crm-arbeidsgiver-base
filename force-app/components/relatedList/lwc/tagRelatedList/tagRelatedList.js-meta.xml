@@ -124,7 +124,7 @@
             <property
                 name="inactivePrefix"
                 label="Inactive Record Prefix"
-                description="Enter prefix to show before String-value in first column for inactive records(e.g. Sluttet:)."
+                description="Enter prefix to show before String-value in first column for inactive records(e.g. Inaktiv:)."
                 type="String"
                 default=""
             />
