@@ -221,15 +221,21 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_DiscussedWithEmployeeRepresentative__c</fieldItem>
                 <identifier>RecordTAG_DiscussedWithEmployeeRepresentative_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <leftValue>{!Record.TAG_DiscussedWithEmployeeRepresentative__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Forebygge og redusere fravær</rightValue>
+                        <rightValue>Ja</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_DiscussedWithEmployeeRepresentative__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Nei</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
