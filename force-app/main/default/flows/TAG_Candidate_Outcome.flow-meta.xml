@@ -212,12 +212,19 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Formidling</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Category__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>FORMIDLING</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Category__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>REKRUTTERINGSTREFF_FORMIDLING</stringValue>
                 </rightValue>
             </conditions>
             <connector>
