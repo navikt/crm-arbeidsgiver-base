@@ -18,6 +18,12 @@ private class TAG_CustomCampaignMemberTransferTest {
 
         List<Account> accounts = TAG_TestDataFactory.createAccounts(2);
 
+        User runner = getRunner();
+        for (Account acc : accounts) {
+            acc.OwnerId = runner.Id;
+        }
+        update accounts;
+
         CustomCampaign__c source = new CustomCampaign__c(
             Name = 'Kildekampanje',
             Type__c = 'Sommerjobbkampanje',
