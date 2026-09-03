@@ -2,10 +2,6 @@
  * @description Invocable action used by the screen flow "TAG Move or Copy Campaign Members".
  * Moves or copies CustomCampaignMember__c records from one CustomCampaign__c to another.
  * Moved/copied members always get Status__c = 'Ny' and a blank Kommentar__c.
- *
- * @see TAG_CustomCampaignMemberTransferTest
- *
- * @group TAG Custom Campaign
  */
 public with sharing class TAG_CustomCampaignMemberTransfer {
     @TestVisible
@@ -15,8 +11,18 @@ public with sharing class TAG_CustomCampaignMemberTransfer {
     private static final String NEW_STATUS = 'Ny';
     private static final Integer MAX_RECORDS = 10000;
 
-    // External id is owned by the integration, never duplicate it onto copies
-    private static final Set<String> EXCLUDED_FROM_COPY = new Set<String>{ 'Key__c' };
+    // Business fields carried over to a copy. Deliberately explicit: OwnerId, audit fields and
+    // the Key__c external id must never be cloned, and a describe based list varies between orgs.
+    private static final List<String> COPYABLE_FIELDS = new List<String>{
+        'Account__c',
+        'AccountSentral__c',
+        'Contact__c',
+        'IsContacted__c',
+        'IsSurvey__c',
+        'NAV_Unit__c',
+        'Owner__c',
+        'Responsible__c'
+    };
 
     public class TransferRequest {
         @InvocableVariable(label='Source Campaign Id' description='Campaign to take members from' required=true)
@@ -134,7 +140,7 @@ public with sharing class TAG_CustomCampaignMemberTransfer {
         member.Kommentar__c = null;
     }
 
-    // Move only needs the id, copy needs every field the running user may create
+    // Move only needs the id, copy needs the business fields that should follow the member
     private static List<CustomCampaignMember__c> getMembers(String sourceCampaignId, Boolean isCopy) {
         String fields = isCopy ? String.join(getCopyableFields(), ', ') : 'Id';
         String soql =
@@ -151,15 +157,17 @@ public with sharing class TAG_CustomCampaignMemberTransfer {
     }
 
     private static List<String> getCopyableFields() {
+        Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.CustomCampaignMember__c.fields.getMap();
         List<String> fieldNames = new List<String>{ 'Id' };
-        for (Schema.SObjectField field : Schema.SObjectType.CustomCampaignMember__c.fields.getMap().values()) {
+
+        for (String fieldName : COPYABLE_FIELDS) {
+            Schema.SObjectField field = fieldMap.get(fieldName);
+            if (field == null) {
+                continue;
+            }
             Schema.DescribeFieldResult describe = field.getDescribe();
-            if (
-                describe.isCreateable() &&
-                describe.isAccessible() &&
-                !EXCLUDED_FROM_COPY.contains(describe.getName())
-            ) {
-                fieldNames.add(describe.getName());
+            if (describe.isCreateable() && describe.isAccessible()) {
+                fieldNames.add(fieldName);
             }
         }
         return fieldNames;

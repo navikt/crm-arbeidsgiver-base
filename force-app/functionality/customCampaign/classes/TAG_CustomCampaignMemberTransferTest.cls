@@ -84,7 +84,7 @@ private class TAG_CustomCampaignMemberTransferTest {
         TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(true, result.isSuccess, 'Move should succeed');
+        System.assertEquals(true, result.isSuccess, 'Move should succeed: ' + result.message);
         System.assertEquals(2, result.numberOfMembers, 'Both members should be moved');
 
         List<CustomCampaignMember__c> moved = [
@@ -112,7 +112,7 @@ private class TAG_CustomCampaignMemberTransferTest {
         TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(true, result.isSuccess, 'Copy should succeed');
+        System.assertEquals(true, result.isSuccess, 'Copy should succeed: ' + result.message);
         System.assertEquals(2, result.numberOfMembers, 'Both members should be copied');
 
         System.assertEquals(
