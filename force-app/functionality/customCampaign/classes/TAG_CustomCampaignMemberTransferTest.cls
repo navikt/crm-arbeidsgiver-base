@@ -7,8 +7,15 @@
  */
 @IsTest
 private class TAG_CustomCampaignMemberTransferTest {
+    private static final String RUNNER_LAST_NAME = 'CcmTransferRunner';
+
     @TestSetup
     static void makeData() {
+        // The action runs in user mode, so the test user needs the campaign permission set
+        System.runAs(new User(Id = UserInfo.getUserId())) {
+            TAG_TestDataFactory.createUserWithPermset(RUNNER_LAST_NAME, 'Arbeidsgiver_Kampanje');
+        }
+
         List<Account> accounts = TAG_TestDataFactory.createAccounts(2);
 
         CustomCampaign__c source = new CustomCampaign__c(
@@ -45,6 +52,22 @@ private class TAG_CustomCampaignMemberTransferTest {
         return [SELECT Id FROM CustomCampaign__c WHERE Name = :name LIMIT 1].Id;
     }
 
+    private static User getRunner() {
+        return [SELECT Id FROM User WHERE LastName = :RUNNER_LAST_NAME LIMIT 1];
+    }
+
+    private static TAG_CustomCampaignMemberTransfer.TransferResult runAsCampaignUser(
+        TAG_CustomCampaignMemberTransfer.TransferRequest req
+    ) {
+        List<TAG_CustomCampaignMemberTransfer.TransferResult> results;
+        System.runAs(getRunner()) {
+            results = TAG_CustomCampaignMemberTransfer.transferMembers(
+                new List<TAG_CustomCampaignMemberTransfer.TransferRequest>{ req }
+            );
+        }
+        return results[0];
+    }
+
     private static TAG_CustomCampaignMemberTransfer.TransferRequest buildRequest(String action) {
         TAG_CustomCampaignMemberTransfer.TransferRequest req = new TAG_CustomCampaignMemberTransfer.TransferRequest();
         req.sourceCampaignId = getCampaignId('Kildekampanje');
@@ -58,13 +81,11 @@ private class TAG_CustomCampaignMemberTransferTest {
         TAG_CustomCampaignMemberTransfer.TransferRequest req = buildRequest('Move');
 
         Test.startTest();
-        List<TAG_CustomCampaignMemberTransfer.TransferResult> results = TAG_CustomCampaignMemberTransfer.transferMembers(
-            new List<TAG_CustomCampaignMemberTransfer.TransferRequest>{ req }
-        );
+        TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(true, results[0].isSuccess, 'Move should succeed');
-        System.assertEquals(2, results[0].numberOfMembers, 'Both members should be moved');
+        System.assertEquals(true, result.isSuccess, 'Move should succeed');
+        System.assertEquals(2, result.numberOfMembers, 'Both members should be moved');
 
         List<CustomCampaignMember__c> moved = [
             SELECT Id, Status__c, Kommentar__c
@@ -88,13 +109,11 @@ private class TAG_CustomCampaignMemberTransferTest {
         TAG_CustomCampaignMemberTransfer.TransferRequest req = buildRequest('Copy');
 
         Test.startTest();
-        List<TAG_CustomCampaignMemberTransfer.TransferResult> results = TAG_CustomCampaignMemberTransfer.transferMembers(
-            new List<TAG_CustomCampaignMemberTransfer.TransferRequest>{ req }
-        );
+        TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(true, results[0].isSuccess, 'Copy should succeed');
-        System.assertEquals(2, results[0].numberOfMembers, 'Both members should be copied');
+        System.assertEquals(true, result.isSuccess, 'Copy should succeed');
+        System.assertEquals(2, result.numberOfMembers, 'Both members should be copied');
 
         System.assertEquals(
             2,
@@ -120,13 +139,11 @@ private class TAG_CustomCampaignMemberTransferTest {
         TAG_CustomCampaignMemberTransfer.TransferRequest req = buildRequest('Delete');
 
         Test.startTest();
-        List<TAG_CustomCampaignMemberTransfer.TransferResult> results = TAG_CustomCampaignMemberTransfer.transferMembers(
-            new List<TAG_CustomCampaignMemberTransfer.TransferRequest>{ req }
-        );
+        TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(false, results[0].isSuccess, 'Unknown action should fail');
-        System.assertEquals(0, results[0].numberOfMembers, 'Nothing should be processed');
+        System.assertEquals(false, result.isSuccess, 'Unknown action should fail');
+        System.assertEquals(0, result.numberOfMembers, 'Nothing should be processed');
     }
 
     @IsTest
@@ -135,12 +152,10 @@ private class TAG_CustomCampaignMemberTransferTest {
         req.targetCampaignId = req.sourceCampaignId;
 
         Test.startTest();
-        List<TAG_CustomCampaignMemberTransfer.TransferResult> results = TAG_CustomCampaignMemberTransfer.transferMembers(
-            new List<TAG_CustomCampaignMemberTransfer.TransferRequest>{ req }
-        );
+        TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(false, results[0].isSuccess, 'Same source and target should fail');
+        System.assertEquals(false, result.isSuccess, 'Same source and target should fail');
     }
 
     @IsTest
@@ -149,12 +164,10 @@ private class TAG_CustomCampaignMemberTransferTest {
         req.sourceCampaignId = null;
 
         Test.startTest();
-        List<TAG_CustomCampaignMemberTransfer.TransferResult> results = TAG_CustomCampaignMemberTransfer.transferMembers(
-            new List<TAG_CustomCampaignMemberTransfer.TransferRequest>{ req }
-        );
+        TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(false, results[0].isSuccess, 'Missing campaign id should fail');
+        System.assertEquals(false, result.isSuccess, 'Missing campaign id should fail');
     }
 
     @IsTest
@@ -172,12 +185,10 @@ private class TAG_CustomCampaignMemberTransferTest {
         req.sourceCampaignId = empty.Id;
 
         Test.startTest();
-        List<TAG_CustomCampaignMemberTransfer.TransferResult> results = TAG_CustomCampaignMemberTransfer.transferMembers(
-            new List<TAG_CustomCampaignMemberTransfer.TransferRequest>{ req }
-        );
+        TAG_CustomCampaignMemberTransfer.TransferResult result = runAsCampaignUser(req);
         Test.stopTest();
 
-        System.assertEquals(false, results[0].isSuccess, 'A campaign without members should fail');
-        System.assertEquals(0, results[0].numberOfMembers, 'Nothing should be processed');
+        System.assertEquals(false, result.isSuccess, 'A campaign without members should fail');
+        System.assertEquals(0, result.numberOfMembers, 'Nothing should be processed');
     }
 }

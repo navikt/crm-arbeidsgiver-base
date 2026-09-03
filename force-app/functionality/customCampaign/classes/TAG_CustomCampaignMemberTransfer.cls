@@ -75,20 +75,20 @@ public with sharing class TAG_CustomCampaignMemberTransfer {
             return res;
         }
 
-        List<CustomCampaign__c> targets = [
-            SELECT Id, Name, Type__c
-            FROM CustomCampaign__c
-            WHERE Id = :req.targetCampaignId
-            WITH USER_MODE
-            LIMIT 1
-        ];
-        if (targets.isEmpty()) {
-            res.message = 'Fant ikke den nye kampanjen.';
-            return res;
-        }
-        CustomCampaign__c target = targets[0];
-
         try {
+            List<CustomCampaign__c> targets = [
+                SELECT Id, Name, Type__c
+                FROM CustomCampaign__c
+                WHERE Id = :req.targetCampaignId
+                WITH USER_MODE
+                LIMIT 1
+            ];
+            if (targets.isEmpty()) {
+                res.message = 'Fant ikke den nye kampanjen.';
+                return res;
+            }
+            CustomCampaign__c target = targets[0];
+
             List<CustomCampaignMember__c> members = getMembers(req.sourceCampaignId, isCopy);
 
             if (members.isEmpty()) {
