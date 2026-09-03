@@ -4,6 +4,14 @@
         <application>Arbeidsgiver_admin</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>TAG_CustomCampaignMemberTransfer</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TAG_CustomCampaignMemberTransferTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <customPermissions>
         <enabled>true</enabled>
         <name>Arbeidsgiver_Announcements_View_admin_options</name>
