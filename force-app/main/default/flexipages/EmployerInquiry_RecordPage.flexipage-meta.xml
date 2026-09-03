@@ -217,6 +217,29 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_DiscussedWithEmployeeRepresentative__c</fieldItem>
+                <identifier>RecordTAG_DiscussedWithEmployeeRepresentative_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_DiscussedWithEmployeeRepresentative__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Ja</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_DiscussedWithEmployeeRepresentative__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Nei</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-a149498f-870e-47f7-b359-500c7e259a80</name>
         <type>Facet</type>
     </flexiPageRegions>
