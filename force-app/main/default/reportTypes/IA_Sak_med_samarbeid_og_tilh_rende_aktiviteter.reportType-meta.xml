@@ -810,11 +810,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_DeletedDate__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.TAG_DeletedDateFormula__c</field>
             <table>IACase__c</table>
         </columns>
