@@ -326,11 +326,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_DeletedDate__c</field>
-            <table>JobPosting__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.Description</field>
             <table>JobPosting__c</table>
         </columns>

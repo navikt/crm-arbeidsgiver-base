@@ -1165,11 +1165,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account.TAG_DeletedDate__c</field>
-            <table>Contact</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account.TAG_DeletedDateFormula__c</field>
             <table>Contact</table>
         </columns>
