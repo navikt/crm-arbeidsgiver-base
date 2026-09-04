@@ -314,6 +314,29 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Employer_Inquiry</name>
+        <label>Get Employer Inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_job_posting_found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TAG_RelatedJobPosting__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.JobPosting__c</elementReference>
+            </value>
+        </filters>
+        <object>EmployerInquiry__c</object>
+        <outputAssignments>
+            <assignToReference>EmployerInquiryId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
         <name>Get_employment_placement_for_related_account</name>
         <label>Get employment placement for related account</label>
         <locationX>0</locationX>
@@ -356,7 +379,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Was_job_posting_found</targetReference>
+            <targetReference>Get_Employer_Inquiry</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -500,6 +523,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>EmployerInquiry__c</field>
+            <value>
+                <elementReference>EmployerInquiryId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EngagementType__c</field>
             <value>
                 <elementReference>Get_Job_Posting.EngagementType__c</elementReference>
@@ -567,6 +596,12 @@
             <field>Account__c</field>
         </inputAssignments>
         <inputAssignments>
+            <field>EmployerInquiry__c</field>
+            <value>
+                <elementReference>EmployerInquiryId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EngagementType__c</field>
             <value>
                 <elementReference>Get_Job_Posting.EngagementType__c</elementReference>
@@ -624,6 +659,12 @@
         <connector>
             <targetReference>Is_Nav_unit_null</targetReference>
         </connector>
+        <inputAssignments>
+            <field>EmployerInquiry__c</field>
+            <value>
+                <elementReference>EmployerInquiryId</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>EngagementType__c</field>
             <value>
@@ -778,5 +819,12 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>CandidateOutcome__c</objectType>
+    </variables>
+    <variables>
+        <name>EmployerInquiryId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>
