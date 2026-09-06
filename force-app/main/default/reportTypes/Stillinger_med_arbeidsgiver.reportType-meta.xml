@@ -606,11 +606,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_IsDeleted__c</field>
-            <table>JobPosting__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.Is_My_NAV_Region__c</field>
             <table>JobPosting__c</table>
         </columns>

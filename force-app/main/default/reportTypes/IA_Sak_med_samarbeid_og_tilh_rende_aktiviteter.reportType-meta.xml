@@ -965,11 +965,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_IsDeleted__c</field>
-            <table>IACase__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.IsDeletedEmployer__c</field>
             <table>IACase__c</table>
         </columns>
