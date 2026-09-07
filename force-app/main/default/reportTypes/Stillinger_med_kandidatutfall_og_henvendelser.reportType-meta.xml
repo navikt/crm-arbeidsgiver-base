@@ -547,6 +547,11 @@
             <field>EmploymentResult__c</field>
             <table>JobPosting__c.JobPostings_Henvendelser__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CandidateOutcome__c</field>
+            <table>JobPosting__c.JobPostings_Henvendelser__r</table>
+        </columns>
         <masterLabel>Employer Inquiries</masterLabel>
     </sections>
     <sections>
