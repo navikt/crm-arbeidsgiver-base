@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EmploymentResult__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field is set på a flow triggered on the candidate outcome object. If process from employer inquiry ended in Nav support of employment, then this field is set to true</description>
+    <label>Employment Result</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
