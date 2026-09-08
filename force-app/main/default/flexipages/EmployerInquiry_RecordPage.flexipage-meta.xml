@@ -240,6 +240,23 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.CandidateOutcome__c</fieldItem>
+                <identifier>RecordCandidateOutcome_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.EmploymentResult__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-a149498f-870e-47f7-b359-500c7e259a80</name>
         <type>Facet</type>
     </flexiPageRegions>

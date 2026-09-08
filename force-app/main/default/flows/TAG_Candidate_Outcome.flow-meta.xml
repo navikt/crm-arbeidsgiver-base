@@ -2,6 +2,52 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <assignments>
+        <name>Assign_value_to_Employer_Inquiry</name>
+        <label>Assign value to Employer Inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Employer_Inquiry.EmploymentResult__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Employer_Inquiry.CandidateOutcome__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ConnectedToEmployerInquiry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Employer_Inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_value_to_Employer_Inquiry_variable</name>
+        <label>Assign value to Employer Inquiry variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>ConnectedToEmployerInquiry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Was_job_posting_found</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Count_returned_presented_records</name>
         <label>Count returned presented records</label>
         <locationX>0</locationX>
@@ -33,6 +79,74 @@
             <targetReference>Update_related_Account</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Is_Employer_Inquiry_found</name>
+        <label>Is Employer Inquiry found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Was_job_posting_found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No employer inquiry found</defaultConnectorLabel>
+        <rules>
+            <name>Yes_and_Hired</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FATT_JOBBEN</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_value_to_Employer_Inquiry</targetReference>
+            </connector>
+            <label>Yes and Hired</label>
+        </rules>
+        <rules>
+            <name>Yes_and_Presented</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>PRESENTERT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_value_to_Employer_Inquiry_variable</targetReference>
+            </connector>
+            <label>Yes and Presented</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Is_Nav_unit_null</name>
         <label>Is Nav unit null?</label>
@@ -320,7 +434,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Was_job_posting_found</targetReference>
+            <targetReference>Is_Employer_Inquiry_found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -330,11 +444,9 @@
                 <elementReference>$Record.JobPosting__c</elementReference>
             </value>
         </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>EmployerInquiry__c</object>
-        <outputAssignments>
-            <assignToReference>EmployerInquiryId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Get_employment_placement_for_related_account</name>
@@ -523,9 +635,15 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>EmployerInquiryInitiated__c</field>
+            <value>
+                <elementReference>ConnectedToEmployerInquiry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EmployerInquiry__c</field>
             <value>
-                <elementReference>EmployerInquiryId</elementReference>
+                <elementReference>Get_Employer_Inquiry.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -596,9 +714,15 @@
             <field>Account__c</field>
         </inputAssignments>
         <inputAssignments>
+            <field>EmployerInquiryInitiated__c</field>
+            <value>
+                <elementReference>ConnectedToEmployerInquiry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EmployerInquiry__c</field>
             <value>
-                <elementReference>EmployerInquiryId</elementReference>
+                <elementReference>Get_Employer_Inquiry.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -660,9 +784,15 @@
             <targetReference>Is_Nav_unit_null</targetReference>
         </connector>
         <inputAssignments>
+            <field>EmployerInquiryInitiated__c</field>
+            <value>
+                <elementReference>ConnectedToEmployerInquiry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EmployerInquiry__c</field>
             <value>
-                <elementReference>EmployerInquiryId</elementReference>
+                <elementReference>Get_Employer_Inquiry.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -716,6 +846,16 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Update_Employer_Inquiry</name>
+        <label>Update Employer Inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Was_job_posting_found</targetReference>
+        </connector>
+        <inputReference>Get_Employer_Inquiry</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_related_Account</name>
         <label>Update related Account</label>
         <locationX>0</locationX>
@@ -766,6 +906,16 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>ConnectedToEmployerInquiry</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
     <variables>
         <name>countedDuplicates</name>
         <dataType>Number</dataType>
@@ -819,12 +969,5 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>CandidateOutcome__c</objectType>
-    </variables>
-    <variables>
-        <name>EmployerInquiryId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
     </variables>
 </Flow>

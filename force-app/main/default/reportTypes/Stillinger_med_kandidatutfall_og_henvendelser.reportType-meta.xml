@@ -542,6 +542,16 @@
             <field>TAG_Summary__c</field>
             <table>JobPosting__c.JobPostings_Henvendelser__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmploymentResult__c</field>
+            <table>JobPosting__c.JobPostings_Henvendelser__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CandidateOutcome__c</field>
+            <table>JobPosting__c.JobPostings_Henvendelser__r</table>
+        </columns>
         <masterLabel>Employer Inquiries</masterLabel>
     </sections>
     <sections>
@@ -743,6 +753,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>NavUnitRegion__c</field>
+            <table>JobPosting__c.JobPostings_Henvendelser__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmployerInquiryInitiated__c</field>
             <table>JobPosting__c.JobPostings_Henvendelser__r.Candidate_Outcome__r</table>
         </columns>
         <masterLabel>Candidate Outcome</masterLabel>
