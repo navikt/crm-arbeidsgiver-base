@@ -504,11 +504,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_DeletedDate__c</field>
-            <table>Contact.AccountContactRelations</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_DeletedDateFormula__c</field>
             <table>Contact.AccountContactRelations</table>
         </columns>
@@ -630,11 +625,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>INT_IsInLiquidation__c</field>
-            <table>Contact.AccountContactRelations</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_IsDeleted__c</field>
             <table>Contact.AccountContactRelations</table>
         </columns>
         <columns>
@@ -1276,11 +1266,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account.INT_IsInLiquidation__c</field>
-            <table>Contact</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account.TAG_IsDeleted__c</field>
             <table>Contact</table>
         </columns>
         <columns>
