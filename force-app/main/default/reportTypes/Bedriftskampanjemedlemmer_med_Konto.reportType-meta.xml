@@ -753,11 +753,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account__c.TAG_IsDeleted__c</field>
-            <table>CustomCampaignMember__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account__c.TAG_Is_My_NAV_Market_Region__c</field>
             <table>CustomCampaignMember__c</table>
         </columns>

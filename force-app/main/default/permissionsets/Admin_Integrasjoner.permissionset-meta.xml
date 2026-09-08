@@ -308,11 +308,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.TAG_DeletedDate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.TAG_Employer_Region__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -324,11 +319,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.TAG_InclusionOwner__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.TAG_IsDeleted__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
