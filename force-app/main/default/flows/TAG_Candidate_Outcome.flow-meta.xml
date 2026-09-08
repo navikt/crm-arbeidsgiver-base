@@ -20,8 +20,31 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ConnectedToEmployerInquiry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Employer_Inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_value_to_Employer_Inquiry_variable</name>
+        <label>Assign value to Employer Inquiry variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>ConnectedToEmployerInquiry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Was_job_posting_found</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -62,11 +85,11 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>What_category</targetReference>
+            <targetReference>Was_job_posting_found</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No employer inquiry found</defaultConnectorLabel>
         <rules>
-            <name>Yes_employer_inquiry_is_found</name>
+            <name>Yes_and_Hired</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Employer_Inquiry</leftValueReference>
@@ -92,7 +115,36 @@
             <connector>
                 <targetReference>Assign_value_to_Employer_Inquiry</targetReference>
             </connector>
-            <label>Yes employer inquiry is found</label>
+            <label>Yes and Hired</label>
+        </rules>
+        <rules>
+            <name>Yes_and_Presented</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>PRESENTERT</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_value_to_Employer_Inquiry_variable</targetReference>
+            </connector>
+            <label>Yes and Presented</label>
         </rules>
     </decisions>
     <decisions>
@@ -101,7 +153,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Is_Employer_Inquiry_found</targetReference>
+            <targetReference>What_category</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -382,7 +434,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Was_job_posting_found</targetReference>
+            <targetReference>Is_Employer_Inquiry_found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -516,7 +568,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Employer_Inquiry_found</targetReference>
+            <targetReference>What_category</targetReference>
         </connector>
         <inputAssignments>
             <field>NavUnit__c</field>
@@ -580,6 +632,12 @@
             <field>Account__c</field>
             <value>
                 <elementReference>Get_account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EmployerInquiryInitiated__c</field>
+            <value>
+                <elementReference>ConnectedToEmployerInquiry</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -656,6 +714,12 @@
             <field>Account__c</field>
         </inputAssignments>
         <inputAssignments>
+            <field>EmployerInquiryInitiated__c</field>
+            <value>
+                <elementReference>ConnectedToEmployerInquiry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EmployerInquiry__c</field>
             <value>
                 <elementReference>Get_Employer_Inquiry.Id</elementReference>
@@ -720,6 +784,12 @@
             <targetReference>Is_Nav_unit_null</targetReference>
         </connector>
         <inputAssignments>
+            <field>EmployerInquiryInitiated__c</field>
+            <value>
+                <elementReference>ConnectedToEmployerInquiry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EmployerInquiry__c</field>
             <value>
                 <elementReference>Get_Employer_Inquiry.Id</elementReference>
@@ -781,7 +851,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>What_category</targetReference>
+            <targetReference>Was_job_posting_found</targetReference>
         </connector>
         <inputReference>Get_Employer_Inquiry</inputReference>
     </recordUpdates>
@@ -836,6 +906,16 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>ConnectedToEmployerInquiry</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
     <variables>
         <name>countedDuplicates</name>
         <dataType>Number</dataType>

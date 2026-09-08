@@ -755,6 +755,11 @@
             <field>NavUnitRegion__c</field>
             <table>JobPosting__c.JobPostings_Henvendelser__r.Candidate_Outcome__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmployerInquiryInitiated__c</field>
+            <table>JobPosting__c.JobPostings_Henvendelser__r.Candidate_Outcome__r</table>
+        </columns>
         <masterLabel>Candidate Outcome</masterLabel>
     </sections>
 </ReportType>
