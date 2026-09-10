@@ -1,0 +1,35 @@
+<template>
+    <div class="">
+        <div class="slds-grid">
+            <template if:true={_metricIcon}>
+                <div class="slds-col slds-grow-none slds-var-p-right_xx-small">
+                    <lightning-icon icon-name={_metricIcon} size="small" alternative-text="Illustrativ">
+                    </lightning-icon>
+                </div>
+            </template>
+            <div class="slds-col slds-has-flexi-truncate slds-truncate">
+                <div class="metric-label-wrapper">
+                    <div class="slds-text-heading_small metric-title slds-line-clamp_x-small" title={_metricLabel}>
+                        {_metricLabel}
+                    </div>
+                </div>
+                <div class="slds-grid slds-grid_align-center">
+                    <div class="slds-text-heading_small slds-col slds-truncate">
+                        <span class="metric-value slds-var-p-right_xx-small slds-truncate">{_metricValue}</span>
+                        <span class="metric-unit slds-var-p-right_medium slds-truncate">{_metricUnit}</span>
+                        <template if:true={metricTrend}>
+                            <span class="metric-weak slds-truncate">{metricTrend}</span>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="metric-weak slds-truncate slds-text-body_medium">
+                    {_metricNote}
+                    <template if:true={_metricHelpText}
+                        ><lightning-helptext content={_metricHelpText} icon-name="utility:info_alt"></lightning-helptext
+                    ></template>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
