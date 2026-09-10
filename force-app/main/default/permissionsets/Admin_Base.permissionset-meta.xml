@@ -24,6 +24,10 @@
         <enabled>true</enabled>
         <name>Arbeidsgiver_Se_sp_rsm_l_fra_In_App_Feedback</name>
     </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>POAG_Pilot</name>
+    </customPermissions>
     <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
     <fieldPermissions>
         <editable>false</editable>
