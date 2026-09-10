@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Årsak til mislykket rekruttering</label>
+    <name>TAG_BUFailedRecruitmentCause__c</name>
+    <picklistValues>
+        <masterLabel>Annet</masterLabel>
+        <translation><!-- Annet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ingen/for få kvalifiserte søkere</masterLabel>
+        <translation><!-- Ingen/for få kvalifiserte søkere --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
