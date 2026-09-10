@@ -553,11 +553,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>RelatedToAccount__c.TAG_DeletedDate__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>RelatedToAccount__c.TAG_DeletedDateFormula__c</field>
             <table>Activity</table>
         </columns>
@@ -704,11 +699,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>RelatedToAccount__c.INT_IsInLiquidation__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>RelatedToAccount__c.TAG_IsDeleted__c</field>
             <table>Activity</table>
         </columns>
         <columns>
@@ -1263,11 +1253,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account.TAG_DeletedDate__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Account.TAG_DeletedDateFormula__c</field>
             <table>Activity</table>
         </columns>
@@ -1414,11 +1399,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Account.INT_IsInLiquidation__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Account.TAG_IsDeleted__c</field>
             <table>Activity</table>
         </columns>
         <columns>

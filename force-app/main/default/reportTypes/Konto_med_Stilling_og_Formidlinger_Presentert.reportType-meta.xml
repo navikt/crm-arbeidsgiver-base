@@ -3,12 +3,16 @@
     <baseObject>Account</baseObject>
     <category>accounts</category>
     <deployed>true</deployed>
-    <description>Viser kontoer som ikke har en kontaktperson fra NAV</description>
+    <description>Konto med Stilling og Formidlinger/Presentert</description>
     <join>
-        <outerJoin>true</outerJoin>
-        <relationship>AccountTeamMembers</relationship>
+        <join>
+            <outerJoin>false</outerJoin>
+            <relationship>Candidate_Outcome__r</relationship>
+        </join>
+        <outerJoin>false</outerJoin>
+        <relationship>JobPostings__r</relationship>
     </join>
-    <label>Kontoer uten kontaktpersponer fra NAV</label>
+    <label>Konto med Stilling og Formidlinger/Presentert</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
@@ -267,6 +271,16 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>OperatingHours</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Bypass_Validation__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>CRM_AccountType__c</field>
             <table>Account</table>
         </columns>
@@ -277,7 +291,62 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>CRM_NavEmployeeName__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_NumberOfEmployeesGrouped__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>CRM_Person__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_UltimateParentAccount__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmployerDeletedDate__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_EmployerEmail__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_EmployerMobilePhone__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_HasEmployees__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_Industry2__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_Industry3__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_IndustryCode2__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_IndustryCode3__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -292,7 +361,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>INT_InvalidEmployerEmail__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>INT_IsBankrupt__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_IsHasTombstone__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -303,6 +382,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>INT_IsInLiquidation__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_KrrMobilePhone__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -352,72 +436,97 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>INT_SectorCode__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_Sector__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_dnr__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_fnr__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>INT_npid__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsDeletedEmployer__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_Activities_on_sub_accounts__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_MainIndustry__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_NumberOfEmployeesFormula__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_PersonAddress__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CRM_RegistrationYear__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NKS_GenderIcon__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NKS_PersonAge__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>OrganizationNumberFormula__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Is_My_NAV_Office__c</field>
+            <field>INT_HashCode__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Is_My_NAV_Region__c</field>
+            <field>AAregisterURL__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>NAV_Region__c</field>
+            <field>Account_18_ID__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Employer_Region__c</field>
+            <field>Add_to_Custom_Campaign__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_IAOwner__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_InclusionOwner__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_IsIAOwnerCurrentUser__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_IsInclusionOwnerCurrentUser__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_NavUnit__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_NumberOfChildAccounts__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Power_of_one__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Proff_no__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>EditableWebsite__c</field>
+            <field>Alias__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -432,22 +541,37 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Last_completed_activity_date__c</field>
+            <field>EditableWebsite__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Is_My_NAV_Market_Region__c</field>
+            <field>GosysURL__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>NAV_Market_Region__c</field>
+            <field>JSONPayload__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Force_Update__c</field>
+            <field>KafkaHash__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NumberOfWorkfare__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RekrutteringsbistandURL__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Shipping_State__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -457,7 +581,77 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Public_Sector__c</field>
+            <field>TAG_Accommodations_related_to_org_hir__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_DeletedDateFormula__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Employer_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_FiaCaseStatus__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Force_Update__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_IAOwner__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_InclusionOwner__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_LastEventDate__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_LastTaskDate__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NavUnit__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NumberOfChildAccounts__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NumberOfEmploymentPlacementPresented__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NumberOfEmploymentPlacement__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Partner_Status__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Power_of_one__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -467,7 +661,97 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_NumberOfEmploymentPlacement__c</field>
+            <field>TiltakRefusjonURL__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TiltaksgjennomforingURL__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WarningDate__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WarningNote__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WarningRegisteredBy__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Warning__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_NAV_Office__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_NAV_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Market_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NAV_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_IsIAOwnerCurrentUser__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_IsInclusionOwnerCurrentUser__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Is_My_NAV_Market_Region__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Last_completed_activity_date__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Proff_no__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Public_Sector__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Sector__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WarningFormattedText__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WarningRemovalDate__c</field>
             <table>Account</table>
         </columns>
         <masterLabel>Accounts</masterLabel>
@@ -475,404 +759,472 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TeamMemberRole</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Id</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CreatedDate</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedDate</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Departments__c</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_Active__c</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Username</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Owner</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>true</checkedByDefault>
             <field>Name</field>
-            <table>Account.AccountTeamMembers</table>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>FirstName</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastName</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>MiddleName</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CompanyName</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Division</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Department</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Title</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Address</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CurrentStatus</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Street</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>City</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>State</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>PostalCode</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Country</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Latitude</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Longitude</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>GeocodeAccuracy</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Email</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SenderEmail</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SenderName</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Signature</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>StayInTouchSubject</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>StayInTouchSignature</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>StayInTouchNote</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Phone</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Fax</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>MobilePhone</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Alias</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CommunityNickname</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IsActive</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IsSystemControlled</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TimeZoneSidKey</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserRole</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LocaleSidKey</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ReceivesInfoEmails</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ReceivesAdminInfoEmails</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>EmailEncodingKey</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Profile</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserType</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UserSubtype</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>StartDay</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>EndDay</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LanguageLocaleKey</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>EmployeeNumber</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Manager</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastLoginDate</field>
-            <table>Account.AccountTeamMembers</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>LastPasswordChangeDate</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>CreatedDate</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy</field>
-            <table>Account.AccountTeamMembers</table>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedBy</field>
-            <table>Account.AccountTeamMembers</table>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>NumberOfFailedLogins</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>LastActivityDate</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>SuAccessExpirationDate</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Created__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>SuOrgAdminExpirationDate</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>EmployerReference__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>OfflineTrialExpirationDate</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>EngagementType__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>WirelessTrialExpirationDate</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Expires__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>OfflinePdaTrialExpirationDate</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Extent__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>ForecastEnabled</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>JanzzCode__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CRM_MarketRegion__c</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>JanzzName__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Contact</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>JobPoster__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Extension</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>JobTitle__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsPortalSelfRegistered</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>KafkaHash__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>FederationIdentifier</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>KafkaId__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>AboutMe</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Keywords__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>DigestFrequency</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>LastUpdated__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>DefaultGroupNotificationFrequency</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Medium__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>ChatterAdoptionStage</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>NavEmployeeName__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>ChatterAdoptionStageModifiedDate</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>NavIdent__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsProfilePhotoActive</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>OrganizationNumber__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Individual</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>ProfessionCategoryCode__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>GlobalIdentity</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>ProfessionCategory__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CRM_ManuallyDeactivated__c</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>Published__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Region__c</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>RecruitmentAssistance__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>AccountTeamMemberId</field>
-            <table>Account.AccountTeamMembers</table>
+            <field>RecruitmentPhone__c</field>
+            <table>Account.JobPostings__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>SourceURL__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Source__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Status__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_EmploymentPlacement__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_initial_activity_date__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Title__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UUID__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WorkLanguage__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WorkplaceCity__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_NAV_Unit_Market_Region__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_NAV_Unit_Region__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_NAV_unit__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Expire_Date__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_Market_Region__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_NAV_Unit__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Is_My_Region__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Link_to_position__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Linkt_to_Rekrutteringsbistand__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Published_Date__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RecruitmentAssistanceFormula__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Link__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Quality_Issue_Timeliness__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
+        <masterLabel>Job Postings</masterLabel>
+    </sections>
+    <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
-            <table>Account.AccountTeamMembers</table>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
         </columns>
-        <masterLabel>Account Team</masterLabel>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Owner</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedBy</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account2__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CandidateId__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CandidateListId__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CandidateOutcome18Id__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Category__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Duplicate__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EngagementType__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Extent__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsJobPostingFound__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>JSONPayload__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>JobPostingId__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>JobPostingStatus__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>KafkaHash__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>KafkaId__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NavIdent__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NavUnitNumber__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NavUnit__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>OrganizationNumber__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RecruitmentEventId__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Result__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Source__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TimeRegistered__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Title__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TriggerUpdate__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Type__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CandidateOutcomeLink__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsMyMarketRegion__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsMyNavRegion__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsMyNavUnit__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NavMarketRegion__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>NavUnitRegion__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmployerInquiry__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmployerInquiryInitiated__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <masterLabel>Candidate Outcome</masterLabel>
     </sections>
 </ReportType>

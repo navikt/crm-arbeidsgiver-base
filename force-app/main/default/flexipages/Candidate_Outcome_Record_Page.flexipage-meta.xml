@@ -155,6 +155,23 @@
                 <identifier>RecordNavUnit_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EmployerInquiry__c</fieldItem>
+                <identifier>RecordEmployerInquiry_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.EmployerInquiryInitiated__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-776823a7-a52d-403d-ac43-aa48d09eef83</name>
         <type>Facet</type>
     </flexiPageRegions>

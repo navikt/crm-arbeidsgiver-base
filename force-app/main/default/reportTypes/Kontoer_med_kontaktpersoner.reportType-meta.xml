@@ -582,11 +582,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_DeletedDate__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_Employer_Region__c</field>
             <table>Account</table>
         </columns>
@@ -608,11 +603,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>TAG_InclusionOwner__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>TAG_IsDeleted__c</field>
             <table>Account</table>
         </columns>
         <columns>
