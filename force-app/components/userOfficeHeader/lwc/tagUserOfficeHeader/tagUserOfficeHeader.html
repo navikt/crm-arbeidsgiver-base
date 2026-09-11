@@ -19,18 +19,22 @@
 
                 <!-- Heading -->
                 <template if:false={isHidden}>
-                    <h1 class="slds-text-heading_medium slds-m-left_small">
-                        <template if:true={isUser}>
-                            <strong>{fullName}</strong>
+                    <h1>
+                        <template if:true={showNavUnitLink}>
+                            <a
+                                title={headerText}
+                                href={navUnitUrl}
+                                onclick={handleNavUnitClick}
+                                class="slds-text-link_reset"
+                                ><span class="slds-text-heading_medium slds-m-left_small slds-text-link_faux"
+                                    ><strong>{headerText}</strong></span
+                                ></a
+                            >
                         </template>
-                        <template if:true={isNavOffice}>
-                            <strong>{companyName}</strong>
-                        </template>
-                        <template if:true={isNavRegion}>
-                            <strong>{regionName}</strong>
-                        </template>
-                        <template if:true={isCustom}>
-                            <strong>{customTitle}</strong>
+                        <template if:false={showNavUnitLink}>
+                            <span class="slds-text-heading_medium slds-m-left_small"
+                                ><strong>{headerText}</strong></span
+                            >
                         </template>
                     </h1>
                 </template>
