@@ -1,0 +1,27 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Reserverer plass til 2 linjer label uansett faktisk linjeantall, slik at verdi/note alltid starter samme sted */
+.metric-label-wrapper {
+    min-height: calc(2rem * var(--slds-g-font-lineheight-2, 1.25));
+}
+
+.metric-value {
+    font-size: var(--slds-g-font-scale-8, 2.625rem);
+    font-weight: var(--slds-g-font-weight-bold, bold);
+    color: var(--slds-g-color-on-surface-3, #03234d);
+}
+
+.metric-unit {
+    color: var(--slds-g-color-on-surface-2, #2e2e2e);
+}
+
+.metric-title {
+    color: var(--slds-g-color-on-surface-2, #2e2e2e);
+}
+
+.metric-weak {
+    color: var(--slds-g-color-on-surface-1, #5c5c5c);
+}
