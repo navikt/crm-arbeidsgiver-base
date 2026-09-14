@@ -244,7 +244,7 @@
     <formulas>
         <name>EmployerHasLessThan5Employees</name>
         <dataType>Boolean</dataType>
-        <expression>IF(OR({!$Record.Account__r.NumberOfEmployees} &lt; 5,{!$Record.Account__r.NumberOfEmployees} = null), true, false)</expression>
+        <expression>IF(OR({!$Record.Account__r.NumberOfEmployees} &lt; 5,{!$Record.Account__r.NumberOfEmployees} = null, ISBLANK({!$Record.Account__r.NumberOfEmployees})), true, false)</expression>
     </formulas>
     <formulas>
         <name>IsRecordNew</name>
