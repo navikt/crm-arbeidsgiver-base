@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>63.0</apiVersion>
+    <apiVersion>67.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Header for User or Office</masterLabel>
-  <description>Shows “Ola Nordmann”</description>
-  <targets>
-    <target>lightning__HomePage</target>
-  </targets>
-  <targetConfigs>
-    <targetConfig targets="lightning__HomePage">
-        <property
-          name="showWelcomeMessage"
-          type="Boolean"
-          label="Show User (checked) or Nav Office name (unchecked)"
-          default="true"
-        />
-         <property
-          name="headerUserAffiliation"
-          type="String"
-          label="User, Nav office or Nav region"
-          required="true"
-          default="User"
-        />
-      <supportedFormFactors>
-        <supportedFormFactor type="Small"/>
-        <supportedFormFactor type="Large"/>
-      </supportedFormFactors>
-    </targetConfig>
-  </targetConfigs>
+    <description>Shows “Ola Nordmann”</description>
+    <targets>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__HomePage">
+            <property
+                name="showWelcomeMessage"
+                type="Boolean"
+                label="Show User (checked) or Nav Office name (unchecked)"
+                default="true"
+            />
+            <property
+                name="headerUserAffiliation"
+                type="String"
+                label="User, Nav office or Nav region"
+                required="true"
+                default="User"
+            />
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

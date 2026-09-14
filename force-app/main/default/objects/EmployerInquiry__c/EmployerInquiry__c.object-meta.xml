@@ -170,6 +170,11 @@
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <searchResultsAdditionalFields>TAG_Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_RecievedDateTime__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_Theme__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_Source__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TAG_ClosedReason__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>

@@ -1,0 +1,100 @@
+<template>
+    <lightning-card title="Aktivitet og hendelser (oppsummering)" icon-name="standard:dashboard">
+        <div class="slds-var-p-bottom_small">
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Laster nøkkeltall" size="medium"></lightning-spinner>
+            </template>
+
+            <template lwc:elseif={hasError}>
+                <div class="slds-text-color_error" role="alert">{errorMessage}</div>
+            </template>
+
+            <template lwc:else>
+                <div class="slds-grid slds-wrap slds-gutters_direct-x-small">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-var-p-bottom_xx-small">
+                        <div class="slds-box" role="group" aria-label={inquiriesAnsweredOnTime.metricLabel}>
+                            <c-single-metric-tile
+                                metric-icon={inquiriesAnsweredOnTime.metricIcon}
+                                metric-label={inquiriesAnsweredOnTime.metricLabel}
+                                metric-value={inquiriesAnsweredOnTime.metricValue}
+                                metric-unit={inquiriesAnsweredOnTime.metricUnit}
+                                metric-note={inquiriesAnsweredOnTime.metricNote}
+                                metric-help-text={inquiriesAnsweredOnTime.metricHelpText}
+                                metric-trend-indicator={inquiriesAnsweredOnTime.metricTrendIndicator}
+                                metric-trend-value={inquiriesAnsweredOnTime.metricTrendValue}
+                            ></c-single-metric-tile>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-var-p-bottom_xx-small">
+                        <div class="slds-box" role="group" aria-label={candidatesPlaced.metricLabel}>
+                            <c-single-metric-tile
+                                metric-icon={candidatesPlaced.metricIcon}
+                                metric-label={candidatesPlaced.metricLabel}
+                                metric-value={candidatesPlaced.metricValue}
+                                metric-unit={candidatesPlaced.metricUnit}
+                                metric-note={candidatesPlaced.metricNote}
+                                metric-help-text={candidatesPlaced.metricHelpText}
+                                metric-trend-indicator={candidatesPlaced.metricTrendIndicator}
+                                metric-trend-value={candidatesPlaced.metricTrendValue}
+                            ></c-single-metric-tile>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-var-p-bottom_xx-small">
+                        <div class="slds-box" role="group" aria-label={employersWithActivity.metricLabel}>
+                            <c-single-metric-tile
+                                metric-icon={employersWithActivity.metricIcon}
+                                metric-label={employersWithActivity.metricLabel}
+                                metric-value={employersWithActivity.metricValue}
+                                metric-unit={employersWithActivity.metricUnit}
+                                metric-note={employersWithActivity.metricNote}
+                                metric-help-text={employersWithActivity.metricHelpText}
+                                metric-trend-indicator={employersWithActivity.metricTrendIndicator}
+                                metric-trend-value={employersWithActivity.metricTrendValue}
+                            ></c-single-metric-tile>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-var-p-bottom_xx-small">
+                        <div class="slds-box" role="group" aria-label={daysSinceLastActivity.metricLabel}>
+                            <c-single-metric-tile
+                                metric-icon={daysSinceLastActivity.metricIcon}
+                                metric-label={daysSinceLastActivity.metricLabel}
+                                metric-value={daysSinceLastActivity.metricValue}
+                                metric-unit={daysSinceLastActivity.metricUnit}
+                                metric-note={daysSinceLastActivity.metricNote}
+                                metric-help-text={daysSinceLastActivity.metricHelpText}
+                                metric-trend-indicator={daysSinceLastActivity.metricTrendIndicator}
+                                metric-trend-value={daysSinceLastActivity.metricTrendValue}
+                            ></c-single-metric-tile>
+                        </div>
+                    </div>
+                </div>
+                <!-- refresh container for data retrieval timestamp -->
+                <div class="slds-text-align_right slds-text-body_small">
+                    <span if:true={dataRetrivalTimestamp}>
+                        Sist oppdatert&nbsp;
+                        <lightning-formatted-date-time
+                            value={dataRetrivalTimestamp}
+                            year="numeric"
+                            month="numeric"
+                            day="numeric"
+                            hour="2-digit"
+                            minute="2-digit"
+                        ></lightning-formatted-date-time>
+                    </span>
+                    <lightning-button-icon
+                        icon-name="utility:refresh"
+                        variant="bare"
+                        alternative-text="Oppdater nøkkeltall"
+                        title="Oppdater nøkkeltall"
+                        disabled={isRefreshing}
+                        onclick={handleRefresh}
+                        class="slds-var-p-left_xx-small"
+                    ></lightning-button-icon>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
