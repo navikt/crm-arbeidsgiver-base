@@ -6,7 +6,7 @@
     <description>Konto med Stilling og Formidlinger/Presentert</description>
     <join>
         <join>
-            <outerJoin>true</outerJoin>
+            <outerJoin>false</outerJoin>
             <relationship>Candidate_Outcome__r</relationship>
         </join>
         <outerJoin>false</outerJoin>
