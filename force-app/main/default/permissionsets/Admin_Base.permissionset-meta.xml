@@ -71,11 +71,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.TAG_DeletedDate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.TAG_Force_Update__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -102,6 +97,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.TAG_Partner_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.CRM_AccountType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -522,11 +522,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.TAG_CompletedLateNrOfHours__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Event.TAG_DeletedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1082,11 +1077,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.TAG_CompletedLateNrOfHours__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Task.TAG_DeletedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

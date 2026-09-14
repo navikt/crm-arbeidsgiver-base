@@ -22,11 +22,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmployerInquiry__c.CandidateOutcome__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>EmployerInquiry__c.EmploymentResult__c</field>
         <readable>true</readable>
     </fieldPermissions>
