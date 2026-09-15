@@ -753,6 +753,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.IsDeletedEmployer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Is_My_NAV_Office__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -823,6 +828,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.TAG_IsDeleted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.TAG_Is_My_NAV_Market_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -834,6 +844,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.TAG_NavUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.TAG_NumberOfEmploymentPlacementPresented__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.TAG_NumberOfEmploymentPlacement__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
