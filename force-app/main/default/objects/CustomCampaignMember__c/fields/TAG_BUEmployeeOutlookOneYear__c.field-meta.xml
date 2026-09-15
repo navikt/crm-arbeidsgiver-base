@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_BUEmployeeOutlookOneYear__c</fullName>
+    <label>BU Employee Outlook One Year</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Flere enn i dag</fullName>
+                <default>false</default>
+                <label>Flere enn i dag</label>
+            </value>
+            <value>
+                <fullName>Like mange som i dag</fullName>
+                <default>false</default>
+                <label>Like mange som i dag</label>
+            </value>
+            <value>
+                <fullName>Færre enn i dag</fullName>
+                <default>false</default>
+                <label>Færre enn i dag</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
