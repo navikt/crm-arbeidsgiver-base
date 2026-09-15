@@ -294,16 +294,6 @@
         <relatedList>CustomCampaignMember__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>CRM_SubTheme__c</fields>
-        <fields>CRM_Status__c</fields>
-        <fields>CRM_NavUnit__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>NavTask__c.CRM_AccountRelated__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
         <excludeButtons>MassAddToCampaign</excludeButtons>
         <excludeButtons>Merge</excludeButtons>
         <fields>CONTACT.FULL_NAME</fields>
