@@ -96,11 +96,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.CRM_AccountType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ArenaActivity__c.AktivitetStatuskode__c</field>
         <readable>true</readable>
     </fieldPermissions>

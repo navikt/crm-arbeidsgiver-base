@@ -95,8 +95,8 @@ public with sharing class TAG_NavUnitOverviewController {
     }
 
     private static void populateEmployerActivityStats(Id navUnitId, NavUnitOverviewData data) {
-        data.employersWithActivityCount = [
-            SELECT COUNT()
+        AggregateResult[] activityStats = [
+            SELECT COUNT(Id) countAccounts, MAX(TAG_Last_completed_activity_date__c) lastActivityDate
             FROM Account
             WHERE
                 RecordType.Name = 'Employer'
@@ -105,13 +105,8 @@ public with sharing class TAG_NavUnitOverviewController {
             WITH USER_MODE
         ];
 
-        AggregateResult[] lastActivity = [
-            SELECT MAX(TAG_Last_completed_activity_date__c) lastDate
-            FROM Account
-            WHERE RecordType.Name = 'Employer' AND TAG_NavUnit__c = :navUnitId
-            WITH USER_MODE
-        ];
-        Date lastActivityDate = (Date) lastActivity[0].get('lastDate');
+        data.employersWithActivityCount = (Integer) activityStats[0].get('countAccounts');
+        Date lastActivityDate = (Date) activityStats[0].get('lastActivityDate');
         data.daysSinceLastActivity = lastActivityDate == null ? null : lastActivityDate.daysBetween(Date.today());
     }
 
