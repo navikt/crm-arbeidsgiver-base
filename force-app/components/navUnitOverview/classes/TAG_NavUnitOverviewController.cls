@@ -71,26 +71,45 @@ public with sharing class TAG_NavUnitOverviewController {
         }
     }
 
+    /*
+    Bruker sum ansatte / sum presenterte.
+    Dette er samlet konverteringsrate: sannsynligheten for at en tilfeldig kandidatrepresentasjon ender i ansettelse.
+    */
     private static void populateCandidateStats(Id navUnitId, NavUnitOverviewData data) {
         AggregateResult[] groupedResults = [
-            SELECT COUNT(Id), Result__c
+            SELECT COUNT(Id), JobPosting__c, Result__c
             FROM CandidateOutcome__c
             WHERE
                 NavUnit__c = :navUnitId
                 AND Result__c IN ('PRESENTERT', 'FATT_JOBBEN')
                 AND TimeRegistered__c = LAST_N_DAYS:90
+                AND JobPosting__c != NULL
             WITH USER_MODE
-            GROUP BY Result__c
+            GROUP BY JobPosting__c, Result__c
         ];
 
         data.candidatesPresentedCount = 0;
         data.candidatesPlacedCount = 0;
+        Map<Id, Map<String, Integer>> jobPostingResults = new Map<Id, Map<String, Integer>>();
         for (AggregateResult ar : groupedResults) {
-            if ((String) ar.get('Result__c') == 'PRESENTERT') {
-                data.candidatesPresentedCount = (Integer) ar.get('expr0');
-            } else if ((String) ar.get('Result__c') == 'FATT_JOBBEN') {
-                data.candidatesPlacedCount = (Integer) ar.get('expr0');
+            Id jobPostingId = (Id) ar.get('JobPosting__c');
+
+            String result = (String) ar.get('Result__c');
+            Integer count = (Integer) ar.get('expr0');
+
+            if (!jobPostingResults.containsKey(jobPostingId)) {
+                jobPostingResults.put(jobPostingId, new Map<String, Integer>{ 'PRESENTERT' => 0, 'FATT_JOBBEN' => 0 });
             }
+            jobPostingResults.get(jobPostingId).put(result, count);
+        }
+
+        for (Map<String, Integer> resultCounts : jobPostingResults.values()) {
+            Integer presentedCount = resultCounts.get('PRESENTERT');
+            if (presentedCount == 0) {
+                continue;
+            }
+            data.candidatesPresentedCount += presentedCount;
+            data.candidatesPlacedCount += resultCounts.get('FATT_JOBBEN');
         }
     }
 
