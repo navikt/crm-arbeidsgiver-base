@@ -16,9 +16,6 @@
         <assignmentItems>
             <assignToReference>$Record.NumberOfEmployees</assignToReference>
             <operator>Assign</operator>
-            <value>
-                <numberValue>0.0</numberValue>
-            </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>$Record.INT_HasEmployees__c</assignToReference>
