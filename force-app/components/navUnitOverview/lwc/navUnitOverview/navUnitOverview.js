@@ -33,7 +33,9 @@ export default class NavUnitOverview extends LightningElement {
             metricNote: note,
             metricHelpText: null,
             metricTrendIndicator: null,
-            metricTrendValue: null
+            metricTrendValue: null,
+            metricValue2: null,
+            metricUnit2: null
         };
         return metric;
     }
@@ -62,7 +64,7 @@ export default class NavUnitOverview extends LightningElement {
 
         const inquiriesSubtitle =
             inquiriesClosedCount === 0
-                ? 'Ingen henvendelser besvart siste 90 dager'
+                ? 'ingen henvendelser besvart siste 90 dager'
                 : `${inquiriesClosedWithinDeadlineCount} av ${inquiriesClosedCount} besvart innen frist siste 90 dager`;
         const metric = this.createMetricObject(
             'custom:custom28', // replace with actual icon if available
@@ -77,21 +79,17 @@ export default class NavUnitOverview extends LightningElement {
     get candidatesPlaced() {
         const candidatesPlacedCount = this.data?.candidatesPlacedCount ?? 0;
         const candidatesPresentedCount = this.data?.candidatesPresentedCount ?? 0;
-        const candidatesPlacedPercent =
-            candidatesPresentedCount > 0 ? (candidatesPlacedCount / candidatesPresentedCount) * 100 : 0;
-
-        const candidatesPlacedSubtitle =
-            candidatesPresentedCount === 0
-                ? 'Ingen kandidatpresentasjoner siste 90 dager'
-                : `${candidatesPresentedCount} presentert og ${candidatesPlacedCount} formidlet siste 90 dager`;
 
         const metric = this.createMetricObject(
             'custom:custom21', // replace with actual icon if available
-            'Andel kandidatpresentasjoner som ender i formidling',
-            candidatesPlacedPercent.toFixed(0),
-            '%',
-            candidatesPlacedSubtitle
+            'Statistikk fra Rekrutteringsbistand',
+            candidatesPlacedCount.toFixed(0),
+            'formidlinger',
+            'for siste 90 dager'
         );
+        // Set additional metric values for multi-number display
+        metric.metricValue2 = candidatesPresentedCount;
+        metric.metricUnit2 = 'kandidatpresentasjoner';
         return metric;
     }
 
@@ -99,7 +97,7 @@ export default class NavUnitOverview extends LightningElement {
         const employersWithActivityCount = this.data?.employersWithActivityCount ?? 0;
         const metric = this.createMetricObject(
             'standard:account', // replace with actual icon if available
-            'Antall arbeidsgivere med aktivitet siste 90 dager',
+            'Arbeidsgivere med aktivitet siste 90 dager',
             employersWithActivityCount.toFixed(0),
             'stk',
             'basert på fullførte møter og oppgaver'
@@ -111,7 +109,7 @@ export default class NavUnitOverview extends LightningElement {
         const daysCount = this.data?.daysSinceLastActivity ?? 0;
         const metric = this.createMetricObject(
             'standard:account',
-            'Dager siden siste aktivitet med en arbeidsgiver',
+            'Dager siden siste arbeidsgiveraktivitet',
             daysCount.toFixed(0),
             'dager',
             'basert på fullførte møter og oppgaver'

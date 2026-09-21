@@ -7,23 +7,34 @@
                     </lightning-icon>
                 </div>
             </template>
-            <div class="slds-col slds-has-flexi-truncate slds-truncate">
-                <div class="metric-label-wrapper">
+            <div class="slds-col slds-has-flexi-truncate slds-truncate slds-grid slds-grid_vertical">
+                <div class="slds-col metric-label-wrapper">
                     <div class="slds-text-heading_small metric-title slds-line-clamp_x-small" title={_metricLabel}>
                         {_metricLabel}
                     </div>
                 </div>
-                <div class="slds-grid slds-grid_align-center">
-                    <div class="slds-text-heading_small slds-col slds-truncate">
-                        <span class="metric-value slds-var-p-right_xx-small slds-truncate">{_metricValue}</span>
-                        <span class="metric-unit slds-var-p-right_medium slds-truncate">{_metricUnit}</span>
-                        <template if:true={metricTrend}>
-                            <span class="metric-weak slds-truncate">{metricTrend}</span>
-                        </template>
-                    </div>
+                <div class="slds-col slds-grid slds-grid_align-center">
+                    <template if:false={isMultinumber}>
+                        <div class="slds-text-heading_small slds-col slds-truncate">
+                            <span class="metric-value slds-var-p-right_xx-small slds-truncate">{_metricValue}</span>
+                            <span class="metric-unit slds-var-p-right_medium slds-truncate">{_metricUnit}</span>
+                            <template if:true={metricTrend}>
+                                <span class="metric-weak slds-truncate">{metricTrend}</span>
+                            </template>
+                        </div>
+                    </template>
+
+                    <template if:true={isMultinumber}>
+                        <div class="slds-text-heading_small slds-col slds-truncate">
+                            <span class="metric-value-small slds-var-p-right_xx-small">{_metricValue}</span>
+                            <span class="metric-unit slds-var-p-right_medium slds-truncate">{_metricUnit}</span><br />
+                            <span class="metric-value-small slds-var-p-right_xx-small">{_metricValue2}</span>
+                            <span class="metric-unit slds-var-p-right_medium slds-truncate">{_metricUnit2}</span>
+                        </div>
+                    </template>
                 </div>
 
-                <div class="metric-weak slds-truncate slds-text-body_medium">
+                <div class="slds-col metric-weak slds-truncate slds-text-body_medium">
                     {_metricNote}
                     <template if:true={_metricHelpText}
                         ><lightning-helptext content={_metricHelpText} icon-name="utility:info_alt"></lightning-helptext
