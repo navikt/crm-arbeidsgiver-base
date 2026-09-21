@@ -13,6 +13,11 @@
     font-weight: var(--slds-g-font-weight-bold, bold);
     color: var(--slds-g-color-on-surface-3, #03234d);
 }
+.metric-value-small {
+    font-size: var(--slds-g-font-scale-4, 1.5rem);
+    font-weight: var(--slds-g-font-weight-bold, bold);
+    color: var(--slds-g-color-on-surface-3, #03234d);
+}
 
 .metric-unit {
     color: var(--slds-g-color-on-surface-2, #2e2e2e);
