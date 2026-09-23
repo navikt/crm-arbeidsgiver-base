@@ -89,13 +89,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!$Permission.CustomPermission.POAG_Pilot}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
