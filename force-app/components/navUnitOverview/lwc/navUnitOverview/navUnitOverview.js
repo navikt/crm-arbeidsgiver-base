@@ -105,18 +105,6 @@ export default class NavUnitOverview extends LightningElement {
         return metric;
     }
 
-    get daysSinceLastActivity() {
-        const daysCount = this.data?.daysSinceLastActivity ?? 0;
-        const metric = this.createMetricObject(
-            'standard:account',
-            'Dager siden siste arbeidsgiveraktivitet',
-            daysCount.toFixed(0),
-            'dager',
-            'basert på fullførte møter og oppgaver'
-        );
-        return metric;
-    }
-
     async handleRefresh() {
         this.data = null;
         this.error = null;
