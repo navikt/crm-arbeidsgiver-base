@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_NumberOfMeetings__c</fullName>
+    <description>.
+Tema rekrutere og inkludere, alle tjenester bortsett fra &apos;Jobbspesialist&apos;</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Antall markeds i avtaleperioden</inlineHelpText>
+    <label>Number of meetings</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
