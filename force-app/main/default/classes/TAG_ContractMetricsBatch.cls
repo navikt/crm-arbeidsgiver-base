@@ -22,6 +22,7 @@ public with sharing class TAG_ContractMetricsBatch implements Database.Batchable
                 FROM Contract__c
                 WHERE
                     TAG_Status__c IN ('Godkjent', 'AVSLUTTET')
+                    AND TAG_Category__c IN ('Markedssamarbeid', 'Strategisk partneravtale')
                     AND TAG_Account__c != NULL
                     AND TAG_StartDate__c != NULL
                     AND TAG_EndDate__c != NULL
