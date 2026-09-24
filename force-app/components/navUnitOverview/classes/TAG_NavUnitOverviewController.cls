@@ -106,8 +106,8 @@ public with sharing class TAG_NavUnitOverviewController {
         ];
 
         data.employersWithActivityCount = (Integer) activityStats[0].get('countAccounts');
-        Date lastActivityDate = (Date) activityStats[0].get('lastActivityDate');
-        data.daysSinceLastActivity = lastActivityDate == null ? null : lastActivityDate.daysBetween(Date.today());
+        //Date lastActivityDate = (Date) activityStats[0].get('lastActivityDate');
+        //data.daysSinceLastActivity = lastActivityDate == null ? null : lastActivityDate.daysBetween(Date.today());
     }
 
     private static void checkReadAccess() {

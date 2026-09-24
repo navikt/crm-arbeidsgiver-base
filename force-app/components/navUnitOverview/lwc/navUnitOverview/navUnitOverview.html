@@ -67,26 +67,11 @@
                     </div>
 
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-var-p-bottom_xx-small">
-                        <div
-                            class="slds-box slds-box_small"
-                            role="group"
-                            aria-label={daysSinceLastActivity.metricLabel}
-                        >
-                            <c-single-metric-tile
-                                metric-icon={daysSinceLastActivity.metricIcon}
-                                metric-label={daysSinceLastActivity.metricLabel}
-                                metric-value={daysSinceLastActivity.metricValue}
-                                metric-unit={daysSinceLastActivity.metricUnit}
-                                metric-note={daysSinceLastActivity.metricNote}
-                                metric-help-text={daysSinceLastActivity.metricHelpText}
-                                metric-trend-indicator={daysSinceLastActivity.metricTrendIndicator}
-                                metric-trend-value={daysSinceLastActivity.metricTrendValue}
-                            ></c-single-metric-tile>
-                        </div>
+                        <!-- Placeholder for future metric tile -->
                     </div>
                 </div>
                 <!-- refresh container for data retrieval timestamp -->
-                <div class="slds-text-align_right slds-text-body_small">
+                <div class="slds-text-body_small">
                     <span if:true={dataRetrivalTimestamp}>
                         Sist oppdatert&nbsp;
                         <lightning-formatted-date-time
