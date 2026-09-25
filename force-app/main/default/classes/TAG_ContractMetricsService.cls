@@ -92,10 +92,10 @@ public with sharing class TAG_ContractMetricsService {
                 AND TimeRegistered__c < :latestEndDateTimestamp
             WITH USER_MODE
         ]) {
-            if (!sourceData.presentedOutcomesByAccount.containsKey(outcome.Account2__c)) {
-                sourceData.presentedOutcomesByAccount.put(outcome.Account2__c, new List<CandidateOutcome__c>());
-            }
-            sourceData.presentedOutcomesByAccount.get(outcome.Account2__c).add(outcome);
+            sourceData.updatePresentedOutcomesByAccount(
+                outcome.Account2__c,
+                new MetricSourceDataObj(outcome.TimeRegistered__c, outcome.Account2__c)
+            );
         }
 
         // hiredOutcomes
@@ -109,10 +109,10 @@ public with sharing class TAG_ContractMetricsService {
                 AND TimeRegistered__c < :latestEndDateTimestamp
             WITH USER_MODE
         ]) {
-            if (!sourceData.hiredOutcomesByAccount.containsKey(outcome.Account__c)) {
-                sourceData.hiredOutcomesByAccount.put(outcome.Account__c, new List<CandidateOutcome__c>());
-            }
-            sourceData.hiredOutcomesByAccount.get(outcome.Account__c).add(outcome);
+            sourceData.updateHiredOutcomesByAccount(
+                outcome.Account__c,
+                new MetricSourceDataObj(outcome.TimeRegistered__c, outcome.Account__c)
+            );
         }
 
         // meetingsByAccount
@@ -128,10 +128,10 @@ public with sharing class TAG_ContractMetricsService {
                 OR TAG_service__c != :EXCLUDED_SERVICE)
             WITH USER_MODE
         ]) {
-            if (!sourceData.meetingsByAccount.containsKey(meeting.RelatedToAccount__c)) {
-                sourceData.meetingsByAccount.put(meeting.RelatedToAccount__c, new List<Event>());
-            }
-            sourceData.meetingsByAccount.get(meeting.RelatedToAccount__c).add(meeting);
+            sourceData.updateMeetingsByAccount(
+                meeting.RelatedToAccount__c,
+                new MetricSourceDataObj(meeting.ActivityDate, meeting.RelatedToAccount__c)
+            );
         }
         return sourceData;
     }
@@ -149,18 +149,18 @@ public with sharing class TAG_ContractMetricsService {
             Integer presentedCandidatesCount;
             Integer hiredCandidatesCount;
             Integer meetingsCount;
-            presentedCandidatesCount = countOutcomes(
+            presentedCandidatesCount = getObjCountInDateRange(
                 sourceData.presentedOutcomesByAccount.get(accountId),
                 contract.TAG_StartDate__c,
                 contract.TAG_EndDate__c
             );
 
-            hiredCandidatesCount = countOutcomes(
+            hiredCandidatesCount = getObjCountInDateRange(
                 sourceData.hiredOutcomesByAccount.get(accountId),
                 contract.TAG_StartDate__c,
                 contract.TAG_EndDate__c
             );
-            meetingsCount = countMeetings(
+            meetingsCount = getObjCountInDateRange(
                 sourceData.meetingsByAccount.get(accountId),
                 contract.TAG_StartDate__c,
                 contract.TAG_EndDate__c
@@ -183,53 +183,18 @@ public with sharing class TAG_ContractMetricsService {
         return changedContracts;
     }
 
-    /**
-     * Counts the number of candidate outcomes that fall within the contract's date range.
-     * @param outcomes The list of candidate outcomes to count.
-     * @param contractStartDate The start date of the contract.
-     * @param contractEndDate The end date of the contract.
-     * @return The number of candidate outcomes within the contract's date range.
-     */
-    private static Integer countOutcomes(
-        List<CandidateOutcome__c> outcomes,
-        Date contractStartDate,
-        Date contractEndDate
-    ) {
+    private static Integer getObjCountInDateRange(List<MetricSourceDataObj> objs, Date startDate, Date endDate) {
         Integer count = 0;
-
-        if (outcomes == null) {
-            return count;
+        if (objs == null) {
+            return 0;
         }
-        Datetime startDateTime = Datetime.newInstance(contractStartDate, Time.newInstance(0, 0, 0, 0));
-        Datetime exclusiveEndDateTime = Datetime.newInstance(contractEndDate.addDays(1), Time.newInstance(0, 0, 0, 0));
-        for (CandidateOutcome__c outcome : outcomes) {
-            if (outcome.TimeRegistered__c >= startDateTime && outcome.TimeRegistered__c < exclusiveEndDateTime) {
+        for (MetricSourceDataObj obj : objs) {
+            if (obj.recordDate >= startDate && obj.recordDate <= endDate) {
                 count++;
             }
         }
         return count;
     }
-
-    /**
-     * Counts the number of meetings that fall within the contract's date range.
-     * @param meetings The list of meetings to count.
-     * @param contractStartDate The start date of the contract.
-     * @param contractEndDate The end date of the contract.
-     * @return The number of meetings within the contract's date range.
-     */
-    private static Integer countMeetings(List<Event> meetings, Date contractStartDate, Date contractEndDate) {
-        Integer count = 0;
-        if (meetings == null) {
-            return count;
-        }
-        for (Event meeting : meetings) {
-            if (meeting.ActivityDate >= contractStartDate && meeting.ActivityDate <= contractEndDate) {
-                count++;
-            }
-        }
-        return count;
-    }
-
     /**
      * Checks if a contract has all required fields and an approved or closed status.
      * @param contractRecord The contract record to check for eligibility.
@@ -276,11 +241,52 @@ public with sharing class TAG_ContractMetricsService {
     /**
      * Represents the source data for metrics calculation.
      * Contains presented and hired candidate outcomes, as well as meetings, grouped by account ID.
-     */
+   
     private class MetricSourceData {
         private Map<Id, List<CandidateOutcome__c>> presentedOutcomesByAccount = new Map<Id, List<CandidateOutcome__c>>();
         private Map<Id, List<CandidateOutcome__c>> hiredOutcomesByAccount = new Map<Id, List<CandidateOutcome__c>>();
         private Map<Id, List<Event>> meetingsByAccount = new Map<Id, List<Event>>();
+    }
+          */
+
+    private class MetricSourceData {
+        private Map<Id, List<MetricSourceDataObj>> presentedOutcomesByAccount = new Map<Id, List<MetricSourceDataObj>>();
+        private Map<Id, List<MetricSourceDataObj>> hiredOutcomesByAccount = new Map<Id, List<MetricSourceDataObj>>();
+        private Map<Id, List<MetricSourceDataObj>> meetingsByAccount = new Map<Id, List<MetricSourceDataObj>>();
+
+        private void updatePresentedOutcomesByAccount(Id accountId, MetricSourceDataObj value) {
+            addToAccountMap(accountId, presentedOutcomesByAccount, value);
+        }
+        private void updateHiredOutcomesByAccount(Id accountId, MetricSourceDataObj value) {
+            addToAccountMap(accountId, hiredOutcomesByAccount, value);
+        }
+        private void updateMeetingsByAccount(Id accountId, MetricSourceDataObj value) {
+            addToAccountMap(accountId, meetingsByAccount, value);
+        }
+        private void addToAccountMap(
+            Id key,
+            Map<Id, List<MetricSourceDataObj>> mapByAccount,
+            MetricSourceDataObj value
+        ) {
+            if (!mapByAccount.containsKey(key)) {
+                mapByAccount.put(key, new List<MetricSourceDataObj>());
+            }
+            mapByAccount.get(key).add(value);
+        }
+    }
+
+    private class MetricSourceDataObj {
+        Date recordDate;
+        Id recordId;
+        Id accountId;
+        MetricSourceDataObj(Datetime recordTimestamp, Id accountId) {
+            this.recordDate = recordTimestamp.date();
+            this.accountId = accountId;
+        }
+        MetricSourceDataObj(Date recordDate, Id accountId) {
+            this.recordDate = recordDate;
+            this.accountId = accountId;
+        }
     }
 
     public class ContractMetricsException extends Exception {
