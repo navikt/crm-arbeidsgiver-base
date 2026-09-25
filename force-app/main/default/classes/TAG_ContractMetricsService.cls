@@ -38,7 +38,7 @@ public with sharing class TAG_ContractMetricsService {
      * @param contracts Contracts from one batch scope.
      * @return Sparse Contract__c records containing only changed metrics.
      */
-    public static List<Contract__c> calculateChanges(List<Contract__c> contracts) {
+    private static List<Contract__c> calculateChanges(List<Contract__c> contracts) {
         List<Contract__c> eligibleContracts = getEligibleContracts(contracts);
         if (eligibleContracts.isEmpty()) {
             return new List<Contract__c>();
