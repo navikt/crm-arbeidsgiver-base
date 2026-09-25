@@ -15,7 +15,13 @@ public with sharing class TAG_ContractMetricsService {
      * @param contracts Contracts from one batch scope.
      */
     public static void applyChanges(List<Contract__c> contracts) {
-        List<Contract__c> changedContracts = calculateChanges(contracts);
+        MetricScope scope = createMetricScope(contracts);
+        if (scope == null || scope.eligibleContracts.isEmpty()) {
+            return;
+        }
+        MetricSourceData sourceData = loadMetricData(scope);
+        List<Contract__c> changedContracts = createChangedContracts(scope, sourceData);
+
         if (changedContracts.isEmpty()) {
             return;
         }
@@ -34,92 +40,142 @@ public with sharing class TAG_ContractMetricsService {
     }
 
     /**
-     * Calculates changed metric values without persisting them.
+     * Creates a metric scope containing only eligible contracts and relevant date ranges.
      * @param contracts Contracts from one batch scope.
-     * @return Sparse Contract__c records containing only changed metrics.
+     * @return A MetricScope object containing only eligible contracts and relevant date ranges.
      */
-    private static List<Contract__c> calculateChanges(List<Contract__c> contracts) {
-        List<Contract__c> eligibleContracts = getEligibleContracts(contracts);
-        if (eligibleContracts.isEmpty()) {
-            return new List<Contract__c>();
+    private static MetricScope createMetricScope(List<Contract__c> contracts) {
+        MetricScope scope = new MetricScope();
+        if (contracts == null || contracts.isEmpty()) {
+            return null;
+        }
+        scope.earliestStartDate = contracts[0].TAG_StartDate__c;
+        scope.latestEndDate = contracts[0].TAG_EndDate__c;
+        for (Contract__c contractRecord : contracts) {
+            if (isEligibleContract(contractRecord)) {
+                scope.eligibleContracts.add(contractRecord);
+                scope.accountIds.add(contractRecord.TAG_Account__c);
+
+                scope.earliestStartDate = contractRecord.TAG_StartDate__c < scope.earliestStartDate
+                    ? contractRecord.TAG_StartDate__c
+                    : scope.earliestStartDate;
+
+                scope.latestEndDate = contractRecord.TAG_EndDate__c > scope.latestEndDate
+                    ? contractRecord.TAG_EndDate__c
+                    : scope.latestEndDate;
+            }
+        }
+        return scope;
+    }
+
+    /**
+     * Loads metric data for the given scope. Retrieves all relevant records for the contracts in scope. Records are grouped by contract and stored as a MetricSourceData wrapper object.
+     * @param scope The MetricScope object containing eligible contracts and relevant date ranges.
+     * @return A MetricSourceData object containing the loaded metric data.
+     */
+    private static MetricSourceData loadMetricData(MetricScope scope) {
+        MetricSourceData sourceData = new MetricSourceData();
+        Datetime earliestStartTimestamp = Datetime.newInstance(scope.earliestStartDate, Time.newInstance(0, 0, 0, 0));
+        Datetime latestEndDateTimestamp = Datetime.newInstance(
+            scope.latestEndDate.addDays(1),
+            Time.newInstance(0, 0, 0, 0)
+        );
+
+        // presentedOutcomes grouped by account. PRESENTERT stores the related account in Account2__c, FATT_JOBBEN stores it in Account__c.
+        for (CandidateOutcome__c outcome : [
+            SELECT Account2__c, TimeRegistered__c
+            FROM CandidateOutcome__c
+            WHERE
+                Account2__c IN :scope.accountIds
+                AND Result__c = :RESULT_PRESENTED
+                AND TimeRegistered__c >= :earliestStartTimestamp
+                AND TimeRegistered__c < :latestEndDateTimestamp
+            WITH USER_MODE
+        ]) {
+            if (!sourceData.presentedOutcomesByAccount.containsKey(outcome.Account2__c)) {
+                sourceData.presentedOutcomesByAccount.put(outcome.Account2__c, new List<CandidateOutcome__c>());
+            }
+            sourceData.presentedOutcomesByAccount.get(outcome.Account2__c).add(outcome);
         }
 
-        Set<Id> accountIds = new Set<Id>();
-        Date earliestStartDate;
-        Date latestEndDate;
-        for (Contract__c contractRecord : eligibleContracts) {
-            accountIds.add(contractRecord.TAG_Account__c);
-            earliestStartDate = earliestStartDate == null ||
-                contractRecord.TAG_StartDate__c < earliestStartDate
-                ? contractRecord.TAG_StartDate__c
-                : earliestStartDate;
-            latestEndDate = latestEndDate == null ||
-                contractRecord.TAG_EndDate__c > latestEndDate
-                ? contractRecord.TAG_EndDate__c
-                : latestEndDate;
+        // hiredOutcomes
+        for (CandidateOutcome__c outcome : [
+            SELECT Account__c, TimeRegistered__c
+            FROM CandidateOutcome__c
+            WHERE
+                Account__c IN :scope.accountIds
+                AND Result__c = :RESULT_HIRED
+                AND TimeRegistered__c >= :earliestStartTimestamp
+                AND TimeRegistered__c < :latestEndDateTimestamp
+            WITH USER_MODE
+        ]) {
+            if (!sourceData.hiredOutcomesByAccount.containsKey(outcome.Account__c)) {
+                sourceData.hiredOutcomesByAccount.put(outcome.Account__c, new List<CandidateOutcome__c>());
+            }
+            sourceData.hiredOutcomesByAccount.get(outcome.Account__c).add(outcome);
         }
 
-        Datetime earliestStart = Datetime.newInstance(earliestStartDate, Time.newInstance(0, 0, 0, 0));
-        Datetime exclusiveLatestEnd = Datetime.newInstance(latestEndDate.addDays(1), Time.newInstance(0, 0, 0, 0));
-        // PRESENTERT stores the related account in Account2__c, FATT_JOBBEN stores it in Account__c.
-        Map<Id, List<CandidateOutcome__c>> presentedOutcomesByAccount = groupPresentedOutcomesByAccount(
-            [
-                SELECT Account2__c, TimeRegistered__c
-                FROM CandidateOutcome__c
-                WHERE
-                    Account2__c IN :accountIds
-                    AND Result__c = :RESULT_PRESENTED
-                    AND TimeRegistered__c >= :earliestStart
-                    AND TimeRegistered__c < :exclusiveLatestEnd
-                WITH USER_MODE
-            ]
-        );
-        Map<Id, List<CandidateOutcome__c>> hiredOutcomesByAccount = groupHiredOutcomesByAccount(
-            [
-                SELECT Account__c, TimeRegistered__c
-                FROM CandidateOutcome__c
-                WHERE
-                    Account__c IN :accountIds
-                    AND Result__c = :RESULT_HIRED
-                    AND TimeRegistered__c >= :earliestStart
-                    AND TimeRegistered__c < :exclusiveLatestEnd
-                WITH USER_MODE
-            ]
-        );
-        Map<Id, List<Event>> meetingsByAccount = groupMeetingsByAccount(
-            [
-                SELECT RelatedToAccount__c, ActivityDate
-                FROM Event
-                WHERE
-                    RelatedToAccount__c IN :accountIds
-                    AND ActivityDate >= :earliestStartDate
-                    AND ActivityDate <= :latestEndDate
-                    AND TAG_ActivityType__c = :RECRUITMENT_ACTIVITY_TYPE
-                    AND (TAG_service__c = NULL
-                    OR TAG_service__c != :EXCLUDED_SERVICE)
-                WITH USER_MODE
-            ]
-        );
+        // meetingsByAccount
+        for (Event meeting : [
+            SELECT RelatedToAccount__c, ActivityDate
+            FROM Event
+            WHERE
+                RelatedToAccount__c IN :scope.accountIds
+                AND ActivityDate >= :scope.earliestStartDate
+                AND ActivityDate <= :scope.latestEndDate
+                AND TAG_ActivityType__c = :RECRUITMENT_ACTIVITY_TYPE
+                AND (TAG_service__c = NULL
+                OR TAG_service__c != :EXCLUDED_SERVICE)
+            WITH USER_MODE
+        ]) {
+            if (!sourceData.meetingsByAccount.containsKey(meeting.RelatedToAccount__c)) {
+                sourceData.meetingsByAccount.put(meeting.RelatedToAccount__c, new List<Event>());
+            }
+            sourceData.meetingsByAccount.get(meeting.RelatedToAccount__c).add(meeting);
+        }
+        return sourceData;
+    }
 
+    /**
+     * Iterates over eligible contracts and calculates changes based on metric data.
+     * @param scope The MetricScope object containing eligible contracts and relevant date ranges.
+     * @param sourceData The MetricSourceData object containing the loaded metric data.
+     * @return A list of Contract__c records that have changes in their metrics.
+     */
+    private static List<Contract__c> createChangedContracts(MetricScope scope, MetricSourceData sourceData) {
         List<Contract__c> changedContracts = new List<Contract__c>();
-        for (Contract__c contractRecord : eligibleContracts) {
-            ContractMetrics metrics = calculateMetrics(
-                contractRecord,
-                presentedOutcomesByAccount.get(contractRecord.TAG_Account__c),
-                hiredOutcomesByAccount.get(contractRecord.TAG_Account__c),
-                meetingsByAccount.get(contractRecord.TAG_Account__c)
+        for (Contract__c contract : scope.eligibleContracts) {
+            Id accountId = contract.TAG_Account__c;
+            Integer presentedCandidatesCount;
+            Integer hiredCandidatesCount;
+            Integer meetingsCount;
+            presentedCandidatesCount = countOutcomes(
+                sourceData.presentedOutcomesByAccount.get(accountId),
+                contract.TAG_StartDate__c,
+                contract.TAG_EndDate__c
+            );
+
+            hiredCandidatesCount = countOutcomes(
+                sourceData.hiredOutcomesByAccount.get(accountId),
+                contract.TAG_StartDate__c,
+                contract.TAG_EndDate__c
+            );
+            meetingsCount = countMeetings(
+                sourceData.meetingsByAccount.get(accountId),
+                contract.TAG_StartDate__c,
+                contract.TAG_EndDate__c
             );
             if (
-                contractRecord.TAG_NumberOfHiredCandidates__c != metrics.hiredCandidates ||
-                contractRecord.TAG_NumberOfPresentedCandidates__c != metrics.presentedCandidates ||
-                contractRecord.TAG_NumberOfMeetings__c != metrics.meetings
+                contract.TAG_NumberOfHiredCandidates__c != hiredCandidatesCount ||
+                contract.TAG_NumberOfPresentedCandidates__c != presentedCandidatesCount ||
+                contract.TAG_NumberOfMeetings__c != meetingsCount
             ) {
                 changedContracts.add(
                     new Contract__c(
-                        Id = contractRecord.Id,
-                        TAG_NumberOfHiredCandidates__c = metrics.hiredCandidates,
-                        TAG_NumberOfPresentedCandidates__c = metrics.presentedCandidates,
-                        TAG_NumberOfMeetings__c = metrics.meetings
+                        Id = contract.Id,
+                        TAG_NumberOfHiredCandidates__c = hiredCandidatesCount,
+                        TAG_NumberOfPresentedCandidates__c = presentedCandidatesCount,
+                        TAG_NumberOfMeetings__c = meetingsCount
                     )
                 );
             }
@@ -127,88 +183,25 @@ public with sharing class TAG_ContractMetricsService {
         return changedContracts;
     }
 
-    private static List<Contract__c> getEligibleContracts(List<Contract__c> contracts) {
-        List<Contract__c> eligibleContracts = new List<Contract__c>();
-        if (contracts == null) {
-            return eligibleContracts;
-        }
-        for (Contract__c contractRecord : contracts) {
-            if (
-                contractRecord.TAG_Account__c != null &&
-                contractRecord.TAG_StartDate__c != null &&
-                contractRecord.TAG_EndDate__c != null &&
-                contractRecord.TAG_StartDate__c <= contractRecord.TAG_EndDate__c &&
-                (contractRecord.TAG_Status__c == STATUS_APPROVED ||
-                contractRecord.TAG_Status__c == STATUS_CLOSED)
-            ) {
-                eligibleContracts.add(contractRecord);
-            }
-        }
-        return eligibleContracts;
-    }
-
-    private static Map<Id, List<CandidateOutcome__c>> groupPresentedOutcomesByAccount(
-        List<CandidateOutcome__c> outcomes
-    ) {
-        Map<Id, List<CandidateOutcome__c>> outcomesByAccount = new Map<Id, List<CandidateOutcome__c>>();
-        for (CandidateOutcome__c outcome : outcomes) {
-            if (!outcomesByAccount.containsKey(outcome.Account2__c)) {
-                outcomesByAccount.put(outcome.Account2__c, new List<CandidateOutcome__c>());
-            }
-            outcomesByAccount.get(outcome.Account2__c).add(outcome);
-        }
-        return outcomesByAccount;
-    }
-
-    private static Map<Id, List<CandidateOutcome__c>> groupHiredOutcomesByAccount(List<CandidateOutcome__c> outcomes) {
-        Map<Id, List<CandidateOutcome__c>> outcomesByAccount = new Map<Id, List<CandidateOutcome__c>>();
-        for (CandidateOutcome__c outcome : outcomes) {
-            if (!outcomesByAccount.containsKey(outcome.Account__c)) {
-                outcomesByAccount.put(outcome.Account__c, new List<CandidateOutcome__c>());
-            }
-            outcomesByAccount.get(outcome.Account__c).add(outcome);
-        }
-        return outcomesByAccount;
-    }
-
-    private static Map<Id, List<Event>> groupMeetingsByAccount(List<Event> meetings) {
-        Map<Id, List<Event>> meetingsByAccount = new Map<Id, List<Event>>();
-        for (Event meeting : meetings) {
-            if (!meetingsByAccount.containsKey(meeting.RelatedToAccount__c)) {
-                meetingsByAccount.put(meeting.RelatedToAccount__c, new List<Event>());
-            }
-            meetingsByAccount.get(meeting.RelatedToAccount__c).add(meeting);
-        }
-        return meetingsByAccount;
-    }
-
-    private static ContractMetrics calculateMetrics(
-        Contract__c contractRecord,
-        List<CandidateOutcome__c> presentedOutcomes,
-        List<CandidateOutcome__c> hiredOutcomes,
-        List<Event> meetings
-    ) {
-        ContractMetrics metrics = new ContractMetrics();
-        Datetime startDateTime = Datetime.newInstance(contractRecord.TAG_StartDate__c, Time.newInstance(0, 0, 0, 0));
-        Datetime exclusiveEndDateTime = Datetime.newInstance(
-            contractRecord.TAG_EndDate__c.addDays(1),
-            Time.newInstance(0, 0, 0, 0)
-        );
-        metrics.presentedCandidates = countOutcomes(presentedOutcomes, startDateTime, exclusiveEndDateTime);
-        metrics.hiredCandidates = countOutcomes(hiredOutcomes, startDateTime, exclusiveEndDateTime);
-        metrics.meetings = countMeetings(meetings, contractRecord.TAG_StartDate__c, contractRecord.TAG_EndDate__c);
-        return metrics;
-    }
-
+    /**
+     * Counts the number of candidate outcomes that fall within the contract's date range.
+     * @param outcomes The list of candidate outcomes to count.
+     * @param contractStartDate The start date of the contract.
+     * @param contractEndDate The end date of the contract.
+     * @return The number of candidate outcomes within the contract's date range.
+     */
     private static Integer countOutcomes(
         List<CandidateOutcome__c> outcomes,
-        Datetime startDateTime,
-        Datetime exclusiveEndDateTime
+        Date contractStartDate,
+        Date contractEndDate
     ) {
         Integer count = 0;
+
         if (outcomes == null) {
             return count;
         }
+        Datetime startDateTime = Datetime.newInstance(contractStartDate, Time.newInstance(0, 0, 0, 0));
+        Datetime exclusiveEndDateTime = Datetime.newInstance(contractEndDate.addDays(1), Time.newInstance(0, 0, 0, 0));
         for (CandidateOutcome__c outcome : outcomes) {
             if (outcome.TimeRegistered__c >= startDateTime && outcome.TimeRegistered__c < exclusiveEndDateTime) {
                 count++;
@@ -217,25 +210,45 @@ public with sharing class TAG_ContractMetricsService {
         return count;
     }
 
-    private static Integer countMeetings(List<Event> meetings, Date startDate, Date endDate) {
+    /**
+     * Counts the number of meetings that fall within the contract's date range.
+     * @param meetings The list of meetings to count.
+     * @param contractStartDate The start date of the contract.
+     * @param contractEndDate The end date of the contract.
+     * @return The number of meetings within the contract's date range.
+     */
+    private static Integer countMeetings(List<Event> meetings, Date contractStartDate, Date contractEndDate) {
         Integer count = 0;
         if (meetings == null) {
             return count;
         }
         for (Event meeting : meetings) {
-            if (meeting.ActivityDate >= startDate && meeting.ActivityDate <= endDate) {
+            if (meeting.ActivityDate >= contractStartDate && meeting.ActivityDate <= contractEndDate) {
                 count++;
             }
         }
         return count;
     }
 
-    private class ContractMetrics {
-        private Integer hiredCandidates = 0;
-        private Integer presentedCandidates = 0;
-        private Integer meetings = 0;
+    /**
+     * Checks if a contract has all required fields and an approved or closed status.
+     * @param contractRecord The contract record to check for eligibility.
+     * @return True if the contract has all required fields and an approved or closed status, false otherwise.
+     */
+    private static boolean isEligibleContract(Contract__c contractRecord) {
+        return contractRecord.TAG_Account__c != null &&
+            contractRecord.TAG_StartDate__c != null &&
+            contractRecord.TAG_EndDate__c != null &&
+            contractRecord.TAG_StartDate__c <= contractRecord.TAG_EndDate__c &&
+            (contractRecord.TAG_Status__c == STATUS_APPROVED ||
+            contractRecord.TAG_Status__c == STATUS_CLOSED);
     }
 
+    /**
+     * Logs an error message for a specific record.
+     * @param recordId The ID of the record for which the error occurred.
+     * @param message The error message to log.
+     */
     private static void logError(Id recordId, String message) {
         LOGGER.logMessage(
             LoggerUtility.LogLevel.Error,
@@ -247,6 +260,27 @@ public with sharing class TAG_ContractMetricsService {
             CRM_ApplicationDomain.Domain.POAB
         );
         LOGGER.publish();
+    }
+
+    /**
+     * Represents the scope of metrics for a set of contracts.
+     * Contains eligible contracts, associated account IDs, and date ranges.
+     */
+    private class MetricScope {
+        private List<Contract__c> eligibleContracts = new List<Contract__c>();
+        private Set<Id> accountIds = new Set<Id>();
+        private Date earliestStartDate;
+        private Date latestEndDate;
+    }
+
+    /**
+     * Represents the source data for metrics calculation.
+     * Contains presented and hired candidate outcomes, as well as meetings, grouped by account ID.
+     */
+    private class MetricSourceData {
+        private Map<Id, List<CandidateOutcome__c>> presentedOutcomesByAccount = new Map<Id, List<CandidateOutcome__c>>();
+        private Map<Id, List<CandidateOutcome__c>> hiredOutcomesByAccount = new Map<Id, List<CandidateOutcome__c>>();
+        private Map<Id, List<Event>> meetingsByAccount = new Map<Id, List<Event>>();
     }
 
     public class ContractMetricsException extends Exception {

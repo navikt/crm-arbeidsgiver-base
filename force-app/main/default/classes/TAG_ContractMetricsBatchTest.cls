@@ -7,21 +7,19 @@ private class TAG_ContractMetricsBatchTest {
 
     @testSetup
     private static void setup() {
-        // TAG_TestDataFactory.createUserWithPermset('ARBEIDSGIVER USER', new List<String>{ 'Arbeidsgiver_base' });
-
         TAG_TestDataFactory.createUserWithPermset(
             'ARBEIDSGIVER ADMIN',
             new List<String>{ 'Arbeidsgiver_base', 'Arbeidsgiver_contract', 'Admin_Base' }
         );
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
-        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Employer').getRecordTypeId();
         System.runAs(user) {
             List<Account> accounts = new List<Account>{
                 buildAccount('9000000001'),
                 buildAccount('9000000002'),
                 buildAccount('9000000003'),
                 buildAccount('9000000004'),
-                buildAccount('9000000005')
+                buildAccount('9000000005'),
+                buildAccount('9000000006')
             };
             insert as system accounts;
             Account account1 = accounts[0]; // happy path
@@ -29,12 +27,13 @@ private class TAG_ContractMetricsBatchTest {
             Account account3 = accounts[2]; // has overlaping contracts
             Account account4 = accounts[3]; // has no changes
             Account account5 = accounts[4]; // causes exception
+            Account account6 = accounts[5]; // has 251 contracts
 
             Contact contactRecord = new Contact(LastName = 'Mandatory contract contact', AccountId = account1.Id);
             insert as system contactRecord;
             contactId = contactRecord.Id;
 
-            insert as system new List<Contract__c>{
+            List<Contract__c> contracts = new List<Contract__c>{
                 buildContract(account1.Id, START_DATE, END_DATE, 'Godkjent', 9),
                 buildContract(account2.Id, START_DATE, END_DATE, 'Godkjent', 4),
                 buildContract(account3.Id, START_DATE, END_DATE, 'Godkjent', 0),
@@ -43,7 +42,10 @@ private class TAG_ContractMetricsBatchTest {
                 buildContract(account4.Id, START_DATE, END_DATE, 'Godkjent', 0),
                 buildContract(account5.Id, START_DATE, END_DATE, 'Godkjent', 0)
             };
-
+            for (Integer index = 0; index < 251; index++) {
+                contracts.add(buildContract(account6.Id, START_DATE, END_DATE, 'Godkjent', 3));
+            }
+            insert as system contracts;
             insert as system new List<CandidateOutcome__c>{
                 buildOutcome(account1.Id, 'PRESENTERT', START_DATE, 0, 0),
                 buildOutcome(account1.Id, 'FATT_JOBBEN', END_DATE, 23, 59),
@@ -67,8 +69,21 @@ private class TAG_ContractMetricsBatchTest {
     static void shouldCalculateAllMetricsAndIgnoreExcludedRecords() {
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
         System.runAs(user) {
+            List<Contract__c> scope = [
+                SELECT
+                    Id,
+                    TAG_Account__c,
+                    TAG_StartDate__c,
+                    TAG_EndDate__c,
+                    TAG_Status__c,
+                    TAG_NumberOfHiredCandidates__c,
+                    TAG_NumberOfPresentedCandidates__c,
+                    TAG_NumberOfMeetings__c
+                FROM Contract__c
+                WHERE TAG_account__r.INT_OrganizationNumber__c = '9000000001'
+            ];
             Test.startTest();
-            Database.executeBatch(new TAG_ContractMetricsBatch(), 200);
+            TAG_ContractMetricsService.applyChanges(scope);
             Test.stopTest();
 
             Contract__c actual = [
@@ -77,9 +92,9 @@ private class TAG_ContractMetricsBatchTest {
                 WHERE TAG_account__r.INT_OrganizationNumber__c = '9000000001'
                 LIMIT 1
             ];
+            Assert.areEqual(2, actual.TAG_NumberOfMeetings__c, 'Both boundary meetings must be included');
             Assert.areEqual(1, actual.TAG_NumberOfPresentedCandidates__c, 'Only one presented outcome is in range');
             Assert.areEqual(1, actual.TAG_NumberOfHiredCandidates__c, 'The end-date outcome must be included');
-            Assert.areEqual(2, actual.TAG_NumberOfMeetings__c, 'Both boundary meetings must be included');
         }
     }
 
@@ -87,8 +102,21 @@ private class TAG_ContractMetricsBatchTest {
     static void shouldSetMetricsToZeroWhenNoMatchesExist() {
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
         System.runAs(user) {
+            List<Contract__c> scope = [
+                SELECT
+                    Id,
+                    TAG_Account__c,
+                    TAG_StartDate__c,
+                    TAG_EndDate__c,
+                    TAG_Status__c,
+                    TAG_NumberOfHiredCandidates__c,
+                    TAG_NumberOfPresentedCandidates__c,
+                    TAG_NumberOfMeetings__c
+                FROM Contract__c
+                WHERE TAG_account__r.INT_OrganizationNumber__c = '9000000002'
+            ];
             Test.startTest();
-            Database.executeBatch(new TAG_ContractMetricsBatch(), 200);
+            TAG_ContractMetricsService.applyChanges(scope);
             Test.stopTest();
 
             Contract__c actual = [
@@ -107,8 +135,21 @@ private class TAG_ContractMetricsBatchTest {
     static void shouldHandleOverlappingContractsOnSameAccount() {
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
         System.runAs(user) {
+            List<Contract__c> scope = [
+                SELECT
+                    Id,
+                    TAG_Account__c,
+                    TAG_StartDate__c,
+                    TAG_EndDate__c,
+                    TAG_Status__c,
+                    TAG_NumberOfHiredCandidates__c,
+                    TAG_NumberOfPresentedCandidates__c,
+                    TAG_NumberOfMeetings__c
+                FROM Contract__c
+                WHERE TAG_account__r.INT_OrganizationNumber__c = '9000000003'
+            ];
             Test.startTest();
-            Database.executeBatch(new TAG_ContractMetricsBatch(), 200);
+            TAG_ContractMetricsService.applyChanges(scope);
             Test.stopTest();
 
             List<Contract__c> contracts = [
@@ -162,45 +203,7 @@ private class TAG_ContractMetricsBatchTest {
             Assert.areEqual(0, dmlUsed, 'A scope without eligible changes must not trigger any DML');
         }
     }
-    /*
-    @IsTest
-    static void shouldProcessBulkScopeWithOneDmlStatement() {
-        Account account = createAccount('9000000005');
-        List<Contract__c> contracts = new List<Contract__c>();
-        for (Integer index = 0; index < 251; index++) {
-            contracts.add(buildContract(account.Id, START_DATE, END_DATE, 'Godkjent', 3));
-        }
-        insert contracts;
 
-        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
-        System.runAs(user) {
-            Test.startTest();
-            Integer dmlBefore = Limits.getDmlStatements();
-            new TAG_ContractMetricsBatch().execute(null, contracts);
-            Integer dmlUsed = Limits.getDmlStatements() - dmlBefore;
-            Test.stopTest();
-
-            Assert.areEqual(1, dmlUsed, 'The scope must use exactly one update operation');
-            Assert.areEqual(
-                251,
-                [SELECT COUNT() FROM Contract__c WHERE Id IN :contracts AND TAG_NumberOfMeetings__c = 0],
-                'Every contract in the bulk scope must be processed'
-            );
-        }
-    }
-
-    @IsTest
-    static void shouldStartBatchWhenScheduled() {
-        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
-        System.runAs(user) {
-            Test.startTest();
-            new TAG_ContractMetricsScheduler().execute(null);
-            Test.stopTest();
-
-            Assert.areEqual(0, [SELECT COUNT() FROM Contract__c], 'Scheduling must complete when there is no work');
-        }
-    }
-*/
     @IsTest
     static void shouldThrowAndLogWhenSaveFails() {
         User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
@@ -236,6 +239,41 @@ private class TAG_ContractMetricsBatchTest {
             Test.stopTest();
 
             Assert.isTrue(exceptionThrown, 'A failed save must surface as a ContractMetricsException');
+        }
+    }
+    @IsTest
+    static void shouldProcessBulkScopeWithOneDmlStatement() {
+        User user = [SELECT id FROM User WHERE LastName = 'ARBEIDSGIVER ADMIN' LIMIT 1];
+        System.runAs(user) {
+            List<Contract__c> contracts = [
+                SELECT
+                    Id,
+                    TAG_Account__c,
+                    TAG_StartDate__c,
+                    TAG_EndDate__c,
+                    TAG_Status__c,
+                    TAG_NumberOfHiredCandidates__c,
+                    TAG_NumberOfPresentedCandidates__c,
+                    TAG_NumberOfMeetings__c
+                FROM Contract__c
+                WHERE TAG_account__r.INT_OrganizationNumber__c = '9000000006'
+            ];
+            Test.startTest();
+            Integer dmlBefore = Limits.getDmlStatements();
+            new TAG_ContractMetricsBatch().execute(null, contracts);
+            Integer dmlUsed = Limits.getDmlStatements() - dmlBefore;
+            Test.stopTest();
+
+            Assert.areEqual(1, dmlUsed, 'The scope must use exactly one update operation');
+            Assert.areEqual(
+                251,
+                [
+                    SELECT COUNT()
+                    FROM Contract__c
+                    WHERE TAG_account__r.INT_OrganizationNumber__c = '9000000006' AND TAG_NumberOfMeetings__c = 0
+                ],
+                'Every contract in the bulk scope must be processed'
+            );
         }
     }
 
