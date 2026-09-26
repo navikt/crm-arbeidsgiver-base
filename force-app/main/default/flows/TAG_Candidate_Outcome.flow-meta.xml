@@ -387,6 +387,11 @@
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>AssumedRelationToEmployerInquiry</name>
+        <dataType>String</dataType>
+        <expression>IF(ISNULL({!EmployerInquiryAccountCreatedDate}), null, IF({!$Record.TimeRegistered__c} &gt; {!EmployerInquiryAccountCreatedDate}, {!EmployerInquiryAccountSource}, null))</expression>
+    </formulas>
     <interviewLabel>TAG Candidate Outcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Candidate Outcome</label>
     <processMetadataValues>
@@ -422,7 +427,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Presented_or_hired</targetReference>
+            <targetReference>Get_Employer_Inquiries_from_Account</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -435,6 +440,35 @@
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Employer_Inquiries_from_Account</name>
+        <label>Get Employer Inquiries from Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Presented_or_hired</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TAG_Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_account.Id</elementReference>
+            </value>
+        </filters>
+        <object>EmployerInquiry__c</object>
+        <outputAssignments>
+            <assignToReference>EmployerInquiryAccountCreatedDate</assignToReference>
+            <field>CreatedDate</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>EmployerInquiryAccountSource</assignToReference>
+            <field>TAG_Source__c</field>
+        </outputAssignments>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
         <name>Get_Employer_Inquiry</name>
@@ -650,6 +684,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>EmployerInquirySource__c</field>
+            <value>
+                <elementReference>AssumedRelationToEmployerInquiry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>EmployerInquiry__c</field>
             <value>
                 <elementReference>Get_Employer_Inquiry.Id</elementReference>
@@ -726,6 +766,12 @@
             <field>EmployerInquiryInitiated__c</field>
             <value>
                 <elementReference>ConnectedToEmployerInquiry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>EmployerInquirySource__c</field>
+            <value>
+                <elementReference>AssumedRelationToEmployerInquiry</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -978,5 +1024,19 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>CandidateOutcome__c</objectType>
+    </variables>
+    <variables>
+        <name>EmployerInquiryAccountCreatedDate</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>EmployerInquiryAccountSource</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>
