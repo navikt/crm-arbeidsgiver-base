@@ -32,6 +32,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CandidateOutcome__c.EmployerInquirySource__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CandidateOutcome__c.EmployerInquiry__c</field>
         <readable>true</readable>
     </fieldPermissions>

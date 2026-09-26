@@ -221,9 +221,11 @@
         </filters>
         <object>CandidateOutcome__c</object>
         <schedule>
+            <dayOfMonthToRun>0</dayOfMonthToRun>
             <frequency>Daily</frequency>
+            <frequencyNumber>0</frequencyNumber>
             <startDate>2026-06-11</startDate>
-            <startTime>02:30:00.000Z</startTime>
+            <startTime>22:30:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
