@@ -940,7 +940,7 @@
                 <elementReference>countedPresentedEmploymentPlacement</elementReference>
             </value>
         </inputAssignments>
-        <inputReference>$Record.Account__r</inputReference>
+        <inputReference>$Record.Account2__r</inputReference>
     </recordUpdates>
     <start>
         <locationX>0</locationX>
