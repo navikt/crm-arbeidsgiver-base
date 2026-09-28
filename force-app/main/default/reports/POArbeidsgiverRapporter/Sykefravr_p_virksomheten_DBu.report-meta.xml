@@ -77,6 +77,13 @@
             <operator>equals</operator>
             <value>Account.Employer</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Absence__c.CRM_Year__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>2022</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -85,7 +92,7 @@
         <field>Absence__c.CRM_YearQuarter__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Sykefravær på virksomheten</name>
+    <name>Sykefravær på virksomheten - siste 3 år</name>
     <params>
         <name>co</name>
         <value>0</value>
@@ -97,6 +104,6 @@
     <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <interval>INTERVAL_PREVCUR2FY</interval>
     </timeFrameFilter>
 </Report>
