@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EmployerInquirySource__c</fullName>
+    <description>This field is set by the TAG_Candidate_Outcome flow. If there esist an Employer Inquiry record related to the Account, that is older than the Candidate Outcome record, then the value of from the Source__c field is copyed to theis field</description>
+    <externalId>false</externalId>
+    <label>Employer Inquiry Source</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

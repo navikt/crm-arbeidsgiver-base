@@ -1225,6 +1225,11 @@
             <field>EmployerInquiryInitiated__c</field>
             <table>Account.JobPostings__r.Candidate_Outcome__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EmployerInquirySource__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
         <masterLabel>Candidate Outcome</masterLabel>
     </sections>
 </ReportType>
