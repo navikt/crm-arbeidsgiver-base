@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Assign_owner_to_current_user</name>
+        <label>Assign owner to current user</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Assigns a queue-owned opportunity to the user who moves it beyond New status.</description>
+    <environments>Default</environments>
+    <interviewLabel>TAG CustomOpportunity Before Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG CustomOpportunity Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_owner_to_current_user</targetReference>
+        </connector>
+        <filterFormula>AND(
+    LEFT({!$Record.OwnerId}, 3) = &apos;00G&apos;,
+    NOT(ISPICKVAL({!$Record.InclusionStage__c}, &apos;Ny henvendelse&apos;)),
+    ISCHANGED({!$Record.InclusionStage__c})
+)</filterFormula>
+        <object>CustomOpportunity__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
