@@ -2,6 +2,9 @@
 private class TAG_ContractMetricsBatchTest {
     private static final Date START_DATE = Date.newInstance(2026, 1, 10);
     private static final Date END_DATE = Date.newInstance(2026, 1, 20);
+    private static final Id CONTRACT_RECORDTYPE = Schema.SObjectType.Contract__c.getRecordTypeInfosByDeveloperName()
+        .get('EmployerAgreement')
+        .getRecordTypeId();
     private static Map<Id, Id> contactIdByAccountId = new Map<Id, Id>();
     private static String contactId;
 
@@ -305,9 +308,7 @@ private class TAG_ContractMetricsBatchTest {
             TAG_NumberOfHiredCandidates__c = initialValue,
             TAG_NumberOfPresentedCandidates__c = initialValue,
             TAG_NumberOfMeetings__c = initialValue,
-            RecordTypeId = Schema.SObjectType.Contract__c.getRecordTypeInfosByDeveloperName()
-                .get('EmployerAgreement')
-                .getRecordTypeId()
+            RecordTypeId = CONTRACT_RECORDTYPE
         );
     }
 
