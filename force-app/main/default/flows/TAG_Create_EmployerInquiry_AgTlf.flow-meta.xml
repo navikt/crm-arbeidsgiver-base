@@ -152,6 +152,38 @@
     </actionCalls>
     <apiVersion>66.0</apiVersion>
     <assignments>
+        <name>add_existing_contact_to_enquiry</name>
+        <label>add existing contact to enquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactSearchBox.selectedChoiceValues</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>add_new_contact_to_enquiry</name>
+        <label>add new contact to enquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>create_contact.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_sub_theme</name>
         <label>Assign sub theme</label>
         <locationX>0</locationX>
@@ -233,7 +265,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>What_kind_of_inquiry</targetReference>
+            <targetReference>Should_create_contact</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -395,6 +427,60 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Should_create_contact</name>
+        <label>Should create contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No contact</defaultConnectorLabel>
+        <rules>
+            <name>Existing_contact_was_selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>add_existing_contact_to_enquiry</targetReference>
+            </connector>
+            <label>Existing contact was selected</label>
+        </rules>
+        <rules>
+            <name>Contact_details_provided</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>input_name</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>input_email.value</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>input_phone.value</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>create_contact</targetReference>
+            </connector>
+            <label>Contact details provided</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>What_kind_of_inquiry</name>
         <label>What kind of inquiry?</label>
         <locationX>0</locationX>
@@ -445,6 +531,21 @@
 - Samtalenotat: Dokumenterer samtaler som ble løst umiddelbart (f.eks. rådgivning). Opprettes som fullført henvendelse for statistikk og historikk med innlogget bruker som eier.
 - Oppgave til lokalt kontor: Når veilederen ikke kan løse saken selv, sendes den som oppgave til Nav-enhet. Eier settes til Nav-enhetens kø, status ny henvendelse og svarfrist på 2 dager.</description>
     <dynamicChoiceSets>
+        <name>contactRecordChoices</name>
+        <dataType>String</dataType>
+        <displayField>TAG_ContactDetails__c</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
         <name>SubthemeChoiceSet</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true"/>
@@ -461,6 +562,33 @@
         <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
+    <formulas>
+        <name>contactFirstNameFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF( 
+    CONTAINS(&quot; &quot;, TRIM( {!input_name}) ),
+    LEFT(
+        TRIM( {!input_name}), LEN( TRIM( {!input_name} )) - FIND( &quot; &quot;, REVERSE( TRIM( {!input_name} ) ) )
+        ),
+   &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>contactHavePhoneOrEmail</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( ISBLANK({!input_email.value} ), ISBLANK({!input_phone.value}) )</expression>
+    </formulas>
+    <formulas>
+        <name>contactLastNameFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF( 
+    CONTAINS(&quot; &quot;, TRIM( {!input_name}) ),   
+    RIGHT(
+        TRIM( {!input_name} ), FIND( &quot; &quot;, REVERSE( TRIM( {!input_name} ) ) )
+        ),
+    {!input_name}
+)</expression>
+    </formulas>
     <formulas>
         <name>EnquiryTitleBasedOnTheme</name>
         <dataType>String</dataType>
@@ -520,6 +648,59 @@ NULL
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
+        <name>create_contact</name>
+        <label>create contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>add_new_contact_to_enquiry</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email</field>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>contactFirstNameFrmla</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>contactLastNameFrmla</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>MobilePhone</field>
+            <value>
+                <elementReference>input_phone.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_BypassDuplicate__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Informed__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
         <name>Create_Conversation_Note_EmployerInquiry</name>
         <label>Create Conversation Note (EmployerInquiry)</label>
         <locationX>0</locationX>
@@ -543,6 +724,12 @@ NULL
             <field>TAG_ClosedReason__c</field>
             <value>
                 <stringValue>Fikk rådgivning/svar på det de lurte på</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -618,6 +805,24 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_WebFormContactEmail__c</field>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactName__c</field>
+            <value>
+                <elementReference>input_name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactPhone__c</field>
+            <value>
+                <elementReference>input_phone.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
                 <elementReference>OutcomeYouthPledgeScreen</elementReference>
@@ -650,6 +855,12 @@ NULL
             <field>TAG_ClosedReason__c</field>
             <value>
                 <stringValue>Fikk rådgivning/svar på det de lurte på</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -725,6 +936,24 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_WebFormContactEmail__c</field>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactName__c</field>
+            <value>
+                <elementReference>input_name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactPhone__c</field>
+            <value>
+                <elementReference>input_phone.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
                 <elementReference>OutcomeYouthPledgeScreen</elementReference>
@@ -757,6 +986,12 @@ NULL
             <field>TAG_Account__c</field>
             <value>
                 <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -820,6 +1055,24 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_WebFormContactEmail__c</field>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactName__c</field>
+            <value>
+                <elementReference>input_name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactPhone__c</field>
+            <value>
+                <elementReference>input_phone.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
                 <elementReference>OutcomeYouthPledgeScreen</elementReference>
@@ -852,6 +1105,12 @@ NULL
             <field>TAG_Account__c</field>
             <value>
                 <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -912,6 +1171,24 @@ NULL
             <field>TAG_Theme__c</field>
             <value>
                 <elementReference>OutcomeThemeScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactEmail__c</field>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactName__c</field>
+            <value>
+                <elementReference>input_name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_WebFormContactPhone__c</field>
+            <value>
+                <elementReference>input_phone.value</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1319,6 +1596,177 @@ NULL
             <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!errorNavUnit}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
+        <fields>
+            <name>Opprett_et_samtalenotat_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Opprett_et_samtalenotat_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>contactSectionText1</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Kontaktinformasjon&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under for å legge til ny.&lt;/em&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>contactSearchBox</name>
+                    <choiceReferences>contactRecordChoices</choiceReferences>
+                    <extensionName>flowruntime:choiceLookup</extensionName>
+                    <fieldText>Søk eksisterende kontakt</fieldText>
+                    <fieldType>ComponentChoice</fieldType>
+                    <inputParameters>
+                        <name>placeholder</name>
+                        <value>
+                            <stringValue>navn / telefonnrummer / e-post</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>contactSectionText2</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Ny kontakt&lt;/strong&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>input_name</name>
+                    <dataType>String</dataType>
+                    <fieldText>Kontaktperson navn</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>input_phone</name>
+                    <extensionName>flowruntime:phone</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Telefonnummer</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <elementReference>contactHavePhoneOrEmail</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>input_email</name>
+                    <extensionName>flowruntime:email</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>E-post</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <elementReference>contactHavePhoneOrEmail</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>informed_about_processing_contact_details</name>
+                    <dataType>Boolean</dataType>
+                    <fieldText>Jeg bekrefter at kontakten er informert</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</helpText>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression>{!informed_about_processing_contact_details}</formulaExpression>
+                    </validationRule>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>input_name</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Task_toggle.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
         <nextOrFinishButtonLabel>Lagre</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1366,6 +1814,14 @@ NULL
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>EmployerInquiry__c</objectType>
+    </variables>
+    <variables>
+        <name>employerInquiryContact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
     </variables>
     <variables>
         <name>errorNavUnit</name>
