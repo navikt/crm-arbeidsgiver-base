@@ -461,7 +461,7 @@
         <object>EmployerInquiry__c</object>
         <outputAssignments>
             <assignToReference>EmployerInquiryAccountCreatedDate</assignToReference>
-            <field>CreatedDate</field>
+            <field>TAG_RecievedDateTime__c</field>
         </outputAssignments>
         <outputAssignments>
             <assignToReference>EmployerInquiryAccountSource</assignToReference>
