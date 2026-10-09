@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_ContactDetails__c</fullName>
+    <description>Used as choice label in flow TAG_Create_EmployerInquiry_AgTlf. Flow logic is dependent on this fields format. Do not chanage without checking flow.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(FirstName&amp;MiddleName&amp;LastName), &quot;[uten navn]&quot;,  FirstName&amp;&quot; &quot;&amp;MiddleName&amp;&quot; &quot;&amp;LastName
+)
+&amp; &quot; | &quot;
+&amp; IF(ISBLANK(Email), &quot;[uten e-post]&quot;, Email)
+&amp; &quot; | &quot;
+&amp; IF(ISBLANK(MobilePhone), &quot;[uten mobil]&quot;, MobilePhone)</formula>
+    <label>Contact Details</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
