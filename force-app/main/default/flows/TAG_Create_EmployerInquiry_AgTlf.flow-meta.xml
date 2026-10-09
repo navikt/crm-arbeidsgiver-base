@@ -151,6 +151,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>add_existing_contact_to_enquiry</name>
         <label>add existing contact to enquiry</label>
@@ -805,24 +806,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_WebFormContactEmail__c</field>
-            <value>
-                <elementReference>input_email.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactName__c</field>
-            <value>
-                <elementReference>input_name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactPhone__c</field>
-            <value>
-                <elementReference>input_phone.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
                 <elementReference>OutcomeYouthPledgeScreen</elementReference>
@@ -936,24 +919,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_WebFormContactEmail__c</field>
-            <value>
-                <elementReference>input_email.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactName__c</field>
-            <value>
-                <elementReference>input_name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactPhone__c</field>
-            <value>
-                <elementReference>input_phone.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
                 <elementReference>OutcomeYouthPledgeScreen</elementReference>
@@ -1055,24 +1020,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_WebFormContactEmail__c</field>
-            <value>
-                <elementReference>input_email.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactName__c</field>
-            <value>
-                <elementReference>input_name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactPhone__c</field>
-            <value>
-                <elementReference>input_phone.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
                 <elementReference>OutcomeYouthPledgeScreen</elementReference>
@@ -1171,24 +1118,6 @@ NULL
             <field>TAG_Theme__c</field>
             <value>
                 <elementReference>OutcomeThemeScreen</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactEmail__c</field>
-            <value>
-                <elementReference>input_email.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactName__c</field>
-            <value>
-                <elementReference>input_name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_WebFormContactPhone__c</field>
-            <value>
-                <elementReference>input_phone.value</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1353,6 +1282,14 @@ NULL
             <name>TopText</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Opprett et samtalenotat&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>PicklistTheme</name>
@@ -1363,6 +1300,14 @@ NULL
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Text</name>
@@ -1389,6 +1334,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Gjelder_ungdomsloftet</name>
@@ -1398,6 +1351,14 @@ NULL
             <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Huk av boksen dersom arbeidsgiveren ønsker å bidra til ungdomsløftet&lt;/span&gt;&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1420,6 +1381,14 @@ NULL
             <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Bekreft at det ikke er skrevet sensitiv informasjon, eller opplysninger som kan knyttes til personbruker, i kommentarfeltet.&lt;/span&gt;&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(241, 6, 6);&quot;&gt;Vennligst bekreft at det Ikke er registrert sensitiv informasjon, eller opplysninger som kan knyttes til personbruker.&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Ingen_brukeropplysninger} = true</formulaExpression>
@@ -1456,6 +1425,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>6</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>DueDate</name>
@@ -1470,6 +1447,14 @@ NULL
                 <booleanValue>true</booleanValue>
             </isDisabled>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>6</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>1</conditionLogic>
                 <conditions>
@@ -1518,6 +1503,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1573,6 +1566,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1595,6 +1596,14 @@ NULL
             <name>errorNavUnitDisplay</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!errorNavUnit}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Opprett_et_samtalenotat_Section1</name>
@@ -1606,6 +1615,14 @@ NULL
                     <name>contactSectionText1</name>
                     <fieldText>&lt;p&gt;&lt;strong&gt;Kontaktinformasjon&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under for å legge til ny.&lt;/em&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>contactSearchBox</name>
@@ -1622,11 +1639,27 @@ NULL
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>contactSectionText2</name>
                     <fieldText>&lt;p&gt;&lt;strong&gt;Ny kontakt&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1645,6 +1678,14 @@ NULL
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>6</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1675,6 +1716,14 @@ NULL
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>4</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1705,6 +1754,14 @@ NULL
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>6</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1724,6 +1781,14 @@ NULL
                     <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</helpText>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <validationRule>
                         <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</errorMessage>
                         <formulaExpression>{!informed_about_processing_contact_details}</formulaExpression>
@@ -1756,6 +1821,14 @@ NULL
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
