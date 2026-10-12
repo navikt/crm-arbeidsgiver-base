@@ -153,34 +153,20 @@
     <apiVersion>66.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
-        <name>add_existing_contact_to_enquiry</name>
-        <label>add existing contact to enquiry</label>
+        <description>Text.conversationNote</description>
+        <name>append_contact_details_as_text</name>
+        <label>append contact details as text</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>employerInquiryContact.Id</assignToReference>
-            <operator>Assign</operator>
+            <assignToReference>Text.conversationNote</assignToReference>
+            <operator>Add</operator>
             <value>
-                <elementReference>contactSearchBox.selectedChoiceValues</elementReference>
+                <elementReference>contactDetailsAsText</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>What_kind_of_inquiry</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>add_new_contact_to_enquiry</name>
-        <label>add new contact to enquiry</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>employerInquiryContact.Id</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>create_contact.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
+            <isGoTo>true</isGoTo>
             <targetReference>What_kind_of_inquiry</targetReference>
         </connector>
     </assignments>
@@ -270,6 +256,75 @@
         </connector>
     </assignments>
     <assignments>
+        <name>set_contact_id</name>
+        <label>set contact id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_matching_contacts.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_contact</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>set_enquiry_contact_details</name>
+        <label>set enquiry contact details</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.TAG_BypassDuplicate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.TAG_Informed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.MobilePhone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>input_phone.value</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_matching_contacts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_enquiry_contact_id</name>
+        <label>Set enquiry contact id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactSearchBox.selectedChoiceValues</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_NALS_error</name>
         <label>Set NALS error</label>
         <locationX>0</locationX>
@@ -303,6 +358,43 @@
             <targetReference>Opprett_et_samtalenotat</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>set_new_contact_fields</name>
+        <label>set new contact fields</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactFirstNameFrmla</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactLastNameFrmla</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>input_name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>create_contact</targetReference>
+        </connector>
+    </assignments>
     <choices>
         <name>Forebygge_og_redusere_fravar</name>
         <choiceText>Forebygge og redusere fravær</choiceText>
@@ -319,6 +411,31 @@
             <stringValue>Rekruttere og inkludere</stringValue>
         </value>
     </choices>
+    <decisions>
+        <name>Determine_create_or_update</name>
+        <label>Determine create or update</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>set_new_contact_fields</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Create new contact (Default Outcome)</defaultConnectorLabel>
+        <rules>
+            <name>update_existing_contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_matching_contacts</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>set_contact_id</targetReference>
+            </connector>
+            <label>update_existing_contact</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Is_it_queue_for_NALS</name>
         <label>Is it queue for NALS?</label>
@@ -447,7 +564,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>add_existing_contact_to_enquiry</targetReference>
+                <targetReference>Set_enquiry_contact_id</targetReference>
             </connector>
             <label>Existing contact was selected</label>
         </rules>
@@ -476,7 +593,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>create_contact</targetReference>
+                <targetReference>set_enquiry_contact_details</targetReference>
             </connector>
             <label>Contact details provided</label>
         </rules>
@@ -543,6 +660,13 @@
                 <elementReference>recordId</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>TAG_Former_Employee__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
         <object>Contact</object>
         <valueField>Id</valueField>
     </dynamicChoiceSets>
@@ -563,6 +687,11 @@
         <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
+    <formulas>
+        <name>contactDetailsAsText</name>
+        <dataType>String</dataType>
+        <expression>BR() &amp; &quot;Kontaktinformasjon: &quot; &amp; {!input_name} &amp;&quot;, &quot;&amp; {!input_phone.value}&amp;&quot;, &quot;&amp;{!input_email.value}</expression>
+    </formulas>
     <formulas>
         <name>contactFirstNameFrmla</name>
         <dataType>String</dataType>
@@ -654,52 +783,12 @@ NULL
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>add_new_contact_to_enquiry</targetReference>
+            <targetReference>What_kind_of_inquiry</targetReference>
         </connector>
-        <inputAssignments>
-            <field>AccountId</field>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Email</field>
-            <value>
-                <elementReference>input_email.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>FirstName</field>
-            <value>
-                <elementReference>contactFirstNameFrmla</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>LastName</field>
-            <value>
-                <elementReference>contactLastNameFrmla</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>MobilePhone</field>
-            <value>
-                <elementReference>input_phone.value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_BypassDuplicate__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_Informed__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>Contact</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <faultConnector>
+            <targetReference>Flow_Create_Application_Log_Flow_1</targetReference>
+        </faultConnector>
+        <inputReference>employerInquiryContact</inputReference>
     </recordCreates>
     <recordCreates>
         <name>Create_Conversation_Note_EmployerInquiry</name>
@@ -1157,6 +1246,34 @@ NULL
         </outputAssignments>
     </recordLookups>
     <recordLookups>
+        <name>Get_matching_contacts</name>
+        <label>Get matching contacts</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Determine_create_or_update</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Email</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Email</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_NALS</name>
         <label>Get NALS</label>
         <locationX>0</locationX>
@@ -1267,6 +1384,20 @@ NULL
             <field>Name</field>
         </outputAssignments>
     </recordLookups>
+    <recordUpdates>
+        <name>update_contact</name>
+        <label>update contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Flow_Create_Application_Log_Flow_1</targetReference>
+        </faultConnector>
+        <inputReference>employerInquiryContact</inputReference>
+    </recordUpdates>
     <screens>
         <name>Opprett_et_samtalenotat</name>
         <label>Opprett et samtalenotat</label>
@@ -1606,6 +1737,56 @@ NULL
             </styleProperties>
         </fields>
         <fields>
+            <name>Contact_toggle</name>
+            <extensionName>flowruntime:toggle</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Registrer kontaktinformasjon?</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleInactive</name>
+                <value>
+                    <stringValue>Nei</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleActive</name>
+                <value>
+                    <stringValue>Ja</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Task_toggle.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
             <name>Opprett_et_samtalenotat_Section1</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
@@ -1613,7 +1794,7 @@ NULL
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>contactSectionText1</name>
-                    <fieldText>&lt;p&gt;&lt;strong&gt;Kontaktinformasjon&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under for å legge til ny.&lt;/em&gt;&lt;/p&gt;</fieldText>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Kontaktinformasjon&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under.&lt;/em&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                     <styleProperties>
                         <verticalAlignment>
@@ -1628,7 +1809,7 @@ NULL
                     <name>contactSearchBox</name>
                     <choiceReferences>contactRecordChoices</choiceReferences>
                     <extensionName>flowruntime:choiceLookup</extensionName>
-                    <fieldText>Søk eksisterende kontakt</fieldText>
+                    <fieldText>Søk kontaktpersoner på arbeidsgiver</fieldText>
                     <fieldType>ComponentChoice</fieldType>
                     <inputParameters>
                         <name>placeholder</name>
@@ -1647,29 +1828,6 @@ NULL
                             <stringValue>12</stringValue>
                         </width>
                     </styleProperties>
-                </fields>
-                <fields>
-                    <name>contactSectionText2</name>
-                    <fieldText>&lt;p&gt;&lt;strong&gt;Ny kontakt&lt;/strong&gt;&lt;/p&gt;</fieldText>
-                    <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>bottom</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <fields>
                     <name>input_name</name>
@@ -1710,7 +1868,7 @@ NULL
                     <inputParameters>
                         <name>required</name>
                         <value>
-                            <elementReference>contactHavePhoneOrEmail</elementReference>
+                            <booleanValue>true</booleanValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1721,7 +1879,7 @@ NULL
                             <stringValue>bottom</stringValue>
                         </verticalAlignment>
                         <width>
-                            <stringValue>4</stringValue>
+                            <stringValue>6</stringValue>
                         </width>
                     </styleProperties>
                     <visibilityRule>
@@ -1748,7 +1906,7 @@ NULL
                     <inputParameters>
                         <name>required</name>
                         <value>
-                            <elementReference>contactHavePhoneOrEmail</elementReference>
+                            <booleanValue>true</booleanValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1786,7 +1944,7 @@ NULL
                             <stringValue>bottom</stringValue>
                         </verticalAlignment>
                         <width>
-                            <stringValue>12</stringValue>
+                            <stringValue>6</stringValue>
                         </width>
                     </styleProperties>
                     <validationRule>
@@ -1832,7 +1990,7 @@ NULL
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
-                    <leftValueReference>Task_toggle.value</leftValueReference>
+                    <leftValueReference>Contact_toggle.value</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
@@ -1852,6 +2010,51 @@ NULL
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Flow_Create_Application_Log_Flow_1</name>
+        <label>Flow Create Application Log Flow 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>append_contact_details_as_text</targetReference>
+        </connector>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>TAG Create EmployerInquiry AgTlf</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <elementReference>log_message</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <textTemplates>
+        <name>log_message</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Create contact failed. Contact( AccountId = {!recordId}, FirstName = {!contactFirstNameFrmla}, LastName = {!contactLastNameFrmla}, Email = {!input_email.value}, MobilePhone = {!input_phone.value} )</text>
+    </textTemplates>
     <variables>
         <name>accountNavArbeidslivssenterId</name>
         <dataType>String</dataType>
@@ -1898,6 +2101,13 @@ NULL
     </variables>
     <variables>
         <name>errorNavUnit</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>inquiryContactId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
