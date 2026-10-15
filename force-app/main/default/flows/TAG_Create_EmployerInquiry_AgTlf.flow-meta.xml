@@ -649,15 +649,30 @@
 - Samtalenotat: Dokumenterer samtaler som ble løst umiddelbart (f.eks. rådgivning). Opprettes som fullført henvendelse for statistikk og historikk med innlogget bruker som eier.
 - Oppgave til lokalt kontor: Når veilederen ikke kan løse saken selv, sendes den som oppgave til Nav-enhet. Eier settes til Nav-enhetens kø, status ny henvendelse og svarfrist på 2 dager.</description>
     <dynamicChoiceSets>
+        <description>Get contact for this account and parent account. Must be active contact and must have phone</description>
         <name>contactRecordChoices</name>
         <dataType>String</dataType>
         <displayField>TAG_ContactDetails__c</displayField>
-        <filterLogic>and</filterLogic>
+        <filterLogic>(1 OR 2) AND 3 AND 4</filterLogic>
         <filters>
             <field>AccountId</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountParentId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>MobilePhone</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <filters>
@@ -668,6 +683,8 @@
             </value>
         </filters>
         <object>Contact</object>
+        <sortField>LastActivityDate</sortField>
+        <sortOrder>Desc</sortOrder>
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
@@ -1241,6 +1258,10 @@ NULL
             <field>NAV_Region__c</field>
         </outputAssignments>
         <outputAssignments>
+            <assignToReference>accountParentId</assignToReference>
+            <field>ParentId</field>
+        </outputAssignments>
+        <outputAssignments>
             <assignToReference>accountNavUnitId</assignToReference>
             <field>TAG_NavUnit__c</field>
         </outputAssignments>
@@ -1794,7 +1815,7 @@ NULL
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>contactSectionText1</name>
-                    <fieldText>&lt;p&gt;&lt;strong&gt;Kontaktinformasjon&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under.&lt;/em&gt;&lt;/p&gt;</fieldText>
+                    <fieldText>&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under.&lt;/em&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                     <styleProperties>
                         <verticalAlignment>
@@ -2071,6 +2092,13 @@ NULL
     </variables>
     <variables>
         <name>accountNavUnitId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>accountParentId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
