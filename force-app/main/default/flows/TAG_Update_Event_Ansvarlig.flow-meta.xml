@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>68.0</apiVersion>
+    <description>Copies owner name to custom indexed field used in reports. Workaround for owner name not being used as index in activity reports.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>FullName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Owner:User.FirstName}&amp;&quot; &quot;&amp;{!$Record.Owner:User.LastName}</expression>
+    </formulas>
+    <interviewLabel>TAG Update Ansvarlig {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Update Event Ansvarlig</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_ansvarlig</name>
+        <label>Update ansvarlig</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Ansvarlig__c</field>
+            <value>
+                <elementReference>FullName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_ansvarlig</targetReference>
+        </connector>
+        <filterFormula>AND( 
+  OR(
+    {!$Record.RecordType.DeveloperName} = &quot;ArbeidsgiverEvent&quot;,
+    {!$Record.RecordType.DeveloperName} =&quot;IA_event&quot;
+  ),
+  OR(
+    ISCHANGED({!$Record.OwnerId}),
+    ISNEW()
+  )
+)</filterFormula>
+        <object>Event</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
