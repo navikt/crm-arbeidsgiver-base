@@ -151,6 +151,25 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Text.conversationNote</description>
+        <name>append_contact_details_as_text</name>
+        <label>append contact details as text</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Text.conversationNote</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>contactDetailsAsText</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Assign_sub_theme</name>
         <label>Assign sub theme</label>
@@ -233,6 +252,75 @@
             </value>
         </assignmentItems>
         <connector>
+            <targetReference>Should_create_contact</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>set_contact_id</name>
+        <label>set contact id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_matching_contacts.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_contact</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>set_enquiry_contact_details</name>
+        <label>set enquiry contact details</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.TAG_BypassDuplicate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.TAG_Informed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.MobilePhone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>input_phone.value</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_matching_contacts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_enquiry_contact_id</name>
+        <label>Set enquiry contact id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactSearchBox.selectedChoiceValues</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
             <targetReference>What_kind_of_inquiry</targetReference>
         </connector>
     </assignments>
@@ -270,6 +358,43 @@
             <targetReference>Opprett_et_samtalenotat</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>set_new_contact_fields</name>
+        <label>set new contact fields</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactFirstNameFrmla</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactLastNameFrmla</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>employerInquiryContact.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>input_name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>create_contact</targetReference>
+        </connector>
+    </assignments>
     <choices>
         <name>Forebygge_og_redusere_fravar</name>
         <choiceText>Forebygge og redusere fravær</choiceText>
@@ -286,6 +411,31 @@
             <stringValue>Rekruttere og inkludere</stringValue>
         </value>
     </choices>
+    <decisions>
+        <name>Determine_create_or_update</name>
+        <label>Determine create or update</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>set_new_contact_fields</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Create new contact (Default Outcome)</defaultConnectorLabel>
+        <rules>
+            <name>update_existing_contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_matching_contacts</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>set_contact_id</targetReference>
+            </connector>
+            <label>update_existing_contact</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Is_it_queue_for_NALS</name>
         <label>Is it queue for NALS?</label>
@@ -395,6 +545,60 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Should_create_contact</name>
+        <label>Should create contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No contact</defaultConnectorLabel>
+        <rules>
+            <name>Existing_contact_was_selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_enquiry_contact_id</targetReference>
+            </connector>
+            <label>Existing contact was selected</label>
+        </rules>
+        <rules>
+            <name>Contact_details_provided</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>input_name</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>input_email.value</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>input_phone.value</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>set_enquiry_contact_details</targetReference>
+            </connector>
+            <label>Contact details provided</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>What_kind_of_inquiry</name>
         <label>What kind of inquiry?</label>
         <locationX>0</locationX>
@@ -445,6 +649,45 @@
 - Samtalenotat: Dokumenterer samtaler som ble løst umiddelbart (f.eks. rådgivning). Opprettes som fullført henvendelse for statistikk og historikk med innlogget bruker som eier.
 - Oppgave til lokalt kontor: Når veilederen ikke kan løse saken selv, sendes den som oppgave til Nav-enhet. Eier settes til Nav-enhetens kø, status ny henvendelse og svarfrist på 2 dager.</description>
     <dynamicChoiceSets>
+        <description>Get contact for this account and parent account. Must be active contact and must have phone</description>
+        <name>contactRecordChoices</name>
+        <dataType>String</dataType>
+        <displayField>TAG_ContactDetails__c</displayField>
+        <filterLogic>(1 OR 2) AND 3 AND 4</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountParentId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>MobilePhone</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Former_Employee__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <sortField>LastActivityDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
         <name>SubthemeChoiceSet</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true"/>
@@ -461,6 +704,38 @@
         <picklistObject>EmployerInquiry__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
+    <formulas>
+        <name>contactDetailsAsText</name>
+        <dataType>String</dataType>
+        <expression>BR() &amp; &quot;Kontaktinformasjon: &quot; &amp; {!input_name} &amp;&quot;, &quot;&amp; {!input_phone.value}&amp;&quot;, &quot;&amp;{!input_email.value}</expression>
+    </formulas>
+    <formulas>
+        <name>contactFirstNameFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF( 
+    CONTAINS(&quot; &quot;, TRIM( {!input_name}) ),
+    LEFT(
+        TRIM( {!input_name}), LEN( TRIM( {!input_name} )) - FIND( &quot; &quot;, REVERSE( TRIM( {!input_name} ) ) )
+        ),
+   &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>contactHavePhoneOrEmail</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( ISBLANK({!input_email.value} ), ISBLANK({!input_phone.value}) )</expression>
+    </formulas>
+    <formulas>
+        <name>contactLastNameFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF( 
+    CONTAINS(&quot; &quot;, TRIM( {!input_name}) ),   
+    RIGHT(
+        TRIM( {!input_name} ), FIND( &quot; &quot;, REVERSE( TRIM( {!input_name} ) ) )
+        ),
+    {!input_name}
+)</expression>
+    </formulas>
     <formulas>
         <name>EnquiryTitleBasedOnTheme</name>
         <dataType>String</dataType>
@@ -520,6 +795,19 @@ NULL
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
+        <name>create_contact</name>
+        <label>create contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Flow_Create_Application_Log_Flow_1</targetReference>
+        </faultConnector>
+        <inputReference>employerInquiryContact</inputReference>
+    </recordCreates>
+    <recordCreates>
         <name>Create_Conversation_Note_EmployerInquiry</name>
         <label>Create Conversation Note (EmployerInquiry)</label>
         <locationX>0</locationX>
@@ -543,6 +831,12 @@ NULL
             <field>TAG_ClosedReason__c</field>
             <value>
                 <stringValue>Fikk rådgivning/svar på det de lurte på</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -653,6 +947,12 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_DueDateTime__c</field>
             <value>
                 <elementReference>dueDateTime</elementReference>
@@ -760,6 +1060,12 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_DueDateTime__c</field>
             <value>
                 <elementReference>dueDateTime</elementReference>
@@ -855,6 +1161,12 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_Contact__c</field>
+            <value>
+                <elementReference>employerInquiryContact.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_DueDateTime__c</field>
             <value>
                 <elementReference>dueDateTime</elementReference>
@@ -946,9 +1258,41 @@ NULL
             <field>NAV_Region__c</field>
         </outputAssignments>
         <outputAssignments>
+            <assignToReference>accountParentId</assignToReference>
+            <field>ParentId</field>
+        </outputAssignments>
+        <outputAssignments>
             <assignToReference>accountNavUnitId</assignToReference>
             <field>TAG_NavUnit__c</field>
         </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_matching_contacts</name>
+        <label>Get matching contacts</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Determine_create_or_update</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Email</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>input_email.value</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Email</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Get_NALS</name>
@@ -1061,6 +1405,20 @@ NULL
             <field>Name</field>
         </outputAssignments>
     </recordLookups>
+    <recordUpdates>
+        <name>update_contact</name>
+        <label>update contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_kind_of_inquiry</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Flow_Create_Application_Log_Flow_1</targetReference>
+        </faultConnector>
+        <inputReference>employerInquiryContact</inputReference>
+    </recordUpdates>
     <screens>
         <name>Opprett_et_samtalenotat</name>
         <label>Opprett et samtalenotat</label>
@@ -1076,6 +1434,14 @@ NULL
             <name>TopText</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Opprett et samtalenotat&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>PicklistTheme</name>
@@ -1086,6 +1452,14 @@ NULL
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Text</name>
@@ -1112,6 +1486,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Gjelder_ungdomsloftet</name>
@@ -1121,6 +1503,14 @@ NULL
             <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Huk av boksen dersom arbeidsgiveren ønsker å bidra til ungdomsløftet&lt;/span&gt;&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1143,6 +1533,14 @@ NULL
             <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Bekreft at det ikke er skrevet sensitiv informasjon, eller opplysninger som kan knyttes til personbruker, i kommentarfeltet.&lt;/span&gt;&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(241, 6, 6);&quot;&gt;Vennligst bekreft at det Ikke er registrert sensitiv informasjon, eller opplysninger som kan knyttes til personbruker.&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Ingen_brukeropplysninger} = true</formulaExpression>
@@ -1179,6 +1577,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>6</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>DueDate</name>
@@ -1193,6 +1599,14 @@ NULL
                 <booleanValue>true</booleanValue>
             </isDisabled>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>6</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>1</conditionLogic>
                 <conditions>
@@ -1241,6 +1655,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1296,6 +1718,14 @@ NULL
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1318,6 +1748,276 @@ NULL
             <name>errorNavUnitDisplay</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!errorNavUnit}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Contact_toggle</name>
+            <extensionName>flowruntime:toggle</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Registrer kontaktinformasjon?</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleInactive</name>
+                <value>
+                    <stringValue>Nei</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleActive</name>
+                <value>
+                    <stringValue>Ja</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Task_toggle.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Opprett_et_samtalenotat_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Opprett_et_samtalenotat_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>contactSectionText1</name>
+                    <fieldText>&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under.&lt;/em&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>contactSearchBox</name>
+                    <choiceReferences>contactRecordChoices</choiceReferences>
+                    <extensionName>flowruntime:choiceLookup</extensionName>
+                    <fieldText>Søk kontaktpersoner på arbeidsgiver</fieldText>
+                    <fieldType>ComponentChoice</fieldType>
+                    <inputParameters>
+                        <name>placeholder</name>
+                        <value>
+                            <stringValue>navn / telefonnrummer / e-post</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>input_name</name>
+                    <dataType>String</dataType>
+                    <fieldText>Kontaktperson navn</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>6</stringValue>
+                        </width>
+                    </styleProperties>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>input_phone</name>
+                    <extensionName>flowruntime:phone</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Telefonnummer</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>6</stringValue>
+                        </width>
+                    </styleProperties>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>input_email</name>
+                    <extensionName>flowruntime:email</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>E-post</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>6</stringValue>
+                        </width>
+                    </styleProperties>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>informed_about_processing_contact_details</name>
+                    <dataType>Boolean</dataType>
+                    <fieldText>Jeg bekrefter at kontakten er informert</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</helpText>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>bottom</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>6</stringValue>
+                        </width>
+                    </styleProperties>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression>{!informed_about_processing_contact_details}</formulaExpression>
+                    </validationRule>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>input_name</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Contact_toggle.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <nextOrFinishButtonLabel>Lagre</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -1331,6 +2031,51 @@ NULL
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Flow_Create_Application_Log_Flow_1</name>
+        <label>Flow Create Application Log Flow 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>append_contact_details_as_text</targetReference>
+        </connector>
+        <flowName>Flow_Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>Application_Domain</name>
+            <value>
+                <stringValue>POAB</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Payload</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Error_Source</name>
+            <value>
+                <stringValue>TAG Create EmployerInquiry AgTlf</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Level</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Log_Message</name>
+            <value>
+                <elementReference>log_message</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <textTemplates>
+        <name>log_message</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Create contact failed. Contact( AccountId = {!recordId}, FirstName = {!contactFirstNameFrmla}, LastName = {!contactLastNameFrmla}, Email = {!input_email.value}, MobilePhone = {!input_phone.value} )</text>
+    </textTemplates>
     <variables>
         <name>accountNavArbeidslivssenterId</name>
         <dataType>String</dataType>
@@ -1353,6 +2098,13 @@ NULL
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>accountParentId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>dueDateTime</name>
         <dataType>DateTime</dataType>
         <isCollection>false</isCollection>
@@ -1368,7 +2120,22 @@ NULL
         <objectType>EmployerInquiry__c</objectType>
     </variables>
     <variables>
+        <name>employerInquiryContact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
         <name>errorNavUnit</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>inquiryContactId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
