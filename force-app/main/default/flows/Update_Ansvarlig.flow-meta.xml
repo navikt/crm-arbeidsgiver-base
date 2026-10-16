@@ -28,15 +28,54 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Nav_unit</name>
+        <label>Get Nav unit</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Ansvarlig</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_UnitNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Department</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>NavUnit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Ansvarlig</name>
         <label>Update Ansvarlig</label>
         <locationX>176</locationX>
-        <locationY>287</locationY>
+        <locationY>395</locationY>
         <inputAssignments>
             <field>Ansvarlig__c</field>
             <value>
                 <elementReference>FullName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerMarketRegion__c</field>
+            <value>
+                <elementReference>$Record.Owner:User.CRM_MarketRegion__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerNavUnit__c</field>
+            <value>
+                <elementReference>Get_Nav_unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerRegion__c</field>
+            <value>
+                <elementReference>$Record.Owner:User.Region__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -45,7 +84,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_Ansvarlig</targetReference>
+            <targetReference>Get_Nav_unit</targetReference>
         </connector>
         <filterFormula>AND( 
   OR(

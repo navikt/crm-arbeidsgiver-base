@@ -29,6 +29,27 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Nav_unit</name>
+        <label>Get Nav unit</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_ansvarlig</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_UnitNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Department</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>NavUnit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_ansvarlig</name>
         <label>Update ansvarlig</label>
@@ -40,13 +61,31 @@
                 <elementReference>FullName</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerMarketRegion__c</field>
+            <value>
+                <elementReference>$Record.Owner:User.CRM_MarketRegion__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerNavUnit__c</field>
+            <value>
+                <elementReference>Get_Nav_unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerRegion__c</field>
+            <value>
+                <elementReference>$Record.Owner:User.Region__c</elementReference>
+            </value>
+        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_ansvarlig</targetReference>
+            <targetReference>Get_Nav_unit</targetReference>
         </connector>
         <filterFormula>AND( 
   OR(
