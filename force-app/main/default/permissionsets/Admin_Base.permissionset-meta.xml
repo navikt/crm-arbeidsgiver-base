@@ -551,6 +551,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.TAG_IsSystemUpdate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.TAG_OwnerMarketRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1122,6 +1127,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.TAG_ForceUpdate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.TAG_IsSystemUpdate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

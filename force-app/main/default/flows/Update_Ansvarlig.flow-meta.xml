@@ -3,9 +3,23 @@
     <apiVersion>53.0</apiVersion>
     <environments>Default</environments>
     <formulas>
-        <name>FullName</name>
+        <name>userFullNameFrmla</name>
         <dataType>String</dataType>
         <expression>{!$Record.Owner:User.FirstName}&amp;&quot; &quot;&amp;{!$Record.Owner:User.LastName}</expression>
+    </formulas>
+    <formulas>
+        <description>Returns user market region if present or the text &apos;UKJENT&apos;</description>
+        <name>userMarketRegionFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF(
+ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
+{!$Record.Owner:User.CRM_MarketRegion__c} )</expression>
+    </formulas>
+    <formulas>
+        <description>Returns user region if present or the text &apos;UKJENT&apos;</description>
+        <name>userRegionFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF( ISBLANK({!$Record.Owner:User.Region__c}), &quot;UKJENT&quot;, {!$Record.Owner:User.Region__c})</expression>
     </formulas>
     <interviewLabel>Update Ansvarlig {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Update Task Ansvarlig</label>
@@ -57,13 +71,13 @@
         <inputAssignments>
             <field>Ansvarlig__c</field>
             <value>
-                <elementReference>FullName</elementReference>
+                <elementReference>userFullNameFrmla</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>TAG_OwnerMarketRegion__c</field>
             <value>
-                <elementReference>$Record.Owner:User.CRM_MarketRegion__c</elementReference>
+                <elementReference>userMarketRegionFrmla</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -75,7 +89,7 @@
         <inputAssignments>
             <field>TAG_OwnerRegion__c</field>
             <value>
-                <elementReference>$Record.Owner:User.Region__c</elementReference>
+                <elementReference>userRegionFrmla</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -93,7 +107,8 @@
   ),
   OR(
     ISCHANGED({!$Record.OwnerId}),
-    ISNEW()
+    ISNEW(),
+    AND( ISCHANGED({!$Record.TAG_IsSystemUpdate__c}), {!$Record.TAG_IsSystemUpdate__c})
   )
 )</filterFormula>
         <object>Task</object>
