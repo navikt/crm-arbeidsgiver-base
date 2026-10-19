@@ -215,6 +215,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Ansvarlig__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
             <table>CustomCampaignMember__c.Activities</table>
         </columns>
