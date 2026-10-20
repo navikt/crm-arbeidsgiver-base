@@ -164,7 +164,7 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
     }
 
     get relatedAccountsLabel() {
-        return `Dette er en J-enhet. Registrering skal gjøres på tilhørende B-enheter (${this.relatedAccountsTotal})`;
+        return `Dette er en juridisk enhet (J-enhet). Registrering av aktivitet skal gjøres på bedriftsnummer (B-enhet). Antall B-enheter: ${this.relatedAccountsTotal}`;
     }
 
     get hasMoreRelatedAccounts() {
