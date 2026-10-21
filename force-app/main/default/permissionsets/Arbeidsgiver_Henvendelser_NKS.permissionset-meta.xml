@@ -2,6 +2,11 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Tilgang til å se og oppdatere henvendelser for ArbeidsgiverTelefonen NKS</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.TAG_ContactDetails__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>EmployerInquiry__c.TAG_DueDateTime__c</field>
         <readable>true</readable>
