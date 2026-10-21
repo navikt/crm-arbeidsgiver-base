@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_OwnerNavUnit__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Nav unit record that corresponds to the Nav unit fields on user (CompanyName, Department). 
+Intended as filter in reports and dashboards.
+Value is only set for activities with AG or IA recordtypes. Updated by flow trigger on Task/Event on create and if activity owner is changed.</description>
+    <label>Owner Nav Unit</label>
+    <referenceTo>NavUnit__c</referenceTo>
+    <relationshipLabel>Nav Unit Activities</relationshipLabel>
+    <relationshipName>TAG_OwnerNavUnitActivities</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

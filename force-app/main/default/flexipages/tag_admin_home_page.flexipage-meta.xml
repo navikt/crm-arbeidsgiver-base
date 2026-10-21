@@ -186,6 +186,24 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>flowLayout</name>
+                    <value>oneColumn</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowName</name>
+                    <value>TAG_Activity_Owner_System_Update</value>
+                </componentInstanceProperties>
+                <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-69c9eefa-9716-41a6-85f9-9d0d3f839fbb</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>body</name>
                     <value>Facet-9b37121e-27f3-451e-a834-7b03f3740c24</value>
                 </componentInstanceProperties>
@@ -253,6 +271,24 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:accordionSection</componentName>
                 <identifier>flexipage_accordionSection4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-69c9eefa-9716-41a6-85f9-9d0d3f839fbb</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Run batch to update activity reporting fields</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection--jfmtce76dlm</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection5</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-62d6313c-f41f-46bf-adde-aaa120cb853d</name>
