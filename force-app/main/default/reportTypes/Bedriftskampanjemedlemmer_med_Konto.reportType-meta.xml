@@ -215,6 +215,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Ansvarlig__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
             <table>CustomCampaignMember__c.Activities</table>
         </columns>
@@ -501,6 +506,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>TAG_IAPlanId__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_OwnerNavUnit__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_OwnerMarketRegion__c</field>
+            <table>CustomCampaignMember__c.Activities</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_OwnerRegion__c</field>
             <table>CustomCampaignMember__c.Activities</table>
         </columns>
         <masterLabel>Activities</masterLabel>

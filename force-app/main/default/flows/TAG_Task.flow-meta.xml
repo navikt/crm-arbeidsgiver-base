@@ -4,8 +4,8 @@
     <assignments>
         <name>Assign_AccountId</name>
         <label>Assign AccountId</label>
-        <locationX>996</locationX>
-        <locationY>1703</locationY>
+        <locationX>1524</locationX>
+        <locationY>1811</locationY>
         <assignmentItems>
             <assignToReference>accountId</assignToReference>
             <operator>Assign</operator>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
-        <locationX>996</locationX>
-        <locationY>2411</locationY>
+        <locationX>1524</locationX>
+        <locationY>2519</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -36,8 +36,8 @@
     <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>1260</locationX>
-        <locationY>2411</locationY>
+        <locationX>1788</locationX>
+        <locationY>2519</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -52,8 +52,8 @@
     <decisions>
         <name>Is_RelatedToAccount_null</name>
         <label>Is RelatedToAccount null?</label>
-        <locationX>1128</locationX>
-        <locationY>1595</locationY>
+        <locationX>1656</locationX>
+        <locationY>1703</locationY>
         <defaultConnector>
             <targetReference>Update_Activity_Date</targetReference>
         </defaultConnector>
@@ -83,10 +83,58 @@
         </rules>
     </decisions>
     <decisions>
+        <description>Related to mass updating activity records to populate values for new reporting fields. If the field TAG Is System Update is checked, this flow will essensially be skipped.
+Normal updates: Default path is executed.
+Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is System Update is set to FALSE. If this update triggers flow again the second outcome with no actions are executed.</description>
+        <name>Is_system_update</name>
+        <label>Is system update</label>
+        <locationX>853</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>What_record_type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_system_update</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_IsSystemUpdate__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Reset_system_update_field</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Yes, system update</label>
+        </rules>
+        <rules>
+            <name>Yes_system_update_prior</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_IsSystemUpdate__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.TAG_IsSystemUpdate__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Yes, system update prior</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Task_set_to_Completed</name>
         <label>Is Task set to Completed?</label>
-        <locationX>1128</locationX>
-        <locationY>1295</locationY>
+        <locationX>1656</locationX>
+        <locationY>1403</locationY>
         <defaultConnector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </defaultConnector>
@@ -160,8 +208,8 @@
     <decisions>
         <name>Related_to_What_Object</name>
         <label>Related to What Object?</label>
-        <locationX>446</locationX>
-        <locationY>431</locationY>
+        <locationX>974</locationX>
+        <locationY>539</locationY>
         <defaultConnector>
             <targetReference>Is_Task_set_to_Completed</targetReference>
         </defaultConnector>
@@ -236,8 +284,8 @@
     <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
-        <locationX>1128</locationX>
-        <locationY>2303</locationY>
+        <locationX>1656</locationX>
+        <locationY>2411</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
@@ -261,8 +309,8 @@
     <decisions>
         <name>Update_Activity_Date</name>
         <label>Update Activity Date</label>
-        <locationX>1128</locationX>
-        <locationY>2003</locationY>
+        <locationX>1656</locationX>
+        <locationY>2111</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
         </defaultConnector>
@@ -286,8 +334,8 @@
     <decisions>
         <name>What_record_type</name>
         <label>What record type?</label>
-        <locationX>1128</locationX>
-        <locationY>323</locationY>
+        <locationX>1656</locationX>
+        <locationY>431</locationY>
         <defaultConnectorLabel>Other</defaultConnectorLabel>
         <rules>
             <name>AG_Oppgave</name>
@@ -395,8 +443,8 @@
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>1128</locationX>
-        <locationY>2603</locationY>
+        <locationX>1656</locationX>
+        <locationY>2711</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
             <value>
@@ -601,8 +649,8 @@
     <recordLookups>
         <name>Get_Contract</name>
         <label>Get Contract</label>
-        <locationX>578</locationX>
-        <locationY>539</locationY>
+        <locationX>1106</locationX>
+        <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_Contract</targetReference>
@@ -622,8 +670,8 @@
     <recordLookups>
         <name>Get_Custom_Campaign_Member</name>
         <label>Get Custom Campaign Member</label>
-        <locationX>50</locationX>
-        <locationY>539</locationY>
+        <locationX>578</locationX>
+        <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_CCM</targetReference>
@@ -643,8 +691,8 @@
     <recordLookups>
         <name>Get_Custom_Opportunity</name>
         <label>Get Custom Opportunity</label>
-        <locationX>314</locationX>
-        <locationY>539</locationY>
+        <locationX>842</locationX>
+        <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_CO</targetReference>
@@ -664,8 +712,8 @@
     <recordLookups>
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
-        <locationX>1018</locationX>
-        <locationY>539</locationY>
+        <locationX>1546</locationX>
+        <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -685,8 +733,8 @@
     <recordLookups>
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
-        <locationX>1018</locationX>
-        <locationY>431</locationY>
+        <locationX>1546</locationX>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -706,8 +754,8 @@
     <recordLookups>
         <name>Get_latest_IA_priority_task</name>
         <label>Get latest IA priority task</label>
-        <locationX>1018</locationX>
-        <locationY>755</locationY>
+        <locationX>1546</locationX>
+        <locationY>863</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -741,10 +789,23 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Reset_system_update_field</name>
+        <label>Reset system update field</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>TAG_IsSystemUpdate__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Set_Activity_Date_to_today</name>
         <label>Set Activity Date to today</label>
-        <locationX>996</locationX>
-        <locationY>2111</locationY>
+        <locationX>1524</locationX>
+        <locationY>2219</locationY>
         <connector>
             <targetReference>Trigger_type</targetReference>
         </connector>
@@ -759,8 +820,8 @@
     <recordUpdates>
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
-        <locationX>1018</locationX>
-        <locationY>647</locationY>
+        <locationX>1546</locationX>
+        <locationY>755</locationY>
         <connector>
             <targetReference>Get_latest_IA_priority_task</targetReference>
         </connector>
@@ -820,8 +881,8 @@
     <recordUpdates>
         <name>Set_Completed_Date</name>
         <label>Set Completed Date</label>
-        <locationX>864</locationX>
-        <locationY>1403</locationY>
+        <locationX>1392</locationX>
+        <locationY>1511</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -836,8 +897,8 @@
     <recordUpdates>
         <name>Set_Completed_Date_to_Null</name>
         <label>Set Completed Date to Null</label>
-        <locationX>1128</locationX>
-        <locationY>1403</locationY>
+        <locationX>1656</locationX>
+        <locationY>1511</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -852,8 +913,8 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>1018</locationX>
-        <locationY>863</locationY>
+        <locationX>1546</locationX>
+        <locationY>971</locationY>
         <connector>
             <targetReference>Is_Task_set_to_Completed</targetReference>
         </connector>
@@ -879,8 +940,8 @@
     <recordUpdates>
         <name>Update_Account_Value_for_CCM</name>
         <label>Update Account Value for CCM</label>
-        <locationX>50</locationX>
-        <locationY>647</locationY>
+        <locationX>578</locationX>
+        <locationY>755</locationY>
         <connector>
             <targetReference>Is_Task_set_to_Completed</targetReference>
         </connector>
@@ -895,8 +956,8 @@
     <recordUpdates>
         <name>Update_Account_Value_for_CO</name>
         <label>Update Account Value for CO</label>
-        <locationX>314</locationX>
-        <locationY>647</locationY>
+        <locationX>842</locationX>
+        <locationY>755</locationY>
         <connector>
             <targetReference>Is_Task_set_to_Completed</targetReference>
         </connector>
@@ -911,8 +972,8 @@
     <recordUpdates>
         <name>Update_Account_Value_for_Contract</name>
         <label>Update Account Value for Contract</label>
-        <locationX>578</locationX>
-        <locationY>647</locationY>
+        <locationX>1106</locationX>
+        <locationY>755</locationY>
         <connector>
             <targetReference>Is_Task_set_to_Completed</targetReference>
         </connector>
@@ -927,8 +988,8 @@
     <recordUpdates>
         <name>Update_RelatedToAccount</name>
         <label>Update RelatedToAccount</label>
-        <locationX>996</locationX>
-        <locationY>1811</locationY>
+        <locationX>1524</locationX>
+        <locationY>1919</locationY>
         <connector>
             <targetReference>Update_Activity_Date</targetReference>
         </connector>
@@ -941,10 +1002,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>1002</locationX>
+        <locationX>727</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>What_record_type</targetReference>
+            <targetReference>Is_system_update</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
@@ -962,8 +1023,8 @@
     <subflows>
         <name>Create_Application_Log_IA_Cooperation</name>
         <label>Create Application Log IA Cooperation</label>
-        <locationX>1546</locationX>
-        <locationY>755</locationY>
+        <locationX>2074</locationX>
+        <locationY>863</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -1014,8 +1075,8 @@
     <subflows>
         <name>Create_Application_Log_IA_Priority</name>
         <label>Create Application Log IA Priority</label>
-        <locationX>1282</locationX>
-        <locationY>971</locationY>
+        <locationX>1810</locationX>
+        <locationY>1079</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
