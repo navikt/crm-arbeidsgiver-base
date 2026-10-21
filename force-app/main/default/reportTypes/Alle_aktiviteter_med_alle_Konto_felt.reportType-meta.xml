@@ -1801,6 +1801,21 @@
             <field>TAG_IAPlanId__c</field>
             <table>Activity</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_OwnerNavUnit__c</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_OwnerMarketRegion__c</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_OwnerRegion__c</field>
+            <table>Activity</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
 </ReportType>

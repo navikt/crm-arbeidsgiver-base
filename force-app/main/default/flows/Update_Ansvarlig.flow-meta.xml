@@ -1,49 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>53.0</apiVersion>
-    <decisions>
-        <name>Check_Recordtype</name>
-        <label>Check Recordtype</label>
-        <locationX>182</locationX>
-        <locationY>311</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Updat_to_AG_Oppgave</name>
-            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>ArbeidsgiverTask</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Id</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record__Prior.OwnerId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>$Record.OwnerId</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Ansvarlig</targetReference>
-            </connector>
-            <label>Updat to AG Oppgave</label>
-        </rules>
-    </decisions>
+    <environments>Default</environments>
     <formulas>
-        <name>FullName</name>
+        <name>userFullNameFrmla</name>
         <dataType>String</dataType>
         <expression>{!$Record.Owner:User.FirstName}&amp;&quot; &quot;&amp;{!$Record.Owner:User.LastName}</expression>
     </formulas>
+    <formulas>
+        <description>Returns user market region if present or the text &apos;UKJENT&apos;</description>
+        <name>userMarketRegionFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF(
+ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
+{!$Record.Owner:User.CRM_MarketRegion__c} )</expression>
+    </formulas>
+    <formulas>
+        <description>Returns user region if present or the text &apos;UKJENT&apos;</description>
+        <name>userRegionFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF( ISBLANK({!$Record.Owner:User.Region__c}), &quot;UKJENT&quot;, {!$Record.Owner:User.Region__c})</expression>
+    </formulas>
     <interviewLabel>Update Ansvarlig {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Update Ansvarlig</label>
+    <label>TAG Update Task Ansvarlig</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -63,33 +42,75 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Nav_unit</name>
+        <label>Get Nav unit</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Ansvarlig</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_UnitNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Department</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>NavUnit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Ansvarlig</name>
         <label>Update Ansvarlig</label>
-        <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
         <inputAssignments>
             <field>Ansvarlig__c</field>
             <value>
-                <elementReference>FullName</elementReference>
+                <elementReference>userFullNameFrmla</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerMarketRegion__c</field>
+            <value>
+                <elementReference>userMarketRegionFrmla</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerNavUnit__c</field>
+            <value>
+                <elementReference>Get_Nav_unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerRegion__c</field>
+            <value>
+                <elementReference>userRegionFrmla</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Check_Recordtype</targetReference>
+            <targetReference>Get_Nav_unit</targetReference>
         </connector>
-        <filterLogic>1</filterLogic>
-        <filters>
-            <field>TAG_ActivityType__c</field>
-            <operator>IsNull</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </filters>
+        <filterFormula>AND( 
+  OR(
+    {!$Record.RecordType.DeveloperName} = &quot;ArbeidsgiverTask&quot;,
+    {!$Record.RecordType.DeveloperName} =&quot;IA_task&quot;
+  ),
+  OR(
+    ISCHANGED({!$Record.OwnerId}),
+    ISNEW(),
+    AND( ISCHANGED({!$Record.TAG_IsSystemUpdate__c}), {!$Record.TAG_IsSystemUpdate__c})
+  )
+)</filterFormula>
         <object>Task</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
