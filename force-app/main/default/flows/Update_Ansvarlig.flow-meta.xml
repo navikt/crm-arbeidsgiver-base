@@ -3,9 +3,23 @@
     <apiVersion>53.0</apiVersion>
     <environments>Default</environments>
     <formulas>
-        <name>FullName</name>
+        <name>userFullNameFrmla</name>
         <dataType>String</dataType>
         <expression>{!$Record.Owner:User.FirstName}&amp;&quot; &quot;&amp;{!$Record.Owner:User.LastName}</expression>
+    </formulas>
+    <formulas>
+        <description>Returns user market region if present or the text &apos;UKJENT&apos;</description>
+        <name>userMarketRegionFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF(
+ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
+{!$Record.Owner:User.CRM_MarketRegion__c} )</expression>
+    </formulas>
+    <formulas>
+        <description>Returns user region if present or the text &apos;UKJENT&apos;</description>
+        <name>userRegionFrmla</name>
+        <dataType>String</dataType>
+        <expression>IF( ISBLANK({!$Record.Owner:User.Region__c}), &quot;UKJENT&quot;, {!$Record.Owner:User.Region__c})</expression>
     </formulas>
     <interviewLabel>Update Ansvarlig {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Update Task Ansvarlig</label>
@@ -28,15 +42,54 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Nav_unit</name>
+        <label>Get Nav unit</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Ansvarlig</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>INT_UnitNumber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Department</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>NavUnit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Ansvarlig</name>
         <label>Update Ansvarlig</label>
         <locationX>176</locationX>
-        <locationY>287</locationY>
+        <locationY>395</locationY>
         <inputAssignments>
             <field>Ansvarlig__c</field>
             <value>
-                <elementReference>FullName</elementReference>
+                <elementReference>userFullNameFrmla</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerMarketRegion__c</field>
+            <value>
+                <elementReference>userMarketRegionFrmla</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerNavUnit__c</field>
+            <value>
+                <elementReference>Get_Nav_unit.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_OwnerRegion__c</field>
+            <value>
+                <elementReference>userRegionFrmla</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -45,7 +98,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_Ansvarlig</targetReference>
+            <targetReference>Get_Nav_unit</targetReference>
         </connector>
         <filterFormula>AND( 
   OR(
@@ -54,7 +107,8 @@
   ),
   OR(
     ISCHANGED({!$Record.OwnerId}),
-    ISNEW()
+    ISNEW(),
+    AND( ISCHANGED({!$Record.TAG_IsSystemUpdate__c}), {!$Record.TAG_IsSystemUpdate__c})
   )
 )</filterFormula>
         <object>Task</object>
