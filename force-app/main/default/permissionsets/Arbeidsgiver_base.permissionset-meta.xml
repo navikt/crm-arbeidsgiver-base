@@ -953,6 +953,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contact.TAG_FormerEmployeeReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contact.TAG_Former_Employee__c</field>
         <readable>true</readable>
     </fieldPermissions>

@@ -74,6 +74,26 @@
         <inputReference>Get_Contact</inputReference>
     </recordUpdates>
     <screens>
+        <name>bekreftelse</name>
+        <label>Bekreftelse</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Get_Contact</targetReference>
+        </connector>
+        <fields>
+            <name>deaktivering</name>
+            <fieldText>&lt;p&gt;Når du deaktiverer en kontaktperson &lt;strong&gt;sletter vi kontaktinformasjonen&lt;/strong&gt;, men beholder navn og rolle på grunn av behov for arkivering/historikk.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Årsak til deaktivering (valgfritt):&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Deaktiver</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Toast_Message_Error</name>
         <label>Toast Message Error</label>
         <locationX>0</locationX>
@@ -175,10 +195,10 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Contact</targetReference>
+            <targetReference>bekreftelse</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>Create_Application_Log</name>
         <label>Create Application Log</label>
