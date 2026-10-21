@@ -1,13 +1,13 @@
 <template>
-    <div class="headercontainer slds-grid slds-wrap slds-grid_vertical-align-start">
+    <div class={headerClass}>
         <!-- Organisation Number  -->
         <div
             class="slds-col slds-var-p-left_small slds-var-p-right_small slds-size_1-of-1 slds-small-size_1-of-3 slds-medium-size_1-of-5 slds-large-size_1-of-7"
         >
             <c-highlights-panel-field>
                 <span slot="label">{organisationNumberFormula.label}</span>
-                <span lwc:if={organisationNumberFormula.value} slot="value">
-                    {organisationNumberFormula.value}
+                <span lwc:if={organisationNumberFormula.value} slot="value" class="organisation-number-value">
+                    <span class="organisation-number-text">{organisationNumberFormula.value}</span>
                     <lightning-button-icon
                         value={organisationNumber.value}
                         icon-name="utility:copy"
@@ -88,6 +88,33 @@
                     </c-popover>
                 </span>
             </c-highlights-panel-field>
+        </div>
+        <div lwc:if={isJAccount} class="slds-col slds-size_1-of-1 slds-var-p-horizontal_small">
+            <lightning-accordion lwc:if={hasRelatedAccounts} allow-multiple-sections-open class="related-accounts">
+                <lightning-accordion-section name="relatedAccounts" label={relatedAccountsLabel}>
+                    <lightning-datatable
+                        key-field="id"
+                        data={relatedAccounts}
+                        columns={relatedAccountColumns}
+                        hide-checkbox-column
+                        show-row-number-column
+                    ></lightning-datatable>
+                    <div lwc:if={hasMoreRelatedAccounts} class="related-accounts-footer slds-text-body_regular">
+                        <lightning-button
+                            label={showAllRelatedAccountsLabel}
+                            icon-name="utility:hierarchy"
+                            onclick={handleOpenHierarchy}
+                        ></lightning-button>
+                        <span>{moreRelatedAccountsText}</span>
+                    </div>
+                </lightning-accordion-section>
+            </lightning-accordion>
+            <p lwc:else class="j-account-notice slds-text-heading_small">
+                Dette er en juridisk enhet (J-enhet). Registrering av aktivitet skal gjøres på bedriftsnummer (B-enhet).
+            </p>
+            <p lwc:if={relatedAccountsError} class="slds-var-m-bottom_small slds-text-color_error">
+                Kunne ikke hente tilhørende enheter.
+            </p>
         </div>
     </div>
 </template>

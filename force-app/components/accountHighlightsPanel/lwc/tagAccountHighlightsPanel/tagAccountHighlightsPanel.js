@@ -13,11 +13,13 @@ import LightningToast from 'lightning/toast';
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 import ORG_FIELD from '@salesforce/schema/Account.INT_OrganizationNumber__c';
 import ORG_FORMULA_FIELD from '@salesforce/schema/Account.OrganizationNumberFormula__c';
+import ACCOUNT_TYPE_FIELD from '@salesforce/schema/Account.CRM_AccountType__c';
 import MAIN_INDUSTRY_FIELD from '@salesforce/schema/Account.CRM_MainIndustry__c';
 import SECTOR_FIELD from '@salesforce/schema/Account.TAG_Sector__c';
 import REGISTRATION_YEAR_FIELD from '@salesforce/schema/Account.CRM_RegistrationYear__c';
 import PROFF_FIELD from '@salesforce/schema/Account.TAG_Proff_no__c';
 import getEmployees from '@salesforce/apex/TAG_AccountHighlightsPanelController.getEmployees';
+import getRelatedAccounts from '@salesforce/apex/TAG_AccountHighlightsPanelController.getRelatedAccounts';
 import PARENT_ID from '@salesforce/schema/Account.ParentId';
 import PARENT_NAME_FIELD from '@salesforce/schema/Account.Parent.Name';
 
@@ -31,6 +33,16 @@ const ACCOUNT_FIELDS = [
     PROFF_FIELD,
     PARENT_ID,
     PARENT_NAME_FIELD
+];
+
+const RELATED_ACCOUNTS_LIMIT = 10;
+
+const RELATED_ACCOUNT_COLUMNS = [
+    { label: 'Navn', fieldName: 'recordUrl', type: 'url', typeAttributes: { label: { fieldName: 'name' } } },
+    { label: 'Type', fieldName: 'accountType', initialWidth: 80 },
+    { label: 'Organisasjonsnummer', fieldName: 'organisationNumber' },
+    { label: 'Poststed', fieldName: 'shippingCity' },
+    { label: 'Ansatte Gruppert', fieldName: 'employees' }
 ];
 
 /**
@@ -59,6 +71,11 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
     /** Shows number of employees */
     numEmployees;
 
+    relatedAccounts = [];
+    relatedAccountsTotal = 0;
+    relatedAccountsError;
+    relatedAccountColumns = RELATED_ACCOUNT_COLUMNS;
+
     // ========== Constants ==========
     PARENT_ACCOUNT_LABEL_NO = 'Overordnet konto';
     TOAST_SUCCESS = 'success';
@@ -69,7 +86,7 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
      * Fetches Account record data using Lightning Data Service
      * @param {Object} result - Wire service result containing error or data
      */
-    @wire(getRecord, { recordId: '$recordId', fields: ACCOUNT_FIELDS })
+    @wire(getRecord, { recordId: '$recordId', fields: ACCOUNT_FIELDS, optionalFields: [ACCOUNT_TYPE_FIELD] })
     wiredAccount({ error, data }) {
         if (data) {
             this.accountRecord = data;
@@ -104,7 +121,76 @@ export default class TagAccountHighlightsPanel extends NavigationMixin(Lightning
         } else if (result.error) {
             console.error('Error fetching number of employees:', result.error);
         }
-    } 
+    }
+
+    get isJAccount() {
+        const accountType = this.accountRecord ? getFieldValue(this.accountRecord, ACCOUNT_TYPE_FIELD) : null;
+        return accountType === 'J';
+    }
+
+    get headerClass() {
+        const baseClass = 'headercontainer slds-grid slds-wrap slds-grid_vertical-align-start';
+        return this.isJAccount ? `${baseClass} headercontainer_j-account` : baseClass;
+    }
+
+    // Undefined stops the Apex wire from running for non-J accounts.
+    get jAccountId() {
+        return this.isJAccount ? this.recordId : undefined;
+    }
+
+    @wire(getRelatedAccounts, { ultimateParentId: '$jAccountId' })
+    wiredRelatedAccounts({ error, data }) {
+        if (data) {
+            this.relatedAccountsTotal = data.totalCount;
+            this.relatedAccounts = (data.accounts || []).map((account) => ({
+                id: account.Id,
+                name: account.Name,
+                recordUrl: `/lightning/r/Account/${account.Id}/view`,
+                accountType: account.CRM_AccountType__c,
+                organisationNumber: account.INT_OrganizationNumber__c,
+                shippingCity: account.ShippingCity,
+                employees: account.CRM_NumberOfEmployeesGrouped__c
+            }));
+            this.relatedAccountsError = undefined;
+        } else if (error) {
+            this.relatedAccounts = [];
+            this.relatedAccountsTotal = 0;
+            this.relatedAccountsError = error;
+        }
+    }
+
+    get hasRelatedAccounts() {
+        return this.relatedAccountsTotal > 0;
+    }
+
+    get relatedAccountsLabel() {
+        return `Dette er en juridisk enhet (J-enhet). Registrering av aktivitet skal gjøres på bedriftsnummer (B-enhet). Antall B-enheter: ${this.relatedAccountsTotal}`;
+    }
+
+    get hasMoreRelatedAccounts() {
+        return this.relatedAccountsTotal > RELATED_ACCOUNTS_LIMIT;
+    }
+
+    get showAllRelatedAccountsLabel() {
+        return `Se alle ${this.relatedAccountsTotal} i hierarkiet`;
+    }
+
+    get moreRelatedAccountsText() {
+        const hiddenCount = this.relatedAccountsTotal - this.relatedAccounts.length;
+        return `Viser ${this.relatedAccounts.length} av ${this.relatedAccountsTotal}. ${hiddenCount} enheter til vises i hierarkiet.`;
+    }
+
+    handleOpenHierarchy() {
+        const hierarchyDefinition = {
+            componentDef: 'sfa:hierarchyFullView',
+            attributes: { recordId: this.recordId, sObjectName: 'Account' },
+            state: {}
+        };
+        this[NavigationMixin.Navigate]({
+            type: 'standard__webPage',
+            attributes: { url: `/one/one.app#${btoa(JSON.stringify(hierarchyDefinition))}` }
+        });
+    }
 
     // ========== Getter Methods for Account Fields ==========
     /**

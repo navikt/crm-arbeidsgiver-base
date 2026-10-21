@@ -10,3 +10,41 @@
     position: relative;
     z-index: 2;
 }
+
+.headercontainer_j-account .organisation-number-text {
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: var(--slds-g-spacing-1) var(--slds-g-spacing-2);
+    margin-inline-end: var(--slds-g-spacing-1);
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-2, var(--slds-g-color-neutral-base-70));
+    border-radius: var(--slds-g-radius-border-1, 0.125rem);
+    font-weight: var(--slds-g-font-weight-7, 700);
+}
+
+.j-account-notice {
+    margin: 0 0 var(--slds-g-spacing-2);
+    padding: var(--slds-g-spacing-1) var(--slds-g-spacing-2);
+    background-color: var(--slds-g-color-palette-blue-90, var(--slds-g-color-brand-base-90));
+    color: var(--slds-g-color-on-surface-1, var(--slds-g-color-neutral-base-10));
+    font-weight: var(--slds-g-font-weight-7, 700);
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.related-accounts {
+    display: block;
+    margin-block-end: var(--slds-g-spacing-2);
+    background-color: var(--slds-g-color-palette-blue-90, var(--slds-g-color-brand-base-90));
+}
+
+.related-accounts-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--slds-g-spacing-3);
+    padding: var(--slds-g-spacing-2);
+    border-block-end: var(--slds-g-sizing-border-1, 1px) solid
+        var(--slds-g-color-border-1, var(--slds-g-color-neutral-base-80));
+    color: var(--slds-g-color-on-surface-2, var(--slds-g-color-neutral-base-30));
+}
