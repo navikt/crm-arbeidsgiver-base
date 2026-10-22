@@ -46,7 +46,7 @@ public with sharing class ActivityOwnerSystemUpdateBatch implements Database.Bat
         }
 
         queryString += ' AND TAG_OwnerRegion__c = NULL AND ActivityDate >= LAST_N_DAYS:365';
-        queryString += ' WITH USER_MODE ORDER BY WhatId, AccountId';
+        queryString += ' ORDER BY WhatId, AccountId';
         if (this.recordLimit != null && this.recordLimit > 0) {
             queryString += ' LIMIT ' + this.recordLimit;
         }
@@ -63,7 +63,7 @@ public with sharing class ActivityOwnerSystemUpdateBatch implements Database.Bat
             activity.put('TAG_IsSystemUpdate__c', true);
         }
 
-        Database.SaveResult[] results = Database.update(scope, false, AccessLevel.USER_MODE);
+        Database.SaveResult[] results = Database.update(scope, false);
     }
 
     public void finish(Database.BatchableContext context) {
