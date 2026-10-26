@@ -98,19 +98,12 @@ ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
         <connector>
             <targetReference>Get_Nav_unit</targetReference>
         </connector>
-        <filterLogic>(1 OR 2) AND 3 AND 4</filterLogic>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>RecordTypeName__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>AG Møte</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>RecordTypeName__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>IA event</stringValue>
+                <stringValue>Arbeidsgivermøte</stringValue>
             </value>
         </filters>
         <filters>
@@ -132,8 +125,8 @@ ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
             <dayOfMonthToRun>0</dayOfMonthToRun>
             <frequency>Once</frequency>
             <frequencyNumber>0</frequencyNumber>
-            <startDate>2026-10-23</startDate>
-            <startTime>20:00:00.000Z</startTime>
+            <startDate>2026-10-26</startDate>
+            <startTime>21:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
