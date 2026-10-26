@@ -653,7 +653,7 @@
         <name>contactRecordChoices</name>
         <dataType>String</dataType>
         <displayField>TAG_ContactDetails__c</displayField>
-        <filterLogic>(1 OR 2) AND 3 AND 4</filterLogic>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
         <filters>
             <field>AccountId</field>
             <operator>EqualTo</operator>
@@ -666,13 +666,6 @@
             <operator>EqualTo</operator>
             <value>
                 <elementReference>accountParentId</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>MobilePhone</field>
-            <operator>IsNull</operator>
-            <value>
-                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <filters>
@@ -721,9 +714,9 @@
 )</expression>
     </formulas>
     <formulas>
-        <name>contactHavePhoneOrEmail</name>
+        <name>contactIsSelected</name>
         <dataType>Boolean</dataType>
-        <expression>AND( ISBLANK({!input_email.value} ), ISBLANK({!input_phone.value}) )</expression>
+        <expression>NOT( ISBLANK({!contactSearchBox.selectedChoiceValues}) )</expression>
     </formulas>
     <formulas>
         <name>contactLastNameFrmla</name>
@@ -1758,31 +1751,82 @@ NULL
             </styleProperties>
         </fields>
         <fields>
-            <name>Contact_toggle</name>
+            <name>contactSectionText1</name>
+            <fieldText>&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under.&lt;/em&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Task_toggle.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>contactSearchBox</name>
+            <choiceReferences>contactRecordChoices</choiceReferences>
+            <extensionName>flowruntime:choiceLookup</extensionName>
+            <fieldText>Søk kontaktpersoner på arbeidsgiver</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <inputParameters>
+                <name>placeholder</name>
+                <value>
+                    <stringValue>navn / telefonnrummer / e-post</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>bottom</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Task_toggle.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>contact_toggle</name>
             <extensionName>flowruntime:toggle</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Registrer kontaktinformasjon?</stringValue>
+                    <stringValue>Ny kontakt</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
                 <name>value</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>messageToggleInactive</name>
+                <name>disabled</name>
                 <value>
-                    <stringValue>Nei</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>messageToggleActive</name>
-                <value>
-                    <stringValue>Ja</stringValue>
+                    <elementReference>contactIsSelected</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1790,7 +1834,7 @@ NULL
             <storeOutputAutomatically>true</storeOutputAutomatically>
             <styleProperties>
                 <verticalAlignment>
-                    <stringValue>top</stringValue>
+                    <stringValue>bottom</stringValue>
                 </verticalAlignment>
                 <width>
                     <stringValue>12</stringValue>
@@ -1814,46 +1858,9 @@ NULL
                 <name>Opprett_et_samtalenotat_Section1_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>contactSectionText1</name>
-                    <fieldText>&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under.&lt;/em&gt;&lt;/p&gt;</fieldText>
-                    <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>bottom</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                </fields>
-                <fields>
-                    <name>contactSearchBox</name>
-                    <choiceReferences>contactRecordChoices</choiceReferences>
-                    <extensionName>flowruntime:choiceLookup</extensionName>
-                    <fieldText>Søk kontaktpersoner på arbeidsgiver</fieldText>
-                    <fieldType>ComponentChoice</fieldType>
-                    <inputParameters>
-                        <name>placeholder</name>
-                        <value>
-                            <stringValue>navn / telefonnrummer / e-post</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>bottom</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                </fields>
-                <fields>
                     <name>input_name</name>
                     <dataType>String</dataType>
-                    <fieldText>Kontaktperson navn</fieldText>
+                    <fieldText>Kontaktens navn</fieldText>
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
@@ -1862,19 +1869,9 @@ NULL
                             <stringValue>bottom</stringValue>
                         </verticalAlignment>
                         <width>
-                            <stringValue>6</stringValue>
+                            <stringValue>12</stringValue>
                         </width>
                     </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <fields>
                     <name>input_phone</name>
@@ -1903,16 +1900,6 @@ NULL
                             <stringValue>6</stringValue>
                         </width>
                     </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <fields>
                     <name>input_email</name>
@@ -1941,16 +1928,6 @@ NULL
                             <stringValue>6</stringValue>
                         </width>
                     </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <fields>
                     <name>informed_about_processing_contact_details</name>
@@ -1965,30 +1942,13 @@ NULL
                             <stringValue>bottom</stringValue>
                         </verticalAlignment>
                         <width>
-                            <stringValue>6</stringValue>
+                            <stringValue>12</stringValue>
                         </width>
                     </styleProperties>
                     <validationRule>
                         <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(5, 0, 0);&quot;&gt;For å lagre må du bekrefte at kontaktperson er informert om at vi registrerer opplysninger om hen og kan knytte aktiviteter til hen. Personen kan be om at disse opplysningene rettes opp eller slettes ved en senere anledning.&lt;/span&gt;&lt;/p&gt;</errorMessage>
                         <formulaExpression>{!informed_about_processing_contact_details}</formulaExpression>
                     </validationRule>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>contactSearchBox.selectedChoiceValues</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                        <conditions>
-                            <leftValueReference>input_name</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2011,7 +1971,7 @@ NULL
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
-                    <leftValueReference>Contact_toggle.value</leftValueReference>
+                    <leftValueReference>contact_toggle.value</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
