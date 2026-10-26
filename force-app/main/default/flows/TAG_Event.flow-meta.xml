@@ -4,8 +4,8 @@
     <assignments>
         <name>Assign_AccountId</name>
         <label>Assign AccountId</label>
-        <locationX>1876</locationX>
-        <locationY>1679</locationY>
+        <locationX>1348</locationX>
+        <locationY>1571</locationY>
         <assignmentItems>
             <assignToReference>accountId</assignToReference>
             <operator>Assign</operator>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
-        <locationX>1876</locationX>
-        <locationY>2087</locationY>
+        <locationX>1348</locationX>
+        <locationY>1979</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -36,8 +36,8 @@
     <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>2140</locationX>
-        <locationY>2087</locationY>
+        <locationX>1612</locationX>
+        <locationY>1979</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -52,8 +52,8 @@
     <assignments>
         <name>Store_event_date</name>
         <label>Store event date</label>
-        <locationX>1546</locationX>
-        <locationY>947</locationY>
+        <locationX>1018</locationX>
+        <locationY>839</locationY>
         <assignmentItems>
             <assignToReference>StartDateTimeVariable</assignToReference>
             <operator>Assign</operator>
@@ -68,8 +68,8 @@
     <decisions>
         <name>Is_latest_event_for_this_Account</name>
         <label>Is latest event for this Account?</label>
-        <locationX>1810</locationX>
-        <locationY>839</locationY>
+        <locationX>1282</locationX>
+        <locationY>731</locationY>
         <defaultConnector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </defaultConnector>
@@ -93,8 +93,8 @@
     <decisions>
         <name>Is_RelatedToAccount_null</name>
         <label>Is RelatedToAccount null?</label>
-        <locationX>2008</locationX>
-        <locationY>1571</locationY>
+        <locationX>1480</locationX>
+        <locationY>1463</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
         </defaultConnector>
@@ -125,8 +125,8 @@
     <decisions>
         <name>Is_Service_blank</name>
         <label>Is Service blank?</label>
-        <locationX>1810</locationX>
-        <locationY>539</locationY>
+        <locationX>1282</locationX>
+        <locationY>431</locationY>
         <defaultConnector>
             <targetReference>Is_latest_event_for_this_Account</targetReference>
         </defaultConnector>
@@ -155,58 +155,10 @@
         </rules>
     </decisions>
     <decisions>
-        <description>Related to mass updating activity records to populate values for new reporting fields. If the field TAG Is System Update is checked, this flow will essensially be skipped.
-Normal updates: Default path is executed.
-Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is System Update is set to FALSE. If this update triggers flow again the second outcome with no actions are executed.</description>
-        <name>Is_system_update</name>
-        <label>Is system update</label>
-        <locationX>1029</locationX>
-        <locationY>323</locationY>
-        <defaultConnector>
-            <targetReference>What_record_type</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_system_update</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.TAG_IsSystemUpdate__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Reset_system_update_field</targetReference>
-            </connector>
-            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-            <label>Yes, system update</label>
-        </rules>
-        <rules>
-            <name>Yes_system_update_prior</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.TAG_IsSystemUpdate__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record__Prior.TAG_IsSystemUpdate__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <label>Yes, system update prior</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Related_to_What_Object</name>
         <label>Related to What Object?</label>
-        <locationX>974</locationX>
-        <locationY>539</locationY>
+        <locationX>446</locationX>
+        <locationY>431</locationY>
         <defaultConnector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </defaultConnector>
@@ -281,8 +233,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
-        <locationX>2008</locationX>
-        <locationY>1979</locationY>
+        <locationX>1480</locationX>
+        <locationY>1871</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
@@ -306,8 +258,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <decisions>
         <name>What_record_type</name>
         <label>What record type?</label>
-        <locationX>2008</locationX>
-        <locationY>431</locationY>
+        <locationX>1480</locationX>
+        <locationY>323</locationY>
         <defaultConnectorLabel>Other</defaultConnectorLabel>
         <rules>
             <name>ag_mote</name>
@@ -420,8 +372,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>2008</locationX>
-        <locationY>2279</locationY>
+        <locationX>1480</locationX>
+        <locationY>2171</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
             <value>
@@ -632,8 +584,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordLookups>
         <name>Get_Contract</name>
         <label>Get Contract</label>
-        <locationX>1106</locationX>
-        <locationY>647</locationY>
+        <locationX>578</locationX>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_Contract</targetReference>
@@ -653,8 +605,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordLookups>
         <name>Get_Custom_Campaign_Member</name>
         <label>Get Custom Campaign Member</label>
-        <locationX>578</locationX>
-        <locationY>647</locationY>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_CCM</targetReference>
@@ -674,8 +626,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordLookups>
         <name>Get_Custom_Opportunity</name>
         <label>Get Custom Opportunity</label>
-        <locationX>842</locationX>
-        <locationY>647</locationY>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Account_Value_for_CO</targetReference>
@@ -695,8 +647,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordLookups>
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
-        <locationX>2250</locationX>
-        <locationY>647</locationY>
+        <locationX>1722</locationX>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Case_Number_ID_Theme_Subtheme</targetReference>
@@ -716,8 +668,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordLookups>
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
-        <locationX>2250</locationX>
-        <locationY>539</locationY>
+        <locationX>1722</locationX>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_IA_Case_via_Cooperation</targetReference>
@@ -737,8 +689,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>2250</locationX>
-        <locationY>863</locationY>
+        <locationX>1722</locationX>
+        <locationY>755</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_account</targetReference>
@@ -767,23 +719,10 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
         <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordUpdates>
-        <name>Reset_system_update_field</name>
-        <label>Reset system update field</label>
-        <locationX>50</locationX>
-        <locationY>431</locationY>
-        <inputAssignments>
-            <field>TAG_IsSystemUpdate__c</field>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
-        <locationX>2250</locationX>
-        <locationY>755</locationY>
+        <locationX>1722</locationX>
+        <locationY>647</locationY>
         <connector>
             <targetReference>Get_latest_IA_priority_event</targetReference>
         </connector>
@@ -843,8 +782,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordUpdates>
         <name>Set_Service_value</name>
         <label>Set Service value</label>
-        <locationX>1678</locationX>
-        <locationY>647</locationY>
+        <locationX>1150</locationX>
+        <locationY>539</locationY>
         <connector>
             <targetReference>Is_latest_event_for_this_Account</targetReference>
         </connector>
@@ -859,8 +798,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>2250</locationX>
-        <locationY>971</locationY>
+        <locationX>1722</locationX>
+        <locationY>863</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -886,8 +825,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordUpdates>
         <name>Update_Account_Value_for_CCM</name>
         <label>Update Account Value for CCM</label>
-        <locationX>578</locationX>
-        <locationY>755</locationY>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -902,8 +841,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordUpdates>
         <name>Update_Account_Value_for_CO</name>
         <label>Update Account Value for CO</label>
-        <locationX>842</locationX>
-        <locationY>755</locationY>
+        <locationX>314</locationX>
+        <locationY>647</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -918,8 +857,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordUpdates>
         <name>Update_Account_Value_for_Contract</name>
         <label>Update Account Value for Contract</label>
-        <locationX>1106</locationX>
-        <locationY>755</locationY>
+        <locationX>578</locationX>
+        <locationY>647</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -934,8 +873,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordUpdates>
         <name>Update_latest_event_date_on_account</name>
         <label>Update latest event date on account</label>
-        <locationX>1546</locationX>
-        <locationY>1055</locationY>
+        <locationX>1018</locationX>
+        <locationY>947</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
@@ -961,8 +900,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <recordUpdates>
         <name>Update_RelatedToAccount</name>
         <label>Update RelatedToAccount</label>
-        <locationX>1876</locationX>
-        <locationY>1787</locationY>
+        <locationX>1348</locationX>
+        <locationY>1679</locationY>
         <connector>
             <targetReference>Trigger_type</targetReference>
         </connector>
@@ -975,10 +914,10 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>903</locationX>
+        <locationX>1354</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_system_update</targetReference>
+            <targetReference>What_record_type</targetReference>
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
@@ -996,8 +935,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <subflows>
         <name>Create_Application_Log_IA_Cooperation</name>
         <label>Create Application Log IA Cooperation</label>
-        <locationX>2778</locationX>
-        <locationY>863</locationY>
+        <locationX>2250</locationX>
+        <locationY>755</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -1048,8 +987,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <subflows>
         <name>Create_Application_Log_IA_Priority</name>
         <label>Create Application Log IA Priority</label>
-        <locationX>2514</locationX>
-        <locationY>1079</locationY>
+        <locationX>1986</locationX>
+        <locationY>971</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>
@@ -1100,8 +1039,8 @@ Update with TAG Is System Update TRUE:  First outcome is executed and TAG Is Sys
     <subflows>
         <name>Create_Application_Log_IPS</name>
         <label>Create Application Log IPS</label>
-        <locationX>1810</locationX>
-        <locationY>1163</locationY>
+        <locationX>1282</locationX>
+        <locationY>1055</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
             <name>Application_Domain</name>

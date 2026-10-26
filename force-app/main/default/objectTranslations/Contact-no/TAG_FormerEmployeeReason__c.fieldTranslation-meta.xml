@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Årsak til inaktivering</label>
+    <name>TAG_FormerEmployeeReason__c</name>
+    <picklistValues>
+        <masterLabel>Byttet rolle/ikke lenger relevant</masterLabel>
+        <translation><!-- Byttet rolle/ikke lenger relevant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplikat/feilregistrert</masterLabel>
+        <translation><!-- Duplikat/feilregistrert --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Har sluttet i bedriften</masterLabel>
+        <translation><!-- Har sluttet i bedriften --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Har trukket tilbake samtykke</masterLabel>
+        <translation><!-- Har trukket tilbake samtykke --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ønsker ikke å bli kontaktet av Nav</masterLabel>
+        <translation><!-- Ønsker ikke å bli kontaktet av Nav --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

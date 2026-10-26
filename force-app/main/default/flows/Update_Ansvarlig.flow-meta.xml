@@ -108,7 +108,8 @@ ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
   OR(
     ISCHANGED({!$Record.OwnerId}),
     ISNEW(),
-    AND( ISCHANGED({!$Record.TAG_IsSystemUpdate__c}), {!$Record.TAG_IsSystemUpdate__c})
+    ISBLANK( {!$Record.TAG_OwnerMarketRegion__c}), 
+    ISBLANK( {!$Record.TAG_OwnerRegion__c})
   )
 )</filterFormula>
         <object>Task</object>

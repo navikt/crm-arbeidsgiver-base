@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>64.0</apiVersion>
     <assignments>
         <name>Set_Tidligere_Ansatt</name>
@@ -13,10 +13,46 @@
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Contact.TAG_FormerEmployeeReason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>rsak_til_deaktivering_valgfritt</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Contact.MobilePhone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Contact.Phone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Contact.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Tidligere_Ansatt</targetReference>
         </connector>
     </assignments>
+    <dynamicChoiceSets>
+        <name>FormerEmployeeReasonChoices</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>TAG_FormerEmployeeReason__c</picklistField>
+        <picklistObject>Contact</picklistObject>
+    </dynamicChoiceSets>
     <environments>Default</environments>
     <interviewLabel>TAG Mark Contact as Former Employee {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Mark Contact as Former Employee</label>
@@ -73,6 +109,35 @@
         </faultConnector>
         <inputReference>Get_Contact</inputReference>
     </recordUpdates>
+    <screens>
+        <name>bekreftelse</name>
+        <label>Bekreftelse</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Get_Contact</targetReference>
+        </connector>
+        <fields>
+            <name>deaktivering</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Når du deaktiverer en kontaktperson &lt;/span&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;sletter vi kontaktinformasjonen&lt;/strong&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;, men beholder navn og rolle på grunn av behov for arkivering/historikk.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>rsak_til_deaktivering_valgfritt</name>
+            <choiceReferences>FormerEmployeeReasonChoices</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Årsak til deaktivering (valgfritt):</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Deaktiver</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <screens>
         <name>Toast_Message_Error</name>
         <label>Toast Message Error</label>
@@ -175,7 +240,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Contact</targetReference>
+            <targetReference>bekreftelse</targetReference>
         </connector>
     </start>
     <status>Active</status>
