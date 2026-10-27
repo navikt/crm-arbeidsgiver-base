@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_FormerEmployeeReason__c</fullName>
+    <description>Describes the reason for deactivation of contact</description>
+    <label>Former Employee Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Har sluttet i bedriften</fullName>
+                <default>false</default>
+                <label>Har sluttet i bedriften</label>
+            </value>
+            <value>
+                <fullName>Byttet rolle/ikke lenger relevant</fullName>
+                <default>false</default>
+                <label>Byttet rolle/ikke lenger relevant</label>
+            </value>
+            <value>
+                <fullName>Har trukket tilbake samtykke</fullName>
+                <default>false</default>
+                <label>Har trukket tilbake samtykke</label>
+            </value>
+            <value>
+                <fullName>Duplikat/feilregistrert</fullName>
+                <default>false</default>
+                <label>Duplikat/feilregistrert</label>
+            </value>
+            <value>
+                <fullName>Ønsker ikke å bli kontaktet av Nav</fullName>
+                <default>false</default>
+                <label>Ønsker ikke å bli kontaktet av Nav</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

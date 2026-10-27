@@ -104,12 +104,13 @@ ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
         <filterFormula>AND( 
   OR(
     {!$Record.RecordType.DeveloperName} = &quot;ArbeidsgiverEvent&quot;,
-    {!$Record.RecordType.DeveloperName} =&quot;IA_event&quot;
+    {!$Record.RecordType.DeveloperName} =&quot;IA_event&quot;,
+     {!$Record.RecordType.DeveloperName} =&quot;IPS_UO_Arbeidsgiver&quot;
   ),
   OR(
     ISCHANGED({!$Record.OwnerId}),
     ISNEW(),
-    AND( ISCHANGED({!$Record.TAG_IsSystemUpdate__c}), {!$Record.TAG_IsSystemUpdate__c})
+    ISBLANK( {!$Record.TAG_OwnerRegion__c})
   )
 )</filterFormula>
         <object>Event</object>
