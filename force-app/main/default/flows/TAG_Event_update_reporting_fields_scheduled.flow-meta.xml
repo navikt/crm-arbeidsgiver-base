@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>68.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <formulas>
         <name>userFullNameFrmla</name>
@@ -120,12 +121,13 @@ ISBLANK({!$Record.Owner:User.CRM_MarketRegion__c}), &quot;UKJENT&quot;,
                 <dateValue>2025-10-22</dateValue>
             </value>
         </filters>
+        <maxBatchSize>50</maxBatchSize>
         <object>Event</object>
         <schedule>
             <dayOfMonthToRun>0</dayOfMonthToRun>
             <frequency>Once</frequency>
             <frequencyNumber>0</frequencyNumber>
-            <startDate>2026-10-27</startDate>
+            <startDate>2026-10-28</startDate>
             <startTime>21:00:00.000Z</startTime>
         </schedule>
         <triggerType>Scheduled</triggerType>
