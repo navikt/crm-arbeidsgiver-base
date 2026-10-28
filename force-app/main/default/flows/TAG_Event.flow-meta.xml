@@ -4,8 +4,8 @@
     <assignments>
         <name>Assign_AccountId</name>
         <label>Assign AccountId</label>
-        <locationX>1348</locationX>
-        <locationY>1571</locationY>
+        <locationX>1216</locationX>
+        <locationY>1403</locationY>
         <assignmentItems>
             <assignToReference>accountId</assignToReference>
             <operator>Assign</operator>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Event_Type_Created</name>
         <label>Event Type Created</label>
-        <locationX>1348</locationX>
-        <locationY>1979</locationY>
+        <locationX>1216</locationX>
+        <locationY>1811</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -36,8 +36,8 @@
     <assignments>
         <name>Event_Type_Updated</name>
         <label>Event Type Updated</label>
-        <locationX>1612</locationX>
-        <locationY>1979</locationY>
+        <locationX>1480</locationX>
+        <locationY>1811</locationY>
         <assignmentItems>
             <assignToReference>EventType</assignToReference>
             <operator>Assign</operator>
@@ -49,52 +49,11 @@
             <targetReference>Create_Employer_Activity_Event</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <name>Store_event_date</name>
-        <label>Store event date</label>
-        <locationX>1018</locationX>
-        <locationY>839</locationY>
-        <assignmentItems>
-            <assignToReference>StartDateTimeVariable</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.StartDateTime</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_latest_event_date_on_account</targetReference>
-        </connector>
-    </assignments>
-    <decisions>
-        <name>Is_latest_event_for_this_Account</name>
-        <label>Is latest event for this Account?</label>
-        <locationX>1282</locationX>
-        <locationY>731</locationY>
-        <defaultConnector>
-            <targetReference>Is_RelatedToAccount_null</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No is not latest event</defaultConnectorLabel>
-        <rules>
-            <name>Yes_is_latest_event</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.StartDateTime</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <elementReference>$Record.Account.TAG_LastEventDate__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Store_event_date</targetReference>
-            </connector>
-            <label>Yes is latest event</label>
-        </rules>
-    </decisions>
     <decisions>
         <name>Is_RelatedToAccount_null</name>
         <label>Is RelatedToAccount null?</label>
-        <locationX>1480</locationX>
-        <locationY>1463</locationY>
+        <locationX>1348</locationX>
+        <locationY>1295</locationY>
         <defaultConnector>
             <targetReference>Trigger_type</targetReference>
         </defaultConnector>
@@ -125,10 +84,10 @@
     <decisions>
         <name>Is_Service_blank</name>
         <label>Is Service blank?</label>
-        <locationX>1282</locationX>
+        <locationX>1150</locationX>
         <locationY>431</locationY>
         <defaultConnector>
-            <targetReference>Is_latest_event_for_this_Account</targetReference>
+            <targetReference>Is_RelatedToAccount_null</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No, service not blank</defaultConnectorLabel>
         <rules>
@@ -233,8 +192,8 @@
     <decisions>
         <name>Trigger_type</name>
         <label>Trigger type</label>
-        <locationX>1480</locationX>
-        <locationY>1871</locationY>
+        <locationX>1348</locationX>
+        <locationY>1703</locationY>
         <defaultConnector>
             <targetReference>Event_Type_Updated</targetReference>
         </defaultConnector>
@@ -258,7 +217,7 @@
     <decisions>
         <name>What_record_type</name>
         <label>What record type?</label>
-        <locationX>1480</locationX>
+        <locationX>1348</locationX>
         <locationY>323</locationY>
         <defaultConnectorLabel>Other</defaultConnectorLabel>
         <rules>
@@ -372,8 +331,8 @@
     <recordCreates>
         <name>Create_Employer_Activity_Event</name>
         <label>Create Employer Activity Event</label>
-        <locationX>1480</locationX>
-        <locationY>2171</locationY>
+        <locationX>1348</locationX>
+        <locationY>2003</locationY>
         <inputAssignments>
             <field>AccountNavUnit__c</field>
             <value>
@@ -647,7 +606,7 @@
     <recordLookups>
         <name>Get_IA_Case_via_Cooperation</name>
         <label>Get IA Case via Cooperation</label>
-        <locationX>1722</locationX>
+        <locationX>1458</locationX>
         <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -668,7 +627,7 @@
     <recordLookups>
         <name>Get_IA_Cooperation</name>
         <label>Get IA Cooperation</label>
-        <locationX>1722</locationX>
+        <locationX>1458</locationX>
         <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -689,7 +648,7 @@
     <recordLookups>
         <name>Get_latest_IA_priority_event</name>
         <label>Get latest IA priority event</label>
-        <locationX>1722</locationX>
+        <locationX>1458</locationX>
         <locationY>755</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -721,7 +680,7 @@
     <recordUpdates>
         <name>Set_Case_Number_ID_Theme_Subtheme</name>
         <label>Set Case Number, ID, Theme, Subtheme</label>
-        <locationX>1722</locationX>
+        <locationX>1458</locationX>
         <locationY>647</locationY>
         <connector>
             <targetReference>Get_latest_IA_priority_event</targetReference>
@@ -782,10 +741,10 @@
     <recordUpdates>
         <name>Set_Service_value</name>
         <label>Set Service value</label>
-        <locationX>1150</locationX>
+        <locationX>1018</locationX>
         <locationY>539</locationY>
         <connector>
-            <targetReference>Is_latest_event_for_this_Account</targetReference>
+            <targetReference>Is_RelatedToAccount_null</targetReference>
         </connector>
         <inputAssignments>
             <field>TAG_service__c</field>
@@ -798,7 +757,7 @@
     <recordUpdates>
         <name>Update_account</name>
         <label>Update account</label>
-        <locationX>1722</locationX>
+        <locationX>1458</locationX>
         <locationY>863</locationY>
         <connector>
             <targetReference>Is_RelatedToAccount_null</targetReference>
@@ -871,37 +830,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_latest_event_date_on_account</name>
-        <label>Update latest event date on account</label>
-        <locationX>1018</locationX>
-        <locationY>947</locationY>
-        <connector>
-            <targetReference>Is_RelatedToAccount_null</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Create_Application_Log_IPS</targetReference>
-        </faultConnector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.RelatedToAccount__r.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>TAG_LastEventDate__c</field>
-            <value>
-                <elementReference>StartDateTimeVariable</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Account</object>
-    </recordUpdates>
-    <recordUpdates>
         <name>Update_RelatedToAccount</name>
         <label>Update RelatedToAccount</label>
-        <locationX>1348</locationX>
-        <locationY>1679</locationY>
+        <locationX>1216</locationX>
+        <locationY>1511</locationY>
         <connector>
             <targetReference>Trigger_type</targetReference>
         </connector>
@@ -914,7 +846,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>1354</locationX>
+        <locationX>1222</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>What_record_type</targetReference>
@@ -935,7 +867,7 @@
     <subflows>
         <name>Create_Application_Log_IA_Cooperation</name>
         <label>Create Application Log IA Cooperation</label>
-        <locationX>2250</locationX>
+        <locationX>1986</locationX>
         <locationY>755</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
@@ -987,7 +919,7 @@
     <subflows>
         <name>Create_Application_Log_IA_Priority</name>
         <label>Create Application Log IA Priority</label>
-        <locationX>1986</locationX>
+        <locationX>1722</locationX>
         <locationY>971</locationY>
         <flowName>Flow_Create_Application_Log</flowName>
         <inputAssignments>
@@ -1036,67 +968,15 @@
             </value>
         </inputAssignments>
     </subflows>
-    <subflows>
-        <name>Create_Application_Log_IPS</name>
-        <label>Create Application Log IPS</label>
-        <locationX>1282</locationX>
-        <locationY>1055</locationY>
-        <flowName>Flow_Create_Application_Log</flowName>
-        <inputAssignments>
-            <name>Application_Domain</name>
-            <value>
-                <stringValue>POAB</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Payload</name>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Error_Source</name>
-            <value>
-                <stringValue>Flow - TAG Event</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Category</name>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Level</name>
-            <value>
-                <stringValue>Error</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Log_Message</name>
-            <value>
-                <stringValue>Error encountered updating IPS Event</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Reference_Object</name>
-            <value>
-                <stringValue>Event</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>ReferenceID</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
     <textTemplates>
         <name>StoreEventValues</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;, &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;{!$Record.EventSubtype}&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
+        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;, &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
     </textTemplates>
     <textTemplates>
         <name>StoreEventValuesForPubSub</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;{!$Record.EventSubtype}&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
+        <text>{&quot;id&quot;:&quot;{!$Record.Id}&quot;, &quot;tema&quot;:&quot;{!$Record.TAG_ActivityType__c}&quot;, &quot;tjeneste&quot;:&quot;{!$Record.TAG_service__c}&quot;,  &quot;emne&quot;:&quot;{!$Record.Subject}&quot;, &quot;opprettet_dato&quot;:&quot;{!opprettet_dato_text}&quot;, &quot;endret_dato&quot;:&quot;{!endret_dato_text}&quot;, &quot;virksomhet_orgnr&quot;:&quot;{!$Record.CRM_AccountOrgNumber__c}&quot;, &quot;moete_dato&quot;:&quot;{!moete_dato_text}&quot;, &quot;virksomhet_NAV_enhet&quot;:&quot;{!$Record.TAG_AccountNAVUnit__c}&quot;, &quot;virksomhet_type&quot;:&quot;{!$Record.TAG_AccountOrgType__c}&quot;, &quot;ansatt_NAV_enhet&quot;:&quot;{!$Record.TAG_UserNAVUnit__c}&quot;, &quot;overordnet_virksomhet_id&quot;:&quot;{!$Record.TAG_AccountParentId__c}&quot;, &quot;overordnet_virksomhet_orgnr&quot;:&quot;{!$Record.TAG_AccountParentOrgNumber__c}&quot;, &quot;status&quot;:&quot;{!$Record.TAG_Status__c}&quot;, &quot;kanal&quot;:&quot;{!$Record.Type}&quot;, &quot;region&quot;:&quot;{!$Record.CRM_Region__c}&quot;, &quot;ansatt_NAV_enhet_navn&quot;:&quot;{!$Record.CRM_Unit__c}&quot;, &quot;paaminnelse_dato&quot;:&quot;{!paaminnelse_dato_text}&quot;, &quot;oppgaveposttype_id&quot;:&quot;{!$Record.RecordTypeId}&quot;, &quot;start_tid&quot;:&quot;{!start_tid_text}&quot;, &quot;slutt_tid&quot;:&quot;{!slutt_tid_text}&quot;, &quot;moeteundertype&quot;:&quot;&quot;, &quot;varighet&quot;:&quot;{!$Record.DurationInMinutes}&quot;, &quot;relatert_til&quot;:&quot;{!$Record.WhatId}&quot;, &quot;relatert_til_hvem&quot;:&quot;{!$Record.WhoId}&quot;, &quot;IA_saksnummer&quot;:&quot;{!$Record.TAG_IACaseNumber__c}&quot;, &quot;IA_undertema&quot;:&quot;{!$Record.IASubtheme__c}&quot;, &quot;IA_samarbeid_id&quot;:&quot;{!$Record.TAG_IACooperationId__c}&quot;, &quot;posttype_navn&quot;:&quot;{!$Record.RecordTypeName__c}&quot;}</text>
     </textTemplates>
     <variables>
         <name>accountId</name>
