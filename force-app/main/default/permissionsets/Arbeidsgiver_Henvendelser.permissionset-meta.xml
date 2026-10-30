@@ -31,6 +31,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_Channel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.TAG_ClosedAfterDueDate__c</field>
         <readable>true</readable>
