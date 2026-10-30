@@ -24,6 +24,15 @@
         <name>TAG_CreateTask</name>
     </quickActions>
     <quickActions>
+        <label><!-- New Task --></label>
+        <name>TAG_CreateTaskListview</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Ny henvendelse</label>
+        <name>TAG_NewEmployerInquiry</name>
+    </quickActions>
+    <quickActions>
         <label><!-- New Event --></label>
         <name>TAG_NewEvent</name>
     </quickActions>
