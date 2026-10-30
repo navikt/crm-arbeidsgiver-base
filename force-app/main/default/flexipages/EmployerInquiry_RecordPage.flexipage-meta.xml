@@ -28,7 +28,7 @@
                         <valueListItems>
                             <value>EmployerInquiry__c.TAG_Assign_to_me_lwc</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -39,12 +39,17 @@
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>EmployerInquiry__c.TAG_Unasign_from_me_lwc</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Is_Assigned__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -55,15 +60,26 @@
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>EmployerInquiry__c.TAG_CloseInquiry</value>
                             <visibilityRule>
+                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.TAG_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Fullført</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -164,6 +180,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Message__c</fieldItem>
                 <identifier>RecordMessage_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c4b22a99-dd04-41e4-aba9-876d9d435f67</name>
@@ -320,6 +343,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_IsOverdue__c</fieldItem>
                 <identifier>RecordTAG_IsOverdue__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>

@@ -27,6 +27,16 @@
                 <default>false</default>
                 <label>Arbeidsplassen.no</label>
             </value>
+            <value>
+                <fullName>Utgående henvendelse</fullName>
+                <default>false</default>
+                <label>Utgående henvendelse</label>
+            </value>
+            <value>
+                <fullName>Innkommende henvendelse</fullName>
+                <default>false</default>
+                <label>Innkommende henvendelse</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RestrictSourcePicklistValues</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(TAG_IsCreatedBySystem__c = false,
+ OR(ISPICKVAL(TAG_Source__c, &apos;Kontaktskjema&apos;),
+				ISPICKVAL(TAG_Source__c, &apos;Kontaktsenteret&apos;),
+				ISPICKVAL(TAG_Source__c, &apos;Arbeidsplassen.no&apos;)
+			 ))</errorConditionFormula>
+    <errorMessage>Feil verdier i feltet &quot;Kilde&quot;. Bruk verdiene &quot;Utgående henvendelse&quot; eller &quot;Innkommende henvendelse&quot;</errorMessage>
+</ValidationRule>

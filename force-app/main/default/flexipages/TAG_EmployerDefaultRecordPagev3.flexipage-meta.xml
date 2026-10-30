@@ -47,6 +47,9 @@
                         <valueListItems>
                             <value>Account.TAG_New_Activity_Flow</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Account.TAG_NewEmployerInquiry</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -391,6 +394,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-d08a7aa9-09f1-48e6-b5b0-11dbfe778a14</value>
                 </componentInstanceProperties>
@@ -504,6 +511,10 @@
                 <componentInstanceProperties>
                     <name>accordionSections</name>
                     <value>Facet-1f2b5d61-7645-45d8-babd-f9a37cef53eb</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>allowMultipleSectionsOpen</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:accordion</componentName>
                 <identifier>flexipage_accordion</identifier>
