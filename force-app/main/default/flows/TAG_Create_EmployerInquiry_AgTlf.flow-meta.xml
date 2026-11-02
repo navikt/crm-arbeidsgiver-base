@@ -1752,7 +1752,7 @@ NULL
         </fields>
         <fields>
             <name>contactSectionText1</name>
-            <fieldText>&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;em&gt;eller&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; oppgi detaljer under.&lt;/em&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;em&gt;Begynn å skrive for å søke opp en eksisterende kontakt på arbeidsgiveren &lt;/em&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;eller oppgi detaljer for ny kontakt under.&lt;/em&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <styleProperties>
                 <verticalAlignment>
@@ -1785,6 +1785,12 @@ NULL
                     <stringValue>navn / telefonnrummer / e-post</stringValue>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>contact_toggle.value</elementReference>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -1814,7 +1820,7 @@ NULL
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Ny kontakt</stringValue>
+                    <stringValue>Ny kontakt?</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>

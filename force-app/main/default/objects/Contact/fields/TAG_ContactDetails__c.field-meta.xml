@@ -3,8 +3,9 @@
     <fullName>TAG_ContactDetails__c</fullName>
     <description>Used as choice label in flow TAG_Create_EmployerInquiry_AgTlf. Flow logic is dependent on this fields format. Do not chanage without checking flow.</description>
     <externalId>false</externalId>
-    <formula>IF(ISBLANK(FirstName&amp;MiddleName&amp;LastName), &quot;[uten navn]&quot;,  FirstName&amp;&quot; &quot;&amp;MiddleName&amp;&quot; &quot;&amp;LastName
-)
+    <formula>IF(ISBLANK(FirstName&amp;MiddleName&amp;LastName), &quot;[uten navn]&quot;, FirstName &amp; &quot; &quot; &amp;
+IF(ISBLANK(MiddleName), &quot;&quot;, MiddleName &amp; &quot; &quot;) &amp;
+LastName )
 &amp; &quot; | &quot;
 &amp; IF(ISBLANK(Email), &quot;[uten e-post]&quot;, Email)
 &amp; &quot; | &quot;
