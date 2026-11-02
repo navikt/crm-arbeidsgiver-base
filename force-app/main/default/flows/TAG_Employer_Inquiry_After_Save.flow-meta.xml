@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Which_source_and_theme</name>
+        <label>Which source and theme?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>RI_Outgoing_inquiry</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_Source__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Utgående henvendelse</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_Theme__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rekruttere og inkludere</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>RI_Set_Name_outgoing_inquiry</targetReference>
+            </connector>
+            <label>RI Outgoing inquiry</label>
+        </rules>
+        <rules>
+            <name>RI_Incoming_inquiry</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_Source__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Innkommende henvendelse</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_Theme__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rekruttere og inkludere</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>RI_Set_Name_incoming_inquiry</targetReference>
+            </connector>
+            <label>RI Incoming inquiry</label>
+        </rules>
+        <rules>
+            <name>FRF_Outgoing_inquiry</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_Source__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Utgående henvendelse</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_Theme__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Forebygge og redusere fravær</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>FRF_Set_Name_outgoing_inquiry</targetReference>
+            </connector>
+            <label>FRF Outgoing inquiry</label>
+        </rules>
+        <rules>
+            <name>FRF_Incoming_inquiry</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.TAG_Source__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Innkommende henvendelse</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_Theme__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Forebygge og redusere fravær</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>FRF_Set_Name_incoming_inquiry</targetReference>
+            </connector>
+            <label>FRF Incoming inquiry</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>ClosedAfterDueDate</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Record.TAG_DueDate__c} &lt; {!$Flow.CurrentDate}</expression>
+    </formulas>
+    <formulas>
+        <name>IsAssigned</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(ISBLANK({!$Record.Owner:User.Id}), FALSE, TRUE)</expression>
+    </formulas>
+    <formulas>
+        <name>RecievedOrCreatedDate</name>
+        <dataType>DateTime</dataType>
+        <expression>IF( ISBLANK({!$Record.TAG_RecievedDateTime__c}), {!$Record.CreatedDate}, {!$Record.TAG_RecievedDateTime__c} )</expression>
+    </formulas>
+    <interviewLabel>TAG Employer Inquiry After Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TAG Employer Inquiry After Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>FRF_Set_Name_incoming_inquiry</name>
+        <label>FRF - Set Name incoming inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <stringValue>Innkommende henvendelse - Forebygge og redusere fravær</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>FRF_Set_Name_outgoing_inquiry</name>
+        <label>FRF - Set Name outgoing inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <stringValue>Utgående henvendelse - Forebygge og redusere fravær</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>RI_Set_Name_incoming_inquiry</name>
+        <label>RI - Set Name incoming inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <stringValue>Innkommmende henvendelse - Rekruttere og inkludere</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>RI_Set_Name_outgoing_inquiry</name>
+        <label>RI - Set Name outgoing inquiry</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <stringValue>Utgående henvendelse - Rekruttere og inkludere</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Due_Date</name>
+        <label>Set Due Date</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Which_source_and_theme</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>TAG_DueDateTime__c</field>
+            <value>
+                <elementReference>$Record.TAG_RecievedDateTime__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Due_Date</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TAG_IsCreatedBySystem__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>EmployerInquiry__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>SelectedTheme</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
