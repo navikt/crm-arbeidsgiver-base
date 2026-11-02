@@ -244,6 +244,23 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Channel__c</fieldItem>
+                <identifier>RecordTAG_Channel_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_DiscussedWithEmployeeRepresentative__c</fieldItem>
