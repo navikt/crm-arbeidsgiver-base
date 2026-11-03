@@ -3,12 +3,21 @@
     <fullName>LockForUpdate</fullName>
     <active>true</active>
     <description>Låser henvendelsen etter lukking. Unntak: brukere med tillatelsen Arbeidsgiver_Endre_fullf_rt_henvendelse kan redigere TAG_ClosingComment__c. Sikrer dataintegritet - ullførte henvendelser skal være uendret for rapportering og sporbarhet.</description>
-    <errorConditionFormula>/* Hvis status endres skal den ikke endres fra Fullført.
-Hvis status er Fullført og uendret skal de andre feltene ikke kunne endres. */
-IF( 
-ISCHANGED(TAG_Status__c), 
-TEXT(PRIORVALUE(TAG_Status__c)) ==&apos;Fullført&apos;,
-TEXT(TAG_Status__c) == &apos;Fullført&apos; &amp;&amp; NOT(ISCHANGED(TAG_Status__c)) &amp;&amp; OR( ISCHANGED(TAG_ClosingComment__c), ISCHANGED(TAG_ClosedReason__c) ) &amp;&amp;  NOT($Permission.Arbeidsgiver_Endre_fullf_rt_henvendelse )
+    <errorConditionFormula>/* Hvis status endres skal den ikke endres fra Fullført. Hvis status er Fullført og uendret skal de andre feltene ikke kunne endres. */
+IF(
+    ISCHANGED(TAG_Status__c),
+    TEXT(PRIORVALUE(TAG_Status__c)) = &apos;Fullført&apos;,
+    AND(
+        TEXT(TAG_Status__c) = &apos;Fullført&apos;,
+        NOT(ISCHANGED(TAG_Status__c)),
+        OR(
+            ISCHANGED(TAG_ClosingComment__c),
+            ISCHANGED(TAG_ClosedReason__c),
+            ISCHANGED(OwnerId),
+            ISCHANGED(TAG_NavUnit__c)
+        ),
+        NOT($Permission.Arbeidsgiver_Endre_fullf_rt_henvendelse)
+    )
 )</errorConditionFormula>
     <errorMessage>Det er ikke mulig å redigere henvendelsen etter lukking. Kontakt support om du har behov for å gjøre endringer.</errorMessage>
 </ValidationRule>
