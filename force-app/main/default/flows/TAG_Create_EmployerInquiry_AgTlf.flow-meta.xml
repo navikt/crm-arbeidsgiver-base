@@ -151,6 +151,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_sub_theme</name>
         <label>Assign sub theme</label>
@@ -570,6 +571,12 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_IsSaved__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_Message__c</field>
             <value>
                 <elementReference>Text.conversationNote</elementReference>
@@ -779,6 +786,12 @@ NULL
         </inputAssignments>
         <inputAssignments>
             <field>TAG_IsCreatedBySystem__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_IsSaved__c</field>
             <value>
                 <booleanValue>true</booleanValue>
             </value>

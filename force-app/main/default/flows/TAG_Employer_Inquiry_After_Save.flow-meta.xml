@@ -15,7 +15,7 @@
                 <leftValueReference>$Record.TAG_Source__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Utgående henvendelse</stringValue>
+                    <stringValue>Manuelt opprettet</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -23,6 +23,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Rekruttere og inkludere</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_IsOutgoingEmployerInquiry__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -37,7 +44,7 @@
                 <leftValueReference>$Record.TAG_Source__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Innkommende henvendelse</stringValue>
+                    <stringValue>Manuelt opprettet</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -59,7 +66,7 @@
                 <leftValueReference>$Record.TAG_Source__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Utgående henvendelse</stringValue>
+                    <stringValue>Manuelt opprettet</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -67,6 +74,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Forebygge og redusere fravær</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TAG_IsOutgoingEmployerInquiry__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -81,7 +95,7 @@
                 <leftValueReference>$Record.TAG_Source__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Innkommende henvendelse</stringValue>
+                    <stringValue>Manuelt opprettet</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -187,8 +201,8 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Set_Due_Date</name>
-        <label>Set Due Date</label>
+        <name>Update_values</name>
+        <label>Update values</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
@@ -200,13 +214,25 @@
                 <elementReference>$Record.TAG_RecievedDateTime__c</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>TAG_IsSaved__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Status__c</field>
+            <value>
+                <stringValue>Fullført</stringValue>
+            </value>
+        </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Set_Due_Date</targetReference>
+            <targetReference>Update_values</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
