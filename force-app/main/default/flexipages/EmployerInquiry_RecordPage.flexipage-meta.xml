@@ -180,13 +180,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Message__c</fieldItem>
                 <identifier>RecordMessage_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c4b22a99-dd04-41e4-aba9-876d9d435f67</name>
@@ -217,23 +210,6 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_IsOutgoingEmployerInquiry__c</fieldItem>
-                <identifier>RecordTAG_IsOutgoingEmployerInquiry_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Theme__c</fieldItem>
@@ -253,23 +229,6 @@
                         <leftValue>{!Record.TAG_Theme__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Rekruttere og inkludere</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Channel__c</fieldItem>
-                <identifier>RecordTAG_Channel_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -377,13 +336,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_IsOverdue__c</fieldItem>
                 <identifier>RecordTAG_IsOverdue__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
