@@ -270,8 +270,12 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     // Build the card title with record count
     get cardTitle() {
-        const numRecords = this.relatedRecords ? this.relatedRecords.length : 0;
-        return `${this.listTitle} (${numRecords})`;
+        if (!this.relatedRecords || this.relatedRecords.length === 0) {
+            return `${this.listTitle} (0)`;
+        }
+        const activeRecords = this.relatedRecords.filter((record) => !record.Contact?.TAG_Former_Employee__c);
+        const numActiveRecords = activeRecords ? activeRecords.length : 0;
+        return `${this.listTitle} (${numActiveRecords})`;
     }
 
     get headerBackground() {
