@@ -38,7 +38,7 @@ public without sharing class TAG_BusinessDaysHandler {
     private static Set<Date> getHolidayDates() {
         Set<Date> dates = new Set<Date>();
         for (Holiday h : [
-            SELECT ActivityDate, RecurrenceType, RecurrenceMonthOfYear, RecurrenceDayOfMonth, RecurrenceStartDate
+            SELECT ActivityDate, RecurrenceType
             FROM Holiday
             WHERE ActivityDate > 2022-01-01
         ]) {
