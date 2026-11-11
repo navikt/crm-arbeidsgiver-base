@@ -67,6 +67,17 @@
         <expression>IF({!IncomingOrOutgoingRadioButton} = {!Outgoing}, true, false)</expression>
     </formulas>
     <formulas>
+        <name>EmployerInquiryName</name>
+        <dataType>String</dataType>
+        <expression>CASE({!EmployerInquiryVariable.TAG_Theme__c},
+  &apos;Rekruttere og inkludere&apos;, 
+    IF({!ChoiceOfRadioButton} = true, &apos;Utgående henvendelse - Rekruttere og inkludere&apos;, &apos;Innkommende henvendelse - Rekruttere og inkludere&apos;),
+  &apos;Forebygge og redusere fravær&apos;, 
+    IF({!ChoiceOfRadioButton} = true, &apos;Utgående henvendelse - Forebygge og redusere fravær&apos;, &apos;Innkommende henvendelse - Forebygge og redusere fravær&apos;),
+  &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
         <name>RegisteredDate</name>
         <dataType>Date</dataType>
         <expression>DATEVALUE({!RegisteredDateTime})</expression>
@@ -111,6 +122,12 @@
             <targetReference>Toast_Created_Inquiry</targetReference>
         </connector>
         <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>EmployerInquiryName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>OwnerId</field>
             <value>
                 <elementReference>$User.Id</elementReference>
@@ -119,7 +136,13 @@
         <inputAssignments>
             <field>TAG_Account__c</field>
             <value>
-                <elementReference>Get_Account.Id</elementReference>
+                <elementReference>Konto.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Channel__c</field>
+            <value>
+                <elementReference>EmployerInquiryVariable.TAG_Channel__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -300,40 +323,42 @@
                 <name>Create_Inquiry_Section1_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Arbeidsgiver</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>Get_Account.Name</elementReference>
-                    </defaultValue>
-                    <fieldText>Arbeidsgiver</fieldText>
-                    <fieldType>InputField</fieldType>
+                    <name>Konto</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>TAG_Account__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Arbeidsgiver</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>EmployerInquiry__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>recordId</name>
+                        <value>
+                            <elementReference>Get_Account.Id</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
-                    <isRequired>false</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                </fields>
-                <fields>
-                    <name>Organisasjonsnummer_J_B</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>Get_Account.OrganizationNumberFormula__c</elementReference>
-                    </defaultValue>
-                    <fieldText>Organisasjonsnummer J/B</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
                     <styleProperties>
                         <verticalAlignment>
                             <stringValue>top</stringValue>

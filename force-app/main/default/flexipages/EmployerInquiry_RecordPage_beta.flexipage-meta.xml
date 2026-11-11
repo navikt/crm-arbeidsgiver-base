@@ -154,6 +154,13 @@
             <fieldInstance>
                 <fieldItem>Record.TAG_Account__r.OrganizationNumberFormula__c</fieldItem>
                 <identifier>RecordTAG_Account_rOrganizationNumberFormula_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_IsSaved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -170,6 +177,13 @@
             <fieldInstance>
                 <fieldItem>Record.TAG_Contact__r.TAG_MobileEmail__c</fieldItem>
                 <identifier>RecordContact_rTAG_MobileEmail_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_IsSaved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -211,6 +225,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Source__c</fieldItem>
                 <identifier>RecordTAG_Source_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_IsSaved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -363,6 +384,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Status__c</fieldItem>
                 <identifier>RecordStage_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_IsSaved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-eabf801d-6551-4c23-897f-463d7bc1eeed</name>
@@ -379,7 +407,7 @@
                 <identifier>RecordTAG_IsOverdue__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.TAG_IsCreatedBySystem__c}</leftValue>
+                        <leftValue>{!Record.TAG_IsSaved__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>

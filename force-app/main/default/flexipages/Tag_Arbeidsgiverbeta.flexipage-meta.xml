@@ -46,7 +46,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>newRecordButton</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>
@@ -75,6 +75,10 @@
                 <componentInstanceProperties>
                     <name>titleText</name>
                     <value>Henvendelser fra arbeidsgivere</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>triggerScreenFlow</name>
+                    <value>TAG_Employer_Inquiry_Create_Screen</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
