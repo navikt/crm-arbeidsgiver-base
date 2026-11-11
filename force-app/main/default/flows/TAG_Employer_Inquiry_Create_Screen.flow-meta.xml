@@ -176,12 +176,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsCreatedBySystem__c</field>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_IsOutgoingEmployerInquiry__c</field>
             <value>
                 <elementReference>ChoiceOfRadioButton</elementReference>

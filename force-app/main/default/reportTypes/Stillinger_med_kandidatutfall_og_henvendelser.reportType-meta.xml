@@ -554,11 +554,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>TAG_IsCreatedBySystem__c</field>
-            <table>JobPosting__c.JobPostings_Henvendelser__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>TAG_IsOutgoingEmployerInquiry__c</field>
             <table>JobPosting__c.JobPostings_Henvendelser__r</table>
         </columns>

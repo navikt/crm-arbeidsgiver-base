@@ -565,12 +565,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsCreatedBySystem__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_IsSaved__c</field>
             <value>
                 <booleanValue>true</booleanValue>
@@ -684,12 +678,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsCreatedBySystem__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_IsSaved__c</field>
             <value>
                 <booleanValue>true</booleanValue>
@@ -797,12 +785,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsCreatedBySystem__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_IsSaved__c</field>
             <value>
                 <booleanValue>true</booleanValue>
@@ -901,12 +883,6 @@ NULL
             <field>TAG_DueDate__c</field>
             <value>
                 <elementReference>dueDateTime</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_IsCreatedBySystem__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
