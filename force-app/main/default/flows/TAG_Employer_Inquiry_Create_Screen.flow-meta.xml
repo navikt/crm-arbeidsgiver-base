@@ -36,6 +36,43 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
+    <actionCalls>
+        <name>Toast_failed_to_crate_record</name>
+        <label>Toast failed to crate record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>c:fcFlowToaster</actionName>
+        <actionType>component</actionType>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Create_Inquiry</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>Mislykket!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>&quot;Hva skjer videre?&quot; må fylles ut</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>c:fcFlowToaster</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <choices>
@@ -108,6 +145,38 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>Is_Closed_Reason_Blank</name>
+        <label>Is Closed Reason Blank?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Employer_Inquiry</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not blank</defaultConnectorLabel>
+        <rules>
+            <name>Is_blank</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>EmployerInquiryVariable.TAG_ClosedReason__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>EmployerInquiryVariable.TAG_ClosedReason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Toast_failed_to_crate_record</targetReference>
+            </connector>
+            <label>Is blank</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>ChoiceOfRadioButton</name>
@@ -343,7 +412,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Create_Employer_Inquiry</targetReference>
+            <targetReference>Is_Closed_Reason_Blank</targetReference>
         </connector>
         <fields>
             <name>CreateInquiry</name>
