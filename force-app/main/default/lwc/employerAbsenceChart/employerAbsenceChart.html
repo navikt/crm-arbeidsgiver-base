@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-box slds-p-around_medium">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Laster diagram..."></lightning-spinner>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error">
+                <p>Feil: {error}</p>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <div class="chart-container">
+                <canvas role="img" aria-label="Sykefravær for virksomheten og næringen"></canvas>
+            </div>
+        </template>
+    </div>
+</template>
