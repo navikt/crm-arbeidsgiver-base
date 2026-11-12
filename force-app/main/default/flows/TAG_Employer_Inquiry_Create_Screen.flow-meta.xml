@@ -39,6 +39,14 @@
     <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <choices>
+        <name>Email</name>
+        <choiceText>E-post</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>E-post</stringValue>
+        </value>
+    </choices>
+    <choices>
         <name>Incoming</name>
         <choiceText>Innkommende henvendelse</choiceText>
         <dataType>String</dataType>
@@ -52,6 +60,46 @@
         <dataType>String</dataType>
         <value>
             <stringValue>Utgående henvendelse</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Phone</name>
+        <choiceText>Telefon</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Telefon</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Recruitment</name>
+        <choiceText>Rekruttere og inkludere</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Rekruttere og inkludere</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Sickleave</name>
+        <choiceText>Forebygge og redusere fravær</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Forebygge og redusere fravær</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>SMS</name>
+        <choiceText>SMS</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>SMS</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>YouthPledgeDecision</name>
+        <choiceText>Ønsker å bidra</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Ønsker å bidra</stringValue>
         </value>
     </choices>
     <customProperties>
@@ -69,7 +117,7 @@
     <formulas>
         <name>EmployerInquiryName</name>
         <dataType>String</dataType>
-        <expression>CASE({!EmployerInquiryVariable.TAG_Theme__c},
+        <expression>CASE({!Tema},
   &apos;Rekruttere og inkludere&apos;, 
     IF({!ChoiceOfRadioButton} = true, &apos;Utgående henvendelse - Rekruttere og inkludere&apos;, &apos;Innkommende henvendelse - Rekruttere og inkludere&apos;),
   &apos;Forebygge og redusere fravær&apos;, 
@@ -85,7 +133,7 @@
     <formulas>
         <name>ThemePicklistValue</name>
         <dataType>String</dataType>
-        <expression>IF(ISPICKVAL({!EmployerInquiryVariable.TAG_Theme__c}, &apos;Rekruttere og inkludere&apos;), &apos;Informasjon og relasjonsbygging&apos;, &apos;Redusere sykefravær&apos;)</expression>
+        <expression>IF({!Tema} = &apos;Rekruttere og inkludere&apos;, &apos;Informasjon og relasjonsbygging&apos;, &apos;Redusere sykefravær&apos;)</expression>
     </formulas>
     <formulas>
         <name>TimeNow</name>
@@ -142,7 +190,7 @@
         <inputAssignments>
             <field>TAG_Channel__c</field>
             <value>
-                <elementReference>EmployerInquiryVariable.TAG_Channel__c</elementReference>
+                <elementReference>Kanal</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -154,7 +202,7 @@
         <inputAssignments>
             <field>TAG_ClosingComment__c</field>
             <value>
-                <elementReference>EmployerInquiryVariable.TAG_ClosingComment__c</elementReference>
+                <elementReference>ClosingComment</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -232,7 +280,7 @@
         <inputAssignments>
             <field>TAG_Theme__c</field>
             <value>
-                <elementReference>EmployerInquiryVariable.TAG_Theme__c</elementReference>
+                <elementReference>Tema</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -376,25 +424,11 @@
                         </width>
                     </styleProperties>
                 </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>6</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>Create_Inquiry_Section1_Column2</name>
-                <fieldType>Region</fieldType>
                 <fields>
-                    <name>RegisteredDateTime</name>
-                    <dataType>DateTime</dataType>
-                    <defaultValue>
-                        <elementReference>TimeNow</elementReference>
-                    </defaultValue>
-                    <fieldText>Registrert</fieldText>
-                    <fieldType>InputField</fieldType>
+                    <name>ClosingComment</name>
+                    <fieldText>Hva snakket dere om?</fieldText>
+                    <fieldType>LargeTextArea</fieldType>
+                    <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Maks 500 tegn. Ingen personopplysninger&lt;/span&gt;&lt;/p&gt;</helpText>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <styleProperties>
@@ -405,73 +439,10 @@
                             <stringValue>12</stringValue>
                         </width>
                     </styleProperties>
-                </fields>
-                <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>EmployerInquiryVariable.TAG_Theme__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                </fields>
-                <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>EmployerInquiryVariable.TAG_Channel__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>6</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <isRequired>false</isRequired>
-            <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
-        </fields>
-        <fields>
-            <name>Create_Inquiry_Section2</name>
-            <fieldType>RegionContainer</fieldType>
-            <fields>
-                <name>Create_Inquiry_Section2_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>EmployerInquiryVariable.TAG_ClosingComment__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;Maks 500 tegn. Ingen personopplysninger&lt;/p&gt;</errorMessage>
+                        <formulaExpression>LEN({!ClosingComment}) &lt; 500</formulaExpression>
+                    </validationRule>
                 </fields>
                 <fields>
                     <name>ConfirmNoPersonData</name>
@@ -520,8 +491,100 @@
                 <isRequired>false</isRequired>
             </fields>
             <fields>
-                <name>Create_Inquiry_Section2_Column2</name>
+                <name>Create_Inquiry_Section1_Column2</name>
                 <fieldType>Region</fieldType>
+                <fields>
+                    <name>RegisteredDateTime</name>
+                    <dataType>DateTime</dataType>
+                    <defaultValue>
+                        <elementReference>TimeNow</elementReference>
+                    </defaultValue>
+                    <fieldText>Registrert</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Tema</name>
+                    <choiceReferences>Recruitment</choiceReferences>
+                    <choiceReferences>Sickleave</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>Tema</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>YouthPledge</name>
+                    <choiceReferences>YouthPledgeDecision</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>Ungdomsløftet</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Dersom arbeidsgiveren ønsker å bidra til ungdomsløftet, kan du velge &quot;Ønsker å bidra&quot; i dette feltet&lt;/span&gt;&lt;/p&gt;</helpText>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>IncomingOrOutgoingRadioButton</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <elementReference>Incoming</elementReference>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>Tema</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <elementReference>Recruitment</elementReference>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>Kanal</name>
+                    <choiceReferences>Email</choiceReferences>
+                    <choiceReferences>SMS</choiceReferences>
+                    <choiceReferences>Phone</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>Kanal</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <helpText>&lt;p&gt;Hvilken kanal ble brukt for henvendelsen&lt;/p&gt;</helpText>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
                 <fields>
                     <name>NavUnit</name>
                     <extensionName>flowruntime:lookup</extensionName>
@@ -548,6 +611,12 @@
                         <name>recordId</name>
                         <value>
                             <elementReference>Get_Nav_Unit.Id</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
