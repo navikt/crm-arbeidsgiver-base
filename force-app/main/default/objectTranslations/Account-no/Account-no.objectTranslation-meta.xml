@@ -16,6 +16,11 @@
         <name>Add_Member</name>
     </quickActions>
     <quickActions>
+        <aspect>Master</aspect>
+        <label>Ny henvendelse</label>
+        <name>Create_Emp_Inquiry</name>
+    </quickActions>
+    <quickActions>
         <label><!-- Legg til kampanje --></label>
         <name>Legg_til_kampanje</name>
     </quickActions>
@@ -26,11 +31,6 @@
     <quickActions>
         <label><!-- New Task --></label>
         <name>TAG_CreateTaskListview</name>
-    </quickActions>
-    <quickActions>
-        <aspect>Master</aspect>
-        <label>Ny henvendelse</label>
-        <name>TAG_NewEmployerInquiry</name>
     </quickActions>
     <quickActions>
         <label><!-- New Event --></label>

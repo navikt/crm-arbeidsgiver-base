@@ -26,6 +26,10 @@
     </customPermissions>
     <customPermissions>
         <enabled>true</enabled>
+        <name>Arbeidsgiver_admin</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
         <name>POAG_Pilot</name>
     </customPermissions>
     <description>Admin-tilganger til felter som vanlige brukere IKKE har tilgang til, eller skriverettigheter til det vanlige brukere ikke har tilgang til</description>
