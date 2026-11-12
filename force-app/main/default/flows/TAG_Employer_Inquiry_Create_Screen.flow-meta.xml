@@ -286,7 +286,7 @@
         <inputAssignments>
             <field>TAG_YouthPledge__c</field>
             <value>
-                <stringValue></stringValue>
+                <elementReference>YouthPledge</elementReference>
             </value>
         </inputAssignments>
         <object>EmployerInquiry__c</object>
