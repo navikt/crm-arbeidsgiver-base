@@ -1192,6 +1192,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NavUnit__c.INT_UnitNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NavUnit__c.MarketRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
