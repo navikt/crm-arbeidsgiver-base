@@ -270,8 +270,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
 
     // Build the card title with record count
     get cardTitle() {
-        const numRecords = this.relatedRecords ? this.relatedRecords.length : 0;
-        return `${this.listTitle} (${numRecords})`;
+        const countActiveRecords = this.listRecords
+            ? this.listRecords.filter((record) => record?.isInactive !== true).length
+            : 0;
+        return `${this.listTitle} (${countActiveRecords})`;
     }
 
     get headerBackground() {
@@ -289,10 +291,10 @@ export default class TagRelatedList extends NavigationMixin(LightningElement) {
             let style = 'vertical-align: middle; text-align: left; padding: 4px 8px; max-width: 33%';
             // Padding for the first cell.
             if (index === 0) {
-                style += 'padding-left: 1rem;';
+                style += '; padding-left: 1rem;';
             }
             if (index === arr.length - 1) {
-                style += 'padding-right: 0px;';
+                style += '; padding-right: 0px;';
             }
             return {
                 value: label,
