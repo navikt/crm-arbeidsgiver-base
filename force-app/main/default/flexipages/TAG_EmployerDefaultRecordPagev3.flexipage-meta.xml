@@ -501,6 +501,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>accountSummary</componentName>
+                <identifier>c_accountSummary</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>accordionSections</name>
                     <value>Facet-1f2b5d61-7645-45d8-babd-f9a37cef53eb</value>

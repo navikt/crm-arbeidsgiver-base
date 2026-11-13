@@ -880,6 +880,12 @@
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>accountSummary</componentName>
+                <identifier>c_accountSummary</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>

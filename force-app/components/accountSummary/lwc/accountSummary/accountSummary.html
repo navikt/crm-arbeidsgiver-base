@@ -1,0 +1,275 @@
+<template>
+    <article class="slds-card summary-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:account" size="small" alternative-text=""></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title slds-truncate">{title}</h2>
+                </div>
+            </header>
+        </div>
+
+        <template lwc:if={isLoading}>
+            <div class="slds-is-relative summary-spinner">
+                <lightning-spinner alternative-text="Laster oversikt" size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template lwc:if={error}>
+            <div class="slds-card__body slds-card__body_inner slds-text-color_error" role="alert">{errorMessage}</div>
+        </template>
+
+        <template lwc:if={showNoAccount}>
+            <div class="slds-card__body slds-card__body_inner slds-text-color_weak">
+                Fant ingen arbeidsgiver knyttet til denne posten.
+            </div>
+        </template>
+
+        <template lwc:if={hasSummary}>
+            <!-- Written summary -->
+            <section class="summary-section" aria-label="Oppsummering">
+                <div class="summary-text">
+                    <template lwc:if={coordinationNotice}>
+                        <p class="slds-text-title_bold">{coordinationNotice}</p>
+                    </template>
+                    <p>
+                        <lightning-icon
+                            icon-name="utility:sparkles"
+                            size="xx-small"
+                            class="summary-text__icon"
+                            alternative-text=""
+                        ></lightning-icon>
+                        <template for:each={summaryParts} for:item="part">
+                            <template lwc:if={part.bold}><strong key={part.key}>{part.text}</strong></template>
+                            <template lwc:else><span key={part.key}>{part.text}</span></template>
+                        </template>
+                    </p>
+                    <span class="summary-text__source">Automatisk oppsummering</span>
+                </div>
+            </section>
+
+            <!-- Ongoing activity -->
+            <section class="summary-section" aria-labelledby="ongoing-heading">
+                <h3 id="ongoing-heading" class="section-heading">
+                    <template lwc:if={hasOngoingActivity}><span class="status-dot"></span></template>
+                    Pågående aktivitet
+                </h3>
+                <ul>
+                    <template for:each={ongoingRows} for:item="row">
+                        <li key={row.key}>
+                            <template lwc:if={row.isClickable}>
+                                <button
+                                    type="button"
+                                    class={row.rowClass}
+                                    data-key={row.key}
+                                    title={row.helpText}
+                                    aria-label={row.ariaLabel}
+                                    aria-haspopup="dialog"
+                                    onclick={handleRowClick}
+                                    onmouseenter={handleRowMouseEnter}
+                                    onmouseleave={handleRowMouseLeave}
+                                >
+                                    <lightning-icon
+                                        icon-name={row.icon}
+                                        size="x-small"
+                                        class="summary-row__icon"
+                                        alternative-text=""
+                                    ></lightning-icon>
+                                    <span class="summary-row__text slds-col">
+                                        <span class="summary-row__label">{row.label}</span>
+                                        <template lwc:if={row.details}>
+                                            <span class="summary-row__details slds-truncate">
+                                                {row.details}
+                                                <template lwc:if={row.pill}>
+                                                    <span class="summary-pill">{row.pill}</span>
+                                                </template>
+                                            </span>
+                                        </template>
+                                        <template lwc:elseif={row.pill}>
+                                            <span class="summary-row__details">
+                                                <span class="summary-pill">{row.pill}</span>
+                                            </span>
+                                        </template>
+                                        <template lwc:if={row.secondaryDetails}>
+                                            <span class="summary-row__details slds-truncate"
+                                                >{row.secondaryDetails}</span
+                                            >
+                                        </template>
+                                    </span>
+                                    <span class="summary-row__count">{row.count}</span>
+                                </button>
+                            </template>
+                            <template lwc:else>
+                                <div class={row.rowClass} title={row.helpText}>
+                                    <lightning-icon
+                                        icon-name={row.icon}
+                                        size="x-small"
+                                        class="summary-row__icon"
+                                        alternative-text=""
+                                    ></lightning-icon>
+                                    <span class="summary-row__text slds-col">
+                                        <span class="summary-row__label">{row.label}</span>
+                                    </span>
+                                    <span class="summary-row__count">{row.count}</span>
+                                </div>
+                            </template>
+                        </li>
+                    </template>
+                </ul>
+
+                <template lwc:if={hasNavContact}>
+                    <button
+                        type="button"
+                        class="nav-contact slds-grid slds-grid_vertical-align-center"
+                        data-key="navkontakt"
+                        title={navContact.helpText}
+                        aria-label={navContactAriaLabel}
+                        aria-haspopup="dialog"
+                        onclick={handleRowClick}
+                        onmouseenter={handleRowMouseEnter}
+                        onmouseleave={handleRowMouseLeave}
+                    >
+                        <lightning-avatar
+                            variant="circle"
+                            size="x-small"
+                            initials={navContact.initials}
+                            fallback-icon-name="standard:team_member"
+                            alternative-text=""
+                            class="nav-contact__avatar"
+                        ></lightning-avatar>
+                        <span class="slds-col slds-truncate">
+                            Kontaktperson i Nav: <strong>{navContact.name}</strong>
+                            <template lwc:if={navContact.unit}> · {navContact.unit}</template>
+                        </span>
+                        <template lwc:if={hasAdditionalNavContacts}>
+                            <span class="slds-text-color_weak">+{navContact.additionalCount}</span>
+                        </template>
+                    </button>
+                </template>
+            </section>
+
+            <!-- History -->
+            <section class="summary-section" aria-labelledby="history-heading">
+                <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread">
+                    <h3 id="history-heading" class="section-heading">
+                        <lightning-icon icon-name="utility:clock" size="xx-small" alternative-text=""></lightning-icon>
+                        Historikk
+                    </h3>
+                    <lightning-radio-group
+                        name="historyPeriod"
+                        label="Periode"
+                        variant="label-hidden"
+                        type="button"
+                        options={periodOptions}
+                        value={months}
+                        onchange={handlePeriodChange}
+                        class="period-toggle"
+                    ></lightning-radio-group>
+                </div>
+
+                <div class="chart" style={chartStyle} role="img" aria-label={chartAriaLabel}>
+                    <template for:each={historyMonths} for:item="month">
+                        <div key={month.key} class="chart-column" title={month.fullLabel}>
+                            <template for:each={month.segments} for:item="segment">
+                                <span
+                                    key={segment.id}
+                                    class={segment.cssClass}
+                                    style={segment.style}
+                                    title={segment.title}
+                                ></span>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+                <div class="chart-labels" style={chartStyle} aria-hidden="true">
+                    <template for:each={historyMonths} for:item="month">
+                        <span key={month.key}>{month.label}</span>
+                    </template>
+                </div>
+
+                <template lwc:if={hasHistory}>
+                    <ul class={legendClass}>
+                        <template for:each={historyTotals} for:item="item">
+                            <li key={item.key} class="legend-item">
+                                <span class={item.swatchClass}></span>
+                                <span class="slds-truncate">{item.label}</span>
+                                <strong class="legend-count">{item.count}</strong>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+                <template lwc:else>
+                    <p class="slds-text-color_weak slds-m-top_x-small">Ingen registrert aktivitet i perioden.</p>
+                </template>
+
+                <template lwc:if={isInquiryContext}>
+                    <div class="slds-m-top_x-small">
+                        <a href={accountUrl}>Åpne arbeidsgiver →</a>
+                    </div>
+                </template>
+            </section>
+
+            <!-- Popover with records -->
+            <template lwc:if={showPopover}>
+                <section
+                    class={popoverClass}
+                    style={popoverStyle}
+                    role="dialog"
+                    aria-labelledby="popover-heading"
+                    onmouseenter={handlePopoverMouseEnter}
+                    onmouseleave={handleRowMouseLeave}
+                    onkeydown={handlePopoverKeyDown}
+                >
+                    <lightning-button-icon
+                        icon-name="utility:close"
+                        variant="bare"
+                        alternative-text="Lukk"
+                        title="Lukk"
+                        class="slds-float_right slds-popover__close"
+                        data-id="popover-close"
+                        onclick={handlePopoverClose}
+                    ></lightning-button-icon>
+                    <header class="slds-popover__header">
+                        <div class="slds-media slds-media_center">
+                            <div class="slds-media__figure">
+                                <lightning-icon
+                                    icon-name={popoverRow.icon}
+                                    size="small"
+                                    alternative-text=""
+                                ></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2 id="popover-heading" class="slds-text-heading_small">
+                                    {popoverRow.label} ({popoverRow.count})
+                                </h2>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="slds-popover__body summary-popover__body">
+                        <template lwc:if={popoverLoading}>
+                            <div class="slds-is-relative summary-spinner">
+                                <lightning-spinner alternative-text="Laster poster" size="small"></lightning-spinner>
+                            </div>
+                        </template>
+                        <template lwc:if={popoverError}>
+                            <p class="slds-text-color_error" role="alert">{popoverError}</p>
+                        </template>
+                        <template lwc:if={showPopoverEmpty}>
+                            <p class="slds-text-color_weak">Ingen poster å vise.</p>
+                        </template>
+                        <template lwc:if={hasPopoverRecords}>
+                            <template lwc:if={isMobile}>
+                                <c-related-records-card-list records={popoverRecords}></c-related-records-card-list>
+                            </template>
+                            <template lwc:else>
+                                <c-related-records-table records={popoverRecords}></c-related-records-table>
+                            </template>
+                        </template>
+                    </div>
+                </section>
+            </template>
+        </template>
+    </article>
+</template>
