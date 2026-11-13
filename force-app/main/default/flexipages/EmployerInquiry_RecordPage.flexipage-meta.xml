@@ -411,10 +411,16 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection6</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.TAG_IsSaved__c}</leftValue>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
+                        <rightValue>Rekruttere og inkludere</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Forebygge og redusere fravær</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -436,10 +442,16 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection4</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.TAG_IsSaved__c}</leftValue>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
+                        <rightValue>Rekruttere og inkludere</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Forebygge og redusere fravær</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

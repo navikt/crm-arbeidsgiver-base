@@ -61,17 +61,17 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_NavUnit__c = navUnits[0].Id,
                     TAG_ClosedAfterDueDate__c = false,
                     TAG_IsConversationNote__c = false,
+                    TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
                     TAG_Status__c = 'Fullført',
-                    TAG_IsSaved__c = true,
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
                 new EmployerInquiry__c(
                     TAG_NavUnit__c = navUnits[0].Id,
                     TAG_ClosedAfterDueDate__c = true,
                     TAG_IsConversationNote__c = false,
+                    TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
-                    TAG_IsSaved__c = true,
                     TAG_Status__c = 'Fullført',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
@@ -79,8 +79,8 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_NavUnit__c = navUnits[0].Id,
                     TAG_ClosedAfterDueDate__c = false,
                     TAG_IsConversationNote__c = true,
+                    TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
-                    TAG_IsSaved__c = true,
                     TAG_Status__c = 'Fullført',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
@@ -88,8 +88,8 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_NavUnit__c = navUnits[0].Id,
                     TAG_ClosedAfterDueDate__c = false,
                     TAG_IsConversationNote__c = false,
+                    TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now().addDays(-91),
-                    TAG_IsSaved__c = true,
                     TAG_Status__c = 'Fullført',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
@@ -97,16 +97,16 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_NavUnit__c = navUnits[0].Id,
                     TAG_ClosedAfterDueDate__c = false,
                     TAG_IsConversationNote__c = false,
+                    TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
-                    TAG_IsSaved__c = true,
                     TAG_Status__c = 'Ny henvendelse'
                 ),
                 new EmployerInquiry__c(
                     TAG_NavUnit__c = navUnits[1].Id,
                     TAG_ClosedAfterDueDate__c = false,
                     TAG_IsConversationNote__c = false,
+                    TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
-                    TAG_IsSaved__c = true,
                     TAG_Status__c = 'Fullført',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 )
