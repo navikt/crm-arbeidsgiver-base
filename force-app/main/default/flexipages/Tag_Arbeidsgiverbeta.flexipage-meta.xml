@@ -77,6 +77,10 @@
                     <value>Henvendelser fra arbeidsgivere</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>triggerScreenFlow</name>
+                    <value>TAG_Employer_Inquiry_Create_Screen</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>warningCriteriaInput</name>
                     <value>{{TAG_Overdue__c}}</value>
                 </componentInstanceProperties>
