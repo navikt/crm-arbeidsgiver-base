@@ -61,12 +61,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_DueDateTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_DueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -98,6 +98,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.TAG_IsOverdue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_IsSaved__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -151,7 +156,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_RecievedDateTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -161,7 +166,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
