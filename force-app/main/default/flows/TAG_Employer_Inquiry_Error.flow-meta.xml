@@ -42,18 +42,12 @@
         </connector>
         <filterLogic>or</filterLogic>
         <filters>
-            <field>TAG_Theme__c</field>
-            <operator>IsNull</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
+            <field>TAG_Source__c</field>
+            <operator>EqualTo</operator>
         </filters>
         <filters>
-            <field>TAG_Theme__c</field>
+            <field>TAG_Source__c</field>
             <operator>EqualTo</operator>
-            <value>
-                <stringValue></stringValue>
-            </value>
         </filters>
         <object>EmployerInquiry__c</object>
         <recordTriggerType>Create</recordTriggerType>
