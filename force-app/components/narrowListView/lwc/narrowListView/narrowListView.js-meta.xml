@@ -24,6 +24,8 @@
                 type="String" description="Alternative text to pop-up when hover over button." />
             <property name="enableEditAction" label="Enable Edit Action" type="Boolean"
                 default="false" />
+            <property name="triggerScreenFlow" label="Trigger Screen Flow" type="Boolean"
+                default="false" />
             <property name="quickActionsInput" label="Quick Actions" type="String" />
 
             <property name="titleFieldInput" label="Primary field" type="String"
