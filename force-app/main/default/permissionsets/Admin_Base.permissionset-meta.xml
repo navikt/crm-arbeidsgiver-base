@@ -390,11 +390,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>EmployerInquiry__c.TAG_IsSaved__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>EmployerInquiry__c.TAG_Message__c</field>
         <readable>true</readable>
     </fieldPermissions>

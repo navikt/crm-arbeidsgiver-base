@@ -19,7 +19,7 @@ private class InquiryAssignmentControllerTest {
         );
         insert navUnit;
 
-        EmployerInquiry__c inquiry = new EmployerInquiry__c(TAG_NavUnit__c = navUnit.Id, TAG_IsSaved__c = true);
+        EmployerInquiry__c inquiry = new EmployerInquiry__c(TAG_NavUnit__c = navUnit.Id);
         insert inquiry;
 
         Test.startTest();
@@ -34,7 +34,7 @@ private class InquiryAssignmentControllerTest {
         NavUnit__c navUnit = new NavUnit__c(Name = 'NAV No Queue 2', INT_UnitNumber__c = '9996');
         insert navUnit;
 
-        EmployerInquiry__c inquiry = new EmployerInquiry__c(TAG_NavUnit__c = navUnit.Id, TAG_IsSaved__c = true);
+        EmployerInquiry__c inquiry = new EmployerInquiry__c(TAG_NavUnit__c = navUnit.Id);
         insert inquiry;
 
         Test.startTest();

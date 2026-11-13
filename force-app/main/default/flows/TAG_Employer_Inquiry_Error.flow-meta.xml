@@ -40,12 +40,19 @@
         <connector>
             <targetReference>Error_message</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>or</filterLogic>
         <filters>
-            <field>TAG_IsSaved__c</field>
+            <field>TAG_Theme__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>TAG_Theme__c</field>
             <operator>EqualTo</operator>
             <value>
-                <booleanValue>false</booleanValue>
+                <stringValue></stringValue>
             </value>
         </filters>
         <object>EmployerInquiry__c</object>
