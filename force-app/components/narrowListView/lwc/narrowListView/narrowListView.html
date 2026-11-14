@@ -23,6 +23,18 @@
         >
         </lightning-button-icon>
 
+        <c-tag-flow-modal-button
+            if:true={triggerScreenFlow}
+            slot="actions"
+            button-label="Start flyt"
+            button-title="Start flyt"
+            button-icon-name="utility:add"
+            icon-only
+            modal-heading={titleText}
+            flow-api-name={triggerScreenFlow}
+            onstatuschange={handleFlowStatusChange}
+        ></c-tag-flow-modal-button>
+
         <div slot="footer">
             <lightning-button variant="base" label="Se alle" class="slds-text-link" onclick={handleListLinkClick}>
             </lightning-button>

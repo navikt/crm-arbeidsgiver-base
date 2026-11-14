@@ -21,6 +21,7 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
     @api listViewApiName; // = 'TAG_Mine_pne_muligheter'; // List view navn for å hente records
     @api newRecordButton; // = false; // Om knappen for å opprette ny record skal vises
     @api altTextNewRecordButton; // Alternativ tekst for knappen for å opprette ny record
+    @api triggerScreenFlow;
     @api pageSize; // = 10; // Maks antall records å hente
     @api previewRecords; // = 4;
     @api titleText; // = 'Mine muligheter'; // Tittel for komponentet
@@ -203,6 +204,12 @@ export default class NarrowListView extends NavigationMixin(LightningElement) {
 
     handleNewRecord() {
         this.navigateToRecordNew(this.objectApiName);
+    }
+
+    handleFlowStatusChange(event) {
+        if (event.detail.status === 'FINISHED' || event.detail.status === 'FINISHED_SCREEN') {
+            this.handleQuickActionSuccess();
+        }
     }
 
     // Trigges på innkommende meldinger i message channel. Oppdaterer listen når det skjer endringer

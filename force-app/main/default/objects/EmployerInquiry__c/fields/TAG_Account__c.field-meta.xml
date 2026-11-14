@@ -3,9 +3,10 @@
     <fullName>TAG_Account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Arbeidsgiver henvendelsen gjelder. Kobler henvendelsen til riktig arbeidsgiver/virksomhet i systemet.</description>
-    <inlineHelpText>Arbeidsgivervirksomheten henvendelsen gjelder</inlineHelpText>
+    <inlineHelpText>Arbeidsgiveren henvendelsen gjelder.</inlineHelpText>
     <label>Account</label>
     <referenceTo>Account</referenceTo>
+    <relationshipLabel>Employer Inquiries</relationshipLabel>
     <relationshipName>Accounts_Henvendelser</relationshipName>
     <required>false</required>
     <trackHistory>true</trackHistory>
