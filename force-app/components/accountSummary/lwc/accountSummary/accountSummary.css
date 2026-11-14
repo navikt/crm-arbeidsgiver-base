@@ -1,0 +1,258 @@
+:host {
+    display: block;
+    position: relative;
+}
+
+.summary-spinner {
+    min-height: 4rem;
+}
+
+.summary-section {
+    padding: var(--slds-g-spacing-2, 0.5rem) var(--slds-g-spacing-4, 1rem);
+    border-top: 1px solid var(--slds-g-color-border-1, #e5e5e5);
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-bottom: 0.375rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--slds-g-color-on-surface-2, #5c5c5c);
+}
+
+.status-dot {
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 50%;
+    background: var(--slds-g-color-success-1, #2e844a);
+    box-shadow: 0 0 0 3px var(--slds-g-color-success-container-1, #cdefc4);
+}
+
+/* Written summary */
+.summary-text {
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--slds-g-color-palette-purple-90, #ece1f9);
+    border-radius: var(--slds-g-radius-border-2, 0.25rem);
+    background: var(--slds-g-color-palette-purple-95, #f6f2fb);
+    line-height: 1.45;
+}
+
+.summary-text p + p {
+    margin-top: 0.25rem;
+}
+
+.summary-text__icon {
+    margin-right: 0.25rem;
+    --slds-c-icon-color-foreground-default: var(--slds-g-color-palette-purple-50, #9050e9);
+}
+
+.summary-text__source {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.6875rem;
+    color: var(--slds-g-color-palette-purple-40, #7526e3);
+}
+
+/* Ongoing rows */
+.summary-row,
+.nav-contact {
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+}
+
+li:not(:last-child) > .summary-row {
+    border-bottom: 1px dashed var(--slds-g-color-border-1, #e5e5e5);
+}
+
+button.summary-row,
+button.nav-contact {
+    cursor: pointer;
+    border-radius: var(--slds-g-radius-border-1, 0.125rem);
+}
+
+button.summary-row:hover,
+button.nav-contact:hover {
+    background: var(--slds-g-color-surface-container-2, #f3f3f3);
+}
+
+button.summary-row:focus-visible,
+button.nav-contact:focus-visible {
+    outline: 2px solid var(--slds-g-color-accent-2, #0176d3);
+    outline-offset: 1px;
+}
+
+.summary-row_empty {
+    opacity: 0.45;
+}
+
+.summary-row__icon {
+    flex: none;
+}
+
+.summary-row__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.summary-row__details {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--slds-g-color-on-surface-2, #5c5c5c);
+}
+
+.summary-row__count {
+    min-width: 1rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.summary-pill {
+    margin-left: 0.25rem;
+    padding: 0 0.375rem;
+    border-radius: 0.5625rem;
+    font-size: 0.625rem;
+    background: var(--slds-g-color-error-container-1, #fddde3);
+    color: var(--slds-g-color-on-error-2, #8e030f);
+}
+
+.nav-contact {
+    margin-top: 0.375rem;
+    padding-top: 0.375rem;
+    border-top: 1px solid var(--slds-g-color-border-1, #e5e5e5);
+    font-size: 0.75rem;
+}
+
+.nav-contact__avatar {
+    flex: none;
+}
+
+/* History chart */
+.period-toggle {
+    --slds-c-button-text-font-size: 0.6875rem;
+}
+
+.chart {
+    display: grid;
+    gap: 0.375rem;
+    align-items: end;
+    height: 4.5rem;
+    margin-top: 0.25rem;
+}
+
+.chart-column {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1px;
+    height: 100%;
+    border-bottom: 1px solid var(--slds-g-color-border-1, #e5e5e5);
+}
+
+.chart-segment {
+    display: block;
+    min-height: 3px;
+    border-radius: 2px;
+}
+
+.chart-labels {
+    display: grid;
+    gap: 0.375rem;
+    margin-top: 0.125rem;
+    font-size: 0.625rem;
+    text-align: center;
+    color: var(--slds-g-color-on-surface-1, #747474);
+}
+
+.legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1875rem 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.legend_single {
+    grid-template-columns: 1fr;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+    min-width: 0;
+}
+
+.legend-swatch {
+    flex: none;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 2px;
+}
+
+.legend-count {
+    margin-left: auto;
+}
+
+/* Same background colours as the SLDS object icons */
+.history-color_avtale {
+    background: #4dca76; /* custom18 (Contract__c) */
+}
+
+.history-color_stilling {
+    background: #3e99be; /* custom27 (JobPosting__c) */
+}
+
+.history-color_tiltak {
+    background: #bf5a88; /* custom60 (Workfare__c) */
+}
+
+.history-color_ia {
+    background: #8c89f2; /* custom37 (IACooperation__c) */
+}
+
+.history-color_mulighet {
+    background: #3cc2b3; /* custom14 (CustomOpportunity__c) */
+}
+
+.history-color_henvendelse {
+    background: #89c059; /* custom28 (EmployerInquiry__c) */
+}
+
+.history-color_mote {
+    background: #cb65ff; /* standard:event */
+}
+
+.history-color_kommunikasjon {
+    background: #0b5cab; /* standard:email in a stronger blue for contrast */
+}
+
+.history-color_formidling {
+    background: #50ceb9; /* custom8 (CandidateOutcome__c) */
+}
+
+/* Popover */
+.summary-popover {
+    position: absolute;
+    left: 0;
+    width: max(100%, 36rem);
+    max-width: calc(100vw - 2rem);
+    z-index: 9000;
+}
+
+.summary-popover_mobile {
+    width: 100%;
+}
+
+.summary-popover__body {
+    max-height: 22rem;
+    overflow-y: auto;
+}
