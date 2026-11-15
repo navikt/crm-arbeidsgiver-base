@@ -20,8 +20,16 @@ private class AccountSummaryControllerTest {
         insert opportunities;
 
         insert new List<EmployerInquiry__c>{
-            new EmployerInquiry__c(TAG_Account__c = account.Id, TAG_Status__c = 'Ny henvendelse'),
-            new EmployerInquiry__c(TAG_Account__c = account.Id, TAG_Status__c = 'Følges opp')
+            new EmployerInquiry__c(
+                TAG_Account__c = account.Id,
+                TAG_Status__c = 'Ny henvendelse',
+                TAG_Source__c = 'Kontaktsenteret'
+            ),
+            new EmployerInquiry__c(
+                TAG_Account__c = account.Id,
+                TAG_Status__c = 'Følges opp',
+                TAG_Source__c = 'Kontaktsenteret'
+            )
         };
 
         Contact employerContact = new Contact(FirstName = 'Test', LastName = 'Kontakt', AccountId = account.Id);
