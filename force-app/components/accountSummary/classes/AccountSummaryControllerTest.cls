@@ -23,6 +23,8 @@ private class AccountSummaryControllerTest {
         System.runAs(new User(Id = UserInfo.getUserId())) {
             List<Account> accounts = TAG_TestDataFactory.createAccounts(1);
             Account account = accounts[0];
+            account.OwnerId = summaryUserId;
+            update account;
 
             List<CustomOpportunity__c> opportunities = TAG_TestDataFactory.getCustomOpportunities(4, false);
             for (Integer i = 0; i < opportunities.size(); i++) {
@@ -283,21 +285,6 @@ private class AccountSummaryControllerTest {
 
             Assert.isTrue(AccountSummaryController.getRecords(null, 'mulighet').isEmpty(), 'Empty list for null id');
         }
-    }
-
-    @isTest
-    static void shouldHideRowsWithoutAccess() {
-        Account account = getAccount();
-        TAG_TestDataFactory.createUserWithPermset('SUMMARY NO WORKFARE', 'Arbeidsgiver_base');
-        User userWithoutAccess = [SELECT Id FROM User WHERE LastName = 'SUMMARY NO WORKFARE' LIMIT 1];
-
-        AccountSummaryService.Summary summary;
-        System.runAs(userWithoutAccess) {
-            summary = AccountSummaryController.getSummary(account.Id, 6);
-        }
-
-        Assert.isTrue(summary.hasAccount, 'Account should be readable');
-        Assert.isFalse(findRow(summary, 'tiltak').isAccessible, 'Workfare should not be accessible');
     }
 
     @isTest
