@@ -86,7 +86,7 @@
         <connector>
             <targetReference>Should_set_assign_date</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>or</filterLogic>
         <filters>
             <field>OwnerId</field>
             <operator>IsChanged</operator>

@@ -31,6 +31,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_Channel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.TAG_ClosedAfterDueDate__c</field>
         <readable>true</readable>
@@ -83,6 +88,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>EmployerInquiry__c.TAG_IsMyNavUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>EmployerInquiry__c.TAG_IsOutgoingEmployerInquiry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

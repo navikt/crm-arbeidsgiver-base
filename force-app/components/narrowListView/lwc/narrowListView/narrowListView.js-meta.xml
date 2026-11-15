@@ -22,6 +22,8 @@
                 default="false" />
             <property name="altTextNewRecordButton" label="Alternative text New Record Button"
                 type="String" description="Alternative text to pop-up when hover over button." />
+            <property name="triggerScreenFlow" label="Screen Flow API Name" type="String"
+                description="Shows a button that opens the specified screen flow. Leave blank to hide the button." />
             <property name="enableEditAction" label="Enable Edit Action" type="Boolean"
                 default="false" />
             <property name="quickActionsInput" label="Quick Actions" type="String" />
