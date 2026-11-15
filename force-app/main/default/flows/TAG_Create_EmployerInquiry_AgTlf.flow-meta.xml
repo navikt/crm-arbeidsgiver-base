@@ -565,12 +565,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsSaved__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_Message__c</field>
             <value>
                 <elementReference>Text.conversationNote</elementReference>
@@ -678,12 +672,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsSaved__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_Message__c</field>
             <value>
                 <elementReference>Text.conversationNote</elementReference>
@@ -785,12 +773,6 @@ NULL
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsSaved__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_Message__c</field>
             <value>
                 <elementReference>Text.conversationNote</elementReference>
@@ -883,12 +865,6 @@ NULL
             <field>TAG_DueDate__c</field>
             <value>
                 <elementReference>dueDateTime</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>TAG_IsSaved__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
