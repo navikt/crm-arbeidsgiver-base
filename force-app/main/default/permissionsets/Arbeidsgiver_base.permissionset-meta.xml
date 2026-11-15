@@ -997,6 +997,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>EmployerInquiry__c.TAG_ResolvedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Ansvarlig__c</field>
         <readable>true</readable>
     </fieldPermissions>

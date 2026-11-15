@@ -679,13 +679,21 @@ public with sharing class AccountSummaryService {
 
         try {
             for (CustomOpportunity__c opportunity : [
-                SELECT ClosingDate__c
+                SELECT TAG_Resolved_Date_Time__c, LastModifiedDate
                 FROM CustomOpportunity__c
-                WHERE Account__c = :accountId AND InclusionStage__c = 'Avsluttet' AND ClosingDate__c >= :startDateTime
+                WHERE
+                    Account__c = :accountId
+                    AND InclusionStage__c = 'Avsluttet'
+                    AND (TAG_Resolved_Date_Time__c >= :startDateTime
+                    OR (TAG_Resolved_Date_Time__c = NULL
+                    AND LastModifiedDate >= :startDateTime))
                 WITH USER_MODE
                 LIMIT :ROW_QUERY_LIMIT
             ]) {
-                collector.add(AccountSummaryConfig.MULIGHET, opportunity.ClosingDate__c.date());
+                Datetime closed = opportunity.TAG_Resolved_Date_Time__c != null
+                    ? opportunity.TAG_Resolved_Date_Time__c
+                    : opportunity.LastModifiedDate;
+                collector.add(AccountSummaryConfig.MULIGHET, closed.date());
             }
         } catch (Exception e) {
             logDebug('CustomOpportunity__c history', e);
