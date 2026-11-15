@@ -260,12 +260,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>TAG_IsSaved__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>TAG_Message__c</field>
             <value>
                 <elementReference>NotesWithTlfNumber</elementReference>
