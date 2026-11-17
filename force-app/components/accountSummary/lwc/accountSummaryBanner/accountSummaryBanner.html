@@ -1,0 +1,123 @@
+<template>
+    <template lwc:if={renderBanner}>
+        <section class={bannerClass} aria-labelledby="banner-heading">
+            <div class="summary-banner__icon">
+                <lightning-icon icon-name="utility:info" size="small" alternative-text=""></lightning-icon>
+            </div>
+            <div class="summary-banner__body slds-col">
+                <h2 id="banner-heading" class="summary-banner__title">{title}</h2>
+
+                <template lwc:if={hasOngoingActivity}>
+                    <ul class="summary-banner__list">
+                        <template for:each={ongoingLines} for:item="line">
+                            <li key={line.key}>
+                                <button
+                                    type="button"
+                                    class="summary-banner__line"
+                                    data-key={line.key}
+                                    title={line.helpText}
+                                    aria-label={line.ariaLabel}
+                                    aria-haspopup="dialog"
+                                    onclick={handleLineClick}
+                                    onmouseenter={handleLineMouseEnter}
+                                    onmouseleave={handleLineMouseLeave}
+                                >
+                                    <span class="summary-banner__count">{line.text}</span>
+                                    <template lwc:if={line.details}>
+                                        <span class="summary-banner__details"> - {line.details}</span>
+                                    </template>
+                                </button>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+
+                <template lwc:if={hasNavContact}>
+                    <button
+                        type="button"
+                        class="summary-banner__line summary-banner__nav-contact"
+                        data-key="navkontakt"
+                        aria-haspopup="dialog"
+                        onclick={handleLineClick}
+                        onmouseenter={handleLineMouseEnter}
+                        onmouseleave={handleLineMouseLeave}
+                    >
+                        {navContactText}
+                    </button>
+                </template>
+
+                <template lwc:if={hasHistory}>
+                    <h3 class="summary-banner__subtitle">{historyTitle}</h3>
+                    <ul class="summary-banner__list">
+                        <template for:each={historyLines} for:item="line">
+                            <li key={line.key} class="summary-banner__history-line">{line.text}</li>
+                        </template>
+                    </ul>
+                </template>
+
+                <template lwc:if={isInquiryContext}>
+                    <a class="summary-banner__link" href={accountUrl}>Åpne arbeidsgiver →</a>
+                </template>
+            </div>
+
+            <template lwc:if={showPopover}>
+                <section
+                    class={popoverClass}
+                    style={popoverStyle}
+                    role="dialog"
+                    aria-labelledby="banner-popover-heading"
+                    onmouseenter={handlePopoverMouseEnter}
+                    onmouseleave={handleLineMouseLeave}
+                    onkeydown={handlePopoverKeyDown}
+                >
+                    <lightning-button-icon
+                        icon-name="utility:close"
+                        variant="bare"
+                        alternative-text="Lukk"
+                        title="Lukk"
+                        class="slds-float_right slds-popover__close"
+                        data-id="popover-close"
+                        onclick={handlePopoverClose}
+                    ></lightning-button-icon>
+                    <header class="slds-popover__header">
+                        <div class="slds-media slds-media_center">
+                            <div class="slds-media__figure">
+                                <lightning-icon
+                                    icon-name={popoverRow.icon}
+                                    size="small"
+                                    alternative-text=""
+                                ></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2 id="banner-popover-heading" class="slds-text-heading_small">
+                                    {popoverRow.label} ({popoverRow.count})
+                                </h2>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="slds-popover__body summary-popover__body">
+                        <template lwc:if={popoverLoading}>
+                            <div class="slds-is-relative summary-spinner">
+                                <lightning-spinner alternative-text="Laster poster" size="small"></lightning-spinner>
+                            </div>
+                        </template>
+                        <template lwc:if={popoverError}>
+                            <p class="slds-text-color_error" role="alert">{popoverError}</p>
+                        </template>
+                        <template lwc:if={showPopoverEmpty}>
+                            <p class="slds-text-color_weak">Ingen poster å vise.</p>
+                        </template>
+                        <template lwc:if={hasPopoverRecords}>
+                            <template lwc:if={isMobile}>
+                                <c-related-records-card-list records={popoverRecords}></c-related-records-card-list>
+                            </template>
+                            <template lwc:else>
+                                <c-related-records-table records={popoverRecords}></c-related-records-table>
+                            </template>
+                        </template>
+                    </div>
+                </section>
+            </template>
+        </section>
+    </template>
+</template>
