@@ -164,6 +164,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_Message__c</fieldItem>
                 <identifier>RecordMessage_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Source__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Manuelt opprettet</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c4b22a99-dd04-41e4-aba9-876d9d435f67</name>
@@ -213,6 +220,23 @@
                         <leftValue>{!Record.TAG_Theme__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Rekruttere og inkludere</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Channel__c</fieldItem>
+                <identifier>RecordTAG_Channel_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Source__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Manuelt opprettet</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -386,6 +410,19 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection6</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekruttere og inkludere</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Forebygge og redusere fravær</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -404,6 +441,19 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection4</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekruttere og inkludere</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Forebygge og redusere fravær</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

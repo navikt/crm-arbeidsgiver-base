@@ -9,6 +9,7 @@ export default class TagFlowModalButton extends LightningElement {
     @api buttonLabel = 'Åpne';
     @api buttonVariant = 'neutral';
     @api buttonIconName;
+    @api iconOnly = false;
     @api buttonIconPosition = 'left';
     @api buttonTitle;
     @api modalHeading = '';

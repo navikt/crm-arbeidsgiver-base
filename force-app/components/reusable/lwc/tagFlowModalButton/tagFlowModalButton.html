@@ -1,5 +1,17 @@
 <template>
+    <lightning-button-icon
+        lwc:if={iconOnly}
+        variant="border"
+        icon-name={buttonIconName}
+        alternative-text={buttonLabel}
+        title={buttonTitle}
+        size="small"
+        onclick={openModal}
+        class="triggerButton"
+    >
+    </lightning-button-icon>
     <lightning-button
+        lwc:else
         label={buttonLabel}
         variant={buttonVariant}
         icon-name={buttonIconName}
