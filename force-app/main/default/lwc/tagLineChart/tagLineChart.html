@@ -3,6 +3,7 @@
     <template lwc:if={error}>
         <div class="slds-text-color_error">
             <p>Feil: {error}</p>
+            <lightning-button label="Prøv igjen" onclick={handleRetry}></lightning-button>
         </div>
     </template>
 </template>

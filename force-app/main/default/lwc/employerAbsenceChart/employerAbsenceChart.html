@@ -10,7 +10,7 @@
             </div>
         </template>
 
-        <template if:false={isLoading}>
+        <template if:true={showChart}>
             <div class="chart-container" role="img" aria-label="Sykefravær for virksomheten og næringen">
                 <c-tag-line-chart
                     chart-labels={chartLabels}

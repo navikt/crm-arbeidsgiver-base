@@ -2,7 +2,20 @@ import { LightningElement, api, wire } from 'lwc';
 import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
 
 export default class EmployerAbsenceChart extends LightningElement {
-    @api recordId;
+    accountId;
+
+    @api
+    get recordId() {
+        return this.accountId;
+    }
+    set recordId(value) {
+        if (value !== this.accountId) {
+            this.accountId = value;
+            this.chartData = undefined;
+            this.error = undefined;
+            this.loadingRecords = true;
+        }
+    }
 
     error;
 
@@ -11,6 +24,10 @@ export default class EmployerAbsenceChart extends LightningElement {
 
     get isLoading() {
         return !this.error && this.loadingRecords;
+    }
+
+    get showChart() {
+        return !this.isLoading && !this.error && !!this.chartData;
     }
 
     // calculate 4 years ago based on current year
@@ -33,6 +50,7 @@ export default class EmployerAbsenceChart extends LightningElement {
     wiredAbsences({ error, data }) {
         if (data) {
             this.error = undefined;
+            this.chartData = undefined;
             if (data.nextPageToken) {
                 this.error = 'For mange sykefraværsposter til å vise hele diagrammet';
             } else if (data.records.length === 0) {
@@ -101,11 +119,9 @@ export default class EmployerAbsenceChart extends LightningElement {
     }
 
     get chartDatasets() {
-        // console.log('Chart datasets:', JSON.stringify(this.chartData?.datasets ?? []));
         return this.chartData?.datasets ?? [];
     }
     get chartLabels() {
-        // console.log('Chart labels:', JSON.stringify(this.chartData?.labels ?? []));
         return this.chartData?.labels ?? [];
     }
 }
