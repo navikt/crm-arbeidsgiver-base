@@ -1,19 +1,16 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
-import chartjs from '@salesforce/resourceUrl/TAG_chartJs';
-import { loadScript } from 'lightning/platformResourceLoader';
 
 export default class EmployerAbsenceChart extends LightningElement {
     @api recordId;
 
     error;
-    chart;
-    chartjsInitialized = false;
+
     loadingRecords = true;
     chartData;
 
     get isLoading() {
-        return !this.error && (this.loadingRecords || !this.chartjsInitialized);
+        return !this.error && this.loadingRecords;
     }
 
     // calculate 4 years ago based on current year
@@ -23,35 +20,6 @@ export default class EmployerAbsenceChart extends LightningElement {
 
     get absenceFilter() {
         return `{ and: [{ CRM_AbsenceCategory__c: { eq: "VIRKSOMHET" } }, { CRM_Year__c: { gt: ${this.cutoffYear} } }] }`;
-    }
-
-    createQuarterLabels() {
-        const now = new Date();
-        const currentYear = now.getFullYear();
-        const currentQuarter = Math.floor(now.getMonth() / 3) + 1;
-        const labels = [];
-        for (let year = this.cutoffYear + 1; year <= currentYear; year++) {
-            const lastQuarter = year === currentYear ? currentQuarter : 4;
-            for (let quarter = 1; quarter <= lastQuarter; quarter++) {
-                labels.push(`${year}-${quarter}`);
-            }
-        }
-        return labels;
-    }
-
-    async connectedCallback() {
-        try {
-            await loadScript(this, chartjs);
-            this.chartjsInitialized = true;
-        } catch (error) {
-            this.error = 'Feil ved lasting av diagram';
-            console.error('EmployerAbsenceChart error:', error);
-        }
-    }
-
-    disconnectedCallback() {
-        this.chart?.destroy();
-        this.chart = undefined;
     }
 
     @wire(getRelatedListRecords, {
@@ -67,22 +35,15 @@ export default class EmployerAbsenceChart extends LightningElement {
             this.error = undefined;
             if (data.nextPageToken) {
                 this.error = 'For mange sykefraværsposter til å vise hele diagrammet';
-                this.chartData = undefined;
-                this.chart?.destroy();
-                this.chart = undefined;
+            } else if (data.records.length === 0) {
+                this.error = 'Ingen sykefraværsdata tilgjengelig';
             } else {
                 this.processAbsenceData(data.records);
-                if (this.chart) {
-                    this.chart.data = this.chartData;
-                    this.chart.update();
-                }
             }
             this.loadingRecords = false;
         } else if (error) {
             this.error = 'Feil ved henting av sykefraværsdata';
             this.chartData = undefined;
-            this.chart?.destroy();
-            this.chart = undefined;
             this.loadingRecords = false;
             console.error('Error fetching absence data:', error);
         }
@@ -110,16 +71,14 @@ export default class EmployerAbsenceChart extends LightningElement {
                 {
                     label: 'Virksomheten',
                     data: labels.map((quarter) => quarters.get(quarter)?.employer ?? null),
-                    borderColor: '#1b96ff',
-                    backgroundColor: 'rgba(27, 150, 255, 0.1)',
+                    borderColor: '#90d0fe',
                     fill: false,
                     tension: 0.4
                 },
                 {
                     label: 'Næringen',
                     data: labels.map((quarter) => quarters.get(quarter)?.industry ?? null),
-                    borderColor: '#3ba755',
-                    backgroundColor: 'rgba(59, 167, 85, 0.1)',
+                    borderColor: '#2e2e2e',
                     fill: false,
                     tension: 0.4
                 }
@@ -127,41 +86,26 @@ export default class EmployerAbsenceChart extends LightningElement {
         };
     }
 
-    renderedCallback() {
-        if (this.chart || !this.chartData || this.isLoading || this.error) {
-            return;
+    createQuarterLabels() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentQuarter = Math.floor(now.getMonth() / 3) + 1;
+        const labels = [];
+        for (let year = this.cutoffYear + 1; year <= currentYear; year++) {
+            const lastQuarter = year === currentYear ? currentQuarter : 4;
+            for (let quarter = 1; quarter <= lastQuarter; quarter++) {
+                labels.push(`${year}-${quarter}`);
+            }
         }
+        return labels;
+    }
 
-        try {
-            const config = {
-                type: 'line',
-                data: this.chartData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'top' },
-                        title: {
-                            display: true,
-                            text: 'Sykefravær - Virksomhet vs Næring'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: { display: true, text: 'Prosent (%)' }
-                        },
-                        x: {
-                            title: { display: true, text: 'År/Kvartal' }
-                        }
-                    }
-                }
-            };
-            const canvas = this.template.querySelector('canvas');
-            this.chart = new window.Chart(canvas.getContext('2d'), config);
-        } catch (error) {
-            console.error('Error rendering chart:', error);
-            this.error = 'Feil ved tegning av diagram';
-        }
+    get chartDatasets() {
+        // console.log('Chart datasets:', JSON.stringify(this.chartData?.datasets ?? []));
+        return this.chartData?.datasets ?? [];
+    }
+    get chartLabels() {
+        // console.log('Chart labels:', JSON.stringify(this.chartData?.labels ?? []));
+        return this.chartData?.labels ?? [];
     }
 }

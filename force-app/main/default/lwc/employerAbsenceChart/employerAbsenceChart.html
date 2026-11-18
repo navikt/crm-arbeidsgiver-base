@@ -11,8 +11,14 @@
         </template>
 
         <template if:false={isLoading}>
-            <div class="chart-container">
-                <canvas role="img" aria-label="Sykefravær for virksomheten og næringen"></canvas>
+            <div class="chart-container" role="img" aria-label="Sykefravær for virksomheten og næringen">
+                <c-tag-line-chart
+                    chart-labels={chartLabels}
+                    chart-data={chartDatasets}
+                    x-title="År/Kvartal"
+                    y-title="Prosent (%)"
+                >
+                </c-tag-line-chart>
             </div>
         </template>
     </div>
