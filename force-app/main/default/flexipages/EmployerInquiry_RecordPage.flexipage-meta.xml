@@ -697,6 +697,56 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>buttonLabel</name>
+                    <value>Opprett samarbeidsområde</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardText</name>
+                    <value>Opprett ett samarbeidsområde, der du kan utforske et mulig samarbeid og kartlegge behov, eventuelt inngå et samarbeid og oppdatere alt om prosessen med arbeidsgiveren på ett sted. Samtidig som du gjør det enklere for andre å få raskt overblikk over et pågående samarbeid. Merk: Dette området vil utvikles i samarbid fremover, så dette er bare første versjon, og vil være litt tomt i starten</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>cardTitle</name>
+                    <value>Opprett et samarbeidsområde</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowApiName</name>
+                    <value>TAG_Collaboration_Screen</value>
+                </componentInstanceProperties>
+                <componentName>callToActionCard</componentName>
+                <identifier>c_callToActionCard9</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Utforsker samarbeid videre / oppfølging planlagt</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Starter tiltakssamarbeid</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Skal delta på jobbmesse</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
                     <value>Opprett mulighet</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
