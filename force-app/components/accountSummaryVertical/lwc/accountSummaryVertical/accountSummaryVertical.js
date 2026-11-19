@@ -11,7 +11,7 @@ const PERIOD_OPTIONS = [
     { label: '12 mnd', value: '12' }
 ];
 
-export default class AccountSummary extends LightningElement {
+export default class AccountSummaryVertical extends LightningElement {
     @api recordId;
     @api objectApiName;
     @api cardTitle;

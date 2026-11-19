@@ -2,7 +2,7 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Account Summary</masterLabel>
+    <masterLabel>Account Summary (Vertical)</masterLabel>
     <description>Visuell oppsummering av arbeidsgiveren: pågående aktivitet, historikk og skriftlig oppsummering.</description>
     <targets>
         <target>lightning__RecordPage</target>
