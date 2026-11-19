@@ -206,6 +206,11 @@
             <field>NavEmployeeName__c</field>
             <table>JobPosting__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Collaboration__c</field>
+            <table>JobPosting__c</table>
+        </columns>
         <masterLabel>Job Postings</masterLabel>
     </sections>
     <sections>
