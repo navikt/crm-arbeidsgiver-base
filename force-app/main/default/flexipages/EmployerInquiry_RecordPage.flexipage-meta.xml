@@ -91,6 +91,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>accountSummaryHorizontal</componentName>
+                <identifier>c_accountSummaryHorizontal</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>flowArguments</name>
                     <value>[{&quot;label&quot;:&quot;recordId&quot;,&quot;dataType&quot;:&quot;String&quot;,&quot;supportsRecordId&quot;:true,&quot;value&quot;:&quot;{!Record.Id}&quot;}]</value>
@@ -928,12 +934,6 @@
                         <rightValue>Arbeidsplassen.no</rightValue>
                     </criteria>
                 </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>accountSummaryVertical</componentName>
-                <identifier>c_accountSummaryVertical</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>
