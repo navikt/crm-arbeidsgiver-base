@@ -279,6 +279,11 @@
             <field>TAG_Quality_Issue_Timeliness__c</field>
             <table>JobPosting__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Collaboration__c</field>
+            <table>JobPosting__c</table>
+        </columns>
         <masterLabel>Job Postings</masterLabel>
     </sections>
     <sections>
@@ -768,6 +773,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>EmployerInquirySource__c</field>
+            <table>JobPosting__c.JobPostings_Henvendelser__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Collaboration__c</field>
             <table>JobPosting__c.JobPostings_Henvendelser__r.Candidate_Outcome__r</table>
         </columns>
         <masterLabel>Candidate Outcome</masterLabel>

@@ -1017,6 +1017,11 @@
             <field>TAG_Quality_Issue_Timeliness__c</field>
             <table>Account.JobPostings__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Collaboration__c</field>
+            <table>Account.JobPostings__r</table>
+        </columns>
         <masterLabel>Job Postings</masterLabel>
     </sections>
     <sections>
@@ -1228,6 +1233,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>EmployerInquirySource__c</field>
+            <table>Account.JobPostings__r.Candidate_Outcome__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_Collaboration__c</field>
             <table>Account.JobPostings__r.Candidate_Outcome__r</table>
         </columns>
         <masterLabel>Candidate Outcome</masterLabel>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Utforsker samarbeid/Relasjonsbygging</fullName>
+                <default>false</default>
+                <label>Utforsker samarbeid/Relasjonsbygging</label>
+            </value>
+            <value>
+                <fullName>Pågående samarbeid</fullName>
+                <default>false</default>
+                <label>Pågående samarbeid</label>
+            </value>
+            <value>
+                <fullName>Avslutte</fullName>
+                <default>false</default>
+                <label>Avslutte</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

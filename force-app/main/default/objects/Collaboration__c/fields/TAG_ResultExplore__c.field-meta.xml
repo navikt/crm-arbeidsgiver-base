@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_ResultExplore__c</fullName>
+    <label>Result Explore</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>TAG_Status__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Vi inngår samarbeid</fullName>
+                <default>false</default>
+                <label>Vi inngår samarbeid</label>
+            </value>
+            <value>
+                <fullName>Ikke aktuelt med samarbeid</fullName>
+                <default>false</default>
+                <label>Ikke aktuelt med samarbeid</label>
+            </value>
+            <value>
+                <fullName>Arbeidsgiver skal rekruttere selv</fullName>
+                <default>false</default>
+                <label>Arbeidsgiver skal rekruttere selv</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Utforsker samarbeid/Relasjonsbygging</controllingFieldValue>
+            <valueName>Vi inngår samarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Utforsker samarbeid/Relasjonsbygging</controllingFieldValue>
+            <valueName>Ikke aktuelt med samarbeid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Utforsker samarbeid/Relasjonsbygging</controllingFieldValue>
+            <valueName>Arbeidsgiver skal rekruttere selv</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>
