@@ -1,4 +1,5 @@
 import { LightningElement, api, wire } from 'lwc';
+import { refreshApex } from '@salesforce/apex';
 import FORM_FACTOR from '@salesforce/client/formFactor';
 import getSummary from '@salesforce/apex/AccountSummaryController.getSummary';
 import getRecords from '@salesforce/apex/AccountSummaryController.getRecords';
@@ -34,6 +35,8 @@ export default class AccountSummaryHorizontal extends LightningElement {
     summary;
     error;
     isLoading = true;
+    isRefreshing = false;
+    wiredSummaryResult;
     isExpanded = false;
     hasInitialExpandedState = false;
 
@@ -50,7 +53,9 @@ export default class AccountSummaryHorizontal extends LightningElement {
     triggerElement;
 
     @wire(getSummary, { recordId: '$recordId', months: '$monthsAsNumber' })
-    wiredSummary({ data, error }) {
+    wiredSummary(result) {
+        this.wiredSummaryResult = result;
+        const { data, error } = result;
         if (data) {
             this.summary = data;
             this.error = undefined;
@@ -154,6 +159,22 @@ export default class AccountSummaryHorizontal extends LightningElement {
 
     get ariaExpanded() {
         return String(this.isExpanded);
+    }
+
+    handleRefresh() {
+        if (this.isRefreshing || !this.wiredSummaryResult) {
+            return;
+        }
+        this.isRefreshing = true;
+        this.closePopover(false);
+        this.cachedRecords.clear();
+        refreshApex(this.wiredSummaryResult).finally(() => {
+            this.isRefreshing = false;
+        });
+    }
+
+    get refreshLabel() {
+        return this.isRefreshing ? 'Oppdaterer …' : 'Oppdater oversikten';
     }
 
     handleToggle() {

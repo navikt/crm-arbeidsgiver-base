@@ -226,6 +226,17 @@ button.summary-bar_calm:hover {
 }
 
 /* Ongoing rows */
+.ongoing-header {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.ongoing-header .section-heading {
+    margin: 0;
+}
+
 .ongoing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));

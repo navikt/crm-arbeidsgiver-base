@@ -20,8 +20,9 @@ public with sharing class AccountSummaryController {
      * @description Returns the records behind one row in "Pågående aktivitet".
      * @param recordId Id of an Account or EmployerInquiry__c record.
      * @param key Row key from AccountSummaryConfig.
+     * Not cacheable, so the refresh button in the component always gets current data.
      */
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static List<BadgeService.RecordWrapper> getRecords(Id recordId, String key) {
         try {
             return AccountSummaryService.getRecords(recordId, key);

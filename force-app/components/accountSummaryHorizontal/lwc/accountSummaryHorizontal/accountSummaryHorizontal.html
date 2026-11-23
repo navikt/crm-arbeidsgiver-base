@@ -85,7 +85,19 @@
 
                 <!-- Ongoing activity -->
                 <section class="zone zone_ongoing" aria-labelledby="ongoing-heading">
-                    <h3 id="ongoing-heading" class="section-heading">Pågående aktivitet</h3>
+                    <div class="ongoing-header">
+                        <h3 id="ongoing-heading" class="section-heading">Pågående aktivitet</h3>
+                        <lightning-button-icon
+                            icon-name="utility:refresh"
+                            variant="bare"
+                            size="small"
+                            alternative-text={refreshLabel}
+                            title={refreshLabel}
+                            disabled={isRefreshing}
+                            class="refresh-button"
+                            onclick={handleRefresh}
+                        ></lightning-button-icon>
+                    </div>
                     <template lwc:if={hasNoOngoingRows}>
                         <p class="ongoing-empty">Ingen pågående aktivitet registrert.</p>
                     </template>
