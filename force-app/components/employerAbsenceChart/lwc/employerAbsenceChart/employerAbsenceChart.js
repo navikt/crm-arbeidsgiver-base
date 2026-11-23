@@ -21,6 +21,7 @@ export default class EmployerAbsenceChart extends LightningElement {
 
     loadingRecords = true;
     chartData;
+    userMessage;
 
     get isLoading() {
         return !this.error && this.loadingRecords;
@@ -50,17 +51,22 @@ export default class EmployerAbsenceChart extends LightningElement {
     wiredAbsences({ error, data }) {
         if (data) {
             this.error = undefined;
+            this.userMessage = undefined;
             this.chartData = undefined;
             if (data.nextPageToken) {
                 this.error = 'For mange sykefraværsposter til å vise hele diagrammet';
             } else if (data.records.length === 0) {
-                this.error = 'Ingen sykefraværsdata tilgjengelig';
+                this.userMessage = 'Ingen sykefraværsdata tilgjengelig';
             } else {
                 this.processAbsenceData(data.records);
             }
             this.loadingRecords = false;
         } else if (error) {
-            this.error = 'Feil ved henting av sykefraværsdata';
+            if (error?.body?.statusCode === 400) {
+                this.error = 'Sykefraværsdata utilgjengelig';
+            } else {
+                this.error = 'Feil ved henting av sykefraværsdata';
+            }
             this.chartData = undefined;
             this.loadingRecords = false;
             console.error('Error fetching absence data:', error);
