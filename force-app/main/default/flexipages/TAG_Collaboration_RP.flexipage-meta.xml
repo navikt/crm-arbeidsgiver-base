@@ -31,28 +31,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Status__c</fieldItem>
-                <identifier>RecordTAG_Status_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.OwnerId</fieldItem>
                 <identifier>RecordOwnerIdField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Date__c</fieldItem>
-                <identifier>RecordTAG_Date_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -102,28 +82,6 @@
             </fieldInstance>
         </itemInstances>
         <itemInstances>
-            <componentInstance>
-                <componentName>flexipage:blankSpace</componentName>
-                <identifier>flexipage_blankSpace</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.TAG_Type__c</fieldItem>
-                <identifier>RecordTAG_Type_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>flexipage:blankSpace</componentName>
-                <identifier>flexipage_blankSpace2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
@@ -137,10 +95,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>Facet-31842200-b014-4ea7-bf66-3abe074bdd56</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -149,16 +103,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column3</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-31842200-b014-4ea7-bf66-3abe074bdd56</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column4</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-dc8ebce7-4d98-4c12-98ca-6ad432468f39</name>
@@ -195,6 +139,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TAG_ShortDescription__c</fieldItem>
                 <identifier>RecordTAG_ShortDescription_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.TAG_Status__c</fieldItem>
+                <identifier>RecordTAG_Status_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>

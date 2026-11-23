@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Collaboration__c</entityName>
+    <fieldName>TAG_Status__c</fieldName>
+    <masterLabel>Collaboration Status</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;strong&gt;Fase: Avslutte&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Om denne fasen&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Dokumenter hvordan gjennomføringen av samarbidet har vært&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Avslutte</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;strong&gt;Fase: Pågående samarbeid&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Om denne fasen&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Presenter kandidater&lt;/li&gt;&lt;li&gt;Er arbeidsgiver åpen for personer på tiltak&lt;/li&gt;&lt;li&gt;Jobbmesser&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Pågående samarbeid</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>TAG_ResultExplore__c</fieldNames>
+        <info>&lt;p&gt;&lt;strong&gt;Fase: Utforsker samarbeid/Relasjonsbygging&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Om denne fasen&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Hvilke problemer trenger de hjelp med, og hva håper de på å oppnå?&lt;/li&gt;&lt;li&gt;Hvorfor oppsøker de hjelp nå, og hva har de prøvd tidligere?&lt;/li&gt;&lt;li&gt;Hva er deres krav og holdninger?&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Utforsker samarbeid/Relasjonsbygging</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>
