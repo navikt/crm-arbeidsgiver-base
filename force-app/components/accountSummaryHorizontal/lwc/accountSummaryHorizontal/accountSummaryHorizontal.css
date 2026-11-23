@@ -1,8 +1,6 @@
 :host {
     display: block;
     position: relative;
-    /* Draws the top border above the highlights panel, which overlaps the next component when the badges are empty. */
-    z-index: 1;
 
     --summary-active-bg: var(--slds-g-color-palette-yellow-95, #fbf3e0);
     --summary-active-bg-hover: var(--slds-g-color-palette-yellow-90, #f9e3b6);
