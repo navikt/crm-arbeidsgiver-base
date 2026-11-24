@@ -139,6 +139,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>TAG_Date__c</field>
+            <value>
+                <elementReference>Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>TAG_EmployerInquiry__c</field>
             <value>
                 <elementReference>Get_Employer_Inquiry.Id</elementReference>
@@ -160,6 +166,12 @@
             <field>TAG_Status__c</field>
             <value>
                 <stringValue>Utforsker samarbeid/Relasjonsbygging</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TAG_Type__c</field>
+            <value>
+                <stringValue>Utforsker samarbeid/relasjonsbygging</stringValue>
             </value>
         </inputAssignments>
         <object>Collaboration__c</object>
