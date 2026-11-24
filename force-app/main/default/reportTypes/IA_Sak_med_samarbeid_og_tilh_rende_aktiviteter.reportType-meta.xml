@@ -272,6 +272,16 @@
             <field>Link__c</field>
             <table>IACase__c.IA_Cooperations__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NAVUnit__c</field>
+            <table>IACase__c.IA_Cooperations__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NAVUnitNr__c</field>
+            <table>IACase__c.IA_Cooperations__r</table>
+        </columns>
         <masterLabel>IA Cooperations</masterLabel>
     </sections>
     <sections>
