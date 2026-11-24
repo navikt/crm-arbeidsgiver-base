@@ -124,6 +124,16 @@
             <field>Link__c</field>
             <table>IACooperation__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NAVUnit__c</field>
+            <table>IACooperation__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_NAVUnitNr__c</field>
+            <table>IACooperation__c</table>
+        </columns>
         <masterLabel>IA Cooperations</masterLabel>
     </sections>
     <sections>
