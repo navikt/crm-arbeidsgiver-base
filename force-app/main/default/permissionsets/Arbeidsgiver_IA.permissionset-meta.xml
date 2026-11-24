@@ -207,6 +207,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IACooperation__c.TAG_NAVUnit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IACooperation__c.Type_IA_Cooperation__c</field>
         <readable>true</readable>
     </fieldPermissions>
