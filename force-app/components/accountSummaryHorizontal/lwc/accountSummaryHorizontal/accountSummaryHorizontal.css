@@ -7,10 +7,10 @@
     --summary-active-accent: var(--slds-g-color-palette-yellow-70, #e4a201);
     --summary-active-text: var(--slds-g-color-palette-yellow-20, #4f2100);
 
-    --summary-calm-bg: var(--slds-g-color-palette-green-95, #ebf7e6);
-    --summary-calm-bg-hover: var(--slds-g-color-palette-green-90, #cdefc4);
-    --summary-calm-accent: var(--slds-g-color-palette-green-50, #2e844a);
-    --summary-calm-text: var(--slds-g-color-palette-green-20, #0e3c1e);
+    --summary-calm-bg: var(--slds-g-color-palette-blue-95, #eef4ff);
+    --summary-calm-bg-hover: var(--slds-g-color-palette-blue-90, #d8e6fe);
+    --summary-calm-accent: var(--slds-g-color-palette-blue-50, #0176d3);
+    --summary-calm-text: var(--slds-g-color-palette-blue-20, #032d60);
 
     --summary-neutral-bg: var(--slds-g-color-surface-container-2, #f3f3f3);
     --summary-neutral-accent: var(--slds-g-color-border-2, #c9c9c9);
