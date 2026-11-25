@@ -1,25 +1,43 @@
 <template>
-    <div class="slds-box slds-p-around_medium">
-        <template if:true={isLoading}>
-            <lightning-spinner alternative-text="Laster diagram..."></lightning-spinner>
-        </template>
+    <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small slds-truncate">
+                            Sykefravær på virksomheten - siste 3 år
+                        </span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Laster diagram..."></lightning-spinner>
+            </template>
 
-        <template if:true={error}>
-            <div class="slds-text-color_error">
-                <p>Feil: {error}</p>
-            </div>
-        </template>
+            <template if:true={error}>
+                <div class="slds-text-color_error">
+                    <p>Feil: {error}</p>
+                </div>
+            </template>
+            <template if:true={userMessage}>
+                <div class="slds-text-color_weak slds-align_absolute-center slds-p-around_medium">
+                    <p>{userMessage}</p>
+                </div>
+            </template>
 
-        <template if:true={showChart}>
-            <div class="chart-container" role="img" aria-label="Sykefravær for virksomheten og næringen">
-                <c-tag-line-chart
-                    chart-labels={chartLabels}
-                    chart-data={chartDatasets}
-                    x-title="År/Kvartal"
-                    y-title="Prosent (%)"
-                >
-                </c-tag-line-chart>
-            </div>
-        </template>
-    </div>
+            <template if:true={showChart}>
+                <div class="chart-container" role="img" aria-label="Sykefravær for virksomheten og næringen">
+                    <c-tag-line-chart
+                        chart-labels={chartLabels}
+                        chart-data={chartDatasets}
+                        x-title="År/Kvartal"
+                        y-title="Prosent (%)"
+                    >
+                    </c-tag-line-chart>
+                </div>
+            </template>
+        </div>
+    </article>
 </template>

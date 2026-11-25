@@ -446,6 +446,19 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>employerAbsenceChart</componentName>
+                <identifier>c_employerAbsenceChart</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$Permission.CustomPermission.Arbeidsgiver_admin}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>cacheAge</name>
                     <value>1440</value>
