@@ -1,5 +1,5 @@
 .headercontainer {
-    margin-block: calc(var(--slds-g-spacing-var-block-4) * -1) calc(var(--slds-g-spacing-var-block-3) * -1);
+    margin-block: calc(var(--slds-g-spacing-var-block-4) * -1) calc(var(--slds-g-spacing-var-block-4) * -1);
     margin-inline: calc(var(--slds-g-spacing-var-inline-4) * -1);
     padding: 0 var(--slds-g-spacing-var-inline-4) 0 var(--slds-g-spacing-var-inline-4);
     border-start-start-radius: 0;

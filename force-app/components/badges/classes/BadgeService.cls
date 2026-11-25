@@ -1,5 +1,4 @@
 public with sharing class BadgeService {
-    @TestVisible
     private static Map<String, Map<String, String>> fieldLabelsByLang = new Map<String, Map<String, String>>{
         'OWNER' => new Map<String, String>{ 'NO' => 'Eier', 'EN_US' => 'Owner' }
     };
@@ -137,9 +136,7 @@ public with sharing class BadgeService {
         String objectPart;
         String fieldPart;
         SObject lookupRecord;
-        // TYPEOF Owner returns different fields for User and Group owners, so the column needs one label for both.
-        Boolean isPolymorphicOwner = fieldName.containsIgnoreCase('TYPEOF Owner');
-        if (isPolymorphicOwner) {
+        if (fieldName.containsIgnoreCase('TYPEOF Owner')) {
             String typeOfField = record.getSObject('Owner').getSObjectType().toString(); // e.g. User or Group
             fieldName = resolvePolymorphicOwnerField(fieldName, typeOfField);
         }
@@ -166,14 +163,9 @@ public with sharing class BadgeService {
                     .getDescribe();
                 String relationLabel = fieldLabelsByLang.get(objectPart.toUpperCase())
                     .get(UserInfo.getLanguage().toUpperCase());
-                String label;
-                if (String.isBlank(relationLabel)) {
-                    label = fieldDescribe.getLabel();
-                } else if (isPolymorphicOwner) {
-                    label = relationLabel;
-                } else {
-                    label = relationLabel + ' ' + fieldDescribe.getLabel().toLowerCase();
-                }
+                String label = String.isNotBlank(relationLabel)
+                    ? relationLabel + ' ' + fieldDescribe.getLabel().toLowerCase()
+                    : fieldDescribe.getLabel();
                 field.label = label;
                 field.fieldName = objectPart + '_' + fieldPart;
                 field.type = 'text';
