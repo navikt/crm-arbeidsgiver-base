@@ -301,5 +301,25 @@ private class BadgeServiceTest {
         Assert.areEqual(records[0].Account__r.Name, lookupRecord.name, 'Field value should match record value');
         Assert.isNotNull(lookupRecord.link, 'Link should not be null');
         Assert.areEqual(records[0].Account__r.Id, lookupRecord.id, 'Id should match record Id');
+
+        String relationLabel = BadgeService.fieldLabelsByLang.get('OWNER').get(UserInfo.getLanguage().toUpperCase());
+        BadgeService.Field polymorphicOwnerField = BadgeService.createFieldFromSObject(
+            records[0],
+            'TYPEOF Owner WHEN User THEN Alias WHEN Group THEN Name END',
+            fieldData
+        );
+        Assert.areEqual('Owner_Alias', polymorphicOwnerField.fieldName);
+        BadgeService.Field ownerAliasField = BadgeService.createFieldFromSObject(records[0], 'Owner.Alias', fieldData);
+        if (String.isNotBlank(relationLabel)) {
+            Assert.areEqual(
+                relationLabel,
+                polymorphicOwnerField.label,
+                'Polymorphic owner column should have the same label for User and Group owners'
+            );
+            Assert.isTrue(
+                ownerAliasField.label.startsWith(relationLabel + ' '),
+                'Regular owner fields keep the field name in the label'
+            );
+        }
     }
 }

@@ -1,0 +1,283 @@
+<template>
+    <article class={cardClass}>
+        <template lwc:if={isCollapsible}>
+            <h2 class="summary-bar__heading">
+                <button
+                    type="button"
+                    class={barClass}
+                    aria-expanded={ariaExpanded}
+                    aria-controls="summary-body"
+                    onclick={handleToggle}
+                >
+                    <lightning-icon
+                        icon-name={chevronIcon}
+                        size="x-small"
+                        class="summary-bar__chevron"
+                        alternative-text=""
+                    ></lightning-icon>
+                    <span class={statusDotClass}></span>
+                    <span class="summary-bar__text">{headerText}</span>
+                    <span class="summary-bar__hint">{toggleHint}</span>
+                </button>
+            </h2>
+        </template>
+        <template lwc:else>
+            <h2 class={barClass} role={barRole}>
+                <span class={statusDotClass}></span>
+                <span class="summary-bar__text">{headerText}</span>
+            </h2>
+        </template>
+
+        <template lwc:if={showBody}>
+            <div id="summary-body" class="summary-body">
+                <!-- Written summary -->
+                <section class="zone zone_summary" aria-label="Oppsummering">
+                    <div class="summary-text">
+                        <p>
+                            <lightning-icon
+                                icon-name="utility:sparkles"
+                                size="xx-small"
+                                class="summary-text__icon"
+                                alternative-text=""
+                            ></lightning-icon>
+                            <template for:each={summaryParts} for:item="part">
+                                <template lwc:if={part.bold}><strong key={part.key}>{part.text}</strong></template>
+                                <template lwc:else><span key={part.key}>{part.text}</span></template>
+                            </template>
+                        </p>
+                        <span class="summary-text__source">Automatisk oppsummering</span>
+                    </div>
+
+                    <template lwc:if={hasNavContact}>
+                        <button
+                            type="button"
+                            class="nav-contact"
+                            data-key="navkontakt"
+                            title={navContact.helpText}
+                            aria-label={navContactAriaLabel}
+                            aria-haspopup="dialog"
+                            onclick={handleRowClick}
+                            onmouseenter={handleRowMouseEnter}
+                            onmouseleave={handleRowMouseLeave}
+                        >
+                            <lightning-avatar
+                                variant="circle"
+                                size="x-small"
+                                initials={navContact.initials}
+                                fallback-icon-name="standard:team_member"
+                                alternative-text=""
+                                class="nav-contact__avatar"
+                            ></lightning-avatar>
+                            <span class="nav-contact__text slds-truncate">
+                                Kontaktperson i Nav: <strong>{navContact.name}</strong>
+                                <template lwc:if={navContact.unit}> · {navContact.unit}</template>
+                            </span>
+                            <template lwc:if={hasAdditionalNavContacts}>
+                                <span class="slds-text-color_weak">+{navContact.additionalCount}</span>
+                            </template>
+                        </button>
+                    </template>
+
+                    <template lwc:if={showAccountLink}>
+                        <a class="account-link" href={accountUrl}>Åpne arbeidsgiver →</a>
+                    </template>
+                </section>
+
+                <!-- Ongoing activity -->
+                <section class="zone zone_ongoing" aria-labelledby="ongoing-heading">
+                    <div class="ongoing-header">
+                        <h3 id="ongoing-heading" class="section-heading">Pågående aktivitet</h3>
+                        <lightning-button-icon
+                            icon-name="utility:refresh"
+                            variant="bare"
+                            size="small"
+                            alternative-text={refreshLabel}
+                            title={refreshLabel}
+                            disabled={isRefreshing}
+                            class="refresh-button"
+                            onclick={handleRefresh}
+                        ></lightning-button-icon>
+                    </div>
+                    <template lwc:if={hasNoOngoingRows}>
+                        <p class="ongoing-empty">Ingen pågående aktivitet registrert.</p>
+                    </template>
+                    <ul class="ongoing-grid">
+                        <template for:each={ongoingRows} for:item="row">
+                            <li key={row.key}>
+                                <template lwc:if={row.isClickable}>
+                                    <button
+                                        type="button"
+                                        class={row.rowClass}
+                                        data-key={row.key}
+                                        title={row.helpText}
+                                        aria-label={row.ariaLabel}
+                                        aria-haspopup="dialog"
+                                        onclick={handleRowClick}
+                                        onmouseenter={handleRowMouseEnter}
+                                        onmouseleave={handleRowMouseLeave}
+                                    >
+                                        <lightning-icon
+                                            icon-name={row.icon}
+                                            size="x-small"
+                                            class="summary-row__icon"
+                                            alternative-text=""
+                                        ></lightning-icon>
+                                        <span class="summary-row__text">
+                                            <span class="summary-row__label">{row.label}</span>
+                                            <template lwc:if={row.details}>
+                                                <span class="summary-row__details">
+                                                    {row.details}
+                                                    <template lwc:if={row.pill}>
+                                                        <span class="summary-pill">{row.pill}</span>
+                                                    </template>
+                                                </span>
+                                            </template>
+                                            <template lwc:elseif={row.pill}>
+                                                <span class="summary-row__details">
+                                                    <span class="summary-pill">{row.pill}</span>
+                                                </span>
+                                            </template>
+                                            <template lwc:if={row.secondaryDetails}>
+                                                <span class="summary-row__details">{row.secondaryDetails}</span>
+                                            </template>
+                                        </span>
+                                        <span class="summary-row__count">{row.count}</span>
+                                    </button>
+                                </template>
+                                <template lwc:else>
+                                    <div class={row.rowClass} title={row.helpText}>
+                                        <lightning-icon
+                                            icon-name={row.icon}
+                                            size="x-small"
+                                            class="summary-row__icon"
+                                            alternative-text=""
+                                        ></lightning-icon>
+                                        <span class="summary-row__text">
+                                            <span class="summary-row__label">{row.label}</span>
+                                        </span>
+                                        <span class="summary-row__count">{row.count}</span>
+                                    </div>
+                                </template>
+                            </li>
+                        </template>
+                    </ul>
+                </section>
+
+                <!-- History -->
+                <section class="zone zone_history" aria-labelledby="history-heading">
+                    <div class="history-header">
+                        <h3 id="history-heading" class="section-heading">
+                            <lightning-icon
+                                icon-name="utility:clock"
+                                size="xx-small"
+                                alternative-text=""
+                            ></lightning-icon>
+                            Historikk
+                        </h3>
+                        <lightning-radio-group
+                            name={periodGroupName}
+                            label="Periode"
+                            variant="label-hidden"
+                            type="button"
+                            options={periodOptions}
+                            value={months}
+                            onchange={handlePeriodChange}
+                            class="period-toggle"
+                        ></lightning-radio-group>
+                    </div>
+
+                    <div class="chart" style={chartStyle} role="img" aria-label={chartAriaLabel}>
+                        <template for:each={historyMonths} for:item="month">
+                            <div key={month.key} class="chart-column" title={month.fullLabel}>
+                                <template for:each={month.segments} for:item="segment">
+                                    <span
+                                        key={segment.id}
+                                        class={segment.cssClass}
+                                        style={segment.style}
+                                        title={segment.title}
+                                    ></span>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="chart-labels" style={chartStyle} aria-hidden="true">
+                        <template for:each={historyMonths} for:item="month">
+                            <span key={month.key}>{month.label}</span>
+                        </template>
+                    </div>
+
+                    <template lwc:if={hasHistory}>
+                        <ul class="legend">
+                            <template for:each={historyTotals} for:item="item">
+                                <li key={item.key} class="legend-item">
+                                    <span class={item.swatchClass}></span>
+                                    <span>{item.label}</span>
+                                    <strong>{item.count}</strong>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template lwc:else>
+                        <p class="history-empty">Ingen registrert aktivitet i perioden.</p>
+                    </template>
+                </section>
+            </div>
+        </template>
+    </article>
+
+    <!-- Popover with records (outside the card so it is not clipped) -->
+    <template lwc:if={showPopover}>
+        <section
+            class={popoverClass}
+            style={popoverStyle}
+            role="dialog"
+            aria-labelledby="popover-heading"
+            onmouseenter={handlePopoverMouseEnter}
+            onmouseleave={handleRowMouseLeave}
+            onkeydown={handlePopoverKeyDown}
+        >
+            <lightning-button-icon
+                icon-name="utility:close"
+                variant="bare"
+                alternative-text="Lukk"
+                title="Lukk"
+                class="slds-float_right slds-popover__close"
+                data-id="popover-close"
+                onclick={handlePopoverClose}
+            ></lightning-button-icon>
+            <header class="slds-popover__header">
+                <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                        <lightning-icon icon-name={popoverRow.icon} size="small" alternative-text=""></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 id="popover-heading" class="slds-text-heading_small">
+                            {popoverRow.label} ({popoverRow.count})
+                        </h2>
+                    </div>
+                </div>
+            </header>
+            <div class="slds-popover__body summary-popover__body">
+                <template lwc:if={popoverLoading}>
+                    <div class="slds-is-relative summary-spinner">
+                        <lightning-spinner alternative-text="Laster poster" size="small"></lightning-spinner>
+                    </div>
+                </template>
+                <template lwc:if={popoverError}>
+                    <p class="slds-text-color_error" role="alert">{popoverError}</p>
+                </template>
+                <template lwc:if={showPopoverEmpty}>
+                    <p class="slds-text-color_weak">Ingen poster å vise.</p>
+                </template>
+                <template lwc:if={hasPopoverRecords}>
+                    <template lwc:if={isMobile}>
+                        <c-related-records-card-list records={popoverRecords}></c-related-records-card-list>
+                    </template>
+                    <template lwc:else>
+                        <c-related-records-table records={popoverRecords}></c-related-records-table>
+                    </template>
+                </template>
+            </div>
+        </section>
+    </template>
+</template>
