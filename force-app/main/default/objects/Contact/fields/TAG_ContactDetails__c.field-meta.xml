@@ -10,7 +10,6 @@ LastName )
 &amp; IF(ISBLANK(Email), &quot;[uten e-post]&quot;, Email)
 &amp; &quot; | &quot;
 &amp; IF(ISBLANK(MobilePhone), &quot;[uten mobil]&quot;, MobilePhone)</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Contact Details</label>
     <required>false</required>
     <type>Text</type>
