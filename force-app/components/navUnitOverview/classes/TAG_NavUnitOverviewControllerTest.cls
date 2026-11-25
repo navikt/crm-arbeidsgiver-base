@@ -64,6 +64,7 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
                     TAG_Status__c = 'Fullført',
+                    TAG_Theme__c = 'Rekruttere og inkludere',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
                 new EmployerInquiry__c(
@@ -73,6 +74,7 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
                     TAG_Status__c = 'Fullført',
+                    TAG_Theme__c = 'Rekruttere og inkludere',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
                 new EmployerInquiry__c(
@@ -82,6 +84,7 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
                     TAG_Status__c = 'Fullført',
+                    TAG_Theme__c = 'Rekruttere og inkludere',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
                 new EmployerInquiry__c(
@@ -91,6 +94,7 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now().addDays(-91),
                     TAG_Status__c = 'Fullført',
+                    TAG_Theme__c = 'Rekruttere og inkludere',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 ),
                 new EmployerInquiry__c(
@@ -99,7 +103,8 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_IsConversationNote__c = false,
                     TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
-                    TAG_Status__c = 'Ny henvendelse'
+                    TAG_Status__c = 'Ny henvendelse',
+                    TAG_Theme__c = 'Rekruttere og inkludere'
                 ),
                 new EmployerInquiry__c(
                     TAG_NavUnit__c = navUnits[1].Id,
@@ -108,6 +113,7 @@ private class TAG_NavUnitOverviewControllerTest {
                     TAG_Source__c = 'Kontaktsenteret',
                     TAG_RecievedDateTime__c = Datetime.now(),
                     TAG_Status__c = 'Fullført',
+                    TAG_Theme__c = 'Rekruttere og inkludere',
                     TAG_ClosedReason__c = INQUIRY_CLOSED_REASON
                 )
             };

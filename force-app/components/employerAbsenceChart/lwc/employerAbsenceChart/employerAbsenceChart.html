@@ -1,0 +1,25 @@
+<template>
+    <div class="slds-box slds-p-around_medium">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Laster diagram..."></lightning-spinner>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error">
+                <p>Feil: {error}</p>
+            </div>
+        </template>
+
+        <template if:true={showChart}>
+            <div class="chart-container" role="img" aria-label="Sykefravær for virksomheten og næringen">
+                <c-tag-line-chart
+                    chart-labels={chartLabels}
+                    chart-data={chartDatasets}
+                    x-title="År/Kvartal"
+                    y-title="Prosent (%)"
+                >
+                </c-tag-line-chart>
+            </div>
+        </template>
+    </div>
+</template>
