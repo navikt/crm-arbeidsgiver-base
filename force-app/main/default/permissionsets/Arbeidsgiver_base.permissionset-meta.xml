@@ -29,6 +29,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AccountSummaryController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AccountTeamMemberControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -994,6 +998,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Title</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmployerInquiry__c.TAG_ResolvedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
