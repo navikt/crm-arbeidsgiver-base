@@ -548,6 +548,11 @@
             <field>TAG_OwnerRegion__c</field>
             <table>IACase__c.Activities</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TAG_OwnerNavIdent__c</field>
+            <table>IACase__c.Activities</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
     <sections>
