@@ -632,6 +632,79 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>altTextNewRecordButton</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>detailFieldInput</name>
+                    <value>TAG_Account__r.Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableEditAction</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>helpText</name>
+                    <value>Samarbeidsområder du eier, sortert med eldste først.</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>custom:custom28</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listViewApiName</name>
+                    <value>TAG_Mine_samarbeidsomr_der</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecordButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                    <value>Collaboration__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>previewRecords</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>quickActionsInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortBy</name>
+                    <value>TAG_Date__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldInput</name>
+                    <value>Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleText</name>
+                    <value>Samarbeidsområder jeg jobber med</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>triggerScreenFlow</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningCriteriaInput</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>warningTextInput</name>
+                </componentInstanceProperties>
+                <componentName>narrowListView</componentName>
+                <identifier>c_narrowListView3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>row3col2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>decorate</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -643,7 +716,7 @@
                 <identifier>flexipage_richText2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>row3col2</name>
+        <name>row3col3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -661,10 +734,6 @@
                 <identifier>flexipage_richText7</identifier>
             </componentInstance>
         </itemInstances>
-        <name>row3col3</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <name>row3col4</name>
         <type>Region</type>
     </flexiPageRegions>
