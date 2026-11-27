@@ -166,7 +166,7 @@
     </choices>
     <choices>
         <name>Incoming</name>
-        <choiceText>Innkommende henvendelse</choiceText>
+        <choiceText>Arbeidsgiver kontaktet Nav (Innkommende henvendelse)</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>Innkommende henvendelse</stringValue>
@@ -174,7 +174,7 @@
     </choices>
     <choices>
         <name>Outgoing</name>
-        <choiceText>Utgående henvendelse</choiceText>
+        <choiceText>Nav kontaktet arbeidsgiver (Utgående henvendelse)</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>Utgående henvendelse</stringValue>
@@ -1351,7 +1351,7 @@
             <choiceReferences>Outgoing</choiceReferences>
             <choiceReferences>Incoming</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Hvilken type henvendelse er det?</fieldText>
+            <fieldText>Hvem var det som tok kontakt?</fieldText>
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
