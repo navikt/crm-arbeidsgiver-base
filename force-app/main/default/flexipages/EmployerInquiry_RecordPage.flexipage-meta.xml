@@ -714,7 +714,7 @@
                 <componentName>callToActionCard</componentName>
                 <identifier>c_callToActionCard9</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                    <booleanFilter>(1 OR 2 OR 3 OR 4 OR 5) AND 6</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -739,6 +739,11 @@
                         <leftValue>{!Record.TAG_ClosedReason__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Skal delta på jobbmesse</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.TAG_Theme__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rekruttere og inkludere</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
