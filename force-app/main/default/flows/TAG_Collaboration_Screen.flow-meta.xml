@@ -85,11 +85,97 @@
             <label>Not true</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>What_closed_reason</name>
+        <label>What closed reason?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Collaboration</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Explore_collaboration</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry.TAG_ClosedReason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Utforsker samarbeid videre / oppfølging planlagt</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Collaboration</targetReference>
+            </connector>
+            <label>Explore collaboration</label>
+        </rules>
+        <rules>
+            <name>Workfare</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry.TAG_ClosedReason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Starter tiltakssamarbeid</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Collaboration</targetReference>
+            </connector>
+            <label>Workfare</label>
+        </rules>
+        <rules>
+            <name>Recruitment_reserved_job_posting</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry.TAG_ClosedReason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Skal ansette med bistand fra Nav - direktemeldt stilling/reservert oppdrag (i Rekrutteringsbistand)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Collaboration</targetReference>
+            </connector>
+            <label>Recruitment reserved job posting</label>
+        </rules>
+        <rules>
+            <name>Recruitment_assistance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Employer_Inquiry.TAG_ClosedReason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rekrutteringshjelp - oppfølging av eksisterende stilling (fra arbeidsplassen.no)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Collaboration</targetReference>
+            </connector>
+            <label>Recruitment assistance</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>StatusFormula</name>
+        <dataType>String</dataType>
+        <expression>CASE({!Get_Employer_Inquiry.TAG_ClosedReason__c}, 
+  &apos;Utforsker samarbeid videre / oppfølging planlagt&apos;, &apos;Utforsker samarbeid/Relasjonsbygging&apos;, 
+       &apos;Pågående samarbeid&apos;)</expression>
+    </formulas>
     <formulas>
         <name>TodaysDate</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>TypeFormula</name>
+        <dataType>String</dataType>
+        <expression>CASE({!Get_Employer_Inquiry.TAG_ClosedReason__c}, 
+  &apos;Utforsker samarbeid videre / oppfølging planlagt&apos;, &apos;Utforsker samarbeid/relasjonsbygging&apos;,
+     &apos;Starter tiltakssamarbeid&apos;, &apos;Tiltaksamarbeid&apos;,
+         &apos;Rekrutteringssamarbeid&apos;
+)</expression>
     </formulas>
     <interviewLabel>TAG Collaboration Screen {!$Flow.CurrentDateTime}</interviewLabel>
     <label>TAG Collaboration Screen</label>
@@ -165,13 +251,13 @@
         <inputAssignments>
             <field>TAG_Status__c</field>
             <value>
-                <stringValue>Utforsker samarbeid/Relasjonsbygging</stringValue>
+                <elementReference>StatusFormula</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>TAG_Type__c</field>
             <value>
-                <stringValue>Utforsker samarbeid/relasjonsbygging</stringValue>
+                <elementReference>TypeFormula</elementReference>
             </value>
         </inputAssignments>
         <object>Collaboration__c</object>
@@ -319,7 +405,7 @@
         <allowPause>false</allowPause>
         <backButtonLabel>Avbryt</backButtonLabel>
         <connector>
-            <targetReference>Create_Collaboration</targetReference>
+            <targetReference>What_closed_reason</targetReference>
         </connector>
         <fields>
             <name>Recommended_action_Section1</name>
@@ -423,7 +509,7 @@
                     <name>TentativePlan</name>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <stringValue>Utforsker samarbeid videre/oppfølging planlagt</stringValue>
+                        <elementReference>Get_Employer_Inquiry.TAG_ClosedReason__c</elementReference>
                     </defaultValue>
                     <fieldText>Foreløpig plan</fieldText>
                     <fieldType>InputField</fieldType>
@@ -663,7 +749,7 @@
                 </width>
             </styleProperties>
         </fields>
-        <nextOrFinishButtonLabel>Opprett samarbeidsplan</nextOrFinishButtonLabel>
+        <nextOrFinishButtonLabel>Opprett samarbeidsområde</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
